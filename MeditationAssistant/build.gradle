@@ -8,9 +8,6 @@ buildscript {
 }
 
 apply plugin: 'com.android.application'
-//apply plugin: 'com.android.library'
-
-apply plugin: 'com.google.gms.google-services'
 
 repositories {
     mavenCentral()
@@ -34,7 +31,11 @@ android {
         abortOnError false
     }
 
-    /* Comment buildTypes when using library */
+    sourceSets {
+        free.java.srcDirs = ['src/shared/java']
+        full.java.srcDirs = ['src/shared/java']
+    }
+
     buildTypes {
         release {
             debuggable false
@@ -44,23 +45,54 @@ android {
             proguardFile file('proguard-project.txt')
         }
     }
+
+    productFlavors {
+        free {
+            applicationId "sh.ftp.rocketninelabs.meditationassistant"
+            apply plugin: 'com.google.gms.google-services'
+        }
+
+        full {
+            applicationId "sh.ftp.rocketninelabs.meditationassistant.full"
+            apply plugin: 'com.google.gms.google-services'
+        }
+
+        opensource {
+            applicationId "sh.ftp.rocketninelabs.meditationassistant.opensource"
+
+            delete('google-services.json')
+        }
+    }
 }
 
 dependencies {
     compile 'com.android.support:support-v4:19.0.0'
 
-    compile 'com.google.android.gms:play-services-base:8.1.0'
-    compile 'com.google.android.gms:play-services-identity:8.1.0'
-    compile 'com.google.android.gms:play-services-analytics:8.1.0'
-    compile 'com.google.android.gms:play-services-ads:8.1.0'
-    compile 'com.google.android.gms:play-services-wearable:8.1.0'
-    compile 'com.google.android.gms:play-services-appinvite:8.1.0'
-    compile 'com.google.android.gms:play-services-fitness:8.1.0'
+    freeCompile 'com.google.android.gms:play-services-base:8.1.0'
+    fullCompile 'com.google.android.gms:play-services-base:8.1.0'
+
+    freeCompile 'com.google.android.gms:play-services-identity:8.1.0'
+    fullCompile 'com.google.android.gms:play-services-identity:8.1.0'
+
+    freeCompile 'com.google.android.gms:play-services-analytics:8.1.0'
+    fullCompile 'com.google.android.gms:play-services-analytics:8.1.0'
+
+    freeCompile 'com.google.android.gms:play-services-ads:8.1.0'
+    fullCompile 'com.google.android.gms:play-services-ads:8.1.0'
+
+    freeCompile 'com.google.android.gms:play-services-wearable:8.1.0'
+    fullCompile 'com.google.android.gms:play-services-wearable:8.1.0'
+
+    freeCompile 'com.google.android.gms:play-services-appinvite:8.1.0'
+    fullCompile 'com.google.android.gms:play-services-appinvite:8.1.0'
+
+    freeCompile 'com.google.android.gms:play-services-fitness:8.1.0'
+    fullCompile 'com.google.android.gms:play-services-fitness:8.1.0'
 
     //noinspection GradleDynamicVersion
-    compile 'com.crittercism:crittercism-android-agent:+'
-
+    compile 'ch.acra:acra:4.6.2'
     compile 'com.github.amlcurran.showcaseview:library:5.0.0'
-
     //wearApp project(':MeditationAssistantWear')
+    // TODO: Uncomment when Wear app is ready
+    compile 'com.android.support:recyclerview-v7:21.0.0'
 }

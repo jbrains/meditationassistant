@@ -23,8 +23,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.google.android.gms.analytics.GoogleAnalytics;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -308,7 +306,7 @@ public class SettingsActivity extends PreferenceActivity {
         setTheme(getMeditationAssistant().getMATheme());
 
         if (getMeditationAssistant().sendUsageReports()) {
-            getMeditationAssistant().getTracker(MeditationAssistant.TrackerName.APP_TRACKER);
+            getMeditationAssistant().utility.initializeTracker(this);
         }
 
         super.onCreate(savedInstanceState);
@@ -318,7 +316,7 @@ public class SettingsActivity extends PreferenceActivity {
     public void onStart() {
         super.onStart();
         if (getMeditationAssistant().sendUsageReports()) {
-            GoogleAnalytics.getInstance(this).reportActivityStart(this);
+            getMeditationAssistant().utility.trackingStart(this);
         }
     }
 
@@ -326,7 +324,7 @@ public class SettingsActivity extends PreferenceActivity {
     protected void onStop() {
         super.onStop();
         if (getMeditationAssistant().sendUsageReports()) {
-            GoogleAnalytics.getInstance(this).reportActivityStop(this);
+            getMeditationAssistant().utility.trackingStop(this);
         }
     }
 

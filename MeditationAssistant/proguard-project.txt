@@ -66,6 +66,8 @@
 -keep public class com.google.vending.licensing.ILicensingService
 -keep public class com.android.vending.licensing.ILicensingService
 
+-keep class org.acra.** { *; }
+
 # For native methods, see http://proguard.sourceforge.net/manual/examples.html#native
 -keepclasseswithmembernames class * {
     native <methods>;
@@ -120,9 +122,6 @@
 -keep interface android.support.v4.app.** { *; }
 -keep class com.actionbarsherlock.** { *; }
 -keep interface com.actionbarsherlock.** { *; }
-
--keep public class com.crittercism.**
--keepclassmembers public class com.crittercism.* { *; }
 
 # HoloEverywhere
 -keep,allowshrinking,allowoptimization public class * extends ListView

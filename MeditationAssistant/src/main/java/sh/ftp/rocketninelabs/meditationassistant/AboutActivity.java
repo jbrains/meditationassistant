@@ -16,9 +16,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.android.gms.analytics.GoogleAnalytics;
-import com.google.android.gms.appinvite.AppInviteInvitation;
-
 public class AboutActivity extends Activity {
 
     public String license = "";
@@ -35,8 +32,7 @@ public class AboutActivity extends Activity {
         TextView txtAboutAppName = (TextView) findViewById(R.id.txtAboutAppName);
         TextView txtAboutAppVersion = (TextView) findViewById(R.id.txtAboutAppVersion);
 
-        if (getPackageName().equals(
-                "sh.ftp.rocketninelabs.meditationassistant")) {
+        if (BuildConfig.FLAVOR.equals("free")) {
             txtAboutAppName.setText(getString(R.string.appName));
         } else {
             txtAboutAppName.setText(getString(R.string.appNameShort));
@@ -64,7 +60,7 @@ public class AboutActivity extends Activity {
         });
 
         if (getMeditationAssistant().sendUsageReports()) {
-            getMeditationAssistant().getTracker(MeditationAssistant.TrackerName.APP_TRACKER);
+            getMeditationAssistant().utility.initializeTracker(this);
         }
     }
 
@@ -94,10 +90,12 @@ public class AboutActivity extends Activity {
             NavUtils.navigateUpFromSameTask(this);
             return true;
         } else if (i == R.id.action_share_app) {
-            Intent intent = new AppInviteInvitation.IntentBuilder(getString(R.string.appNameShort))
-                    .setMessage(getString(R.string.invitationBlurb))
-                    .build();
-            startActivityForResult(intent, 1337);
+            try {
+                Intent intent = getMeditationAssistant().utility.getAppShareIntent();
+                startActivityForResult(intent, 1337);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else if (i == R.id.action_rate) {
             getMeditationAssistant().askToRateApp();
             return true;
@@ -110,7 +108,7 @@ public class AboutActivity extends Activity {
     public void onStart() {
         super.onStart();
         if (getMeditationAssistant().sendUsageReports()) {
-            GoogleAnalytics.getInstance(this).reportActivityStart(this);
+            getMeditationAssistant().utility.trackingStart(this);
         }
     }
 
@@ -118,7 +116,7 @@ public class AboutActivity extends Activity {
     protected void onStop() {
         super.onStop();
         if (getMeditationAssistant().sendUsageReports()) {
-            GoogleAnalytics.getInstance(this).reportActivityStop(this);
+            getMeditationAssistant().utility.trackingStop(this);
         }
     }
 
@@ -132,10 +130,10 @@ public class AboutActivity extends Activity {
             PackageInfo pInfo = getPackageManager().getPackageInfo(
                     getPackageName(), 0);
             intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.appNameShort) + " "
-                    + pInfo.versionName);
+                    + pInfo.versionName + " (" + getMeditationAssistant().capitalizeFirst(getMeditationAssistant().getMarketName()) + ")");
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-            intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.appNameShort));
+            intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.appNameShort) + " (" + getMeditationAssistant().capitalizeFirst(getMeditationAssistant().getMarketName()) + ")");
         }
         intent.putExtra(android.content.Intent.EXTRA_TEXT, "");
 

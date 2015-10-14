@@ -40,13 +40,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
-import com.crittercism.app.Crittercism;
 import com.github.amlcurran.showcaseview.OnShowcaseEventListener;
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.analytics.GoogleAnalytics;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -92,7 +88,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             }
         }
     };
-    private AdView av = null;
     private Handler handler;
     private Runnable meditateRunnable = null;
     private Runnable screenDimRunnable = null;
@@ -226,13 +221,12 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Crittercism.initialize(getApplicationContext(), "51d51a5ea7928a6b4a000005");
 
         setTheme(getMeditationAssistant().getMATheme());
         setContentView(R.layout.activity_main);
 
         if (getMeditationAssistant().sendUsageReports()) {
-            getMeditationAssistant().getTracker(MeditationAssistant.TrackerName.APP_TRACKER);
+            getMeditationAssistant().utility.initializeTracker(this);
         }
 
         handler = new Handler();
@@ -449,19 +443,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             getMeditationAssistant().getMediNET().updated();
         }
 
-        if (getPackageName()
-                .equals("sh.ftp.rocketninelabs.meditationassistant")) {
-            Log.d("MeditationAssistant", "Fetching ad");
-
-            // AdView av = new AdView(this, AdSize.SMART_BANNER,
-            // "a15110a172d3cff");
-            av = (AdView) findViewById(R.id.adViewMain);
-            av.setVisibility(View.VISIBLE);
-            AdRequest adRequest = new AdRequest.Builder()
-                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                    .build();
-            av.loadAd(adRequest);
-        }
+        getMeditationAssistant().utility.loadAd(this);
 
         onNewIntent(getIntent());
 
@@ -1727,9 +1709,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             getMeditationAssistant().showNotification();
         }
 
-        if (av != null) {
-            av.pause();
-        }
+        getMeditationAssistant().utility.pauseAd(this);
 
         getMeditationAssistant().setScreenOff(true);
         getMeditationAssistant().getPrefs().unregisterOnSharedPreferenceChangeListener(sharedPrefslistener);
@@ -1810,19 +1790,15 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
         super.onResume();
 
-        if (av != null) {
-            av.resume();
-        }
+        getMeditationAssistant().utility.resumeAd(this);
     }
 
     @Override
     public void onStart() {
         if (getMeditationAssistant().sendUsageReports()) {
-            GoogleAnalytics.getInstance(this).reportActivityStart(this);
+            getMeditationAssistant().utility.trackingStart(this);
         }
-        if (getMeditationAssistant().googleClient != null) {
-            getMeditationAssistant().googleClient.connect();
-        }
+        getMeditationAssistant().utility.connectGoogleClient();
 
         super.onStart();
     }
@@ -1830,11 +1806,9 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     @Override
     protected void onStop() {
         if (getMeditationAssistant().sendUsageReports()) {
-            GoogleAnalytics.getInstance(this).reportActivityStop(this);
+            getMeditationAssistant().utility.trackingStop(this);
         }
-        if (getMeditationAssistant().googleClient != null && getMeditationAssistant().googleClient.isConnected()) {
-            getMeditationAssistant().googleClient.disconnect();
-        }
+        getMeditationAssistant().utility.disconnectGoogleClient();
 
         super.onStop();
     }
@@ -1845,9 +1819,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             getMeditationAssistant().getPrefs().edit().putString("key", "").apply();
         }
 
-        if (av != null) {
-            av.destroy();
-        }
+        getMeditationAssistant().utility.destroyAd(this);
 
         super.onDestroy();
     }
@@ -2418,14 +2390,9 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == MeditationAssistant.REQUEST_FIT) {
-            getMeditationAssistant().googleAPIAuthInProgress = false;
+            getMeditationAssistant().utility.googleAPIAuthInProgress = false;
             if (resultCode == RESULT_OK) {
-                // Make sure the app is not already connected or attempting to connect
-                if (!getMeditationAssistant().googleClient.isConnecting() && !getMeditationAssistant().googleClient.isConnected()) {
-                    getMeditationAssistant().googleClient.connect();
-
-                    getMeditationAssistant().sendFitData();
-                }
+                getMeditationAssistant().utility.onGoogleClientResult();
             }
         }
     }
@@ -2525,6 +2492,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         if (sv != null && sv.isShown()) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
+        getMeditationAssistant().utility.loadAd(this);
     }
 
     @Override

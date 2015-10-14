@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -19,11 +20,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.analytics.GoogleAnalytics;
-
 public class CompleteActivity extends Activity {
-    private AdView av = null;
     private MediaPlayer mMediaPlayer;
     private MeditationAssistant ma;
     private Handler handler = new Handler();
@@ -105,16 +102,7 @@ public class CompleteActivity extends Activity {
         getMeditationAssistant().unsetNotificationControl();
         getMeditationAssistant().hideNotification(); // Called twice because it seems to help
 
-        if (getPackageName().equals("sh.ftp.rocketninelabs.meditationassistant")) {
-            Log.d("MeditationAssistant", "Fetching ad");
-
-            av = (AdView) findViewById(R.id.adViewSessionComplete);
-            av.setVisibility(View.VISIBLE);
-            com.google.android.gms.ads.AdRequest adRequest = new com.google.android.gms.ads.AdRequest.Builder()
-                    .addTestDevice(com.google.android.gms.ads.AdRequest.DEVICE_ID_EMULATOR)
-                    .build();
-            av.loadAd(adRequest);
-        }
+        getMeditationAssistant().utility.loadAd(this);
 
         EditText editSessionMessage = (EditText) findViewById(R.id.editSessionMessage);
         if (editSessionMessage.getText().toString().equals("")
@@ -262,12 +250,18 @@ public class CompleteActivity extends Activity {
         }
 
         if (getMeditationAssistant().sendUsageReports()) {
-            getMeditationAssistant().getTracker(MeditationAssistant.TrackerName.APP_TRACKER);
+            getMeditationAssistant().utility.initializeTracker(this);
         }
 
         if (!manual) {
             getMeditationAssistant().vibrateDevice();
         }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        getMeditationAssistant().utility.loadAd(this);
     }
 
     @Override
@@ -336,9 +330,7 @@ public class CompleteActivity extends Activity {
 
     @Override
     public void onDestroy() {
-        if (av != null) {
-            av.destroy();
-        }
+        getMeditationAssistant().utility.destroyAd(this);
         if (mMediaPlayer != null) {
             try {
                 mMediaPlayer.release();
@@ -358,25 +350,21 @@ public class CompleteActivity extends Activity {
 
     @Override
     public void onPause() {
-        if (av != null) {
-            av.pause();
-        }
+        getMeditationAssistant().utility.pauseAd(this);
         super.onPause();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (av != null) {
-            av.resume();
-        }
+        getMeditationAssistant().utility.resumeAd(this);
     }
 
     @Override
     public void onStart() {
         super.onStart();
         if (getMeditationAssistant().sendUsageReports()) {
-            GoogleAnalytics.getInstance(this).reportActivityStart(this);
+            getMeditationAssistant().utility.trackingStart(this);
         }
     }
 
@@ -384,7 +372,7 @@ public class CompleteActivity extends Activity {
     protected void onStop() {
         super.onStop();
         if (getMeditationAssistant().sendUsageReports()) {
-            GoogleAnalytics.getInstance(this).reportActivityStop(this);
+            getMeditationAssistant().utility.trackingStop(this);
         }
     }
 

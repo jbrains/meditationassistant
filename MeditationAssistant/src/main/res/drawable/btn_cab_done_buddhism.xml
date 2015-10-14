@@ -18,10 +18,10 @@
 -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true"
-        android:drawable="@drawable/btn_cab_done_pressed_buddhism" />
-    <item android:state_focused="true" android:state_enabled="true"
-        android:drawable="@drawable/btn_cab_done_focused_buddhism" />
-    <item android:state_enabled="true"
-        android:drawable="@drawable/btn_cab_done_default_buddhism" />
+    <item android:drawable="@drawable/btn_cab_done_pressed_buddhism"
+          android:state_pressed="true"/>
+    <item android:drawable="@drawable/btn_cab_done_focused_buddhism" android:state_enabled="true"
+          android:state_focused="true"/>
+    <item android:drawable="@drawable/btn_cab_done_default_buddhism"
+          android:state_enabled="true"/>
 </selector>

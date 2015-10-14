@@ -4,22 +4,22 @@
 
     <header
         android:fragment="sh.ftp.rocketninelabs.meditationassistant.SettingsActivity$SessionPreferenceFragment"
-        android:title="@string/session" />
+        android:title="@string/session"/>
 
     <header
         android:fragment="sh.ftp.rocketninelabs.meditationassistant.SettingsActivity$ReminderPreferenceFragment"
-        android:title="@string/pref_daily_reminder" />
+        android:title="@string/pref_daily_reminder"/>
 
     <header
         android:fragment="sh.ftp.rocketninelabs.meditationassistant.SettingsActivity$MeditationPreferenceFragment"
-        android:title="@string/meditation" />
+        android:title="@string/meditation"/>
 
     <header
         android:fragment="sh.ftp.rocketninelabs.meditationassistant.SettingsActivity$MediNETPreferenceFragment"
-        android:title="@string/mediNET" />
+        android:title="@string/mediNET"/>
 
     <header
         android:fragment="sh.ftp.rocketninelabs.meditationassistant.SettingsActivity$MiscellaneousPreferenceFragment"
-        android:title="@string/miscellaneous" />
+        android:title="@string/miscellaneous"/>
 
 </preference-headers>

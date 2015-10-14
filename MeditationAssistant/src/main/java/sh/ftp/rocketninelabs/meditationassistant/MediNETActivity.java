@@ -25,10 +25,6 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.analytics.GoogleAnalytics;
-
 import org.apache.http.cookie.Cookie;
 
 import java.util.Date;
@@ -39,7 +35,6 @@ public class MediNETActivity extends Activity {
     final Activity activity = this;
     protected FrameLayout webViewPlaceholder = null;
     protected WebView webView = null;
-    private AdView av = null;
     private String provider = "";
     private MeditationAssistant ma = null;
     private Handler handler = new Handler();
@@ -326,31 +321,7 @@ public class MediNETActivity extends Activity {
                 goTo(getIntent().getStringExtra("page"));
             }
         } else {
-            if (getPackageName().equals(
-                    "sh.ftp.rocketninelabs.meditationassistant")) {
-                Log.d("MeditationAssistant", "Fetching ad");
-
-                // AdView av = new AdView(this, AdSize.SMART_BANNER,
-                // "a15110a172d3cff");
-                av = (AdView) findViewById(R.id.adViewMediNET);
-                av.setVisibility(View.VISIBLE);
-                AdRequest adRequest = new AdRequest.Builder()
-                        .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                        .build();
-                av.loadAd(adRequest);
-
-				/*
-                 * (new Thread() { public void run() { Looper.prepare(); AdView
-				 * av = (AdView) findViewById(R.id.adViewMediNET);
-				 *
-				 *
-				 *
-				 * av.loadAd(adrequest); } }).start();
-				 */
-
-            } else {
-                // av.setVisibility(View.GONE);
-            }
+            getMeditationAssistant().utility.loadAd(this);
         }
     }
 
@@ -376,22 +347,10 @@ public class MediNETActivity extends Activity {
         setContentView(R.layout.activity_medinet);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if (getPackageName()
-                .equals("sh.ftp.rocketninelabs.meditationassistant")) {
-            Log.d("MeditationAssistant", "Fetching ad");
-
-            // AdView av = new AdView(this, AdSize.SMART_BANNER,
-            // "a15110a172d3cff");
-            av = (AdView) findViewById(R.id.adViewMediNET);
-            av.setVisibility(View.VISIBLE);
-            AdRequest adRequest = new AdRequest.Builder()
-                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                    .build();
-            av.loadAd(adRequest);
-        }
+        getMeditationAssistant().utility.loadAd(this);
 
         if (getMeditationAssistant().sendUsageReports()) {
-            getMeditationAssistant().getTracker(MeditationAssistant.TrackerName.APP_TRACKER);
+            getMeditationAssistant().utility.initializeTracker(this);
         }
 
         initUI(true);
@@ -415,9 +374,7 @@ public class MediNETActivity extends Activity {
             getMeditationAssistant().getMediNET().updated();
         }
 
-        if (av != null) {
-            av.destroy();
-        }
+        getMeditationAssistant().utility.destroyAd(this);
 
         super.onDestroy();
     }
@@ -474,9 +431,7 @@ public class MediNETActivity extends Activity {
 
     @Override
     protected void onPause() {
-        if (av != null) {
-            av.pause();
-        }
+        getMeditationAssistant().utility.pauseAd(this);
         CookieSyncManager.getInstance().stopSync();
         super.onStop();
     }
@@ -511,9 +466,7 @@ public class MediNETActivity extends Activity {
     protected void onResume() {
         CookieSyncManager.getInstance().startSync();
         super.onResume();
-        if (av != null) {
-            av.resume();
-        }
+        getMeditationAssistant().utility.resumeAd(this);
     }
 
     @Override
@@ -527,7 +480,7 @@ public class MediNETActivity extends Activity {
     public void onStart() {
         super.onStart();
         if (getMeditationAssistant().sendUsageReports()) {
-            GoogleAnalytics.getInstance(this).reportActivityStart(this);
+            getMeditationAssistant().utility.trackingStart(this);
         }
     }
 
@@ -535,7 +488,7 @@ public class MediNETActivity extends Activity {
     protected void onStop() {
         super.onStop();
         if (getMeditationAssistant().sendUsageReports()) {
-            GoogleAnalytics.getInstance(this).reportActivityStop(this);
+            getMeditationAssistant().utility.trackingStop(this);
         }
     }
 

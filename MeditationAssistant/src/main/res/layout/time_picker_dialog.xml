@@ -16,8 +16,9 @@
 */
 -->
 
-<sh.ftp.rocketninelabs.meditationassistant.TimePicker xmlns:android="http://schemas.android.com/apk/res/android"
+<sh.ftp.rocketninelabs.meditationassistant.TimePicker
     android:id="@+id/timePicker"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal" />
+    android:layout_gravity="center_horizontal"/>

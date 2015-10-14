@@ -11,7 +11,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -25,10 +24,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TabHost;
 import android.widget.TextView;
-
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.analytics.GoogleAnalytics;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,7 +40,6 @@ public class ProgressActivity extends FragmentActivity {
     ProgressPagerAdapter mPagerAdapter = null;
     int pagePosition = 0;
     private AlertDialog addSessionDialog = null;
-    private AdView av = null;
     private int SESSIONS_FRAGMENT = 0;
     private int CALENDAR_FRAGMENT = 1;
     private int STATS_FRAGMENT = 2;
@@ -217,16 +211,7 @@ public class ProgressActivity extends FragmentActivity {
         getActionBar().setDisplayHomeAsUpEnabled(true); /// todo: not necessary on settings activity why?
         //getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        if (getPackageName().equals("sh.ftp.rocketninelabs.meditationassistant")) {
-            Log.d("MeditationAssistant", "Fetching ad");
-
-            av = (AdView) findViewById(R.id.adViewProgress);
-            av.setVisibility(View.VISIBLE);
-            AdRequest adRequest = new AdRequest.Builder()
-                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                    .build();
-            av.loadAd(adRequest);
-        }
+        getMeditationAssistant().utility.loadAd(this);
 
         mViewPager = (ViewPager) findViewById(R.id.pager);
 
@@ -310,7 +295,7 @@ public class ProgressActivity extends FragmentActivity {
         }
 
         if (getMeditationAssistant().sendUsageReports()) {
-            getMeditationAssistant().getTracker(MeditationAssistant.TrackerName.APP_TRACKER);
+            getMeditationAssistant().utility.initializeTracker(this);
         }
     }
 
@@ -682,7 +667,7 @@ public class ProgressActivity extends FragmentActivity {
     public void onStart() {
         super.onStart();
         if (getMeditationAssistant().sendUsageReports()) {
-            GoogleAnalytics.getInstance(this).reportActivityStart(this);
+            getMeditationAssistant().utility.trackingStart(this);
         }
     }
 
@@ -690,31 +675,25 @@ public class ProgressActivity extends FragmentActivity {
     protected void onStop() {
         super.onStop();
         if (getMeditationAssistant().sendUsageReports()) {
-            GoogleAnalytics.getInstance(this).reportActivityStop(this);
+            getMeditationAssistant().utility.trackingStop(this);
         }
     }
 
     @Override
     public void onPause() {
-        if (av != null) {
-            av.pause();
-        }
+        getMeditationAssistant().utility.pauseAd(this);
         super.onPause();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (av != null) {
-            av.resume();
-        }
+        getMeditationAssistant().utility.resumeAd(this);
     }
 
     @Override
     public void onDestroy() {
-        if (av != null) {
-            av.destroy();
-        }
+        getMeditationAssistant().utility.destroyAd(this);
         super.onDestroy();
     }
 

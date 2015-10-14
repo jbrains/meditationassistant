@@ -3,37 +3,44 @@
 <!-- Generated with http://android-holo-colors.com -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <style name="_Buddhism" parent="MeditationDarkTheme">
+    <style name="_Buddhism" parent="MeditationDarkTheme">
 
-    <item name="android:editTextBackground">@drawable/buddhism_edit_text_holo_light</item>
+        <item name="android:editTextBackground">@drawable/buddhism_edit_text_holo_light</item>
 
-    <item name="android:textColorHighlight">#99990000</item>
-    <item name="android:textSelectHandleLeft">@drawable/buddhism_text_select_handle_left</item>
-    <item name="android:textSelectHandleRight">@drawable/buddhism_text_select_handle_right</item>
-    <item name="android:textSelectHandle">@drawable/buddhism_text_select_handle_middle</item>
+        <item name="android:textColorHighlight">#99990000</item>
+        <item name="android:textSelectHandleLeft">@drawable/buddhism_text_select_handle_left</item>
+        <item name="android:textSelectHandleRight">@drawable/buddhism_text_select_handle_right
+        </item>
+        <item name="android:textSelectHandle">@drawable/buddhism_text_select_handle_middle</item>
 
-    <item name="android:autoCompleteTextViewStyle">@style/AutoCompleteTextViewBuddhism</item>
+        <item name="android:autoCompleteTextViewStyle">@style/AutoCompleteTextViewBuddhism</item>
 
-    <item name="android:listChoiceIndicatorMultiple">@drawable/buddhism_btn_check_holo_light</item>
+        <item name="android:listChoiceIndicatorMultiple">@drawable/buddhism_btn_check_holo_light
+        </item>
 
-    <item name="android:listChoiceIndicatorSingle">@drawable/buddhism_btn_radio_holo_light</item>
+        <item name="android:listChoiceIndicatorSingle">@drawable/buddhism_btn_radio_holo_light
+        </item>
 
-    <item name="android:buttonStyle">@style/ButtonBuddhism</item>
+        <item name="android:buttonStyle">@style/ButtonBuddhism</item>
 
-    <item name="android:imageButtonStyle">@style/ImageButtonBuddhism</item>
+        <item name="android:imageButtonStyle">@style/ImageButtonBuddhism</item>
 
-    <item name="android:dropDownSpinnerStyle">@style/SpinnerBuddhism</item>
+        <item name="android:dropDownSpinnerStyle">@style/SpinnerBuddhism</item>
 
-    <item name="android:progressBarStyleHorizontal">@style/ProgressBarBuddhism</item>
+        <item name="android:progressBarStyleHorizontal">@style/ProgressBarBuddhism</item>
 
-    <item name="android:buttonStyleToggle">@style/ToggleBuddhism</item>
+        <item name="android:buttonStyleToggle">@style/ToggleBuddhism</item>
 
-    <item name="android:listChoiceBackgroundIndicator">@drawable/buddhism_list_selector_holo_light</item>
+        <item name="android:listChoiceBackgroundIndicator">
+            @drawable/buddhism_list_selector_holo_light
+        </item>
 
-    <item name="android:activatedBackgroundIndicator">@drawable/buddhism_activated_background_holo_light</item>
+        <item name="android:activatedBackgroundIndicator">
+            @drawable/buddhism_activated_background_holo_light
+        </item>
 
-    <item name="android:fastScrollThumbDrawable">@drawable/buddhism_fastscroll_thumb_holo</item>
+        <item name="android:fastScrollThumbDrawable">@drawable/buddhism_fastscroll_thumb_holo</item>
 
-  </style>
+    </style>
 
 </resources>

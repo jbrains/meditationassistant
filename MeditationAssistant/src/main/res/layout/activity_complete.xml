@@ -1,14 +1,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:descendantFocusability="beforeDescendants"
-    android:focusableInTouchMode="true"
-    android:paddingBottom="0dp"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp"
-    android:paddingTop="0dp"
-    tools:context=".CompleteActivity$PlaceholderFragment">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:descendantFocusability="beforeDescendants"
+                android:focusableInTouchMode="true"
+                android:paddingBottom="0dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:paddingTop="0dp"
+                tools:context=".CompleteActivity$PlaceholderFragment">
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -37,7 +37,7 @@
                 android:singleLine="true"
                 android:text=""
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="153sp" />
+                android:textSize="153sp"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -57,7 +57,7 @@
                     android:singleLine="true"
                     android:text=""
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:visibility="gone" />
+                    android:visibility="gone"/>
 
                 <EditText
                     android:id="@+id/editSessionMessage"
@@ -76,7 +76,7 @@
                     android:scrollbars="vertical"
                     android:singleLine="false"
                     android:text=""
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -90,7 +90,7 @@
                         android:layout_height="1dp"
                         android:layout_marginLeft="7dp"
                         android:layout_marginRight="7dp"
-                        android:background="?android:attr/listDivider" />
+                        android:background="?android:attr/listDivider"/>
 
                     <LinearLayout
                         android:id="@+id/layLowerSessionComplete"
@@ -112,14 +112,14 @@
                             android:minHeight="48dip"
                             android:onClick="dismiss"
                             android:text="@string/discard"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
+                            android:textAppearance="?android:attr/textAppearanceSmall"/>
 
                         <View
                             android:layout_width="1dp"
                             android:layout_height="fill_parent"
                             android:layout_marginBottom="7dp"
                             android:layout_marginTop="7dp"
-                            android:background="?android:attr/listDivider" />
+                            android:background="?android:attr/listDivider"/>
 
                         <Button
                             android:id="@+id/btnSave"
@@ -129,14 +129,14 @@
                             android:background="?android:attr/selectableItemBackground"
                             android:onClick="saveMediNET"
                             android:text="@string/save"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
+                            android:textAppearance="?android:attr/textAppearanceSmall"/>
 
                         <View
                             android:layout_width="1dp"
                             android:layout_height="fill_parent"
                             android:layout_marginBottom="7dp"
                             android:layout_marginTop="7dp"
-                            android:background="?android:attr/listDivider" />
+                            android:background="?android:attr/listDivider"/>
 
                         <Button
                             android:id="@+id/btnPost"
@@ -146,22 +146,14 @@
                             android:background="?android:attr/selectableItemBackground"
                             android:onClick="postMediNET"
                             android:text="@string/post"
-                            android:textAppearance="?android:attr/textAppearanceSmall" />
+                            android:textAppearance="?android:attr/textAppearanceSmall"/>
                     </LinearLayout>
 
                     <RelativeLayout
+                        android:id="@+id/adComplete"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/layLowerSessionComplete">
-
-                        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-                            android:id="@+id/adViewSessionComplete"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:visibility="gone"
-                            ads:adSize="SMART_BANNER"
-                            ads:adUnitId="a15110a172d3cff" />
 
                     </RelativeLayout>
 

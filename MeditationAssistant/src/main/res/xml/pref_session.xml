@@ -1,5 +1,5 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+                  xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
         android:key="pref_cat_session"
@@ -7,88 +7,88 @@
 
     <sh.ftp.rocketninelabs.meditationassistant.TimePreference
         android:defaultValue="00:15"
-        android:key="pref_session_delay"
-        android:icon="?attr/actionIconTime"
         android:dialogIcon="?attr/actionIconTime"
-        android:title="@string/pref_delay"
+        android:icon="?attr/actionIconTime"
+        android:key="pref_session_delay"
         android:summary=""
+        android:title="@string/pref_delay"
         app:is24hour="true"
-        app:maxHours="90" />
+        app:maxHours="90"/>
 
     <sh.ftp.rocketninelabs.meditationassistant.ListPreferenceSound
         android:defaultValue="gong"
+        android:dialogIcon="?attr/actionIconVolumeOn"
         android:entries="@array/meditation_sounds"
         android:entryValues="@array/meditation_sounds_values"
-        android:key="pref_meditation_sound_start"
         android:icon="?attr/actionIconVolumeOn"
-        android:dialogIcon="?attr/actionIconVolumeOn"
-        android:title="@string/pref_meditation_sound_start" />
+        android:key="pref_meditation_sound_start"
+        android:title="@string/pref_meditation_sound_start"/>
 
     <sh.ftp.rocketninelabs.meditationassistant.TimePreference
         android:defaultValue="00:00"
-        android:key="pref_session_interval"
-        android:icon="?attr/actionIconTime"
         android:dialogIcon="?attr/actionIconTime"
-        android:title="@string/pref_interval"
+        android:icon="?attr/actionIconTime"
+        android:key="pref_session_interval"
         android:summary=""
+        android:title="@string/pref_interval"
         app:is24hour="true"
-        app:maxHours="90" />
+        app:maxHours="90"/>
 
     <sh.ftp.rocketninelabs.meditationassistant.ListPreferenceSound
         android:defaultValue="gong"
+        android:dialogIcon="?attr/actionIconVolumeOn"
         android:entries="@array/meditation_sounds"
         android:entryValues="@array/meditation_sounds_values"
-        android:key="pref_meditation_sound_interval"
         android:icon="?attr/actionIconVolumeOn"
-        android:dialogIcon="?attr/actionIconVolumeOn"
-        android:title="@string/pref_meditation_sound_interval" />
+        android:key="pref_meditation_sound_interval"
+        android:title="@string/pref_meditation_sound_interval"/>
     <EditTextPreference
-        android:inputType="number"
         android:defaultValue=""
+        android:dialogIcon="?attr/actionIconRefresh"
+        android:icon="?attr/actionIconRefresh"
+        android:inputType="number"
         android:key="pref_interval_count"
         android:summary=""
-        android:icon="?attr/actionIconRefresh"
-        android:dialogIcon="?attr/actionIconRefresh"
-        android:title="@string/pref_interval_count" />
+        android:title="@string/pref_interval_count"/>
 
     <sh.ftp.rocketninelabs.meditationassistant.ListPreferenceSound
         android:defaultValue="gong"
+        android:dialogIcon="?attr/actionIconVolumeOn"
         android:entries="@array/meditation_sounds"
         android:entryValues="@array/meditation_sounds_values"
-        android:key="pref_meditation_sound_finish"
         android:icon="?attr/actionIconVolumeOn"
-        android:dialogIcon="?attr/actionIconVolumeOn"
-        android:title="@string/pref_meditation_sound_finish" />
+        android:key="pref_meditation_sound_finish"
+        android:title="@string/pref_meditation_sound_finish"/>
 
     <ListPreference
         android:defaultValue=""
+        android:dialogIcon="?attr/actionIconRingVolume"
         android:entries="@array/notificationcontrol"
         android:entryValues="@array/notificationcontrol_values"
-        android:key="pref_notificationcontrol"
         android:icon="?attr/actionIconRingVolume"
-        android:dialogIcon="?attr/actionIconRingVolume"
-        android:title="@string/pref_notificationcontrol" />
+        android:key="pref_notificationcontrol"
+        android:title="@string/pref_notificationcontrol"/>
 
     <CheckBoxPreference
         android:defaultValue="false"
-        android:key="pref_softfinish"
         android:icon="?attr/actionIconTime"
+        android:key="pref_softfinish"
         android:summary="@string/pref_softfinish_summary"
-        android:title="@string/pref_softfinish" />
+        android:title="@string/pref_softfinish"/>
 
     <CheckBoxPreference
         android:defaultValue="false"
+        android:icon="?attr/actionIconFlashOn"
         android:key="pref_vibrate"
         android:summary="@string/pref_vibrate_summary"
-        android:icon="?attr/actionIconFlashOn"
-        android:title="@string/pref_vibrate" />
+        android:title="@string/pref_vibrate"/>
 
     <MultiSelectListPreference
+        android:defaultValue="@array/presetsettings_default"
+        android:dialogIcon="?attr/actionIconForward"
         android:entries="@array/presetsettings"
         android:entryValues="@array/presetsettings_values"
-        android:defaultValue="@array/presetsettings_default"
         android:key="pref_presetsettings"
-        android:dialogIcon="?attr/actionIconForward"
-        android:title="@string/presetsettings" />
+        android:title="@string/presetsettings"/>
 
 </PreferenceScreen>

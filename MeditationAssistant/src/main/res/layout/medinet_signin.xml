@@ -1,7 +1,8 @@
 <!--suppress AndroidMissingOnClickHandler -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
     android:id="@+id/medinetsignin_root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MediNET">
@@ -37,7 +38,7 @@
                         android:layout_weight="1"
                         android:background="?android:attr/selectableItemBackground"
                         android:contentDescription="@string/google"
-                        android:scaleType="fitCenter" />
+                        android:scaleType="fitCenter"/>
                 </LinearLayout>
 
                 <View
@@ -45,7 +46,7 @@
                     android:layout_height="1dp"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
-                    android:background="?android:attr/listDivider" />
+                    android:background="?android:attr/listDivider"/>
 
                 <LinearLayout
                     android:layout_width="fill_parent"
@@ -60,7 +61,7 @@
                         android:layout_weight="1"
                         android:background="?android:attr/selectableItemBackground"
                         android:contentDescription="@string/facebook"
-                        android:scaleType="fitCenter" />
+                        android:scaleType="fitCenter"/>
                 </LinearLayout>
 
                 <View
@@ -68,7 +69,7 @@
                     android:layout_height="1dp"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
-                    android:background="?android:attr/listDivider" />
+                    android:background="?android:attr/listDivider"/>
 
                 <LinearLayout
                     android:layout_width="fill_parent"
@@ -84,14 +85,14 @@
                         android:background="?android:attr/selectableItemBackground"
                         android:contentDescription="@string/twitter"
                         android:onClick="selectProvider"
-                        android:scaleType="fitCenter" />
+                        android:scaleType="fitCenter"/>
 
                     <View
                         android:layout_width="1dp"
                         android:layout_height="fill_parent"
                         android:layout_marginBottom="7dp"
                         android:layout_marginTop="7dp"
-                        android:background="?android:attr/listDivider" />
+                        android:background="?android:attr/listDivider"/>
 
                     <ImageButton
                         android:id="@+id/btnLive"
@@ -102,7 +103,7 @@
                         android:background="?android:attr/selectableItemBackground"
                         android:contentDescription="@string/windowsLive"
                         android:onClick="selectProvider"
-                        android:scaleType="fitCenter" />
+                        android:scaleType="fitCenter"/>
                 </LinearLayout>
 
                 <View
@@ -110,7 +111,7 @@
                     android:layout_height="1dp"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
-                    android:background="?android:attr/listDivider" />
+                    android:background="?android:attr/listDivider"/>
 
                 <LinearLayout
                     android:layout_width="fill_parent"
@@ -127,14 +128,14 @@
                         android:background="?android:attr/selectableItemBackground"
                         android:contentDescription="@string/aol"
                         android:onClick="selectProvider"
-                        android:scaleType="fitCenter" />
+                        android:scaleType="fitCenter"/>
 
                     <View
                         android:layout_width="1dp"
                         android:layout_height="fill_parent"
                         android:layout_marginBottom="7dp"
                         android:layout_marginTop="7dp"
-                        android:background="?android:attr/listDivider" />
+                        android:background="?android:attr/listDivider"/>
 
                     <ImageButton
                         android:id="@+id/btnOpenID"
@@ -146,7 +147,7 @@
                         android:background="?android:attr/selectableItemBackground"
                         android:contentDescription="@string/openID"
                         android:onClick="selectProvider"
-                        android:scaleType="fitCenter" />
+                        android:scaleType="fitCenter"/>
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>

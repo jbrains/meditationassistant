@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <item name="editDuration" type="id" />
-    <item name="calendarDate" type="id" />
+    <item name="editDuration" type="id"/>
+    <item name="calendarDate" type="id"/>
 
     <!-- NumberPicker -->
-    <item name="np__increment" type="id" />
-    <item name="np__decrement" type="id" />
+    <item name="np__increment" type="id"/>
+    <item name="np__decrement" type="id"/>
 
 </resources>

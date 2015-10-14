@@ -50,7 +50,7 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
         TimeZone tz = TimeZone.getDefault();
         Date now = new Date();
         int offsetFromUTC = tz.getOffset(now.getTime());
-        String appVersion = getMeditationAssistant().getMAAppVersion() + (getMeditationAssistant().getMAIsAppFull() ? "full" : "free");
+        String appVersion = getMeditationAssistant().getMAAppVersion() + BuildConfig.FLAVOR;
 
         if (this.nextURL == null) {
             this.nextURL = "http://medinet.ftp.sh/client_android.php?v="
