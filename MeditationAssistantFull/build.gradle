@@ -48,7 +48,6 @@ android {
         release {
             debuggable false
             jniDebuggable false
-            signingConfig signingConfigs.releaseConfig
 
             minifyEnabled true
             proguardFile file('proguard-project.txt')
