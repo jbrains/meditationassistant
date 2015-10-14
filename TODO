@@ -1,0 +1,16 @@
+https://developer.android.com/about/versions/android-5.1.html
+
+Migrate to URLConnection, check if apache is being used
+
+Figure out better way to show alertdialogs, they seem to be the cause of the rare badwindowtoken exceptions
+
+Daily goal, colored box on progress window when met
+
+Week total, comapred to last week in stats
+
+Add better sounds, ask users to submit their sounds
+
+Export sessions to standard format
+
+Finish writing Android Wear app
+

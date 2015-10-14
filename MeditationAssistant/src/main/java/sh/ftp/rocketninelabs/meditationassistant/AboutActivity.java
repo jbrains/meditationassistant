@@ -72,9 +72,15 @@ public class AboutActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.about, menu);
 
-        if (getMeditationAssistant().getIsBB() || !MeditationAssistant.getMarketName().equals("google")) {
+        if (!getMeditationAssistant().getMarketName().equals("google")) {
             MenuItem share = menu.findItem(R.id.action_share_app);
             share.setVisible(false);
+            invalidateOptionsMenu();
+        }
+
+        if (getMeditationAssistant().getMarketName().equals("fdroid")) {
+            MenuItem rate = menu.findItem(R.id.action_rate);
+            rate.setVisible(false);
             invalidateOptionsMenu();
         }
 

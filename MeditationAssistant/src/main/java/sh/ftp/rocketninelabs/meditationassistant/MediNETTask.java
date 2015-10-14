@@ -55,7 +55,8 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
         if (this.nextURL == null) {
             this.nextURL = "http://medinet.ftp.sh/client_android.php?v="
                     + MediNET.version.toString() + "&av="
-                    + appVersion + "&avn="
+                    + appVersion + "&am="
+                    + getMeditationAssistant().getMarketName() + "&avn="
                     + String.valueOf(getMeditationAssistant().getMAAppVersionNumber()) + "&tz="
                     + String.valueOf(offsetFromUTC);
         }

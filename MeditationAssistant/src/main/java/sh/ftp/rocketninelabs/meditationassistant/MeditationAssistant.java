@@ -52,9 +52,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.fitness.Fitness;
 import com.google.android.gms.fitness.FitnessActivities;
-import com.google.android.gms.fitness.data.Field;
 import com.google.android.gms.fitness.data.Session;
-import com.google.android.gms.fitness.request.DataTypeCreateRequest;
 import com.google.android.gms.fitness.request.SessionInsertRequest;
 
 import org.apache.http.client.protocol.ClientContext;
@@ -76,12 +74,11 @@ import java.util.concurrent.TimeUnit;
 
 public class MeditationAssistant extends Application {
 
+    private static final String AUTH_PENDING = "auth_state_pending";
     public static String ACTION_PRESET = "sh.ftp.rocketninelabs.meditationassistant.PRESET";
     public static String ACTION_REMINDER = "sh.ftp.rocketninelabs.meditationassistant.DAILY_NOTIFICATION";
     public static String ACTION_UPDATED = "sh.ftp.rocketninelabs.meditationassistant.DAILY_NOTIFICATION_UPDATED";
-
     public static int REQUEST_FIT = 22;
-
     public String package_name;
     public Boolean debug_widgets = false; // Debug
     public long lastpostedsessionstart = 0;
@@ -99,6 +96,9 @@ public class MeditationAssistant extends Application {
     public AlarmManager reminderAlarmManager = null;
     public PendingIntent reminderPendingIntent = null;
     public String theme = null;
+    public boolean googleAPIAuthInProgress = false;
+    public GoogleApiClient googleClient = null;
+    public String marketName = null;
     AlertDialog alertDialog = null;
     String AUTH_TOKEN_TYPE = "oauth2:https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
     HashMap<TrackerName, Tracker> mTrackers = new HashMap<TrackerName, Tracker>();
@@ -129,17 +129,6 @@ public class MeditationAssistant extends Application {
     private Bundle signin_options = new Bundle();
     private SharedPreferences prefs = null;
 
-    private static final String AUTH_PENDING = "auth_state_pending";
-    public boolean googleAPIAuthInProgress = false;
-    public GoogleApiClient googleClient = null;
-
-    public static String getMarketName() {
-        return "google";
-        //return "amazon";
-        //return "getjar";
-        // return "slideme";
-    }
-
     public static int dpToPixels(float dp, Context context) {
         Resources resources = context.getResources();
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
@@ -160,9 +149,21 @@ public class MeditationAssistant extends Application {
         view.setAlpha(alpha);
     }
 
-    public Boolean getIsBB() {
-        String osname = System.getProperty("os.name");
-        return osname != null && osname.equals("qnx");
+    public String getMarketName() {
+        if (marketName == null) {
+            String osname = System.getProperty("os.name");
+            if (osname != null && osname.equals("qnx")) {
+                marketName = "bb"; // BlackBerry
+            } else { // To be uncommented based upon target market
+                //marketName = "google";
+                marketName = "fdroid";
+                //marketName = "amazon";
+                //marketName = "getjar";
+                //marketName = "slideme";
+            }
+        }
+
+        return marketName;
     }
 
     synchronized Tracker getTracker(TrackerName trackerId) {
@@ -199,7 +200,7 @@ public class MeditationAssistant extends Application {
     }
 
     public void askToRateApp() {
-        if (getIsBB()) {
+        if (getMarketName().equals("bb")) {
             try {
                 startActivity(new Intent(Intent.ACTION_VIEW,
                         Uri.parse("appworld://content/" + (getApplicationContext().getPackageName().equals("sh.ftp.rocketninelabs.meditationassistant") ? "59939924" : "59939922"))
@@ -211,7 +212,7 @@ public class MeditationAssistant extends Application {
                         Uri.parse("appworld://content/" + (getApplicationContext().getPackageName().equals("sh.ftp.rocketninelabs.meditationassistant") ? "59939924" : "59939922"))
                 ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             }
-        } else if (MeditationAssistant.getMarketName().equals("google")) {
+        } else if (getMarketName().equals("google")) {
             try {
                 startActivity(new Intent(Intent.ACTION_VIEW,
                         Uri.parse("market://details?id="
@@ -225,7 +226,7 @@ public class MeditationAssistant extends Application {
                                 + getApplicationContext().getPackageName())
                 ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             }
-        } else if (MeditationAssistant.getMarketName().equals("amazon")) {
+        } else if (getMarketName().equals("amazon")) {
             try {
                 startActivity(new Intent(Intent.ACTION_VIEW,
                         Uri.parse("amzn://apps/android?p="

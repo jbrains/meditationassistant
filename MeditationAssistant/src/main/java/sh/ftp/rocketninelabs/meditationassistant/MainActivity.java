@@ -526,7 +526,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             });
         }
 
-        getMeditationAssistant().setupGoogleClient(MainActivity.this);
+        // TODO: Implement
+        //getMeditationAssistant().setupGoogleClient(MainActivity.this);
     }
 
     @Override
@@ -1764,7 +1765,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         if (getMeditationAssistant().asktorate) {
             getMeditationAssistant().asktorate = false;
 
-            if (!getMeditationAssistant().getPrefs().getBoolean("askedtorate", false) && (getMeditationAssistant().getIsBB() || MeditationAssistant.getMarketName().equals("google") || MeditationAssistant.getMarketName().equals("amazon"))) {
+            if (!getMeditationAssistant().getPrefs().getBoolean("askedtorate", false) && (getMeditationAssistant().getMarketName().equals("bb") || getMeditationAssistant().getMarketName().equals("google") || getMeditationAssistant().getMarketName().equals("amazon"))) {
                 getMeditationAssistant().getPrefs().edit().putBoolean("askedtorate", true).apply();
 
                 DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
