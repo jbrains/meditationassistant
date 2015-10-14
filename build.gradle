@@ -1,8 +1,9 @@
 // Global Gradle variables
-ext {
-    versionCode = 126
-    versionName = "1.2.6"
-}
+// Version globals disabled due to F-Droid incompatibility
+//ext {
+//    versionCode = 126
+//    versionName = "1.2.6"
+//}
 
 buildscript {
     repositories {
