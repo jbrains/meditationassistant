@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="session_actions">
+        <item>@string/post</item>
+        <item>@string/delete</item>
+    </string-array>
+    <string-array name="session_delete_actions">
+        <item>@string/sessionDeleteEverywhere</item>
+        <item>@string/sessionDeleteLocally</item>
+        <item>@string/sessionDeleteMediNET</item>
+    </string-array>
+    <string-array name="text_sizes_values">
+        <item>tiny</item>
+        <item>small</item>
+        <item>normal</item>
+        <item>large</item>
+        <item>extralarge</item>
+    </string-array>
+    <string-array name="text_sizes">
+        <item>@string/tiny</item>
+        <item>@string/small</item>
+        <item>@string/normal</item>
+        <item>@string/large</item>
+        <item>@string/extralarge</item>
+    </string-array>
+    <string-array name="meditation_sounds_values">
+        <item>none</item>
+        <item>custom</item>
+        <item>gong</item>
+        <item>gong_burmese</item>
+        <item>gong_metal</item>
+        <item>gong_heavy</item>
+        <item>bell_indian</item>
+        <item>bell_temple</item>
+        <item>tinsha</item>
+    </string-array>
+    <string-array name="meditation_sounds">
+        <item>@string/noSound</item>
+        <item>@string/customSound</item>
+        <item>Gong</item>
+        <item>Burmese gong</item>
+        <item>Metal gong</item>
+        <item>Heavy gong</item>
+        <item>Indian bell</item>
+        <item>Temple bell</item>
+        <item>Three Tinsha</item>
+    </string-array>
+    <string-array name="progresstabs_values">
+        <item>sessions</item>
+        <item>calendar</item>
+        <item>stats</item>
+    </string-array>
+    <string-array name="progresstabs">
+        <item>@string/sessions</item>
+        <item>@string/calendar</item>
+        <item>@string/statistics</item>
+    </string-array>
+    <string-array name="mathemes_values">
+        <item>buddhism</item>
+        <item>light</item>
+        <item>lightdark</item>
+        <item>dark</item>
+    </string-array>
+    <string-array name="mathemes">
+        <item>@string/buddhism</item>
+        <item>@string/pref_theme_light</item>
+        <item>@string/pref_theme_lightdark</item>
+        <item>@string/pref_theme_dark</item>
+    </string-array>
+    <string-array name="notificationcontrol_values">
+        <item></item>
+        <item>vibrate</item>
+        <item>silent</item>
+    </string-array>
+    <string-array name="notificationcontrol">
+        <item>@string/noSpecialBehavior</item>
+        <item>@string/pref_notificationcontrol_vibrate</item>
+        <item>@string/pref_notificationcontrol_silent</item>
+    </string-array>
+    <string-array name="screencontrol_values">
+        <item></item>
+        <item>on</item>
+        <item>ondim</item>
+        <item>dim</item>
+        <item>off</item>
+    </string-array>
+    <string-array name="screencontrol">
+        <item>@string/noSpecialBehavior</item>
+        <item>@string/keepScreenOn</item>
+        <item>@string/keepScreenOnAndDim</item>
+        <item>@string/dimScreen</item>
+        <item>@string/turnScreenOff</item>
+    </string-array>
+    <string-array name="presetsettings_values">
+        <item>modeandduration</item>
+        <item>delay</item>
+        <item>startsound</item>
+        <item>intervalduration</item>
+        <item>intervalsound</item>
+        <item>intervalcount</item>
+        <item>completesound</item>
+        <item>ringtone</item>
+        <item>endless</item>
+        <item>vibrate</item>
+    </string-array>
+    <string-array name="presetsettings">
+        <item>@string/modeandduration</item>
+        <item>@string/pref_delay</item>
+        <item>@string/pref_meditation_sound_start</item>
+        <item>@string/pref_interval</item>
+        <item>@string/pref_meditation_sound_interval</item>
+        <item>@string/pref_interval_count</item>
+        <item>@string/pref_meditation_sound_finish</item>
+        <item>@string/pref_notificationcontrol</item>
+        <item>@string/pref_softfinish</item>
+        <item>@string/pref_vibrate</item>
+    </string-array>
+    <string-array name="presetsettings_default">
+        <item>modeandduration</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="appName">Meditation Assistant Free</string>
+    <string name="appNameShort">Meditation Assistant</string>
+    <string name="about">על אודות</string>
+    <string name="yes">כן</string>
+    <string name="no">לא</string>
+    <string name="delete">מחיקה</string>
+    <string name="sessions">פעילויות</string>
+    <string name="community">קהילה</string>
+    <string name="events">אירועים</string>
+    <string name="forum">פורום</string>
+    <string name="rate">דירוג</string>
+    <string name="exit">יציאה</string>
+    <string name="refresh">רענון</string>
+    <string name="page">עמוד</string>
+    <string name="back">חזרה</string>
+    <string name="forward">קדימה</string>
+    <string name="account">חשבון</string>
+    <string name="groups">קבוצות</string>
+    <string name="endSession">סיום הפעילות</string>
+    <string name="share">שיתוף</string>
+    <string name="announcement">הכרזה</string>
+
+    <!-- Main Activity -->
+    <string name="timerDefault">בררת מחדל</string>
+    <string name="timer">Timer</string>
+    <string name="timerHelp">The timer is currently set to 15 minutes. You can change the duration, end at a specific time of the day, or deactivate the alarm entirely. Tap the timer now to see these options.</string>
+    <string name="settingsHelp">This application includes many features and customizations, such as automatically silencing your device and providing a daily reminder to meditate. Tap the Settings icon now to see these options.</string>
+    <string name="medinetHelp">Sign in to MediNET to save your sessions online. You can import your sessions later if you lose your data. This feature is entirely optional, storing sessions locally will not hinder your experience.\n\nThis concludes the tutorial. I hope that Meditation Assistant will be beneficial for your practice.</string>
+    <string name="cancel">ביטול</string>
+    <string name="set">הגדרה</string>
+    <string name="confirm">אישור</string>
+    <string name="meditate">לעשות מדיטציה</string>
+    <string name="tapToSkip">דילוג</string>
+    <string name="pause">Pause</string>
+    <string name="pauseOrEnd">Pause or end</string>
+    <string name="resume">Resume</string>
+    <string name="resumeOrEnd">Resume or end</string>
+    <string name="pausedNotification">Session paused, hold to end</string>
+    <string name="mediNETConnecting">בהתחברות…</string>
+    <string name="mediNETConnected">התחברת ל־MediNET</string>
+    <string name="sessionInProgress">מתבצעת פעילות</string>
+    <string name="progress">התקדמות</string>
+    <string name="setPreset">הגדרת ערכה</string>
+    <string name="setPresetHint">יש להחזיק כדי להגדיר ערכה</string>
+    <string name="setPresetHintBlank">Enter a duration (or end time) to set preset</string>
+    <string name="setTimerDurationHint">Enter a valid duration (e.g. 0:22)</string>
+    <string name="setTimerEndAtHint">Enter a valid time (e.g. 4:20)</string>
+    <string name="invalidEndAt">Invalid time to end session</string>
+    <string name="timed">Timed</string>
+    <string name="endAt">End at</string>
+    <string name="untimed">Untimed</string>
+    <string name="unlimited">Unlimited</string>
+    <string name="presetLabelEndAt">End %s</string>
+
+    <!-- About -->
+    <string name="tapToSendEmail">יש לגעת בכל מקום שהוא כדי לשלוח משוב</string>
+    <string name="sendEmail">שליחת דוא״ל</string>
+    <string name="version">גרסה %s</string>
+    <string name="translate">תרגום</string>
+    <string name="howToMeditate">How to Meditate</string>
+
+    <!-- Sessions -->
+    <string name="session">פעילות</string>
+    <string name="confirmDeleteTitle">האם למחוק את פעילות המדיטציה?</string>
+    <string name="confirmDelete">Recorded %1$s at %2$s</string>
+    <string name="sessionDeleteEverywhere">Delete everywhere</string>
+    <string name="sessionDeleteLocally">Delete locally</string>
+    <string name="sessionDeleteMediNET">Delete on MediNET</string>
+
+    <!-- Behavior -->
+    <string name="behavior">Behavior</string>
+
+    <!-- Session complete -->
+    <string name="sessioncomplete">Session Complete</string>
+    <string name="sessionMessagePlaceholder">הודעה</string>
+    <string name="askDiscardText">האם להתעלם מהפעילות?</string>
+    <string name="shareSessionText">I just meditated for %1$s with %2$s.</string>
+    <string name="aMoment">a moment</string>
+    <string name="shareSessionSubject">Meditation session</string>
+    <string name="sessionPosting">Posting session…</string>
+    <string name="sessionPosted">Session posted to MediNET</string>
+    <string name="sessionAlreadyPosted">Session already posted</string>
+    <string name="sessionNotPosted">Unable to post session</string>
+    <string name="sessionNotPostedMeditating">Unable to post session while meditating</string>
+    <string name="sessionSaved">Session saved</string>
+    <string name="sessionDeletedLocally">Session deleted locally</string>
+
+    <!-- Sign In -->
+    <string name="signInWith">Sign in with…</string>
+    <string name="signInWithProvider">Sign in with %s…</string>
+    <string name="signInWithOpenID">OpenID - Facebook, Twitter, etc.</string>
+    <string name="signInGoogleError">Unable to authenticate using account manager. Try OpenID if this error persists.</string>
+
+    <!-- Progress -->
+    <string name="calendar">לוח שנה</string>
+    <string name="statistics">Statistics</string>
+    <string name="dayMondayShort">שני</string>
+    <string name="dayTuesdayShort">שלישי</string>
+    <string name="dayWednesdayShort">רביעי</string>
+    <string name="dayThursdayShort">חמישי</string>
+    <string name="dayFridayShort">שישי</string>
+    <string name="daySaturdayShort">שבת</string>
+    <string name="daySundayShort">ראשון</string>
+    <string name="addSession">Add session</string>
+    <string name="sessionStartedAt">Started at %s</string>
+    <string name="started">Started</string>
+    <string name="completed">Completed</string>
+    <string name="setDate">Set date</string>
+    <string name="setTime">Set time</string>
+    <string name="invalidDateOrTime">Invalid date or time</string>
+    <string name="addSessionMeditating">Unable to add a session while meditating</string>
+    <string name="addSessionExists">Session already exists</string>
+
+    <string name="days">Days</string>
+    <string name="hours">Hours</string>
+    <string name="minutes">Minutes</string>
+    <string name="otherStatistics">Other session statistics</string>
+    <string name="totalSessions">Total sessions</string>
+    <string name="averageDuration">Average duration</string>
+
+    <string name="reminderText">Do you have a moment?</string>
+
+    <!-- Settings -->
+    <string name="meditation">Meditation</string>
+    <string name="pref_vibrate">רטט</string>
+    <string name="pref_vibrate_summary">Occurs at the beginning, intervals, and end of meditation</string>
+    <string name="pref_vibrate_reminder_summary">The daily reminder will vibrate the device</string>
+    <string name="pref_sound_reminder">Play sound</string>
+    <string name="pref_sound_reminder_summary">The default notification sound will be played</string>
+    <string name="pref_softfinish">Endless session</string>
+    <string name="pref_softfinish_summary">Keep the timer running</string>
+
+    <string name="settings">הגדרות</string>
+    <string name="disabled">מנוטרל</string>
+    <string name="noSpecialBehavior">אין התנהגות מיוחדת</string>
+    <string name="noSound">ללא שמע</string>
+    <string name="customSound">Custom sound</string>
+    <string name="keepScreenOn">להשאיר את המסך דולק</string>
+    <string name="keepScreenOnAndDim">להשאיר את המסך דולק אך מעומעם</string>
+    <string name="dimScreen">עמעום המסך</string>
+    <string name="turnScreenOff">כיבוי המסך</string>
+    <string name="willRemainActive">כל הרשתות ישארו פעילות</string>
+    <string name="willBeTurnedOff">כל הרשתות ינוטרלו</string>
+    <string name="willBeFullScreen">הצגה במסך מלא</string>
+    <string name="willBeNormal">הצגה רגילה</string>
+    <string name="pref_display_seconds">הצגת השניות</string>
+    <string name="pref_display_seconds_summary">הצגה מתחת למתזמן הראשי</string>
+    <string name="pref_full_screen">מסך מלא</string>
+    <string name="pref_full_screen_summary">שורת המצב תוסתר במצב מסך מלא</string>
+    <string name="pref_wireless_networks">נטרול רשתות</string>
+    <string name="pref_delay">השהיה</string>
+    <string name="pref_interval">Interval duration</string>
+    <string name="pref_interval_count">Interval count</string>
+    <string name="pref_autosignin_summary">התחברות ל־MediNET כאשר התכנית פתוחה</string>
+    <string name="pref_autosignin">התחברות אוטומטית</string>
+    <string name="pref_rememberme_summary">Remain signed in after closed</string>
+    <string name="pref_rememberme">Remember me</string>
+    <string name="pref_autopost_summary">Completed sessions will be posted automatically</string>
+    <string name="pref_autopost">Auto-post sessions</string>
+    <string name="pref_usedefaulttimer_summary">Reset to the default session length after closed</string>
+    <string name="pref_rememberlasttimer">Remember last duration</string>
+    <string name="pref_screencontrol">Screen</string>
+    <string name="pref_sendusage">Report usage statistics</string>
+    <string name="pref_sendusage_summary">Anonymous reporting via Google Analytics. Takes effect on restart</string>
+    <string name="pref_accountsettings">Edit Account</string>
+    <string name="pref_accountsettings_summary">Change password\nProfile information\nPrivacy settings</string>
+    <string name="pref_showstreak">Display meditation streak</string>
+    <string name="pref_showstreak_summary">Number of consecutive days with at least one recorded session</string>
+    <string name="selectSound">Select sound</string>
+    <string name="pref_meditation_sound_start">Start sound</string>
+    <string name="pref_meditation_sound_start_summary">Played at the beginning of the session</string>
+    <string name="pref_meditation_sound_interval">Interval sound</string>
+    <string name="pref_meditation_sound_interval_summary">Played during the session</string>
+    <string name="pref_meditation_sound_finish">Complete sound</string>
+    <string name="pref_meditation_sound_finish_summary">Played at the end of the session</string>
+    <string name="pref_remembermessage">Remember last message</string>
+    <string name="pref_remembermessage_summary">Default to the last message posted</string>
+    <string name="pref_theme">Holographic theme</string>
+    <string name="pref_theme_light">Light</string>
+    <string name="pref_theme_lightdark">Light with dark action bar</string>
+    <string name="pref_theme_dark">Dark</string>
+    <string name="pref_notification">Notification</string>
+    <string name="pref_notification_summary">Shown during meditation while away from the main window</string>
+    <string name="pref_usetimepicker">Alternative duration interface</string>
+    <string name="pref_usetimepicker_summary">Use hour and minute sliders when changing duration</string>
+    <string name="pref_askdismiss">Ask before discard</string>
+    <string name="pref_askdismiss_summary">Confirm before discarding a session</string>
+    <string name="pref_progresstab">Default Progress tab</string>
+    <string name="importsessions">Import sessions</string>
+    <string name="importsessions_summary">Retrieve uploaded sessions</string>
+    <string name="uploadsessions">Upload sessions</string>
+    <string name="uploadsessions_summary">Upload local sessions</string>
+    <string name="miscellaneous">Miscellaneous</string>
+    <string name="pref_text_size">גודל הטקסט במתזמן</string>
+    <string name="tiny">Tiny</string>
+    <string name="small">קטן</string>
+    <string name="normal">רגיל</string>
+    <string name="large">גדול</string>
+    <string name="extralarge">גדול במיוחד</string>
+    <string name="restartAppApplyTheme">Restart application to apply new theme</string>
+    <string name="restartAppApplyTimePicker">Restart application to use alternative duration interface</string>
+    <string name="pref_notificationcontrol">Ringtone and notifications</string>
+    <string name="pref_notificationcontrol_vibrate">Set to vibrate</string>
+    <string name="pref_notificationcontrol_silent">Set to silent</string>
+    <string name="pref_daily_reminder">Daily reminder</string>
+    <string name="pref_daily_reminder_title">Remind me</string>
+    <string name="pref_daily_reminder_summary">Display a notification when no sessions were recorded today</string>
+    <string name="pref_daily_reminder_time">Time</string>
+    <string name="pref_daily_reminder_text">Encouragement text</string>
+    <string name="downloadingSessions">Downloading sessions...</string>
+    <string name="uploadingSessions">Uploading sessions...</string>
+
+    <!-- MediNET -->
+    <string name="mediNET">MediNET</string>
+    <string name="unableToConnect">Unable to connect to MediNET</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="discard">התעלמות</string>
+    <string name="save">שמירה</string>
+    <string name="post">Post</string>
+    <string name="importSessionsHint">Click "Import sessions" in settings to retrieve missing sessions.</string>
+    <string name="importsessionstitle">האם לייבא פעילויות?</string>
+    <string name="importsessionsmessage">Previous sessions will be imported.\n\nThis dialog will not appear again.\nYou
+        can import sessions later from the Settings window.</string>
+    <string name="wordimport">יבוא</string>
+    <string name="sessionDeletedMediNET">Session deleted on MediNET</string>
+    <string name="sessionNotFoundMediNET">Session not found on MediNET</string>
+    <string name="sessionNotProperAccount">You are not signed into the proper account</string>
+
+    <plurals name="numtimes">
+        <item quantity="one">%s time</item>
+        <item quantity="other">%s times</item>
+    </plurals>
+
+    <plurals name="sessionsImported">
+        <item quantity="one">Imported %s session</item>
+        <item quantity="other">Imported %s sessions</item>
+    </plurals>
+
+    <plurals name="sessionsUploaded">
+        <item quantity="one">Uploaded %s session</item>
+        <item quantity="other">Uploaded %s sessions</item>
+    </plurals>
+
+    <string name="sessionsNotImported">הנתונים המקומיים עדכניים</string>
+    <string name="signInToImport">Sign in to import session data</string>
+
+    <plurals name="daysOfMeditation">
+        <item quantity="one">%d day of meditation</item>
+        <item quantity="other">%d days of meditation</item>
+    </plurals>
+    <plurals name="daysOfMeditationWithoutCount">
+        <item quantity="one">day of meditation</item>
+        <item quantity="other">days of meditation</item>
+    </plurals>
+
+    <string name="meditateToday">Meditate today</string>
+    <string name="signInToMediNET">Sign in to MediNET</string>
+    <string name="signOut">יציאה</string>
+    <string name="signOutOfMediNET">לצאת מ־MediNET</string>
+    <string name="signOutOfMediNETConfirmTitle">Sign out of MediNET?</string>
+    <string name="signOutOfMediNETConfirm">You are signed in with %s.</string>
+    <string name="rateMeditationAssistant">Rate Meditation Assistant</string>
+    <string name="rateMeditationAssistantText">If you have found this application beneficial to your meditation practice, would you please add a rating?\n\nThe paid version of this app contains no ads and features home screen widgets.  Please consider purchasing it if you are able to.\n\nThis dialog will not appear again.</string>
+    <string name="translateMeditationAssistantText">Would you please help Meditation Assistant reach a wider audience by translating it into another language?\n\nTranslating is eaily done through an online interface.  You can visit the translation webpage later by clicking Translate from the About window.\n\nThis dialog will not appear again.</string>
+
+    <!-- Widgets -->
+    <string name="widget1x1">Meditation Assistant 1x1</string>
+    <string name="widget2x1">Meditation Assistant 2x1</string>
+    <string name="widget3x1">Meditation Assistant 3x1</string>
+    <string name="title_activity_medi_net">MediNET</string>
+    <string name="hello_world">שלום עולם!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_complete">Session complete</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
+    <string name="title_activity_about">MainActivity</string>
+
+</resources>

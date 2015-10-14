@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AutoCompleteTextViewBuddhism" parent="android:Widget.Holo.AutoCompleteTextView">
+        <item name="android:dropDownSelector">@drawable/buddhism_list_selector_holo_light</item>
+        <item name="android:background">@drawable/buddhism_edit_text_holo_light</item>
+    </style>
+
+    <style name="ButtonBuddhism" parent="android:Widget.Holo.Button">
+        <item name="android:background">@drawable/buddhism_btn_default_holo_light</item>
+    </style>
+
+    <style name="ImageButtonBuddhism" parent="android:Widget.Holo.ImageButton">
+        <item name="android:background">@drawable/buddhism_btn_default_holo_light</item>
+    </style>
+
+    <style name="SpinnerBuddhism" parent="android:Widget.Holo.Spinner">
+        <item name="android:background">@drawable/buddhism_spinner_background_holo_light</item>
+        <item name="android:dropDownSelector">@drawable/buddhism_list_selector_holo_light</item>
+    </style>
+
+    <style name="TabBuddhism">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingLeft">16dip</item>
+        <item name="android:paddingRight">16dip</item>
+        <item name="android:background">@drawable/buddhism_tab_indicator_holo</item>
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:minWidth">80dip</item>
+    </style>
+
+    <style name="TabTextBuddhism">
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <!-- v14 <item name="android:textAllCaps">true</item> -->
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:maxWidth">180dip</item>
+    </style>
+
+    <style name="ProgressBarBuddhism" parent="android:Widget.Holo.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/buddhism_progress_horizontal_holo_light
+        </item>
+        <item name="android:indeterminateDrawable">
+            @drawable/buddhism_progress_indeterminate_horizontal_holo_light
+        </item>
+    </style>
+
+    <style name="ToggleBuddhism" parent="android:Widget.Holo.Button.Toggle">
+        <item name="android:background">@drawable/buddhism_btn_toggle_holo_light</item>
+    </style>
+
+    <style name="Buddhism" parent="@style/_Buddhism">
+        <item name="android:actionBarItemBackground">@drawable/selectable_background_buddhism</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu.Buddhism</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Buddhism</item>
+        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Buddhism</item>
+        <item name="android:actionDropDownStyle">@style/DropDownNav.Buddhism</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.Buddhism</item>
+        <item name="android:actionModeBackground">@drawable/cab_background_top_buddhism</item>
+        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_buddhism
+        </item>
+        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Buddhism
+        </item>
+
+        <!-- Light.DarkActionBar specific -->
+        <item name="android:actionBarWidgetTheme">@style/Theme.Buddhism.Widget</item>
+
+        <item name="numberPickerStyle">@style/NPWidget.Holo.NumberPicker</item>
+    </style>
+
+    <style name="BuddhismDialogue" parent="@style/_Buddhism">
+        <item name="android:actionBarItemBackground">@drawable/selectable_background_buddhism</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu.Buddhism</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Buddhism</item>
+        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Buddhism</item>
+        <item name="android:actionDropDownStyle">@style/DropDownNav.Buddhism</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.Buddhism</item>
+        <item name="android:actionModeBackground">@drawable/cab_background_top_buddhism</item>
+        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_buddhism
+        </item>
+        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Buddhism
+        </item>
+
+        <!-- Light.DarkActionBar specific -->
+        <item name="android:actionBarWidgetTheme">@style/Theme.Buddhism.Widget</item>
+
+        <item name="actionIconTime">@drawable/ic_action_time</item>
+        <item name="actionIconVolumeOn">@drawable/ic_action_volume_on</item>
+        <item name="actionIconNotImportant">@drawable/ic_action_not_important</item>
+        <item name="actionIconInfo">@drawable/ic_action_info</item>
+        <item name="actionIconSettings">@drawable/ic_action_settings</item>
+        <item name="actionIconNetworkCell">@drawable/ic_action_network_cell</item>
+        <item name="actionIconBrightnessLow">@drawable/ic_action_brightness_low</item>
+        <item name="actionIconFullScreen">@drawable/ic_action_full_screen</item>
+        <item name="actionIconSignOut">@drawable/ic_action_sign_out</item>
+        <item name="actionIconAccounts">@drawable/ic_action_accounts</item>
+        <item name="actionIconRefresh">@drawable/ic_action_refresh</item>
+        <item name="actionIconSortBySize">@drawable/ic_action_sort_by_size</item>
+        <item name="actionIconForward">@drawable/ic_action_forward</item>
+        <item name="actionIconGoToToday">@drawable/ic_action_go_to_today</item>
+        <item name="actionIconViewAsList">@drawable/ic_action_view_as_list</item>
+        <item name="actionIconWebsite">@drawable/ic_action_website</item>
+        <item name="actionIconShare">@drawable/ic_action_share</item>
+        <item name="actionIconPreviousItem">@drawable/ic_action_previous_item</item>
+        <item name="actionIconNextItem">@drawable/ic_action_next_item</item>
+        <item name="actionIconDownCloud">@drawable/ic_action_downcloud</item>
+        <item name="actionIconUpCloud">@drawable/ic_action_upcloud</item>
+        <item name="actionIconChat">@drawable/ic_action_chat</item>
+        <item name="actionIconRingVolume">@drawable/ic_action_ring_volume</item>
+        <item name="actionIconNew">@drawable/ic_action_new</item>
+
+        <item name="numberPickerStyle">@style/NPWidget.Holo.NumberPicker</item>
+    </style>
+
+    <style name="Buddhism.ActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/primary_text_dark</item>
+    </style>
+
+    <style name="ActionBar.Solid.Buddhism" parent="@android:style/Widget.Holo.ActionBar.Solid">
+        <item name="android:background">@drawable/ab_solid_buddhism</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_buddhism</item>
+        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_buddhism</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Buddhism</item>
+
+    </style>
+
+    <style name="ActionBar.Transparent.Buddhism" parent="@android:style/Widget.Holo.ActionBar">
+        <item name="android:background">@drawable/ab_transparent_buddhism</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Buddhism</item>
+    </style>
+
+    <style name="PopupMenu.Buddhism" parent="@android:style/Widget.Holo.ListPopupWindow">
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_buddhism</item>
+    </style>
+
+    <style name="DropDownListView.Buddhism" parent="@android:style/Widget.Holo.ListView.DropDown">
+        <item name="android:listSelector">@drawable/selectable_background_buddhism</item>
+    </style>
+
+    <style name="ActionBarTabStyle.Buddhism" parent="@android:style/Widget.Holo.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator_ab_buddhism</item>
+    </style>
+
+    <style name="DropDownNav.Buddhism" parent="@android:style/Widget.Holo.Spinner">
+        <item name="android:background">@drawable/spinner_background_ab_buddhism</item>
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_buddhism</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background_buddhism</item>
+    </style>
+
+    <style name="ProgressBar.Buddhism" parent="@android:style/Widget.Holo.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_buddhism</item>
+    </style>
+
+    <style name="ActionButton.CloseMode.Buddhism" parent="@android:style/Widget.Holo.ActionButton.CloseMode">
+        <item name="android:background">@drawable/btn_cab_done_buddhism</item>
+    </style>
+
+    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
+    <style name="Theme.Buddhism.Widget" parent="@android:style/Theme.Holo">
+        <item name="android:popupMenuStyle">@style/PopupMenu.Buddhism</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Buddhism</item>
+    </style>
+
+</resources>

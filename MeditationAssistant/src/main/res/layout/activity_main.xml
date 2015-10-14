@@ -1,0 +1,520 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    tools:context=".MainActivity$PlaceholderFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:id="@+id/scroll"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:fillViewport="true">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="0dp"
+                    android:gravity="top"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/adViewMain"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:visibility="gone"
+                            ads:adSize="SMART_BANNER"
+                            ads:adUnitId="a15110a172d3cff" />
+
+                    </RelativeLayout>
+
+                    <ViewSwitcher
+                        android:id="@+id/switchTimer"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:onClick="changeDuration">
+
+                        <TextView
+                            android:id="@+id/txtTimer"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center_vertical|center_horizontal"
+                            android:clickable="false"
+                            android:ellipsize="none"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:lineSpacingMultiplier="0.9"
+                            android:singleLine="true"
+                            android:text=""
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <RelativeLayout
+                            android:id="@+id/layEditDuration"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/editDuration"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical|center_horizontal"
+                                android:layout_marginBottom="0dp"
+                                android:layout_marginTop="0dp"
+                                android:gravity="center"
+                                android:imeOptions="actionDone"
+                                android:includeFontPadding="false"
+                                android:inputType="time"
+                                android:lineSpacingMultiplier="0.9"
+                                android:maxLength="5"
+                                android:singleLine="true"
+                                android:textSize="153sp"
+                                android:visibility="gone" />
+
+                            <sh.ftp.rocketninelabs.meditationassistant.TimePicker
+                                android:id="@+id/timepickerDuration"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center" />
+                        </RelativeLayout>
+                    </ViewSwitcher>
+
+                    <TextView
+                        android:id="@+id/txtDurationSeconds"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:clickable="false"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text=""
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="33sp" />
+
+                    <RelativeLayout
+                        android:id="@+id/layLowerViews"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <!--
+                             <View
+                                android:id="@+id/divMainStatus"
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginRight="7dp"
+                                android:background="?android:attr/listDivider" />
+                        -->
+
+                        <!--
+                                 <View
+                                android:id="@+id/divMainStatus2"
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginRight="7dp"
+                                android:layout_below="@+id/txtMainStatus"
+                                android:background="?android:attr/listDivider" />
+                        -->
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="bottom"
+                            android:gravity="bottom">
+
+                            <TextView
+                                android:id="@+id/txtMainStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_gravity="bottom"
+                                android:layout_marginBottom="7dp"
+                                android:layout_marginTop="7dp"
+                                android:clickable="false"
+                                android:gravity="center"
+                                android:text=""
+                                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                            <View
+                                android:id="@+id/divstreakUpper2"
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:layout_below="@+id/txtMainStatus"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginRight="7dp"
+                                android:background="?android:attr/listDivider" />
+
+                            <Button
+                                android:id="@+id/btnMeditate"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_below="@+id/divstreakUpper2"
+                                android:background="?android:attr/selectableItemBackground"
+                                android:onClick="pressMeditate"
+                                android:paddingBottom="10dp"
+                                android:paddingTop="10dp"
+                                android:text="@string/meditate"
+                                android:textSize="33sp" />
+
+                            <View
+                                android:id="@+id/divstreakUpper"
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:layout_below="@+id/btnMeditate"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginRight="7dp"
+                                android:background="?android:attr/listDivider" />
+
+                            <Button
+                                android:id="@+id/btnMeditationStreak"
+                                android:layout_width="fill_parent"
+                                android:layout_height="36dp"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_below="@+id/divstreakUpper"
+                                android:background="?android:attr/selectableItemBackground"
+                                android:gravity="center"
+                                android:onClick="pressMediNET"
+                                android:paddingBottom="1dp"
+                                android:text="@string/signInToMediNET"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                            <View
+                                android:id="@+id/divMainControls"
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:layout_below="@+id/btnMeditationStreak"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginRight="7dp"
+                                android:background="?android:attr/listDivider" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="false"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_below="@+id/divMainControls"
+                                android:gravity="bottom"
+                                android:orientation="horizontal">
+
+                                <Button
+                                    android:id="@+id/btnProgress"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="42dp"
+                                    android:layout_weight="1"
+                                    android:background="?android:attr/selectableItemBackground"
+                                    android:onClick="openProgress"
+                                    android:text="@string/progress"
+                                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                                <View
+                                    android:layout_width="1dp"
+                                    android:layout_height="fill_parent"
+                                    android:layout_marginBottom="7dp"
+                                    android:layout_marginTop="7dp"
+                                    android:background="?android:attr/listDivider" />
+
+                                <Button
+                                    android:id="@+id/btnCommunity"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="42dp"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="1"
+                                    android:background="?android:attr/selectableItemBackground"
+                                    android:onClick="pressCommunity"
+                                    android:text="@string/community"
+                                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layLowerViewsEditing"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="bottom"
+                        android:gravity="bottom"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <View
+                            android:id="@+id/divMainEditing1"
+                            android:layout_width="fill_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginRight="7dp"
+                            android:background="?android:attr/listDivider" />
+
+                        <RelativeLayout
+                            android:id="@+id/layUseTimerControls"
+                            android:layout_width="fill_parent"
+                            android:layout_height="36dp"
+                            android:gravity="center_vertical">
+
+                            <RadioGroup
+                                android:id="@+id/radgMainTimerMode"
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:orientation="horizontal">
+
+                                <RelativeLayout
+                                    android:id="@+id/layMainTimed"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:clickable="true"
+                                    android:gravity="center"
+                                    android:onClick="onTimerModeSelected"
+                                    android:paddingTop="2dp">
+
+                                    <RadioButton
+                                        android:id="@+id/radMainTimed"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="marquee"
+                                        android:marqueeRepeatLimit="marquee_forever"
+                                        android:onClick="onTimerModeSelected"
+                                        android:paddingRight="12dp"
+                                        android:scrollHorizontally="true"
+                                        android:singleLine="true"
+                                        android:text="@string/timed"
+                                        tools:ignore="RtlSymmetry" />
+                                </RelativeLayout>
+
+                                <View
+                                    android:layout_width="1dp"
+                                    android:layout_height="fill_parent"
+                                    android:layout_marginBottom="7dp"
+                                    android:layout_marginTop="7dp"
+                                    android:background="?android:attr/listDivider" />
+
+                                <RelativeLayout
+                                    android:id="@+id/layMainEndAt"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:clickable="true"
+                                    android:ellipsize="marquee"
+                                    android:gravity="center"
+                                    android:onClick="onTimerModeSelected"
+                                    android:paddingTop="2dp"
+                                    android:singleLine="true">
+
+                                    <RadioButton
+                                        android:id="@+id/radMainEndAt"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="marquee"
+                                        android:marqueeRepeatLimit="marquee_forever"
+                                        android:onClick="onTimerModeSelected"
+                                        android:paddingRight="12dp"
+                                        android:scrollHorizontally="true"
+                                        android:singleLine="true"
+                                        android:text="@string/endAt"
+                                        tools:ignore="RtlSymmetry" />
+                                </RelativeLayout>
+
+                                <View
+                                    android:layout_width="1dp"
+                                    android:layout_height="fill_parent"
+                                    android:layout_marginBottom="7dp"
+                                    android:layout_marginTop="7dp"
+                                    android:background="?android:attr/listDivider" />
+
+                                <RelativeLayout
+                                    android:id="@+id/layMainUntimed"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:clickable="true"
+                                    android:gravity="center"
+                                    android:onClick="onTimerModeSelected"
+                                    android:paddingTop="2dp">
+
+                                    <RadioButton
+                                        android:id="@+id/radMainUntimed"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="marquee"
+                                        android:marqueeRepeatLimit="marquee_forever"
+                                        android:onClick="onTimerModeSelected"
+                                        android:paddingRight="12dp"
+                                        android:scrollHorizontally="true"
+                                        android:singleLine="true"
+                                        android:text="@string/untimed"
+                                        tools:ignore="RtlSymmetry" />
+                                </RelativeLayout>
+                            </RadioGroup>
+
+                            <!--<TextView
+                                android:id="@+id/txtUseTimer"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="7dp"
+                                android:paddingTop="6sp"
+                                android:clickable="true"
+                                android:includeFontPadding="false"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="left|center_vertical"
+                                android:onClick="changeUseTimerLabel"
+                                android:text="@string/useTimer"
+                                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+                            <CheckBox
+                                android:id="@+id/chkUseTimer"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentTop="false"
+                                android:layout_gravity="top"
+                                android:gravity="top"
+                                android:onClick="changeUseTimer"
+                                android:text=""/>-->
+                        </RelativeLayout>
+
+                        <View
+                            android:id="@+id/divMainPresets"
+                            android:layout_width="fill_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginRight="7dp"
+                            android:background="?android:attr/listDivider" />
+
+                        <LinearLayout
+                            android:id="@+id/layPresets"
+                            android:layout_width="fill_parent"
+                            android:layout_height="42dp"
+                            android:layout_gravity="bottom">
+
+                            <Button
+                                android:id="@+id/btnPreset1"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="?android:attr/selectableItemBackground"
+                                android:ellipsize="marquee"
+                                android:marqueeRepeatLimit="marquee_forever"
+                                android:onClick="pressPreset"
+                                android:scrollHorizontally="true"
+                                android:singleLine="true"
+                                android:text="@string/setPreset"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="fill_parent"
+                                android:layout_marginBottom="7dp"
+                                android:layout_marginTop="7dp"
+                                android:background="?android:attr/listDivider" />
+
+                            <Button
+                                android:id="@+id/btnPreset2"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="?android:attr/selectableItemBackground"
+                                android:ellipsize="marquee"
+                                android:marqueeRepeatLimit="marquee_forever"
+                                android:onClick="pressPreset"
+                                android:scrollHorizontally="true"
+                                android:singleLine="true"
+                                android:text="@string/setPreset"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="fill_parent"
+                                android:layout_marginBottom="7dp"
+                                android:layout_marginTop="7dp"
+                                android:background="?android:attr/listDivider" />
+
+                            <Button
+                                android:id="@+id/btnPreset3"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="?android:attr/selectableItemBackground"
+                                android:ellipsize="marquee"
+                                android:marqueeRepeatLimit="marquee_forever"
+                                android:onClick="pressPreset"
+                                android:singleLine="true"
+                                android:text="@string/setPreset"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:id="@+id/divMainEditing2"
+                            android:layout_width="fill_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginRight="7dp"
+                            android:background="?android:attr/listDivider" />
+
+                        <LinearLayout
+                            android:id="@+id/layBottomEditingControls"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom">
+
+                            <Button
+                                android:id="@+id/btnCancelSetDuration"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="?android:attr/selectableItemBackground"
+                                android:onClick="cancelSetDuration"
+                                android:text="@string/cancel" />
+
+                            <View
+                                android:id="@+id/divMainEditing"
+                                android:layout_width="1dp"
+                                android:layout_height="fill_parent"
+                                android:layout_marginBottom="7dp"
+                                android:layout_marginTop="7dp"
+                                android:background="?android:attr/listDivider" />
+
+                            <Button
+                                android:id="@+id/btnSetDuration"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="?android:attr/selectableItemBackground"
+                                android:onClick="setDuration"
+                                android:text="@string/confirm" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".AboutActivity">
+
+    <item
+        android:id="@+id/action_rate"
+        android:showAsAction="always"
+        android:title="@string/rate"
+        android:icon="?attr/actionIconNotImportant" />
+
+    <item
+        android:id="@+id/action_share_app"
+        android:showAsAction="always"
+        android:title="@string/share"
+        android:icon="?attr/actionIconShare" />
+
+</menu>

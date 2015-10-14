@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Copy one of these attributes to your own theme (choose either dark or light).
+        <item name="numberPickerStyle">@style/NPWidget.Holo.NumberPicker</item>
+        <item name="numberPickerStyle">@style/NPWidget.Holo.Light.NumberPicker</item>
+    -->
+
+    <style name="MeditationShowcaseTheme" parent="ShowcaseView">
+        <item name="sv_backgroundColor">#e6181c2a</item>
+        <item name="sv_showcaseColor">@android:color/holo_blue_light</item>
+    </style>
+
+    <color name="dim_foreground_dark">#bebebe</color>
+    <color name="highlighted_text_dark">#9983CC39</color>
+
+    <color name="buddhism_tab_color">#e35604</color>
+    <color name="buddhism_tab_background">#006600</color>
+
+    <color name="transparent">#00000000</color>
+
+    <style name="Theme.Dialog.Alert" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--item name="android:windowTitleStyle">@android:style/DialogWindowTitle</item-->
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="MeditationLightTheme" parent="android:Theme.Holo.Light">
+        <item name="actionIconTime">@drawable/ic_action_time_light</item>
+        <item name="actionIconVolumeOn">@drawable/ic_action_volume_on_light</item>
+        <item name="actionIconNotImportant">@drawable/ic_action_not_important_light</item>
+        <item name="actionIconInfo">@drawable/ic_action_info_light</item>
+        <item name="actionIconSettings">@drawable/ic_action_settings_light</item>
+        <item name="actionIconNetworkCell">@drawable/ic_action_network_cell_light</item>
+        <item name="actionIconBrightnessLow">@drawable/ic_action_brightness_low_light</item>
+        <item name="actionIconFullScreen">@drawable/ic_action_full_screen_light</item>
+        <item name="actionIconSignOut">@drawable/ic_action_sign_out_light</item>
+        <item name="actionIconAccounts">@drawable/ic_action_accounts_light</item>
+        <item name="actionIconRefresh">@drawable/ic_action_refresh_light</item>
+        <item name="actionIconSortBySize">@drawable/ic_action_sort_by_size_light</item>
+        <item name="actionIconForward">@drawable/ic_action_forward_light</item>
+        <item name="actionIconGoToToday">@drawable/ic_action_go_to_today_light</item>
+        <item name="actionIconViewAsList">@drawable/ic_action_view_as_list_light</item>
+        <item name="actionIconWebsite">@drawable/ic_action_website_light</item>
+        <item name="actionIconPerson">@drawable/ic_action_person_light</item>
+        <item name="actionIconGroup">@drawable/ic_action_group_light</item>
+        <item name="actionIconShare">@drawable/ic_action_share_light</item>
+        <item name="actionIconPreviousItem">@drawable/ic_action_previous_item_light</item>
+        <item name="actionIconNextItem">@drawable/ic_action_next_item_light</item>
+        <item name="actionIconDownCloud">@drawable/ic_action_downcloud_light</item>
+        <item name="actionIconUpCloud">@drawable/ic_action_upcloud_light</item>
+        <item name="actionIconChat">@drawable/ic_action_chat_light</item>
+        <item name="actionIconRingVolume">@drawable/ic_action_ring_volume_light</item>
+        <item name="actionIconNew">@drawable/ic_action_new_light</item>
+        <item name="actionIconFlashOn">@drawable/ic_action_flash_on_light</item>
+
+        <item name="numberPickerStyle">@style/NPWidget.Holo.Light.NumberPicker</item>
+    </style>
+
+    <style name="MeditationLightDarkTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="actionIconTime">@drawable/ic_action_time_light</item>
+        <item name="actionIconVolumeOn">@drawable/ic_action_volume_on_light</item>
+        <item name="actionIconNetworkCell">@drawable/ic_action_network_cell_light</item>
+        <item name="actionIconBrightnessLow">@drawable/ic_action_brightness_low_light</item>
+        <item name="actionIconFullScreen">@drawable/ic_action_full_screen_light</item>
+        <item name="actionIconSignOut">@drawable/ic_action_sign_out_light</item>
+        <item name="actionIconForward">@drawable/ic_action_forward_light</item>
+        <item name="actionIconPreviousItem">@drawable/ic_action_previous_item_light</item>
+        <item name="actionIconNextItem">@drawable/ic_action_next_item_light</item>
+        <item name="actionIconDownCloud">@drawable/ic_action_downcloud_light</item>
+        <item name="actionIconUpCloud">@drawable/ic_action_upcloud_light</item>
+        <item name="actionIconRingVolume">@drawable/ic_action_ring_volume_light</item>
+        <item name="actionIconFlashOn">@drawable/ic_action_flash_on_light</item>
+
+        <!-- Used in action bars -->
+        <item name="actionIconNotImportant">@drawable/ic_action_not_important</item>
+        <item name="actionIconInfo">@drawable/ic_action_info</item>
+        <item name="actionIconSettings">@drawable/ic_action_settings</item>
+        <item name="actionIconAccounts">@drawable/ic_action_accounts</item>
+        <item name="actionIconRefresh">@drawable/ic_action_refresh</item>
+        <item name="actionIconSortBySize">@drawable/ic_action_sort_by_size</item>
+        <item name="actionIconGoToToday">@drawable/ic_action_go_to_today</item>
+        <item name="actionIconViewAsList">@drawable/ic_action_view_as_list</item>
+        <item name="actionIconWebsite">@drawable/ic_action_website</item>
+        <item name="actionIconPerson">@drawable/ic_action_person</item>
+        <item name="actionIconGroup">@drawable/ic_action_group</item>
+        <item name="actionIconShare">@drawable/ic_action_share</item>
+        <item name="actionIconChat">@drawable/ic_action_chat</item>
+        <item name="actionIconNew">@drawable/ic_action_new</item>
+
+        <item name="numberPickerStyle">@style/NPWidget.Holo.Light.NumberPicker</item>
+    </style>
+
+    <style name="MeditationDarkTheme" parent="android:Theme.Holo">
+        <item name="actionIconTime">@drawable/ic_action_time</item>
+        <item name="actionIconVolumeOn">@drawable/ic_action_volume_on</item>
+        <item name="actionIconNotImportant">@drawable/ic_action_not_important</item>
+        <item name="actionIconInfo">@drawable/ic_action_info</item>
+        <item name="actionIconSettings">@drawable/ic_action_settings</item>
+        <item name="actionIconNetworkCell">@drawable/ic_action_network_cell</item>
+        <item name="actionIconBrightnessLow">@drawable/ic_action_brightness_low</item>
+        <item name="actionIconFullScreen">@drawable/ic_action_full_screen</item>
+        <item name="actionIconSignOut">@drawable/ic_action_sign_out</item>
+        <item name="actionIconAccounts">@drawable/ic_action_accounts</item>
+        <item name="actionIconRefresh">@drawable/ic_action_refresh</item>
+        <item name="actionIconSortBySize">@drawable/ic_action_sort_by_size</item>
+        <item name="actionIconForward">@drawable/ic_action_forward</item>
+        <item name="actionIconGoToToday">@drawable/ic_action_go_to_today</item>
+        <item name="actionIconViewAsList">@drawable/ic_action_view_as_list</item>
+        <item name="actionIconWebsite">@drawable/ic_action_website</item>
+        <item name="actionIconPerson">@drawable/ic_action_person</item>
+        <item name="actionIconGroup">@drawable/ic_action_group</item>
+        <item name="actionIconShare">@drawable/ic_action_share</item>
+        <item name="actionIconPreviousItem">@drawable/ic_action_previous_item</item>
+        <item name="actionIconNextItem">@drawable/ic_action_next_item</item>
+        <item name="actionIconDownCloud">@drawable/ic_action_downcloud</item>
+        <item name="actionIconUpCloud">@drawable/ic_action_upcloud</item>
+        <item name="actionIconChat">@drawable/ic_action_chat</item>
+        <item name="actionIconRingVolume">@drawable/ic_action_ring_volume</item>
+        <item name="actionIconNew">@drawable/ic_action_new</item>
+        <item name="actionIconFlashOn">@drawable/ic_action_flash_on</item>
+
+        <item name="numberPickerStyle">@style/NPWidget.Holo.NumberPicker</item>
+    </style>
+
+    <style name="MeditationLightDialogTheme" parent="android:Theme.Holo.Light.Dialog">
+        <item name="actionIconTime">@drawable/ic_action_time_light</item>
+        <item name="actionIconVolumeOn">@drawable/ic_action_volume_on_light</item>
+        <item name="actionIconNotImportant">@drawable/ic_action_not_important_light</item>
+        <item name="actionIconInfo">@drawable/ic_action_info_light</item>
+        <item name="actionIconSettings">@drawable/ic_action_settings_light</item>
+        <item name="actionIconNetworkCell">@drawable/ic_action_network_cell_light</item>
+        <item name="actionIconBrightnessLow">@drawable/ic_action_brightness_low_light</item>
+        <item name="actionIconFullScreen">@drawable/ic_action_full_screen_light</item>
+        <item name="actionIconSignOut">@drawable/ic_action_sign_out_light</item>
+        <item name="actionIconAccounts">@drawable/ic_action_accounts_light</item>
+        <item name="actionIconRefresh">@drawable/ic_action_refresh_light</item>
+        <item name="actionIconSortBySize">@drawable/ic_action_sort_by_size_light</item>
+        <item name="actionIconForward">@drawable/ic_action_forward_light</item>
+        <item name="actionIconGoToToday">@drawable/ic_action_go_to_today_light</item>
+        <item name="actionIconViewAsList">@drawable/ic_action_view_as_list_light</item>
+        <item name="actionIconWebsite">@drawable/ic_action_website_light</item>
+        <item name="actionIconShare">@drawable/ic_action_share_light</item>
+        <item name="actionIconPreviousItem">@drawable/ic_action_previous_item_light</item>
+        <item name="actionIconNextItem">@drawable/ic_action_next_item_light</item>
+        <item name="actionIconDownCloud">@drawable/ic_action_downcloud_light</item>
+        <item name="actionIconUpCloud">@drawable/ic_action_upcloud_light</item>
+        <item name="actionIconChat">@drawable/ic_action_chat_light</item>
+        <item name="actionIconRingVolume">@drawable/ic_action_ring_volume_light</item>
+        <item name="actionIconNew">@drawable/ic_action_new_light</item>
+
+        <item name="numberPickerStyle">@style/NPWidget.Holo.Light.NumberPicker</item>
+    </style>
+
+    <style name="MeditationDarkDialogTheme" parent="android:Theme.Holo.Dialog">
+        <item name="actionIconTime">@drawable/ic_action_time</item>
+        <item name="actionIconVolumeOn">@drawable/ic_action_volume_on</item>
+        <item name="actionIconNotImportant">@drawable/ic_action_not_important</item>
+        <item name="actionIconInfo">@drawable/ic_action_info</item>
+        <item name="actionIconSettings">@drawable/ic_action_settings</item>
+        <item name="actionIconNetworkCell">@drawable/ic_action_network_cell</item>
+        <item name="actionIconBrightnessLow">@drawable/ic_action_brightness_low</item>
+        <item name="actionIconFullScreen">@drawable/ic_action_full_screen</item>
+        <item name="actionIconSignOut">@drawable/ic_action_sign_out</item>
+        <item name="actionIconAccounts">@drawable/ic_action_accounts</item>
+        <item name="actionIconRefresh">@drawable/ic_action_refresh</item>
+        <item name="actionIconSortBySize">@drawable/ic_action_sort_by_size</item>
+        <item name="actionIconForward">@drawable/ic_action_forward</item>
+        <item name="actionIconGoToToday">@drawable/ic_action_go_to_today</item>
+        <item name="actionIconViewAsList">@drawable/ic_action_view_as_list</item>
+        <item name="actionIconWebsite">@drawable/ic_action_website</item>
+        <item name="actionIconShare">@drawable/ic_action_share</item>
+        <item name="actionIconPreviousItem">@drawable/ic_action_previous_item</item>
+        <item name="actionIconNextItem">@drawable/ic_action_next_item</item>
+        <item name="actionIconDownCloud">@drawable/ic_action_downcloud</item>
+        <item name="actionIconUpCloud">@drawable/ic_action_upcloud</item>
+        <item name="actionIconChat">@drawable/ic_action_chat</item>
+        <item name="actionIconRingVolume">@drawable/ic_action_ring_volume</item>
+        <item name="actionIconNew">@drawable/ic_action_new</item>
+
+        <item name="numberPickerStyle">@style/NPWidget.Holo.NumberPicker</item>
+    </style>
+
+</resources>

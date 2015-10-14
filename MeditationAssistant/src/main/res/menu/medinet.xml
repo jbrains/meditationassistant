@@ -1,0 +1,55 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MediNETActivity">
+
+    <item
+        android:id="@+id/refreshMediNET"
+        android:showAsAction="always"
+        android:title="@string/refresh"
+        android:icon="?attr/actionIconRefresh"
+        tools:ignore="AlwaysShowAction" />
+    <item
+        android:id="@+id/menuMediNET"
+        android:showAsAction="always"
+        android:title="@string/page"
+        android:icon="?attr/actionIconSortBySize"
+        tools:ignore="AlwaysShowAction">
+        <menu>
+            <item
+                android:id="@+id/menuMediNETCommunity"
+                android:showAsAction="never"
+                android:title="@string/community"
+                android:icon="?attr/actionIconWebsite"/>
+            <item
+                android:id="@+id/menuMediNETSessions"
+                android:showAsAction="never"
+                android:title="@string/sessions"
+                android:icon="?attr/actionIconViewAsList"/>
+            <item
+                android:id="@+id/menuMediNETAccount"
+                android:showAsAction="never"
+                android:title="@string/account"
+                android:icon="?attr/actionIconPerson"/>
+            <item
+                android:id="@+id/menuMediNETGroups"
+                android:showAsAction="never"
+                android:title="@string/groups"
+                android:icon="?attr/actionIconGroup"/>
+            <item
+                android:id="@+id/menuMediNETForum"
+                android:showAsAction="never"
+                android:title="@string/forum"
+                android:icon="?attr/actionIconChat"/>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/menuMediNETForward"
+        android:showAsAction="never"
+        android:title="@string/forward"/>
+    <item
+        android:id="@+id/menuMediNETBack"
+        android:showAsAction="never"
+        android:title="@string/back"/>
+
+</menu>

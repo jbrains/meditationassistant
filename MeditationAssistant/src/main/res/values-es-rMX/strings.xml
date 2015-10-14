@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="appName">Asistente de Meditación Gratis</string>
+    <string name="appNameShort">Asistente de Meditación</string>
+    <string name="about">Acerca</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="delete">Borrar</string>
+    <string name="sessions">Sesiones</string>
+    <string name="community">Comunidad</string>
+    <string name="events">Eventos</string>
+    <string name="forum">Foro</string>
+    <string name="rate">Valora la aplicación</string>
+    <string name="exit">Salir</string>
+    <string name="refresh">Refrescar</string>
+    <string name="page">Pagina</string>
+    <string name="back">Atras</string>
+    <string name="forward">Adelante</string>
+    <string name="account">Cuenta</string>
+    <string name="groups">Grupos</string>
+    <string name="endSession">Terminar sesión</string>
+    <string name="share">Compartir</string>
+    <string name="announcement">Anuncio</string>
+
+    <!-- Main Activity -->
+    <string name="timerDefault">Predeterminaro</string>
+    <string name="timer">Timer</string>
+    <string name="timerHelp">The timer is currently set to 15 minutes. You can change the duration, end at a specific time of the day, or deactivate the alarm entirely. Tap the timer now to see these options.</string>
+    <string name="settingsHelp">This application includes many features and customizations, such as automatically silencing your device and providing a daily reminder to meditate. Tap the Settings icon now to see these options.</string>
+    <string name="medinetHelp">Sign in to MediNET to save your sessions online. You can import your sessions later if you lose your data. This feature is entirely optional, storing sessions locally will not hinder your experience.\n\nThis concludes the tutorial. I hope that Meditation Assistant will be beneficial for your practice.</string>
+    <string name="cancel">Cancelar</string>
+    <string name="set">Establecer</string>
+    <string name="confirm">Confirmar</string>
+    <string name="meditate">Meditar</string>
+    <string name="tapToSkip">Saltar</string>
+    <string name="pause">Pause</string>
+    <string name="pauseOrEnd">Pause or end</string>
+    <string name="resume">Resume</string>
+    <string name="resumeOrEnd">Resume or end</string>
+    <string name="pausedNotification">Session paused, hold to end</string>
+    <string name="mediNETConnecting">Conectando...</string>
+    <string name="mediNETConnected">Conectado a MediNET</string>
+    <string name="sessionInProgress">Sesión en progreso</string>
+    <string name="progress">Progreso</string>
+    <string name="setPreset">Establecer predeterminado</string>
+    <string name="setPresetHint">Mantenga presionado para establecer predeterminado</string>
+    <string name="setPresetHintBlank">Escribir una duración (o tiempo final) para establecer predeterminado</string>
+    <string name="setTimerDurationHint">Escriba una duración valida (e.j. 0:22)</string>
+    <string name="setTimerEndAtHint">Escriba un tiempo valido (e.j. 4:20)</string>
+    <string name="invalidEndAt">Tiempo erróneo para terminar sesión</string>
+    <string name="timed">Programado</string>
+    <string name="endAt">Terminar en</string>
+    <string name="untimed">Sin programar</string>
+    <string name="unlimited">Unlimited</string>
+    <string name="presetLabelEndAt">Terminar %s</string>
+
+    <!-- About -->
+    <string name="tapToSendEmail">Presione para enviar sugerencias</string>
+    <string name="sendEmail">Enviar correo electronico</string>
+    <string name="version">Versión %s</string>
+    <string name="translate">Traducir</string>
+    <string name="howToMeditate">Como Meditar</string>
+
+    <!-- Sessions -->
+    <string name="session">Sesión</string>
+    <string name="confirmDeleteTitle">¿Eliminar sesión de meditación?</string>
+    <string name="confirmDelete">Guardado %1$s en %2$s</string>
+    <string name="sessionDeleteEverywhere">Borrar en todos lados</string>
+    <string name="sessionDeleteLocally">Borrar localmente</string>
+    <string name="sessionDeleteMediNET">Borrar en MediNET</string>
+
+    <!-- Behavior -->
+    <string name="behavior">Behavior</string>
+
+    <!-- Session complete -->
+    <string name="sessioncomplete">Sesión completada</string>
+    <string name="sessionMessagePlaceholder">Mensaje</string>
+    <string name="askDiscardText">¿Descartar sesión?</string>
+    <string name="shareSessionText">Acabo de meditar por %1$s con %2$s.</string>
+    <string name="aMoment">un momento</string>
+    <string name="shareSessionSubject">Sesión de meditación</string>
+    <string name="sessionPosting">Publicando sesión...</string>
+    <string name="sessionPosted">Sesión publicada en MediNET</string>
+    <string name="sessionAlreadyPosted">Sesión ya publicada</string>
+    <string name="sessionNotPosted">Incapaz de publicar sesión</string>
+    <string name="sessionNotPostedMeditating">Incapaz de publicar sesión mientras meditas</string>
+    <string name="sessionSaved">Sesión guardada</string>
+    <string name="sessionDeletedLocally">Sesión eliminada localmente</string>
+
+    <!-- Sign In -->
+    <string name="signInWith">Entra con...</string>
+    <string name="signInWithProvider">Entra con %s...</string>
+    <string name="signInWithOpenID">CuentaLibre - Facebook, Twitter, etc.</string>
+    <string name="signInGoogleError">Incapaz de autentificar el usuario utilizando el gestor. Intenta usar CuentaLibre si este error persiste.</string>
+
+    <!-- Progress -->
+    <string name="calendar">Calendario</string>
+    <string name="statistics">Estadísticas</string>
+    <string name="dayMondayShort">Lun</string>
+    <string name="dayTuesdayShort">Mar</string>
+    <string name="dayWednesdayShort">Mier</string>
+    <string name="dayThursdayShort">Jue</string>
+    <string name="dayFridayShort">Vie</string>
+    <string name="daySaturdayShort">Sab</string>
+    <string name="daySundayShort">Dom</string>
+    <string name="addSession">Añadir sesión</string>
+    <string name="sessionStartedAt">Comenzado en %s</string>
+    <string name="started">Comenzado</string>
+    <string name="completed">Completado</string>
+    <string name="setDate">Establecer fecha</string>
+    <string name="setTime">Establecer hora</string>
+    <string name="invalidDateOrTime">Fecha o hora invalida</string>
+    <string name="addSessionMeditating">Incapaz de publicar sesión mientras meditas</string>
+    <string name="addSessionExists">La sesión ya existe</string>
+
+    <string name="days">Dias</string>
+    <string name="hours">Horas</string>
+    <string name="minutes">Minutos</string>
+    <string name="otherStatistics">Estadísticas de otras sesiones</string>
+    <string name="totalSessions">Sesiones totales</string>
+    <string name="averageDuration">Duración promedio</string>
+
+    <string name="reminderText">¿Tienes un momento para meditar?</string>
+
+    <!-- Settings -->
+    <string name="meditation">Meditación</string>
+    <string name="pref_vibrate">Vibrar</string>
+    <string name="pref_vibrate_summary">Occurs at the beginning, intervals, and end of meditation</string>
+    <string name="pref_vibrate_reminder_summary">The daily reminder will vibrate the device</string>
+    <string name="pref_sound_reminder">Play sound</string>
+    <string name="pref_sound_reminder_summary">The default notification sound will be played</string>
+    <string name="pref_softfinish">Endless session</string>
+    <string name="pref_softfinish_summary">Keep the timer running</string>
+
+    <string name="settings">Configuración</string>
+    <string name="disabled">Desactivado</string>
+    <string name="noSpecialBehavior">No hay comportamiento especial</string>
+    <string name="noSound">Sin sonido</string>
+    <string name="customSound">Sonido especial</string>
+    <string name="keepScreenOn">Mantener la pantalla prendida</string>
+    <string name="keepScreenOnAndDim">Mantener la pantalla prendida y oscurecer</string>
+    <string name="dimScreen">Oscurecer pantalla</string>
+    <string name="turnScreenOff">Apagar pantalla</string>
+    <string name="willRemainActive">Todas las conexiones permanecerán activas</string>
+    <string name="willBeTurnedOff">Todas las conexiones serán desactivadas</string>
+    <string name="willBeFullScreen">Pantalla completa</string>
+    <string name="willBeNormal">Pantalla normal</string>
+    <string name="pref_display_seconds">Mostrar segundos</string>
+    <string name="pref_display_seconds_summary">Mostrar el contador abajo</string>
+    <string name="pref_full_screen">Pantalla completa</string>
+    <string name="pref_full_screen_summary">Barra de estado oculta en pantalla completa</string>
+    <string name="pref_wireless_networks">Desactivar conexiones</string>
+    <string name="pref_delay">Retrasar</string>
+    <string name="pref_interval">Interval duration</string>
+    <string name="pref_interval_count">Interval count</string>
+    <string name="pref_autosignin_summary">Conectar to MediNET cuando abra</string>
+    <string name="pref_autosignin">Conectar automaticamente</string>
+    <string name="pref_rememberme_summary">Permanecer conectado después de salir</string>
+    <string name="pref_rememberme">Recuerdame</string>
+    <string name="pref_autopost_summary">Sesiones completadas se publicaran automaticamente</string>
+    <string name="pref_autopost">Publicar sesiones automaticamente</string>
+    <string name="pref_usedefaulttimer_summary">Utilizar duración de sesión predeterminada después de cerrar</string>
+    <string name="pref_rememberlasttimer">Recordar duración anterior</string>
+    <string name="pref_screencontrol">Pantalla</string>
+    <string name="pref_sendusage">Reportar estadísticas de uso</string>
+    <string name="pref_sendusage_summary">Reporte de estadísticas anónimas por Google Analytics. Tomara efecto al volver a abrir.</string>
+    <string name="pref_accountsettings">Editar cuenta</string>
+    <string name="pref_accountsettings_summary">Cambiar contraseña\Información de perfil\Configuración de privacidad</string>
+    <string name="pref_showstreak">Mostrar racha de meditaciones</string>
+    <string name="pref_showstreak_summary">Numero de días consecutivos con por lo menos una sesión guardada.</string>
+    <string name="selectSound">Escoge sonido</string>
+    <string name="pref_meditation_sound_start">Start sound</string>
+    <string name="pref_meditation_sound_start_summary">Tocado al inicio de sesion</string>
+    <string name="pref_meditation_sound_interval">Interval sound</string>
+    <string name="pref_meditation_sound_interval_summary">Tocado durante la sesión</string>
+    <string name="pref_meditation_sound_finish">Complete sound</string>
+    <string name="pref_meditation_sound_finish_summary">Tocado al final de la sesión</string>
+    <string name="pref_remembermessage">Recordar ultimo mensaje</string>
+    <string name="pref_remembermessage_summary">Por defecto el último mensaje publicado</string>
+    <string name="pref_theme">Tema holográfico</string>
+    <string name="pref_theme_light">Luz</string>
+    <string name="pref_theme_lightdark">Luz con barra de acción oscura</string>
+    <string name="pref_theme_dark">Oscuro</string>
+    <string name="pref_notification">Notificación</string>
+    <string name="pref_notification_summary">Se muestra durante la meditación mientras que fuera de la ventana principal</string>
+    <string name="pref_usetimepicker">Alternative duration interface</string>
+    <string name="pref_usetimepicker_summary">Use hour and minute sliders when changing duration</string>
+    <string name="pref_askdismiss">Preguntar antes de descarte</string>
+    <string name="pref_askdismiss_summary">Confirmar antes de descartar una sesión</string>
+    <string name="pref_progresstab">Pestaña de progreso predeterminado</string>
+    <string name="importsessions">Importar sesiones</string>
+    <string name="importsessions_summary">Recuperar sesiones subidas</string>
+    <string name="uploadsessions">Upload sessions</string>
+    <string name="uploadsessions_summary">Upload local sessions</string>
+    <string name="miscellaneous">Misceláneo </string>
+    <string name="pref_text_size">Tamaño de texto del contador</string>
+    <string name="tiny">Chiquitín</string>
+    <string name="small">Pequeño</string>
+    <string name="normal">Normal</string>
+    <string name="large">Grande</string>
+    <string name="extralarge">Extra-grande</string>
+    <string name="restartAppApplyTheme">Reinicie la aplicación para aplicar nuevo tema</string>
+    <string name="restartAppApplyTimePicker">Restart application to use alternative duration interface</string>
+    <string name="pref_notificationcontrol">Ringtone y notificaciones</string>
+    <string name="pref_notificationcontrol_vibrate">Vibrar</string>
+    <string name="pref_notificationcontrol_silent">Silencioso</string>
+    <string name="pref_daily_reminder">Recordatorio diario</string>
+    <string name="pref_daily_reminder_title">Remind me</string>
+    <string name="pref_daily_reminder_summary">Display a notification when no sessions were recorded today</string>
+    <string name="pref_daily_reminder_time">Time</string>
+    <string name="pref_daily_reminder_text">Encouragement text</string>
+    <string name="downloadingSessions">Downloading sessions...</string>
+    <string name="uploadingSessions">Uploading sessions...</string>
+
+    <!-- MediNET -->
+    <string name="mediNET">MediNET</string>
+    <string name="unableToConnect">No se puede conectar a MediNET</string>
+    <string name="dismiss">Desechar</string>
+    <string name="discard">Descartar</string>
+    <string name="save">Guardar</string>
+    <string name="post">Publicar</string>
+    <string name="importSessionsHint">Haga clic en "Importar sesiones" en la configuración para recuperar las sesiones que faltan.</string>
+    <string name="importsessionstitle">Importar sesiones?</string>
+    <string name="importsessionsmessage">Se importarán las sesiones anteriores. Este dialogo no aparecerán de nuevo. No
+puede importar sesiones de tarde desde la ventana Configuración.</string>
+    <string name="wordimport">Importar</string>
+    <string name="sessionDeletedMediNET">Sesión eliminada de MediNET</string>
+    <string name="sessionNotFoundMediNET">Sesión no encontrada en MediNET</string>
+    <string name="sessionNotProperAccount">No está inscrito en el registro adecuado</string>
+
+    <plurals name="numtimes">
+        <item quantity="one">%s time</item>
+        <item quantity="other">%s times</item>
+    </plurals>
+
+    <plurals name="sessionsImported">
+        <item quantity="one">Sesión %s importada</item>
+        <item quantity="other">Sesiónes %s importadas</item>
+    </plurals>
+
+    <plurals name="sessionsUploaded">
+        <item quantity="one">Uploaded %s session</item>
+        <item quantity="other">Uploaded %s sessions</item>
+    </plurals>
+
+    <string name="sessionsNotImported">Datos locales actualizados</string>
+    <string name="signInToImport">Inicia sesión para importar datos de la sesión</string>
+
+    <plurals name="daysOfMeditation">
+        <item quantity="one">%d dia de la meditacion</item>
+        <item quantity="other">%d días de las meditaciones</item>
+    </plurals>
+    <plurals name="daysOfMeditationWithoutCount">
+        <item quantity="one">dia de la meditación</item>
+        <item quantity="other">días de las meditaciones</item>
+    </plurals>
+
+    <string name="meditateToday">Meditar hoy</string>
+    <string name="signInToMediNET">Iniciar sesión en Medinet</string>
+    <string name="signOut">Cerrar sesión</string>
+    <string name="signOutOfMediNET">Cerrar sesión de MediNET</string>
+    <string name="signOutOfMediNETConfirmTitle">Cerrar sesión de MediNET?</string>
+    <string name="signOutOfMediNETConfirm">Has accedido con %s.</string>
+    <string name="rateMeditationAssistant">Valorar asistente de meditación</string>
+    <string name="rateMeditationAssistantText">Si usted ha encontrado esta aplicación beneficioso para su práctica de la meditación, ¿podría añadir una calificación? La versión de pago de esta aplicación no contiene anuncios y cuenta con widgets de la pantalla de inicio. Por favor considerar la compra si usted es capaz de hacerlo. Este cuadro de diálogo no volverá a aparecer.</string>
+    <string name="translateMeditationAssistantText">Would you please help Meditation Assistant reach a wider audience by translating it into another language?\n\nTranslating is eaily done through an online interface.  You can visit the translation webpage later by clicking Translate from the About window.\n\nThis dialog will not appear again.</string>
+
+    <!-- Widgets -->
+    <string name="widget1x1">Asistente de Meditación 1x1</string>
+    <string name="widget2x1">Asistente de Meditación 2x1</string>
+    <string name="widget3x1">Asistente de Meditación 3x1</string>
+    <string name="title_activity_medi_net">MediNET</string>
+    <string name="hello_world">Hola mundo!</string>
+    <string name="action_settings">Configuración</string>
+    <string name="title_activity_complete">Sesión completada</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Detalles de item</string>
+    <string name="title_activity_about">Actividad principal</string>
+
+</resources>

@@ -1,0 +1,2546 @@
+package sh.ftp.rocketninelabs.meditationassistant;
+
+import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.AlertDialog;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.text.InputType;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.ViewSwitcher;
+
+import com.crittercism.app.Crittercism;
+import com.github.amlcurran.showcaseview.OnShowcaseEventListener;
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.analytics.GoogleAnalytics;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Random;
+import java.util.Set;
+
+public class MainActivity extends Activity implements OnShowcaseEventListener {
+    public static String BROADCAST_ACTION_ALARM = "sh.ftp.rocketninelabs.meditationassistant.ALARM";
+    public static int ID_DELAY = 77702;
+    public static int ID_INTERVAL = 77701;
+    public static int ID_END = 77703;
+
+    public MeditationAssistant ma = null;
+    SharedPreferences.OnSharedPreferenceChangeListener sharedPrefslistener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+        public void onSharedPreferenceChanged(SharedPreferences newprefs, String key) {
+            Log.d("MeditationAssistant",
+                    key + " changed to " + getMeditationAssistant().getPrefs().getAll().get(key).toString());
+            if (getMeditationAssistant().getTimeToStopMeditate() < 1
+                    && (key.equals("timerHours") || key.equals("timerMinutes"))) {
+                TextView txtTimer = (TextView) findViewById(R.id.txtTimer);
+                txtTimer.setText(getMeditationAssistant().getPrefs().getString("timerHours", "0")
+                        + ":"
+                        + String.format("%02d", Integer.valueOf(getMeditationAssistant().getPrefs().getString(
+                        "timerMinutes", "15"))));
+            } else if (key.equals("pref_meditation_sound_finish")
+                    || key.equals("pref_meditation_sound_finish_custom")
+                    || key.equals("pref_meditation_sound_start")
+                    || key.equals("pref_meditation_sound_start_custom")) {
+                updateTexts();
+            } else if (key.equals("pref_text_size")) {
+                updateTextSize();
+            } else if (key.equals("keyupdate")) {
+                if (!getMeditationAssistant().getMediNETKey().equals("")) {
+                    getMeditationAssistant().getMediNET().connect();
+                }
+            }
+        }
+    };
+    private AdView av = null;
+    private Handler handler;
+    private Runnable meditateRunnable = null;
+    private Runnable screenDimRunnable = null;
+    private Runnable screenOffRunnable = null;
+    private MediaPlayer mMediaPlayer = null;
+    private AlarmManager am = null;
+    private PendingIntent pendingintent = null;
+    private AlarmManager am_delay = null;
+    private PendingIntent pendingintent_delay = null;
+    private AlarmManager am_interval = null;
+    private PendingIntent pendingintent_interval = null;
+    private Runnable intervalRunnable = new Runnable() {
+        @Override
+        public void run() {
+            Log.d("MeditationAssistant", "Interval running");
+            handler.removeCallbacks(this);
+            if (getMeditationAssistant().getTimeStartMeditate() > 0) {
+                if (getMeditationAssistant().getTimeToStopMeditate() != 0
+                        && getMeditationAssistant().getTimeToStopMeditate()
+                        - (System.currentTimeMillis() / 1000) < 30) {
+                    return; // No interval sounds during the final 30 seconds
+                }
+
+                if (!getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval", "")
+                        .equals("none") || getMeditationAssistant().vibrationEnabled()) {
+                    if (!getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval", "")
+                            .equals("none")) {
+                        stopMediaPlayer();
+                        mMediaPlayer = null;
+                        if (getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval", "")
+                                .equals("custom")) {
+                            String soundpath = getMeditationAssistant().getPrefs().getString(
+                                    "pref_meditation_sound_interval_custom", "");
+                            if (!soundpath.equals("")) {
+                                try {
+                                    mMediaPlayer = MediaPlayer.create(
+                                            getApplicationContext(),
+                                            Uri.parse(soundpath));
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        } else {
+                            mMediaPlayer = MediaPlayer
+                                    .create(getApplicationContext(),
+                                            MeditationSounds.getMeditationSound(getMeditationAssistant().getPrefs().getString(
+                                                    "pref_meditation_sound_interval",
+                                                    ""))
+                                    );
+                        }
+
+                        if (mMediaPlayer != null) {
+                            mMediaPlayer
+                                    .setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                                        @Override
+                                        public void onCompletion(MediaPlayer mp) {
+                                            mp.release();
+                                            WakeLocker.release();
+                                        }
+                                    });
+
+                            WakeLocker.acquire(getApplicationContext(), false);
+                            mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                            mMediaPlayer
+                                    .setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                                        @Override
+                                        public void onPrepared(
+                                                MediaPlayer mp) {
+                                            mp.start();
+                                        }
+                                    });
+                            //mMediaPlayer.prepareAsync();
+                        }
+                    }
+
+                    getMeditationAssistant().vibrateDevice();
+
+                    long interval = Math.max(
+                            getMeditationAssistant().timePreferenceValueToSeconds(getMeditationAssistant().getPrefs().getString("pref_session_interval", "00:00"), "00:00"), 0);
+                    Log.d("MeditationAssistant", "Interval is set to " + String.valueOf(interval) + " seconds");
+
+                    if (interval > 0 && (getMeditationAssistant().getTimeToStopMeditate() == -1
+                            || getMeditationAssistant().getTimeToStopMeditate()
+                            - (System.currentTimeMillis() / 1000) > (interval + 30) || getMeditationAssistant().getPrefs().getBoolean("pref_softfinish", false))) {
+                        Calendar cal = Calendar.getInstance();
+                        cal.add(Calendar.SECOND, (int) interval);
+
+                        Log.d("MeditationAssistant", "Setting INTERVAL WAKEUP alarm for "
+                                + String.valueOf(cal.getTimeInMillis()) + " (Now: "
+                                + System.currentTimeMillis() + ", in: " + String.valueOf((cal.getTimeInMillis() - System.currentTimeMillis()) / 1000) + ")");
+
+                        Intent intent_interval = new Intent(
+                                getApplicationContext(), MainActivity.class);
+                        intent_interval.putExtra("wakeup", true);
+                        intent_interval.putExtra("wakeupinterval", true);
+                        intent_interval.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        intent_interval.setAction(BROADCAST_ACTION_ALARM);
+                        pendingintent_interval = PendingIntent.getActivity(
+                                getApplicationContext(), ID_INTERVAL,
+                                intent_interval, PendingIntent.FLAG_CANCEL_CURRENT);
+                        am_interval = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                        if (Build.VERSION.SDK_INT >= 19) {
+                            am_interval.setExact(AlarmManager.RTC_WAKEUP,
+                                    cal.getTimeInMillis(), pendingintent_interval);
+                        } else {
+                            am_interval.set(AlarmManager.RTC_WAKEUP,
+                                    cal.getTimeInMillis(), pendingintent_interval);
+                        }
+                        handler.postDelayed(this, interval * 1000);
+                    }
+                }
+            }
+        }
+    };
+    private String lastKey = "";
+    private Boolean skipDelay = false;
+    private String previous_timermode = "timed";
+    private Boolean usetimepicker = true;
+    private ShowcaseView sv = null;
+    private String next_tutorial = "";
+    private int intervals = 0;
+    private Runnable clearWakeLock = new Runnable() {
+        @Override
+        public void run() {
+            WakeLocker.release();
+        }
+    };
+    private Boolean finishedTutorial = null;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Crittercism.initialize(getApplicationContext(), "51d51a5ea7928a6b4a000005");
+
+        setTheme(getMeditationAssistant().getMATheme());
+        setContentView(R.layout.activity_main);
+
+        if (getMeditationAssistant().sendUsageReports()) {
+            getMeditationAssistant().getTracker(MeditationAssistant.TrackerName.APP_TRACKER);
+        }
+
+        handler = new Handler();
+
+        lastKey = getMeditationAssistant().getPrefs().getString("key", "");
+
+        if (getMeditationAssistant().getMediNET() == null) {
+            getMeditationAssistant().setMediNET(new MediNET(this));
+            Log.d("MeditationAssistant", "New instance of MediNET created");
+        } else {
+            getMeditationAssistant().getMediNET().activity = this;
+        }
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+
+        findViewById(R.id.btnMeditate).setLongClickable(true);
+        final View btnMeditate = findViewById(R.id.btnMeditate);
+        btnMeditate.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                return longPressMeditate(v);
+            }
+        });
+
+        /*CheckBox chkUseTimer = (CheckBox) findViewById(R.id.chkUseTimer);
+        chkUseTimer.setChecked(getMeditationAssistant().getUseTimer());
+        changeUseTimer(null);*/
+
+        usetimepicker = getMeditationAssistant().getPrefs().getBoolean("pref_usetimepicker", false);
+
+        final EditText editDuration = (EditText) findViewById(R.id.editDuration);
+        final TimePicker timepickerDuration = (TimePicker) findViewById(R.id.timepickerDuration);
+        timepickerDuration.setIs24HourView(true);
+        if (usetimepicker) {
+            editDuration.setVisibility(View.GONE);
+            timepickerDuration.setVisibility(View.VISIBLE);
+            /*EditText newEditDuration = new EditText(this);
+            newEditDuration.setId(R.id.editDuration);
+            FrameLayout.LayoutParams editDurationLayoutParams = new FrameLayout.LayoutParams(
+            android.view.ViewGroup.LayoutParams.FILL_PARENT,
+            android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
+            editDurationLayoutParams.gravity = Gravity.CENTER;
+            editDurationLayoutParams.setMargins(0, 0, 0, 0);
+            newEditDuration.setLayoutParams(editDurationLayoutParams);
+            newEditDuration.setIncludeFontPadding(false);
+            newEditDuration.setInputType(InputType.TYPE_DATETIME_VARIATION_TIME);
+            newEditDuration.setSingleLine(true);
+            newEditDuration.imeOp
+            RelativeLayout layEditDuration = (RelativeLayout) findViewById(R.id.layEditDuration);
+            layEditDuration.addView(newEditDuration);*/
+        } else {
+            timepickerDuration.setVisibility(View.GONE);
+            editDuration.setVisibility(View.VISIBLE);
+        }
+
+        updateTextSize();
+        updateMeditate(false, false);
+        updateTexts();
+        updatePresets();
+        getMeditationAssistant().setRunnableStopped(true);
+        startRunnable();
+
+        editDuration
+                .setOnEditorActionListener(new EditText.OnEditorActionListener() {
+                    @Override
+                    public boolean onEditorAction(android.widget.TextView v,
+                                                  int actionId, KeyEvent event) {
+                        if (actionId == EditorInfo.IME_ACTION_DONE) {
+                            ViewSwitcher switchTimer = (ViewSwitcher) findViewById(R.id.switchTimer);
+                            RelativeLayout layEditDuration = (RelativeLayout) findViewById(R.id.layEditDuration);
+
+                            if (switchTimer.getCurrentView().equals(
+                                    layEditDuration)) {
+                                setDuration(null);
+                            }
+                            return true;
+                        }
+
+                        return false;
+                    }
+                });
+        editDuration.setOnKeyListener(new EditText.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_UP
+                        && keyCode == KeyEvent.KEYCODE_ENTER) {
+                    ViewSwitcher switchTimer = (ViewSwitcher) findViewById(R.id.switchTimer);
+                    RelativeLayout layEditDuration = (RelativeLayout) findViewById(R.id.layEditDuration);
+                    if (switchTimer.getCurrentView().equals(layEditDuration)) {
+                        setDuration(null);
+                    }
+
+                    return true;
+                }
+
+                return false;
+            }
+        });
+
+        Button btnPreset1 = (Button) findViewById(R.id.btnPreset1);
+        Button btnPreset2 = (Button) findViewById(R.id.btnPreset2);
+        Button btnPreset3 = (Button) findViewById(R.id.btnPreset3);
+
+        View.OnLongClickListener presetListener = new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(final View view) {
+                if (getMeditationAssistant().getTimerMode().equals("endat")) {
+                    ArrayList<String> duration_formatted = new ArrayList<String>();
+                    if (usetimepicker) {
+                        duration_formatted.add(String.valueOf(timepickerDuration.getCurrentHour()));
+                        duration_formatted.add(String.format("%02d",
+                                timepickerDuration.getCurrentMinute()));
+                    } else {
+                        duration_formatted = getMeditationAssistant().formatDurationEndAt(editDuration.getText().toString().trim());
+                    }
+
+                    if (duration_formatted == null || duration_formatted.size() != 2) {
+                        getMeditationAssistant().shortToast(MainActivity.this, getString(R.string.setPresetHintBlank));
+                        return true;
+                    }
+                } else if (!getMeditationAssistant().getTimerMode().equals("untimed")) {
+                    ArrayList<String> duration_formatted = new ArrayList<String>();
+                    if (usetimepicker) {
+                        duration_formatted.add(String.valueOf(timepickerDuration.getCurrentHour()));
+                        duration_formatted.add(String.format("%02d",
+                                timepickerDuration.getCurrentMinute()));
+                    } else {
+                        duration_formatted = getMeditationAssistant().formatDuration(editDuration.getText().toString().trim());
+                    }
+
+                    if (duration_formatted == null || duration_formatted.size() != 2) {
+                        getMeditationAssistant().shortToast(MainActivity.this, getString(R.string.setPresetHintBlank));
+                        return true;
+                    }
+                }
+
+                final String preset_key;
+                if (view.getId() == R.id.btnPreset1) {
+                    preset_key = "pref_preset_1";
+                } else if (view.getId() == R.id.btnPreset2) {
+                    preset_key = "pref_preset_2";
+                } else if (view.getId() == R.id.btnPreset3) {
+                    preset_key = "pref_preset_3";
+                } else {
+                    return false;
+                }
+
+                LayoutInflater presetInflater = getLayoutInflater();
+                View presetLayout = presetInflater.inflate(R.layout.set_preset, null);
+                final EditText editPresetTitle = (EditText) presetLayout.findViewById(R.id.editPresetTitle);
+                editPresetTitle.setText(getPresetDefaultLabel());
+                editPresetTitle.setSelection(editPresetTitle.getText().length());
+                editPresetTitle.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+                builder.setIcon(
+                        getResources()
+                                .getDrawable(
+                                        getTheme()
+                                                .obtainStyledAttributes(
+                                                        getMeditationAssistant()
+                                                                .getMATheme(),
+                                                        new int[]{R.attr.actionIconForward}
+                                                )
+                                                .getResourceId(0, 0)
+                                )
+                )
+                        .setTitle(getString(R.string.setPreset))
+                        .setView(presetLayout)
+                        .setPositiveButton(getString(R.string.set),
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        getMeditationAssistant().getPrefs().edit().putString(preset_key + "_label", editPresetTitle.getText().toString().trim()).apply();
+                                        savePreset(preset_key);
+                                        updatePresets();
+                                    }
+                                })
+                        .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                // Do nothing
+                            }
+                        }).show();
+
+                return true;
+            }
+        };
+
+        btnPreset1.setOnLongClickListener(presetListener);
+        btnPreset2.setOnLongClickListener(presetListener);
+        btnPreset3.setOnLongClickListener(presetListener);
+
+        updateVisibleViews(false);
+
+        if (getMeditationAssistant().getEditingDuration()) {
+            changeDuration(null);
+        }
+
+        // String pass = "br[qs$jQ>$_rr1~ bu')5\1]fw| }";
+
+        /*RelativeLayout.LayoutParams lps = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        lps.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        lps.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        int margin = ((Number) (getResources().getDisplayMetrics().density * 24)).intValue();
+        lps.setMargins(margin, margin, margin, margin);*/
+
+        //sv.setButtonPosition(lps);
+
+        if (getMeditationAssistant().getPrefs().getBoolean("pref_autosignin", false)) {
+            getMeditationAssistant().connectOnce();
+        } else {
+            getMeditationAssistant().getMediNET().updated();
+        }
+
+        if (getPackageName()
+                .equals("sh.ftp.rocketninelabs.meditationassistant")) {
+            Log.d("MeditationAssistant", "Fetching ad");
+
+            // AdView av = new AdView(this, AdSize.SMART_BANNER,
+            // "a15110a172d3cff");
+            av = (AdView) findViewById(R.id.adViewMain);
+            av.setVisibility(View.VISIBLE);
+            AdRequest adRequest = new AdRequest.Builder()
+                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                    .build();
+            av.loadAd(adRequest);
+        }
+
+        onNewIntent(getIntent());
+
+        Object language = Locale.getDefault().getLanguage();
+        if (language != null && !language.equals("en") && getMeditationAssistant().getPrefs().getInt("applaunches", 0) >= 5 && !getMeditationAssistant().getPrefs().getBoolean("askedtotranslate", false)) {
+            getMeditationAssistant().getPrefs().edit().putBoolean("askedtotranslate", true).apply();
+
+            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which) {
+                        case DialogInterface.BUTTON_POSITIVE:
+                            startActivity(new Intent(
+                                    Intent.ACTION_VIEW,
+                                    Uri.parse("http://medinet.ftp.sh/translate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+
+                            break;
+
+                        case DialogInterface.BUTTON_NEGATIVE:
+                            break;
+                    }
+                }
+            };
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setIcon(
+                    getResources()
+                            .getDrawable(
+                                    getTheme()
+                                            .obtainStyledAttributes(
+                                                    getMeditationAssistant()
+                                                            .getMATheme(),
+                                                    new int[]{R.attr.actionIconNotImportant}
+                                            )
+                                            .getResourceId(0, 0)
+                            )
+            )
+                    .setTitle(getString(R.string.translate))
+                    .setMessage(
+                            getString(R.string.translateMeditationAssistantText))
+                    .setPositiveButton(getString(R.string.yes),
+                            dialogClickListener)
+                    .setNegativeButton(getString(R.string.no),
+                            dialogClickListener).show();
+        }
+
+        showNextTutorial();
+        getMeditationAssistant().recalculateMeditationStreak();
+
+        long pref_delay = Integer.valueOf(getMeditationAssistant().getPrefs().getString("pref_delay", "-1"));
+        long pref_interval = Integer.valueOf(getMeditationAssistant().getPrefs().getString("pref_interval", "-1"));
+        if (pref_delay >= 0 || pref_interval >= 0) {
+            getMeditationAssistant().getPrefs().edit().putString("pref_delay", "-1").putString("pref_interval", "-1").apply();
+
+            getMeditationAssistant().getMediNET().announcement = getString(R.string.helpUpgradeDelayInterval);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    getMeditationAssistant()
+                            .showAnnouncementDialog(getString(R.string.pref_notification));
+                }
+            });
+        }
+
+        getMeditationAssistant().setupGoogleClient(MainActivity.this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        if (sv != null && sv.isShown()) {
+            try {
+                sv.hide();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (item.getItemId() == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void cancelSetDuration(View view) {
+        ViewSwitcher switchTimer = (ViewSwitcher) findViewById(R.id.switchTimer);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(switchTimer.getWindowToken(), 0);
+        getMeditationAssistant().setEditingDuration(false);
+        getMeditationAssistant().setTimerMode(previous_timermode);
+        changeDuration(null);
+        updateVisibleViews(false);
+    }
+
+    public void updateEditDuration() {
+        if (usetimepicker) {
+            TimePicker timepickerDuration = (TimePicker) findViewById(R.id.timepickerDuration);
+
+            if (getMeditationAssistant().getTimerMode().equals("timed")) {
+                timepickerDuration.setEnabled(true);
+                timepickerDuration.setCurrentHour(Integer.valueOf(getMeditationAssistant().getPrefs().getString("timerHours", "0")));
+                timepickerDuration.setCurrentMinute(Integer.valueOf(String.format("%02d", Integer.valueOf(getMeditationAssistant().getPrefs().getString("timerMinutes", "15")))));
+            } else if (getMeditationAssistant().getTimerMode().equals("endat")) {
+                timepickerDuration.setEnabled(true);
+                timepickerDuration.setCurrentHour(Integer.valueOf(getMeditationAssistant().getPrefs().getString("timerHoursEndAt", "0")));
+                timepickerDuration.setCurrentMinute(Integer.valueOf(String.format("%02d", Integer.valueOf(getMeditationAssistant().getPrefs().getString("timerMinutesEndAt", "0")))));
+            } else {
+                timepickerDuration.setEnabled(false);
+            }
+        } else {
+            EditText editDuration = (EditText) findViewById(R.id.editDuration);
+            //FrameLayout.LayoutParams editDurationLayoutParams = new FrameLayout.LayoutParams(
+            //        android.view.ViewGroup.LayoutParams.FILL_PARENT,
+            //        android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
+            //editDurationLayoutParams.gravity = Gravity.CENTER;
+
+            if (getMeditationAssistant().getTimerMode().equals("timed")) {
+                editDuration.setText(getMeditationAssistant().getPrefs().getString("timerHours", "0")
+                        + ":"
+                        + String.format("%02d", Integer.valueOf(getMeditationAssistant().getPrefs().getString(
+                        "timerMinutes", "15"))));
+                //editDurationLayoutParams.setMargins(0, -23, 0, -11);
+            } else if (getMeditationAssistant().getTimerMode().equals("endat")) {
+                editDuration.setText(getMeditationAssistant().getPrefs().getString("timerHoursEndAt", "0")
+                        + ":"
+                        + String.format("%02d", Integer.valueOf(getMeditationAssistant().getPrefs().getString(
+                        "timerMinutesEndAt", "0"))));
+
+                //editDurationLayoutParams.setMargins(0, -23, 0, -11);
+            } else {
+                editDuration.setText(getString(R.string.ignore_om));
+                //editDurationLayoutParams.setMargins(0, 0, 0, 0);
+            }
+        }
+
+        updateMeditate(false, false);
+        //editDuration.setLayoutParams(editDurationLayoutParams);
+    }
+
+    public void setDuration(View view) {
+        ViewSwitcher switchTimer = (ViewSwitcher) findViewById(R.id.switchTimer);
+
+        if (usetimepicker) {
+            TimePicker timepickerDuration = (TimePicker) findViewById(R.id.timepickerDuration);
+
+            if (getMeditationAssistant().getTimerMode().equals("timed")) {
+                getMeditationAssistant().getPrefs().edit().putString("timerHours", String.valueOf(timepickerDuration.getCurrentHour())).putString("timerMinutes", String.valueOf(timepickerDuration.getCurrentMinute())).apply();
+            } else if (getMeditationAssistant().getTimerMode().equals("endat")) {
+                getMeditationAssistant().getPrefs().edit().putString("timerHoursEndAt", String.valueOf(timepickerDuration.getCurrentHour())).putString("timerMinutesEndAt", String.valueOf(timepickerDuration.getCurrentMinute())).apply();
+            }
+        } else {
+            EditText editDuration = (EditText) findViewById(R.id.editDuration);
+
+            if (getMeditationAssistant().getTimerMode().equals("timed")) {
+                ArrayList<String> duration_formatted = getMeditationAssistant().formatDuration(editDuration.getText().toString().trim());
+                if (duration_formatted != null && duration_formatted.size() == 2) {
+                    SharedPreferences.Editor editor = getMeditationAssistant().getPrefs().edit();
+                    editor.putString("timerHours", duration_formatted.get(0));
+                    editor.putString("timerMinutes", duration_formatted.get(1));
+                    editor.apply();
+                } else {
+                    getMeditationAssistant().shortToast(this, getString(R.string.setTimerDurationHint));
+                    return;
+                }
+            } else if (getMeditationAssistant().getTimerMode().equals("endat")) {
+                ArrayList<String> duration_formatted = getMeditationAssistant().formatDurationEndAt(editDuration.getText().toString().trim());
+                if (duration_formatted != null && duration_formatted.size() == 2) {
+                    SharedPreferences.Editor editor = getMeditationAssistant().getPrefs().edit();
+                    editor.putString("timerHoursEndAt", duration_formatted.get(0));
+                    editor.putString("timerMinutesEndAt", duration_formatted.get(1));
+                    editor.apply();
+                } else {
+                    getMeditationAssistant().shortToast(this, getString(R.string.setTimerEndAtHint));
+                    return;
+                }
+            }
+
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(switchTimer.getWindowToken(), 0);
+        }
+
+        getMeditationAssistant().setEditingDuration(false);
+        changeDuration(null);
+    }
+
+    /* Called when the duration is clicked */
+    public void changeDuration(View view) {
+        ViewSwitcher switcher = (ViewSwitcher) findViewById(R.id.switchTimer);
+        RelativeLayout layEditDuration = (RelativeLayout) findViewById(R.id.layEditDuration);
+        EditText editDuration = (EditText) findViewById(R.id.editDuration);
+
+        if (getMeditationAssistant().getTimeStartMeditate() > 0) {
+            if (!switcher.getCurrentView().equals(layEditDuration)) {
+                return; // Don't switch during a meditation session
+            }
+        }
+
+        if (getMeditationAssistant().getEditingDuration()) {
+            return; // Don't switch back while editing, must use buttons
+        }
+
+        if (sv != null && sv.isShown()) {
+            try {
+                sv.hide();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        // RelativeLayout layRememberDurationOuter = (RelativeLayout)
+        // findViewById(R.id.layRememberDurationOuter);
+
+        switcher.showNext();
+        Boolean wasEditing = false;
+        if (switcher.getCurrentView().equals(layEditDuration)) {
+            if (view != null) {
+                getMeditationAssistant().setEditingDuration(true);
+                Boolean previous_rememberduration = getMeditationAssistant()
+                        .getRememberDuration();
+                previous_timermode = getMeditationAssistant().getTimerMode();
+            }
+
+            updateEditDuration();
+
+            if (getMeditationAssistant().getTimerMode().equals("timed") || getMeditationAssistant().getTimerMode().equals("endat")) {
+                editDuration.requestFocus();
+                InputMethodManager imm = (InputMethodManager) this
+                        .getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(editDuration,
+                        InputMethodManager.SHOW_IMPLICIT);
+                editDuration.setSelection(0, editDuration.getText().length());
+            }
+        } else {
+            getMeditationAssistant().setEditingDuration(false);
+
+            wasEditing = true;
+        }
+
+        updateMeditate(false, false);
+        updateVisibleViews(false);
+
+        if (wasEditing) {
+            showNextTutorial();
+        }
+    }
+
+    private void showNextTutorial() {
+        if (finishedTutorial == null) {
+            finishedTutorial = getMeditationAssistant().getPrefs().getBoolean("finishedTutorial", false);
+
+            if (!finishedTutorial && getMeditationAssistant().db.getNumSessions() > 0) { // Already recorded a session
+                getMeditationAssistant().getPrefs().edit().putBoolean("finishedTutorial", true).apply();
+                finishedTutorial = true;
+            }
+        }
+
+        if (!finishedTutorial) {
+            if (!getMeditationAssistant().getPrefs().getBoolean("finishedTutorial", false)) {
+                getMeditationAssistant().getPrefs().edit().putBoolean("finishedTutorial", true).apply(); // Commit early because of crashes
+            }
+
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            if (sv != null) {
+                return; // Tutorial still visible
+            }
+
+            if (next_tutorial.equals("")) {
+                if (!getMeditationAssistant().getEditingDuration()) {
+                    View txtTimer = findViewById(R.id.txtTimer);
+                    if (txtTimer == null) {
+                        return;
+                    }
+                    next_tutorial = "settings";
+
+                    ViewTarget target = new ViewTarget(R.id.txtTimer, this);
+                    try {
+                        sv = new ShowcaseView.Builder(this, true)
+                                .setTarget(target)
+                                .setContentTitle(R.string.timer)
+                                .setContentText(R.string.timerHelp)
+                                .setShowcaseEventListener(this)
+                                .setStyle(R.style.MeditationShowcaseTheme)
+                                .build();
+                        sv.hideButton();
+                        sv.setHideOnTouchOutside(false);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            } else if (next_tutorial.equals("settings")) {
+                if (!getMeditationAssistant().getEditingDuration()) {
+                    View actionSettings = findViewById(R.id.action_settings);
+                    if (actionSettings == null) {
+                        return;
+                    }
+                    next_tutorial = "medinet";
+
+                    ViewTarget target = new ViewTarget(R.id.action_settings, this);
+                    try {
+                        sv = new ShowcaseView.Builder(this, true)
+                                .setTarget(target)
+                                .setContentTitle(R.string.settings)
+                                .setContentText(R.string.settingsHelp)
+                                .setShowcaseEventListener(this)
+                                .setStyle(R.style.MeditationShowcaseTheme)
+                                .build();
+                        sv.hideButton();
+                        sv.setHideOnTouchOutside(false);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            } else if (next_tutorial.equals("medinet")) {
+                if (!getMeditationAssistant().getEditingDuration()) {
+                    View btnMeditationStreak = findViewById(R.id.btnMeditationStreak);
+                    if (btnMeditationStreak == null) {
+                        return;
+                    }
+                    next_tutorial = "none";
+                    finishedTutorial = true;
+
+                    ViewTarget target = new ViewTarget(R.id.btnMeditationStreak, this);
+                    try {
+                        sv = new ShowcaseView.Builder(this, true)
+                                .setTarget(target)
+                                .setContentTitle(R.string.mediNET)
+                                .setShowcaseEventListener(this)
+                                .setStyle(R.style.MeditationShowcaseTheme)
+                                .build();
+                        sv.setContentText(getString(R.string.medinetHelp) + "\n\nनमस्ते");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+        }
+    }
+
+    public void showViewMA(View view, boolean fadeView) {
+        if (view == null) {
+            return;
+        }
+        if (view.getVisibility() != View.VISIBLE && fadeView) {
+            Animation animation = AnimationUtils.loadAnimation(this,
+                    R.anim.fadeinma);
+            view.startAnimation(animation);
+        }
+        view.setVisibility(View.VISIBLE);
+    }
+
+    public void hideViewMA(View view, boolean fadeView) {
+        if (view == null) {
+            return;
+        }
+        if (view.getVisibility() == View.VISIBLE && fadeView) {
+            Log.d("MeditationAssistant", "Visible, fading out...");
+            FadeOutAnimationListener listener = new FadeOutAnimationListener();
+            listener.setView(view);
+            Animation animation = AnimationUtils.loadAnimation(this,
+                    R.anim.fadeoutma);
+            animation.setAnimationListener(listener);
+            view.startAnimation(animation);
+        } else {
+            view.setVisibility(View.GONE);
+        }
+    }
+
+    public void updateVisibleViews(boolean fadeViews) {
+        // Log.d("MeditationAssistant", "updateVisibleViews");
+        RadioGroup radgMainTimerMode = (RadioGroup) findViewById(R.id.radgMainTimerMode);
+
+        RelativeLayout layLowerViews = (RelativeLayout) findViewById(R.id.layLowerViews);
+        LinearLayout layLowerViewsEditing = (LinearLayout) findViewById(R.id.layLowerViewsEditing);
+
+        if (getMeditationAssistant().getEditingDuration()) {
+            hideViewMA(layLowerViews, false);
+            showViewMA(layLowerViewsEditing, false);
+        } else {
+            showViewMA(layLowerViews, false);
+            hideViewMA(layLowerViewsEditing, false);
+        }
+
+        EditText editDuration = (EditText) findViewById(R.id.editDuration);
+
+        if (getMeditationAssistant().getEditingDuration()) {
+            if (getMeditationAssistant().getTimerMode().equals("timed") || getMeditationAssistant().getTimerMode().equals("endat")) {
+                InputMethodManager imm = (InputMethodManager) this
+                        .getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(editDuration,
+                        InputMethodManager.SHOW_IMPLICIT);
+
+                editDuration.setSelection(0, editDuration.getText().length());
+                editDuration.setEnabled(true);
+            } else {
+                editDuration.setSelection(0, 0);
+                editDuration.setEnabled(false);
+            }
+        } else {
+            editDuration.setSelection(0, 0);
+            editDuration.setEnabled(false);
+        }
+
+        /* Update radio buttons */
+        if (getMeditationAssistant().getTimerMode().equals("untimed")) {
+            radgMainTimerMode.check(R.id.radMainUntimed);
+        } else if (getMeditationAssistant().getTimerMode().equals("endat")) {
+            radgMainTimerMode.check(R.id.radMainEndAt);
+        } else {
+            radgMainTimerMode.check(R.id.radMainTimed);
+        }
+    }
+
+    public void updateTextSize() {
+        TextView txtTimer = (TextView) findViewById(R.id.txtTimer);
+        EditText editDuration = (EditText) findViewById(R.id.editDuration);
+        String text_size = getMeditationAssistant().getPrefs().getString("pref_text_size", "normal");
+        if (text_size.equals("tiny")) {
+            txtTimer.setTextSize(85);
+            editDuration.setTextSize(85);
+        } else if (text_size.equals("small")) {
+            txtTimer.setTextSize(115);
+            editDuration.setTextSize(115);
+        } else if (text_size.equals("large")) {
+            txtTimer.setTextSize(175);
+            editDuration.setTextSize(175);
+        } else if (text_size.equals("extralarge")) {
+            txtTimer.setTextSize(200);
+            editDuration.setTextSize(200);
+        } else { // Normal
+            txtTimer.setTextSize(153);
+            editDuration.setTextSize(153);
+        }
+    }
+
+    public void updatePresets() {
+        Button btnPreset1 = (Button) findViewById(R.id.btnPreset1);
+        Button btnPreset2 = (Button) findViewById(R.id.btnPreset2);
+        Button btnPreset3 = (Button) findViewById(R.id.btnPreset3);
+
+        btnPreset1.setText(getMeditationAssistant().getPrefs().getString("pref_preset_1_label", getString(R.string.setPreset)));
+        btnPreset2.setText(getMeditationAssistant().getPrefs().getString("pref_preset_2_label", getString(R.string.setPreset)));
+        btnPreset3.setText(getMeditationAssistant().getPrefs().getString("pref_preset_3_label", getString(R.string.setPreset)));
+    }
+
+    public String getPresetDefaultLabel() {
+        EditText editDuration = (EditText) findViewById(R.id.editDuration);
+        TimePicker timepickerDuration = (TimePicker) findViewById(R.id.timepickerDuration);
+
+        if (getMeditationAssistant().getTimerMode().equals("untimed")) {
+            return "Untimed";
+        } else if (getMeditationAssistant().getTimerMode().equals("endat")) {
+            ArrayList<String> duration_formatted = new ArrayList<String>();
+            if (usetimepicker) {
+                duration_formatted.add(String.valueOf(timepickerDuration.getCurrentHour()));
+                duration_formatted.add(String.format("%02d",
+                        timepickerDuration.getCurrentMinute()));
+            } else {
+                duration_formatted = getMeditationAssistant().formatDurationEndAt(editDuration.getText().toString().trim());
+            }
+
+            if (duration_formatted != null && duration_formatted.size() == 2) {
+                return String.format(getString(R.string.presetLabelEndAt), duration_formatted.get(0) + ":" + duration_formatted.get(1));
+            }
+        } else { // timed
+            ArrayList<String> duration_formatted = new ArrayList<String>();
+            if (usetimepicker) {
+                duration_formatted.add(String.valueOf(timepickerDuration.getCurrentHour()));
+                duration_formatted.add(String.format("%02d",
+                        timepickerDuration.getCurrentMinute()));
+            } else {
+                duration_formatted = getMeditationAssistant().formatDuration(editDuration.getText().toString().trim());
+            }
+
+            if (duration_formatted != null && duration_formatted.size() == 2) {
+                return duration_formatted.get(0) + ":" + duration_formatted.get(1);
+            }
+        }
+
+        return "";
+    }
+
+    public void pressPreset(View view) {
+        final EditText editDuration = (EditText) findViewById(R.id.editDuration);
+
+        String preset_key;
+        if (view.getId() == R.id.btnPreset1) {
+            preset_key = "pref_preset_1";
+        } else if (view.getId() == R.id.btnPreset2) {
+            preset_key = "pref_preset_2";
+        } else if (view.getId() == R.id.btnPreset3) {
+            preset_key = "pref_preset_3";
+        } else {
+            return;
+        }
+
+        String preset_value = getMeditationAssistant().getPrefs().getString(preset_key, "");
+        Boolean successfulRestore = false;
+
+        if (!preset_value.equals("")) {
+            try {
+                Set<String> presetSettings = getMeditationAssistant().getPrefs().getStringSet("pref_presetsettings", new HashSet<String>(Arrays.asList(getResources().getStringArray(R.array.presetsettings_default))));
+                JSONObject preset = new JSONObject(preset_value);
+                Log.d("MeditationAssistant", "Restore preset settings: " + presetSettings.toString() + " - Values: " + preset_value);
+
+                // Mode and duration
+                if (presetSettings.contains("modeandduration")) {
+                    if (preset.getString("modeandduration").equals("untimed")) {
+                        getMeditationAssistant().setTimerMode("untimed");
+
+                        setDuration(null);
+                    } else if (preset.getString("modeandduration").startsWith("e") && preset.getString("modeandduration").length() > 1) {
+                        getMeditationAssistant().setTimerMode("endat");
+
+                        if (usetimepicker) {
+                            String[] preset_split = preset.getString("modeandduration").substring(1).split(":");
+                            if (preset_split.length == 2) {
+                                TimePicker timepickerDuration = (TimePicker) findViewById(R.id.timepickerDuration);
+                                timepickerDuration.setCurrentHour(Integer.valueOf(preset_split[0]));
+                                timepickerDuration.setCurrentMinute(Integer.valueOf(preset_split[1]));
+                            }
+                        } else {
+                            editDuration.setText(preset.getString("modeandduration").substring(1));
+                        }
+                        setDuration(null);
+                    } else if (!preset.getString("modeandduration").equals("")) {
+                        getMeditationAssistant().setTimerMode("timed");
+
+                        if (usetimepicker) {
+                            String[] preset_split = preset.getString("modeandduration").split(":");
+                            if (preset_split.length == 2) {
+                                TimePicker timepickerDuration = (TimePicker) findViewById(R.id.timepickerDuration);
+                                timepickerDuration.setCurrentHour(Integer.valueOf(preset_split[0]));
+                                timepickerDuration.setCurrentMinute(Integer.valueOf(preset_split[1]));
+                            }
+                        } else {
+                            editDuration.setText(preset.getString("modeandduration"));
+                        }
+                        setDuration(null);
+                    }
+                }
+
+                // Delay
+                if (presetSettings.contains("delay")) {
+                    getMeditationAssistant().getPrefs().edit().putString("pref_session_delay", preset.getString("delay")).apply();
+                }
+
+                // Start sound
+                if (presetSettings.contains("startsound")) {
+                    getMeditationAssistant().getPrefs().edit().putString("pref_meditation_sound_start", preset.getString("startsound")).apply();
+                    if (preset.getString("startsound").equals("custom")) {
+                        getMeditationAssistant().getPrefs().edit().putString("pref_meditation_sound_start_custom", preset.getString("startsoundcustom")).apply();
+                    }
+                }
+
+                // Interval duration
+                if (presetSettings.contains("intervalduration")) {
+                    getMeditationAssistant().getPrefs().edit().putString("pref_session_interval", preset.getString("intervalduration")).apply();
+                }
+
+                // Interval sound
+                if (presetSettings.contains("intervalsound")) {
+                    getMeditationAssistant().getPrefs().edit().putString("pref_meditation_sound_interval", preset.getString("intervalsound")).apply();
+                    if (preset.getString("intervalsound").equals("custom")) {
+                        getMeditationAssistant().getPrefs().edit().putString("pref_meditation_sound_interval_custom", preset.getString("intervalsoundcustom")).apply();
+                    }
+                }
+
+                // Interval count
+                if (presetSettings.contains("intervalcount")) {
+                    getMeditationAssistant().getPrefs().edit().putString("pref_interval_count", preset.getString("intervalcount")).apply();
+                }
+
+                // Complete sound
+                if (presetSettings.contains("completesound")) {
+                    getMeditationAssistant().getPrefs().edit().putString("pref_meditation_sound_finish", preset.getString("completesound")).apply();
+                    if (preset.getString("completesound").equals("custom")) {
+                        getMeditationAssistant().getPrefs().edit().putString("pref_meditation_sound_finish_custom", preset.getString("completesoundcustom")).apply();
+                    }
+                }
+
+                // Ringtone and notifications
+                if (presetSettings.contains("ringtone")) {
+                    getMeditationAssistant().getPrefs().edit().putString("pref_notificationcontrol", preset.getString("ringtone")).apply();
+                }
+
+                // Endless
+                if (presetSettings.contains("endless")) {
+                    getMeditationAssistant().getPrefs().edit().putBoolean("pref_softfinish", preset.getBoolean("endless")).apply();
+                }
+
+                // Vibrate
+                if (presetSettings.contains("vibrate")) {
+                    getMeditationAssistant().getPrefs().edit().putBoolean("pref_vibrate", preset.getBoolean("vibrate")).apply();
+                }
+
+                successfulRestore = true;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (successfulRestore) {
+            Intent presetIntent = new Intent();
+            presetIntent.setAction(MeditationAssistant.ACTION_PRESET);
+            sendBroadcast(presetIntent);
+        } else {
+            getMeditationAssistant().shortToast(this, getString(R.string.setPresetHint));
+        }
+    }
+
+    public void openProgress(View view) {
+        if (sv != null && sv.isShown()) {
+            try {
+                sv.hide();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        Intent intent = new Intent(this, ProgressActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    public void savePreset(String preset_key) {
+        EditText editDuration = (EditText) findViewById(R.id.editDuration);
+        TimePicker timepickerDuration = (TimePicker) findViewById(R.id.timepickerDuration);
+
+        Preset preset = new Preset();
+        if (getMeditationAssistant().getTimerMode().equals("untimed")) {
+            preset.modeandduration = "untimed";
+        } else if (getMeditationAssistant().getTimerMode().equals("endat")) {
+            ArrayList<String> duration_formatted = new ArrayList<String>();
+            if (usetimepicker) {
+                duration_formatted.add(String.valueOf(timepickerDuration.getCurrentHour()));
+                duration_formatted.add(String.format("%02d",
+                        timepickerDuration.getCurrentMinute()));
+            } else {
+                duration_formatted = getMeditationAssistant().formatDurationEndAt(editDuration.getText().toString().trim());
+            }
+
+            if (duration_formatted != null && duration_formatted.size() == 2) {
+                preset.modeandduration = "e" + duration_formatted.get(0) + ":" + duration_formatted.get(1);
+            }
+        } else { // timed
+            ArrayList<String> duration_formatted = new ArrayList<String>();
+            if (usetimepicker) {
+                duration_formatted.add(String.valueOf(timepickerDuration.getCurrentHour()));
+                duration_formatted.add(String.format("%02d",
+                        timepickerDuration.getCurrentMinute()));
+            } else {
+                duration_formatted = getMeditationAssistant().formatDuration(editDuration.getText().toString().trim());
+            }
+
+            if (duration_formatted != null && duration_formatted.size() == 2) {
+                preset.modeandduration = duration_formatted.get(0) + ":" + duration_formatted.get(1);
+            }
+        }
+
+        preset.delay = getMeditationAssistant().getPrefs().getString("pref_session_delay", "00:15");
+        preset.startsound = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_start", "");
+        preset.startsoundcustom = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_start_custom", "");
+        preset.intervalduration = getMeditationAssistant().getPrefs().getString("pref_session_interval", "00:00");
+        preset.intervalsound = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval", "");
+        preset.intervalsoundcustom = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval_custom", "");
+        preset.intervalcount = getMeditationAssistant().getPrefs().getString("pref_interval_count", "");
+        preset.completesound = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish", "");
+        preset.completesoundcustom = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish_custom", "");
+        preset.ringtone = getMeditationAssistant().getPrefs().getString("pref_notificationcontrol", "");
+        preset.endless = getMeditationAssistant().getPrefs().getBoolean("pref_softfinish", false);
+        preset.vibrate = getMeditationAssistant().getPrefs().getBoolean("pref_vibrate", false);
+
+        String exported = preset.export().toString();
+        Log.d("MeditationAssistant", "Setting preset: " + exported);
+        getMeditationAssistant().getPrefs().edit().putString(preset_key, exported).apply();
+    }
+
+    public void pressMeditate(View view) {
+        if (sv != null && sv.isShown()) {
+            try {
+                sv.hide();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        long timestamp = getMeditationAssistant().getTimestamp();
+
+        if (getMeditationAssistant().getTimeStartMeditate() > 0) { // session in progress
+            if (getMeditationAssistant().getTimeStartMeditate() > timestamp) { // currently in delay phase
+                Log.d("MeditationAssistant",
+                        "PREVIOUS Timestamp: "
+                                + String.valueOf(timestamp)
+                                + " Stop: "
+                                + String.valueOf(getMeditationAssistant()
+                                .getTimeToStopMeditate())
+                                + " Start: "
+                                + String.valueOf(getMeditationAssistant()
+                                .getTimeStartMeditate())
+                );
+                getMeditationAssistant().setTimeStartMeditate(timestamp);
+
+                if (getMeditationAssistant().getTimeToStopMeditate() != -1 && getMeditationAssistant().getTimerMode().equals("timed")) {  // update end time for timed session
+                    getMeditationAssistant().setTimeToStopMeditate(
+                            timestamp
+                                    + getMeditationAssistant()
+                                    .getSessionDuration()
+                    );
+                }
+
+                Log.d("MeditationAssistant",
+                        "NEW Timestamp: "
+                                + String.valueOf(timestamp)
+                                + " Stop: "
+                                + String.valueOf(getMeditationAssistant()
+                                .getTimeToStopMeditate())
+                                + " Start: "
+                                + String.valueOf(getMeditationAssistant()
+                                .getTimeStartMeditate())
+                );
+                handler.removeCallbacks(meditateRunnable);
+                handler.removeCallbacks(intervalRunnable);
+                skipDelay = true;
+                if (am_delay != null && pendingintent_delay != null) {
+                    am_delay.cancel(pendingintent_delay);
+                }
+                handler.postDelayed(meditateRunnable, 50);
+            } else { // Currently in meditation phase
+                if (!getMeditationAssistant().ispaused) { // In progress, pause the session
+                    am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                    am.cancel(pendingintent);
+                    am.cancel(pendingintent_interval);
+                    Log.d("MeditationAssistant", "CANCELLED MAIN WAKEUP AND INTERVAL ALARMS");
+
+                    getMeditationAssistant().pauseSession();
+
+                    handler.removeCallbacks(screenDimRunnable);
+                    handler.removeCallbacks(screenOffRunnable);
+                    WindowManager.LayoutParams params = getWindow().getAttributes();
+                    params.screenBrightness = -1;
+                    getWindow().setAttributes(params);
+
+                    // Always show this notification (add to tutorial?)
+                    //if (getMeditationAssistant().getPrefs().getBoolean("firstpause", true)) {
+                    //    getMeditationAssistant().getPrefs().edit().putBoolean("firstpause", false).apply();
+                    getMeditationAssistant().longToast(getString(R.string.pausedNotification));
+                    //}
+                } else { // Paused, un-pause
+                    long pausetime = getMeditationAssistant().unPauseSession();
+
+                    if (getMeditationAssistant().getTimerMode().equals("timed")) {
+                        getMeditationAssistant().setTimeToStopMeditate(getMeditationAssistant().getTimeToStopMeditate() + pausetime);
+                    } else if (getMeditationAssistant().getTimerMode().equals("endat")) {
+                        if (getMeditationAssistant().getTimeToStopMeditate() - pausetime <= 0) {
+                            Intent openAlarmReceiverActivity = new Intent(getApplicationContext(), CompleteActivity.class);
+                            openAlarmReceiverActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            openAlarmReceiverActivity.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                            startActivity(openAlarmReceiverActivity);
+
+                            return;
+                        }
+                    }
+
+                    setIntervalAlarm();
+
+                    if (getMeditationAssistant().getTimeToStopMeditate() != -1 && timestamp < getMeditationAssistant().getTimeToStopMeditate()) {
+                        Calendar cal = Calendar.getInstance();
+                        cal.add(Calendar.SECOND, (int) (getMeditationAssistant()
+                                .getTimeToStopMeditate() - getMeditationAssistant().getTimestamp()));
+
+                        Intent intent = new Intent(getApplicationContext(),
+                                MainActivity.class);
+                        intent.putExtra("wakeup", true);
+                        intent.putExtra("fullwakeup", true);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        intent.setAction(BROADCAST_ACTION_ALARM);
+                        pendingintent = PendingIntent.getActivity(
+                                getApplicationContext(), ID_END, intent,
+                                PendingIntent.FLAG_CANCEL_CURRENT);
+                        am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                        if (Build.VERSION.SDK_INT >= 19) {
+                            am.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
+                                    pendingintent);
+                        } else {
+                            am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
+                                    pendingintent);
+                        }
+
+                        Log.d("MeditationAssistant", "Setting MAIN WAKEUP alarm for "
+                                + String.valueOf(cal.getTimeInMillis()) + " (Now: "
+                                + System.currentTimeMillis() + ", in: " + String.valueOf((cal.getTimeInMillis() - System.currentTimeMillis()) / 1000) + ")");
+                    }
+
+                    getMeditationAssistant().ispaused = false;
+                    screenDimOrOff();
+                }
+            }
+
+            return;
+        }
+
+        getMeditationAssistant().ispaused = false;
+        getMeditationAssistant().pausetime = 0;
+        skipDelay = false;
+        intervals = 0;
+
+        // Context context = getApplicationContext();
+
+        Log.d("MeditationAssistant", "Timestamp: " + String.valueOf(timestamp));
+        Integer secondsTillFinished = 0;
+        if (getMeditationAssistant().getTimerMode().equals("timed")) {
+            secondsTillFinished = Integer.parseInt(getMeditationAssistant().getPrefs().getString(
+                    "timerHours", "0"))
+                    * 3600
+                    + (Integer.parseInt(getMeditationAssistant().getPrefs().getString("timerMinutes", "15")) * 60);
+        } else if (getMeditationAssistant().getTimerMode().equals("endat")) {
+            Date now = new Date();
+
+            Calendar c_now = Calendar.getInstance();
+            c_now.setTime(now);
+
+            int end_at_hour = Integer.parseInt(getMeditationAssistant().getPrefs().getString("timerHoursEndAt", "0"));
+            int end_at_minute = Integer.parseInt(getMeditationAssistant().getPrefs().getString("timerMinutesEndAt", "0"));
+
+            if (end_at_hour > 11) {
+                end_at_hour -= 12; // convert 24 to 12 hour time
+            }
+
+            Calendar c_endat = Calendar.getInstance();
+            c_endat.setTime(now);
+
+            if (c_now.get(Calendar.HOUR_OF_DAY) >= 12) { // noon or later
+                Log.d("MeditationAssistant", "End at debug: NOON OR LATER");
+                if ((end_at_hour + 12) >= c_now.get(Calendar.HOUR_OF_DAY)) { // later today
+                    Log.d("MeditationAssistant", "End at debug: A LATER TODAY");
+                    if ((end_at_hour + 12) == c_now.get(Calendar.HOUR_OF_DAY) && end_at_minute <= c_now.get(Calendar.MINUTE)) { // End at is now or earlier
+                        getMeditationAssistant().shortToast(this, getString(R.string.invalidEndAt));
+                        return;
+                    }
+
+                    c_endat.set(Calendar.HOUR_OF_DAY, end_at_hour + 12);
+                } else { // tomorrow
+                    Log.d("MeditationAssistant", "End at debug: A TOMORROW");
+                    c_endat.add(Calendar.DATE, 1);
+                    c_endat.set(Calendar.HOUR_OF_DAY, end_at_hour);
+                }
+            } else {
+                Log.d("MeditationAssistant", "End at debug: BEFORE NOON");
+                if (end_at_hour >= c_now.get(Calendar.HOUR_OF_DAY)) { // later today (before noon)
+                    Log.d("MeditationAssistant", "End at debug: B LATER TODAY BEFORE NOON");
+                    if (end_at_hour == c_now.get(Calendar.HOUR_OF_DAY) && end_at_minute <= c_now.get(Calendar.MINUTE)) { // End at is now or earlier
+                        getMeditationAssistant().shortToast(this, getString(R.string.invalidEndAt));
+                        return;
+                    }
+
+                    c_endat.set(Calendar.HOUR_OF_DAY, end_at_hour);
+                } else { // later today (after noon)
+                    Log.d("MeditationAssistant", "End at debug: B LATER TODAY AFTER NOON");
+                    c_endat.set(Calendar.HOUR_OF_DAY, end_at_hour + 12);
+                }
+            }
+            c_endat.set(Calendar.MINUTE, end_at_minute);
+            c_endat.set(Calendar.SECOND, 0);
+
+            Log.d("MeditationAssistant", "NOW HOUROFDAY: " + String.valueOf(c_now.get(Calendar.HOUR_OF_DAY)) + " MINUTE: " + String.valueOf(c_now.get(Calendar.MINUTE)));
+            Log.d("MeditationAssistant", "END HOUROFDAY: " + String.valueOf(c_endat.get(Calendar.HOUR_OF_DAY)) + " MINUTE: " + String.valueOf(c_endat.get(Calendar.MINUTE)));
+            Log.d("MeditationAssistant", "-- END AT: " + String.valueOf(c_endat.getTimeInMillis() / 1000) + " NOW: " + String.valueOf(c_now.getTimeInMillis() / 1000));
+
+            // Add two seconds to account for partial seconds between now and the end at time for pretty durations
+            secondsTillFinished = (int) ((c_endat.getTimeInMillis() - c_now.getTimeInMillis()) / 1000) + 2;
+
+            if (secondsTillFinished < 60) {
+                getMeditationAssistant().shortToast(this, getString(R.string.invalidEndAt));
+                return;
+            }
+        }
+
+        // debug
+        // secondsTillFinished = 2;
+
+        getMeditationAssistant().setSessionDuration(secondsTillFinished);
+
+        Log.d("MeditationAssistant", "Current delay value: " + getMeditationAssistant().getPrefs().getString("pref_session_delay", "00:15"));
+
+        long delay = Math.max(
+                getMeditationAssistant().timePreferenceValueToSeconds(getMeditationAssistant().getPrefs().getString("pref_session_delay", "00:15"), "00:15"), 0);
+
+        getMeditationAssistant().setTimeStartMeditate(timestamp + delay);
+
+        if (getMeditationAssistant().getTimerMode().equals("timed")) {
+            getMeditationAssistant().setTimeToStopMeditate(
+                    timestamp + secondsTillFinished + delay);
+        } else if (getMeditationAssistant().getTimerMode().equals("endat")) {
+            if (secondsTillFinished <= delay) {
+                delay = 0;
+            }
+
+            getMeditationAssistant().setTimeToStopMeditate(
+                    timestamp + secondsTillFinished);
+        } else {
+            getMeditationAssistant().setTimeToStopMeditate(-1);
+        }
+
+        updateMeditate(true, false);
+        Log.d("MeditationAssistant", "Starting runnable from startMeditate");
+
+        Random rand = new Random();
+        getMeditationAssistant().shortToast(
+                getMeditationAssistant().getStartPhrases()[rand.nextInt(getMeditationAssistant().getStartPhrases().length)]);
+
+        meditateRunnable = new Runnable() {
+            @Override
+            public void run() {
+                setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
+                if (getMeditationAssistant().getTimeStartMeditate() == 0) {
+                    return;
+                }
+
+                if (getMeditationAssistant().getTimeToStopMeditate() != -1) {
+                    Calendar cal = Calendar.getInstance();
+                    cal.add(Calendar.SECOND, (int) (getMeditationAssistant()
+                            .getTimeToStopMeditate() - getMeditationAssistant()
+                            .getTimeStartMeditate()));
+
+                    Intent intent = new Intent(getApplicationContext(),
+                            MainActivity.class);
+                    intent.putExtra("wakeup", true);
+                    intent.putExtra("fullwakeup", true);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    intent.setAction(BROADCAST_ACTION_ALARM);
+                    pendingintent = PendingIntent.getActivity(
+                            getApplicationContext(), ID_END, intent,
+                            PendingIntent.FLAG_CANCEL_CURRENT);
+                    am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                    if (Build.VERSION.SDK_INT >= 19) {
+                        am.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
+                                pendingintent);
+                    } else {
+                        am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
+                                pendingintent);
+                    }
+
+                    Log.d("MeditationAssistant", "Setting MAIN WAKEUP alarm for "
+                            + String.valueOf(cal.getTimeInMillis()) + " (Now: "
+                            + System.currentTimeMillis() + ", in: " + String.valueOf((cal.getTimeInMillis() - System.currentTimeMillis()) / 1000) + ")");
+                }
+
+                if (!skipDelay) {
+                    getMeditationAssistant().vibrateDevice();
+                }
+
+                screenDimOrOff();
+
+                if (!getMeditationAssistant().getPrefs().getString("pref_meditation_sound_start", "").equals(
+                        "none")) {
+                    mMediaPlayer = null;
+                    if (getMeditationAssistant().getPrefs().getString("pref_meditation_sound_start", "")
+                            .equals("custom")) {
+                        String soundpath = getMeditationAssistant().getPrefs().getString(
+                                "pref_meditation_sound_start_custom", "");
+                        if (!soundpath.equals("")) {
+                            try {
+                                mMediaPlayer = MediaPlayer.create(
+                                        getApplicationContext(),
+                                        Uri.parse(soundpath));
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    } else {
+                        mMediaPlayer = MediaPlayer.create(
+                                getApplicationContext(), MeditationSounds
+                                        .getMeditationSound(getMeditationAssistant().getPrefs().getString(
+                                                "pref_meditation_sound_start",
+                                                ""))
+                        );
+                    }
+
+                    if (mMediaPlayer != null) {
+                        mMediaPlayer
+                                .setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                                    @Override
+                                    public void onCompletion(MediaPlayer mp) {
+                                        mp.release();
+                                        WakeLocker.release();
+                                    }
+                                });
+                        mMediaPlayer
+                                .setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                                    @Override
+                                    public void onPrepared(
+                                            MediaPlayer mp) {
+                                        mp.start();
+                                    }
+                                });
+
+                        WakeLocker.acquire(getApplicationContext(), false);
+                        //mMediaPlayer.prepareAsync();
+                    }
+                }
+
+                setIntervalAlarm();
+            }
+        };
+
+        startRunnable();
+
+        getMeditationAssistant().setNotificationControl();
+
+        WindowManager.LayoutParams params = getWindow().getAttributes();
+
+        if (getMeditationAssistant().getPrefs().getString("pref_screencontrol", "dim").equals("on")) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
+
+        if (getMeditationAssistant().getPrefs().getBoolean("pref_full_screen", false)) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
+
+        getWindow().setAttributes(params);
+
+        if (delay > 0) {
+            setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.SECOND, (int) delay);
+
+            Log.d("MeditationAssistant", "Setting DELAY WAKEUP alarm for "
+                    + String.valueOf(cal.getTimeInMillis()) + " (Now: "
+                    + System.currentTimeMillis() + ", in: " + String.valueOf((cal.getTimeInMillis() - System.currentTimeMillis()) / 1000) + ")");
+
+            Intent intent_delay = new Intent(getApplicationContext(),
+                    MainActivity.class);
+            intent_delay.putExtra("wakeup", true);
+            intent_delay.putExtra("wakeupstart", true);
+            intent_delay.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            intent_delay.setAction(BROADCAST_ACTION_ALARM);
+            pendingintent_delay = PendingIntent.getActivity(
+                    getApplicationContext(), ID_DELAY, intent_delay,
+                    PendingIntent.FLAG_CANCEL_CURRENT);
+            am_delay = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            if (Build.VERSION.SDK_INT >= 19) {
+                am_delay.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
+                        pendingintent_delay);
+            } else {
+                am_delay.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
+                        pendingintent_delay);
+            }
+        } else {
+            handler.postDelayed(meditateRunnable, 50);
+        }
+    }
+
+    private void setIntervalAlarm() {
+        long interval = Math.max(
+                getMeditationAssistant().timePreferenceValueToSeconds(getMeditationAssistant().getPrefs().getString("pref_session_interval", "00:00"), "00:00"), 0);
+        Log.d("MeditationAssistant", "Interval is set to " + String.valueOf(interval) + " seconds");
+
+        if (interval > 0) {
+            Log.d("MeditationAssistant", "Reached postDelayed for interval runnable");
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.SECOND, (int) interval);
+
+            Log.d("MeditationAssistant", "Setting INITIAL INTERVAL WAKEUP alarm for "
+                    + String.valueOf(cal.getTimeInMillis()) + " (Now: "
+                    + System.currentTimeMillis() + ", in: " + String.valueOf((cal.getTimeInMillis() - System.currentTimeMillis()) / 1000) + ")");
+
+            Intent intent_interval = new Intent(
+                    getApplicationContext(), MainActivity.class);
+            intent_interval.putExtra("wakeup", true);
+            intent_interval.putExtra("wakeupinterval", true);
+            intent_interval.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            intent_interval.setAction(BROADCAST_ACTION_ALARM);
+            pendingintent_interval = PendingIntent.getActivity(
+                    getApplicationContext(), ID_INTERVAL,
+                    intent_interval, PendingIntent.FLAG_CANCEL_CURRENT);
+            am_interval = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            if (Build.VERSION.SDK_INT >= 19) {
+                Log.d("MeditationAssistant", "Using setExact() for alarm");
+                am_interval.setExact(AlarmManager.RTC_WAKEUP,
+                        cal.getTimeInMillis(), pendingintent_interval);
+            } else {
+                Log.d("MeditationAssistant", "Using set() for alarm");
+                am_interval.set(AlarmManager.RTC_WAKEUP,
+                        cal.getTimeInMillis(), pendingintent_interval);
+            }
+        }
+    }
+
+    private void screenDimOrOff() {
+        if (getMeditationAssistant().getPrefs().getString("pref_screencontrol", "dim").equals("ondim") || getMeditationAssistant().getPrefs().getString("pref_screencontrol", "dim").equals("dim")) {
+            screenDimRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    if (getMeditationAssistant().getTimeStartMeditate() == 0) {
+                        Log.d("MeditationAssistant",
+                                "Exiting runnable for dimming screen");
+                        return;
+                    }
+
+                    WindowManager.LayoutParams windowParams = getWindow()
+                            .getAttributes();
+                    windowParams.screenBrightness = 0.01f;
+                    getWindow().setAttributes(windowParams);
+
+                    if (getMeditationAssistant().getPrefs().getString("pref_screencontrol", "dim").equals("ondim")) {
+                        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                    } else {
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                    }
+                }
+            };
+
+            handler.postDelayed(screenDimRunnable, 250);
+        } else if (getMeditationAssistant().getPrefs().getString("pref_screencontrol", "dim").equals("off")) {
+            WindowManager.LayoutParams windowParams = getWindow()
+                    .getAttributes();
+            windowParams.screenBrightness = 0.0f;
+            getWindow().setAttributes(windowParams);
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+            screenOffRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    if (getMeditationAssistant().getTimeStartMeditate() == 0) {
+                        Log.d("MeditationAssistant",
+                                "Exiting runnable for turning screen off");
+                        return;
+                    }
+
+                    WindowManager.LayoutParams windowParams = getWindow()
+                            .getAttributes();
+                    windowParams.screenBrightness = -1;
+                    getWindow().setAttributes(windowParams);
+                }
+            };
+
+            handler.postDelayed(screenOffRunnable, 5000);
+        }
+    }
+
+    public boolean longPressMeditate(View view) {
+        long timestamp = System.currentTimeMillis() / 1000;
+        Log.d("MeditationAssistant", "stopMedidate");
+        getMeditationAssistant().unPauseSession();
+
+        setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
+
+        if (am != null && pendingintent != null) {
+            am.cancel(pendingintent);
+            Log.d("MeditationAssistant", "Cancelled main wake alarm");
+        }
+        if (am_delay != null && pendingintent_delay != null) {
+            am_delay.cancel(pendingintent_delay);
+            Log.d("MeditationAssistant", "Cancelled delay alarm");
+        }
+        if (am_interval != null && pendingintent_interval != null) {
+            am_interval.cancel(pendingintent_interval);
+            Log.d("MeditationAssistant", "Cancelled interval alarm");
+        }
+
+        if (getMeditationAssistant().getTimeStartMeditate() != 0) {
+            if (view != null
+                    && timestamp
+                    - getMeditationAssistant().getTimeStartMeditate() > 0) {
+                Intent openAlarmReceiverActivity = new Intent(
+                        getApplicationContext(), CompleteActivity.class);
+                openAlarmReceiverActivity.putExtra("manual", true);
+                openAlarmReceiverActivity
+                        .addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(openAlarmReceiverActivity);
+            } else {
+                // Reset timestamps for current session
+                getMeditationAssistant().setTimeStartMeditate(0);
+                getMeditationAssistant().setTimeToStopMeditate(0);
+                updateMeditate(false, false);
+            }
+
+            handler.removeCallbacks(meditateRunnable);
+            handler.removeCallbacks(intervalRunnable);
+            handler.removeCallbacks(screenDimRunnable);
+            handler.removeCallbacks(screenOffRunnable);
+            getMeditationAssistant().setRunnableStopped(true);
+            return true;
+        }
+
+        return false;
+    }
+
+    public void onTimerModeSelected(View view) {
+        EditText editDuration = (EditText) findViewById(R.id.editDuration);
+        TimePicker timepickerDuration = (TimePicker) findViewById(R.id.timepickerDuration);
+        RelativeLayout.LayoutParams editDurationLayoutParams = new RelativeLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
+        //editDurationLayoutParams.gravity = Gravity.CENTER;
+
+        String newTimerMode = "timed";
+        if (view.getId() == R.id.radMainEndAt || view.getId() == R.id.layMainEndAt) {
+            newTimerMode = "endat";
+        } else if (view.getId() == R.id.radMainUntimed || view.getId() == R.id.layMainUntimed) {
+            newTimerMode = "untimed";
+        }
+
+        getMeditationAssistant().setTimerMode(newTimerMode);
+        //updateEditDuration(); should the duration be reset when changing modes?
+        if (newTimerMode.equals("untimed")) {
+            if (usetimepicker) {
+                timepickerDuration.setEnabled(false);
+            } else {
+                editDurationLayoutParams.setMargins(0, 0, 0, 0);
+                editDuration.setText(getString(R.string.ignore_om));
+            }
+        } else {
+            if (usetimepicker) {
+                timepickerDuration.setEnabled(true);
+            } else {
+                editDurationLayoutParams.setMargins(0, -23, 0, -11);
+
+                if (editDuration.getText().toString().equals(getString(R.string.ignore_om))) {
+                    if (newTimerMode.equals("endat")) { // Don't leave om character in edit text
+                        editDuration.setText(getMeditationAssistant().getPrefs().getString("timerHoursEndAt", "0")
+                                + ":"
+                                + String.format("%02d", Integer.valueOf(getMeditationAssistant().getPrefs()
+                                .getString("timerMinutesEndAt", "0"))));
+                    } else { // timed
+                        editDuration.setText(getMeditationAssistant().getPrefs().getString("timerHours", "0")
+                                + ":"
+                                + String.format("%02d", Integer.valueOf(getMeditationAssistant().getPrefs()
+                                .getString("timerMinutes", "15"))));
+                    }
+                    editDuration.requestFocus();
+                    InputMethodManager imm = (InputMethodManager) this
+                            .getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(editDuration,
+                            InputMethodManager.SHOW_IMPLICIT);
+                }
+            }
+        }
+
+        updateVisibleViews(false);
+        editDuration.setLayoutParams(editDurationLayoutParams);
+    }
+
+    @Override
+    protected void onPause() {
+        if (getMeditationAssistant().getTimeStartMeditate() > 0
+                && getMeditationAssistant().getTimeToStopMeditate() != 0) {
+            getMeditationAssistant().showNotification();
+        }
+
+        if (av != null) {
+            av.pause();
+        }
+
+        getMeditationAssistant().setScreenOff(true);
+        getMeditationAssistant().getPrefs().unregisterOnSharedPreferenceChangeListener(sharedPrefslistener);
+
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        getMeditationAssistant().hideNotification();
+
+        if (getIntent().getStringExtra("action") != null) {
+            Log.d("MeditationAssistant", "Intent for MainActivity: "
+                    + getIntent().getStringExtra("action"));
+        }
+        getMeditationAssistant().setScreenOff(false);
+        WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.screenBrightness = -1;
+        getWindow().setAttributes(params);
+
+        getMeditationAssistant().getPrefs().registerOnSharedPreferenceChangeListener(sharedPrefslistener);
+        if (lastKey != null && !lastKey.equals("")
+                && !getMeditationAssistant().getPrefs().getString("key", "").equals(lastKey)) {
+            Log.d("MeditationAssistant", "onResume detected key change");
+        }
+
+        usetimepicker = getMeditationAssistant().getPrefs().getBoolean("pref_usetimepicker", false);
+
+        updateTextSize();
+        updateTexts();
+        startRunnable();
+
+        if (getMeditationAssistant().asktorate) {
+            getMeditationAssistant().asktorate = false;
+
+            if (!getMeditationAssistant().getPrefs().getBoolean("askedtorate", false) && (getMeditationAssistant().getIsBB() || MeditationAssistant.getMarketName().equals("google") || MeditationAssistant.getMarketName().equals("amazon"))) {
+                getMeditationAssistant().getPrefs().edit().putBoolean("askedtorate", true).apply();
+
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case DialogInterface.BUTTON_POSITIVE:
+                                getMeditationAssistant().askToRateApp();
+
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setIcon(
+                        getResources()
+                                .getDrawable(
+                                        getTheme()
+                                                .obtainStyledAttributes(
+                                                        getMeditationAssistant()
+                                                                .getMATheme(),
+                                                        new int[]{R.attr.actionIconNotImportant}
+                                                )
+                                                .getResourceId(0, 0)
+                                )
+                )
+                        .setTitle(getString(R.string.rateMeditationAssistant))
+                        .setMessage(
+                                getString(R.string.rateMeditationAssistantText))
+                        .setPositiveButton(getString(R.string.yes),
+                                dialogClickListener)
+                        .setNegativeButton(getString(R.string.no),
+                                dialogClickListener).show();
+            }
+        }
+
+        showNextTutorial();
+
+        super.onResume();
+
+        if (av != null) {
+            av.resume();
+        }
+    }
+
+    @Override
+    public void onStart() {
+        if (getMeditationAssistant().sendUsageReports()) {
+            GoogleAnalytics.getInstance(this).reportActivityStart(this);
+        }
+        if (getMeditationAssistant().googleClient != null) {
+            getMeditationAssistant().googleClient.connect();
+        }
+
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        if (getMeditationAssistant().sendUsageReports()) {
+            GoogleAnalytics.getInstance(this).reportActivityStop(this);
+        }
+        if (getMeditationAssistant().googleClient != null && getMeditationAssistant().googleClient.isConnected()) {
+            getMeditationAssistant().googleClient.disconnect();
+        }
+
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        if (!getMeditationAssistant().getPrefs().getBoolean("pref_autosignin", false) && !getMeditationAssistant().getPrefs().getString("key", "").equals("")) {
+            getMeditationAssistant().getPrefs().edit().putString("key", "").apply();
+        }
+
+        if (av != null) {
+            av.destroy();
+        }
+
+        super.onDestroy();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK) && getMeditationAssistant().getEditingDuration()) {
+            cancelSetDuration(null);
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
+    public void updateTexts() {
+        /* Log.d("MeditationAssistant", "Updating texts..."); */
+        TextView txtMainStatus = (TextView) findViewById(R.id.txtMainStatus);
+        Button btnMeditationStreak = (Button) findViewById(R.id.btnMeditationStreak);
+        Resources res = getResources();
+
+        if (getMeditationAssistant().getTimeToStopMeditate() < 1) {
+            resetScreenBrightness();
+            getMeditationAssistant().unsetNotificationControl();
+
+            WindowManager.LayoutParams params = getWindow().getAttributes();
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            getWindow().setAttributes(params);
+        }
+
+        if (!getMeditationAssistant().getPrefs().getBoolean("pref_showstreak", true)
+                || getMeditationAssistant().getMeditationStreak() == null
+                || getMeditationAssistant().getMeditationStreak() < 1) {
+
+            if (getMeditationAssistant().getMediNET().status.equals("success")) {
+                btnMeditationStreak
+                        .setText(getString(R.string.signOutOfMediNET));
+            } else {
+
+                btnMeditationStreak.setText(getString(R.string.signInToMediNET));
+            }
+        } else {
+            btnMeditationStreak.setText(res.getQuantityString(
+                    R.plurals.daysOfMeditation, getMeditationAssistant()
+                            .getMeditationStreak(),
+                    getMeditationAssistant().getMeditationStreak()
+            ));
+        }
+
+        if (getMeditationAssistant().getMediNET().status != null) {
+            Log.d("MeditationAssistant", "Updating texts with status "
+                    + getMeditationAssistant().getMediNET().status);
+            if (getMeditationAssistant().getMediNET().status
+                    .equals("connecting")) {
+                txtMainStatus.setText(getString(R.string.mediNETConnecting));
+            } else if (getMeditationAssistant().getMediNET().status
+                    .equals("success")) {
+                txtMainStatus.setText(getString(R.string.mediNETConnected));
+            } else if (getMeditationAssistant().getMediNET().status
+                    .equals("connectingasf")) {
+                txtMainStatus.setText(getString(R.string.mediNETConnecting));
+            } else {
+                txtMainStatus.setText("");
+            }
+        }
+
+        btnMeditationStreak.postInvalidate();
+        txtMainStatus.postInvalidate();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+
+        if (getIntent() != null) {
+            Log.d("MeditationAssistant", "Intent for MainActivity: "
+                    + getIntent().toString());
+            if (getIntent().getAction() != null) {
+                if (getIntent().getAction().equals("widgetclick")) {
+                    if (!getMeditationAssistant().getMediNET().status
+                            .equals("success")) {
+                        getMeditationAssistant().getMediNET().connect();
+                    }
+                } else if (getIntent().getAction().equals("notificationPause")) {
+                    if (getMeditationAssistant().getTimeStartMeditate() > 0 && !getMeditationAssistant().ispaused) {
+                        updateMeditate(false, false);
+                        pressMeditate(new View(getApplicationContext()));
+                    }
+                } else if (getIntent().getAction().equals("notificationEnd")) {
+                    if (getMeditationAssistant().getTimeStartMeditate() > 0) {
+                        longPressMeditate(new View(getApplicationContext()));
+                    }
+                }
+            }
+
+            if (intent.getBooleanExtra("wakeup", false)) {
+                Boolean fullWakeUp = intent.getBooleanExtra("fullwakeup", false);
+                Boolean wakeUpStart = intent.getBooleanExtra("wakeupstart", false);
+                Boolean wakeUpInterval = intent.getBooleanExtra("wakeupinterval", false);
+                Log.d("MeditationAssistant", "ALARM RECEIVER INTEGRATED: Received broadcast - Full: " + (fullWakeUp ? "Full" : "Partial") + " - Start/interval: " + (wakeUpStart ? "Start" : (wakeUpInterval ? "Interval" : "Neither")));
+
+                WakeLocker.acquire(getApplicationContext(), fullWakeUp);
+
+                handler.removeCallbacks(clearWakeLock);
+                handler.postDelayed(clearWakeLock, 7000);
+
+                if (intent.getBooleanExtra("wakeupstart", false)) {
+                    handler.postDelayed(meditateRunnable, 50);
+                } else if (intent.getBooleanExtra("wakeupinterval", false)) {
+                    if (getMeditationAssistant().getTimeStartMeditate() > 0) {
+                        if (getMeditationAssistant().getTimeToStopMeditate() != 0
+                                && getMeditationAssistant().getTimeToStopMeditate()
+                                - (System.currentTimeMillis() / 1000) < 30 && !getMeditationAssistant().getPrefs().getBoolean("pref_softfinish", false)) {
+                            Log.d("MeditationAssistant", "Interval - final 30 seconds, not firing");
+                            return; // No interval sounds during the final 30 seconds
+                        }
+
+                        String interval_limit = getMeditationAssistant().getPrefs().getString("pref_interval_count", "");
+                        if (interval_limit.equals("")) {
+                            interval_limit = "0";
+                        }
+                        if (Integer.valueOf(interval_limit) > 0 && intervals >= Integer.valueOf(interval_limit)) {
+                            Log.d("MeditationAssistant", "Interval - reached interval limit, not firing A");
+                            return; // No further intervals
+                        }
+
+                        if (!getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval", "")
+                                .equals("none") || getMeditationAssistant().vibrationEnabled()) {
+                            if (getMeditationAssistant().getTimeToStopMeditate() == -1
+                                    || ((System.currentTimeMillis() / 1000) > getMeditationAssistant().getTimeToStopMeditate() && (System.currentTimeMillis() / 1000) - getMeditationAssistant().getTimeToStopMeditate() >= 5) || getMeditationAssistant().getTimeToStopMeditate()
+                                    - (System.currentTimeMillis() / 1000) >= 5) { // Not within last 5 seconds
+                                if (!getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval", "")
+                                        .equals("none")) {
+                                    stopMediaPlayer();
+                                    mMediaPlayer = null;
+                                    if (getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval", "")
+                                            .equals("custom")) {
+                                        String soundpath = getMeditationAssistant().getPrefs().getString(
+                                                "pref_meditation_sound_interval_custom", "");
+                                        if (!soundpath.equals("")) {
+                                            try {
+                                                mMediaPlayer = MediaPlayer.create(
+                                                        getApplicationContext(),
+                                                        Uri.parse(soundpath));
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    } else {
+                                        mMediaPlayer = MediaPlayer
+                                                .create(getApplicationContext(),
+                                                        MeditationSounds.getMeditationSound(getMeditationAssistant().getPrefs().getString(
+                                                                "pref_meditation_sound_interval",
+                                                                ""))
+                                                );
+                                    }
+
+                                    if (mMediaPlayer != null) {
+                                        mMediaPlayer
+                                                .setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                                                    @Override
+                                                    public void onCompletion(MediaPlayer mp) {
+                                                        mp.release();
+                                                        WakeLocker.release();
+                                                    }
+                                                });
+
+                                        WakeLocker.acquire(getApplicationContext(), false);
+                                        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+                                        mMediaPlayer
+                                                .setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                                                    @Override
+                                                    public void onPrepared(
+                                                            MediaPlayer mp) {
+                                                        mp.start();
+                                                    }
+                                                });
+                                        //mMediaPlayer.prepareAsync();
+                                    }
+                                }
+
+                                getMeditationAssistant().vibrateDevice();
+                            }
+
+                            long interval = Math.max(
+                                    getMeditationAssistant().timePreferenceValueToSeconds(getMeditationAssistant().getPrefs().getString("pref_session_interval", "00:00"), "00:00"), 0);
+                            Log.d("MeditationAssistant", "Interval is set to " + String.valueOf(interval) + " seconds");
+
+                            if (interval > 0 && (getMeditationAssistant().getTimeToStopMeditate() == -1
+                                    || ((getMeditationAssistant().getTimeToStopMeditate()
+                                    - (System.currentTimeMillis() / 1000)) > (interval + 30)) || getMeditationAssistant().getPrefs().getBoolean("pref_softfinish", false))) {
+                                intervals++;
+
+                                if (Integer.valueOf(interval_limit) > 0 && intervals >= Integer.valueOf(interval_limit)) {
+                                    Log.d("MeditationAssistant", "Interval - reached interval limit, not firing B");
+                                    return; // No further intervals
+                                }
+
+                                Calendar cal = Calendar.getInstance();
+                                cal.add(Calendar.SECOND, (int) interval);
+
+                                Log.d("MeditationAssistant", "Setting INTERVAL WAKEUP alarm for "
+                                        + String.valueOf(cal.getTimeInMillis()) + " (Now: "
+                                        + System.currentTimeMillis() + ", in: " + String.valueOf((cal.getTimeInMillis() - System.currentTimeMillis()) / 1000) + ") - TOTAL TIME LEFT: " + String.valueOf(getMeditationAssistant().getTimeToStopMeditate()
+                                        - (System.currentTimeMillis() / 1000)));
+
+                                Intent intent_interval = new Intent(
+                                        getApplicationContext(), MainActivity.class);
+                                intent_interval.putExtra("wakeup", true);
+                                intent_interval.putExtra("wakeupinterval", true);
+                                intent_interval.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                intent_interval.setAction(BROADCAST_ACTION_ALARM);
+                                pendingintent_interval = PendingIntent.getActivity(
+                                        getApplicationContext(), ID_INTERVAL,
+                                        intent_interval, PendingIntent.FLAG_CANCEL_CURRENT);
+                                am_interval = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                                if (Build.VERSION.SDK_INT >= 19) {
+                                    am_interval.setExact(AlarmManager.RTC_WAKEUP,
+                                            cal.getTimeInMillis(), pendingintent_interval);
+                                } else {
+                                    am_interval.set(AlarmManager.RTC_WAKEUP,
+                                            cal.getTimeInMillis(), pendingintent_interval);
+                                }
+                            } else {
+                                Log.d("MeditationAssistant", "Skipping INTERVAL WAKEUP alarm");
+                            }
+                        }
+                    }
+                }
+
+                if (fullWakeUp) {
+                    if (getMeditationAssistant().getPrefs().getBoolean("pref_softfinish", false)) {
+                        if (!getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish", "")
+                                .equals("none")) {
+                            stopMediaPlayer();
+                            mMediaPlayer = null;
+                            if (getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish", "")
+                                    .equals("custom")) {
+                                String soundpath = getMeditationAssistant().getPrefs().getString(
+                                        "pref_meditation_sound_finish_custom", "");
+                                if (!soundpath.equals("")) {
+                                    try {
+                                        mMediaPlayer = MediaPlayer.create(
+                                                getApplicationContext(),
+                                                Uri.parse(soundpath));
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            } else {
+                                mMediaPlayer = MediaPlayer
+                                        .create(getApplicationContext(),
+                                                MeditationSounds.getMeditationSound(getMeditationAssistant().getPrefs().getString(
+                                                        "pref_meditation_sound_finish",
+                                                        ""))
+                                        );
+                            }
+
+                            if (mMediaPlayer != null) {
+                                mMediaPlayer
+                                        .setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                                            @Override
+                                            public void onCompletion(MediaPlayer mp) {
+                                                mp.release();
+                                                WakeLocker.release();
+                                            }
+                                        });
+
+                                WakeLocker.acquire(getApplicationContext(), false);
+                                mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                                mMediaPlayer
+                                        .setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                                            @Override
+                                            public void onPrepared(
+                                                    MediaPlayer mp) {
+                                                mp.start();
+                                            }
+                                        });
+                                //mMediaPlayer.prepareAsync();
+                            }
+                        }
+
+                        getMeditationAssistant().vibrateDevice();
+                    } else {
+                        Intent openAlarmReceiverActivity = new Intent(getApplicationContext(), CompleteActivity.class);
+                        openAlarmReceiverActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        openAlarmReceiverActivity.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(openAlarmReceiverActivity);
+                    }
+                }
+            }
+        }
+    }
+
+    public void updateTextsAsync() {
+        Log.d("MeditationAssistant", "Update texts async: begin");
+        runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                Log.d("MeditationAssistant", "Update texts async: run");
+                updateTexts();
+            }
+        });
+    }
+
+    public void updateMeditate(boolean setDisabled, boolean complete) {
+        Button btnMeditate = (Button) findViewById(R.id.btnMeditate);
+        if (getMeditationAssistant().ispaused) {
+            btnMeditate.setText(getString(R.string.resumeOrEnd));
+            return;
+        }
+
+        //Log.d("MeditationAssistant", "updateMeditate: " + String.valueOf(getMeditationAssistant() .getTimeToStopMeditate()));
+        TextView txtTimer = (TextView) findViewById(R.id.txtTimer);
+        TextView txtDurationSeconds = (TextView) findViewById(R.id.txtDurationSeconds);
+        ViewSwitcher switchTimer = (ViewSwitcher) findViewById(R.id.switchTimer);
+        EditText editDuration = (EditText) findViewById(R.id.editDuration);
+
+        FrameLayout.LayoutParams txtTimerLayoutParams = new FrameLayout.LayoutParams(
+                android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+                android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
+        txtTimerLayoutParams.setMargins(0, -23, 0, -11);
+        txtTimerLayoutParams.gravity = Gravity.CENTER;
+
+        RelativeLayout.LayoutParams editDurationLayoutParams = new RelativeLayout.LayoutParams(
+                android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+                android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
+        editDurationLayoutParams.setMargins(0, -23, 0, -11);
+        //editDurationLayoutParams.gravity = Gravity.CENTER; not supported with RelativeLayout?
+
+        long duration = 0;
+        Long timestamp = System.currentTimeMillis() / 1000;
+
+        new Throwable().getStackTrace();
+        if (getMeditationAssistant().getTimeToStopMeditate() == -1
+                || getMeditationAssistant().getTimeToStopMeditate() > 0) {
+            if (getMeditationAssistant().getTimeToStopMeditate() != -1) {
+                if (getMeditationAssistant().getPrefs().getBoolean("pref_softfinish", false) && timestamp > getMeditationAssistant().getTimeToStopMeditate()) {
+                    duration = timestamp - getMeditationAssistant()
+                            .getTimeStartMeditate();
+                } else {
+                    duration = Math.min(getMeditationAssistant()
+                                    .getTimeToStopMeditate() - timestamp,
+                            getMeditationAssistant().getTimeToStopMeditate()
+                                    - getMeditationAssistant()
+                                    .getTimeStartMeditate()
+                    );
+                }
+            } else {
+                duration = timestamp
+                        - getMeditationAssistant().getTimeStartMeditate();
+            }
+
+            switchTimer.setClickable(false);
+        } else {
+            resetScreenBrightness();
+            getMeditationAssistant().unsetNotificationControl();
+
+            switchTimer.setClickable(true);
+        }
+
+        if (complete) {
+            Log.d("MeditationAssistant", "Session complete");
+        } else if (getMeditationAssistant().getTimeToStopMeditate() == -1 || (getMeditationAssistant().getTimeToStopMeditate() > 0 && timestamp > getMeditationAssistant().getTimeToStopMeditate() && getMeditationAssistant().getPrefs().getBoolean("pref_softfinish", false))) {
+            duration -= getMeditationAssistant().pausetime;
+
+            if (timestamp >= getMeditationAssistant().getTimeStartMeditate()) {
+                int hoursSince = (int) duration / 3600;
+                int minutesSince = ((int) duration % 3600) / 60;
+                txtTimer.setText(String.valueOf(hoursSince) + ":"
+                        + String.format("%02d", minutesSince));
+            } else {
+                txtTimer.setText(getString(R.string.ignore_om));
+            }
+        } else if (duration > 0) {
+            int hoursLeft = (int) duration / 3600;
+            int minutesLeft = ((int) duration % 3600) / 60;
+            if (minutesLeft == 60) {
+                hoursLeft += 1;
+                minutesLeft = 0;
+            }
+
+            txtTimer.setText(String.valueOf(hoursLeft) + ":"
+                    + String.format("%02d", minutesLeft));
+        }
+
+        if (getMeditationAssistant().getTimeToStopMeditate() == -1
+                || duration > 0 || (getMeditationAssistant().getTimeToStopMeditate() > 0 && getMeditationAssistant().getPrefs().getBoolean("pref_softfinish", false))) {
+            long delayRemaining = getMeditationAssistant()
+                    .getTimeStartMeditate() - timestamp;
+
+            findViewById(R.id.btnMeditate).setEnabled(true);
+
+            if (delayRemaining > 0) {
+                btnMeditate.setText(getString(R.string.tapToSkip));
+                getMeditationAssistant().setAlphaCompat(txtDurationSeconds, 0.75f);
+
+                if (getMeditationAssistant().getTimerMode().equals("untimed")) {
+                    txtTimerLayoutParams.setMargins(0, 0, 0, 0);
+                    editDurationLayoutParams.setMargins(0, 0, 0, 0);
+                }
+            } else {
+                setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
+
+                btnMeditate.setText(getString(R.string.pauseOrEnd));
+                getMeditationAssistant().setAlphaCompat(txtDurationSeconds, 1f);
+            }
+
+            if (getMeditationAssistant().getPrefs().getBoolean("pref_display_seconds", true)) {
+                if (getMeditationAssistant().getTimeStartMeditate() == timestamp
+                        || getMeditationAssistant().getTimeToStopMeditate() == timestamp) {
+                    txtDurationSeconds.setText(getString(R.string.ignore_omkara));
+                } else if (getMeditationAssistant().getTimeStartMeditate() < timestamp) {
+                    txtDurationSeconds.setText(String.valueOf(duration % 60));
+                } else {
+                    if (delayRemaining >= 60) {
+                        txtDurationSeconds.setText(String.format("%d",
+                                (int) delayRemaining / 60)
+                                + ":"
+                                + String.format("%02d", delayRemaining % 60));
+                    } else {
+                        txtDurationSeconds.setText(String
+                                .valueOf(delayRemaining % 60));
+                    }
+                }
+            }
+        } else {
+            txtDurationSeconds.setText("");
+            findViewById(R.id.btnMeditate).setEnabled(true);
+            btnMeditate.setText(getString(R.string.meditate));
+            getMeditationAssistant().setAlphaCompat(txtDurationSeconds, 1.0f);
+
+            if (getMeditationAssistant().getTimerMode().equals("timed")) {
+                txtTimerLayoutParams.setMargins(0, -23, 0, -11);
+                editDurationLayoutParams.setMargins(0, -23, 0, -11);
+                txtTimer.setText(getMeditationAssistant().getPrefs().getString("timerHours", "0")
+                        + ":"
+                        + String.format("%02d", Integer.valueOf(getMeditationAssistant().getPrefs().getString("timerMinutes", "15"))));
+            } else if (getMeditationAssistant().getTimerMode().equals("endat")) {
+                txtTimerLayoutParams.setMargins(0, -23, 0, -11);
+                editDurationLayoutParams.setMargins(0, -23, 0, -11);
+                txtTimer.setText(getMeditationAssistant().getPrefs().getString("timerHoursEndAt", "0")
+                        + ":"
+                        + String.format("%02d", Integer.valueOf(getMeditationAssistant().getPrefs().getString("timerMinutesEndAt", "0"))));
+                txtDurationSeconds.setText(getString(R.string.endAt).toLowerCase());
+            } else {
+                txtTimerLayoutParams.setMargins(0, 0, 0, 0);
+                editDurationLayoutParams.setMargins(0, 0, 0, 0);
+                txtTimer.setText(getString(R.string.ignore_om));
+            }
+        }
+
+        if (getMeditationAssistant().getTimeStartMeditate() > timestamp) {
+            if (!txtDurationSeconds.getText().toString().equals("")) {
+                getMeditationAssistant().setDurationFormatted(
+                        txtDurationSeconds.getText().toString());
+            }
+        } else if (getMeditationAssistant().getTimeStartMeditate() > 0) {
+            if (txtDurationSeconds.getText().toString().equals("")) {
+                getMeditationAssistant().setDurationFormatted(
+                        txtTimer.getText().toString());
+            } else {
+                String secondsFormatted = txtDurationSeconds.getText()
+                        .toString();
+                if (secondsFormatted.length() == 1
+                        && String.valueOf(Integer.valueOf(secondsFormatted))
+                        .equals(secondsFormatted)) {
+                    secondsFormatted = "0" + secondsFormatted;
+                }
+
+                getMeditationAssistant().setDurationFormatted(
+                        txtTimer.getText().toString() + ":" + secondsFormatted);
+            }
+        }
+
+        //Log.d("MeditationAssistant", "DURATION SECONDS: " + String.valueOf(getMeditationAssistant().getEditingDuration()));
+
+        if (getMeditationAssistant().getEditingDuration()) {
+            getMeditationAssistant().setAlphaCompat(txtDurationSeconds, 0f);
+        } else {
+            getMeditationAssistant().setAlphaCompat(txtDurationSeconds, 1f);
+        }
+
+        txtTimer.setLayoutParams(txtTimerLayoutParams);
+        editDuration.setLayoutParams(editDurationLayoutParams);
+
+        if (setDisabled) {
+            btnMeditate.setText(getString(R.string.meditate));
+            findViewById(R.id.btnMeditate).setEnabled(false);
+        }
+    }
+
+    public void startRunnable() {
+        if (getMeditationAssistant().getRunnableStopped()) {
+            Log.d("MeditationAssistant", "Starting runnable");
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    handler.removeCallbacks(this);
+                    boolean sessionEnding = false;
+
+                    if (getMeditationAssistant().getScreenOff()) {
+                        getMeditationAssistant().setRunnableStopped(true);
+                        Log.d("MeditationAssistant",
+                                "Screen off, stopping runnable...");
+                    }
+
+                    if (getMeditationAssistant().pendingNotificationAction
+                            .equals("exit")) {
+                        getMeditationAssistant().pendingNotificationAction = "";
+
+                        if (getMeditationAssistant().getTimeStartMeditate() > 0) {
+                            longPressMeditate(null);
+                        }
+                        finish();
+                        return;
+                    } else if (getMeditationAssistant().pendingNotificationAction
+                            .equals("end")) {
+                        getMeditationAssistant().pendingNotificationAction = "";
+                        sessionEnding = true;
+
+                        if (getMeditationAssistant().getTimeStartMeditate() > 0) {
+                            longPressMeditate(new View(getApplicationContext()));
+                        }
+                    }
+
+                    if (sessionEnding) {
+                        getMeditationAssistant().setRunnableStopped(true);
+                    } else if (getMeditationAssistant().getTimeToStopMeditate() == -1
+                            || getMeditationAssistant().getTimeToStopMeditate() > (System
+                            .currentTimeMillis() / 1000) || (getMeditationAssistant().getTimeToStopMeditate() != 0 && getMeditationAssistant().getPrefs().getBoolean("pref_softfinish", false))) {
+                        updateMeditate(false, false);
+                        if (!getMeditationAssistant().getScreenOff()) {
+                            handler.postDelayed(this, 250);
+                        }
+                    } else {
+                        Log.d("MeditationAssistant",
+                                "Stopping - start:"
+                                        + String.valueOf(getMeditationAssistant()
+                                        .getTimeStartMeditate())
+                                        + " stop:"
+                                        + String.valueOf(getMeditationAssistant()
+                                        .getTimeToStopMeditate())
+                        );
+
+                        getMeditationAssistant().setRunnableStopped(true);
+                        if (getMeditationAssistant().getTimeToStopMeditate() != 0) {
+                            getMeditationAssistant().setTimeToStopMeditate(0); // Don't trigger the last_reminder change unless necessary
+                        }
+                        updateMeditate(false, (getMeditationAssistant()
+                                .getTimeStartMeditate() > 0));
+                    }
+                }
+            };
+            getMeditationAssistant().setRunnableStopped(false);
+            handler.postDelayed(runnable, 100);
+        } else {
+            Log.d("MeditationAssistant",
+                    "Not starting runnable.  Stopped flag is not set.");
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == MeditationAssistant.REQUEST_FIT) {
+            getMeditationAssistant().googleAPIAuthInProgress = false;
+            if (resultCode == RESULT_OK) {
+                // Make sure the app is not already connected or attempting to connect
+                if (!getMeditationAssistant().googleClient.isConnecting() && !getMeditationAssistant().googleClient.isConnected()) {
+                    getMeditationAssistant().googleClient.connect();
+
+                    getMeditationAssistant().sendFitData();
+                }
+            }
+        }
+    }
+
+    public void pressCommunity(View view) {
+        if (sv != null && sv.isShown()) {
+            try {
+                sv.hide();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        getMeditationAssistant().getMediNET().browseTo(this, "community");
+    }
+
+    public void pressMediNET(View view) {
+        Log.d("MeditationAssistant", "Open medinet: " + getMeditationAssistant().getMediNETKey());
+
+        if (sv != null && sv.isShown()) {
+            try {
+                sv.hide();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (!getMeditationAssistant().getMediNETKey().equals("")) {
+            if (!getMeditationAssistant().getMediNET().status.equals("success")) {
+                getMeditationAssistant().getMediNET().connect();
+            } else {
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case DialogInterface.BUTTON_POSITIVE:
+                                getMeditationAssistant().getMediNET().signOut();
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setIcon(
+                        getResources().getDrawable(
+                                getTheme().obtainStyledAttributes(
+                                        getMeditationAssistant().getMATheme(),
+                                        new int[]{R.attr.actionIconSignOut})
+                                        .getResourceId(0, 0)
+                        )
+                )
+                        .setTitle(
+                                getString(R.string.signOutOfMediNETConfirmTitle))
+                        .setMessage(
+                                String.format(
+                                        getString(R.string.signOutOfMediNETConfirm),
+                                        getMeditationAssistant()
+                                                .getMediNETProvider()
+                                )
+                        )
+                        .setPositiveButton(getString(R.string.signOut),
+                                dialogClickListener)
+                        .setNegativeButton(getString(R.string.cancel),
+                                dialogClickListener).show();
+            }
+        } else {
+            getMeditationAssistant().getMediNET().askToSignIn();
+        }
+    }
+
+    public void stopMediaPlayer() {
+        if (mMediaPlayer != null) {
+            mMediaPlayer.release();
+        }
+    }
+
+    public void resetScreenBrightness() {
+        WindowManager.LayoutParams windowParams = getWindow()
+                .getAttributes();
+        windowParams.screenBrightness = -1;
+        getWindow().setAttributes(windowParams);
+    }
+
+    public MeditationAssistant getMeditationAssistant() {
+        if (ma == null) {
+            ma = (MeditationAssistant) this.getApplication();
+        }
+        return ma;
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (sv != null && sv.isShown()) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
+    }
+
+    @Override
+    public void onShowcaseViewHide(ShowcaseView showcaseView) {
+        if (!finishedTutorial) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+        }
+        sv = null;
+    }
+
+    @Override
+    public void onShowcaseViewDidHide(ShowcaseView showcaseView) {
+        sv = null;
+    }
+
+    @Override
+    public void onShowcaseViewShow(ShowcaseView showcaseView) {
+
+    }
+}

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    package="sh.ftp.rocketninelabs.meditationassistant"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="22"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+    <application
+        android:name="sh.ftp.rocketninelabs.meditationassistant.MeditationAssistant"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/appName"
+        android:theme="@style/MeditationDarkTheme">
+
+        <!-- Comment both when releasing full -->
+        <meta-data
+            android:name="com.google.android.backup.api_key"
+            android:value="AEdPqrEAAAAIqq_HCa56eFzfQpNSwYUIIytAyO6bh4fFUFUcYA"/>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"/>
+
+
+        <!-- DON'T COMMENT BELOW -->
+        <meta-data
+            android:name="com.google.android.gms.analytics.globalConfigResource"
+            android:resource="@xml/analytics"/>
+
+        <!-- Services -->
+        <service android:name="sh.ftp.rocketninelabs.meditationassistant.MeditationService"></service>
+
+        <!-- Receivers -->
+        <receiver
+            android:name="sh.ftp.rocketninelabs.meditationassistant.DailyNotification"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="sh.ftp.rocketninelabs.meditationassistant.DAILY_NOTIFICATION"></action>
+                <action android:name="sh.ftp.rocketninelabs.meditationassistant.DAILY_NOTIFICATION_UPDATED"></action>
+                <action android:name="android.intent.action.EXTERNAL_APPLICATIONS_AVAILABLE"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED"/>
+                <data
+                    android:path="sh.ftp.rocketninelabs.meditationassistant"
+                    android:scheme="package"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- Register AnalyticsReceiver and AnalyticsService to support background dispatching on non-Google Play devices -->
+        <receiver
+            android:name="com.google.android.gms.analytics.AnalyticsReceiver"
+            android:enabled="true"
+            tools:ignore="ExportedReceiver">
+            <intent-filter>
+                <action android:name="com.google.android.gms.analytics.ANALYTICS_DISPATCH"/>
+            </intent-filter>
+        </receiver>
+        <service
+            android:name="com.google.android.gms.analytics.AnalyticsService"
+            android:enabled="true"
+            android:exported="false"/>
+
+        <!-- Register Wear data layer service -->
+        <service android:name=".WearListenerService">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.BIND_LISTENER"/>
+            </intent-filter>
+        </service>
+
+        <!-- Widgets -->
+        <!--
+    <receiver
+        android:name="sh.ftp.rocketninelabs.meditationassistant.MeditationProvider1"
+        android:label="@string/widget1x1" >
+        <intent-filter>
+            <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+        </intent-filter>
+
+        <meta-data
+            android:name="android.appwidget.provider"
+            android:resource="@xml/widget_1" />
+    </receiver>
+    <receiver
+        android:name="sh.ftp.rocketninelabs.meditationassistant.MeditationProvider2"
+        android:label="@string/widget2x1" >
+        <intent-filter>
+            <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+        </intent-filter>
+
+        <meta-data
+            android:name="android.appwidget.provider"
+            android:resource="@xml/widget_2" />
+    </receiver>
+    <receiver
+        android:name="sh.ftp.rocketninelabs.meditationassistant.MeditationProvider3"
+        android:label="@string/widget3x1" >
+        <intent-filter>
+            <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+        </intent-filter>
+
+        <meta-data
+            android:name="android.appwidget.provider"
+            android:resource="@xml/widget_3" />
+    </receiver>
+        -->
+
+
+        <!-- Activities -->
+        <activity
+            android:name="sh.ftp.rocketninelabs.meditationassistant.MainActivity"
+            android:configChanges="keyboard|keyboardHidden|screenSize|orientation"
+            android:label="@string/appNameShort"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="sh.ftp.rocketninelabs.meditationassistant.ALARM"></action>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="sh.ftp.rocketninelabs.meditationassistant.SettingsActivity"
+            android:configChanges="keyboard|keyboardHidden|screenSize|orientation"
+            android:label="@string/settings"
+            android:launchMode="singleTop"
+            android:parentActivityName="sh.ftp.rocketninelabs.meditationassistant.MainActivity"
+            tools:ignore="UnusedAttribute">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="sh.ftp.rocketninelabs.meditationassistant.MainActivity"/>
+        </activity>
+        <activity
+            android:name="sh.ftp.rocketninelabs.meditationassistant.MediNETActivity"
+            android:configChanges="keyboard|keyboardHidden|screenSize|orientation"
+            android:label=""
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="sh.ftp.rocketninelabs.meditationassistant.MainActivity"/>
+        </activity>
+        <activity
+            android:name="sh.ftp.rocketninelabs.meditationassistant.CompleteActivity"
+            android:configChanges="keyboard|keyboardHidden|screenSize|orientation"
+            android:label="@string/sessioncomplete">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="sh.ftp.rocketninelabs.meditationassistant.MainActivity"/>
+        </activity>
+        <activity
+            android:name="sh.ftp.rocketninelabs.meditationassistant.AboutActivity"
+            android:configChanges="keyboard|keyboardHidden|screenSize|orientation"
+            android:label="@string/about">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="sh.ftp.rocketninelabs.meditationassistant.MainActivity"/>
+        </activity>
+        <activity
+            android:name="sh.ftp.rocketninelabs.meditationassistant.ProgressActivity"
+            android:configChanges="keyboard|keyboardHidden|screenSize|orientation"
+            android:label="@string/progress">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="sh.ftp.rocketninelabs.meditationassistant.MainActivity"/>
+        </activity>
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent"/>
+    </application>
+
+</manifest>

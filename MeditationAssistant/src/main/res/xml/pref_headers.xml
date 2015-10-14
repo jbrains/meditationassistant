@@ -1,0 +1,25 @@
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- These settings headers are only used on tablets. -->
+
+    <header
+        android:fragment="sh.ftp.rocketninelabs.meditationassistant.SettingsActivity$SessionPreferenceFragment"
+        android:title="@string/session" />
+
+    <header
+        android:fragment="sh.ftp.rocketninelabs.meditationassistant.SettingsActivity$ReminderPreferenceFragment"
+        android:title="@string/pref_daily_reminder" />
+
+    <header
+        android:fragment="sh.ftp.rocketninelabs.meditationassistant.SettingsActivity$MeditationPreferenceFragment"
+        android:title="@string/meditation" />
+
+    <header
+        android:fragment="sh.ftp.rocketninelabs.meditationassistant.SettingsActivity$MediNETPreferenceFragment"
+        android:title="@string/mediNET" />
+
+    <header
+        android:fragment="sh.ftp.rocketninelabs.meditationassistant.SettingsActivity$MiscellaneousPreferenceFragment"
+        android:title="@string/miscellaneous" />
+
+</preference-headers>
