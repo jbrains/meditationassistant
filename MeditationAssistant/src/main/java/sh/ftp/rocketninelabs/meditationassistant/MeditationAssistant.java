@@ -142,10 +142,10 @@ public class MeditationAssistant extends Application {
             if (osname != null && osname.equals("qnx")) {
                 marketName = "bb"; // BlackBerry
             } else if (BuildConfig.FLAVOR.equals("opensource")) {
-                return "fdroid";
+                marketName = "fdroid";
             } else { // To be uncommented based upon target market
-                marketName = "google";
-                //marketName = "amazon";
+                //marketName = "google";
+                marketName = "amazon";
                 //marketName = "getjar";
                 //marketName = "slideme";
             }

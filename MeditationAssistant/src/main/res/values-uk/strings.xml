@@ -3,27 +3,27 @@
 
     <string name="appName">Асистент Медитації безкоштовний</string>
     <string name="appNameShort">Асистент Медитації</string>
-    <string name="about">Про</string>
+    <string name="about">Про програму</string>
     <string name="yes">Так</string>
     <string name="no">Ні</string>
     <string name="delete">Видалити</string>
-    <string name="sessions">Sessions</string>
-    <string name="community">Community</string>
+    <string name="sessions">Сеанси</string>
+    <string name="community">Спільнота</string>
     <string name="forum">Форум</string>
-    <string name="rate">Rate</string>
-    <string name="refresh">Refresh</string>
+    <string name="rate">Оцінити</string>
+    <string name="refresh">оновити</string>
     <string name="page">Сторінка</string>
     <string name="back">Назад</string>
     <string name="forward">Вперед</string>
-    <string name="account">Account</string>
+    <string name="account">Обліковий рахунок</string>
     <string name="groups">Групи</string>
-    <string name="announcement">Announcement</string>
+    <string name="announcement">оголошення</string>
 
     <!-- Main Activity -->
     <string name="timer">Таймер</string>
-    <string name="timerHelp">The timer is currently set to 15 minutes. You can change the duration, end at a specific time of the day, or deactivate the alarm entirely. Tap the timer now to see these options.</string>
-    <string name="settingsHelp">This application includes many features and customizations, such as automatically silencing your device and providing a daily reminder to meditate. Tap the Settings icon now to see these options.</string>
-    <string name="medinetHelp">Sign in to MediNET to save your sessions online. You can import your sessions later if you lose your data. This feature is entirely optional, storing sessions locally will not hinder your experience.\n\nThis concludes the tutorial. I hope that Meditation Assistant will be beneficial for your practice.</string>
+    <string name="timerHelp">Таймер зараз налаштовано на 15 хвилин. Ви можете змінити тривалість, закінчити у визначений час доби або відключити сигнал повністю. Доторкніться зараз до таймера щоб оглянути ці параметри.</string>
+    <string name="settingsHelp">Ця програма має багато особливостей та особистих налаштувань, таких як автоматично вимкнути звук вашого пристрою та забезпечити щоденний нагадувач медитації. Доторкніться до іконки "Налаштування" щоб оглянути ці параметри.</string>
+    <string name="medinetHelp">Увійдіть до MediNET щоб зберегти ваші сеанси онлайн. Ви можете імпортувати ваші сеанси пізніше, якщо ви втратите свої дані. Ця можливість зовсім необов\'язкова, зберігання сеансів на пристрої не перешкоджатиме вашому досвіду. Це кінець посібника. Я надіюсь, що Асистент Медитації буде корисним для вашої практики.</string>
     <string name="cancel">Відмінити</string>
     <string name="set">Налаштувати</string>
     <string name="confirm">Підтвердити</string>
@@ -33,59 +33,64 @@
     <string name="end">Кінець</string>
     <string name="pauseOrEnd">Перерва або кінець</string>
     <string name="resumeOrEnd">Продовжити або закінчити</string>
-    <string name="pausedNotification">Session paused, hold to end</string>
+    <string name="pausedNotification">Сеанс затримано, утримуйте для закінчення.</string>
     <string name="mediNETConnecting">Під\'єднання</string>
-    <string name="mediNETConnected">Connected to MediNET</string>
-    <string name="sessionInProgress">Session in progress</string>
-    <string name="progress">Progress</string>
-    <string name="setPreset">Set preset</string>
-    <string name="setPresetHint">Hold to set preset</string>
-    <string name="setPresetHintBlank">Enter a duration (or end time) to set preset</string>
+    <string name="mediNETConnected">З\'єднано з MediNET.</string>
+    <string name="sessionInProgress">Сеанс триває.</string>
+    <string name="progress">Прогрес</string>
+    <string name="setPreset">Налаштування відновлення</string>
+    <string name="setPresetHint">Утримуйте для налаштування відновлення.</string>
+    <string name="setPresetTip">Оберіть які налаштування відновити торкнувшись на значок шестерні (в "Налаштуваннях"), потім торкніться "Відновити налаштування".</string>
+    <string name="setPresetHintBlank">Введіть тривалість (або час закінчення) щоб налаштувати відновлення.</string>
+    <string name="label">Мітка</string>
     <string name="setTimerDurationHint">Введіть дійсну тривалість (напр. 0:22)</string>
     <string name="setTimerEndAtHint">Введіть дійсний час (напр. 4:20)</string>
-    <string name="invalidEndAt">Invalid time to end session</string>
-    <string name="timed">Timed</string>
+    <string name="invalidEndAt">Невірний час для закінчення сеансу.</string>
+    <string name="timed">За тривалістю</string>
     <string name="endAt">Зупинити о</string>
-    <string name="untimed">Untimed</string>
+    <string name="untimed">Необмежено</string>
     <string name="unlimited">Необмежено</string>
-    <string name="presetLabelEndAt">End %s</string>
+    <string name="presetLabelEndAt">Зупинити о %s</string>
 
     <!-- About -->
-    <string name="tapToSendEmail">Tap anywhere to send feedback</string>
+    <string name="tapToSendEmail">Доторкніться де небуть щоб відправити відгук.</string>
     <string name="sendEmail">Вислати електронне повідомлення</string>
-    <string name="version">Version %s</string>
+    <string name="version">Версія %s</string>
     <string name="translate">Перекласти</string>
     <string name="howToMeditate">Як медитувати</string>
+    <string name="share">Поділитися</string>
+
+    <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
+    <string name="invitationBlurb">Асистент Медитації є повнофункціональний супутник вашій практиці.</string>
 
     <!-- Sessions -->
-    <string name="session">Session</string>
+    <string name="session">Сеанс</string>
     <string name="sessionDeleteEverywhere">Видалити скрізь</string>
-    <string name="sessionDeleteLocally">Delete locally</string>
-    <string name="sessionDeleteMediNET">Delete on MediNET</string>
-
-    <!-- Behavior -->
-    <string name="behavior">Поведінка</string>
+    <string name="sessionDeleteLocally">Видалити з приладу</string>
+    <string name="sessionDeleteMediNET">Видалити з MediNET</string>
+    <string name="presetsettings">Відновити налаштування.</string>
+    <string name="modeandduration">Режим та тривалість</string>
 
     <!-- Session complete -->
-    <string name="sessioncomplete">Session Complete</string>
+    <string name="sessioncomplete">Сеанс завершено.</string>
     <string name="sessionMessagePlaceholder">Повідомлення</string>
-    <string name="askDiscardText">Discard session?</string>
-    <string name="shareSessionText">I just meditated for %1$s with %2$s.</string>
-    <string name="aMoment">a moment</string>
-    <string name="shareSessionSubject">Meditation session</string>
-    <string name="sessionPosting">Posting session…</string>
-    <string name="sessionPosted">Session posted to MediNET</string>
-    <string name="sessionAlreadyPosted">Session already posted</string>
-    <string name="sessionNotPosted">Unable to post session</string>
-    <string name="sessionNotPostedMeditating">Unable to post session while meditating</string>
-    <string name="sessionSaved">Session saved</string>
-    <string name="sessionDeletedLocally">Session deleted locally</string>
+    <string name="askDiscardText">Відмінити сеанс?</string>
+    <string name="shareSessionText">Я тільки що медитував %1$s  з %2$s.</string>
+
+    <string name="shareSessionSubject">Сеанс медитації</string>
+    <string name="sessionPosting">Розміщення сеансу...</string>
+    <string name="sessionPosted">Сеанс розміщено до MediNET.</string>
+    <string name="sessionAlreadyPosted">Сеанс вже розміщено.</string>
+    <string name="sessionNotPosted">Неможливо розмістити сеанс.</string>
+    <string name="sessionNotPostedMeditating">Неможливо розмісти сеанс під час медитації.</string>
+    <string name="sessionSaved">Сеанс збережено.</string>
+    <string name="sessionDeletedLocally">Сеанс видалено з пристрою.</string>
 
     <!-- Sign In -->
-    <string name="signInWith">Sign in with…</string>
-    <string name="signInWithProvider">Sign in with %s…</string>
-    <string name="signInWithOpenID">OpenID - Facebook, Twitter, etc.</string>
-    <string name="signInGoogleError">Unable to authenticate using account manager. Try OpenID if this error persists.</string>
+    <string name="signInWith">Увійти...</string>
+    <string name="signInWithProvider">Увійти %s…</string>
+    <string name="signInWithOpenID">OpenID - Facebook, Twitter, таке інше.</string>
+    <string name="signInGoogleError">Неможливо увійти за допомогою керівника облікових рахунків. Спробуйте OpenID якщо ця помилка не усувається.</string>
 
     <!-- Progress -->
     <string name="calendar">Календар</string>
@@ -95,47 +100,47 @@
     <string name="dayWednesdayShort">сер</string>
     <string name="dayThursdayShort">чет</string>
     <string name="dayFridayShort">п\'ят</string>
-    <string name="daySaturdayShort">Суб</string>
+    <string name="daySaturdayShort">суб</string>
     <string name="daySundayShort">нед</string>
-    <string name="addSession">Add session</string>
-    <string name="add">Add</string>
-    <string name="sessionStartedAt">Started at %s</string>
+    <string name="addSession">Додати сеанс</string>
+    <string name="add">Додати</string>
+    <string name="sessionStartedAt">Розпочато о %s</string>
     <string name="started">Розпочато</string>
-    <string name="completed">Завершено</string>
+    <string name="completed">Виконано</string>
     <string name="setDate">Встановити день</string>
     <string name="setTime">Встановити час</string>
     <string name="invalidDateOrTime">Невірний день або час</string>
-    <string name="addSessionMeditating">Unable to add a session while meditating</string>
-    <string name="addSessionExists">Session already exists</string>
+    <string name="addSessionMeditating">Неможливо додати сеанс під час медитації.</string>
+    <string name="addSessionExists">Сеанс вже існує.</string>
 
     <string name="days">дні</string>
     <string name="hours">години</string>
     <string name="minutes">хвилини</string>
-    <string name="totalSessions">Total sessions</string>
+    <string name="totalSessions">Усього сеансів</string>
     <string name="averageDuration">середня тривалість</string>
     <string name="longestDuration">Найдовша тривалість</string>
-    <string name="longestStreak">Longest streak</string>
+    <string name="longestStreak">Найдовша наполегливість</string>
 
-    <string name="reminderText">Do you have a moment?</string>
+    <string name="reminderText">Чи маєте ви трохи часу?</string>
 
     <!-- Settings -->
     <string name="meditation">Медитація</string>
     <string name="pref_vibrate">Вібрація</string>
-    <string name="pref_vibrate_summary">Occurs at the beginning, intervals, and end of meditation</string>
-    <string name="pref_vibrate_reminder_summary">The daily reminder will vibrate the device</string>
+    <string name="pref_vibrate_summary">Відбувається на початку, у проміжках та вкінці медитації</string>
+    <string name="pref_vibrate_reminder_summary">Щоденний нагадувач буде вібрувати приладом.</string>
     <string name="pref_sound_reminder">Відтворити звук</string>
-    <string name="pref_sound_reminder_summary">The default notification sound will be played</string>
-    <string name="pref_softfinish">Endless session</string>
-    <string name="pref_softfinish_summary">Keep the timer running</string>
+    <string name="pref_sound_reminder_summary">Відтворюватиметься звук повідомлення за замовчуванням.</string>
+    <string name="pref_softfinish">Нескінченний сеанс</string>
+    <string name="pref_softfinish_summary">Залишити таймер працювати.</string>
 
     <string name="settings">Налаштування</string>
-    <string name="disabled">Disabled</string>
-    <string name="noSpecialBehavior">No special behavior</string>
+    <string name="disabled">Відключено</string>
+    <string name="noSpecialBehavior">Ніякої особливої поведінки.</string>
     <string name="noSound">Без звуку</string>
-    <string name="customSound">Custom sound</string>
+    <string name="customSound">Звук за вибором</string>
     <string name="keepScreenOn">Залишити екран увімкненим</string>
-    <string name="keepScreenOnAndDim">Keep screen on and dim</string>
-    <string name="dimScreen">Dim screen</string>
+    <string name="keepScreenOnAndDim">Залишити екран увімкненим та затемнити.</string>
+    <string name="dimScreen">Затемнити екран.</string>
     <string name="turnScreenOff">Вимкнути екран</string>
     <string name="pref_display_seconds">Відображати секунди</string>
     <string name="pref_display_seconds_summary">Показувати під головним таймером</string>
@@ -143,72 +148,72 @@
     <string name="pref_full_screen_summary">Статусну строку приховано у повноекранному режимі</string>
     <string name="pref_delay">Затримка</string>
     <string name="pref_interval">Тривалість інтервалу</string>
-    <string name="pref_interval_count">Interval count</string>
-    <string name="pref_autosignin_summary">Connect to MediNET when opened</string>
-    <string name="pref_autosignin">Automatically connect</string>
-    <string name="pref_rememberme_summary">Remain signed in after closed</string>
+    <string name="pref_interval_count">Рахунок проміжків</string>
+    <string name="pref_autosignin_summary">Під\'єднатись до MediNET при запуску.</string>
+    <string name="pref_autosignin">Автоматично з\'єднати</string>
+    <string name="pref_rememberme_summary">Не виходити після вимикання</string>
     <string name="pref_rememberme">Запам\'ятати мене</string>
     <string name="pref_screencontrol">Екран</string>
     <string name="pref_sendusage">Повідомити статистику використання</string>
-    <string name="pref_sendusage_summary">Anonymous reporting via Google Analytics. Takes effect on restart</string>
-    <string name="pref_showstreak">Display meditation streak</string>
-    <string name="pref_showstreak_summary">Number of consecutive days with at least one recorded session</string>
+    <string name="pref_sendusage_summary">Анонімні повідомлення через Google Analytics. Запрацює після перезапуску.</string>
+    <string name="pref_showstreak">Показати наполегливість в медитації</string>
+    <string name="pref_showstreak_summary">Кількість днів поспіль з принаймні одним записаним сеансом</string>
     <string name="selectSound">Вибрати звук</string>
     <string name="pref_meditation_sound_start">Звук початку</string>
     <string name="pref_meditation_sound_interval">Звук інтервалу</string>
     <string name="pref_meditation_sound_finish">Звук завершення</string>
     <string name="pref_remembermessage">Запам\'ятати останнє повідомлення</string>
-    <string name="pref_remembermessage_summary">Default to the last message posted</string>
-    <string name="pref_theme">Holographic theme</string>
+    <string name="pref_remembermessage_summary">За замовченням останнє розміщене повідомлення.</string>
+    <string name="pref_theme">Голографічна тема</string>
     <string name="pref_theme_light">Світла</string>
-    <string name="pref_theme_lightdark">Light with dark action bar</string>
+    <string name="pref_theme_lightdark">Світла з темною  панеллю</string>
     <string name="pref_theme_dark">Темна</string>
-    <string name="pref_notification">Notification</string>
-    <string name="pref_notification_summary">Shown during meditation while away from the main window</string>
-    <string name="pref_usetimepicker">Alternative duration interface</string>
-    <string name="pref_usetimepicker_summary">Use hour and minute sliders when changing duration</string>
-    <string name="pref_askdismiss">Ask before discard</string>
-    <string name="pref_askdismiss_summary">Confirm before discarding a session</string>
-    <string name="pref_progresstab">Default Progress tab</string>
-    <string name="importsessions">Import sessions</string>
-    <string name="importsessions_summary">Retrieve uploaded sessions</string>
-    <string name="uploadsessions">Upload sessions</string>
-    <string name="uploadsessions_summary">Upload local sessions</string>
+    <string name="pref_notification">Повідомлення</string>
+    <string name="pref_notification_summary">Показано під час медитації коли головне вікно звернуте</string>
+    <string name="pref_usetimepicker">Альтернативний інтерфейс тривалості</string>
+    <string name="pref_usetimepicker_summary">Використайте бігунки годин та хвилин, коли змінюєте тривалість.</string>
+    <string name="pref_askdismiss">Питати перед відміною</string>
+    <string name="pref_askdismiss_summary">Підтверджувати перед відміною сеансу</string>
+    <string name="pref_progresstab">Вкладка прогресу за замовчуванням</string>
+    <string name="importsessions">Імпортувати сеанси.</string>
+    <string name="importsessions_summary">Отримати завантажені сеанси.</string>
+    <string name="uploadsessions">Завантажити сеанси.</string>
+    <string name="uploadsessions_summary">Завантажити збережені на пристрої сеанси.</string>
     <string name="miscellaneous">Різне</string>
-    <string name="pref_text_size">Timer text size</string>
+    <string name="pref_text_size">Розмір тексту таймера</string>
     <string name="tiny">Дрібний</string>
     <string name="small">Маленький</string>
     <string name="normal">Звичайний</string>
     <string name="large">Великий</string>
     <string name="extralarge">Гіганський</string>
     <string name="restartAppApplyTheme">Перезавантажити додаток щоб застосувати нову тему</string>
-    <string name="restartAppApplyTimePicker">Restart application to use alternative duration interface</string>
-    <string name="pref_notificationcontrol">Ringtone and notifications</string>
-    <string name="pref_notificationcontrol_vibrate">Set to vibrate</string>
-    <string name="pref_notificationcontrol_silent">Set to silent</string>
+    <string name="restartAppApplyTimePicker">Перезавантажте програму для використання альтернативного інтерфейсу тривалості.</string>
+    <string name="pref_notificationcontrol">Звук виклику та повідомлень</string>
+    <string name="pref_notificationcontrol_vibrate">Увімкнути вібрацію</string>
+    <string name="pref_notificationcontrol_silent">Увімкнути беззвучний режим</string>
     <string name="pref_daily_reminder">Щоденний нагадувач</string>
     <string name="pref_daily_reminder_title">Нагадати мені</string>
-    <string name="pref_daily_reminder_summary">Display a notification when no sessions were recorded today</string>
+    <string name="pref_daily_reminder_summary">Показати повідомлення, якщо сьогодні не було записано жодного сеансу.</string>
     <string name="pref_daily_reminder_time">Час</string>
-    <string name="pref_daily_reminder_text">Encouragement text</string>
-    <string name="downloadingSessions">Downloading sessions...</string>
-    <string name="uploadingSessions">Uploading sessions...</string>
+    <string name="pref_daily_reminder_text">Текст заоохочення</string>
+    <string name="downloadingSessions">Завантаження сеансів...</string>
+    <string name="uploadingSessions">Завантаження сеансів...</string>
 
     <!-- MediNET -->
     <string name="mediNET">MediNET</string>
-    <string name="unableToConnect">Unable to connect to MediNET</string>
-    <string name="dismiss">Dismiss</string>
-    <string name="discard">Discard</string>
+    <string name="unableToConnect">Неможливо під\'єднатись до MediNET.</string>
+    <string name="dismiss">Пропустити</string>
+    <string name="discard">Відмінити</string>
     <string name="save">Зберегти</string>
-    <string name="post">Post</string>
-    <string name="importSessionsHint">Click "Import sessions" in settings to retrieve missing sessions.</string>
-    <string name="importsessionstitle">Import sessions?</string>
-    <string name="importsessionsmessage">Previous sessions will be imported.\n\nThis dialog will not appear again.\nYou
-        can import sessions later from the Settings window.</string>
+    <string name="post">Розмістити</string>
+    <string name="importSessionsHint">Натисніть "Імпортувати сеанси" в налаштуваннях щоб отримати бракуючі сеанси.</string>
+    <string name="importsessionstitle">Імпортувати сеанси?</string>
+    <string name="importsessionsmessage">Попередні сеанси буде імпортовано. \n\nЦе вікно більше не з\'являтиметься.
+\nВи можете пізніше імпортувати сеанси з вікна налаштувань.</string>
     <string name="wordimport">Імпортувати</string>
-    <string name="sessionDeletedMediNET">Session deleted on MediNET</string>
-    <string name="sessionNotFoundMediNET">Session not found on MediNET</string>
-    <string name="sessionNotProperAccount">You are not signed into the proper account</string>
+    <string name="sessionDeletedMediNET">Сеанс видалено з MediNET.</string>
+    <string name="sessionNotFoundMediNET">Сеанс не знайдено на MediNET.</string>
+    <string name="sessionNotProperAccount">Ви не ввійшли в дійсний обліковий рахунок.</string>
 
     <plurals name="numtimes">
         <item quantity="one">%s раз</item>
@@ -216,17 +221,17 @@
     </plurals>
 
     <plurals name="sessionsImported">
-        <item quantity="one">Imported %s session</item>
-        <item quantity="other">Imported %s sessions</item>
+        <item quantity="one">Імпортовано %s сеанс</item>
+        <item quantity="other">Імпортовано %s  сеансів.</item>
     </plurals>
 
     <plurals name="sessionsUploaded">
-        <item quantity="one">Uploaded %s session</item>
-        <item quantity="other">Uploaded %s sessions</item>
+        <item quantity="one">Завантажено %s сеанс</item>
+        <item quantity="other">Завантажено %s сеансів.</item>
     </plurals>
 
-    <string name="sessionsNotImported">Local data is up to date</string>
-    <string name="signInToImport">Sign in to import session data</string>
+    <string name="sessionsNotImported">Дані пристрою поновлені.</string>
+    <string name="signInToImport">Увійдіть для імпорту даних сеансу.</string>
 
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d день</item>
@@ -241,15 +246,15 @@
         <item quantity="other">дні медитації</item>
     </plurals>
 
-    <string name="meditateToday">Meditate today</string>
-    <string name="signInToMediNET">Sign in to MediNET</string>
+    <string name="meditateToday">Медитувати сьогодні</string>
+    <string name="signInToMediNET">Увійти до MediNET</string>
     <string name="signOut">Вийти</string>
     <string name="signOutOfMediNET">Вийти з MediNET</string>
     <string name="signOutOfMediNETConfirmTitle">Вийти з MediNET?</string>
-    <string name="signOutOfMediNETConfirm">You are signed in with %s.</string>
-    <string name="rateMeditationAssistant">Rate Meditation Assistant</string>
-    <string name="rateMeditationAssistantText">If you have found this application beneficial to your meditation practice, would you please add a rating?\n\nThe paid version of this app contains no ads and features home screen widgets.  Please consider purchasing it if you are able to.\n\nThis dialog will not appear again.</string>
-    <string name="translateMeditationAssistantText">Would you please help Meditation Assistant reach a wider audience by translating it into another language?\n\nTranslating is eaily done through an online interface.  You can visit the translation webpage later by clicking Translate from the About window.\n\nThis dialog will not appear again.</string>
+    <string name="signOutOfMediNETConfirm">Ви увійшли як %s.</string>
+    <string name="rateMeditationAssistant">Оцінити Асистента Медитації</string>
+    <string name="rateMeditationAssistantText">Якщо ви вважаєте цю програмою корисною для вашої практики медитацій, чи не могли б ви додати оцінку?\n\nПлатна версія програми не містить оголошень та має віджет для головного екрану. Будь ласка, розглядьте питання про придбання, якщо ви взмозі.\n\nЦе вікно більше не з\'являтиметься.</string>
+    <string name="translateMeditationAssistantText">Чи могли б ви будь ласка допомогти Асистенту Медитацій досягнути ширшої аудиторії перекладаючи його іншою мовою?\n\nПереклад легко виконати за допомогою веб-інтерфейсу. Ви можете відвідати сторінку перекладу пізніше натиснувши "Перекласти" з вікна "Про програму".\n\nЦе вікно більше не з\'являтиметься.</string>
 
     <!-- Widgets -->
     <string name="widget1x1" tools:ignore="UnusedResources">Асистент медитації 1х1</string>

@@ -27,7 +27,7 @@
     <string name="cancel">Отменить</string>
     <string name="set">Выбрать</string>
     <string name="confirm">Сохранить</string>
-    <string name="meditate">Помедитируй</string>
+    <string name="meditate">Медитировать</string>
     <string name="tapToSkip">Пропустить</string>
     <string name="pause">Пауза</string>
     <string name="end">Закончить</string>
@@ -40,9 +40,9 @@
     <string name="progress">Прогресс</string>
     <string name="setPreset">Задать</string>
     <string name="setPresetHint">Удерживай чтобы задать</string>
-    <string name="setPresetTip">Choose which settings to restore by tapping the gear icon (Settings), then tap Preset settings.</string>
+    <string name="setPresetTip">Выбери, какие параметры восстановить, нажав на иконку иконку шестерёнки (Настройки) и выбрав Заданные параметры.</string>
     <string name="setPresetHintBlank">Задай продолжительность (или время окончания)</string>
-    <string name="label">Label</string>
+    <string name="label">Метка</string>
     <string name="setTimerDurationHint">Введи продолжительность (например 0:22)</string>
     <string name="setTimerEndAtHint">Введи время окончания (например 4:20)</string>
     <string name="invalidEndAt">Неверное время для конца сессии</string>
@@ -68,8 +68,8 @@
     <string name="sessionDeleteEverywhere">Удалить везде</string>
     <string name="sessionDeleteLocally">Удалить локально</string>
     <string name="sessionDeleteMediNET">Удалить на MediNET</string>
-    <string name="presetsettings">Preset settings</string>
-    <string name="modeandduration">Mode and duration</string>
+    <string name="presetsettings">Заданные параметры</string>
+    <string name="modeandduration">Режим и продолжительность</string>
 
     <!-- Session complete -->
     <string name="sessioncomplete">Сеанс окончен</string>
@@ -159,9 +159,9 @@
     <string name="pref_showstreak">Комбо медитаций</string>
     <string name="pref_showstreak_summary">Отображать число дней подряд с хотя бы одной медитацией</string>
     <string name="selectSound">Выбрать звук</string>
-    <string name="pref_meditation_sound_start">Звук начала</string>
-    <string name="pref_meditation_sound_interval">Звук интервала</string>
-    <string name="pref_meditation_sound_finish">Звук окончания</string>
+    <string name="pref_meditation_sound_start">Мелодия начала</string>
+    <string name="pref_meditation_sound_interval">Мелодия интервала</string>
+    <string name="pref_meditation_sound_finish">Мелодия окончания</string>
     <string name="pref_remembermessage">Запомнить последнее сообщение</string>
     <string name="pref_remembermessage_summary">По умолчанию к последнему сообщению</string>
     <string name="pref_theme">Тема приложения</string>
@@ -188,9 +188,9 @@
     <string name="extralarge">Огромный</string>
     <string name="restartAppApplyTheme">Перезапустить приложение, чтобы применить тему</string>
     <string name="restartAppApplyTimePicker">Перезапусти приложение, чтобы изменить вид таймера</string>
-    <string name="pref_notificationcontrol">Звуки и уведомления</string>
+    <string name="pref_notificationcontrol">Звонки и уведомления</string>
     <string name="pref_notificationcontrol_vibrate">Поставить на вибрацию</string>
-    <string name="pref_notificationcontrol_silent">Отключить звуки</string>
+    <string name="pref_notificationcontrol_silent">Убрать громкость</string>
     <string name="pref_daily_reminder">Ежедневные напоминания</string>
     <string name="pref_daily_reminder_title">Напоминать мне</string>
     <string name="pref_daily_reminder_summary">Показывать уведомление, если сегодня не было сеанса</string>

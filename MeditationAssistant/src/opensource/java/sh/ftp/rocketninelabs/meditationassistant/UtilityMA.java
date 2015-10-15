@@ -20,7 +20,9 @@ public class UtilityMA {
         return;
     }
 
-    public void loadAd(Activity activity) { return; }
+    public void loadAd(Activity activity) {
+        return;
+    }
 
     public void pauseAd(Activity activity) {
         return;
