@@ -42,14 +42,14 @@
                         android:padding="7dp"
                         android:singleLine="true"
                         android:text=""
-                        android:textAppearance="?android:attr/textAppearanceSmall"/>
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
                     <View
                         android:layout_width="1dp"
                         android:layout_height="fill_parent"
                         android:layout_marginBottom="7dp"
                         android:layout_marginTop="7dp"
-                        android:background="?android:attr/listDivider"/>
+                        android:background="?android:attr/listDivider" />
 
                     <Button
                         android:id="@+id/btnSetTimeStarted"
@@ -63,14 +63,14 @@
                         android:padding="7dp"
                         android:singleLine="true"
                         android:text=""
-                        android:textAppearance="?android:attr/textAppearanceSmall"/>
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
                     <View
                         android:layout_width="1dp"
                         android:layout_height="fill_parent"
                         android:layout_marginBottom="7dp"
                         android:layout_marginTop="7dp"
-                        android:background="?android:attr/listDivider"/>
+                        android:background="?android:attr/listDivider" />
 
                     <TextView
                         android:layout_width="fill_parent"
@@ -84,7 +84,7 @@
                         android:singleLine="true"
                         android:text="@string/started"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        tools:ignore="RtlSymmetry"/>
+                        tools:ignore="RtlSymmetry" />
 
                 </LinearLayout>
 
@@ -93,7 +93,7 @@
                     android:layout_height="1dp"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
-                    android:background="?android:attr/listDivider"/>
+                    android:background="?android:attr/listDivider" />
 
                 <LinearLayout
                     android:layout_width="fill_parent"
@@ -111,14 +111,14 @@
                         android:gravity="center"
                         android:singleLine="true"
                         android:text=""
-                        android:textAppearance="?android:attr/textAppearanceSmall"/>
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
                     <View
                         android:layout_width="1dp"
                         android:layout_height="fill_parent"
                         android:layout_marginBottom="7dp"
                         android:layout_marginTop="7dp"
-                        android:background="?android:attr/listDivider"/>
+                        android:background="?android:attr/listDivider" />
 
                     <Button
                         android:id="@+id/btnSetTimeCompleted"
@@ -131,14 +131,14 @@
                         android:gravity="center"
                         android:singleLine="true"
                         android:text=""
-                        android:textAppearance="?android:attr/textAppearanceSmall"/>
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
                     <View
                         android:layout_width="1dp"
                         android:layout_height="fill_parent"
                         android:layout_marginBottom="7dp"
                         android:layout_marginTop="7dp"
-                        android:background="?android:attr/listDivider"/>
+                        android:background="?android:attr/listDivider" />
 
                     <TextView
                         android:layout_width="fill_parent"
@@ -152,7 +152,7 @@
                         android:singleLine="true"
                         android:text="@string/completed"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        tools:ignore="RtlSymmetry"/>
+                        tools:ignore="RtlSymmetry" />
 
                 </LinearLayout>
 
@@ -161,7 +161,7 @@
                     android:layout_height="1dp"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
-                    android:background="?android:attr/listDivider"/>
+                    android:background="?android:attr/listDivider" />
 
                 <EditText
                     android:id="@+id/editAddSessionMessage"
@@ -177,7 +177,7 @@
                     android:scrollbars="vertical"
                     android:singleLine="false"
                     android:text=""
-                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
             </LinearLayout>
         </RelativeLayout>

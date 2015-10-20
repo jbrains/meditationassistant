@@ -153,36 +153,6 @@
     <!-- MediNET -->
 
 
-    <plurals name="numtimes">
-
-
-    </plurals>
-
-    <plurals name="sessionsImported">
-
-
-    </plurals>
-
-    <plurals name="sessionsUploaded">
-
-
-    </plurals>
-
-
-    <plurals name="daysOfMeditationMinimal">
-
-
-    </plurals>
-    <plurals name="daysOfMeditation">
-
-
-    </plurals>
-    <plurals name="daysOfMeditationWithoutCount">
-
-
-    </plurals>
-
-
     <!-- Widgets -->
 
 

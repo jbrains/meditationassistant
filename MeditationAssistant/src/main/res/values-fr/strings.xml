@@ -197,28 +197,15 @@
     <string name="sessionNotFoundMediNET">Séance no trouvée sur MediNET</string>
     <string name="sessionNotProperAccount">Vous n\'êtes pas identifié avec le bon compte</string>
 
-    <plurals name="numtimes">
-
-
-    </plurals>
 
     <plurals name="sessionsImported">
         <item quantity="one">%s séance importée</item>
         <item quantity="other">%s séances importées</item>
     </plurals>
 
-    <plurals name="sessionsUploaded">
-
-
-    </plurals>
-
     <string name="sessionsNotImported">Les données locales sont à jour</string>
     <string name="signInToImport">Conenctez-vous pour importer les données de la séance</string>
 
-    <plurals name="daysOfMeditationMinimal">
-
-
-    </plurals>
     <plurals name="daysOfMeditation">
         <item quantity="one">%d jour de méditation</item>
         <item quantity="other">%d jours de méditation</item>

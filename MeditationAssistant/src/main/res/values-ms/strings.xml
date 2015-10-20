@@ -197,28 +197,15 @@ boleh mengimport sesi selepas ini dari tetingkap Tetapan.</string>
     <string name="sessionNotFoundMediNET">Sesi tidak dapat dijumpai pada MediNET</string>
     <string name="sessionNotProperAccount">Anda tidak dilog masuk ke akaun yang sepatutnya.</string>
 
-    <plurals name="numtimes">
-
-
-    </plurals>
 
     <plurals name="sessionsImported">
         <item quantity="one">%s sesi diimport</item>
         <item quantity="other">%s sesi diimport</item>
     </plurals>
 
-    <plurals name="sessionsUploaded">
-
-
-    </plurals>
-
     <string name="sessionsNotImported">Data tempatan dalam keadaan terkini</string>
     <string name="signInToImport">Log masuk untuk mengimport data sesi</string>
 
-    <plurals name="daysOfMeditationMinimal">
-
-
-    </plurals>
     <plurals name="daysOfMeditation">
         <item quantity="one">%d hari bertafakur</item>
         <item quantity="other">%d hari bertafakur</item>

@@ -94,26 +94,11 @@
     <!-- MediNET -->
 
 
-    <plurals name="numtimes">
-
-
-    </plurals>
-
     <plurals name="sessionsImported">
         <item quantity="one">%s sesión importado</item>
         <item quantity="other">%s sesiones importado</item>
     </plurals>
 
-    <plurals name="sessionsUploaded">
-
-
-    </plurals>
-
-
-    <plurals name="daysOfMeditationMinimal">
-
-
-    </plurals>
     <plurals name="daysOfMeditation">
         <item quantity="one">%d día de meditación</item>
         <item quantity="other">%d días de meditación</item>

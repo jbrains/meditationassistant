@@ -6,13 +6,13 @@
         android:entryValues="@array/mathemes_values"
         android:key="pref_theme"
         android:summary=""
-        android:title="@string/pref_theme"/>
+        android:title="@string/pref_theme" />
 
     <CheckBoxPreference
         android:defaultValue="true"
         android:key="pref_sendusage"
         android:summary="@string/pref_sendusage_summary"
-        android:title="@string/pref_sendusage"/>
+        android:title="@string/pref_sendusage" />
 
     <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
          dismiss it. -->

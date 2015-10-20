@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2010 The Android Open Source Project
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright (C) 2010 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -18,18 +17,18 @@
 
     <item
         android:id="@android:id/background"
-        android:drawable="@drawable/buddhism_progress_bg_holo_light"/>
+        android:drawable="@drawable/buddhism_progress_bg_holo_light" />
 
     <item android:id="@android:id/secondaryProgress">
         <scale
             android:drawable="@drawable/buddhism_progress_secondary_holo_light"
-            android:scaleWidth="100%"/>
+            android:scaleWidth="100%" />
     </item>
 
     <item android:id="@android:id/progress">
         <scale
             android:drawable="@drawable/buddhism_progress_primary_holo_light"
-            android:scaleWidth="100%"/>
+            android:scaleWidth="100%" />
     </item>
 
 </layer-list>

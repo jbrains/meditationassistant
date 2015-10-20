@@ -1,4 +1,7 @@
-1.2.6: (First release on F-Droid)
+1.2.7: (First release on F-Droid)
+- Fix crash on non-English devices
+
+1.2.6:
 - Source code has been publicly released at https://github.com/tslocum/MeditationAssistant
 - Upgraded Google Play Services library to 8.1.0
 - Now tracking which app market was used to install Meditation Assistant in sessions posted to MediNET

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:initialLayout="@layout/widget_layout"
-                    android:minHeight="40dp"
-                    android:minWidth="110dp"
-                    android:resizeMode="horizontal"
-                    android:theme="@style/MeditationDarkTheme"
-                    android:updatePeriodMillis="18000000"
-                    android:widgetCategory="keyguard|home_screen"
-                    tools:ignore="UnusedAttribute">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:initialLayout="@layout/widget_layout"
+    android:minHeight="40dp"
+    android:minWidth="110dp"
+    android:resizeMode="horizontal"
+    android:theme="@style/MeditationDarkTheme"
+    android:updatePeriodMillis="18000000"
+    android:widgetCategory="keyguard|home_screen"
+    tools:ignore="UnusedAttribute">
 
 </appwidget-provider>

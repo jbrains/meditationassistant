@@ -7,7 +7,7 @@
 
         <meta-data
             android:name="com.google.android.backup.api_key"
-            android:value="AEdPqrEAAAAIAUEb3SC2bBJt6pLanNwm7yB1Qy2WFS_nm7pHuw"/>
+            android:value="AEdPqrEAAAAIAUEb3SC2bBJt6pLanNwm7yB1Qy2WFS_nm7pHuw" />
 
     </application>
 

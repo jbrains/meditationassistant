@@ -197,28 +197,16 @@ importare altre sessioni dalla schermata delle Impostazioni.</string>
     <string name="sessionNotFoundMediNET">Sessione non trovata su MediNET</string>
     <string name="sessionNotProperAccount">Non sei registrato con l\'account corretto</string>
 
-    <plurals name="numtimes">
-
-
-    </plurals>
 
     <plurals name="sessionsImported">
         <item quantity="one">Importata %s sessione</item>
         <item quantity="other">Importate %s sessioni</item>
     </plurals>
 
-    <plurals name="sessionsUploaded">
-
-
-    </plurals>
 
     <string name="sessionsNotImported">Dati locali aggiornati</string>
     <string name="signInToImport">Entra per importare i dati della sessione</string>
 
-    <plurals name="daysOfMeditationMinimal">
-
-
-    </plurals>
     <plurals name="daysOfMeditation">
         <item quantity="one">%d giorno di meditazione</item>
         <item quantity="other">%d giorni di meditazione</item>

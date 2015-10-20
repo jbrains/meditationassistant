@@ -4,31 +4,31 @@
         android:defaultValue="true"
         android:key="pref_display_seconds"
         android:summary="@string/pref_display_seconds_summary"
-        android:title="@string/pref_display_seconds"/>
+        android:title="@string/pref_display_seconds" />
 
     <CheckBoxPreference
         android:defaultValue="true"
         android:key="pref_showstreak"
         android:summary="@string/pref_showstreak_summary"
-        android:title="@string/pref_showstreak"/>
+        android:title="@string/pref_showstreak" />
 
     <CheckBoxPreference
         android:defaultValue="true"
         android:key="pref_notification"
         android:summary="@string/pref_notification_summary"
-        android:title="@string/pref_notification"/>
+        android:title="@string/pref_notification" />
 
     <CheckBoxPreference
         android:defaultValue="false"
         android:key="pref_full_screen"
         android:summary="@string/pref_full_screen_summary"
-        android:title="@string/pref_full_screen"/>
+        android:title="@string/pref_full_screen" />
 
     <CheckBoxPreference
         android:defaultValue="false"
         android:key="pref_usetimepicker"
         android:summary="@string/pref_usetimepicker_summary"
-        android:title="@string/pref_usetimepicker"/>
+        android:title="@string/pref_usetimepicker" />
 
     <ListPreference
         android:defaultValue="dim"
@@ -36,7 +36,7 @@
         android:entries="@array/screencontrol"
         android:entryValues="@array/screencontrol_values"
         android:key="pref_screencontrol"
-        android:title="@string/pref_screencontrol"/>
+        android:title="@string/pref_screencontrol" />
 
     <ListPreference
         android:defaultValue="normal"
@@ -44,7 +44,7 @@
         android:entryValues="@array/text_sizes_values"
         android:key="pref_text_size"
         android:summary=""
-        android:title="@string/pref_text_size"/>
+        android:title="@string/pref_text_size" />
 
     <ListPreference
         android:defaultValue="calendar"
@@ -52,6 +52,6 @@
         android:entryValues="@array/progresstabs_values"
         android:key="pref_progresstab"
         android:summary=""
-        android:title="@string/pref_progresstab"/>
+        android:title="@string/pref_progresstab" />
 
 </PreferenceScreen>

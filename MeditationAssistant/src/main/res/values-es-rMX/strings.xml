@@ -201,28 +201,15 @@ puede importar sesiones de tarde desde la ventana Configuración.</string>
     <string name="sessionNotFoundMediNET">Sesión no encontrada en MediNET</string>
     <string name="sessionNotProperAccount">No está inscrito en el registro adecuado</string>
 
-    <plurals name="numtimes">
-
-
-    </plurals>
-
     <plurals name="sessionsImported">
         <item quantity="one">Sesión %s importada</item>
         <item quantity="other">Sesiónes %s importadas</item>
     </plurals>
 
-    <plurals name="sessionsUploaded">
-
-
-    </plurals>
 
     <string name="sessionsNotImported">Datos locales actualizados</string>
     <string name="signInToImport">Inicia sesión para importar datos de la sesión</string>
 
-    <plurals name="daysOfMeditationMinimal">
-
-
-    </plurals>
     <plurals name="daysOfMeditation">
         <item quantity="one">%d dia de la meditacion</item>
         <item quantity="other">%d días de las meditaciones</item>

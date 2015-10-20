@@ -1,8 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clickable="false"
-                android:focusable="false">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="false"
+    android:focusable="false">
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -37,7 +37,7 @@
                     android:gravity="center"
                     android:text=""
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textSize="25sp"/>
+                    android:textSize="25sp" />
 
                 <TextView
                     android:id="@+id/txtAboutAppVersion"
@@ -46,7 +46,7 @@
                     android:layout_marginBottom="108dp"
                     android:gravity="center"
                     android:text=""
-                    android:textAppearance="?android:attr/textAppearanceSmall"/>
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <TextView
                     android:layout_width="fill_parent"
@@ -54,7 +54,7 @@
                     android:gravity="center"
                     android:text="@string/byTrevorSlocum"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textSize="21sp"/>
+                    android:textSize="21sp" />
 
                 <TextView
                     android:layout_width="fill_parent"
@@ -63,7 +63,7 @@
                     android:gravity="center"
                     android:text="@string/availableForHire"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="fill_parent"
@@ -72,7 +72,7 @@
                     android:gravity="center"
                     android:text="@string/myEmailAddress"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -100,14 +100,14 @@
                         android:clickable="false"
                         android:gravity="center"
                         android:text="@string/tapToSendEmail"
-                        android:textAppearance="?android:attr/textAppearanceSmall"/>
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
                     <View
                         android:layout_width="fill_parent"
                         android:layout_height="1dp"
                         android:layout_marginLeft="7dp"
                         android:layout_marginRight="7dp"
-                        android:background="?android:attr/listDivider"/>
+                        android:background="?android:attr/listDivider" />
 
                     <Button
                         android:id="@+id/btnHowToMeditate"
@@ -118,14 +118,14 @@
                         android:paddingBottom="7dp"
                         android:paddingTop="7dp"
                         android:text="@string/howToMeditate"
-                        android:textAppearance="?android:attr/textAppearanceMedium"/>
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
 
                     <View
                         android:layout_width="fill_parent"
                         android:layout_height="1dp"
                         android:layout_marginLeft="7dp"
                         android:layout_marginRight="7dp"
-                        android:background="?android:attr/listDivider"/>
+                        android:background="?android:attr/listDivider" />
 
                     <Button
                         android:id="@+id/btnTranslate"
@@ -136,7 +136,7 @@
                         android:paddingBottom="7dp"
                         android:paddingTop="7dp"
                         android:text="@string/translate"
-                        android:textAppearance="?android:attr/textAppearanceMedium"/>
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -155,6 +155,6 @@
         android:contentDescription="@string/charis"
         android:scaleType="fitCenter"
         android:src="@drawable/charis"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 </RelativeLayout>

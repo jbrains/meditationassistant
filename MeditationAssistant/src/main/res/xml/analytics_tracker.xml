@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools"
-           tools:ignore="TypographyDashes,UnusedResources">
+    tools:ignore="TypographyDashes,UnusedResources">
 
     <!-- Replace placeholder ID with your tracking ID -->
     <string name="ga_trackingId">UA-71983-51</string>

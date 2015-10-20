@@ -201,10 +201,6 @@
     <string name="sessionNotFoundMediNET">Sesja nie odnaleziona na MediNET</string>
     <string name="sessionNotProperAccount">Nie jesteś zalogowany na odpowiednie konto</string>
 
-    <plurals name="numtimes">
-
-
-    </plurals>
 
     <plurals name="sessionsImported">
         <item quantity="one">Zaimportowano %s sesję</item>
@@ -219,10 +215,6 @@
     <string name="sessionsNotImported">Dane lokalne są aktualne</string>
     <string name="signInToImport">Zaloguj się, by importować dane sesji</string>
 
-    <plurals name="daysOfMeditationMinimal">
-
-
-    </plurals>
     <plurals name="daysOfMeditation">
         <item quantity="one">%d dzień medytacji</item>
         <item quantity="other">%d dni medytacji</item>

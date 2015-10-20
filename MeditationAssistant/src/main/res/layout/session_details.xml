@@ -31,7 +31,7 @@
                     android:padding="7dp"
                     android:singleLine="true"
                     android:text=""
-                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <View
                     android:id="@+id/divSessionDetailsMessage"
@@ -39,7 +39,7 @@
                     android:layout_height="1dp"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
-                    android:background="?android:attr/listDivider"/>
+                    android:background="?android:attr/listDivider" />
 
                 <TextView
                     android:id="@+id/txtSessionDetailsMessage"
@@ -51,7 +51,7 @@
                     android:padding="7dp"
                     android:singleLine="false"
                     android:text=""
-                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
             </LinearLayout>
         </RelativeLayout>

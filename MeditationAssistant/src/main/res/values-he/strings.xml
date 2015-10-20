@@ -117,37 +117,7 @@
 
     <string name="wordimport">יבוא</string>
 
-
-    <plurals name="numtimes">
-
-
-    </plurals>
-
-    <plurals name="sessionsImported">
-
-
-    </plurals>
-
-    <plurals name="sessionsUploaded">
-
-
-    </plurals>
-
     <string name="sessionsNotImported">הנתונים המקומיים עדכניים</string>
-
-
-    <plurals name="daysOfMeditationMinimal">
-
-
-    </plurals>
-    <plurals name="daysOfMeditation">
-
-
-    </plurals>
-    <plurals name="daysOfMeditationWithoutCount">
-
-
-    </plurals>
 
 
     <string name="signOut">יציאה</string>

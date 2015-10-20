@@ -22,13 +22,21 @@ android {
         minSdkVersion 14
         targetSdkVersion 22
 
-        versionCode 126
-        versionName "1.2.6"
+        versionCode 127
+        versionName "1.2.7"
     }
 
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            output.outputFile = new File(
+                output.outputFile.parent,
+                output.outputFile.name.replace(".apk", "-${variant.versionName}.apk"))
+        }
     }
 
     sourceSets {
