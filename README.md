@@ -30,6 +30,6 @@ Feel free to open an issue, or contact the developer: tslocum@gmail.com
 Contribute
 ------------
  1. Read the [GitHub Forking Guide](http://help.github.com/forking/).
- 2. Fork TinyIB.
+ 2. Fork this repository.
  3. Commit code changes to your forked repository.
  4. Submit a pull request describing your modifications.
