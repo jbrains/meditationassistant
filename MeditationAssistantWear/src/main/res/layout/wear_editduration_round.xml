@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/wear_editduration_layout" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context=".WearEditDurationActivity" tools:deviceIds="wear_round">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/wear_editduration_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WearEditDurationActivity"
+    tools:deviceIds="wear_round">
 
-    <TimePicker android:id="@+id/editWearDuration"
-        android:layout_gravity="center_horizontal" android:layout_width="fill_parent"
-        android:layout_height="fill_parent" android:layout_marginBottom="40dp" android:layout_marginTop="-20dp"/>
+    <TimePicker
+        android:id="@+id/editWearDuration"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="-20dp" />
 
-    <Button android:id="@+id/setDuration"
-        android:layout_alignParentBottom="true" android:layout_width="fill_parent" android:layout_height="60dp" android:text="@string/set" android:onClick="setDuration"></Button>
+    <Button
+        android:id="@+id/setDuration"
+        android:layout_alignParentBottom="true"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:text="@string/set"
+        android:onClick="setDuration"></Button>
 </RelativeLayout>
