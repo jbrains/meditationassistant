@@ -249,9 +249,7 @@ public class CompleteActivity extends Activity {
             }
         }
 
-        if (getMeditationAssistant().sendUsageReports()) {
-            getMeditationAssistant().utility.initializeTracker(this);
-        }
+        getMeditationAssistant().utility.initializeTracker(this);
 
         if (!manual) {
             getMeditationAssistant().vibrateDevice();
@@ -363,17 +361,13 @@ public class CompleteActivity extends Activity {
     @Override
     public void onStart() {
         super.onStart();
-        if (getMeditationAssistant().sendUsageReports()) {
-            getMeditationAssistant().utility.trackingStart(this);
-        }
+        getMeditationAssistant().utility.trackingStart(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        if (getMeditationAssistant().sendUsageReports()) {
-            getMeditationAssistant().utility.trackingStop(this);
-        }
+        getMeditationAssistant().utility.trackingStop(this);
     }
 
     public void postMediNET(View view) {

@@ -1011,21 +1011,11 @@ public class MeditationAssistant extends Application {
             streaktext = String.valueOf(getMeditationStreak());
         }
 
-        String titleText = getString(R.string.sessionInProgress);
-        String contentText = getString(R.string.appName);
-
-		/*
-         * if (!getDurationFormatted().equals("") && getTimeToStopMeditate() >
-		 * (System .currentTimeMillis() / 1000)) { titleText =
-		 * getDurationFormatted(); contentText =
-		 * getString(R.string.sessionInProgress); }
-		 */
-
         Notification notification = new NotificationCompat.Builder(this)
                 .setOngoing(true)
                 .setSmallIcon(R.drawable.ic_notification)
-                .setContentTitle(titleText)
-                .setContentText(contentText)
+                .setContentTitle(getString(R.string.sessionInProgress))
+                .setContentText(getString(R.string.appName))
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setContentInfo(streaktext)
                 .setContentIntent(pIntent)
@@ -1034,9 +1024,6 @@ public class MeditationAssistant extends Application {
                 .addAction(R.drawable.ic_action_stop,
                         getString(R.string.end), pIntentEnd).build();
 
-        // .setContentText(contentText).setOngoing(true)
-        // .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
-        // notification_icon))
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(0, notification);
     }

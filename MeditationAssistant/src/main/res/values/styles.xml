@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Copy one of these attributes to your own theme (choose either dark or light).
-        <item name="numberPickerStyle">@style/NPWidget.Holo.NumberPicker</item>
-        <item name="numberPickerStyle">@style/NPWidget.Holo.Light.NumberPicker</item>
-    -->
-
     <style name="MeditationShowcaseTheme" parent="ShowcaseView">
         <item name="sv_backgroundColor">#e6181c2a</item>
         <item name="sv_showcaseColor">@android:color/holo_blue_light</item>

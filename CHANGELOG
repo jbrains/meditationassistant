@@ -1,3 +1,6 @@
+1.2.8:
+- Hide analytics preference when applicable
+
 1.2.7: (First release on F-Droid)
 - Fix crash on non-English devices
 

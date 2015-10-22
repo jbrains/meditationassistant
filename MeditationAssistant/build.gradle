@@ -22,8 +22,8 @@ android {
         minSdkVersion 14
         targetSdkVersion 22
 
-        versionCode 127
-        versionName "1.2.7"
+        versionCode 128
+        versionName "1.2.8"
     }
 
     lintOptions {
@@ -34,8 +34,8 @@ android {
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
             output.outputFile = new File(
-                output.outputFile.parent,
-                output.outputFile.name.replace(".apk", "-${variant.versionName}.apk"))
+                    output.outputFile.parent,
+                    output.outputFile.name.replace(".apk", "-${variant.versionName}.apk"))
         }
     }
 

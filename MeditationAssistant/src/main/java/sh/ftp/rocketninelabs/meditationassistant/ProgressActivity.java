@@ -294,9 +294,7 @@ public class ProgressActivity extends FragmentActivity {
             mViewPager.setCurrentItem(CALENDAR_FRAGMENT, false);
         }
 
-        if (getMeditationAssistant().sendUsageReports()) {
-            getMeditationAssistant().utility.initializeTracker(this);
-        }
+        getMeditationAssistant().utility.initializeTracker(this);
     }
 
     public void goToSessionAtDate(int[] date) {
@@ -666,17 +664,13 @@ public class ProgressActivity extends FragmentActivity {
     @Override
     public void onStart() {
         super.onStart();
-        if (getMeditationAssistant().sendUsageReports()) {
-            getMeditationAssistant().utility.trackingStart(this);
-        }
+        getMeditationAssistant().utility.trackingStart(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        if (getMeditationAssistant().sendUsageReports()) {
-            getMeditationAssistant().utility.trackingStop(this);
-        }
+        getMeditationAssistant().utility.trackingStop(this);
     }
 
     @Override

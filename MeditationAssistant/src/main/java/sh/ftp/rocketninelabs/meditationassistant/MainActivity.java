@@ -225,9 +225,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         setTheme(getMeditationAssistant().getMATheme());
         setContentView(R.layout.activity_main);
 
-        if (getMeditationAssistant().sendUsageReports()) {
-            getMeditationAssistant().utility.initializeTracker(this);
-        }
+        getMeditationAssistant().utility.initializeTracker(this);
 
         handler = new Handler();
 
@@ -1795,9 +1793,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
     @Override
     public void onStart() {
-        if (getMeditationAssistant().sendUsageReports()) {
-            getMeditationAssistant().utility.trackingStart(this);
-        }
+        getMeditationAssistant().utility.trackingStart(this);
         getMeditationAssistant().utility.connectGoogleClient();
 
         super.onStart();
@@ -1805,9 +1801,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
     @Override
     protected void onStop() {
-        if (getMeditationAssistant().sendUsageReports()) {
-            getMeditationAssistant().utility.trackingStop(this);
-        }
+        getMeditationAssistant().utility.trackingStop(this);
+
         getMeditationAssistant().utility.disconnectGoogleClient();
 
         super.onStop();

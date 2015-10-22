@@ -349,9 +349,7 @@ public class MediNETActivity extends Activity {
 
         getMeditationAssistant().utility.loadAd(this);
 
-        if (getMeditationAssistant().sendUsageReports()) {
-            getMeditationAssistant().utility.initializeTracker(this);
-        }
+        getMeditationAssistant().utility.initializeTracker(this);
 
         initUI(true);
     }
@@ -479,17 +477,13 @@ public class MediNETActivity extends Activity {
     @Override
     public void onStart() {
         super.onStart();
-        if (getMeditationAssistant().sendUsageReports()) {
-            getMeditationAssistant().utility.trackingStart(this);
-        }
+        getMeditationAssistant().utility.trackingStart(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        if (getMeditationAssistant().sendUsageReports()) {
-            getMeditationAssistant().utility.trackingStop(this);
-        }
+        getMeditationAssistant().utility.trackingStop(this);
     }
 
     public void setWindowBackground() {

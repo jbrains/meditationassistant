@@ -44,17 +44,20 @@ public class UtilityMA {
         return ma;
     }
 
-    synchronized Tracker getTracker(Activity activity, MeditationAssistant.TrackerName trackerId) {
+    synchronized public Tracker getTracker(Activity activity, MeditationAssistant.TrackerName trackerId) {
         if (!mTrackers.containsKey(trackerId)) {
             GoogleAnalytics analytics = GoogleAnalytics.getInstance(activity);
             Tracker t = analytics.newTracker(R.xml.analytics_tracker);
+            tracker.set(Fields.customDimension(1), getMeditationAssistant().getMarketName());
             mTrackers.put(trackerId, t);
         }
         return mTrackers.get(trackerId);
     }
 
     public void initializeTracker(Activity activity) {
-        getTracker(activity, MeditationAssistant.TrackerName.APP_TRACKER);
+        if (getMeditationAssistant().sendUsageReports()) {
+            getTracker(activity, MeditationAssistant.TrackerName.APP_TRACKER);
+        }
     }
 
     public void setupGoogleClient(final Activity activity) {
@@ -235,11 +238,15 @@ public class UtilityMA {
     }
 
     public void trackingStart(Activity activity) {
-        GoogleAnalytics.getInstance(activity).reportActivityStart(activity);
+        if (getMeditationAssistant().sendUsageReports()) {
+            GoogleAnalytics.getInstance(activity).reportActivityStart(activity);
+        }
     }
 
     public void trackingStop(Activity activity) {
-        GoogleAnalytics.getInstance(activity).reportActivityStop(activity);
+        if (getMeditationAssistant().sendUsageReports()) {
+            GoogleAnalytics.getInstance(activity).reportActivityStop(activity);
+        }
     }
 
     public void connectGoogleClient() {
