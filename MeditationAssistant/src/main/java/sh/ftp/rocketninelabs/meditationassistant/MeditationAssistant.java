@@ -38,25 +38,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.webkit.CookieSyncManager;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import org.acra.ACRA;
 import org.acra.annotation.ReportsCrashes;
-import org.apache.http.client.protocol.ClientContext;
-import org.apache.http.conn.ClientConnectionManager;
-import org.apache.http.impl.client.BasicCookieStore;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
-import org.apache.http.params.HttpParams;
-import org.apache.http.protocol.BasicHttpContext;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.CookieHandler;
+import java.net.CookieManager;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TimeZone;
 
 @ReportsCrashes(
@@ -76,9 +74,6 @@ public class MeditationAssistant extends Application {
     public long pausetime = 0;
     public int previousRingerMode = -1;
     public String toastText = "";
-    public DefaultHttpClient httpClient = null;
-    public BasicCookieStore cookieStore = null;
-    public BasicHttpContext httpContext = null;
     public String pendingNotificationAction = "";
     public Boolean asktorate = false;
     public DatabaseHandler db = null;
@@ -120,16 +115,6 @@ public class MeditationAssistant extends Application {
         Resources resources = context.getResources();
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
                 resources.getDisplayMetrics());
-    }
-
-    public static DefaultHttpClient getThreadSafeHttpClient() {
-
-        DefaultHttpClient client = new DefaultHttpClient();
-        ClientConnectionManager mgr = client.getConnectionManager();
-        HttpParams params = client.getParams();
-        client = new DefaultHttpClient(new ThreadSafeClientConnManager(params,
-                mgr.getSchemeRegistry()), params);
-        return client;
     }
 
     public static void setAlphaCompat(View view, float alpha) {
@@ -268,26 +253,6 @@ public class MeditationAssistant extends Application {
 
     public void setEditingDuration(boolean bool) {
         editingduration = bool;
-    }
-
-    public DefaultHttpClient getHttpClient() {
-        if (httpClient == null) {
-            httpClient = getThreadSafeHttpClient();
-            httpClient.setCookieStore(cookieStore);
-        }
-
-        return httpClient;
-    }
-
-    public BasicHttpContext getHttpContext() {
-        if (cookieStore == null) {
-            cookieStore = new BasicCookieStore();
-
-            httpContext = new BasicHttpContext();
-            // Bind custom cookie store to the local context
-            httpContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
-        }
-        return httpContext;
     }
 
     public int getMATextColor(Boolean enabled) {
@@ -781,6 +746,9 @@ public class MeditationAssistant extends Application {
 
         utility.ma = this;
 
+        CookieManager cookieManager = new CookieManager();
+        CookieHandler.setDefault(cookieManager);
+
         Integer applaunches = getPrefs().getInt("applaunches", 0) + 1;
         getPrefs().edit().putInt("applaunches", applaunches).apply();
 
@@ -816,7 +784,6 @@ public class MeditationAssistant extends Application {
         }*/
 
         db = DatabaseHandler.getInstance(getApplicationContext());
-        CookieSyncManager.createInstance(getApplicationContext());
 
         reminderAlarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
@@ -825,6 +792,23 @@ public class MeditationAssistant extends Application {
         Intent intent = new Intent();
         intent.setAction(MeditationAssistant.ACTION_UPDATED);
         sendBroadcast(intent);
+    }
+
+    public String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException {
+        StringBuilder result = new StringBuilder();
+        boolean first = true;
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            if (first)
+                first = false;
+            else
+                result.append("&");
+
+            result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
+            result.append("=");
+            result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
+        }
+
+        return result.toString();
     }
 
     public boolean sendUsageReports() {
@@ -1046,7 +1030,7 @@ public class MeditationAssistant extends Application {
             }
             names[i] = getString(R.string.signInWithOpenID);
 
-            AlertDialog accountsAlertDialog = new AlertDialog.Builder(activity)
+            AlertDialog accountsAlertDialog = new AlertDialog.Builder(signin_activity)
                     .setTitle(getString(R.string.signInWith))
                     .setItems(names, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
@@ -1064,7 +1048,7 @@ public class MeditationAssistant extends Application {
                                     }));
                                 }
                             } else {
-                                showOpenIDSignInDialog(activity);
+                                showOpenIDSignInDialog(signin_activity);
                             }
                         }
                     })
@@ -1073,7 +1057,7 @@ public class MeditationAssistant extends Application {
 
             return accountsAlertDialog;
         } else {
-            return showOpenIDSignInDialog(activity);
+            return showOpenIDSignInDialog(signin_activity);
         }
     }
 

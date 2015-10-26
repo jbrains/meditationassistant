@@ -62,12 +62,12 @@ public class ListPreferenceSound extends ListPreference {
         return mEntries;
     }
 
-    public void setEntries(CharSequence[] entries) {
-        mEntries = entries;
-    }
-
     public void setEntries(int entriesResId) {
         setEntries(getContext().getResources().getTextArray(entriesResId));
+    }
+
+    public void setEntries(CharSequence[] entries) {
+        mEntries = entries;
     }
 
     public CharSequence getEntry() {
@@ -79,13 +79,13 @@ public class ListPreferenceSound extends ListPreference {
         return mEntryValues;
     }
 
-    public void setEntryValues(CharSequence[] entryValues) {
-        mEntryValues = entryValues;
-    }
-
     public void setEntryValues(int entryValuesResId) {
         setEntryValues(getContext().getResources().getTextArray(
                 entryValuesResId));
+    }
+
+    public void setEntryValues(CharSequence[] entryValues) {
+        mEntryValues = entryValues;
     }
 
     @Override

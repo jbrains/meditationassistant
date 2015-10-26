@@ -4,34 +4,34 @@
         android:defaultValue="false"
         android:key="pref_autosignin"
         android:summary="@string/pref_autosignin_summary"
-        android:title="@string/pref_autosignin" />
+        android:title="@string/pref_autosignin"/>
     <CheckBoxPreference
         android:defaultValue="true"
         android:key="pref_rememberme"
         android:summary="@string/pref_rememberme_summary"
-        android:title="@string/pref_rememberme" />
+        android:title="@string/pref_rememberme"/>
     <CheckBoxPreference
         android:defaultValue="false"
         android:key="pref_remembermessage"
         android:summary="@string/pref_remembermessage_summary"
-        android:title="@string/pref_remembermessage" />
+        android:title="@string/pref_remembermessage"/>
     <CheckBoxPreference
         android:defaultValue="true"
         android:key="pref_askdismiss"
         android:summary="@string/pref_askdismiss_summary"
-        android:title="@string/pref_askdismiss" />
+        android:title="@string/pref_askdismiss"/>
 
     <Preference
         android:icon="?attr/actionIconUpCloud"
         android:key="uploadsessions"
         android:summary="@string/uploadsessions_summary"
-        android:title="@string/uploadsessions" />
+        android:title="@string/uploadsessions"/>
 
     <Preference
         android:icon="?attr/actionIconDownCloud"
         android:key="importsessions"
         android:summary="@string/importsessions_summary"
-        android:title="@string/importsessions" />
+        android:title="@string/importsessions"/>
 
     <!-- A 'parent' preference, which enables/disables child preferences (below)
          when checked/unchecked.

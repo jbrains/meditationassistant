@@ -8,33 +8,33 @@
 
         <meta-data
             android:name="com.google.android.backup.api_key"
-            android:value="AEdPqrEAAAAImiscQeePK7-fr6JMj14zZX47kvR0lSKdCgjnXQ" />
+            android:value="AEdPqrEAAAAImiscQeePK7-fr6JMj14zZX47kvR0lSKdCgjnXQ"/>
 
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+            android:value="@integer/google_play_services_version"/>
 
         <meta-data
             android:name="com.google.android.gms.analytics.globalConfigResource"
-            android:resource="@xml/analytics" />
+            android:resource="@xml/analytics"/>
 
         <receiver
             android:name="com.google.android.gms.analytics.AnalyticsReceiver"
             android:enabled="true"
             tools:ignore="ExportedReceiver">
             <intent-filter>
-                <action android:name="com.google.android.gms.analytics.ANALYTICS_DISPATCH" />
+                <action android:name="com.google.android.gms.analytics.ANALYTICS_DISPATCH"/>
             </intent-filter>
         </receiver>
         <service
             android:name="com.google.android.gms.analytics.AnalyticsService"
             android:enabled="true"
-            android:exported="false" />
+            android:exported="false"/>
 
         <!-- Register Wear data layer service -->
         <service android:name=".WearListenerService">
             <intent-filter>
-                <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
+                <action android:name="com.google.android.gms.wearable.BIND_LISTENER"/>
             </intent-filter>
         </service>
 
@@ -55,23 +55,23 @@
             android:name=".MeditationProvider2"
             android:label="@string/widget2x1">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_2" />
+                android:resource="@xml/widget_2"/>
         </receiver>
         <receiver
             android:name=".MeditationProvider3"
             android:label="@string/widget3x1">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_3" />
+                android:resource="@xml/widget_3"/>
         </receiver>
 
     </application>

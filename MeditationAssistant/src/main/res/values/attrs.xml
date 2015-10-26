@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <attr name="actionIconTime" format="reference" />
-    <attr name="actionIconVolumeOn" format="reference" />
-    <attr name="actionIconNotImportant" format="reference" />
-    <attr name="actionIconInfo" format="reference" />
-    <attr name="actionIconSettings" format="reference" />
-    <attr name="actionIconNetworkCell" format="reference" />
-    <attr name="actionIconBrightnessLow" format="reference" />
-    <attr name="actionIconFullScreen" format="reference" />
-    <attr name="actionIconSignOut" format="reference" />
-    <attr name="actionIconAccounts" format="reference" />
-    <attr name="actionIconRefresh" format="reference" />
-    <attr name="actionIconSortBySize" format="reference" />
-    <attr name="actionIconForward" format="reference" />
-    <attr name="actionIconGoToToday" format="reference" />
-    <attr name="actionIconViewAsList" format="reference" />
-    <attr name="actionIconWebsite" format="reference" />
-    <attr name="actionIconPerson" format="reference" />
-    <attr name="actionIconGroup" format="reference" />
-    <attr name="actionIconShare" format="reference" />
-    <attr name="actionIconPreviousItem" format="reference" />
-    <attr name="actionIconNextItem" format="reference" />
-    <attr name="actionIconDownCloud" format="reference" />
-    <attr name="actionIconUpCloud" format="reference" />
-    <attr name="actionIconChat" format="reference" />
-    <attr name="actionIconRingVolume" format="reference" />
-    <attr name="actionIconNew" format="reference" />
-    <attr name="actionIconFlashOn" format="reference" />
+    <attr name="actionIconTime" format="reference"/>
+    <attr name="actionIconVolumeOn" format="reference"/>
+    <attr name="actionIconNotImportant" format="reference"/>
+    <attr name="actionIconInfo" format="reference"/>
+    <attr name="actionIconSettings" format="reference"/>
+    <attr name="actionIconNetworkCell" format="reference"/>
+    <attr name="actionIconBrightnessLow" format="reference"/>
+    <attr name="actionIconFullScreen" format="reference"/>
+    <attr name="actionIconSignOut" format="reference"/>
+    <attr name="actionIconAccounts" format="reference"/>
+    <attr name="actionIconRefresh" format="reference"/>
+    <attr name="actionIconSortBySize" format="reference"/>
+    <attr name="actionIconForward" format="reference"/>
+    <attr name="actionIconGoToToday" format="reference"/>
+    <attr name="actionIconViewAsList" format="reference"/>
+    <attr name="actionIconWebsite" format="reference"/>
+    <attr name="actionIconPerson" format="reference"/>
+    <attr name="actionIconGroup" format="reference"/>
+    <attr name="actionIconShare" format="reference"/>
+    <attr name="actionIconPreviousItem" format="reference"/>
+    <attr name="actionIconNextItem" format="reference"/>
+    <attr name="actionIconDownCloud" format="reference"/>
+    <attr name="actionIconUpCloud" format="reference"/>
+    <attr name="actionIconChat" format="reference"/>
+    <attr name="actionIconRingVolume" format="reference"/>
+    <attr name="actionIconNew" format="reference"/>
+    <attr name="actionIconFlashOn" format="reference"/>
 
     <declare-styleable name="ListPreference">
         <attr name="entries" format="string"></attr>
@@ -42,6 +42,6 @@
     </declare-styleable>
 
     <!-- The TimePicker style. -->
-    <attr name="timePickerStyle" format="reference" />
+    <attr name="timePickerStyle" format="reference"/>
 
 </resources>

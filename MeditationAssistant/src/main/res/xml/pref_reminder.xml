@@ -1,38 +1,38 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+                  xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <CheckBoxPreference
         android:defaultValue="false"
         android:key="pref_daily_reminder"
         android:summary="@string/pref_daily_reminder_summary"
-        android:title="@string/pref_daily_reminder_title" />
+        android:title="@string/pref_daily_reminder_title"/>
 
     <CheckBoxPreference
         android:defaultValue="true"
         android:dependency="pref_daily_reminder"
         android:key="pref_sound_reminder"
         android:summary="@string/pref_sound_reminder_summary"
-        android:title="@string/pref_sound_reminder" />
+        android:title="@string/pref_sound_reminder"/>
 
     <CheckBoxPreference
         android:defaultValue="true"
         android:dependency="pref_daily_reminder"
         android:key="pref_vibrate_reminder"
         android:summary="@string/pref_vibrate_reminder_summary"
-        android:title="@string/pref_vibrate" />
+        android:title="@string/pref_vibrate"/>
 
     <EditTextPreference
         android:defaultValue=""
         android:dependency="pref_daily_reminder"
         android:key="pref_daily_reminder_text"
         android:summary=""
-        android:title="@string/pref_daily_reminder_text" />
+        android:title="@string/pref_daily_reminder_text"/>
 
     <sh.ftp.rocketninelabs.meditationassistant.TimePreference
         android:defaultValue="19:00"
         android:dependency="pref_daily_reminder"
         android:key="pref_daily_reminder_time"
         android:title="@string/pref_daily_reminder_time"
-        app:is24hour="false" />
+        app:is24hour="false"/>
 
 </PreferenceScreen>

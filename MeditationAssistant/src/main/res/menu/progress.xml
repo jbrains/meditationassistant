@@ -4,6 +4,6 @@
         android:id="@+id/addSession"
         android:icon="?attr/actionIconNew"
         android:showAsAction="always"
-        android:title="@string/addSession" />
+        android:title="@string/addSession"/>
 
 </menu>

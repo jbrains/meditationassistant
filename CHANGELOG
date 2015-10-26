@@ -1,6 +1,7 @@
 1.2.8:
 - Hide analytics preference when applicable
 - Add widgets to open source release
+- Migrate deprecated HttpClient use to URLConnection
 
 1.2.7: (First release on F-Droid)
 - Fix crash on non-English devices

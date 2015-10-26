@@ -17,18 +17,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
-import org.apache.http.cookie.Cookie;
-
 import java.util.Date;
-import java.util.List;
 import java.util.TimeZone;
 
 public class MediNETActivity extends Activity {
@@ -201,22 +196,6 @@ public class MediNETActivity extends Activity {
                     new JavaScriptInterface(this, this.getApplicationContext()),
                     "MA");
             webView.getSettings().setJavaScriptEnabled(true);
-
-            // Cookies
-            List<Cookie> cookies = getMeditationAssistant().getHttpClient()
-                    .getCookieStore().getCookies();
-
-            if (!cookies.isEmpty()) {
-                CookieManager cookieManager = CookieManager.getInstance();
-
-                for (Cookie cookie : cookies) {
-                    String cookieString = cookie.getName() + "="
-                            + cookie.getValue() + ";    domain="
-                            + cookie.getDomain();
-                    cookieManager.setCookie("medinet.ftp.sh", cookieString);
-                    CookieSyncManager.getInstance().sync();
-                }
-            }
 
             webView.setWebViewClient(new WebViewClient() {
                 @Override
@@ -430,8 +409,7 @@ public class MediNETActivity extends Activity {
     @Override
     protected void onPause() {
         getMeditationAssistant().utility.pauseAd(this);
-        CookieSyncManager.getInstance().stopSync();
-        super.onStop();
+        super.onPause();
     }
 
     @Override
@@ -462,7 +440,6 @@ public class MediNETActivity extends Activity {
 
     @Override
     protected void onResume() {
-        CookieSyncManager.getInstance().startSync();
         super.onResume();
         getMeditationAssistant().utility.resumeAd(this);
     }

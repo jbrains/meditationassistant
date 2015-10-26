@@ -6,16 +6,16 @@
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="22" />
+        android:targetSdkVersion="22"/>
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:name="sh.ftp.rocketninelabs.meditationassistant.MeditationAssistant"
@@ -35,14 +35,14 @@
             <intent-filter>
                 <action android:name="sh.ftp.rocketninelabs.meditationassistant.DAILY_NOTIFICATION"></action>
                 <action android:name="sh.ftp.rocketninelabs.meditationassistant.DAILY_NOTIFICATION_UPDATED"></action>
-                <action android:name="android.intent.action.EXTERNAL_APPLICATIONS_AVAILABLE" />
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.EXTERNAL_APPLICATIONS_AVAILABLE"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED"/>
                 <data
                     android:path="${applicationId}"
-                    android:scheme="package" />
+                    android:scheme="package"/>
             </intent-filter>
         </receiver>
 
@@ -53,8 +53,8 @@
             android:label="@string/appNameShort"
             android:launchMode="singleTask">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="sh.ftp.rocketninelabs.meditationassistant.ALARM"></action>
@@ -69,7 +69,7 @@
             tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="sh.ftp.rocketninelabs.meditationassistant.MainActivity" />
+                android:value="sh.ftp.rocketninelabs.meditationassistant.MainActivity"/>
         </activity>
         <activity
             android:name="sh.ftp.rocketninelabs.meditationassistant.MediNETActivity"
@@ -78,7 +78,7 @@
             android:launchMode="singleTop">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="sh.ftp.rocketninelabs.meditationassistant.MainActivity" />
+                android:value="sh.ftp.rocketninelabs.meditationassistant.MainActivity"/>
         </activity>
         <activity
             android:name="sh.ftp.rocketninelabs.meditationassistant.CompleteActivity"
@@ -86,7 +86,7 @@
             android:label="@string/sessioncomplete">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="sh.ftp.rocketninelabs.meditationassistant.MainActivity" />
+                android:value="sh.ftp.rocketninelabs.meditationassistant.MainActivity"/>
         </activity>
         <activity
             android:name="sh.ftp.rocketninelabs.meditationassistant.AboutActivity"
@@ -94,7 +94,7 @@
             android:label="@string/about">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="sh.ftp.rocketninelabs.meditationassistant.MainActivity" />
+                android:value="sh.ftp.rocketninelabs.meditationassistant.MainActivity"/>
         </activity>
         <activity
             android:name="sh.ftp.rocketninelabs.meditationassistant.ProgressActivity"
@@ -102,7 +102,7 @@
             android:label="@string/progress">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="sh.ftp.rocketninelabs.meditationassistant.MainActivity" />
+                android:value="sh.ftp.rocketninelabs.meditationassistant.MainActivity"/>
         </activity>
     </application>
 

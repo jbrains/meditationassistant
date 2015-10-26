@@ -28,13 +28,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:contentDescription="@null"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 
     <TextView
         android:id="@android:id/title"
         style="@style/TabTextBuddhism"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical" />
+        android:layout_gravity="center_vertical"/>
 
 </LinearLayout>

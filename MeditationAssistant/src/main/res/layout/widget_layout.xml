@@ -20,7 +20,7 @@
             android:gravity="center"
             android:text=""
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="37sp" />
+            android:textSize="37sp"/>
 
         <TextView
             android:id="@+id/txtWidgetText"
@@ -32,7 +32,7 @@
             android:gravity="right"
             android:text=""
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
     </LinearLayout>
 
 </FrameLayout>

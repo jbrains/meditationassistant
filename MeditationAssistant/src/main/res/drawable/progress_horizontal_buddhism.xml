@@ -20,18 +20,18 @@
 
     <item
         android:id="@android:id/background"
-        android:drawable="@drawable/progress_bg_buddhism" />
+        android:drawable="@drawable/progress_bg_buddhism"/>
 
     <item android:id="@android:id/secondaryProgress">
         <scale
             android:drawable="@drawable/progress_secondary_buddhism"
-            android:scaleWidth="100%" />
+            android:scaleWidth="100%"/>
     </item>
 
     <item android:id="@android:id/progress">
         <scale
             android:drawable="@drawable/progress_primary_buddhism"
-            android:scaleWidth="100%" />
+            android:scaleWidth="100%"/>
     </item>
 
 </layer-list>

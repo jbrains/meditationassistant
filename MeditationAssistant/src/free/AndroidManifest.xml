@@ -8,33 +8,33 @@
 
         <meta-data
             android:name="com.google.android.backup.api_key"
-            android:value="AEdPqrEAAAAIqq_HCa56eFzfQpNSwYUIIytAyO6bh4fFUFUcYA" />
+            android:value="AEdPqrEAAAAIqq_HCa56eFzfQpNSwYUIIytAyO6bh4fFUFUcYA"/>
 
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+            android:value="@integer/google_play_services_version"/>
 
         <meta-data
             android:name="com.google.android.gms.analytics.globalConfigResource"
-            android:resource="@xml/analytics" />
+            android:resource="@xml/analytics"/>
 
         <receiver
             android:name="com.google.android.gms.analytics.AnalyticsReceiver"
             android:enabled="true"
             tools:ignore="ExportedReceiver">
             <intent-filter>
-                <action android:name="com.google.android.gms.analytics.ANALYTICS_DISPATCH" />
+                <action android:name="com.google.android.gms.analytics.ANALYTICS_DISPATCH"/>
             </intent-filter>
         </receiver>
         <service
             android:name="com.google.android.gms.analytics.AnalyticsService"
             android:enabled="true"
-            android:exported="false" />
+            android:exported="false"/>
 
         <!-- Register Wear data layer service -->
         <service android:name=".WearListenerService">
             <intent-filter>
-                <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
+                <action android:name="com.google.android.gms.wearable.BIND_LISTENER"/>
             </intent-filter>
         </service>
 
@@ -42,7 +42,7 @@
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:theme="@android:style/Theme.Translucent" />
+            android:theme="@android:style/Theme.Translucent"/>
 
     </application>
 

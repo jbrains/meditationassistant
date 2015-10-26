@@ -69,13 +69,11 @@ public class AboutActivity extends Activity {
         if (!getMeditationAssistant().getMarketName().equals("google")) {
             MenuItem share = menu.findItem(R.id.action_share_app);
             share.setVisible(false);
-            invalidateOptionsMenu();
         }
 
         if (getMeditationAssistant().getMarketName().equals("fdroid")) {
             MenuItem rate = menu.findItem(R.id.action_rate);
             rate.setVisible(false);
-            invalidateOptionsMenu();
         }
 
         return true;

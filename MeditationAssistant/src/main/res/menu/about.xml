@@ -1,17 +1,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".AboutActivity">
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context=".AboutActivity">
 
     <item
         android:id="@+id/action_rate"
         android:icon="?attr/actionIconNotImportant"
         android:showAsAction="always"
-        android:title="@string/rate" />
+        android:title="@string/rate"/>
 
     <item
         android:id="@+id/action_share_app"
         android:icon="?attr/actionIconShare"
         android:showAsAction="always"
-        android:title="@string/share" />
+        android:title="@string/share"/>
 
 </menu>
