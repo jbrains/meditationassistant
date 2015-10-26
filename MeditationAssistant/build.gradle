@@ -92,7 +92,7 @@ dependencies {
     fullCompile 'com.google.android.gms:play-services-fitness:8.1.0'
 
     //noinspection GradleDynamicVersion
-    compile 'ch.acra:acra:4.6.2'
+    compile 'ch.acra:acra:4.7.0-RC.1'
     compile 'com.github.amlcurran.showcaseview:library:5.0.0'
 
     //wearApp project(':MeditationAssistantWear')
