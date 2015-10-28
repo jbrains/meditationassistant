@@ -1,4 +1,4 @@
-1.2.8:
+1.2.8/1.2.9: (F-Droid only)
 - Hide analytics preference when applicable
 - Add widgets to open source release
 - Migrate deprecated HttpClient use to URLConnection
