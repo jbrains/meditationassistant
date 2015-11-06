@@ -27,6 +27,11 @@ Get Support
 Feel free to open an issue, or contact the developer: tslocum@gmail.com
 
 
+Translate
+------------
+Please do not submit translations as pull requests.  Instead, visit [Get Localization](http://www.getlocalization.com/meditationassistant/) and use their interface.
+
+
 Contribute
 ------------
  1. Read the [GitHub Forking Guide](http://help.github.com/forking/).
