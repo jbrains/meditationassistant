@@ -51,6 +51,8 @@
         <item name="actionIconFlashOn">@drawable/ic_action_flash_on_light</item>
 
         <item name="numberPickerStyle">@style/NPWidget.Holo.Light.NumberPicker</item>
+
+        <item name="alertDialogTheme">@style/MeditationLightDialogTheme</item>
     </style>
 
     <style name="MeditationLightDarkTheme" parent="android:Theme.Holo.Light.DarkActionBar">
@@ -85,6 +87,8 @@
         <item name="actionIconNew">@drawable/ic_action_new</item>
 
         <item name="numberPickerStyle">@style/NPWidget.Holo.Light.NumberPicker</item>
+
+        <item name="alertDialogTheme">@style/MeditationLightDialogTheme</item>
     </style>
 
     <style name="MeditationDarkTheme" parent="android:Theme.Holo">
@@ -117,6 +121,8 @@
         <item name="actionIconFlashOn">@drawable/ic_action_flash_on</item>
 
         <item name="numberPickerStyle">@style/NPWidget.Holo.NumberPicker</item>
+
+        <item name="alertDialogTheme">@style/MeditationDarkDialogTheme</item>
     </style>
 
     <style name="MeditationLightDialogTheme" parent="android:Theme.Holo.Light.Dialog">
@@ -175,6 +181,15 @@
         <item name="actionIconNew">@drawable/ic_action_new</item>
 
         <item name="numberPickerStyle">@style/NPWidget.Holo.NumberPicker</item>
+    </style>
+
+    <!-- You can also inherit from NNF_BaseTheme.Light -->
+    <style name="FilePickerTheme" parent="NNF_BaseTheme">
+        <!-- Need to set this also to style create folder dialog -->
+        <item name="alertDialogTheme">@style/FilePickerAlertDialogTheme</item>
+    </style>
+
+    <style name="FilePickerAlertDialogTheme" parent="Theme.AppCompat.Dialog.Alert">
     </style>
 
 </resources>

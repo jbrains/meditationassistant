@@ -9,6 +9,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
@@ -22,6 +23,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.nononsenseapps.filepicker.FilePickerActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,6 +49,8 @@ public class SettingsActivity extends PreferenceActivity {
     int PREF_SOUND_INTERVAL = 3;
     int PREF_SOUND_FINISH = 2;
     private MeditationAssistant ma = null;
+
+    static int FILEPICKER_CODE = 101;
 
     private Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
@@ -568,6 +573,15 @@ public class SettingsActivity extends PreferenceActivity {
                             .getString(preference.getKey(), "")
             );
         }
+    }
+
+    public void showFilePickerDialog(int resultCode, Boolean selectFile) {
+        Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+        i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false);
+        i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true);
+        i.putExtra(FilePickerActivity.EXTRA_MODE, selectFile ? FilePickerActivity.MODE_FILE : FilePickerActivity.MODE_DIR);
+        i.putExtra(FilePickerActivity.EXTRA_START_PATH, Environment.getExternalStorageDirectory().getPath());
+        startActivityForResult(i, resultCode);
     }
 
     public MeditationAssistant getMeditationAssistant() {

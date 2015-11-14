@@ -70,6 +70,8 @@
         <item name="android:actionBarWidgetTheme">@style/Theme.Buddhism.Widget</item>
 
         <item name="numberPickerStyle">@style/NPWidget.Holo.NumberPicker</item>
+
+        <item name="alertDialogTheme">@style/BuddhismDialogue</item>
     </style>
 
     <style name="BuddhismDialogue" parent="@style/_Buddhism">
