@@ -559,32 +559,23 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             }
         } else {
             EditText editDuration = (EditText) findViewById(R.id.editDuration);
-            //FrameLayout.LayoutParams editDurationLayoutParams = new FrameLayout.LayoutParams(
-            //        android.view.ViewGroup.LayoutParams.FILL_PARENT,
-            //        android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
-            //editDurationLayoutParams.gravity = Gravity.CENTER;
 
             if (getMeditationAssistant().getTimerMode().equals("timed")) {
                 editDuration.setText(getMeditationAssistant().getPrefs().getString("timerHours", "0")
                         + ":"
                         + String.format("%02d", Integer.valueOf(getMeditationAssistant().getPrefs().getString(
                         "timerMinutes", "15"))));
-                //editDurationLayoutParams.setMargins(0, -23, 0, -11);
             } else if (getMeditationAssistant().getTimerMode().equals("endat")) {
                 editDuration.setText(getMeditationAssistant().getPrefs().getString("timerHoursEndAt", "0")
                         + ":"
                         + String.format("%02d", Integer.valueOf(getMeditationAssistant().getPrefs().getString(
                         "timerMinutesEndAt", "0"))));
-
-                //editDurationLayoutParams.setMargins(0, -23, 0, -11);
             } else {
                 editDuration.setText(getString(R.string.ignore_om));
-                //editDurationLayoutParams.setMargins(0, 0, 0, 0);
             }
         }
 
         updateMeditate(false, false);
-        //editDuration.setLayoutParams(editDurationLayoutParams);
     }
 
     public void setDuration(View view) {
@@ -661,7 +652,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         if (txtTimer.getVisibility() == View.GONE) {
             layEditDuration.setVisibility(View.GONE);
             txtTimer.setVisibility(View.VISIBLE);
-
             getMeditationAssistant().setEditingDuration(false);
             wasEditing = true;
         } else {
@@ -704,12 +694,14 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         }
 
         if (!finishedTutorial) {
+            Log.d("MeditationAssistant", "Showing next tutorial: " + next_tutorial);
             if (!getMeditationAssistant().getPrefs().getBoolean("finishedTutorial", false)) {
                 getMeditationAssistant().getPrefs().edit().putBoolean("finishedTutorial", true).apply(); // Commit early because of crashes
             }
 
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             if (sv != null) {
+                Log.d("MeditationAssistant", "Tutorial still visible");
                 return; // Tutorial still visible
             }
 
@@ -723,7 +715,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
                     ViewTarget target = new ViewTarget(R.id.txtTimer, this);
                     try {
-                        sv = new ShowcaseView.Builder(this, true)
+                        sv = new ShowcaseView.Builder(this)
+                                .withNewStyleShowcase()
                                 .setTarget(target)
                                 .setContentTitle(R.string.timer)
                                 .setContentText(R.string.timerHelp)
@@ -744,10 +737,9 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                     }
                     next_tutorial = "medinet";
 
-                    ViewTarget target = new ViewTarget(R.id.action_settings, this);
                     try {
-                        sv = new ShowcaseView.Builder(this, true)
-                                .setTarget(target)
+                        sv = new ShowcaseView.Builder(this)
+                                .withNewStyleShowcase()
                                 .setContentTitle(R.string.settings)
                                 .setContentText(R.string.settingsHelp)
                                 .setShowcaseEventListener(this)
@@ -770,7 +762,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
                     ViewTarget target = new ViewTarget(R.id.btnMeditationStreak, this);
                     try {
-                        sv = new ShowcaseView.Builder(this, true)
+                        sv = new ShowcaseView.Builder(this)
+                                .withNewStyleShowcase()
                                 .setTarget(target)
                                 .setContentTitle(R.string.mediNET)
                                 .setShowcaseEventListener(this)
@@ -1642,10 +1635,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     public void onTimerModeSelected(View view) {
         EditText editDuration = (EditText) findViewById(R.id.editDuration);
         TimePicker timepickerDuration = (TimePicker) findViewById(R.id.timepickerDuration);
-        RelativeLayout.LayoutParams editDurationLayoutParams = new RelativeLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
-        //editDurationLayoutParams.gravity = Gravity.CENTER;
 
         String newTimerMode = "timed";
         if (view.getId() == R.id.radMainEndAt || view.getId() == R.id.layMainEndAt) {
@@ -1660,14 +1649,12 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             if (usetimepicker) {
                 timepickerDuration.setEnabled(false);
             } else {
-                editDurationLayoutParams.setMargins(0, 0, 0, 0);
                 editDuration.setText(getString(R.string.ignore_om));
             }
         } else {
             if (usetimepicker) {
                 timepickerDuration.setEnabled(true);
             } else {
-                editDurationLayoutParams.setMargins(0, -23, 0, -11);
 
                 if (editDuration.getText().toString().equals(getString(R.string.ignore_om))) {
                     if (newTimerMode.equals("endat")) { // Don't leave om character in edit text
@@ -1691,7 +1678,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         }
 
         updateVisibleViews(false);
-        editDuration.setLayoutParams(editDurationLayoutParams);
     }
 
     @Override
@@ -2208,11 +2194,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             if (delayRemaining > 0) {
                 btnMeditate.setText(getString(R.string.tapToSkip));
                 getMeditationAssistant().setAlphaCompat(txtDurationSeconds, 0.75f);
-
-                if (getMeditationAssistant().getTimerMode().equals("untimed")) {
-                    txtTimerLayoutParams.setMargins(0, 0, 0, 0);
-                    layEditDurationLayoutParams.setMargins(0, 0, 0, 0);
-                }
             } else {
                 setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
 
@@ -2245,21 +2226,15 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             getMeditationAssistant().setAlphaCompat(txtDurationSeconds, 1.0f);
 
             if (getMeditationAssistant().getTimerMode().equals("timed")) {
-                txtTimerLayoutParams.setMargins(0, -25, 0, -11);
-                layEditDurationLayoutParams.setMargins(0, -50, 0, -11);
                 txtTimer.setText(getMeditationAssistant().getPrefs().getString("timerHours", "0")
                         + ":"
                         + String.format("%02d", Integer.valueOf(getMeditationAssistant().getPrefs().getString("timerMinutes", "15"))));
             } else if (getMeditationAssistant().getTimerMode().equals("endat")) {
-                txtTimerLayoutParams.setMargins(0, -25, 0, -11);
-                layEditDurationLayoutParams.setMargins(0, -50, 0, -11);
                 txtTimer.setText(getMeditationAssistant().getPrefs().getString("timerHoursEndAt", "0")
                         + ":"
                         + String.format("%02d", Integer.valueOf(getMeditationAssistant().getPrefs().getString("timerMinutesEndAt", "0"))));
                 txtDurationSeconds.setText(getString(R.string.endAt).toLowerCase());
             } else {
-                txtTimerLayoutParams.setMargins(0, 0, 0, 0);
-                layEditDurationLayoutParams.setMargins(0, 0, 0, 0);
                 txtTimer.setText(getString(R.string.ignore_om));
             }
         }
@@ -2293,6 +2268,10 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             getMeditationAssistant().setAlphaCompat(txtDurationSeconds, 0f);
         } else {
             getMeditationAssistant().setAlphaCompat(txtDurationSeconds, 1f);
+        }
+
+        if (txtTimer.getText().equals(getString(R.string.ignore_om))) {
+            txtTimerLayoutParams.setMargins(0, 25, 0, -11);
         }
 
         txtTimer.setLayoutParams(txtTimerLayoutParams);
