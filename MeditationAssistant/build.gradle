@@ -50,21 +50,18 @@ android {
         release {
             debuggable false
             jniDebuggable false
-
             minifyEnabled true
-            proguardFile file('proguard-project.txt')
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
     productFlavors {
         free {
             applicationId "sh.ftp.rocketninelabs.meditationassistant"
-            apply plugin: 'com.google.gms.google-services'
         }
 
         full {
             applicationId "sh.ftp.rocketninelabs.meditationassistant.full"
-            apply plugin: 'com.google.gms.google-services'
         }
 
         opensource {
@@ -77,7 +74,6 @@ android {
 
 dependencies {
     compile 'com.android.support:support-v4:23.1.0'
-
     freeCompile 'com.google.android.gms:play-services-base:8.3.0'
     fullCompile 'com.google.android.gms:play-services-base:8.3.0'
     freeCompile 'com.google.android.gms:play-services-identity:8.3.0'
@@ -92,12 +88,10 @@ dependencies {
     fullCompile 'com.google.android.gms:play-services-appinvite:8.3.0'
     freeCompile 'com.google.android.gms:play-services-fitness:8.3.0'
     fullCompile 'com.google.android.gms:play-services-fitness:8.3.0'
-
     //noinspection GradleDynamicVersion
     compile 'ch.acra:acra:4.7.0-RC.1'
     compile 'com.github.amlcurran.showcaseview:library:5.0.0'
     compile 'com.nononsenseapps:filepicker:2.4.2'
-
     //wearApp project(':MeditationAssistantWear')
     // TODO: Uncomment when Wear app is ready
     compile 'com.android.support:recyclerview-v7:23.1.0'

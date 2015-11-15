@@ -48,7 +48,7 @@ public class UtilityMA {
         if (!mTrackers.containsKey(trackerId)) {
             GoogleAnalytics analytics = GoogleAnalytics.getInstance(activity);
             Tracker t = analytics.newTracker(R.xml.analytics_tracker);
-            tracker.set(Fields.customDimension(1), getMeditationAssistant().getMarketName());
+            t.set("Market", getMeditationAssistant().getMarketName());
             mTrackers.put(trackerId, t);
         }
         return mTrackers.get(trackerId);

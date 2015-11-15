@@ -1,5 +1,8 @@
 -verbose
 
+-keep class com.google.android.gms.** { *; }
+-dontwarn com.google.android.gms.**
+
 # Begin optimizeproguard-optimize.txt:
 
 -optimizations !code/simplification/cast,!field/*,!class/merging/*

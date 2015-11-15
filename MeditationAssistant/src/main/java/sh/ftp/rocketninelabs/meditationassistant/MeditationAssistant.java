@@ -173,16 +173,12 @@ public class MeditationAssistant extends Application {
 
     public void askToRateApp() {
         if (getMarketName().equals("bb")) {
+            String bbID = BuildConfig.FLAVOR.equals("free") ? "59939924" : "59939922";
             try {
-                startActivity(new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("appworld://content/" + (getApplicationContext().getPackageName().equals("sh.ftp.rocketninelabs.meditationassistant") ? "59939924" : "59939922"))
-                ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("appworld://content/" + bbID)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             } catch (ActivityNotFoundException e) {
-                Log.d("MeditationAssistant", "Couldn't open play store");
-                startActivity(new Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("appworld://content/" + (getApplicationContext().getPackageName().equals("sh.ftp.rocketninelabs.meditationassistant") ? "59939924" : "59939922"))
-                ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                Log.d("MeditationAssistant", "Couldn't open BlackBerry App World");
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://appworld.blackberry.com/webstore/content/" + bbID + "/")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             }
         } else if (getMarketName().equals("google")) {
             try {
