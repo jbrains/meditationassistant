@@ -89,9 +89,9 @@ dependencies {
     freeCompile 'com.google.android.gms:play-services-fitness:8.3.0'
     fullCompile 'com.google.android.gms:play-services-fitness:8.3.0'
     //noinspection GradleDynamicVersion
-    compile 'ch.acra:acra:4.7.0-RC.1'
-    compile 'com.github.amlcurran.showcaseview:library:5.0.0'
-    compile 'com.nononsenseapps:filepicker:2.4.2'
+    compile 'ch.acra:acra:4.7.0-RC.2'
+    compile 'com.github.amlcurran.showcaseview:library:5.3.0'
+    compile 'com.nononsenseapps:filepicker:2.5.0'
     //wearApp project(':MeditationAssistantWear')
     // TODO: Uncomment when Wear app is ready
     compile 'com.android.support:recyclerview-v7:23.1.1'
