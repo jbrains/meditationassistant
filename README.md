@@ -31,6 +31,8 @@ Translate
 ------------
 Please do not submit translations as pull requests.  Instead, visit [Get Localization](http://www.getlocalization.com/meditationassistant/) and use their interface.
 
+Once translations have been submitted, please igore the voting options.  All translated strings are eligible for inclusion regardless of their vote status.
+
 
 Contribute
 ------------
