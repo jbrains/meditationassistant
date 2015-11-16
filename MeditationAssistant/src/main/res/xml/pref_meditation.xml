@@ -54,4 +54,11 @@
         android:summary=""
         android:title="@string/pref_progresstab"/>
 
+    <MultiSelectListPreference
+        android:entries="@array/mainbuttons"
+        android:entryValues="@array/mainbuttons_values"
+        android:key="pref_mainbuttons"
+        android:summary=""
+        android:title="@string/pref_mainbuttons"/>
+
 </PreferenceScreen>

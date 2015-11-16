@@ -200,6 +200,7 @@
                                 android:background="?android:attr/listDivider"/>
 
                             <LinearLayout
+                                android:id="@+id/layMainControls"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentBottom="false"
@@ -220,6 +221,7 @@
                                     android:textAppearance="?android:attr/textAppearanceSmall"/>
 
                                 <View
+                                    android:id="@+id/divMainControlsInner"
                                     android:layout_width="1dp"
                                     android:layout_height="fill_parent"
                                     android:layout_marginBottom="7dp"

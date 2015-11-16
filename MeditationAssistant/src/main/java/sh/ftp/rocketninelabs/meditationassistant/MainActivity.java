@@ -25,7 +25,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -50,6 +49,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.Random;
 import java.util.Set;
@@ -234,6 +234,47 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             Log.d("MeditationAssistant", "New instance of MediNET created");
         } else {
             getMeditationAssistant().getMediNET().activity = this;
+        }
+
+        Set<String> hideMainButtons = getMeditationAssistant().getPrefs().getStringSet("pref_mainbuttons", null);
+        if (hideMainButtons != null) {
+            Boolean hidProgress = false;
+            Boolean hidCommunity = false;
+
+            for (Iterator<String> preseti = hideMainButtons.iterator(); preseti.hasNext(); ) {
+                String hideButton = preseti.next();
+                if (hideButton.equals("medinet")) {
+                    View divStreakUpper = findViewById(R.id.divstreakUpper);
+                    Button btnMeditationStreak = (Button) findViewById(R.id.btnMeditationStreak);
+                    divStreakUpper.setVisibility(View.GONE);
+                    btnMeditationStreak.setVisibility(View.GONE);
+                } else if (hideButton.equals("progress")) {
+                    Button btnProgress = (Button) findViewById(R.id.btnProgress);
+                    btnProgress.setVisibility(View.GONE);
+
+                    hidProgress = true;
+                } else if (hideButton.equals("community")) {
+                    Button btnCommunity = (Button) findViewById(R.id.btnCommunity);
+                    btnCommunity.setVisibility(View.GONE);
+
+                    hidCommunity = true;
+                }
+            }
+
+            if (hidProgress && hidCommunity) {
+                View divMainControls = findViewById(R.id.divMainControls);
+                LinearLayout layMainControls = (LinearLayout) findViewById(R.id.layMainControls);
+                divMainControls.setVisibility(View.GONE);
+                layMainControls.setVisibility(View.GONE);
+            } else if (hidProgress || hidCommunity) {
+                View divMainControlsInner = findViewById(R.id.divMainControlsInner);
+                divMainControlsInner.setVisibility(View.GONE);
+
+                Button unchangedButton = (Button) findViewById(hidProgress ? R.id.btnCommunity : R.id.btnProgress);
+                LinearLayout.LayoutParams unchangedButtonLayoutParams = (LinearLayout.LayoutParams) unchangedButton.getLayoutParams();
+                unchangedButtonLayoutParams.weight = 1;
+                unchangedButton.setLayoutParams(unchangedButtonLayoutParams);
+            }
         }
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);

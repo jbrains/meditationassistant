@@ -46,6 +46,16 @@
         <item>Temple bell</item>
         <item>Three Tinsha</item>
     </string-array>
+    <string-array name="mainbuttons_values">
+        <item>medinet</item>
+        <item>progress</item>
+        <item>community</item>
+    </string-array>
+    <string-array name="mainbuttons">
+        <item>@string/signInToMediNET</item>
+        <item>@string/progress</item>
+        <item>@string/community</item>
+    </string-array>
     <string-array name="progresstabs_values">
         <item>sessions</item>
         <item>calendar</item>

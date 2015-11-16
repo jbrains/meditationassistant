@@ -136,6 +136,7 @@
 
     <string name="settings">Settings</string>
     <string name="disabled">Disabled</string>
+    <string name="none">None</string>
     <string name="noSpecialBehavior">No special behavior</string>
     <string name="noSound">No sound</string>
     <string name="customSound">Custom sound</string>
@@ -176,6 +177,7 @@
     <string name="pref_usetimepicker_summary">Use hour and minute sliders when changing duration</string>
     <string name="pref_askdismiss">Ask before discard</string>
     <string name="pref_askdismiss_summary">Confirm before discarding a session</string>
+    <string name="pref_mainbuttons">Hide buttons</string>
     <string name="pref_progresstab">Default Progress tab</string>
     <string name="importsessions">Import sessions</string>
     <string name="importsessions_summary">Retrieve uploaded sessions</string>
@@ -188,8 +190,7 @@
     <string name="normal">Normal</string>
     <string name="large">Large</string>
     <string name="extralarge">Extra-large</string>
-    <string name="restartAppApplyTheme">Restart application to apply new theme</string>
-    <string name="restartAppApplyTimePicker">Restart application to use alternative duration interface</string>
+    <string name="restartApp">Restart application to apply new settings</string>
     <string name="pref_notificationcontrol">Ringtone and notifications</string>
     <string name="pref_notificationcontrol_vibrate">Set to vibrate</string>
     <string name="pref_notificationcontrol_silent">Set to silent</string>

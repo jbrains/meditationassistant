@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
+import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
@@ -37,6 +38,7 @@ public class SettingsActivity extends PreferenceActivity {
     private static final boolean FORCE_TABLET_VIEW = false; // Useful when debugging
 
     public Boolean initialTimePickerChange = true;
+    public Boolean initialMainButtonsChange = true;
     public Boolean initialSoundChangeStart = true;
     public Boolean initialSoundChangeInterval = true;
     public Boolean initialSoundChangeFinish = true;
@@ -62,7 +64,7 @@ public class SettingsActivity extends PreferenceActivity {
                     sendBroadcast(intent);
                 } else if (preference.getKey().equals("pref_usetimepicker")) {
                     if (!initialTimePickerChange) {
-                        Toast.makeText(SettingsActivity.this, getString(R.string.restartAppApplyTimePicker), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SettingsActivity.this, getString(R.string.restartApp), Toast.LENGTH_SHORT).show();
                     }
                     initialTimePickerChange = false;
                 }
@@ -75,13 +77,20 @@ public class SettingsActivity extends PreferenceActivity {
                 stringValue = value.toString();
             }
 
-            if (preference.getKey().equals("pref_presetsettings")) {
+            if (preference instanceof MultiSelectListPreference) {
+                if (preference.getKey().equals("pref_mainbuttons")) {
+                    if (!initialMainButtonsChange) {
+                        Toast.makeText(SettingsActivity.this, getString(R.string.restartApp), Toast.LENGTH_SHORT).show();
+                    }
+                    initialMainButtonsChange = false;
+                }
+
                 HashSet<String> presetSettings = (HashSet<String>) value;
                 if (presetSettings.size() == 0) {
-                    preference.setSummary(getString(R.string.disabled));
+                    preference.setSummary(getString(preference.getKey().equals("pref_presetsettings") ? R.string.disabled : R.string.none));
                 } else {
-                    List<String> presetsettings = Arrays.asList(getResources().getStringArray(R.array.presetsettings));
-                    List<String> presetsettings_values = Arrays.asList(getResources().getStringArray(R.array.presetsettings_values));
+                    List<String> presetsettings = Arrays.asList(getResources().getStringArray(preference.getKey().equals("pref_presetsettings") ? R.array.presetsettings : R.array.mainbuttons));
+                    List<String> presetsettings_values = Arrays.asList(getResources().getStringArray(preference.getKey().equals("pref_presetsettings") ? R.array.presetsettings_values : R.array.mainbuttons_values));
 
                     String presetsummary = "";
 
@@ -112,7 +121,7 @@ public class SettingsActivity extends PreferenceActivity {
 
                 if (listPreference.getKey().equals("pref_theme")) {
                     if (!getMeditationAssistant().getPrefs().getString(listPreference.getKey(), "dark").equals(stringValue)) {
-                        Toast.makeText(SettingsActivity.this, getString(R.string.restartAppApplyTheme), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SettingsActivity.this, getString(R.string.restartApp), Toast.LENGTH_SHORT).show();
                     }
                 } else if (listPreference.getKey().equals("pref_meditation_sound_start")) {
                     if (stringValue.equals("custom")) {
@@ -409,9 +418,10 @@ public class SettingsActivity extends PreferenceActivity {
             }
 
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_usetimepicker") : preferenceFragment.findPreference("pref_usetimepicker"));
+            bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_screencontrol") : preferenceFragment.findPreference("pref_screencontrol"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_text_size") : preferenceFragment.findPreference("pref_text_size"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_progresstab") : preferenceFragment.findPreference("pref_progresstab"));
-            bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_screencontrol") : preferenceFragment.findPreference("pref_screencontrol"));
+            bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_mainbuttons") : preferenceFragment.findPreference("pref_mainbuttons"));
         }
         if (pref_type.equals("all") || pref_type.equals("medinet")) {
             if (preferenceFragment != null) {
@@ -567,6 +577,8 @@ public class SettingsActivity extends PreferenceActivity {
         } else if (preference.getKey().equals("pref_presetsettings")) {
             sBindPreferenceSummaryToValueListener.onPreferenceChange(preference, getMeditationAssistant().getPrefs().getStringSet("pref_presetsettings", new HashSet<String>(Arrays.asList(getResources().getStringArray(R.array.presetsettings_default))))
             );
+        } else if (preference.getKey().equals("pref_mainbuttons")) {
+            sBindPreferenceSummaryToValueListener.onPreferenceChange(preference, getMeditationAssistant().getPrefs().getStringSet("pref_mainbuttons", new HashSet<String>()));
         } else {
             sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
                     getMeditationAssistant().getPrefs()
