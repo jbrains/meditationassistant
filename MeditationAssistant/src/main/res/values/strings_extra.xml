@@ -16,10 +16,6 @@
     <string name="aol">America OnLine</string>
     <string name="openID">OpenID</string>
 
-    <string name="buddhism">Buddhism</string>
-
-    <string name="totalTimeSpentMeditating">Total time spent meditating</string>
-
     <string name="helpUpgradeDelayInterval">Due to an application upgrade, the session delay and interval duration preferences have been reverted to their default values.  If you had previously made changes to these preferences, please open the Settings window now, and re-enter your desired values.</string>
 
     <!-- @hide DO NOT TRANSLATE. Separator between the hour and minute elements in a TimePicker widget -->

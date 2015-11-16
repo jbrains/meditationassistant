@@ -95,6 +95,7 @@
     <!-- Progress -->
     <string name="calendar">Calendar</string>
     <string name="statistics">Statistics</string>
+    <string name="totalTimeSpentMeditating">Total time spent meditating</string>
     <string name="dayMondayShort">Mon</string>
     <string name="dayTuesdayShort">Tue</string>
     <string name="dayWednesdayShort">Wed</string>
@@ -168,6 +169,7 @@
     <string name="pref_theme_light">Light</string>
     <string name="pref_theme_lightdark">Light with dark action bar</string>
     <string name="pref_theme_dark">Dark</string>
+    <string name="buddhism">Buddhism</string>
     <string name="pref_notification">Notification</string>
     <string name="pref_notification_summary">Shown during meditation while away from the main window</string>
     <string name="pref_usetimepicker">Alternative duration interface</string>
