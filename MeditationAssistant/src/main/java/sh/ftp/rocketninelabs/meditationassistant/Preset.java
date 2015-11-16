@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 public class Preset {
     public String modeandduration = "";
+    public String introduction = "";
     public String delay = "";
     public String startsound = "";
     public String startsoundcustom = "";
@@ -22,6 +23,7 @@ public class Preset {
         JSONObject jobj = new JSONObject();
         try {
             jobj.put("modeandduration", modeandduration);
+            jobj.put("introduction", introduction);
             jobj.put("delay", delay);
             jobj.put("startsound", startsound);
             jobj.put("startsoundcustom", startsoundcustom);

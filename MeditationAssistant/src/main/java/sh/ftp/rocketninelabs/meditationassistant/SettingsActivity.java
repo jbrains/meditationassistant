@@ -240,6 +240,12 @@ public class SettingsActivity extends PreferenceActivity {
                         prefIntervalCount.setEnabled(!isDisabled);
                     }
                 }
+            } else if (preference instanceof EditTextPreference) {
+                String reminderText = getString(preference.getKey().equals("pref_daily_reminder_text") ? R.string.reminderText : R.string.ignore_introphrase);
+                if (stringValue != null && (preference.getKey().equals("pref_sessionintro") || !String.valueOf(stringValue).trim().equals(""))) {
+                    reminderText = String.valueOf(stringValue).trim();
+                }
+                preference.setSummary(reminderText);
             } else if (preference.getKey().equals("pref_interval_count")) {
                 if (stringValue == null || String.valueOf(stringValue).trim().equals("")) {
                     stringValue = "0";
@@ -252,12 +258,6 @@ public class SettingsActivity extends PreferenceActivity {
                             String.valueOf(Integer.valueOf(stringValue))
                     ));
                 }
-            } else if (preference.getKey().equals("pref_daily_reminder_text")) {
-                String reminderText = getString(R.string.reminderText);
-                if (stringValue != null && !String.valueOf(stringValue).trim().equals("")) {
-                    reminderText = String.valueOf(stringValue).trim();
-                }
-                preference.setSummary(reminderText);
             } else {
                 // For all other preferences, set the summary to the value's
                 // simple string representation.
@@ -394,6 +394,7 @@ public class SettingsActivity extends PreferenceActivity {
                 sessionPreferenceFragment = (SessionPreferenceFragment) preferenceFragment;
             }
 
+            bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_sessionintro") : preferenceFragment.findPreference("pref_sessionintro"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_session_delay") : preferenceFragment.findPreference("pref_session_delay"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_meditation_sound_start") : preferenceFragment.findPreference("pref_meditation_sound_start"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_meditation_sound_interval") : preferenceFragment.findPreference("pref_meditation_sound_interval"));

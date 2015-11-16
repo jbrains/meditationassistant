@@ -68,6 +68,7 @@
     <string name="sessionDeleteEverywhere">Delete everywhere</string>
     <string name="sessionDeleteLocally">Delete locally</string>
     <string name="sessionDeleteMediNET">Delete on MediNET</string>
+    <string name="pref_sessionintro">Introduction</string>
     <string name="presetsettings">Preset settings</string>
     <string name="modeandduration">Mode and duration</string>
 

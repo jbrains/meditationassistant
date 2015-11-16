@@ -3,6 +3,7 @@
 
     <string name="ignore_om">ॐ</string>
     <string name="ignore_omkara">ओ३म्</string>
+    <string name="ignore_introphrase">om mani padme hum</string>
 
     <string name="byTrevorSlocum">Trevor Slocum</string>
     <string name="availableForHire">Available for Hire</string>

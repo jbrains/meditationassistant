@@ -164,13 +164,6 @@ public class MeditationAssistant extends Application {
         }
     }
 
-    public String[] getStartPhrases() {
-        String[] start_phrases = {"om tat sat", "om mani padme hum"};
-        // start_phrases.add("namo akasagarbhaya om arya kamari mauli svaha");
-
-        return start_phrases;
-    }
-
     public void askToRateApp() {
         if (getMarketName().equals("bb")) {
             String bbID = BuildConfig.FLAVOR.equals("free") ? "59939924" : "59939922";

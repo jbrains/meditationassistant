@@ -104,6 +104,7 @@
     </string-array>
     <string-array name="presetsettings_values">
         <item>modeandduration</item>
+        <item>introduction</item>
         <item>delay</item>
         <item>startsound</item>
         <item>intervalduration</item>
@@ -116,6 +117,7 @@
     </string-array>
     <string-array name="presetsettings">
         <item>@string/modeandduration</item>
+        <item>@string/pref_sessionintro</item>
         <item>@string/pref_delay</item>
         <item>@string/pref_meditation_sound_start</item>
         <item>@string/pref_interval</item>

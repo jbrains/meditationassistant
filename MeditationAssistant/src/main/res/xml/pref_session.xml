@@ -5,6 +5,14 @@
         android:key="pref_cat_session"
         android:title="@string/session"/>
 
+    <EditTextPreference
+        android:icon="?attr/actionIconViewAsList"
+        android:dialogIcon="?attr/actionIconViewAsList"
+        android:defaultValue="@string/ignore_introphrase"
+        android:key="pref_sessionintro"
+        android:summary=""
+        android:title="@string/pref_sessionintro"/>
+
     <sh.ftp.rocketninelabs.meditationassistant.TimePreference
         android:defaultValue="00:15"
         android:dialogIcon="?attr/actionIconTime"

@@ -51,7 +51,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
-import java.util.Random;
 import java.util.Set;
 
 public class MainActivity extends Activity implements OnShowcaseEventListener {
@@ -241,8 +240,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             Boolean hidProgress = false;
             Boolean hidCommunity = false;
 
-            for (Iterator<String> preseti = hideMainButtons.iterator(); preseti.hasNext(); ) {
-                String hideButton = preseti.next();
+            for (Iterator<String> hidebtni = hideMainButtons.iterator(); hidebtni.hasNext(); ) {
+                String hideButton = hidebtni.next();
                 if (hideButton.equals("medinet")) {
                     View divStreakUpper = findViewById(R.id.divstreakUpper);
                     Button btnMeditationStreak = (Button) findViewById(R.id.btnMeditationStreak);
@@ -1024,6 +1023,11 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                     }
                 }
 
+                // Introduction
+                if (presetSettings.contains("introduction") && preset.has("introduction")) {
+                    getMeditationAssistant().getPrefs().edit().putString("pref_sessionintro", preset.getString("introduction")).apply();
+                }
+
                 // Delay
                 if (presetSettings.contains("delay")) {
                     getMeditationAssistant().getPrefs().edit().putString("pref_session_delay", preset.getString("delay")).apply();
@@ -1142,6 +1146,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             }
         }
 
+        preset.introduction = getMeditationAssistant().getPrefs().getString("pref_sessionintro", getString(R.string.ignore_introphrase));
         preset.delay = getMeditationAssistant().getPrefs().getString("pref_session_delay", "00:15");
         preset.startsound = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_start", "");
         preset.startsoundcustom = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_start_custom", "");
@@ -1389,9 +1394,10 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         updateMeditate(true, false);
         Log.d("MeditationAssistant", "Starting runnable from startMeditate");
 
-        Random rand = new Random();
-        getMeditationAssistant().shortToast(
-                getMeditationAssistant().getStartPhrases()[rand.nextInt(getMeditationAssistant().getStartPhrases().length)]);
+        String sessionIntro = getMeditationAssistant().getPrefs().getString("pref_sessionintro", getString(R.string.ignore_introphrase));
+        if (!sessionIntro.equals("")) {
+            getMeditationAssistant().shortToast(sessionIntro);
+        }
 
         meditateRunnable = new Runnable() {
             @Override
