@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="appName">瞑想アシスタント フリー</string>
+    <string name="appNameShort">瞑想アシスタント</string>
+    <string name="about">ｱﾌﾟﾘについて</string>
+    <string name="yes">はい</string>
+    <string name="no">いいえ</string>
+    <string name="delete">削除</string>
+    <string name="sessions">セッション</string>
+    <string name="community">コミュニティ</string>
+    <string name="forum">フォーラム</string>
+    <string name="rate">評価</string>
+    <string name="refresh">更新</string>
+    <string name="page">ページ</string>
+    <string name="back">戻る</string>
+    <string name="forward">進む</string>
+    <string name="account">アカウント</string>
+    <string name="groups">グループ</string>
+    <string name="announcement">アナウンス</string>
+
+    <!-- Main Activity -->
+    <string name="timer">タイマー</string>
+    <string name="timerHelp">タイマーは現在15分に設定されています。継続時間や、一日の終わりの時間を変更したり、完全にアラームを無効にすることができます。これらのオプションを表示するには、タイマーをタップしてください。</string>
+    <string name="settingsHelp">このアプリケーションは、自動的にデバイスをサイレントにしたり、毎日瞑想するためのリマインダーを提供するなど、多くの機能とカスタマイズが含まれています。これらのオプションを表示するには、設定アイコンをタップしてください。</string>
+    <string name="medinetHelp">オンラインセッションを保存するには、MediNETにサインインしてください。あなたのデータが失われた場合は、セッションを後でインポートすることができます。この機能は完全にオプションで、セッションをローカルに保存する操作を妨げるものではありません。\n\nこれで、チュートリアルを終了します。瞑想アシスタントがあなたの訓練に役立つことを願っています。</string>
+    <string name="cancel">キャンセル</string>
+    <string name="set">設定</string>
+    <string name="confirm">確認</string>
+    <string name="meditate">瞑想</string>
+    <string name="tapToSkip">スキップ</string>
+    <string name="pause">一時停止</string>
+    <string name="end">終了</string>
+    <string name="pauseOrEnd">一時停止または終了</string>
+    <string name="resumeOrEnd">再開または終了</string>
+    <string name="pausedNotification">セッションを一時停止しました。長押しすると終了します</string>
+    <string name="mediNETConnecting">接続中…</string>
+    <string name="mediNETConnected">MediNET に接続しました</string>
+    <string name="sessionInProgress">セッションは進行中です</string>
+    <string name="progress">進行状況</string>
+    <string name="setPreset">プリセットに設定</string>
+    <string name="setPresetHint">長押しするとプリセットに設定します</string>
+    <string name="setPresetTip">歯車のアイコン (設定) をタップして、復元する設定を選択してください。その後、プリセットの設定をタップしてください。</string>
+    <string name="setPresetHintBlank">継続時間 (または終了時間) を入力して、プリセットを設定します</string>
+    <string name="label">ラベル</string>
+    <string name="setTimerDurationHint">正しい継続時間を入力してください (例 0:22)</string>
+    <string name="setTimerEndAtHint">正しい時間を入力してください (例 4:20)</string>
+    <string name="invalidEndAt">セッション終了時間が正しくありません</string>
+    <string name="timed">時間を指定</string>
+    <string name="endAt">終了時間</string>
+    <string name="untimed">時間指定なし</string>
+    <string name="unlimited">無制限</string>
+    <string name="presetLabelEndAt">終了 %s</string>
+
+    <!-- About -->
+    <string name="tapToSendEmail">任意の場所をタップするとフィードバックを送信します</string>
+    <string name="sendEmail">メールを送信</string>
+    <string name="version">バージョン %s</string>
+    <string name="translate">翻訳</string>
+    
+    <string name="howToMeditate">瞑想の方法</string>
+    <string name="share">共有</string>
+
+    <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
+    <string name="invitationBlurb">瞑想アシスタントは、完全な機能を備えた、あなたの訓練の仲間です。</string>
+
+    <!-- Sessions -->
+    <string name="session">セッション</string>
+    <string name="sessionDeleteEverywhere">どちらも削除</string>
+    <string name="sessionDeleteLocally">ローカルを削除</string>
+    <string name="sessionDeleteMediNET">MediNET 上を削除</string>
+    
+    <string name="presetsettings">プリセット設定</string>
+    <string name="modeandduration">モードと継続時間</string>
+
+    <!-- Session complete -->
+    <string name="sessioncomplete">セッションが完了しました</string>
+    <string name="sessionMessagePlaceholder">メッセージ</string>
+    <string name="askDiscardText">セッションを破棄しますか?</string>
+    <string name="shareSessionText">私は %2$s と %1$s の瞑想します。</string>
+    <string name="aMoment">一瞬</string>
+    <string name="shareSessionSubject">瞑想セッション</string>
+    <string name="sessionPosting">セッションを投稿中…</string>
+    <string name="sessionPosted">セッションを MediNET に投稿しました</string>
+    <string name="sessionAlreadyPosted">セッションは既に投稿済です</string>
+    <string name="sessionNotPosted">セッションを投稿できません</string>
+    <string name="sessionNotPostedMeditating">瞑想中はセッションを投稿できません</string>
+    <string name="sessionSaved">セッションを保存しました</string>
+    <string name="sessionDeletedLocally">ローカルのセッションを削除しました</string>
+
+    <!-- Sign In -->
+    <string name="signInWith">サインイン…</string>
+    <string name="signInWithProvider">%s でサインイン…</string>
+    <string name="signInWithOpenID">OpenID - Facebook, Twitter, など.</string>
+    <string name="signInGoogleError">アカウントマネージャーを使用して認証することができません。このエラーが解決しない場合はOpenIDをお試しください。</string>
+
+    <!-- Progress -->
+    <string name="calendar">カレンダー</string>
+    <string name="statistics">統計</string>
+    
+    <string name="dayMondayShort">月</string>
+    <string name="dayTuesdayShort">火</string>
+    <string name="dayWednesdayShort">水</string>
+    <string name="dayThursdayShort">木</string>
+    <string name="dayFridayShort">金</string>
+    <string name="daySaturdayShort">土</string>
+    <string name="daySundayShort">日</string>
+    <string name="addSession">セッションを追加</string>
+    <string name="add">追加</string>
+    <string name="sessionStartedAt">開始 %s</string>
+    <string name="started">開始しました</string>
+    <string name="completed">完了しました</string>
+    <string name="setDate">日付を設定</string>
+    <string name="setTime">時間を設定</string>
+    <string name="invalidDateOrTime">日付または時間が正しくありません</string>
+    <string name="addSessionMeditating">瞑想中はセッションを追加できません</string>
+    <string name="addSessionExists">セッションは既に存在します</string>
+
+    <string name="days">日</string>
+    <string name="hours">時間</string>
+    <string name="minutes">分</string>
+    <string name="totalSessions">合計セッション</string>
+    <string name="averageDuration">平均継続時間</string>
+    <string name="longestDuration">最長継続時間</string>
+    <string name="longestStreak">最長継続日数</string>
+
+    <string name="reminderText">時間はありますか?</string>
+
+    <!-- Settings -->
+    <string name="meditation">瞑想</string>
+    <string name="pref_vibrate">振動</string>
+    <string name="pref_vibrate_summary">瞑想の、始まり、インターバル、終わりに発生します</string>
+    <string name="pref_vibrate_reminder_summary">毎日のリマインダー、デバイスが振動します</string>
+    <string name="pref_sound_reminder">サウンドを再生</string>
+    <string name="pref_sound_reminder_summary">デフォルトの通知サウンドが再生されます</string>
+    <string name="pref_softfinish">エンドレスのセッション</string>
+    <string name="pref_softfinish_summary">タイマーの実行を続けます</string>
+
+    <string name="settings">設定</string>
+    <string name="disabled">無効</string>
+    
+    <string name="noSpecialBehavior">特別な動作を行わない</string>
+    <string name="noSound">サウンドなし</string>
+    <string name="customSound">カスタムサウンド</string>
+    <string name="keepScreenOn">画面をオンのままにする</string>
+    <string name="keepScreenOnAndDim">画面をオンのままにして減光する</string>
+    <string name="dimScreen">画面を減光する</string>
+    <string name="turnScreenOff">画面をオフにする</string>
+    <string name="pref_display_seconds">表示秒数</string>
+    <string name="pref_display_seconds_summary">メインタイマーの下に表示します</string>
+    <string name="pref_full_screen">全画面</string>
+    <string name="pref_full_screen_summary">全画面の間、ステータスバーは非表示になります</string>
+    <string name="pref_delay">遅延</string>
+    <string name="pref_interval">インターバル期間</string>
+    <string name="pref_interval_count">インターバル回数</string>
+    <string name="pref_autosignin_summary">開いたときに MediNET に接続します</string>
+    <string name="pref_autosignin">自動的に接続</string>
+    <string name="pref_rememberme_summary">閉じた後もサインインしたままにします</string>
+    <string name="pref_rememberme">忘れないで</string>
+    
+    
+    <string name="pref_screencontrol">画面</string>
+    <string name="pref_sendusage">使用状況を報告</string>
+    <string name="pref_sendusage_summary">Google Analytics を経由して匿名で報告します。再起動時に有効になります</string>
+    <string name="pref_showstreak">瞑想の継続日数を表示</string>
+    <string name="pref_showstreak_summary">少なくとも一つ記録されたセッションで、連続した日数</string>
+    <string name="selectSound">サウンドを選択</string>
+    <string name="pref_meditation_sound_start">開始サウンド</string>
+    <string name="pref_meditation_sound_interval">インターバル サウンド</string>
+    <string name="pref_meditation_sound_finish">完了サウンド</string>
+    <string name="pref_remembermessage">最後のメッセージを覚えておく</string>
+    <string name="pref_remembermessage_summary">最後に投稿したメッセージをデフォルトにします</string>
+    <string name="pref_theme">ホログラフィック テーマ</string>
+    <string name="pref_theme_light">ライト</string>
+    <string name="pref_theme_lightdark">ライト、ダークアクションバー</string>
+    <string name="pref_theme_dark">ダーク</string>
+    
+    <string name="pref_notification">通知</string>
+    <string name="pref_notification_summary">メインウィンドウから離れているとき、瞑想中に表示されます</string>
+    <string name="pref_usetimepicker">代替の期間インターフェイス</string>
+    <string name="pref_usetimepicker_summary">期間を変更するときに、時間と分のスライダーを使用します</string>
+    <string name="pref_askdismiss">破棄する前に確認</string>
+    <string name="pref_askdismiss_summary">セッションを破棄する前に確認します</string>
+    
+    <string name="pref_progresstab">デフォルトの進行状況タブ</string>
+    <string name="importsessions">セッションをインポート</string>
+    <string name="importsessions_summary">アップロード済のセッションを取得します</string>
+    <string name="uploadsessions">セッションをアップロード</string>
+    <string name="uploadsessions_summary">ローカルのセッションをアップロードします</string>
+    <string name="miscellaneous">その他</string>
+    <string name="pref_text_size">タイマー文字サイズ</string>
+    <string name="tiny">最小</string>
+    <string name="small">小</string>
+    <string name="normal">通常</string>
+    <string name="large">大</string>
+    <string name="extralarge">最大</string>
+    
+    <string name="pref_notificationcontrol">着信音と通知</string>
+    <string name="pref_notificationcontrol_vibrate">振動に設定</string>
+    <string name="pref_notificationcontrol_silent">サイレントに設定</string>
+    <string name="pref_daily_reminder">毎日のリマインダー</string>
+    <string name="pref_daily_reminder_title">覚えておく</string>
+    <string name="pref_daily_reminder_summary">今日セッションが記録されなかったとき、通知を表示します</string>
+    <string name="pref_daily_reminder_time">時間</string>
+    <string name="pref_daily_reminder_text">奨励するテキスト</string>
+    <string name="downloadingSessions">セッションのダウンロード中...</string>
+    <string name="uploadingSessions">セッションのアップロード中...</string>
+
+    <!-- MediNET -->
+    <string name="mediNET">MediNET</string>
+    <string name="unableToConnect">MediNET に接続できません</string>
+    <string name="dismiss">却下</string>
+    <string name="discard">破棄</string>
+    <string name="save">保存</string>
+    <string name="post">投稿</string>
+    <string name="importSessionsHint">設定の "セッションをインポート" をクリックして、見つからないセッションを取得してください</string>
+    <string name="importsessionstitle">セッションをインポートしますか?</string>
+    <string name="importsessionsmessage">以前のセッションがインポートされます。\n\nこのダイアログは再度表示されません。\n設定ウィンドウから、後でセッションをインポートすることができます。</string>
+    <string name="wordimport">インポート</string>
+    <string name="sessionDeletedMediNET">MediNET のセッションを削除しました</string>
+    <string name="sessionNotFoundMediNET">MediNET にセッションが見つかりません</string>
+    <string name="sessionNotProperAccount">正しいアカウントでサインインしていません</string>
+
+    <plurals name="numtimes">
+        <item quantity="one">%s 回</item>
+        <item quantity="other">%s 回</item>
+    </plurals>
+
+    <plurals name="sessionsImported">
+        <item quantity="one">%s セッションをインポートしました</item>
+        <item quantity="other">%s セッションをインポートしました</item>
+    </plurals>
+
+    <plurals name="sessionsUploaded">
+        <item quantity="one">%s セッションをアップロードしました</item>
+        <item quantity="other">%s セッションをアップロードしました</item>
+    </plurals>
+
+    <string name="sessionsNotImported">ローカルデータは最新です</string>
+    <string name="signInToImport">サインインしてセッションデータをインポート</string>
+
+    <plurals name="daysOfMeditationMinimal">
+        <item quantity="one">%d 日</item>
+        <item quantity="other">%d 日</item>
+    </plurals>
+    <plurals name="daysOfMeditation">
+        <item quantity="one">%d 日の瞑想</item>
+        <item quantity="other">%d 日の瞑想</item>
+    </plurals>
+    <plurals name="daysOfMeditationWithoutCount">
+        <item quantity="one">日の瞑想</item>
+        <item quantity="other">日の瞑想</item>
+    </plurals>
+
+    <string name="meditateToday">今日の瞑想</string>
+    <string name="signInToMediNET">MediNET にサインイン</string>
+    <string name="signOut">サインアウト</string>
+    <string name="signOutOfMediNET">MediNET のサインアウト</string>
+    <string name="signOutOfMediNETConfirmTitle">MediNET のサインアウトしますか?</string>
+    <string name="signOutOfMediNETConfirm">%s でサインインしています。</string>
+    <string name="rateMeditationAssistant">瞑想アシスタントを評価する</string>
+    <string name="rateMeditationAssistantText">このアプリケーションが瞑想の訓練に役立つことが分かった場合、評価を追加していただけませんか?\n\nこのアプリの有料バージョンは、広告が含まれておらず、ホーム画面ウィジェットを提供しています。できれば購入をご検討ください。\n\nこのダイアログは再度表示されません。</string>
+    <string name="translateMeditationAssistantText">他の言語に翻訳することによって、瞑想アシスタントがより広く利用者に届くように手伝っていただけませんか?\n\nオンラインインターフェイスを利用して、簡単に翻訳を行うことができます。後で、アプリについてのウインドウから翻訳をクリックすることで、翻訳Webページを訪問することができます。\n\nこのダイアログは再度表示されません。</string>
+
+    <!-- Widgets -->
+    <string name="widget1x1" tools:ignore="UnusedResources">瞑想アシスタント 1x1</string>
+    <string name="widget2x1" tools:ignore="UnusedResources">瞑想アシスタント 2x1</string>
+    <string name="widget3x1" tools:ignore="UnusedResources">瞑想アシスタント 3x1</string>
+
+</resources>

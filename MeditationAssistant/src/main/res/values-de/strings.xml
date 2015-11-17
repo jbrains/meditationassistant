@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-
+    <string name="appName">Meditation Assistant Free</string>
+    <string name="appNameShort">Meditation Assistant</string>
     <string name="about">Über</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
     <string name="delete">Löschen</string>
     <string name="sessions">Sitzungen</string>
-
+    <string name="community">Community</string>
     <string name="forum">Forum</string>
     <string name="rate">Bewerten</string>
     <string name="refresh">Aktualisieren</string>
@@ -19,50 +20,251 @@
     <string name="announcement">Ankündigung</string>
 
     <!-- Main Activity -->
-
-
+    <string name="timer">Timer</string>
+    <string name="timerHelp">Der Timer ist aktuell auf 15 Minuten gesetzt. Sie können die Dauer anpassen, zu einer definierten Zeit eines Tages beenden oder den Alarm komplett deaktivieren. Um diese Optionen zu sehen, tippen Sie den Timer an.</string>
+    <string name="settingsHelp">Diese Anwendung beinhaltet viele Funktionen und Anpassungsmöglichkeiten, wie z. B. automatisches Stummschalten des Gerätes und tägliche Erinnerungen an die Meditation. Tippen Sie das Einstellungssymbol an, um diese Optionen zu sehen.</string>
+    <string name="medinetHelp">Melden Sie sich bei MediNET an, um Ihre Sitzungen online zu speichern. Falls Sie später Ihre Daten verlieren sollten, können Sie sie wieder importieren. Diese Funktion ist komplett optional. Wenn Sie Ihre Sitzungen lokal speichern, werden Sie ansonsten keine Nachteile haben.\n\nHiermit ist das Tutorial abgeschlossen. Ich hoffe, dass Meditation Assistent Ihnen beim Praktizieren hilfreich ist. </string>
     <string name="cancel">Abbrechen</string>
     <string name="set">Einstellen</string>
     <string name="confirm">Bestätigen</string>
     <string name="meditate">Meditieren</string>
     <string name="tapToSkip">Überspringen</string>
-
-
+    <string name="pause">Pause</string>
+    <string name="end">Ende</string>
+    <string name="pauseOrEnd">Pause oder Ende</string>
+    <string name="resumeOrEnd">Fortsetzen oder Ende</string>
+    <string name="pausedNotification">Sitzung pausiert, halten zum Beenden</string>
     <string name="mediNETConnecting">Verbinde...</string>
     <string name="mediNETConnected">Mit MediNET verbunden</string>
-    <string name="sessionInProgress">Sitzung in gang</string>
+    <string name="sessionInProgress">Sitzung im Gang</string>
     <string name="progress">Fortschritt</string>
-    <string name="setPreset">Vorseinstellung setzen</string>
+    <string name="setPreset">Voreinstellung setzen</string>
     <string name="setPresetHint">Halten um Voreinstellung zu setzen</string>
-
+    <string name="setPresetTip">Wählen Sie aus, welche Einstellungen zurückgesetzt werden sollen, indem Sie das Zahnradsymbol (Einstellungen) antippen. Drücken Sie danach auf Voreinstellungen.</string>
+    <string name="setPresetHintBlank">Geben Sie eine Dauer (oder Endzeit) an um die Voreinstellung zu setzen</string>
+    <string name="label">Beschriftung</string>
+    <string name="setTimerDurationHint">Geben Sie eine gültige Dauer ein (z. B. 0:22)</string>
+    <string name="setTimerEndAtHint">Geben Sie eine gültige Zeit ein (z. B. 4:20)</string>
+    <string name="invalidEndAt">Ungültige Endzeit für Sitzung</string>
+    <string name="timed">Dauerbasiert</string>
+    <string name="endAt">Ende um</string>
+    <string name="untimed">Unbegrenzt</string>
+    <string name="unlimited">Unbegrenzt</string>
+    
 
     <!-- About -->
-
-
+    <string name="tapToSendEmail">Irgendwo tippen um Feedback zu senden</string>
+    <string name="sendEmail">E-Mail senden</string>
+    <string name="version">Version %s</string>
+    <string name="translate">Übersetzen</string>
+    
+    
     <string name="share">Teilen</string>
 
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
-
+    
 
     <!-- Sessions -->
-
+    <string name="session">Sitzung</string>
+    <string name="sessionDeleteEverywhere">Überall löschen</string>
+    <string name="sessionDeleteLocally">Lokal löschen</string>
+    <string name="sessionDeleteMediNET">Bei MediNET löschen</string>
+    
+    <string name="presetsettings">Voreinstellungen</string>
+    <string name="modeandduration">Modus und Dauer</string>
 
     <!-- Session complete -->
-
+    <string name="sessioncomplete">Sitzung beendet</string>
+    <string name="sessionMessagePlaceholder">Meldung</string>
+    <string name="askDiscardText">Sitzung verwerfen?</string>
+    
+    
+    <string name="shareSessionSubject">Meditationssitzung</string>
+    <string name="sessionPosting">Poste Sitzung...</string>
+    <string name="sessionPosted">Sitzung gepostet bei MediNET</string>
+    <string name="sessionAlreadyPosted">Sitzung bereits gepostet</string>
+    <string name="sessionNotPosted">Posten der Sitzung nicht möglich</string>
+    <string name="sessionNotPostedMeditating">Das Posten der Sitzung ist während der Meditation nicht möglich</string>
+    <string name="sessionSaved">Sitzung gespeichert</string>
+    <string name="sessionDeletedLocally">Sitzung lokal gelöscht</string>
 
     <!-- Sign In -->
-
+    <string name="signInWith">Anmelden mit ...</string>
+    <string name="signInWithProvider">Angemeldet mit %s ...</string>
+    <string name="signInWithOpenID">OpenID - Facebook, Twitter, etc.</string>
+    
 
     <!-- Progress -->
+    <string name="calendar">Kalender</string>
+    <string name="statistics">Statistiken</string>
+    
+    <string name="dayMondayShort">Mo</string>
+    <string name="dayTuesdayShort">Di</string>
+    <string name="dayWednesdayShort">Mi</string>
+    <string name="dayThursdayShort">Do</string>
+    <string name="dayFridayShort">Fr</string>
+    <string name="daySaturdayShort">Sa</string>
+    <string name="daySundayShort">So</string>
+    <string name="addSession">Sitzung hinzufügen</string>
+    <string name="add">Hinzuf.</string>
+    <string name="sessionStartedAt">Begonnen um %s</string>
+    <string name="started">Begonnen</string>
+    <string name="completed">Abgeschlossen</string>
+    <string name="setDate">Setze Datum</string>
+    <string name="setTime">Setze Zeit</string>
+    <string name="invalidDateOrTime">Ungültiges Datum oder Zeit</string>
+    
+    
 
+    <string name="days">Tage</string>
+    <string name="hours">Stunden</string>
+    <string name="minutes">Minuten</string>
+    <string name="totalSessions">Summe Sitzungen</string>
+    <string name="averageDuration">Durchschnittliche Dauer</string>
+    <string name="longestDuration">Längste Sitzung</string>
+    <string name="longestStreak">Längste Anzahl durchgängiger Tage</string>
+
+    <string name="reminderText">Hast du einen Moment Zeit?</string>
 
     <!-- Settings -->
+    <string name="meditation">Meditation</string>
+    <string name="pref_vibrate">Vibrieren</string>
+    
+    
+    <string name="pref_sound_reminder">Spiele Sound</string>
+    <string name="pref_sound_reminder_summary">Der Standard-Benachrichtigungssound wird gespielt werden</string>
+    <string name="pref_softfinish">Endlose Sitzung</string>
+    <string name="pref_softfinish_summary">Den Timer laufen lassen</string>
 
+    <string name="settings">Einstellungen</string>
+    <string name="disabled">Deaktiviert</string>
+    
+    <string name="noSpecialBehavior">Kein spezielles Verhalten</string>
+    <string name="noSound">Kein Sound</string>
+    <string name="customSound">Benutzerdefinierter Sound</string>
+    <string name="keepScreenOn">Bildschirm anlassen</string>
+    <string name="keepScreenOnAndDim">Bildschirm anlassen und dimmen</string>
+    <string name="dimScreen">Bildschirm dimmen</string>
+    <string name="turnScreenOff">Bildschirm abschalten</string>
+    <string name="pref_display_seconds">Sekunden anzeigen</string>
+    
+    <string name="pref_full_screen">Vollbild</string>
+    
+    <string name="pref_delay">Verzögerung</string>
+    
+    
+    
+    
+    
+    
+    
+    
+    <string name="pref_screencontrol">Bildschirm</string>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     <!-- MediNET -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
+    <plurals name="numtimes">
+        <item quantity="one">%s time</item>
+        <item quantity="other">%s times</item>
+    </plurals>
+
+    <plurals name="sessionsImported">
+        <item quantity="one">Imported %s session</item>
+        <item quantity="other">Imported %s sessions</item>
+    </plurals>
+
+    <plurals name="sessionsUploaded">
+        <item quantity="one">Uploaded %s session</item>
+        <item quantity="other">Uploaded %s sessions</item>
+    </plurals>
+
+    
+    
+
+    <plurals name="daysOfMeditationMinimal">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+    <plurals name="daysOfMeditation">
+        <item quantity="one">%d day of meditation</item>
+        <item quantity="other">%d days of meditation</item>
+    </plurals>
+    <plurals name="daysOfMeditationWithoutCount">
+        <item quantity="one">day of meditation</item>
+        <item quantity="other">days of meditation</item>
+    </plurals>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     <!-- Widgets -->
-
+    
+    
+    
 
 </resources>
