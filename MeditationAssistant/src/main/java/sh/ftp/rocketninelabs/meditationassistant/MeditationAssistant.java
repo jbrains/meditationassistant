@@ -14,7 +14,6 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -132,8 +131,8 @@ public class MeditationAssistant extends Application {
             } else if (BuildConfig.FLAVOR.equals("opensource")) {
                 marketName = "fdroid";
             } else { // To be uncommented based upon target market
-                marketName = "google";
-                //marketName = "amazon";
+                //marketName = "google";
+                marketName = "amazon";
                 //marketName = "getjar";
                 //marketName = "slideme";
             }
@@ -177,41 +176,11 @@ public class MeditationAssistant extends Application {
 
     public void askToRateApp() {
         if (getMarketName().equals("bb")) {
-            String bbID = BuildConfig.FLAVOR.equals("free") ? "59939924" : "59939922";
-            try {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("appworld://content/" + bbID)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-            } catch (ActivityNotFoundException e) {
-                Log.d("MeditationAssistant", "Couldn't open BlackBerry App World");
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://appworld.blackberry.com/webstore/content/" + bbID + "/")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-            }
+            startActivity(Intent.createChooser(new Intent(Intent.ACTION_VIEW, Uri.parse("https://appworld.blackberry.com/webstore/content/" + (BuildConfig.FLAVOR.equals("free") ? "59939924" : "59939922") + "/")), getString(R.string.openWith)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         } else if (getMarketName().equals("google")) {
-            try {
-                startActivity(new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("market://details?id="
-                                + getApplicationContext().getPackageName())
-                ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-            } catch (ActivityNotFoundException e) {
-                Log.d("MeditationAssistant", "Couldn't open play store");
-                startActivity(new Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("http://play.google.com/store/apps/details?id="
-                                + getApplicationContext().getPackageName())
-                ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-            }
+            startActivity(Intent.createChooser(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName())), getString(R.string.openWith)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         } else if (getMarketName().equals("amazon")) {
-            try {
-                startActivity(new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("amzn://apps/android?p="
-                                + getApplicationContext().getPackageName())
-                ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-            } catch (ActivityNotFoundException e) {
-                Log.d("MeditationAssistant", "Couldn't open amazon store");
-                startActivity(new Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("http://www.amazon.com/gp/mas/dl/android?p="
-                                + getApplicationContext().getPackageName())
-                ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-            }
+            startActivity(Intent.createChooser(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.amazon.com/gp/mas/dl/android?p=" + getApplicationContext().getPackageName())), getString(R.string.openWith)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }
     }
 

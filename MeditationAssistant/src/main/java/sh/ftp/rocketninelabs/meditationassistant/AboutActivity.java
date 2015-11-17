@@ -1,6 +1,8 @@
 package sh.ftp.rocketninelabs.meditationassistant;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -36,10 +38,8 @@ public class AboutActivity extends Activity {
         if (BuildConfig.FLAVOR.equals("free")) {
             txtAboutAppName.setText(getString(R.string.appName));
 
-            View divDonate = findViewById(R.id.divDonate);
             Button btnDonate = (Button) findViewById(R.id.btnDonate);
-            divDonate.setVisibility(View.GONE);
-            btnDonate.setVisibility(View.GONE);
+            btnDonate.setText(getString(R.string.removeAds));
         } else {
             txtAboutAppName.setText(getString(R.string.appNameShort));
         }
@@ -151,9 +151,49 @@ public class AboutActivity extends Activity {
     }
 
     public void openDonate(View view) {
-        startActivity(new Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse("http://medinet.ftp.sh/donate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        if (BuildConfig.FLAVOR.equals("free")) {
+            AlertDialog removeAdsDialog = new AlertDialog.Builder(this)
+                    .setPositiveButton(R.string.ok,
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog,
+                                                    int id) {
+                                    if (getMeditationAssistant().getMarketName().equals("bb")) {
+                                        startActivity(Intent.createChooser(new Intent(Intent.ACTION_VIEW, Uri.parse("https://appworld.blackberry.com/webstore/content/59939922/")), getString(R.string.openWith)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                                    } else if (getMeditationAssistant().getMarketName().equals("google")) {
+                                        startActivity(Intent.createChooser(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=sh.ftp.rocketninelabs.meditationassistant.full")), getString(R.string.openWith)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                                    } else if (getMeditationAssistant().getMarketName().equals("amazon")) {
+                                        startActivity(Intent.createChooser(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.amazon.com/gp/mas/dl/android?p=sh.ftp.rocketninelabs.meditationassistant.full")), getString(R.string.openWith)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                                    }
+                                }
+                            }
+                    )
+                    .setNegativeButton(getString(R.string.cancel),
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog,
+                                                    int id) {
+
+                                }
+                            })
+                    .setTitle(getString(R.string.removeAds))
+                    .setMessage(getString(R.string.removeAdsHelp))
+                    .setIcon(getResources()
+                                    .getDrawable(
+                                            getTheme()
+                                                    .obtainStyledAttributes(
+                                                            getMeditationAssistant().getMATheme(true),
+                                                            new int[]{R.attr.actionIconInfo})
+                                                    .getResourceId(0, 0)
+                                    )
+                    ).create();
+
+            removeAdsDialog.show();
+        } else {
+            startActivity(new Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("http://medinet.ftp.sh/donate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        }
     }
 
     public MeditationAssistant getMeditationAssistant() {

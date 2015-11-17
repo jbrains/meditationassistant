@@ -6,6 +6,7 @@
     <string name="about">About</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="openWith">Open with</string>
     <string name="delete">Delete</string>
     <string name="sessions">Sessions</string>
     <string name="community">Community</string>
@@ -58,6 +59,8 @@
     <string name="version">Version %s</string>
     <string name="translate">Translate</string>
     <string name="donate">Donate</string>
+    <string name="removeAds">Remove ads</string>
+    <string name="removeAdsHelp">The full version of Meditation Assistant is a separate application.\n\nTo keep your existing sessions, sign in to MediNET and tap "Upload sessions" in the Settings window.\n\nOpen the full version and sign in to MediNET once more, then tap "Import".</string>
     <string name="howToMeditate">How to Meditate</string>
     <string name="share">Share</string>
 
