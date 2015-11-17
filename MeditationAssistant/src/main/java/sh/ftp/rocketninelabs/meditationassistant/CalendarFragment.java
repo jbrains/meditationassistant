@@ -170,8 +170,8 @@ public class CalendarFragment extends Fragment {
                 LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 1f);*/
         TableLayout.LayoutParams monthbuttonslp = new TableLayout.LayoutParams(
                 LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT, 1f);
-        monthbuttonslp.setMargins(0, MeditationAssistant.dpToPixels(7, ctx), 0,
-                MeditationAssistant.dpToPixels(7, ctx));
+        monthbuttonslp.setMargins(0, getMeditationAssistant().dpToPixels(7), 0,
+                getMeditationAssistant().dpToPixels(7));
         prevMonth.setLayoutParams(monthbuttonslp);
         nextMonth.setLayoutParams(monthbuttonslp);
 
@@ -230,7 +230,7 @@ public class CalendarFragment extends Fragment {
         ldate.addView(txtCurrentMonth);
         ldate.addView(txtCurrentYear);
 
-        lhoriz.setMinimumHeight(MeditationAssistant.dpToPixels(48, ctx));
+        lhoriz.setMinimumHeight(getMeditationAssistant().dpToPixels(48));
         lhoriz.addView(prevMonth);
         lhoriz.addView(ldate);
         lhoriz.addView(nextMonth);
@@ -240,7 +240,7 @@ public class CalendarFragment extends Fragment {
         lbottom.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
                 LayoutParams.WRAP_CONTENT));
         lbottom.setWeightSum(0.5f);
-        lbottom.setMinimumHeight(MeditationAssistant.dpToPixels(48, ctx));
+        lbottom.setMinimumHeight(getMeditationAssistant().dpToPixels(48));
         lbottom.addView(lhoriz);
 
         lmain.setGravity(Gravity.BOTTOM);
@@ -249,9 +249,9 @@ public class CalendarFragment extends Fragment {
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LayoutParams.FILL_PARENT,
-                MeditationAssistant.dpToPixels(1, ctx));
-        lp.setMargins(MeditationAssistant.dpToPixels(7, ctx), 0,
-                MeditationAssistant.dpToPixels(7, ctx), 0);
+                getMeditationAssistant().dpToPixels(1));
+        lp.setMargins(getMeditationAssistant().dpToPixels(7), 0,
+                getMeditationAssistant().dpToPixels(7), 0);
         divBottom.setLayoutParams(lp);
 
         divBottom.setPadding(7, 0, 7, 0);

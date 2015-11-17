@@ -77,6 +77,14 @@
         android:key="pref_notificationcontrol"
         android:title="@string/pref_notificationcontrol"/>
 
+    <sh.ftp.rocketninelabs.meditationassistant.SeekBarPreference
+        android:dialogIcon="?attr/actionIconVolumeOn"
+        android:icon="?attr/actionIconVolumeOn"
+        android:defaultValue="50"
+        android:key="pref_sessionvolume"
+        android:summary=""
+        android:title="@string/pref_sessionvolume"/>
+
     <CheckBoxPreference
         android:defaultValue="false"
         android:icon="?attr/actionIconTime"

@@ -21,7 +21,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
@@ -82,6 +81,7 @@ public class MeditationAssistant extends Application {
     public String theme = null;
     public String marketName = null;
     public UtilityMA utility = new UtilityMA();
+    public Integer previous_volume = null;
     AlertDialog alertDialog = null;
     String AUTH_TOKEN_TYPE = "oauth2:https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
     private String appVersion = null;
@@ -111,14 +111,17 @@ public class MeditationAssistant extends Application {
     private Bundle signin_options = new Bundle();
     private SharedPreferences prefs = null;
 
-    public static int dpToPixels(float dp, Context context) {
-        Resources resources = context.getResources();
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
-                resources.getDisplayMetrics());
-    }
-
     public static void setAlphaCompat(View view, float alpha) {
         view.setAlpha(alpha);
+    }
+
+    public int dpToPixels(float dp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
+                getResources().getDisplayMetrics());
+    }
+
+    public int pixelsToDP(float px) {
+        return (int) (px * getResources().getDisplayMetrics().density + 0.5f);
     }
 
     public String getMarketName() {
@@ -155,6 +158,14 @@ public class MeditationAssistant extends Application {
         } catch (Exception e) {
         }
         return true;
+    }
+
+    public void restoreVolume() {
+        if (previous_volume != null) {
+            AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+            mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, previous_volume, 0);
+            previous_volume = null;
+        }
     }
 
     public void connectOnce() {

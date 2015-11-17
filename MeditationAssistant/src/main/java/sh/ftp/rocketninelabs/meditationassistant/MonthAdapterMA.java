@@ -36,14 +36,14 @@ public abstract class MonthAdapterMA extends BaseAdapter {
     public MonthAdapterMA(Context c, int month, int year,
                           DisplayMetrics metrics, ProgressActivity _pa, MeditationAssistant _ma) {
         mContext = c;
-        mDayHeight = MeditationAssistant.dpToPixels(50, mContext);
+        ma = _ma;
+        mDayHeight = getMeditationAssistant().dpToPixels(50);
 
         mMonth = month;
         mYear = year;
         mCalendar = new GregorianCalendar(mYear, mMonth, 1);
         mCalendarToday = Calendar.getInstance();
         mDisplayMetrics = metrics;
-        ma = _ma;
         pa = _pa;
 
         mDays = new String[]{mContext.getString(R.string.dayMondayShort),
@@ -233,7 +233,7 @@ public abstract class MonthAdapterMA extends BaseAdapter {
         } else {
             view.setTextSize(16);
             view.setPadding(0, 0, 0,
-                    MeditationAssistant.dpToPixels(1, mContext));
+                    getMeditationAssistant().dpToPixels(1));
             view.setTypeface(null, Typeface.BOLD);
             view.setTextColor(getMeditationAssistant().getResources().getColor(
                     getMeditationAssistant()

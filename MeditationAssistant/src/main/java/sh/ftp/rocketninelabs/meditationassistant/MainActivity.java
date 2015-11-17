@@ -19,7 +19,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputType;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -1072,6 +1071,11 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                     getMeditationAssistant().getPrefs().edit().putString("pref_notificationcontrol", preset.getString("ringtone")).apply();
                 }
 
+                // Session volume
+                if (presetSettings.contains("volume") && preset.has("volume")) {
+                    getMeditationAssistant().getPrefs().edit().putInt("pref_sessionvolume", preset.getInt("volume")).apply();
+                }
+
                 // Endless
                 if (presetSettings.contains("endless")) {
                     getMeditationAssistant().getPrefs().edit().putBoolean("pref_softfinish", preset.getBoolean("endless")).apply();
@@ -1157,6 +1161,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         preset.completesound = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish", "");
         preset.completesoundcustom = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish_custom", "");
         preset.ringtone = getMeditationAssistant().getPrefs().getString("pref_notificationcontrol", "");
+        preset.volume = getMeditationAssistant().getPrefs().getInt("pref_sessionvolume", 50);
         preset.endless = getMeditationAssistant().getPrefs().getBoolean("pref_softfinish", false);
         preset.vibrate = getMeditationAssistant().getPrefs().getBoolean("pref_vibrate", false);
 
@@ -1511,6 +1516,10 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
         getWindow().setAttributes(params);
 
+        AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        getMeditationAssistant().previous_volume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, (int) ((mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC) * getMeditationAssistant().getPrefs().getInt("pref_sessionvolume", 50) * 0.1) / 10), 0);
+
         if (delay > 0) {
             setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
@@ -1650,6 +1659,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             am_interval.cancel(pendingintent_interval);
             Log.d("MeditationAssistant", "Cancelled interval alarm");
         }
+
+        getMeditationAssistant().restoreVolume();
 
         if (getMeditationAssistant().getTimeStartMeditate() != 0) {
             if (view != null
@@ -2162,18 +2173,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         //Log.d("MeditationAssistant", "updateMeditate: " + String.valueOf(getMeditationAssistant() .getTimeToStopMeditate()));
         TextView txtTimer = (TextView) findViewById(R.id.txtTimer);
         TextView txtDurationSeconds = (TextView) findViewById(R.id.txtDurationSeconds);
-        RelativeLayout layEditDuration = (RelativeLayout) findViewById(R.id.layEditDuration);
-
-        LinearLayout.LayoutParams txtTimerLayoutParams = new LinearLayout.LayoutParams(
-                android.view.ViewGroup.LayoutParams.MATCH_PARENT,
-                android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
-        txtTimerLayoutParams.setMargins(0, -25, 0, -11);
-        txtTimerLayoutParams.gravity = Gravity.CENTER;
-
-        LinearLayout.LayoutParams layEditDurationLayoutParams = new LinearLayout.LayoutParams(
-                android.view.ViewGroup.LayoutParams.MATCH_PARENT,
-                android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
-        layEditDurationLayoutParams.setMargins(0, -50, 0, -11);
 
         long duration = 0;
         Long timestamp = System.currentTimeMillis() / 1000;
@@ -2316,13 +2315,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         } else {
             getMeditationAssistant().setAlphaCompat(txtDurationSeconds, 1f);
         }
-
-        if (txtTimer.getText().equals(getString(R.string.ignore_om))) {
-            txtTimerLayoutParams.setMargins(0, 25, 0, -11);
-        }
-
-        txtTimer.setLayoutParams(txtTimerLayoutParams);
-        layEditDuration.setLayoutParams(layEditDurationLayoutParams);
 
         if (setDisabled) {
             btnMeditate.setText(getString(R.string.meditate));

@@ -72,6 +72,7 @@ public class CompleteActivity extends Activity {
             getMeditationAssistant().setTimeStartMeditate(0);
             getMeditationAssistant().setTimeToStopMeditate(0);
 
+            getMeditationAssistant().restoreVolume();
             finish();
             return;
         }
@@ -229,6 +230,7 @@ public class CompleteActivity extends Activity {
 
                                 @Override
                                 public void onCompletion(MediaPlayer mp) {
+                                    getMeditationAssistant().restoreVolume();
                                     WakeLocker.release();
                                     mp.release();
                                 }
@@ -244,9 +246,14 @@ public class CompleteActivity extends Activity {
                             });
                     //mMediaPlayer.prepareAsync();
                 } else {
+                    getMeditationAssistant().restoreVolume();
                     handler.postDelayed(clearWakeLock, 5000);
                 }
+            } else {
+                getMeditationAssistant().restoreVolume();
             }
+        } else {
+            getMeditationAssistant().restoreVolume();
         }
 
         getMeditationAssistant().utility.initializeTracker(this);

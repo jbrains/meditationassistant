@@ -112,6 +112,7 @@
         <item>intervalcount</item>
         <item>completesound</item>
         <item>ringtone</item>
+        <item>volume</item>
         <item>endless</item>
         <item>vibrate</item>
     </string-array>
@@ -125,6 +126,7 @@
         <item>@string/pref_interval_count</item>
         <item>@string/pref_meditation_sound_finish</item>
         <item>@string/pref_notificationcontrol</item>
+        <item>@string/pref_sessionvolume</item>
         <item>@string/pref_softfinish</item>
         <item>@string/pref_vibrate</item>
     </string-array>

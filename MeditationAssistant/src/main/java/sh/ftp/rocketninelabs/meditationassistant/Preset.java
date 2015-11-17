@@ -16,6 +16,7 @@ public class Preset {
     public String completesound = "";
     public String completesoundcustom = "";
     public String ringtone = "";
+    public Integer volume = 50;
     public Boolean endless = false;
     public Boolean vibrate = false;
 
@@ -34,6 +35,7 @@ public class Preset {
             jobj.put("completesound", completesound);
             jobj.put("completesoundcustom", completesoundcustom);
             jobj.put("ringtone", ringtone);
+            jobj.put("volume", volume);
             jobj.put("endless", endless);
             jobj.put("vibrate", vibrate);
         } catch (JSONException e1) {

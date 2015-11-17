@@ -36,7 +36,7 @@ import java.util.List;
 @SuppressWarnings("deprecation")
 public class SettingsActivity extends PreferenceActivity {
     private static final boolean FORCE_TABLET_VIEW = false; // Useful when debugging
-
+    static int FILEPICKER_CODE = 101;
     public Boolean initialTimePickerChange = true;
     public Boolean initialMainButtonsChange = true;
     public Boolean initialSoundChangeStart = true;
@@ -51,9 +51,6 @@ public class SettingsActivity extends PreferenceActivity {
     int PREF_SOUND_INTERVAL = 3;
     int PREF_SOUND_FINISH = 2;
     private MeditationAssistant ma = null;
-
-    static int FILEPICKER_CODE = 101;
-
     private Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
@@ -246,6 +243,11 @@ public class SettingsActivity extends PreferenceActivity {
                     reminderText = String.valueOf(stringValue).trim();
                 }
                 preference.setSummary(reminderText);
+            } else if (preference instanceof SeekBarPreference) {
+                if (stringValue == null || stringValue.equals("")) {
+                    stringValue = "50";
+                }
+                preference.setSummary(String.valueOf(((Integer.valueOf(stringValue) + 4) / 5 * 5)) + "%");
             } else if (preference.getKey().equals("pref_interval_count")) {
                 if (stringValue == null || String.valueOf(stringValue).trim().equals("")) {
                     stringValue = "0";
@@ -402,6 +404,7 @@ public class SettingsActivity extends PreferenceActivity {
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_interval_count") : preferenceFragment.findPreference("pref_interval_count"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_meditation_sound_finish") : preferenceFragment.findPreference("pref_meditation_sound_finish"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_notificationcontrol") : preferenceFragment.findPreference("pref_notificationcontrol"));
+            bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_sessionvolume") : preferenceFragment.findPreference("pref_sessionvolume"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_presetsettings") : preferenceFragment.findPreference("pref_presetsettings"));
         }
         if (pref_type.equals("all") || pref_type.equals("reminder")) {
@@ -580,6 +583,8 @@ public class SettingsActivity extends PreferenceActivity {
             );
         } else if (preference.getKey().equals("pref_mainbuttons")) {
             sBindPreferenceSummaryToValueListener.onPreferenceChange(preference, getMeditationAssistant().getPrefs().getStringSet("pref_mainbuttons", new HashSet<String>()));
+        } else if (preference.getKey().equals("pref_sessionvolume")) {
+            sBindPreferenceSummaryToValueListener.onPreferenceChange(preference, getMeditationAssistant().getPrefs().getInt("pref_sessionvolume", 50));
         } else {
             sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
                     getMeditationAssistant().getPrefs()
