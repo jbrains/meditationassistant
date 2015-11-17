@@ -1,3 +1,8 @@
+1.3.0:
+- Allow hiding of MediNET/Progress/Community buttons
+- Allow session introduction text to be modified
+- Add session volume setting
+
 1.2.8/1.2.9: (F-Droid only)
 - Hide analytics preference when applicable
 - Add widgets to open source release
