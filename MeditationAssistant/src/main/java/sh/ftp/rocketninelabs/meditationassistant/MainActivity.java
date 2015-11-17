@@ -267,11 +267,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             } else if (hidProgress || hidCommunity) {
                 View divMainControlsInner = findViewById(R.id.divMainControlsInner);
                 divMainControlsInner.setVisibility(View.GONE);
-
-                Button unchangedButton = (Button) findViewById(hidProgress ? R.id.btnCommunity : R.id.btnProgress);
-                LinearLayout.LayoutParams unchangedButtonLayoutParams = (LinearLayout.LayoutParams) unchangedButton.getLayoutParams();
-                unchangedButtonLayoutParams.weight = 1;
-                unchangedButton.setLayoutParams(unchangedButtonLayoutParams);
             }
         }
 

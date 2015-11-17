@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -34,6 +35,11 @@ public class AboutActivity extends Activity {
 
         if (BuildConfig.FLAVOR.equals("free")) {
             txtAboutAppName.setText(getString(R.string.appName));
+
+            View divDonate = findViewById(R.id.divDonate);
+            Button btnDonate = (Button) findViewById(R.id.btnDonate);
+            divDonate.setVisibility(View.GONE);
+            btnDonate.setVisibility(View.GONE);
         } else {
             txtAboutAppName.setText(getString(R.string.appNameShort));
         }
@@ -142,6 +148,12 @@ public class AboutActivity extends Activity {
         startActivity(new Intent(
                 Intent.ACTION_VIEW,
                 Uri.parse("http://medinet.ftp.sh/translate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+    }
+
+    public void openDonate(View view) {
+        startActivity(new Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("http://medinet.ftp.sh/donate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
     public MeditationAssistant getMeditationAssistant() {

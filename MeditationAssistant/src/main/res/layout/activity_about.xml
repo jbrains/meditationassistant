@@ -127,17 +127,47 @@
                         android:layout_marginRight="7dp"
                         android:background="?android:attr/listDivider"/>
 
-                    <Button
-                        android:id="@+id/btnTranslate"
+                    <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:background="?android:attr/selectableItemBackground"
-                        android:onClick="openTranslate"
-                        android:paddingBottom="7dp"
-                        android:paddingTop="7dp"
-                        android:text="@string/translate"
-                        android:textAppearance="?android:attr/textAppearanceMedium"/>
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/divMainControls"
+                        android:orientation="horizontal">
 
+                        <Button
+                            android:id="@+id/btnTranslate"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:onClick="openTranslate"
+                            android:paddingBottom="7dp"
+                            android:paddingTop="7dp"
+                            android:text="@string/translate"
+                            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+                        <View
+                            android:id="@+id/divDonate"
+                            android:layout_width="1dp"
+                            android:layout_height="fill_parent"
+                            android:layout_marginBottom="7dp"
+                            android:layout_marginTop="7dp"
+                            android:background="?android:attr/listDivider"/>
+
+                        <Button
+                            android:id="@+id/btnDonate"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:onClick="openDonate"
+                            android:paddingBottom="7dp"
+                            android:paddingTop="7dp"
+                            android:text="@string/donate"
+                            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
