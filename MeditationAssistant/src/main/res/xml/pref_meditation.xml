@@ -57,6 +57,7 @@
     <MultiSelectListPreference
         android:entries="@array/mainbuttons"
         android:entryValues="@array/mainbuttons_values"
+        android:defaultValue="@array/empty_array"
         android:key="pref_mainbuttons"
         android:summary=""
         android:title="@string/pref_mainbuttons"/>
