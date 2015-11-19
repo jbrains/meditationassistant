@@ -103,7 +103,7 @@ public class CompleteActivity extends Activity {
         getMeditationAssistant().unsetNotificationControl();
         getMeditationAssistant().hideNotification(); // Called twice because it seems to help
 
-        getMeditationAssistant().utility.loadAd(this);
+        getMeditationAssistant().utility_ads.loadAd(this);
 
         EditText editSessionMessage = (EditText) findViewById(R.id.editSessionMessage);
         if (editSessionMessage.getText().toString().equals("")
@@ -266,7 +266,7 @@ public class CompleteActivity extends Activity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        getMeditationAssistant().utility.loadAd(this);
+        getMeditationAssistant().utility_ads.loadAd(this);
     }
 
     @Override
@@ -335,7 +335,7 @@ public class CompleteActivity extends Activity {
 
     @Override
     public void onDestroy() {
-        getMeditationAssistant().utility.destroyAd(this);
+        getMeditationAssistant().utility_ads.destroyAd(this);
         if (mMediaPlayer != null) {
             try {
                 mMediaPlayer.release();
@@ -355,14 +355,14 @@ public class CompleteActivity extends Activity {
 
     @Override
     public void onPause() {
-        getMeditationAssistant().utility.pauseAd(this);
+        getMeditationAssistant().utility_ads.pauseAd(this);
         super.onPause();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getMeditationAssistant().utility.resumeAd(this);
+        getMeditationAssistant().utility_ads.resumeAd(this);
     }
 
     @Override

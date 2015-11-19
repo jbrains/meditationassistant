@@ -80,6 +80,7 @@ public class MeditationAssistant extends Application {
     public String theme = null;
     public String marketName = null;
     public UtilityMA utility = new UtilityMA();
+    public UtilityAdsMA utility_ads = new UtilityAdsMA();
     public Integer previous_volume = null;
     AlertDialog alertDialog = null;
     String AUTH_TOKEN_TYPE = "oauth2:https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
@@ -131,8 +132,8 @@ public class MeditationAssistant extends Application {
             } else if (BuildConfig.FLAVOR.equals("opensource")) {
                 marketName = "fdroid";
             } else { // To be uncommented based upon target market
-                marketName = "google";
-                //marketName = "amazon";
+                //marketName = "google";
+                marketName = "amazon";
                 //marketName = "getjar";
                 //marketName = "slideme";
             }

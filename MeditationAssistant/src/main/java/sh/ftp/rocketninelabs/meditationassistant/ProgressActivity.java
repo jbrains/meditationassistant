@@ -211,7 +211,7 @@ public class ProgressActivity extends FragmentActivity {
         getActionBar().setDisplayHomeAsUpEnabled(true); /// todo: not necessary on settings activity why?
         //getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        getMeditationAssistant().utility.loadAd(this);
+        getMeditationAssistant().utility_ads.loadAd(this);
 
         mViewPager = (ViewPager) findViewById(R.id.pager);
 
@@ -675,19 +675,19 @@ public class ProgressActivity extends FragmentActivity {
 
     @Override
     public void onPause() {
-        getMeditationAssistant().utility.pauseAd(this);
+        getMeditationAssistant().utility_ads.pauseAd(this);
         super.onPause();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getMeditationAssistant().utility.resumeAd(this);
+        getMeditationAssistant().utility_ads.resumeAd(this);
     }
 
     @Override
     public void onDestroy() {
-        getMeditationAssistant().utility.destroyAd(this);
+        getMeditationAssistant().utility_ads.destroyAd(this);
         super.onDestroy();
     }
 

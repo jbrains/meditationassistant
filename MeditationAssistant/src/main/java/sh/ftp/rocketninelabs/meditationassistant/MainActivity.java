@@ -470,7 +470,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             getMeditationAssistant().getMediNET().updated();
         }
 
-        getMeditationAssistant().utility.loadAd(this);
+        getMeditationAssistant().utility_ads.loadAd(this);
 
         onNewIntent(getIntent());
 
@@ -1740,7 +1740,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             getMeditationAssistant().showNotification();
         }
 
-        getMeditationAssistant().utility.pauseAd(this);
+        getMeditationAssistant().utility_ads.pauseAd(this);
 
         getMeditationAssistant().setScreenOff(true);
         getMeditationAssistant().getPrefs().unregisterOnSharedPreferenceChangeListener(sharedPrefslistener);
@@ -1821,7 +1821,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
         super.onResume();
 
-        getMeditationAssistant().utility.resumeAd(this);
+        getMeditationAssistant().utility_ads.resumeAd(this);
     }
 
     @Override
@@ -1847,7 +1847,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             getMeditationAssistant().getPrefs().edit().putString("key", "").apply();
         }
 
-        getMeditationAssistant().utility.destroyAd(this);
+        getMeditationAssistant().utility_ads.destroyAd(this);
 
         super.onDestroy();
     }
@@ -2492,7 +2492,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         if (sv != null && sv.isShown()) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
-        getMeditationAssistant().utility.loadAd(this);
+        getMeditationAssistant().utility_ads.loadAd(this);
     }
 
     @Override
