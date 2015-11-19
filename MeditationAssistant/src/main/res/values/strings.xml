@@ -80,9 +80,6 @@
     <string name="sessioncomplete">Session Complete</string>
     <string name="sessionMessagePlaceholder">Message</string>
     <string name="askDiscardText">Discard session?</string>
-    <string name="shareSessionText">I just meditated for %1$s with %2$s.</string>
-    <string name="aMoment">a moment</string>
-    <string name="shareSessionSubject">Meditation session</string>
     <string name="sessionPosting">Posting session…</string>
     <string name="sessionPosted">Session posted to MediNET</string>
     <string name="sessionAlreadyPosted">Session already posted</string>
