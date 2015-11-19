@@ -6,6 +6,7 @@
     <string name="about">Sobre la aplicación</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
+    
     <string name="delete">Eliminar</string>
     <string name="sessions">Sesiones</string>
     <string name="community">Comunidad</string>
@@ -58,6 +59,8 @@
     <string name="version">Versión %s</string>
     <string name="translate">Traducir</string>
     
+    
+    
     <string name="howToMeditate">Cómo meditar</string>
     <string name="share">Compartir</string>
 
@@ -77,9 +80,6 @@
     <string name="sessioncomplete">Sesión completada</string>
     <string name="sessionMessagePlaceholder">Mensaje</string>
     <string name="askDiscardText">¿Descartar sesión?</string>
-    <string name="shareSessionText">Acabo de meditar %1$s con %2$s.</string>
-    <string name="aMoment">un momento</string>
-    <string name="shareSessionSubject">Sesión de meditación</string>
     <string name="sessionPosting">Publicando sesión…</string>
     <string name="sessionPosted">Sesión publicada en MediNET</string>
     <string name="sessionAlreadyPosted">Sesión ya publicada</string>

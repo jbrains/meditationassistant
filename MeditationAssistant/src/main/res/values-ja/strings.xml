@@ -6,6 +6,7 @@
     <string name="about">ｱﾌﾟﾘについて</string>
     <string name="yes">はい</string>
     <string name="no">いいえ</string>
+    <string name="openWith">...で開く</string>
     <string name="delete">削除</string>
     <string name="sessions">セッション</string>
     <string name="community">コミュニティ</string>
@@ -57,7 +58,9 @@
     <string name="sendEmail">メールを送信</string>
     <string name="version">バージョン %s</string>
     <string name="translate">翻訳</string>
-    
+    <string name="donate">寄付</string>
+    <string name="removeAds">広告を消す</string>
+    <string name="removeAdsHelp">フルバージョンの瞑想アシスタントは独立したアプリケーションです。\n\n既存のセッションを維持するには、MediNET にログインして、設定ウィンドウで "セッションをアップロード" をタップします。\n\nフルバージョンを開いて、もう一度 MediNET にサインインし、その後、"インポート" をタップします。</string>
     <string name="howToMeditate">瞑想の方法</string>
     <string name="share">共有</string>
 
@@ -69,7 +72,7 @@
     <string name="sessionDeleteEverywhere">どちらも削除</string>
     <string name="sessionDeleteLocally">ローカルを削除</string>
     <string name="sessionDeleteMediNET">MediNET 上を削除</string>
-    
+    <string name="pref_sessionintro">はじめに</string>
     <string name="presetsettings">プリセット設定</string>
     <string name="modeandduration">モードと継続時間</string>
 
@@ -77,9 +80,6 @@
     <string name="sessioncomplete">セッションが完了しました</string>
     <string name="sessionMessagePlaceholder">メッセージ</string>
     <string name="askDiscardText">セッションを破棄しますか?</string>
-    <string name="shareSessionText">私は %2$s と %1$s の瞑想します。</string>
-    <string name="aMoment">一瞬</string>
-    <string name="shareSessionSubject">瞑想セッション</string>
     <string name="sessionPosting">セッションを投稿中…</string>
     <string name="sessionPosted">セッションを MediNET に投稿しました</string>
     <string name="sessionAlreadyPosted">セッションは既に投稿済です</string>
@@ -97,7 +97,7 @@
     <!-- Progress -->
     <string name="calendar">カレンダー</string>
     <string name="statistics">統計</string>
-    
+    <string name="totalTimeSpentMeditating">瞑想を過ごした合計時間</string>
     <string name="dayMondayShort">月</string>
     <string name="dayTuesdayShort">火</string>
     <string name="dayWednesdayShort">水</string>
@@ -138,7 +138,7 @@
 
     <string name="settings">設定</string>
     <string name="disabled">無効</string>
-    
+    <string name="none">なし</string>
     <string name="noSpecialBehavior">特別な動作を行わない</string>
     <string name="noSound">サウンドなし</string>
     <string name="customSound">カスタムサウンド</string>
@@ -157,8 +157,8 @@
     <string name="pref_autosignin">自動的に接続</string>
     <string name="pref_rememberme_summary">閉じた後もサインインしたままにします</string>
     <string name="pref_rememberme">忘れないで</string>
-    
-    
+    <string name="pref_sessionvolume">音量</string>
+    <string name="pref_sessionvolume_summary">セッションが完了すると、以前の音量が復元されます。</string>
     <string name="pref_screencontrol">画面</string>
     <string name="pref_sendusage">使用状況を報告</string>
     <string name="pref_sendusage_summary">Google Analytics を経由して匿名で報告します。再起動時に有効になります</string>
@@ -174,14 +174,14 @@
     <string name="pref_theme_light">ライト</string>
     <string name="pref_theme_lightdark">ライト、ダークアクションバー</string>
     <string name="pref_theme_dark">ダーク</string>
-    
+    <string name="buddhism">仏教</string>
     <string name="pref_notification">通知</string>
     <string name="pref_notification_summary">メインウィンドウから離れているとき、瞑想中に表示されます</string>
     <string name="pref_usetimepicker">代替の期間インターフェイス</string>
     <string name="pref_usetimepicker_summary">期間を変更するときに、時間と分のスライダーを使用します</string>
     <string name="pref_askdismiss">破棄する前に確認</string>
     <string name="pref_askdismiss_summary">セッションを破棄する前に確認します</string>
-    
+    <string name="pref_mainbuttons">ボタンを非表示</string>
     <string name="pref_progresstab">デフォルトの進行状況タブ</string>
     <string name="importsessions">セッションをインポート</string>
     <string name="importsessions_summary">アップロード済のセッションを取得します</string>
@@ -194,7 +194,7 @@
     <string name="normal">通常</string>
     <string name="large">大</string>
     <string name="extralarge">最大</string>
-    
+    <string name="restartApp">新しい設定を適用するには、アプリケーションを再起動してください</string>
     <string name="pref_notificationcontrol">着信音と通知</string>
     <string name="pref_notificationcontrol_vibrate">振動に設定</string>
     <string name="pref_notificationcontrol_silent">サイレントに設定</string>

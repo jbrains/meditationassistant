@@ -6,6 +6,7 @@
     <string name="about">Про програму</string>
     <string name="yes">Так</string>
     <string name="no">Ні</string>
+    <string name="openWith">Відкрити за допомогою</string>
     <string name="delete">Видалити</string>
     <string name="sessions">Сеанси</string>
     <string name="community">Спільнота</string>
@@ -57,7 +58,9 @@
     <string name="sendEmail">Вислати електронне повідомлення</string>
     <string name="version">Версія %s</string>
     <string name="translate">Перекласти</string>
-    
+    <string name="donate">Пожертвувати</string>
+    <string name="removeAds">Видалити оголошення</string>
+    <string name="removeAdsHelp">Повна версія додатку Асистент Медитації це окремий додаток.\n\n Щоб зберегти існуючі сеанси, увійдіть до MediNET та натисніть "Завантажити сеанси" у вікні налаштувань.\n\n Відкрийте повну версію та увійдіть до MediNET ще раз, тоді натисніть "Імпортувати".</string>
     <string name="howToMeditate">Як медитувати</string>
     <string name="share">Поділитися</string>
 
@@ -69,7 +72,7 @@
     <string name="sessionDeleteEverywhere">Видалити скрізь</string>
     <string name="sessionDeleteLocally">Видалити з приладу</string>
     <string name="sessionDeleteMediNET">Видалити з MediNET</string>
-    
+    <string name="pref_sessionintro">Вступ</string>
     <string name="presetsettings">Відновити налаштування.</string>
     <string name="modeandduration">Режим та тривалість</string>
 
@@ -77,9 +80,6 @@
     <string name="sessioncomplete">Сеанс завершено.</string>
     <string name="sessionMessagePlaceholder">Повідомлення</string>
     <string name="askDiscardText">Відмінити сеанс?</string>
-    <string name="shareSessionText">Я тільки що медитував %1$s  з %2$s.</string>
-    
-    <string name="shareSessionSubject">Сеанс медитації</string>
     <string name="sessionPosting">Розміщення сеансу...</string>
     <string name="sessionPosted">Сеанс розміщено до MediNET.</string>
     <string name="sessionAlreadyPosted">Сеанс вже розміщено.</string>
@@ -97,7 +97,7 @@
     <!-- Progress -->
     <string name="calendar">Календар</string>
     <string name="statistics">Статистика</string>
-    
+    <string name="totalTimeSpentMeditating">Загальний час проведений за медитацією</string>
     <string name="dayMondayShort">пон</string>
     <string name="dayTuesdayShort">вів</string>
     <string name="dayWednesdayShort">сер</string>
@@ -138,7 +138,7 @@
 
     <string name="settings">Налаштування</string>
     <string name="disabled">Відключено</string>
-    
+    <string name="none">Нічого</string>
     <string name="noSpecialBehavior">Ніякої особливої поведінки.</string>
     <string name="noSound">Без звуку</string>
     <string name="customSound">Звук за вибором</string>
@@ -157,8 +157,8 @@
     <string name="pref_autosignin">Автоматично з\'єднати</string>
     <string name="pref_rememberme_summary">Не виходити після вимикання</string>
     <string name="pref_rememberme">Запам\'ятати мене</string>
-    
-    
+    <string name="pref_sessionvolume">Гучність</string>
+    <string name="pref_sessionvolume_summary">Попередня гучність буде відновлена після закінчення сеансу</string>
     <string name="pref_screencontrol">Екран</string>
     <string name="pref_sendusage">Повідомити статистику використання</string>
     <string name="pref_sendusage_summary">Анонімні повідомлення через Google Analytics. Запрацює після перезапуску.</string>
@@ -174,14 +174,14 @@
     <string name="pref_theme_light">Світла</string>
     <string name="pref_theme_lightdark">Світла з темною  панеллю</string>
     <string name="pref_theme_dark">Темна</string>
-    
+    <string name="buddhism">Будизм</string>
     <string name="pref_notification">Повідомлення</string>
     <string name="pref_notification_summary">Показано під час медитації коли головне вікно звернуте</string>
     <string name="pref_usetimepicker">Альтернативний інтерфейс тривалості</string>
     <string name="pref_usetimepicker_summary">Використайте бігунки годин та хвилин, коли змінюєте тривалість.</string>
     <string name="pref_askdismiss">Питати перед відміною</string>
     <string name="pref_askdismiss_summary">Підтверджувати перед відміною сеансу</string>
-    
+    <string name="pref_mainbuttons">Сховати кнопки</string>
     <string name="pref_progresstab">Вкладка прогресу за замовчуванням</string>
     <string name="importsessions">Імпортувати сеанси.</string>
     <string name="importsessions_summary">Отримати завантажені сеанси.</string>
@@ -194,7 +194,7 @@
     <string name="normal">Звичайний</string>
     <string name="large">Великий</string>
     <string name="extralarge">Гіганський</string>
-    
+    <string name="restartApp">Перезавантажити додаток щоб застосувати нові налаштування</string>
     <string name="pref_notificationcontrol">Звук виклику та повідомлень</string>
     <string name="pref_notificationcontrol_vibrate">Увімкнути вібрацію</string>
     <string name="pref_notificationcontrol_silent">Увімкнути беззвучний режим</string>
