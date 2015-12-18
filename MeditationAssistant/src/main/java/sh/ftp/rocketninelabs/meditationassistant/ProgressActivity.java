@@ -305,7 +305,7 @@ public class ProgressActivity extends FragmentActivity {
                 cal.setTimeInMillis(sessionsql._completed * 1000);
                 Date sess_date = cal.getTime();
 
-                if (getMeditationAssistant().db.numSessionsByDate(String.valueOf(date[0]) + "-" + String.valueOf(date[1] + 1) + "-" + String.valueOf(date[2])) > 1) {
+                if (getMeditationAssistant().db.numSessionsByDate(cal) > 1) {
                     if (sessionDetailsDialog != null && sessionDetailsDialog.isShowing()) {
                         sessionDetailsDialog.dismiss();
                     }

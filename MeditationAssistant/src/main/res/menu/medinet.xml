@@ -43,13 +43,13 @@
         </menu>
     </item>
 
-    <item
+    <!--<item
         android:id="@+id/menuMediNETForward"
         android:showAsAction="never"
         android:title="@string/forward"/>
     <item
         android:id="@+id/menuMediNETBack"
         android:showAsAction="never"
-        android:title="@string/back"/>
+        android:title="@string/back"/>-->
 
 </menu>

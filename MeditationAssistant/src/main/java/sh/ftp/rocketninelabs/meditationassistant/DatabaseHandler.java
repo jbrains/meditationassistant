@@ -166,10 +166,38 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return time_meditating;
     }
 
-    int numSessionsByDate(String date) {
-        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM `" + TABLE_SESSIONS + "` WHERE `" + KEY_DATE + "`=?", new String[]{date});
-        cursor.moveToFirst();
-        int numsessions = cursor.getInt(0);
+    int numSessionsByDate(Calendar dateCalendar) {
+        String date = String.valueOf(dateCalendar.get(Calendar.DAY_OF_MONTH)) + "-"
+                + String.valueOf(dateCalendar.get(Calendar.MONTH) + 1) + "-"
+                + String.valueOf(dateCalendar.get(Calendar.YEAR));
+        dateCalendar.add(Calendar.DAY_OF_MONTH, 1);
+        String dateLateNight = String.valueOf(dateCalendar.get(Calendar.DAY_OF_MONTH)) + "-"
+                + String.valueOf(dateCalendar.get(Calendar.MONTH) + 1) + "-"
+                + String.valueOf(dateCalendar.get(Calendar.YEAR));
+        Cursor cursor = db.rawQuery("SELECT * FROM `" + TABLE_SESSIONS + "` WHERE `" + KEY_DATE + "`=? OR `" + KEY_DATE + "`=?", new String[]{date, dateLateNight});
+
+        Calendar startedCalendar = Calendar.getInstance();
+        Calendar midnightCalendar = Calendar.getInstance();
+        int numsessions = 0;
+        if (cursor.moveToFirst()) {
+            do {
+                startedCalendar.setTimeInMillis(cursor.getLong(cursor
+                        .getColumnIndex(KEY_STARTED)) * 1000);
+
+                midnightCalendar.setTimeInMillis(cursor.getLong(cursor
+                        .getColumnIndex(KEY_STARTED)) * 1000);
+                midnightCalendar.set(Calendar.HOUR, 0);
+                midnightCalendar.set(Calendar.MINUTE, 0);
+                midnightCalendar.set(Calendar.SECOND, 0);
+                midnightCalendar.set(Calendar.MILLISECOND, 0);
+
+                if ((cursor.getString(cursor
+                        .getColumnIndex(KEY_DATE)).equals(date) && startedCalendar.getTimeInMillis() - midnightCalendar.getTimeInMillis() > 14400000) || (cursor.getString(cursor
+                        .getColumnIndex(KEY_DATE)).equals(dateLateNight) && startedCalendar.getTimeInMillis() - midnightCalendar.getTimeInMillis() <= 14400000)) {
+                    numsessions++;
+                }
+            } while (cursor.moveToNext());
+        }
         cursor.close();
 
         return numsessions;

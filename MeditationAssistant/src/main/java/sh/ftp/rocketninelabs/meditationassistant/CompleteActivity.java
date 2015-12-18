@@ -10,8 +10,6 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -110,43 +108,6 @@ public class CompleteActivity extends Activity {
                 && getMeditationAssistant().getPrefs().getBoolean("pref_remembermessage", false)) {
             editSessionMessage.setText(getMeditationAssistant().getPrefs().getString("lastmessage", ""));
         }
-
-        editSessionMessage
-                .setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                    @Override
-                    public void onFocusChange(View v, boolean hasFocus) {
-                        EditText editSessionMessage = (EditText) findViewById(R.id.editSessionMessage);
-                        TextView editSessionMessageInfo = (TextView) findViewById(R.id.editSessionMessageInfo);
-                        if (hasFocus) {
-                            editSessionMessageInfo.setText(String
-                                    .valueOf(editSessionMessage.getText()
-                                            .length())
-                                    + " / 160");
-                            editSessionMessageInfo.setVisibility(View.VISIBLE);
-                        } else {
-                            editSessionMessageInfo.setVisibility(View.GONE);
-                        }
-                    }
-                });
-        editSessionMessage.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void afterTextChanged(Editable s) {
-                TextView editSessionMessageInfo = (TextView) findViewById(R.id.editSessionMessageInfo);
-                editSessionMessageInfo.setText(String.valueOf(s.length())
-                        + " / 160");
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before,
-                                      int count) {
-
-            }
-        });
 
         if (getMeditationAssistant()
                 .getTimeStartMeditate() == 0) {

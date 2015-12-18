@@ -71,7 +71,6 @@
                     android:gravity="bottom"
                     android:hint="@string/sessionMessagePlaceholder"
                     android:inputType="textMultiLine"
-                    android:maxLength="160"
                     android:nextFocusUp="@+id/editSessionMessage"
                     android:scrollbars="vertical"
                     android:singleLine="false"

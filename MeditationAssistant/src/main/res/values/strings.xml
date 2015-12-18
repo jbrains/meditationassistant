@@ -20,6 +20,13 @@
     <string name="groups">Groups</string>
     <string name="announcement">Announcement</string>
 
+    <!-- Permissions -->
+    <string name="permissionRequest">Permission Request</string>
+    <string name="permissionRequestAccounts">Permission to access your Google account is labeled as "contacts".  Your contacts will not be read.\n\nBy allowing this permission, you will not need to enter your Google username and password when signing in to MediNET.</string>
+    <string name="permissionRequestReadExternal">This permission is required to choose a custom sound file on the device.</string>
+    <string name="deny">Deny</string>
+    <string name="tryAgain">Try Again</string>
+
     <!-- Main Activity -->
     <string name="timer">Timer</string>
     <string name="timerHelp">The timer is currently set to 15 minutes. You can change the duration, end at a specific time of the day, or deactivate the alarm entirely. Tap the timer now to see these options.</string>

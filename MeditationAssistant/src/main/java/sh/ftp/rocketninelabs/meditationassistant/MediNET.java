@@ -258,7 +258,9 @@ public class MediNET {
             task.actionextra = "manualposting";
         } else {
             // Only add streak if there isn't already a session for today
-            if (getMeditationAssistant().db.numSessionsByDate(getMeditationAssistant().db.timestampToAPIDate(getSession().completed * 1000)) == 0) {
+            Calendar completedCalendar = Calendar.getInstance();
+            completedCalendar.setTimeInMillis(getSession().completed * 1000);
+            if (getMeditationAssistant().db.numSessionsByDate(completedCalendar) == 0) {
                 getMeditationAssistant().addMeditationStreak();
                 if (getSession().streakday == 0) {
                     getSession().streakday = getMeditationAssistant().getMeditationStreak();
@@ -280,7 +282,9 @@ public class MediNET {
         }
 
         // Only add streak if there isn't already a session for that day
-        if (getMeditationAssistant().db.numSessionsByDate(getMeditationAssistant().db.timestampToAPIDate(getSession().completed * 1000)) == 0) {
+        Calendar completedCalendar = Calendar.getInstance();
+        completedCalendar.setTimeInMillis(getSession().completed * 1000);
+        if (getMeditationAssistant().db.numSessionsByDate(completedCalendar) == 0) {
             if (!manualposting) {
                 getMeditationAssistant().addMeditationStreak();
 
@@ -321,7 +325,7 @@ public class MediNET {
 
         resetSession();
 
-        if (!manualposting) {
+        if (!manualposting && getMeditationAssistant().db.getNumSessions() >= 3) {
             getMeditationAssistant().asktorate = true;
         }
     }

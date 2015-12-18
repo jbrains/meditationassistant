@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <string name="appName">Meditation Assistant Free</string>
     <string name="appNameShort">Meditation Assistant</string>
@@ -50,26 +50,26 @@
     <string name="endAt">Ende um</string>
     <string name="untimed">Unbegrenzt</string>
     <string name="unlimited">Unbegrenzt</string>
-    
+
 
     <!-- About -->
     <string name="tapToSendEmail">Irgendwo tippen um Feedback zu senden</string>
     <string name="sendEmail">E-Mail senden</string>
     <string name="version">Version %s</string>
     <string name="translate">Übersetzen</string>
-    
-    
+
+
     <string name="share">Teilen</string>
 
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
-    
+
 
     <!-- Sessions -->
     <string name="session">Sitzung</string>
     <string name="sessionDeleteEverywhere">Überall löschen</string>
     <string name="sessionDeleteLocally">Lokal löschen</string>
     <string name="sessionDeleteMediNET">Bei MediNET löschen</string>
-    
+
     <string name="presetsettings">Voreinstellungen</string>
     <string name="modeandduration">Modus und Dauer</string>
 
@@ -77,8 +77,8 @@
     <string name="sessioncomplete">Sitzung beendet</string>
     <string name="sessionMessagePlaceholder">Meldung</string>
     <string name="askDiscardText">Sitzung verwerfen?</string>
-    
-    
+
+
     <string name="shareSessionSubject">Meditationssitzung</string>
     <string name="sessionPosting">Poste Sitzung...</string>
     <string name="sessionPosted">Sitzung gepostet bei MediNET</string>
@@ -92,12 +92,12 @@
     <string name="signInWith">Anmelden mit ...</string>
     <string name="signInWithProvider">Angemeldet mit %s ...</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, etc.</string>
-    
+
 
     <!-- Progress -->
     <string name="calendar">Kalender</string>
     <string name="statistics">Statistiken</string>
-    
+
     <string name="dayMondayShort">Mo</string>
     <string name="dayTuesdayShort">Di</string>
     <string name="dayWednesdayShort">Mi</string>
@@ -113,8 +113,7 @@
     <string name="setDate">Setze Datum</string>
     <string name="setTime">Setze Zeit</string>
     <string name="invalidDateOrTime">Ungültiges Datum oder Zeit</string>
-    
-    
+
 
     <string name="days">Tage</string>
     <string name="hours">Stunden</string>
@@ -129,8 +128,8 @@
     <!-- Settings -->
     <string name="meditation">Meditation</string>
     <string name="pref_vibrate">Vibrieren</string>
-    
-    
+
+
     <string name="pref_sound_reminder">Spiele Sound</string>
     <string name="pref_sound_reminder_summary">Der Standard-Benachrichtigungssound wird gespielt werden</string>
     <string name="pref_softfinish">Endlose Sitzung</string>
@@ -138,7 +137,7 @@
 
     <string name="settings">Einstellungen</string>
     <string name="disabled">Deaktiviert</string>
-    
+
     <string name="noSpecialBehavior">Kein spezielles Verhalten</string>
     <string name="noSound">Kein Sound</string>
     <string name="customSound">Benutzerdefinierter Sound</string>
@@ -147,79 +146,17 @@
     <string name="dimScreen">Bildschirm dimmen</string>
     <string name="turnScreenOff">Bildschirm abschalten</string>
     <string name="pref_display_seconds">Sekunden anzeigen</string>
-    
+
     <string name="pref_full_screen">Vollbild</string>
-    
+
     <string name="pref_delay">Verzögerung</string>
-    
-    
-    
-    
-    
-    
-    
-    
+
+
     <string name="pref_screencontrol">Bildschirm</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 
     <!-- MediNET -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 
     <plurals name="numtimes">
         <item quantity="one">%s time</item>
@@ -236,8 +173,6 @@
         <item quantity="other">Uploaded %s sessions</item>
     </plurals>
 
-    
-    
 
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d day</item>
@@ -252,19 +187,8 @@
         <item quantity="other">days of meditation</item>
     </plurals>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
     <!-- Widgets -->
-    
-    
-    
+
 
 </resources>

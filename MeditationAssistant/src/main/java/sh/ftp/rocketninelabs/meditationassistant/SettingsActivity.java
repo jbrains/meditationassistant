@@ -1,8 +1,12 @@
 package sh.ftp.rocketninelabs.meditationassistant;
 
+import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -19,6 +23,8 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.RingtonePreference;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -37,6 +43,7 @@ import java.util.List;
 public class SettingsActivity extends PreferenceActivity {
     private static final boolean FORCE_TABLET_VIEW = false; // Useful when debugging
     static int FILEPICKER_CODE = 101;
+    private static final int PERMISSION_REQUEST_READ_EXTERNAL_STORAGE = 3002;
     public Boolean initialTimePickerChange = true;
     public Boolean initialMainButtonsChange = true;
     public Boolean initialSoundChangeStart = true;
@@ -50,6 +57,7 @@ public class SettingsActivity extends PreferenceActivity {
     int PREF_SOUND_START = 1;
     int PREF_SOUND_INTERVAL = 3;
     int PREF_SOUND_FINISH = 2;
+    private int selectingPrefsound = 0;
     private MeditationAssistant ma = null;
     private Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
@@ -123,13 +131,7 @@ public class SettingsActivity extends PreferenceActivity {
                 } else if (listPreference.getKey().equals("pref_meditation_sound_start")) {
                     if (stringValue.equals("custom")) {
                         if (!initialSoundChangeStart) {
-                            Intent intent = new Intent(
-                                    Intent.ACTION_GET_CONTENT);
-                            intent.setType("file/*");
-                            intent.addCategory(Intent.CATEGORY_OPENABLE);
-                            Intent finalIntent = Intent.createChooser(
-                                    intent, getString(R.string.selectSound));
-                            startActivityForResult(finalIntent, PREF_SOUND_START);
+                            selectCustomSound(PREF_SOUND_START);
                         }
 
                         preference.setSummary(customSoundSummary(getMeditationAssistant().getPrefs().getString("pref_meditation_sound_start_custom", "")));
@@ -138,13 +140,7 @@ public class SettingsActivity extends PreferenceActivity {
                 } else if (listPreference.getKey().equals("pref_meditation_sound_interval")) {
                     if (stringValue.equals("custom")) {
                         if (!initialSoundChangeInterval) {
-                            Intent intent = new Intent(
-                                    Intent.ACTION_GET_CONTENT);
-                            intent.setType("file/*");
-                            intent.addCategory(Intent.CATEGORY_OPENABLE);
-                            Intent finalIntent = Intent.createChooser(
-                                    intent, getString(R.string.selectSound));
-                            startActivityForResult(finalIntent, PREF_SOUND_INTERVAL);
+                            selectCustomSound(PREF_SOUND_INTERVAL);
                         }
 
                         preference.setSummary(customSoundSummary(getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval_custom", "")));
@@ -153,13 +149,7 @@ public class SettingsActivity extends PreferenceActivity {
                 } else if (listPreference.getKey().equals("pref_meditation_sound_finish")) {
                     if (stringValue.equals("custom")) {
                         if (!initialSoundChangeFinish) {
-                            Intent intent = new Intent(
-                                    Intent.ACTION_GET_CONTENT);
-                            intent.setType("file/*");
-                            intent.addCategory(Intent.CATEGORY_OPENABLE);
-                            Intent finalIntent = Intent.createChooser(
-                                    intent, getString(R.string.selectSound));
-                            startActivityForResult(finalIntent, PREF_SOUND_FINISH);
+                            selectCustomSound(PREF_SOUND_FINISH);
                         }
 
                         preference.setSummary(customSoundSummary(getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish_custom", "")));
@@ -269,6 +259,66 @@ public class SettingsActivity extends PreferenceActivity {
             return true;
         }
     };
+
+    private void selectCustomSound(int requestCode) {
+        selectingPrefsound = requestCode;
+
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    PERMISSION_REQUEST_READ_EXTERNAL_STORAGE);
+        } else {
+            showFilePickerDialog(requestCode, true);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_REQUEST_READ_EXTERNAL_STORAGE: {
+                if ((grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) || !ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    showFilePickerDialog(selectingPrefsound, true);
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setIcon(
+                            getResources()
+                                    .getDrawable(
+                                            getTheme()
+                                                    .obtainStyledAttributes(
+                                                            getMeditationAssistant()
+                                                                    .getMATheme(true),
+                                                            new int[]{R.attr.actionIconSettings}
+                                                    )
+                                                    .getResourceId(0, 0)
+                                    )
+                    )
+                            .setTitle(getString(R.string.permissionRequest))
+                            .setMessage(
+                                    getString(R.string.permissionRequestReadExternal))
+                            .setPositiveButton(getString(R.string.tryAgain),
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            selectCustomSound(selectingPrefsound);
+                                        }
+                                    })
+                            .setNegativeButton(getString(R.string.deny),
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            showFilePickerDialog(selectingPrefsound, true);
+                                        }
+                                    }).show();
+                }
+            }
+        }
+    }
+
     private Long uploadsessions_lastlick = (long) 0;
     private Long importsessions_lastlick = (long) 0;
 

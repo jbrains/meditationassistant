@@ -99,7 +99,7 @@ public class AboutActivity extends Activity {
                 e.printStackTrace();
             }
         } else if (i == R.id.action_rate) {
-            getMeditationAssistant().askToRateApp();
+            getMeditationAssistant().rateApp();
             return true;
         }
 

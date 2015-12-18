@@ -158,11 +158,11 @@ public abstract class MonthAdapterMA extends BaseAdapter {
         int[] date = getDate(position);
         if (date != null) {
             view.setTextSize(20);
-            String date_formatted = String.valueOf(date[0]) + "-"
-                    + String.valueOf(date[1] + 1) + "-"
-                    + String.valueOf(date[2]);
-
-            int numSessions = getMeditationAssistant().db.numSessionsByDate(date_formatted);
+            Calendar dateCalendar = Calendar.getInstance();
+            dateCalendar.set(Calendar.DAY_OF_MONTH, date[0]);
+            dateCalendar.set(Calendar.MONTH, date[1]);
+            dateCalendar.set(Calendar.YEAR, date[2]);
+            int numSessions = getMeditationAssistant().db.numSessionsByDate(dateCalendar);
             if (numSessions > 0) {
                 // At least one meditation session exists for this date
 

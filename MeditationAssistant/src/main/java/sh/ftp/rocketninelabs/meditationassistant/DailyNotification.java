@@ -41,7 +41,7 @@ public class DailyNotification extends BroadcastReceiver {
             SimpleDateFormat sdf = new SimpleDateFormat("d-M-yyyy", Locale.US);
             if (getMeditationAssistant().getTimeToStopMeditate() != 0) {
                 Log.d("MeditationAssistant", "Skipping daily notification today, session in progress...");
-            } else if (getMeditationAssistant().db.numSessionsByDate(sdf.format(Calendar.getInstance().getTime())) > 0) {
+            } else if (getMeditationAssistant().db.numSessionsByDate(Calendar.getInstance()) > 0) {
                 Log.d("MeditationAssistant", "Skipping daily notification today, there has already been a session recorded...");
             } else {
                 long last_reminder = getMeditationAssistant().getPrefs().getLong("last_reminder", 0);

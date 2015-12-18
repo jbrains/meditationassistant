@@ -58,7 +58,7 @@
     <string name="sendEmail">Envoyer un email</string>
     <string name="version">Version %s</string>
     <string name="translate">Traduire</string>
-    
+
     <string name="howToMeditate">Comment méditer</string>
     <string name="share">Partager</string>
 
@@ -70,7 +70,7 @@
     <string name="sessionDeleteEverywhere">Supprimer partout</string>
     <string name="sessionDeleteLocally">Supprimer en local</string>
     <string name="sessionDeleteMediNET">Supprimer sur MediNET</string>
-    
+
     <string name="presetsettings">Réglages prédéfinis</string>
     <string name="modeandduration">Mode et durée</string>
 
@@ -98,7 +98,7 @@
     <!-- Progress -->
     <string name="calendar">Calendrier</string>
     <string name="statistics">Statistiques</string>
-    
+
     <string name="dayMondayShort">Lun</string>
     <string name="dayTuesdayShort">Mar</string>
     <string name="dayWednesdayShort">Mer</string>
@@ -139,7 +139,7 @@
 
     <string name="settings">Réglages</string>
     <string name="disabled">Désactivé</string>
-    
+
     <string name="noSpecialBehavior">Pas de comportement particulier</string>
     <string name="noSound">Pas de son</string>
     <string name="customSound">Son personnalisé</string>
@@ -158,8 +158,8 @@
     <string name="pref_autosignin">Se connecter automatiquement</string>
     <string name="pref_rememberme_summary">Resté enregistré après la fermeture</string>
     <string name="pref_rememberme">Se souvenir de moi</string>
-    
-    
+
+
     <string name="pref_screencontrol">Ecran</string>
     <string name="pref_sendusage">Envoyer les statistiques d\'utilisation</string>
     <string name="pref_sendusage_summary">Envoi anonyme des statistiques via Google Analytics. Prend effet au redémarrage</string>
@@ -175,14 +175,14 @@
     <string name="pref_theme_light">Clair</string>
     <string name="pref_theme_lightdark">Clair avec une barre d\'action foncée</string>
     <string name="pref_theme_dark">Foncé</string>
-    
+
     <string name="pref_notification">Notification</string>
     <string name="pref_notification_summary">Affiché durant la méditation hors de la fenêtre principale</string>
     <string name="pref_usetimepicker">Interface alternative de réglage de durée</string>
     <string name="pref_usetimepicker_summary">Changer la durée en utilisant un curseur pour les heures et les minutes</string>
     <string name="pref_askdismiss">Confirmer avant d\'annuler</string>
     <string name="pref_askdismiss_summary">Confirmer avant d\'annuler une séance</string>
-    
+
     <string name="pref_progresstab">Onglet de progression par défaut</string>
     <string name="importsessions">Importer les séances</string>
     <string name="importsessions_summary">Récupérer les séances envoyées</string>
@@ -195,7 +195,7 @@
     <string name="normal">Normal</string>
     <string name="large">Grand</string>
     <string name="extralarge">Très grand</string>
-    
+
     <string name="pref_notificationcontrol">Sonneries et notifications</string>
     <string name="pref_notificationcontrol_vibrate">Régler sur vibreur</string>
     <string name="pref_notificationcontrol_silent">Régler sur silence</string>

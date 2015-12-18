@@ -175,7 +175,7 @@ public class MeditationAssistant extends Application {
         }
     }
 
-    public void askToRateApp() {
+    public void rateApp() {
         if (getMarketName().equals("bb")) {
             startActivity(Intent.createChooser(new Intent(Intent.ACTION_VIEW, Uri.parse("https://appworld.blackberry.com/webstore/content/" + (BuildConfig.FLAVOR.equals("free") ? "59939924" : "59939922") + "/")), getString(R.string.openWith)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         } else if (getMarketName().equals("google")) {
@@ -316,9 +316,7 @@ public class MeditationAssistant extends Application {
         Boolean sessionexiststoday = false;
 
         while (true) {
-            if (db.numSessionsByDate(String.valueOf(dayCalendar.get(Calendar.DAY_OF_MONTH)) + "-"
-                    + String.valueOf(dayCalendar.get(Calendar.MONTH) + 1) + "-"
-                    + String.valueOf(dayCalendar.get(Calendar.YEAR))) > 0) {
+            if (db.numSessionsByDate(dayCalendar) > 0) {
                 recalculatedstreak++;
 
                 if (daysback == 0) {
@@ -333,7 +331,7 @@ public class MeditationAssistant extends Application {
         }
 
         if (getMeditationStreak() < recalculatedstreak) {
-            setMeditationStreak(recalculatedstreak, sessionexiststoday ? getMidnightTwoDaysTimestamp() : getMidnightOneDayTimestamp());
+            setMeditationStreak(recalculatedstreak, sessionexiststoday ? getStreakExpiresTwoDaysTimestamp() : getStreakExpiresOneDayTimestamp());
         }
     }
 
@@ -375,10 +373,10 @@ public class MeditationAssistant extends Application {
 
             if (twodays) {
                 setMeditationStreak(streak,
-                        getMidnightTwoDaysTimestamp());
+                        getStreakExpiresTwoDaysTimestamp());
             } else {
                 setMeditationStreak(streak,
-                        getMidnightOneDayTimestamp());
+                        getStreakExpiresOneDayTimestamp());
             }
         }
     }
@@ -391,7 +389,7 @@ public class MeditationAssistant extends Application {
         getPrefs().edit().putInt("longeststreak", ms).apply();
     }
 
-    public long getMidnightOneDayTimestamp() {
+    public long getStreakExpiresOneDayTimestamp() {
         Calendar c_midnight_oneday = new GregorianCalendar();
         c_midnight_oneday.setTime(new Date());
         c_midnight_oneday.set(Calendar.HOUR_OF_DAY, 0);
@@ -400,10 +398,10 @@ public class MeditationAssistant extends Application {
         c_midnight_oneday.set(Calendar.MILLISECOND, 0);
         c_midnight_oneday.add(Calendar.DATE, 1); // One day
 
-        return c_midnight_oneday.getTimeInMillis() / 1000;
+        return (c_midnight_oneday.getTimeInMillis() / 1000) + 14400;
     }
 
-    public long getMidnightTwoDaysTimestamp() {
+    public long getStreakExpiresTwoDaysTimestamp() {
         Calendar c_midnight_twodays = new GregorianCalendar();
         c_midnight_twodays.setTime(new Date());
         c_midnight_twodays.set(Calendar.HOUR_OF_DAY, 0);
@@ -412,7 +410,7 @@ public class MeditationAssistant extends Application {
         c_midnight_twodays.set(Calendar.MILLISECOND, 0);
         c_midnight_twodays.add(Calendar.DATE, 2); // Two days
 
-        return c_midnight_twodays.getTimeInMillis() / 1000;
+        return (c_midnight_twodays.getTimeInMillis() / 1000) + 14400;
     }
 
     public void notifySessionsUpdated() {

@@ -392,7 +392,7 @@ public class MediNETActivity extends Activity {
         } else if (itemId == R.id.menuMediNETAccount) {
             goTo("account");
             return true;
-        } else if (itemId == R.id.menuMediNETBack) {
+        }/* else if (itemId == R.id.menuMediNETBack) {
             if (webView.canGoBack()) {
                 webView.goBack();
             }
@@ -402,7 +402,7 @@ public class MediNETActivity extends Activity {
                 webView.goForward();
             }
             return true;
-        }
+        }*/
         return super.onOptionsItemSelected(item);
     }
 

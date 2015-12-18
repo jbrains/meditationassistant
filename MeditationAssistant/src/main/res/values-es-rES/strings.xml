@@ -6,7 +6,7 @@
     <string name="about">Sobre la aplicación</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
-    
+
     <string name="delete">Eliminar</string>
     <string name="sessions">Sesiones</string>
     <string name="community">Comunidad</string>
@@ -58,9 +58,8 @@
     <string name="sendEmail">Enviar correo electrónico</string>
     <string name="version">Versión %s</string>
     <string name="translate">Traducir</string>
-    
-    
-    
+
+
     <string name="howToMeditate">Cómo meditar</string>
     <string name="share">Compartir</string>
 
@@ -157,8 +156,8 @@
     <string name="pref_autosignin">Conectar automáticamente</string>
     <string name="pref_rememberme_summary">Mantener iniciado después de cerrar</string>
     <string name="pref_rememberme">Recuérdame</string>
-    
-    
+
+
     <string name="pref_screencontrol">Pantalla</string>
     <string name="pref_sendusage">Reportar las estadísticas del uso</string>
     <string name="pref_sendusage_summary">Reportar anónimamente con Google Analytics. Necesita el reinicio de la aplicación</string>
