@@ -20,6 +20,13 @@
     <string name="groups">Групи</string>
     <string name="announcement">оголошення</string>
 
+    <!-- Permissions -->
+    
+    
+    
+    
+    
+
     <!-- Main Activity -->
     <string name="timer">Таймер</string>
     <string name="timerHelp">Таймер зараз налаштовано на 15 хвилин. Ви можете змінити тривалість, закінчити у визначений час доби або відключити сигнал повністю. Доторкніться зараз до таймера щоб оглянути ці параметри.</string>

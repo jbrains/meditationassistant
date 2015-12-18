@@ -20,6 +20,13 @@
     <string name="groups">グループ</string>
     <string name="announcement">アナウンス</string>
 
+    <!-- Permissions -->
+    
+    
+    
+    
+    
+
     <!-- Main Activity -->
     <string name="timer">タイマー</string>
     <string name="timerHelp">タイマーは現在15分に設定されています。継続時間や、一日の終わりの時間を変更したり、完全にアラームを無効にすることができます。これらのオプションを表示するには、タイマーをタップしてください。</string>
