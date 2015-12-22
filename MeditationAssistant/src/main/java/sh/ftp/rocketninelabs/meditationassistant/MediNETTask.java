@@ -18,9 +18,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.TimeZone;
 
@@ -42,6 +40,8 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
         if (isCancelled()) {
             Log.d("MeditationAssistant", "Task cancelled");
             return this.medinet;
+        } else {
+            Log.d("MeditationAssistant", "MediNET doInBackground...");
         }
 
         TimeZone tz = TimeZone.getDefault();
@@ -196,26 +196,13 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
             return medinet;
         }
 
-        Calendar date = new GregorianCalendar();
-        date.setTimeZone(TimeZone.getDefault());
-        date.set(Calendar.HOUR_OF_DAY, 0);
-        date.set(Calendar.MINUTE, 0);
-        date.set(Calendar.SECOND, 0);
-        date.set(Calendar.MILLISECOND, 0);
-        date.add(Calendar.DAY_OF_MONTH, 2);
-        Log.d("MeditationAssistant",
-                "two days: " + date.getTimeZone().getDisplayName()
-                        + String.valueOf(date.getTimeInMillis() / 1000)
-        );
-
         Log.d("MeditationAssistant", "Result: " + result);
         if (medinetConnection.getHeaderField("x-MediNET") != null) {
             if (medinetConnection.getHeaderField("x-MediNET")
                     .equals("signin")) {
                 this.medinet.askToSignIn();
             } else {
-                if (action.equals("signin") && medinetConnection.getHeaderField("x-MediNET-Key") != null) {
- /* Oauth2 sign in */
+                if (action.equals("signin") && medinetConnection.getHeaderField("x-MediNET-Key") != null) { /* Oauth2 sign in */
                     Log.d("MeditationAssistant", "Header key: "
                             + medinetConnection.getHeaderField("x-MediNET-Key"));
                     if (!medinetConnection.getHeaderField("x-MediNET-Key").equals("")) {
@@ -434,6 +421,8 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
                     e.printStackTrace();
                 }
             }
+        } else {
+            Log.d("MeditationAssistant", "MediNET header was missing!");
         }
         publishProgress();
         medinet.updateAfterDelay();

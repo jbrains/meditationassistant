@@ -5,8 +5,7 @@
                 android:paddingBottom="0dp"
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
-                android:paddingTop="0dp"
-                tools:context=".MainActivity$PlaceholderFragment">
+                android:paddingTop="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -310,12 +310,13 @@ public class MeditationAssistant extends Application {
     }
 
     public void recalculateMeditationStreak() {
-        Calendar dayCalendar = Calendar.getInstance();
+        Calendar dayCalendar = new GregorianCalendar();
         Integer daysback = 0;
         Integer recalculatedstreak = 0;
         Boolean sessionexiststoday = false;
 
         while (true) {
+            Log.d("MeditationAssistant", "Checking (" + String.valueOf(daysback) + ") " + String.valueOf(dayCalendar));
             if (db.numSessionsByDate(dayCalendar) > 0) {
                 recalculatedstreak++;
 
@@ -327,7 +328,7 @@ public class MeditationAssistant extends Application {
             }
 
             daysback++;
-            dayCalendar.add(Calendar.DAY_OF_YEAR, -1);
+            dayCalendar.add(Calendar.DATE, -1);
         }
 
         if (getMeditationStreak() < recalculatedstreak) {

@@ -3,7 +3,6 @@ package sh.ftp.rocketninelabs.meditationassistant;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -42,6 +41,7 @@ public class CompleteActivity extends Activity {
                         .longToast(
                                 getString(R.string.sessionNotPosted));
             } else {
+                Log.d("MeditationAssistant", "Waiting on MediNET runnable... (" + getMeditationAssistant().getMediNET().status + "/" + getMeditationAssistant().getMediNET().result + ")");
                 handler.postDelayed(this, 2000);
             }
         }
@@ -355,9 +355,7 @@ public class CompleteActivity extends Activity {
     }
 
     private void saveLastMessage() {
-        SharedPreferences.Editor editor = getMeditationAssistant().getPrefs().edit();
-        editor.putString("lastmessage", getSessionMessage());
-        editor.apply();
+        getMeditationAssistant().getPrefs().edit().putString("lastmessage", getSessionMessage()).apply();
     }
 
     public void saveMediNET(View view) {
