@@ -25,7 +25,7 @@
     
     
     
-    
+    <string name="tryAgain">Erneut versuchen</string>
 
     <!-- Main Activity -->
     <string name="timer">Timer</string>
@@ -39,8 +39,8 @@
     <string name="tapToSkip">Überspringen</string>
     <string name="pause">Pause</string>
     <string name="end">Ende</string>
-    <string name="pauseOrEnd">Pause oder Ende</string>
-    <string name="resumeOrEnd">Fortsetzen oder Ende</string>
+    <string name="pauseOrEnd">Pausieren oder beenden</string>
+    <string name="resumeOrEnd">Fortsetzen oder beenden</string>
     <string name="pausedNotification">Sitzung pausiert, halten zum Beenden</string>
     <string name="mediNETConnecting">Verbinde...</string>
     <string name="mediNETConnected">Mit MediNET verbunden</string>

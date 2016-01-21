@@ -21,11 +21,11 @@
     <string name="announcement">оголошення</string>
 
     <!-- Permissions -->
-    
-    
-    
-    
-    
+    <string name="permissionRequest">Запит на дозвіл</string>
+    <string name="permissionRequestAccounts">Дозвіл для доступу до вашого рахунку Google, що позначено як "контакти". Ваші контакти не будуть прочитані.\n\n Дозволяючи це, вам не потрібно буде вводити ваше ім\'я та пароль доступу до рахунку Google, коли ви входитимете до MediNET.</string>
+    <string name="permissionRequestReadExternal">Цей дозвіл потрібен для вибору звукового файлу користувача на пристрої.</string>
+    <string name="deny">Відмовитись</string>
+    <string name="tryAgain">Спробувати ще раз</string>
 
     <!-- Main Activity -->
     <string name="timer">Таймер</string>

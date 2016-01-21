@@ -6,7 +6,7 @@
     <string name="about">Sobre la aplicación</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
-    
+    <string name="openWith">Abrir con</string>
     <string name="delete">Eliminar</string>
     <string name="sessions">Sesiones</string>
     <string name="community">Comunidad</string>
@@ -21,11 +21,11 @@
     <string name="announcement">Anuncios</string>
 
     <!-- Permissions -->
-    
-    
-    
-    
-    
+    <string name="permissionRequest">Permiso requerido</string>
+    <string name="permissionRequestAccounts">Los permisos para acceder a tu cuenta de Google vienen dados por el acceso a tus "contactos". No se leerán tus contactos.\n\nAl permitir este acceso, no se necesitará introducir tu nombre de usuario y contraseña de Google al registrarse en MediNET.</string>
+    <string name="permissionRequestReadExternal">Este permiso es necesario para elegir un sonido personalizado en cada dispositivo.</string>
+    <string name="deny">Denegar</string>
+    <string name="tryAgain">Reintentar</string>
 
     <!-- Main Activity -->
     <string name="timer">Temporizador</string>
@@ -65,9 +65,9 @@
     <string name="sendEmail">Enviar correo electrónico</string>
     <string name="version">Versión %s</string>
     <string name="translate">Traducir</string>
-    
-    
-    
+    <string name="donate">Donar</string>
+    <string name="removeAds">Eliminar anuncios</string>
+    <string name="removeAdsHelp">La versión completa del Asistente de meditación es una aplicación separada.\n\nPara mantener tus sesiones existentes, regístrate en MediNET y pulsa "Subir sesiones" en la ventana de ajustes.\n\nAbre la versión completa y al iniciar sesión en MediNET una vez más, pulsa "Importar sesiones".</string>
     <string name="howToMeditate">Cómo meditar</string>
     <string name="share">Compartir</string>
 
@@ -164,8 +164,8 @@
     <string name="pref_autosignin">Conectar automáticamente</string>
     <string name="pref_rememberme_summary">Mantener iniciado después de cerrar</string>
     <string name="pref_rememberme">Recuérdame</string>
-    
-    
+    <string name="pref_sessionvolume">Volumen</string>
+    <string name="pref_sessionvolume_summary">El volumen anterior será restaurado una vez que la sesión se complete.</string>
     <string name="pref_screencontrol">Pantalla</string>
     <string name="pref_sendusage">Reportar las estadísticas del uso</string>
     <string name="pref_sendusage_summary">Reportar anónimamente con Google Analytics. Necesita el reinicio de la aplicación</string>

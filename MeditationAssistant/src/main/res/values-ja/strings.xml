@@ -21,11 +21,11 @@
     <string name="announcement">アナウンス</string>
 
     <!-- Permissions -->
-    
-    
-    
-    
-    
+    <string name="permissionRequest">アクセス許可リクエスト</string>
+    <string name="permissionRequestAccounts">Google アカウントにアクセスするためのアクセス許可は "連絡先" と表示されます。あなたの連絡先は読み取りません\n\nこのアクセス許可を許可することで、MediNET にサインインするときに Google のユーザー名とパスワードを入力する必要はありません。</string>
+    <string name="permissionRequestReadExternal">デバイス上のカスタムサウンドファイルを選択するために、このアクセス許可が必要です。</string>
+    <string name="deny">拒否</string>
+    <string name="tryAgain">再試行</string>
 
     <!-- Main Activity -->
     <string name="timer">タイマー</string>
