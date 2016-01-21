@@ -121,7 +121,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public ArrayList<SessionSQL> getAllLocalSessions() {
         ArrayList<SessionSQL> sessionList = new ArrayList<SessionSQL>();
 
-        String selectQuery = "SELECT  * FROM `" + TABLE_SESSIONS + "` WHERE `" + KEY_ISPOSTED + "` = 0";
+        String selectQuery = "SELECT  * FROM `" + TABLE_SESSIONS + "`";
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 

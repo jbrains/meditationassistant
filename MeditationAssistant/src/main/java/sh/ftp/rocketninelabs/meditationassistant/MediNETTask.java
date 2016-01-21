@@ -351,7 +351,11 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
                                             getMeditationAssistant().getString(R.string.sessionNotProperAccount));
                         }
                     } else if (action.equals("uploadsessions")) {
-                        if (sessionssql != null && medinet.result.equals("uploaded")) {
+                        Integer sessionsuploaded = 0;
+                        if (jsonObj.has("sessionsuploaded")) {
+                            sessionsuploaded = jsonObj.getInt("sessionsuploaded");
+                        }
+                        if (sessionssql != null && medinet.result.equals("uploaded") && sessionsuploaded > 0) {
                             for (SessionSQL sessionsql : sessionssql) {
                                 sessionsql._isposted = (long) 1;
                                 getMeditationAssistant().db.updateSession(sessionsql);
