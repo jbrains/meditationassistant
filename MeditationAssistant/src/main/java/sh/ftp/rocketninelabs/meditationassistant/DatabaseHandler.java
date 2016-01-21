@@ -190,12 +190,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 startedCalendar.setTimeInMillis(sessionStarted * 1000);
 
                 midnightCalendar.setTimeInMillis(sessionStarted * 1000);
-                midnightCalendar.set(Calendar.HOUR, 0);
+                midnightCalendar.set(Calendar.HOUR_OF_DAY, 0);
                 midnightCalendar.set(Calendar.MINUTE, 0);
                 midnightCalendar.set(Calendar.SECOND, 0);
                 midnightCalendar.set(Calendar.MILLISECOND, 0);
+
+                /*Log.d("MeditationAssistant", "numSessionsByDate " + date + " to " + dateLateNight + " - " + sessionDate  + " - MIDNIGHT CALENDAR: " +  String.valueOf(midnightCalendar.get(Calendar.DAY_OF_MONTH)) + "-"
+                        + String.valueOf(midnightCalendar.get(Calendar.MONTH) + 1) + "-"
+                        + String.valueOf(midnightCalendar.get(Calendar.YEAR)));*/
                 if ((sessionDate.equals(date) && startedCalendar.getTimeInMillis() - midnightCalendar.getTimeInMillis() > 14400000) || (sessionDate.equals(dateLateNight) && startedCalendar.getTimeInMillis() - midnightCalendar.getTimeInMillis() <= 14400000)) {
                     numsessions++;
+                    //Log.d("MeditationAssistant", "numSessionsByDate MATCH: " + String.valueOf(startedCalendar.getTimeInMillis() - midnightCalendar.getTimeInMillis()) + " - " + (sessionDate.equals(date) ? "DATE MATCH" : "NO DATE MATCH") + " - " + (sessionDate.equals(dateLateNight) ? "LATE NIGHT MATCH" : "NO LATE NIGHT MATCH"));
                 }
             } while (cursor.moveToNext());
         }
