@@ -1,3 +1,6 @@
+1.3.5:
+- Update libraries
+
 1.3.4:
 - Fix incomplete MediNET upload bug
 - Fix sessions displaying as the wrong date on the calendar
