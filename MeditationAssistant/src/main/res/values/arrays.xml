@@ -82,10 +82,24 @@
     </string-array>
     <string-array name="notificationcontrol_values">
         <item></item>
+        <item>priority</item>
+        <item>alarms</item>
         <item>vibrate</item>
         <item>silent</item>
     </string-array>
     <string-array name="notificationcontrol">
+        <item>@string/noSpecialBehavior</item>
+        <item>@string/pref_notificationcontrol_priority</item>
+        <item>@string/pref_notificationcontrol_alarms</item>
+        <item>@string/pref_notificationcontrol_vibrate</item>
+        <item>@string/pref_notificationcontrol_silent</item>
+    </string-array>
+    <string-array name="notificationcontrol_values_premarshmallow">
+        <item></item>
+        <item>vibrate</item>
+        <item>silent</item>
+    </string-array>
+    <string-array name="notificationcontrol_premarshmallow">
         <item>@string/noSpecialBehavior</item>
         <item>@string/pref_notificationcontrol_vibrate</item>
         <item>@string/pref_notificationcontrol_silent</item>

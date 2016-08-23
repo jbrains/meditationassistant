@@ -6,6 +6,7 @@ import android.accounts.AccountManagerCallback;
 import android.accounts.AccountManagerFuture;
 import android.accounts.AuthenticatorException;
 import android.accounts.OperationCanceledException;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
@@ -29,6 +30,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.util.TypedValue;
@@ -70,6 +72,7 @@ public class MeditationAssistant extends Application {
     public boolean ispaused = false;
     public long pausestart = 0;
     public long pausetime = 0;
+    public int previousRingerFilter = -1;
     public int previousRingerMode = -1;
     public String toastText = "";
     public String pendingNotificationAction = "";
@@ -186,24 +189,44 @@ public class MeditationAssistant extends Application {
     }
 
     public void setNotificationControl() {
+        previousRingerFilter = getRingerFilter();
         AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         previousRingerMode = audioManager.getRingerMode();
 
-        if (getPrefs().getString("pref_notificationcontrol", "").equals("vibrate")) {
+        if ((getPrefs().getString("pref_notificationcontrol", "").equals("priority") || getPrefs().getString("pref_notificationcontrol", "").equals("alarms")) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            mNotificationManager.setInterruptionFilter(getPrefs().getString("pref_notificationcontrol", "").equals("priority") ? NotificationManager.INTERRUPTION_FILTER_PRIORITY : NotificationManager.INTERRUPTION_FILTER_ALARMS);
+        } else if (getPrefs().getString("pref_notificationcontrol", "").equals("vibrate") && getRingerFilter() == 0) {
             audioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-        } else if (getPrefs().getString("pref_notificationcontrol", "").equals("silent")) {
+        } else if (getPrefs().getString("pref_notificationcontrol", "").equals("silent") && getRingerFilter() == 0) {
             audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
         }
     }
 
     public void unsetNotificationControl() {
-        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-
-        if (previousRingerMode >= 0 && getPrefs().getString("pref_notificationcontrol", "").equals("vibrate") || getPrefs().getString("pref_notificationcontrol", "").equals("silent")) {
-            audioManager.setRingerMode(previousRingerMode);
+        if (previousRingerFilter >= 0 && (getPrefs().getString("pref_notificationcontrol", "").equals("priority") || getPrefs().getString("pref_notificationcontrol", "").equals("alarms")) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            mNotificationManager.setInterruptionFilter(previousRingerFilter);
         }
 
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        if (previousRingerMode >= 0 && (getPrefs().getString("pref_notificationcontrol", "").equals("vibrate") || getPrefs().getString("pref_notificationcontrol", "").equals("silent"))) {
+            if (getRingerFilter() == 0) {
+                audioManager.setRingerMode(previousRingerMode);
+            }
+        }
+
+        previousRingerFilter = -1;
         previousRingerMode = -1;
+    }
+
+    public int getRingerFilter() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            return mNotificationManager.getCurrentInterruptionFilter();
+        }
+
+        return -1;
     }
 
     public String getDurationFormatted() {
@@ -1255,6 +1278,38 @@ public class MeditationAssistant extends Application {
                 vi.vibrate(pattern, -1);
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+        }
+    }
+
+    public void checkNotificationControl(Activity activity, String prefValue) {
+        String prefnotificationcontrol = prefValue;
+        if (prefnotificationcontrol.equals("")) {
+            prefnotificationcontrol = getPrefs().getString("pref_notificationcontrol", "");
+        }
+        if (!prefnotificationcontrol.equals("priority") && !prefnotificationcontrol.equals("alarms")) {
+            return; // Notification filter will not be changed
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+            // Check if the notification policy access has been granted for the app.
+            if (!mNotificationManager.isNotificationPolicyAccessGranted()) {
+                AlertDialog accountsAlertDialog = new AlertDialog.Builder(activity)
+                        .setTitle(getString(R.string.signInWith))
+                        .setTitle(R.string.permissionRequest)
+                        .setMessage(R.string.permissionRequestNotificationControl)
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                @SuppressLint("InlinedApi") Intent intent = new Intent(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            }
+                        })
+                        .create();
+                accountsAlertDialog.show();
             }
         }
     }
