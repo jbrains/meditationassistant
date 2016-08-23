@@ -541,6 +541,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             });
         }
 
+        getMeditationAssistant().checkNotificationControl(MainActivity.this, "");
+
         // TODO: Implement
         //getMeditationAssistant().setupGoogleClient(MainActivity.this);
     }

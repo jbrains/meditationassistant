@@ -128,6 +128,8 @@ public class SettingsActivity extends PreferenceActivity {
                     if (!getMeditationAssistant().getPrefs().getString(listPreference.getKey(), "dark").equals(stringValue)) {
                         Toast.makeText(SettingsActivity.this, getString(R.string.restartApp), Toast.LENGTH_SHORT).show();
                     }
+                } else if (listPreference.getKey().equals("pref_notificationcontrol")) {
+                    getMeditationAssistant().checkNotificationControl(SettingsActivity.this, stringValue);
                 } else if (listPreference.getKey().equals("pref_meditation_sound_start")) {
                     if (stringValue.equals("custom")) {
                         if (!initialSoundChangeStart) {
@@ -438,6 +440,12 @@ public class SettingsActivity extends PreferenceActivity {
         ListPreferenceSound prefMeditationSoundFinish = (ListPreferenceSound) (preferenceFragment == null ? findPreference("pref_meditation_sound_finish") : preferenceFragment.findPreference("pref_meditation_sound_finish"));
         prefMeditationSoundFinish.setEntries(meditation_sounds);
         prefMeditationSoundFinish.setEntryValues(meditation_sounds_values);
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) { // Remove priority/alarms entries
+            ListPreference pref_notificationcontrol = (ListPreference) (preferenceFragment == null ? findPreference("pref_notificationcontrol") : preferenceFragment.findPreference("pref_notificationcontrol"));
+            pref_notificationcontrol.setEntries(R.array.notificationcontrol_premarshmallow);
+            pref_notificationcontrol.setEntryValues(R.array.notificationcontrol_values_premarshmallow);
+        }
     }
 
     void setupPreferences(String pref_type, PreferenceFragment preferenceFragment) {
