@@ -24,6 +24,7 @@
     <string name="permissionRequest">Permiso requerido</string>
     <string name="permissionRequestAccounts">Los permisos para acceder a tu cuenta de Google vienen dados por el acceso a tus "contactos". No se leerán tus contactos.\n\nAl permitir este acceso, no se necesitará introducir tu nombre de usuario y contraseña de Google al registrarse en MediNET.</string>
     <string name="permissionRequestReadExternal">Este permiso es necesario para elegir un sonido personalizado en cada dispositivo.</string>
+    <string name="permissionRequestNotificationControl">Por favor, concede el permiso de la siguiente pantalla para controlar el modo No molestar</string>
     <string name="deny">Denegar</string>
     <string name="tryAgain">Reintentar</string>
 
@@ -203,6 +204,8 @@
     <string name="extralarge">Enorme</string>
     <string name="restartApp">Reinicia la aplicación para aplicar la nueva configuración</string>
     <string name="pref_notificationcontrol">Tono y notificaciones</string>
+    <string name="pref_notificationcontrol_priority">Sólo de alta prioridad</string>
+    <string name="pref_notificationcontrol_alarms">Sólo alarmas</string>
     <string name="pref_notificationcontrol_vibrate">Establecer vibrado</string>
     <string name="pref_notificationcontrol_silent">Establecer modo silencio</string>
     <string name="pref_daily_reminder">Recordatorio diario</string>

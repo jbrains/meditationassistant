@@ -121,7 +121,11 @@ public class DailyNotification extends BroadcastReceiver {
                         PendingIntent.FLAG_CANCEL_CURRENT
                 );
 
-        if (Build.VERSION.SDK_INT >= 19) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            getMeditationAssistant().reminderAlarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,
+                    calendar.getTimeInMillis(),
+                    getMeditationAssistant().reminderPendingIntent);
+        } else if (Build.VERSION.SDK_INT >= 19) {
             getMeditationAssistant().reminderAlarmManager.setExact(AlarmManager.RTC_WAKEUP,
                     calendar.getTimeInMillis(),
                     getMeditationAssistant().reminderPendingIntent);

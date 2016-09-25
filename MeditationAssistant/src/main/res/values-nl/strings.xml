@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="appName">Meditatie Assistent (gratis)</string>
     <string name="appNameShort">Meditatie Assistent</string>
     <string name="about">Over Meditatie Assistent</string>
     <string name="yes">Ja</string>
     <string name="no">Nee</string>
+    
     <string name="delete">Verwijderen</string>
     <string name="sessions">Sessies</string>
     <string name="community">Community</string>
@@ -19,48 +20,74 @@
     <string name="groups">Groepen</string>
     <string name="announcement">Aankondiging</string>
 
+    <!-- Permissions -->
+    
+    
+    
+    
+    
+    <string name="tryAgain">Probeer Opnieuw</string>
+
     <!-- Main Activity -->
-
-
+    
+    
+    
+    
     <string name="cancel">Annuleren</string>
     <string name="set">Instellen</string>
     <string name="confirm">Bevestigen</string>
     <string name="meditate">Mediteren</string>
     <string name="tapToSkip">Overslaan</string>
-
-
+    
+    
+    
+    
+    
     <string name="mediNETConnecting">Verbinden...</string>
     <string name="mediNETConnected">Verbonden met MediNET</string>
     <string name="sessionInProgress">Sessie loopt</string>
     <string name="progress">Voortgang</string>
     <string name="setPreset">Instelling zetten</string>
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     <!-- About -->
-
+    
     <string name="sendEmail">Verstuur email</string>
     <string name="version">Versie %s</string>
     <string name="translate">Vertaal</string>
-
+    
+    
+    
+    
     <string name="share">Delen</string>
 
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
-
+    
 
     <!-- Sessions -->
     <string name="session">Sessie</string>
     <string name="sessionDeleteEverywhere">Overal verwijderen</string>
     <string name="sessionDeleteLocally">Lokaal verwijderen</string>
     <string name="sessionDeleteMediNET">Verwijderen van MediNET</string>
-
+    
+    
+    
 
     <!-- Session complete -->
     <string name="sessioncomplete">Sessie Kompleet</string>
     <string name="sessionMessagePlaceholder">Bericht</string>
     <string name="askDiscardText">Sessie negeren ?</string>
-    <string name="shareSessionText">Ik heb net gemediteerd gedurende %1$s met %2$s.</string>
-    <string name="aMoment">een moment</string>
-    <string name="shareSessionSubject">Meditatie sessie</string>
     <string name="sessionPosting">Sessie opsturen...</string>
     <string name="sessionPosted">Sessie opgestuurd naar MediNET</string>
     <string name="sessionAlreadyPosted">Sessie is al opgestuurd</string>
@@ -73,11 +100,12 @@
     <string name="signInWith">Log in met....</string>
     <string name="signInWithProvider">Log in met %s....</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, etc.</string>
-
+    
 
     <!-- Progress -->
     <string name="calendar">Kalender</string>
-
+    
+    
     <string name="dayMondayShort">Ma</string>
     <string name="dayTuesdayShort">Di</string>
     <string name="dayWednesdayShort">Woe</string>
@@ -85,23 +113,168 @@
     <string name="dayFridayShort">Vrij</string>
     <string name="daySaturdayShort">Zat</string>
     <string name="daySundayShort">Zon</string>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
+    
+    
+    
+    
+    
+    
+    
+
+    
 
     <!-- Settings -->
-
+    
     <string name="pref_vibrate">Trillen</string>
-
+    
+    
+    
+    
+    
+    
 
     <string name="settings">Instellingen</string>
     <string name="disabled">Disabled</string>
+    
     <string name="noSpecialBehavior">Normaal</string>
     <string name="noSound">Geen geluid</string>
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     <!-- MediNET -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
+    <plurals name="numtimes">
+        <item quantity="one">%s time</item>
+        <item quantity="other">%s times</item>
+    </plurals>
+
+    <plurals name="sessionsImported">
+        <item quantity="one">Imported %s session</item>
+        <item quantity="other">Imported %s sessions</item>
+    </plurals>
+
+    <plurals name="sessionsUploaded">
+        <item quantity="one">Uploaded %s session</item>
+        <item quantity="other">Uploaded %s sessions</item>
+    </plurals>
+
+    
+    
+
+    <plurals name="daysOfMeditationMinimal">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+    <plurals name="daysOfMeditation">
+        <item quantity="one">%d day of meditation</item>
+        <item quantity="other">%d days of meditation</item>
+    </plurals>
+    <plurals name="daysOfMeditationWithoutCount">
+        <item quantity="one">day of meditation</item>
+        <item quantity="other">days of meditation</item>
+    </plurals>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     <!-- Widgets -->
-
+    
+    
+    
 
 </resources>

@@ -135,8 +135,8 @@ public class MeditationAssistant extends Application {
             } else if (BuildConfig.FLAVOR.equals("opensource")) {
                 marketName = "fdroid";
             } else { // To be uncommented based upon target market
-                marketName = "google";
-                //marketName = "amazon";
+                //marketName = "google";
+                marketName = "amazon";
                 //marketName = "getjar";
                 //marketName = "slideme";
             }

@@ -24,6 +24,7 @@
     <string name="permissionRequest">アクセス許可リクエスト</string>
     <string name="permissionRequestAccounts">Google アカウントにアクセスするためのアクセス許可は "連絡先" と表示されます。あなたの連絡先は読み取りません\n\nこのアクセス許可を許可することで、MediNET にサインインするときに Google のユーザー名とパスワードを入力する必要はありません。</string>
     <string name="permissionRequestReadExternal">デバイス上のカスタムサウンドファイルを選択するために、このアクセス許可が必要です。</string>
+    <string name="permissionRequestNotificationControl">じゃましないように制御するため、次の画面でアクセス許可を付与してください。</string>
     <string name="deny">拒否</string>
     <string name="tryAgain">再試行</string>
 
@@ -203,6 +204,8 @@
     <string name="extralarge">最大</string>
     <string name="restartApp">新しい設定を適用するには、アプリケーションを再起動してください</string>
     <string name="pref_notificationcontrol">着信音と通知</string>
+    <string name="pref_notificationcontrol_priority">優先度のみ</string>
+    <string name="pref_notificationcontrol_alarms">アラームのみ</string>
     <string name="pref_notificationcontrol_vibrate">振動に設定</string>
     <string name="pref_notificationcontrol_silent">サイレントに設定</string>
     <string name="pref_daily_reminder">毎日のリマインダー</string>

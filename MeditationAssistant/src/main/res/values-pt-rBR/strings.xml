@@ -24,6 +24,7 @@
     <string name="permissionRequest">Pedir permissão</string>
     <string name="permissionRequestAccounts">Permissão para acessar sua conta do Google é rotulada como "contatos". Seus contatos não serão lidos.\n\nAo conceder essa permissão, você não precisará digitar seu nome de usuário e senha do Google ao entrar no MediNET.</string>
     <string name="permissionRequestReadExternal">Esta permissão é necessária para escolher um arquivo de som personalizado no dispositivo.</string>
+    <string name="permissionRequestNotificationControl">Favor dar permissão na próxima tela para controlar Não Perturbe.</string>
     <string name="deny">Negar</string>
     <string name="tryAgain">Tente novamente</string>
 
@@ -51,14 +52,14 @@
     <string name="setPresetHint">
 Segure para escolher valor predefinido</string>
     <string name="setPresetTip">Escolha quais configurações restaurar tocando no ícone da engrenagem (Configurações) e depois em Configurações predefinidas.</string>
-    
-    
+    <string name="setPresetHintBlank">Digite a duração (ou término) padrão.</string>
+    <string name="label">Rótulo</string>
     <string name="setTimerDurationHint">Digite uma duração válida (Ex: 0:22)
 </string>
-    
+    <string name="setTimerEndAtHint">Digite um horário válido (ex.: 4:20)</string>
     <string name="invalidEndAt">Horário inválido para encerrar sessão</string>
     
-    
+    <string name="endAt">Termina em</string>
     <string name="untimed">Não cronometrada</string>
     <string name="unlimited">Ilimitado</string>
     <string name="presetLabelEndAt">Fim %s</string>
@@ -185,11 +186,11 @@ Segure para escolher valor predefinido</string>
     <string name="pref_meditation_sound_finish">Som ao completar</string>
     <string name="pref_remembermessage">Relembre última mensagem</string>
     <string name="pref_remembermessage_summary">Padrão para a última mensagem postada</string>
-    
+    <string name="pref_theme">Tema holográfico</string>
     <string name="pref_theme_light">Claro</string>
     <string name="pref_theme_lightdark">Claro com barra de ação escura</string>
     <string name="pref_theme_dark">Escuro</string>
-    
+    <string name="buddhism">Budismo</string>
     <string name="pref_notification">Notificação</string>
     <string name="pref_notification_summary">Mostrado durante a meditação, enquanto longe da janela principal</string>
     <string name="pref_usetimepicker">Interface de duração alternativa</string>
@@ -211,6 +212,8 @@ Segure para escolher valor predefinido</string>
     <string name="extralarge">Extra grande</string>
     <string name="restartApp">Reinicie a aplicação para aplicar as novas configurações</string>
     <string name="pref_notificationcontrol">Toque e notificações</string>
+    
+    
     <string name="pref_notificationcontrol_vibrate">Vibrar</string>
     <string name="pref_notificationcontrol_silent">Silenciar</string>
     <string name="pref_daily_reminder">Lembrete diário</string>
