@@ -141,13 +141,13 @@ public class AboutActivity extends Activity {
     public void openHowToMeditate(View view) {
         startActivity(new Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse("http://medinet.ftp.sh/howtomeditate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                Uri.parse("https://medinet.ftp.sh/howtomeditate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
     public void openTranslate(View view) {
         startActivity(new Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse("http://medinet.ftp.sh/translate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                Uri.parse("https://medinet.ftp.sh/translate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
     public void openDonate(View view) {
@@ -192,7 +192,7 @@ public class AboutActivity extends Activity {
         } else {
             startActivity(new Intent(
                     Intent.ACTION_VIEW,
-                    Uri.parse("http://medinet.ftp.sh/donate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                    Uri.parse("https://medinet.ftp.sh/donate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }
     }
 

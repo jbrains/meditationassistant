@@ -19,7 +19,7 @@ Please purchase the paid version of the app to remove advertisements.
 
 Donate
 ------------
-[Click here to donate](http://medinet.ftp.sh/donate/) via PayPal.
+[Click here to donate](https://medinet.ftp.sh/donate/) via PayPal.
 
 
 Get Support

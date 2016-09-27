@@ -122,9 +122,7 @@ public class DailyNotification extends BroadcastReceiver {
                 );
 
         if (Build.VERSION.SDK_INT >= 23) {
-            getMeditationAssistant().reminderAlarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,
-                    calendar.getTimeInMillis(),
-                    getMeditationAssistant().reminderPendingIntent);
+            getMeditationAssistant().reminderAlarmManager.setAlarmClock(new AlarmManager.AlarmClockInfo(calendar.getTimeInMillis(), PendingIntent.getActivity(context, 0, new Intent(context, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT)), getMeditationAssistant().reminderPendingIntent);
         } else if (Build.VERSION.SDK_INT >= 19) {
             getMeditationAssistant().reminderAlarmManager.setExact(AlarmManager.RTC_WAKEUP,
                     calendar.getTimeInMillis(),

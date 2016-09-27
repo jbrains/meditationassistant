@@ -57,7 +57,7 @@ public class MediNETActivity extends Activity {
         TimeZone tz = TimeZone.getDefault();
         Date now = new Date();
 
-        return "http://medinet.ftp.sh/client_android.php?v="
+        return "https://medinet.ftp.sh/client_android.php?v="
                 + MediNET.version.toString() + "&avn="
                 + String.valueOf(getMeditationAssistant().getMAAppVersionNumber()) + "&page=" + page + "&th="
                 + ma.getMAThemeString() + "&tz="
@@ -74,7 +74,7 @@ public class MediNETActivity extends Activity {
                 || go_to.equals("LinkedIn")) {
             setTitle(String.format(getString(R.string.signInWithProvider),
                     go_to));
-            url = "http://medinet.ftp.sh/client_android_login.php?v="
+            url = "https://medinet.ftp.sh/client_android_login.php?v="
                     + MediNET.version.toString() + "&avn="
                     + String.valueOf(getMeditationAssistant().getMAAppVersionNumber()) + "&provider=" + go_to;
             provider = go_to;

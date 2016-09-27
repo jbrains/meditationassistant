@@ -58,7 +58,7 @@ import java.util.Map;
 import java.util.TimeZone;
 
 @ReportsCrashes(
-        formUri = "http://medinet.ftp.sh/acra/acra.php"
+        formUri = "https://medinet.ftp.sh/acra/acra.php"
 )
 public class MeditationAssistant extends Application {
 

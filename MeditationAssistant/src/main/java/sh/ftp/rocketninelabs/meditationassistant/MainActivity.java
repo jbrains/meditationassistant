@@ -193,8 +193,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                                 intent_interval, PendingIntent.FLAG_CANCEL_CURRENT);
                         am_interval = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                         if (Build.VERSION.SDK_INT >= 23) {
-                            am_interval.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,
-                                    cal.getTimeInMillis(), pendingintent_interval);
+                            am_interval.setAlarmClock(new AlarmManager.AlarmClockInfo(cal.getTimeInMillis(), PendingIntent.getActivity(MainActivity.this, 0, new Intent(MainActivity.this, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT)), pendingintent_interval);
                         } else if (Build.VERSION.SDK_INT >= 19) {
                             am_interval.setExact(AlarmManager.RTC_WAKEUP,
                                     cal.getTimeInMillis(), pendingintent_interval);
@@ -494,7 +493,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                         case DialogInterface.BUTTON_POSITIVE:
                             startActivity(new Intent(
                                     Intent.ACTION_VIEW,
-                                    Uri.parse("http://medinet.ftp.sh/translate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                                    Uri.parse("https://medinet.ftp.sh/translate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 
                             break;
 
@@ -1280,8 +1279,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                                 PendingIntent.FLAG_CANCEL_CURRENT);
                         am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                         if (Build.VERSION.SDK_INT >= 23) {
-                            am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-                                    pendingintent);
+                            am.setAlarmClock(new AlarmManager.AlarmClockInfo(cal.getTimeInMillis(), PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT)), pendingintent);
                         } else if (Build.VERSION.SDK_INT >= 19) {
                             am.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
                                     pendingintent);
@@ -1438,8 +1436,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                             PendingIntent.FLAG_CANCEL_CURRENT);
                     am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                     if (Build.VERSION.SDK_INT >= 23) {
-                        am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-                                pendingintent);
+                        am.setAlarmClock(new AlarmManager.AlarmClockInfo(cal.getTimeInMillis(), PendingIntent.getActivity(MainActivity.this, 0, new Intent(MainActivity.this, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT)), pendingintent);
                     } else if (Build.VERSION.SDK_INT >= 19) {
                         am.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
                                 pendingintent);
@@ -1553,8 +1550,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                     PendingIntent.FLAG_CANCEL_CURRENT);
             am_delay = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             if (Build.VERSION.SDK_INT >= 23) {
-                am_delay.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-                        pendingintent_delay);
+                am_delay.setAlarmClock(new AlarmManager.AlarmClockInfo(cal.getTimeInMillis(), PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT)), pendingintent_delay);
             } else if (Build.VERSION.SDK_INT >= 19) {
                 am_delay.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
                         pendingintent_delay);
@@ -1592,8 +1588,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                     intent_interval, PendingIntent.FLAG_CANCEL_CURRENT);
             am_interval = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             if (Build.VERSION.SDK_INT >= 23) {
-                am_interval.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,
-                        cal.getTimeInMillis(), pendingintent_interval);
+                am_interval.setAlarmClock(new AlarmManager.AlarmClockInfo(cal.getTimeInMillis(), PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT)), pendingintent_interval);
             } else if (Build.VERSION.SDK_INT >= 19) {
                 am_interval.setExact(AlarmManager.RTC_WAKEUP,
                         cal.getTimeInMillis(), pendingintent_interval);
@@ -2089,8 +2084,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                                         intent_interval, PendingIntent.FLAG_CANCEL_CURRENT);
                                 am_interval = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                                 if (Build.VERSION.SDK_INT >= 23) {
-                                    am_interval.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,
-                                            cal.getTimeInMillis(), pendingintent_interval);
+                                    am_interval.setAlarmClock(new AlarmManager.AlarmClockInfo(cal.getTimeInMillis(), PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT)), pendingintent_interval);
                                 } else if (Build.VERSION.SDK_INT >= 19) {
                                     am_interval.setExact(AlarmManager.RTC_WAKEUP,
                                             cal.getTimeInMillis(), pendingintent_interval);

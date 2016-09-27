@@ -50,7 +50,7 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
         String appVersion = getMeditationAssistant().getMAAppVersion() + BuildConfig.FLAVOR;
 
         if (this.nextURL == null) {
-            this.nextURL = "http://medinet.ftp.sh/client_android.php?v="
+            this.nextURL = "https://medinet.ftp.sh/client_android.php?v="
                     + MediNET.version.toString() + "&av="
                     + appVersion + "&am="
                     + getMeditationAssistant().getMarketName() + "&avn="
@@ -59,7 +59,7 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
         }
 
         if (action.equals("signin")) {
-            this.nextURL = "http://medinet.ftp.sh/client_android_login_oauth2.php?v="
+            this.nextURL = "https://medinet.ftp.sh/client_android_login_oauth2.php?v="
                     + MediNET.version.toString() + "&av="
                     + appVersion + "&avn="
                     + String.valueOf(getMeditationAssistant().getMAAppVersionNumber()) + "&tz="
