@@ -19,6 +19,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.InputType;
@@ -159,10 +160,10 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                                         @Override
                                         public void onPrepared(
                                                 MediaPlayer mp) {
+                                            SystemClock.sleep(MeditationAssistant.MEDIA_DELAY);
                                             mp.start();
                                         }
                                     });
-                            //mMediaPlayer.prepareAsync();
                         }
                     }
 
@@ -1496,12 +1497,12 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                                     @Override
                                     public void onPrepared(
                                             MediaPlayer mp) {
+                                        SystemClock.sleep(MeditationAssistant.MEDIA_DELAY);
                                         mp.start();
                                     }
                                 });
 
                         WakeLocker.acquire(getApplicationContext(), false);
-                        //mMediaPlayer.prepareAsync();
                     }
                 }
 
@@ -2041,10 +2042,10 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                                                     @Override
                                                     public void onPrepared(
                                                             MediaPlayer mp) {
+                                                        SystemClock.sleep(MeditationAssistant.MEDIA_DELAY);
                                                         mp.start();
                                                     }
                                                 });
-                                        //mMediaPlayer.prepareAsync();
                                     }
                                 }
 
@@ -2145,10 +2146,10 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                                             @Override
                                             public void onPrepared(
                                                     MediaPlayer mp) {
+                                                SystemClock.sleep(MeditationAssistant.MEDIA_DELAY);
                                                 mp.start();
                                             }
                                         });
-                                //mMediaPlayer.prepareAsync();
                             }
                         }
 

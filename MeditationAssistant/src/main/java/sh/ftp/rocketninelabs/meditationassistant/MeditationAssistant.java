@@ -67,6 +67,7 @@ public class MeditationAssistant extends Application {
     public static String ACTION_REMINDER = "sh.ftp.rocketninelabs.meditationassistant.DAILY_NOTIFICATION";
     public static String ACTION_UPDATED = "sh.ftp.rocketninelabs.meditationassistant.DAILY_NOTIFICATION_UPDATED";
     public static int REQUEST_FIT = 22;
+    public static int MEDIA_DELAY = 1000;
     public Boolean debug_widgets = false; // Debug
     public long lastpostedsessionstart = 0;
     public boolean ispaused = false;
@@ -135,8 +136,8 @@ public class MeditationAssistant extends Application {
             } else if (BuildConfig.FLAVOR.equals("opensource")) {
                 marketName = "fdroid";
             } else { // To be uncommented based upon target market
-                //marketName = "google";
-                marketName = "amazon";
+                marketName = "google";
+                //marketName = "amazon";
                 //marketName = "getjar";
                 //marketName = "slideme";
             }

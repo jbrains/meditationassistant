@@ -9,6 +9,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.SystemClock;
 import android.preference.ListPreference;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -213,7 +214,6 @@ public class ListPreferenceSound extends ListPreference {
                                         afd.getDeclaredLength());
                                 mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                                 mMediaPlayer.prepareAsync();
-                                // mMediaPlayer.prepare();
                             } catch (IllegalArgumentException e) {
                                 e.printStackTrace();
                             } catch (IllegalStateException e) {

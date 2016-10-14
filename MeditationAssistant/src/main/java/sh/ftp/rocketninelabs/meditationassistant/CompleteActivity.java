@@ -9,6 +9,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -202,10 +203,10 @@ public class CompleteActivity extends Activity {
                                 @Override
                                 public void onPrepared(
                                         MediaPlayer mp) {
+                                    SystemClock.sleep(MeditationAssistant.MEDIA_DELAY);
                                     mp.start();
                                 }
                             });
-                    //mMediaPlayer.prepareAsync();
                 } else {
                     getMeditationAssistant().restoreVolume();
                     handler.postDelayed(clearWakeLock, 5000);
