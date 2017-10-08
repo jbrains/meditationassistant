@@ -10,6 +10,7 @@ Download
 [paid](https://play.google.com/store/apps/details?id=sh.ftp.rocketninelabs.meditationassistant.full)
 - Amazon: [free](http://www.amazon.com/Rocket-Nine-Laboratories-Meditation-Assistant/dp/B00BQVZ9DU) /
 [paid](http://www.amazon.com/Rocket-Nine-Laboratories-Meditation-Assistant/dp/B00BQVXDL0/)
+- F-Droid: [free](https://f-droid.org/packages/sh.ftp.rocketninelabs.meditationassistant.opensource/)
 
 
 Remove Ads
@@ -19,7 +20,7 @@ Please purchase the paid version of the app to remove advertisements.
 
 Donate
 ------------
-[Click here to donate](https://medinet.ftp.sh/donate/) via PayPal.
+[Click here to donate](https://rocketnine.space/donate/) via PayPal.
 
 
 Get Support

@@ -21,7 +21,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -63,7 +62,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     public static int ID_DELAY = 77702;
     public static int ID_INTERVAL = 77701;
     public static int ID_END = 77703;
-    private static final int PERMISSION_REQUEST_GET_ACCOUNTS = 3001;
 
     public MeditationAssistant ma = null;
     SharedPreferences.OnSharedPreferenceChangeListener sharedPrefslistener = new SharedPreferences.OnSharedPreferenceChangeListener() {
@@ -494,7 +492,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                         case DialogInterface.BUTTON_POSITIVE:
                             startActivity(new Intent(
                                     Intent.ACTION_VIEW,
-                                    Uri.parse("https://medinet.ftp.sh/translate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                                    Uri.parse("https://medinet.rocketnine.space/translate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 
                             break;
 
@@ -2467,14 +2465,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                         )
                 )
                         .setTitle(
-                                getString(R.string.signOutOfMediNETConfirmTitle))
-                        .setMessage(
-                                String.format(
-                                        getString(R.string.signOutOfMediNETConfirm),
-                                        getMeditationAssistant()
-                                                .getMediNETProvider()
-                                )
-                        )
+                                getString(R.string.signOut))
+                        .setMessage(getString(R.string.signOutOfMediNETConfirmTitle))
                         .setPositiveButton(getString(R.string.signOut),
                                 dialogClickListener)
                         .setNegativeButton(getString(R.string.cancel),
@@ -2486,15 +2478,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     }
 
     public void askToSignIn() {
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.GET_ACCOUNTS)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.GET_ACCOUNTS},
-                    PERMISSION_REQUEST_GET_ACCOUNTS);
-        } else {
-            getMeditationAssistant().getMediNET().askToSignIn();
-        }
+        getMeditationAssistant().startAuth(false);
     }
 
     public void stopMediaPlayer() {
@@ -2547,50 +2531,5 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     @Override
     public void onShowcaseViewTouchBlocked(MotionEvent motionEvent) {
 
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case PERMISSION_REQUEST_GET_ACCOUNTS: {
-                if ((grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) || !ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.GET_ACCOUNTS)) {
-                    getMeditationAssistant().getMediNET().askToSignIn();
-                } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setIcon(
-                            getResources()
-                                    .getDrawable(
-                                            getTheme()
-                                                    .obtainStyledAttributes(
-                                                            getMeditationAssistant()
-                                                                    .getMATheme(true),
-                                                            new int[]{R.attr.actionIconSettings}
-                                                    )
-                                                    .getResourceId(0, 0)
-                                    )
-                    )
-                            .setTitle(getString(R.string.permissionRequest))
-                            .setMessage(
-                                    getString(R.string.permissionRequestAccounts))
-                            .setPositiveButton(getString(R.string.tryAgain),
-                                    new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            askToSignIn();
-                                        }
-                                    })
-                            .setNegativeButton(getString(R.string.deny),
-                                    new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            getMeditationAssistant().getMediNET().askToSignIn();
-                                        }
-                                    }).show();
-                }
-            }
-        }
     }
 }

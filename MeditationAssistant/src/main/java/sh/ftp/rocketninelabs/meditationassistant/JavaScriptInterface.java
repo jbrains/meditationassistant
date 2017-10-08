@@ -20,7 +20,7 @@ public class JavaScriptInterface implements JavascriptCallback {
         MeditationAssistant ma = (MeditationAssistant) this.activity
                 .getApplication();
         this.activity.finish();
-        ma.getMediNET().askToSignIn();
+        ma.startAuth(false);
     }
 
     @JavascriptInterface

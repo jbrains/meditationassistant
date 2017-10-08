@@ -331,8 +331,7 @@ public class SettingsActivity extends PreferenceActivity {
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     private static boolean isSimplePreferences(Context context) {
-        return Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB
-                || !isXLargeTablet(context);
+        return !isXLargeTablet(context);
     }
 
     @Override
@@ -497,9 +496,7 @@ public class SettingsActivity extends PreferenceActivity {
                         public boolean onPreferenceClick(Preference arg0) {
 
                             if (getMeditationAssistant().getMediNETKey().equals("")) {
-                                getMeditationAssistant().getMediNET().askToSignIn();
-                                getMeditationAssistant().shortToast(
-                                        getString(R.string.signInToMediNET));
+                                getMeditationAssistant().startAuth(true);
                             } else {
                                 ArrayList<SessionSQL> sessionssql = getMeditationAssistant().db.getAllLocalSessions();
 
@@ -529,9 +526,7 @@ public class SettingsActivity extends PreferenceActivity {
                         @Override
                         public boolean onPreferenceClick(Preference arg0) {
                             if (getMeditationAssistant().getMediNETKey().equals("")) {
-                                getMeditationAssistant().getMediNET().askToSignIn();
-                                getMeditationAssistant().shortToast(
-                                        getString(R.string.signInToImport));
+                                getMeditationAssistant().startAuth(true);
                             } else {
                                 if (getMeditationAssistant().getTimestamp()
                                         - importsessions_lastlick > 5) {

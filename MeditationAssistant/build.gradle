@@ -1,36 +1,48 @@
 buildscript {
-    repositories {
-        mavenCentral()
-        jcenter()
-    }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.1'
+        classpath 'com.android.tools.build:gradle:2.3.3'
     }
 }
 
 apply plugin: 'com.android.application'
 
 repositories {
-    mavenCentral()
+    maven {
+        url "https://maven.google.com"
+    }
     jcenter()
-    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion '24.0.2'
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 24
+        minSdkVersion 16
+        targetSdkVersion 26
 
-        versionCode 140
-        versionName "1.4.0"
+        versionCode 141
+        versionName "1.4.1"
+
+        jackOptions {
+            enabled true
+        }
+
+        applicationId "sh.ftp.rocketninelabs.meditationassistant"
+        manifestPlaceholders = [
+                'appAuthRedirectScheme': applicationId
+        ]
     }
 
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
+    }
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     applicationVariants.all { variant ->
@@ -58,41 +70,56 @@ android {
 
     productFlavors {
         free {
-            applicationId "sh.ftp.rocketninelabs.meditationassistant"
+            buildConfigField "String", "GOOGLEOAUTHKEY", "\"163346957857.apps.googleusercontent.com\""
         }
 
         full {
+            buildConfigField "String", "GOOGLEOAUTHKEY", "\"153054147563.apps.googleusercontent.com\""
+
             applicationId "sh.ftp.rocketninelabs.meditationassistant.full"
+            manifestPlaceholders = [
+                    'appAuthRedirectScheme': applicationId
+            ]
         }
 
         opensource {
-            applicationId "sh.ftp.rocketninelabs.meditationassistant.opensource"
-
+            buildConfigField "String", "GOOGLEOAUTHKEY", "\"821225341172-64l3l6kdk9ull9lc7fjgeuuu7nee7pb9.apps.googleusercontent.com\""
             delete('google-services.json')
+
+            applicationId "sh.ftp.rocketninelabs.meditationassistant.opensource"
+            manifestPlaceholders = [
+                    'appAuthRedirectScheme': applicationId
+            ]
         }
     }
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:24.2.1'
-    freeCompile 'com.google.android.gms:play-services-base:9.6.1'
-    fullCompile 'com.google.android.gms:play-services-base:9.6.1'
-    freeCompile 'com.google.android.gms:play-services-identity:9.6.1'
-    fullCompile 'com.google.android.gms:play-services-identity:9.6.1'
-    freeCompile 'com.google.android.gms:play-services-analytics:9.6.1'
-    fullCompile 'com.google.android.gms:play-services-analytics:9.6.1'
-    freeCompile 'com.google.android.gms:play-services-wearable:9.6.1'
-    fullCompile 'com.google.android.gms:play-services-wearable:9.6.1'
-    freeCompile 'com.google.android.gms:play-services-appinvite:9.6.1'
-    fullCompile 'com.google.android.gms:play-services-appinvite:9.6.1'
-    freeCompile 'com.google.android.gms:play-services-fitness:9.6.1'
-    fullCompile 'com.google.android.gms:play-services-fitness:9.6.1'
-    freeCompile 'com.google.android.gms:play-services-ads:9.6.1'
+    compile "com.android.support:support-compat:26.1.0"
+    compile "com.android.support:support-core-utils:26.1.0"
+    compile "com.android.support:support-core-ui:26.1.0"
+    compile "com.android.support:support-media-compat:26.1.0"
+    compile "com.android.support:support-fragment:26.1.0"
+    compile "com.android.support:recyclerview-v7:26.1.0"
+    compile "com.android.support:design:26.1.0"
+    compile "net.openid:appauth:0.7.0"
+    compile "com.squareup.okio:okio:1.13.0"
+
+    freeCompile 'com.google.android.gms:play-services-base:11.4.2'
+    fullCompile 'com.google.android.gms:play-services-base:11.4.2'
+    freeCompile 'com.google.android.gms:play-services-analytics:11.4.2'
+    fullCompile 'com.google.android.gms:play-services-analytics:11.4.2'
+    //freeCompile 'com.google.android.gms:play-services-wearable:11.4.2'
+    //fullCompile 'com.google.android.gms:play-services-wearable:11.4.2'
+    freeCompile 'com.google.android.gms:play-services-appinvite:11.4.2'
+    fullCompile 'com.google.android.gms:play-services-appinvite:11.4.2'
+    freeCompile 'com.google.android.gms:play-services-fitness:11.4.2'
+    fullCompile 'com.google.android.gms:play-services-fitness:11.4.2'
+    freeCompile 'com.google.android.gms:play-services-ads:11.4.2'
     //noinspection GradleDynamicVersion
     compile 'ch.acra:acra:4.9.0'
     compile 'com.github.amlcurran.showcaseview:library:5.4.3'
-    compile 'com.nononsenseapps:filepicker:3.0.0'
+    compile 'com.nononsenseapps:filepicker:4.1.0'
     //wearApp project(':MeditationAssistantWear')
     // TODO: Uncomment when Wear app is ready
-    compile 'com.android.support:recyclerview-v7:24.2.1'
 }

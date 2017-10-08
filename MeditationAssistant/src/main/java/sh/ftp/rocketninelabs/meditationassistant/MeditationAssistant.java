@@ -1,6 +1,5 @@
 package sh.ftp.rocketninelabs.meditationassistant;
 
-import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.AccountManagerCallback;
 import android.accounts.AccountManagerFuture;
@@ -23,11 +22,10 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Looper;
-import android.os.Message;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -40,6 +38,11 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import net.openid.appauth.AuthorizationRequest;
+import net.openid.appauth.AuthorizationService;
+import net.openid.appauth.AuthorizationServiceConfiguration;
+import net.openid.appauth.ResponseTypeValues;
 
 import org.acra.ACRA;
 import org.acra.annotation.ReportsCrashes;
@@ -58,7 +61,7 @@ import java.util.Map;
 import java.util.TimeZone;
 
 @ReportsCrashes(
-        formUri = "https://medinet.ftp.sh/acra/acra.php"
+        formUri = "https://medinet.rocketnine.space/acra/acra.php"
 )
 public class MeditationAssistant extends Application {
 
@@ -66,6 +69,7 @@ public class MeditationAssistant extends Application {
     public static String ACTION_PRESET = "sh.ftp.rocketninelabs.meditationassistant.PRESET";
     public static String ACTION_REMINDER = "sh.ftp.rocketninelabs.meditationassistant.DAILY_NOTIFICATION";
     public static String ACTION_UPDATED = "sh.ftp.rocketninelabs.meditationassistant.DAILY_NOTIFICATION_UPDATED";
+    public static String ACTION_AUTH = "sh.ftp.rocketninelabs.meditationassistant.AUTH";
     public static int REQUEST_FIT = 22;
     public static int MEDIA_DELAY = 1000;
     public Boolean debug_widgets = false; // Debug
@@ -227,7 +231,7 @@ public class MeditationAssistant extends Application {
             return mNotificationManager.getCurrentInterruptionFilter();
         }
 
-        return -1;
+        return 0;
     }
 
     public String getDurationFormatted() {
@@ -331,6 +335,37 @@ public class MeditationAssistant extends Application {
             return "Unknown";
         }
         return medinetprovider;
+    }
+
+    public void startAuth(boolean showToast) {
+        if (showToast) {
+            shortToast(getString(R.string.signInToMediNET));
+        }
+
+        AsyncTask.execute(() -> {
+            AuthorizationServiceConfiguration serviceConfiguration = new AuthorizationServiceConfiguration(
+                    Uri.parse("https://accounts.google.com/o/oauth2/v2/auth") /* auth endpoint */,
+                    Uri.parse("https://www.googleapis.com/oauth2/v4/token") /* token endpoint */
+            );
+
+            String clientId = BuildConfig.GOOGLEOAUTHKEY;
+            Uri redirectUri = Uri.parse(BuildConfig.APPLICATION_ID + ":/oauth");
+            AuthorizationRequest.Builder builder = new AuthorizationRequest.Builder(
+                    serviceConfiguration,
+                    clientId,
+                    ResponseTypeValues.CODE,
+                    redirectUri
+            );
+            builder.setScopes("profile");
+            AuthorizationRequest request = builder.build();
+
+            AuthorizationService authorizationService = new AuthorizationService(MeditationAssistant.this);
+
+            authorizationService.performAuthorizationRequest(
+                    request,
+                    PendingIntent.getActivity(MeditationAssistant.this, 0, new Intent(MeditationAssistant.this, AuthResultActivity.class), 0),
+                    PendingIntent.getActivity(MeditationAssistant.this, 0, new Intent(MeditationAssistant.this, AuthResultActivity.class), 0));
+        });
     }
 
     public void recalculateMeditationStreak() {
@@ -1005,203 +1040,6 @@ public class MeditationAssistant extends Application {
         notificationManager.notify(0, notification);
     }
 
-    public AlertDialog showSignInDialog(final Activity activity) {
-        signin_activity = activity;
-
-        AccountManager accountManager = AccountManager
-                .get(getApplicationContext());
-        final Account[] accounts = accountManager
-                .getAccountsByType("com.google");
-
-        final int size = accounts.length;
-
-        if (size > 0) {
-            String[] names = new String[size + 1];
-            int i = 0;
-            for (i = 0; i < size; i++) {
-                names[i] = accounts[i].name;
-            }
-            names[i] = getString(R.string.signInWithOpenID);
-
-            AlertDialog accountsAlertDialog = new AlertDialog.Builder(signin_activity)
-                    .setTitle(getString(R.string.signInWith))
-                    .setItems(names, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            if (which != size) {
-                                AccountManager am = AccountManager.get(getApplicationContext());
-
-                                if (am != null) {
-                                    am.getAuthToken(accounts[which], AUTH_TOKEN_TYPE, null, signin_activity, new OnTokenAcquired(), new Handler(new Handler.Callback() {
-
-                                        public boolean handleMessage(Message msg) {
-                                            Log.d("MeditationAssistant", "on error: " + msg.what);
-                                            shortToast(getString(R.string.signInGoogleError));
-                                            return false;
-                                        }
-                                    }));
-                                }
-                            } else {
-                                showOpenIDSignInDialog(signin_activity);
-                            }
-                        }
-                    })
-                    .create();
-            accountsAlertDialog.show();
-
-            return accountsAlertDialog;
-        } else {
-            return showOpenIDSignInDialog(signin_activity);
-        }
-    }
-
-    public AlertDialog showOpenIDSignInDialog(Activity activity) {
-        if (alertDialog != null && alertDialog.getOwnerActivity() != null
-                && alertDialog.getOwnerActivity() == activity) {
-            Log.d("MeditationAssistant",
-                    "Attempting to reuse MediNET sign in dialog");
-
-            try {
-                if (!alertDialog.isShowing()) {
-                    alertDialog.show();
-                }
-
-                Log.d("MeditationAssistant", "Reusing MediNET sign in dialog");
-                return alertDialog;
-            } catch (WindowManager.BadTokenException e) {
-                // Activity is not in the foreground
-            }
-        }
-
-        int[] buttons = {R.id.btnGoogle, R.id.btnFacebook, R.id.btnAOL,
-                R.id.btnTwitter, R.id.btnLive, R.id.btnOpenID};
-
-        View view = LayoutInflater.from(activity).inflate(
-                R.layout.medinet_signin,
-                (ViewGroup) activity.findViewById(R.id.medinetsignin_root));
-
-        for (int buttonid : buttons) {
-            ImageButton btn = (ImageButton) view.findViewById(buttonid);
-
-            if (btn.getId() == R.id.btnGoogle) {
-                if (!getMAThemeString().equals("dark")) {
-                    btn.setImageDrawable(getResources().getDrawable(
-                            R.drawable.logo_google_light));
-                } else {
-                    btn.setImageDrawable(getResources().getDrawable(
-                            R.drawable.logo_google));
-                }
-            } else if (btn.getId() == R.id.btnFacebook) {
-                if (!getMAThemeString().equals("dark")) {
-                    btn.setImageDrawable(getResources().getDrawable(
-                            R.drawable.logo_facebook_light));
-                } else {
-                    btn.setImageDrawable(getResources().getDrawable(
-                            R.drawable.logo_facebook));
-                }
-            } else if (btn.getId() == R.id.btnAOL) {
-                if (!getMAThemeString().equals("dark")) {
-                    btn.setImageDrawable(getResources().getDrawable(
-                            R.drawable.logo_aol_light));
-                } else {
-                    btn.setImageDrawable(getResources().getDrawable(
-                            R.drawable.logo_aol));
-                }
-            } else if (btn.getId() == R.id.btnTwitter) {
-                if (!getMAThemeString().equals("dark")) {
-                    btn.setImageDrawable(getResources().getDrawable(
-                            R.drawable.logo_twitter_light));
-                } else {
-                    btn.setImageDrawable(getResources().getDrawable(
-                            R.drawable.logo_twitter));
-                }
-            } else if (btn.getId() == R.id.btnLive) {
-                if (!getMAThemeString().equals("dark")) {
-                    btn.setImageDrawable(getResources().getDrawable(
-                            R.drawable.logo_live_light));
-                } else {
-                    btn.setImageDrawable(getResources().getDrawable(
-                            R.drawable.logo_live));
-                }
-            } else if (btn.getId() == R.id.btnOpenID) {
-                if (!getMAThemeString().equals("dark")) {
-                    btn.setImageDrawable(getResources().getDrawable(
-                            R.drawable.logo_openid_light));
-                } else {
-                    btn.setImageDrawable(getResources().getDrawable(
-                            R.drawable.logo_openid));
-                }
-            }
-
-            btn.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    ImageButton img = (ImageButton) v;
-                    Intent intent = new Intent(getApplicationContext(),
-                            MediNETActivity.class);
-
-                    if (img.getId() == R.id.btnGoogle) {
-                        intent.putExtra("provider", "Google");
-                    } else if (img.getId() == R.id.btnFacebook) {
-                        intent.putExtra("provider", "Facebook");
-                    } else if (img.getId() == R.id.btnAOL) {
-                        intent.putExtra("provider", "AOL");
-                    } else if (img.getId() == R.id.btnTwitter) {
-                        intent.putExtra("provider", "Twitter");
-                    } else if (img.getId() == R.id.btnLive) {
-                        intent.putExtra("provider", "Live");
-                    } else if (img.getId() == R.id.btnOpenID) {
-                        intent.putExtra("provider", "OpenID");
-                    }
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                    if (alertDialog != null) {
-                        try {
-                            alertDialog.dismiss();
-                        } catch (Exception e) {
-                            // Do nothing
-                        }
-                    }
-
-                    startActivity(intent);
-                }
-            });
-        }
-
-        alertDialog = new AlertDialog.Builder(activity)
-                .setView(view)
-                .setTitle(R.string.signInToMediNET)
-                .setIcon(
-                        activity.getResources().getDrawable(
-                                getTheme().obtainStyledAttributes(getMATheme(true),
-                                        new int[]{R.attr.actionIconForward})
-                                        .getResourceId(0, 0)
-                        )
-                ).create();
-        alertDialog
-                .setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        if (getMediNETKey() == "") {
-                            getMediNET().status = "disconnected";
-                            getMediNET().updated();
-                        }
-                    }
-                });
-        alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                if (getMediNETKey() == "") {
-                    getMediNET().status = "disconnected";
-                    getMediNET().updated();
-                }
-            }
-        });
-
-        alertDialog.show();
-        return alertDialog;
-    }
-
     public AlertDialog showStaleDataDialog() {
         Log.d("MeditationAssistant", "Showing stale data dialog");
 
@@ -1338,32 +1176,5 @@ public class MeditationAssistant extends Application {
         APP_TRACKER, // Tracker used only in this app.
         GLOBAL_TRACKER, // Tracker used by all the apps from a company. eg: roll-up tracking.
         ECOMMERCE_TRACKER, // Tracker used by all ecommerce transactions from a company.
-    }
-
-    private class OnTokenAcquired implements AccountManagerCallback<Bundle> {
-        @Override
-        public void run(AccountManagerFuture<Bundle> result) {
-
-            Intent launch = null;
-            try {
-                launch = (Intent) result.getResult().get(AccountManager.KEY_INTENT);
-
-                if (launch == null) {
-                    String authtoken = result.getResult().getString(AccountManager.KEY_AUTHTOKEN);
-                    if (!authtoken.equals("")) {
-                        getMediNET().signInWithAuthToken(authtoken);
-                    }
-                }
-            } catch (OperationCanceledException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (AuthenticatorException e) {
-                e.printStackTrace();
-            }
-            if (launch != null) {
-                signin_activity.startActivityForResult(launch, 0);
-            }
-        }
     }
 }

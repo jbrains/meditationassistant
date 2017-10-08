@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="appName">Meditasjonsassistent Gratis</string>
+    <string name="appNameShort">Meditasjonsassistent</string>
+    <string name="about">Om</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nei</string>
+    <string name="openWith">Åpne med</string>
+    <string name="delete">Slett</string>
+    <string name="sessions">Økter</string>
+    <string name="community">Fellesskap</string>
+    <string name="forum">Forum</string>
+    <string name="rate">Ranger</string>
+    <string name="refresh">Oppdater</string>
+    <string name="page">Side</string>
+    <string name="back">Tilbake</string>
+    <string name="forward">Fremover</string>
+    <string name="account">Konto</string>
+    <string name="groups">Grupper</string>
+    <string name="announcement">Kunngjøringer</string>
+
+    <!-- Permissions -->
+    <string name="permissionRequest">Forespørsel om tillatelse</string>
+    <string name="permissionRequestAccounts">Tillatelsen som gir tilgang til Google-kontoen din kalles "Kontakter". Kontaktene dine vil ikke bli lest.\n\nHvis du gir denne tilgangen slipper du å skrive inn brukernavnet og passordet til Google-kontoen din når du logger på MediNET</string>
+    <string name="permissionRequestReadExternal">Tillatelsen trengs for å kunne velge andre lydfiler fra enheten.</string>
+    <string name="permissionRequestNotificationControl">Vennligst gi tillatelse i neste steg for å kunne kontrollere "Ikke forstyrr"</string>
+    <string name="deny">Nekt</string>
+    <string name="tryAgain">Prøv igjen</string>
+
+    <!-- Main Activity -->
+    <string name="timer">Tidtaker</string>
+    <string name="timerHelp">Akkurat nå er tidtakeren stilt inn på 15 minutter. Du kan endre varigheten, sette den til å stoppe på et visst klokkeslett eller slå av alarmen helt. Trykk på tidtakeren nå for å se disse mulighetene.</string>
+    <string name="settingsHelp">Denne applikasjonen tilbyr mange funksjoner og tilpasningsmuligheter, blant annet å sette enheten i stillemodus automatisk og å gi deg daglig påminnelse om å meditere. Trykk på innstillingsikonet nå for å se disse mulighetene.</string>
+    <string name="medinetHelp">Logg på MediNET for å lagre øktene dine på nett. Hvis du gjør det kan du importere øktene dine igjen hvis de blir borte fra enheten din. Denne funksjonen er helt valgfri; å lagre øktene lokalt vil ikke gå ut over bruksopplevelsen.\n\nOg med det er denne introduksjonen over. Jeg håper at du får mye ut av Meditasjonsassistenten.</string>
+    <string name="cancel">Avbryt</string>
+    <string name="set">Sett</string>
+    <string name="confirm">Bekreft</string>
+    <string name="meditate">Mediter</string>
+    <string name="tapToSkip">Hopp over</string>
+    <string name="pause">Pause</string>
+    <string name="end">Avslutt</string>
+    <string name="pauseOrEnd">Pause eller avslutt</string>
+    <string name="resumeOrEnd">Gjenoppta eller avslutt</string>
+    <string name="pausedNotification">Økt satt på pause, hold for å avslutte</string>
+    <string name="mediNETConnecting">Kobler til...</string>
+    <string name="mediNETConnected">Koble til MediNET</string>
+    <string name="sessionInProgress">Økt pågår</string>
+    <string name="progress">Fremgang</string>
+    <string name="setPreset">Bruk forhåndsvalg</string>
+    <string name="setPresetHint">Hold for å bruke forhåndsvalg</string>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <!-- About -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
+    
+
+    <!-- Sessions -->
+    
+    
+    
+    
+    
+    
+    
+
+    <!-- Session complete -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <!-- Sign In -->
+    
+    
+    
+    
+
+    <!-- Progress -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    <!-- Settings -->
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <!-- MediNET -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <!-- Widgets -->
+    
+    
+    
+
+</resources>

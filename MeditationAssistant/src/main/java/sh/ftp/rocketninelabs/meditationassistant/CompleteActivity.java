@@ -341,7 +341,7 @@ public class CompleteActivity extends Activity {
 
     public void postMediNET(View view) {
         if (getMeditationAssistant().getMediNETKey() == "") {
-            getMeditationAssistant().showSignInDialog(this);
+            getMeditationAssistant().startAuth(true);
             return;
         }
 

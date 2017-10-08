@@ -21,10 +21,11 @@
     <string name="announcement">Ankündigung</string>
 
     <!-- Permissions -->
-    
-    
-    
-    
+    <string name="permissionRequest">Berechtigungsanfrage</string>
+    <string name="permissionRequestAccounts">Die Berechtigung auf Ihre Google Account zugreifen zu dürfen ist als "Kontake" beachrieben. Ihre Kontake western nicht gelesen. Wenn Sie diesel Berechtigung akzeptieren müssen Sie um sich bei MediNET anzumelden Ihre Google Accountdaten nicht immer eingeben.</string>
+    <string name="permissionRequestReadExternal">Diesel Berechtigung wird benötigt um einen beliebigen Ton von Ihrem Great auszuwählen. </string>
+    <string name="permissionRequestNotificationControl">Bitte gewähren Sie auf dem nächsten Bildschirm Zugriff um die Funktion \'Nicht stören\' kontrollieren zu können.</string>
+    <string name="deny">Verweigern </string>
     <string name="tryAgain">Erneut versuchen</string>
 
     <!-- Main Activity -->
@@ -104,7 +105,7 @@
     <!-- Progress -->
     <string name="calendar">Kalender</string>
     <string name="statistics">Statistiken</string>
-    <string name="totalTimeSpentMeditating">Gesamte beim Meditieren verbrachte Zeit</string>
+    <string name="totalTimeSpentMeditating">Meditationsdauer ingesamt</string>
     <string name="dayMondayShort">Mo</string>
     <string name="dayTuesdayShort">Di</string>
     <string name="dayWednesdayShort">Mi</string>
@@ -203,6 +204,8 @@
     <string name="extralarge">Riesig</string>
     <string name="restartApp">Anwendung neustarten, um neue Einstellungen anzuwenden</string>
     <string name="pref_notificationcontrol">Klingelton und Benachrichtigungen</string>
+    <string name="pref_notificationcontrol_priority">Priorität</string>
+    <string name="pref_notificationcontrol_alarms">Nur Alarme</string>
     <string name="pref_notificationcontrol_vibrate">Einstellen auf Vibration</string>
     <string name="pref_notificationcontrol_silent">Stummschalten</string>
     <string name="pref_daily_reminder">Tägliche Erinnerung</string>

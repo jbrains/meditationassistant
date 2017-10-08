@@ -33,7 +33,6 @@ public class MediNETActivity extends Activity {
     private String provider = "";
     private MeditationAssistant ma = null;
     private Handler handler = new Handler();
-    private boolean signing_in = false;
     private boolean hide_refresh = false;
 
     public static Intent newEmailIntent(Context context, String address, String subject, String body, String cc) {
@@ -57,7 +56,7 @@ public class MediNETActivity extends Activity {
         TimeZone tz = TimeZone.getDefault();
         Date now = new Date();
 
-        return "https://medinet.ftp.sh/client_android.php?v="
+        return "https://medinet.rocketnine.space/client_android.php?v="
                 + MediNET.version.toString() + "&avn="
                 + String.valueOf(getMeditationAssistant().getMAAppVersionNumber()) + "&page=" + page + "&th="
                 + ma.getMAThemeString() + "&tz="
@@ -68,20 +67,8 @@ public class MediNETActivity extends Activity {
     public void goTo(String go_to) {
         String url;
 
-        if (go_to.equals("Google") || go_to.equals("Facebook")
-                || go_to.equals("Twitter") || go_to.equals("AOL")
-                || go_to.equals("OpenID") || go_to.equals("Live")
-                || go_to.equals("LinkedIn")) {
-            setTitle(String.format(getString(R.string.signInWithProvider),
-                    go_to));
-            url = "https://medinet.ftp.sh/client_android_login.php?v="
-                    + MediNET.version.toString() + "&avn="
-                    + String.valueOf(getMeditationAssistant().getMAAppVersionNumber()) + "&provider=" + go_to;
-            provider = go_to;
-            signing_in = true;
-        } else if (go_to.equals("gpl") || go_to.equals("lgpl")) {
+        if (go_to.equals("gpl") || go_to.equals("lgpl")) {
             setTitle("");
-            signing_in = true;
             hide_refresh = true;
 
             if (go_to.equals("gpl")) {
@@ -90,24 +77,30 @@ public class MediNETActivity extends Activity {
                 url = "file:///android_asset/lgpl.html";
             }
         } else {
-            if (go_to.equals("community")) {
-                setTitle(getString(R.string.community));
-            } else if (go_to.equals("sessions")) {
-                setTitle(getString(R.string.sessions));
-            } else if (go_to.equals("account")) {
-                setTitle(getString(R.string.account));
-            } else if (go_to.equals("forum")) {
-                setTitle(getString(R.string.forum));
-            } else if (go_to.equals("groups")) {
-                setTitle(getString(R.string.groups));
-            } else if (go_to.equals("signout")) {
+            switch (go_to) {
+                case "community":
+                    setTitle(getString(R.string.community));
+                    break;
+                case "sessions":
+                    setTitle(getString(R.string.sessions));
+                    break;
+                case "account":
+                    setTitle(getString(R.string.account));
+                    break;
+                case "forum":
+                    setTitle(getString(R.string.forum));
+                    break;
+                case "groups":
+                    setTitle(getString(R.string.groups));
+                    break;
+                case "signout":
 
-            } else {
-                return;
+                    break;
+                default:
+                    return;
             }
 
             url = getPageUrl(go_to);
-            signing_in = false;
         }
 
         Log.d("MeditationAssistant", go_to + " - Going to: " + url);
@@ -200,12 +193,11 @@ public class MediNETActivity extends Activity {
             webView.setWebViewClient(new WebViewClient() {
                 @Override
                 public void onPageFinished(WebView view, String url) {
-                    if (Uri.parse(url) != null && Uri.parse(url).getHost() != null && Uri.parse(url).getHost().equals("medinet.ftp.sh")) {
+                    if (Uri.parse(url) != null && Uri.parse(url).getHost() != null && Uri.parse(url).getHost().equals("medinet.rocketnine.space")) {
                         if (webView.getTitle() != null
                                 && !webView.getTitle().trim().equals("")) {
                             setTitle(webView.getTitle());
                         }
-                        signing_in = url.contains("/hybridauth/");
                     } else {
                         /*
                          * setTitle(String.format(getString(R.string.
@@ -219,36 +211,15 @@ public class MediNETActivity extends Activity {
 
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                    /*getMeditationAssistant().setWebViewScale(
-                            (int) (100 * view.getScale()));*/
-                    Log.d("MeditationAssistant",
-                            "Signing_in: " + String.valueOf(signing_in) + " - "
-                                    + url
-                    );
                     if (url != null && url.startsWith("mailto:")) {
                         MailTo mt = MailTo.parse(url);
                         Intent i = newEmailIntent(MediNETActivity.this, mt.getTo(), mt.getSubject(), mt.getBody(), mt.getCc());
                         startActivity(i);
                         view.reload();
                         return true;
-                    /*} else if (url != null && Uri.parse(url) != null && Uri.parse(url).getHost() != null
-                            && !Uri.parse(url).getHost()
-                            .equals("medinet.ftp.sh")
-                            && webView.getUrl() != null
-                            && Uri.parse(webView.getUrl()).getHost() != null && Uri.parse(webView.getUrl()).getHost()
-                            .equals("medinet.ftp.sh")
-                            && !webView.getUrl().contains("provider=OpenID")) {
-
-                        Log.d("MA", "!!!!!!!!!!!!!!!!! OPENING!!!");
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW,
-                                Uri.parse(url));
-                        startActivity(browserIntent);*/
                     } else {
                         view.loadUrl(url);
                     }
-
-                    Log.d("MA", Uri.parse(url).toString());
-                    Log.d("MA", Uri.parse(url).getHost());
                     return true;
                 }
             });
@@ -275,16 +246,7 @@ public class MediNETActivity extends Activity {
         // webView.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
 
         if (activityOnCreate) {
-            if (getIntent().hasExtra("provider")) {
-                provider = getIntent().getStringExtra("provider");
-                if (provider.equals("Google") || provider.equals("Facebook")
-                        || provider.equals("Twitter") || provider.equals("AOL")
-                        || provider.equals("OpenID") || provider.equals("Live")
-                        || provider.equals("LinkedIn")) {
-                    signing_in = true;
-                    goTo(provider);
-                }
-            } else if (getIntent().hasExtra("page")
+            if (getIntent().hasExtra("page")
                     && (getIntent().getStringExtra("page").equals("community")
                     || getIntent().getStringExtra("page").equals(
                     "sessions")
@@ -296,7 +258,6 @@ public class MediNETActivity extends Activity {
                     "forum")
                     || getIntent().getStringExtra("page").equals("gpl") || getIntent()
                     .getStringExtra("page").equals("lgpl"))) {
-                signing_in = false;
                 goTo(getIntent().getStringExtra("page"));
             }
         } else {
@@ -414,12 +375,6 @@ public class MediNETActivity extends Activity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        if (signing_in) {
-            menu.findItem(R.id.menuMediNET).setVisible(false);
-        } else {
-            menu.findItem(R.id.menuMediNET).setVisible(true);
-        }
-
         if (hide_refresh) {
             menu.findItem(R.id.refreshMediNET).setVisible(false);
         } else {
@@ -475,16 +430,7 @@ public class MediNETActivity extends Activity {
                             getResources().getDrawable(
                                     android.R.drawable.background_holo_dark));*/
             webView.getSettings();
-            if (signing_in) {
-                webView.setBackgroundColor(Color.WHITE);
-            } else {
-                if (Build.VERSION.SDK_INT < 11) {
-                    webView.setBackgroundColor(Color.TRANSPARENT);
-                } else {
-                    // Fix background flicker
-                    webView.setBackgroundColor(Color.argb(1, 0, 0, 0));
-                }
-            }
+            webView.setBackgroundColor(Color.argb(1, 0, 0, 0)); // TODO: Is this still necessary?
         }
     }
 }

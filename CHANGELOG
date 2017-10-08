@@ -1,3 +1,9 @@
+1.4.1:
+- Updated app icon (thanks Symbolisch)
+- Changed MediNET Oauth method from Play Services to open-source library AppAuth
+- Fix set to vibrate/silent feature on pre-Android 6.0 devices
+- App now requires Android 4.1+ (was 4.0+)
+
 1.4.0:
 - Fix alarm icon appearing in the status bar when Daily Reminder is enabled
 - Increase fidelity of the default gong sound

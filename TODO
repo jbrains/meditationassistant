@@ -19,3 +19,11 @@ Migrate all icons to vectors
 Merge 2x1 and 3x1 widgets into a single size-aware widget
 
 Automatic session upload
+
+Add warning for all MedINET connections <= version 5, as version 6 is used by all still-supported (Android 4.1+) devices
+
+Allow OpenID signin using AppAuth
+
+Update remaining logo icons to new logo, including notification icon, check on new material guides for new format
+
+Set new default theme to use blue that matches logo, offer old theme still as "Holographic Dark"

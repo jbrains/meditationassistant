@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -50,7 +51,7 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
         String appVersion = getMeditationAssistant().getMAAppVersion() + BuildConfig.FLAVOR;
 
         if (this.nextURL == null) {
-            this.nextURL = "https://medinet.ftp.sh/client_android.php?v="
+            this.nextURL = "https://medinet.rocketnine.space/client_android.php?v="
                     + MediNET.version.toString() + "&av="
                     + appVersion + "&am="
                     + getMeditationAssistant().getMarketName() + "&avn="
@@ -59,7 +60,7 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
         }
 
         if (action.equals("signin")) {
-            this.nextURL = "https://medinet.ftp.sh/client_android_login_oauth2.php?v="
+            this.nextURL = "https://medinet.rocketnine.space/client_android_login_oauth2.php?v="
                     + MediNET.version.toString() + "&av="
                     + appVersion + "&avn="
                     + String.valueOf(getMeditationAssistant().getMAAppVersionNumber()) + "&tz="
@@ -130,6 +131,11 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
             getMeditationAssistant().longToast(getMeditationAssistant().getString(R.string.sessionNotPosted));
             e.printStackTrace();
         }
+        try {
+            Log.i("MA", "Post data: " + getMeditationAssistant().getPostDataString(postData));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
 
         /*
 
@@ -152,8 +158,8 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
         try {
             URL medinetURL = new URL(this.nextURL);
             medinetConnection = (HttpURLConnection) medinetURL.openConnection();
-
-            medinetConnection.setChunkedStreamingMode(0);
+            medinetConnection.setReadTimeout(10000);
+            medinetConnection.setConnectTimeout(15000);
             medinetConnection.setRequestMethod("POST");
             medinetConnection.setDoInput(true);
             medinetConnection.setDoOutput(true);
@@ -162,12 +168,11 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
             BufferedWriter writer = new BufferedWriter(
                     new OutputStreamWriter(os, "UTF-8"));
             writer.write(getMeditationAssistant().getPostDataString(postData));
-
-            medinetConnection.connect();
-
             writer.flush();
             writer.close();
             os.close();
+
+            medinetConnection.connect();
             int responseCode = medinetConnection.getResponseCode();
 
             if (responseCode == HttpURLConnection.HTTP_OK) {
@@ -200,7 +205,7 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
         if (medinetConnection.getHeaderField("x-MediNET") != null) {
             if (medinetConnection.getHeaderField("x-MediNET")
                     .equals("signin")) {
-                this.medinet.askToSignIn();
+                getMeditationAssistant().startAuth(false);
             } else {
                 if (action.equals("signin") && medinetConnection.getHeaderField("x-MediNET-Key") != null) { /* Oauth2 sign in */
                     Log.d("MeditationAssistant", "Header key: "

@@ -97,6 +97,8 @@
     <string name="sessionDeletedLocally">Session deleted locally</string>
 
     <!-- Sign In -->
+    <string name="browser">Browser</string>
+    <string name="useBrowser">Use browser:</string>
     <string name="signInWith">Sign in with…</string>
     <string name="signInWithProvider">Sign in with %s…</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, etc.</string>
@@ -248,7 +250,6 @@
     </plurals>
 
     <string name="sessionsNotImported">Local data is up to date</string>
-    <string name="signInToImport">Sign in to import session data</string>
 
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d day</item>
@@ -268,7 +269,6 @@
     <string name="signOut">Sign out</string>
     <string name="signOutOfMediNET">Sign out of MediNET</string>
     <string name="signOutOfMediNETConfirmTitle">Sign out of MediNET?</string>
-    <string name="signOutOfMediNETConfirm">You are signed in with %s.</string>
     <string name="rateMeditationAssistant">Rate Meditation Assistant</string>
     <string name="rateMeditationAssistantText">If you have found this application beneficial to your meditation practice, would you please add a rating?\n\nThe paid version of this app contains no ads and features home screen widgets.  Please consider purchasing it if you are able to.\n\nThis dialog will not appear again.</string>
     <string name="translateMeditationAssistantText">Would you please help Meditation Assistant reach a wider audience by translating it into another language?\n\nTranslating is eaily done through an online interface.  You can visit the translation webpage later by clicking Translate from the About window.\n\nThis dialog will not appear again.</string>

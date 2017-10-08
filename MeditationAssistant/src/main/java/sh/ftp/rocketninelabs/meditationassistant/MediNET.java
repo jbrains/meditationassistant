@@ -19,11 +19,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-/**
- * Created by root on 11/2/13.
- */
 public class MediNET {
-    public static Integer version = 5;
+    public static Integer version = 6;
+    // API v1-5 was used on pre Android 4.1 (discontinued) releases
+    // API v6 signifies non-discontinued (1.4.1+, Android 4.1+) app version
+
     public String status = "disconnected";
     public String result = "";
     public MainActivity activity;
@@ -71,46 +71,6 @@ public class MediNET {
         return String.valueOf(hours) + ":" + String.format("%02d", minutes);
     }
 
-    public void askToSignIn() {
-        /*if (activity == null || activity.stopped) {
-            Log.d("MeditationAssistant",
-                    "MainActivity null or stopped, restarting...  Stopped: "
-                            + activity.stopped.toString());*/
-        if (activity == null) {
-            Intent openActivity = new Intent(getMeditationAssistant()
-                    .getApplicationContext(), MainActivity.class);
-            openActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            openActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-            handler.postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-                    Log.d("MeditationAssistant",
-                            "Open MainActivity runnable is now running...");
-                    askToSignIn();
-                }
-            }, 400);
-
-            getMeditationAssistant().getApplicationContext().startActivity(
-                    openActivity);
-            return;
-        }
-
-        activity.runOnUiThread(new Runnable() {
-
-            @Override
-            public void run() {
-                if (activity == null) {
-                    Log.d("MeditationAssistant",
-                            "askToSignIn activity is null, returning...");
-                    return;
-                }
-                getMeditationAssistant().showSignInDialog(activity);
-            }
-        });
-    }
-
     public void browseTo(MainActivity act, String page) {
         activity = act;
         browsetopage = page;
@@ -129,7 +89,7 @@ public class MediNET {
                 }
             });
         } else {
-            askToSignIn();
+            getMeditationAssistant().startAuth(false);
         }
     }
 
@@ -150,7 +110,7 @@ public class MediNET {
         }
 
         if (getMeditationAssistant().getMediNETKey().equals("")) {
-            askToSignIn();
+            getMeditationAssistant().startAuth(false);
             return false;
         }
 

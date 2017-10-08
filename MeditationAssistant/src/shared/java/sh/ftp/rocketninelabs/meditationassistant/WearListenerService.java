@@ -1,7 +1,7 @@
 package sh.ftp.rocketninelabs.meditationassistant;
 
+/*
 import android.util.Log;
-
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.data.FreezableUtils;
@@ -50,6 +50,6 @@ public class WearListenerService extends WearableListenerService {
             // Send the RPC
             Wearable.MessageApi.sendMessage(googleApiClient, nodeId,
                     DATA_ITEM_RECEIVED_PATH, payload);
-        }*/
+        }
     }
-}
+}*/

@@ -183,10 +183,6 @@
 
 -keep,allowshrinking,allowoptimization class * { <methods>; }
 
--keepclasseswithmembernames,allowshrinking class * {
-    native <methods>;
-}
-
 -keepclasseswithmembers,allowshrinking class * {
     public <init>(android.content.Context,android.util.AttributeSet);
     public <init>(android.content.Context,android.util.AttributeSet,int);
