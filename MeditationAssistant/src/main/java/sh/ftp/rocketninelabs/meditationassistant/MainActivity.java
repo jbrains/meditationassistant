@@ -1227,8 +1227,12 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             } else { // Currently in meditation phase
                 if (!getMeditationAssistant().ispaused) { // In progress, pause the session
                     am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-                    am.cancel(pendingintent);
-                    am.cancel(pendingintent_interval);
+                    if (pendingintent != null) {
+                        am.cancel(pendingintent);
+                    }
+                    if (pendingintent_interval != null) {
+                        am.cancel(pendingintent_interval);
+                    }
                     Log.d("MeditationAssistant", "CANCELLED MAIN WAKEUP AND INTERVAL ALARMS");
 
                     getMeditationAssistant().pauseSession();

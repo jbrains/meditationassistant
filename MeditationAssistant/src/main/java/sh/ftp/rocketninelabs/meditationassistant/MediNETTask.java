@@ -16,6 +16,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -31,7 +32,6 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
     public MediNET medinet;
     public FragmentActivity fragment_activity = null;
     private MeditationAssistant ma = null;
-    private Crypt crypt = new Crypt();
 
     @Override
     protected MediNET doInBackground(MediNET... medinets) {
@@ -51,82 +51,65 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
         String appVersion = getMeditationAssistant().getMAAppVersion() + BuildConfig.FLAVOR;
 
         if (this.nextURL == null) {
-            this.nextURL = "https://medinet.rocketnine.space/client_android.php?v="
+            this.nextURL = "https://medinet.rocketnine.space/om?v="
                     + MediNET.version.toString() + "&av="
                     + appVersion + "&am="
                     + getMeditationAssistant().getMarketName() + "&avn="
                     + String.valueOf(getMeditationAssistant().getMAAppVersionNumber()) + "&tz="
-                    + String.valueOf(offsetFromUTC);
-        }
-
-        if (action.equals("signin")) {
-            this.nextURL = "https://medinet.rocketnine.space/client_android_login_oauth2.php?v="
-                    + MediNET.version.toString() + "&av="
-                    + appVersion + "&avn="
-                    + String.valueOf(getMeditationAssistant().getMAAppVersionNumber()) + "&tz="
-                    + String.valueOf(offsetFromUTC) + "&token=" + actionextra;
+                    + TimeZone.getDefault().getID();
         }
 
         Log.d("MeditationAssistant", "URL => " + this.nextURL);
 
-        ArrayList<SessionSQL> sessionssql = null;
+        ArrayList<SessionSQL> sessions = new ArrayList<SessionSQL>();
 
         HashMap<String, String> postData = new HashMap<String, String>();
         try {
             postData.put("x", medinet
                     .getMeditationAssistant().getMediNETKey());
+            postData.put("action",
+                    action);
 
-            if (action.equals("connect")) {
-                postData.put("action", "connect");
-            } else if (action.equals("postsession")) {
-                postData.put("postsession", Crypt
-                        .bytesToHex(crypt.encrypt(medinet.getSession().export()
-                                .toString())));
-                if (actionextra.equals("manualposting")) {
-                    postData.put("manualposting",
-                            "true");
-                }
-            } else if (action.equals("deletesession")) {
-                postData.put("action",
-                        "deletesession"); // Session start time
-                postData.put("session",
-                        actionextra);
-            } else if (action.equals("syncsessions")) {
-                postData.put("action",
-                        "syncsessions");
-            } else if (action.equals("uploadsessions")) {
-                JSONArray jsonsessions = new JSONArray();
-                sessionssql = getMeditationAssistant().db.getAllLocalSessions();
+            switch (action) {
+                case "signin":
+                    postData.put("token",
+                            actionextra);
+                    break;
+                case "deletesession":
+                    postData.put("session",
+                            actionextra); // Session start time
+                    break;
+                case "uploadsessions":
+                    JSONArray jsonsessions = new JSONArray();
 
-                if (sessionssql.size() == 0) {
-                    getMeditationAssistant().longToast(
-                            medinet.activity,
-                            getMeditationAssistant().getString(R.string.sessionsNotImported));
+                    if (actionextra.equals("completeposting") || actionextra.equals("manualposting")) {
+                        postData.put("postsession", actionextra);
+                        sessions.add(new SessionSQL(medinet.getSession().id, medinet.getSession().started, medinet.getSession().completed, medinet.getSession().length, medinet.getSession().message, (long) 0, medinet.getSession().streakday));
+                    } else if (getMeditationAssistant().db.getNumSessions() == 0) {
+                        getMeditationAssistant().longToast(
+                                medinet.activity,
+                                getMeditationAssistant().getString(R.string.sessionsNotImported));
 
-                    return medinet;
-                }
+                        return medinet;
+                    } else {
+                        sessions = getMeditationAssistant().db.getAllSessions();
+                    }
 
-                for (SessionSQL uploadsessionsql : sessionssql) {
-                    MeditationSession uploadsession = new MeditationSession();
-                    uploadsession.id = uploadsessionsql._id;
-                    uploadsession.length = uploadsessionsql._length;
-                    uploadsession.started = uploadsessionsql._started;
-                    uploadsession.completed = uploadsessionsql._completed;
-                    uploadsession.streakday = uploadsessionsql._streakday;
-                    uploadsession.message = uploadsessionsql._message;
+                    for (SessionSQL up : sessions) {
+                        MeditationSession uploadsession = new MeditationSession();
+                        uploadsession.id = up._id;
+                        uploadsession.length = up._length;
+                        uploadsession.started = up._started;
+                        uploadsession.completed = up._completed;
+                        uploadsession.streakday = up._streakday;
+                        uploadsession.message = up._message;
 
-                    jsonsessions.put(uploadsession.export());
-                }
+                        jsonsessions.put(uploadsession.export());
+                    }
 
-                Log.d("MeditationAssistant", jsonsessions.toString());
-
-                postData.put("uploadsessions", Crypt
-                        .bytesToHex(crypt.encrypt(jsonsessions.toString())));
-            } else if (action.equals("signout")) {
-                postData.put("signout", "signout");
+                    postData.put("uploadsessions", jsonsessions.toString());
+                    break;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             getMeditationAssistant().longToast(getMeditationAssistant().getString(R.string.sessionNotPosted));
             e.printStackTrace();
@@ -233,11 +216,6 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
                         }
                     }
                 }
-                if (medinetConnection.getHeaderField("x-MediNET-Meditating") != null) {
-                    if (!medinetConnection.getHeaderField("x-MediNET-Meditating").equals("")) {
-                        // TODO: Was this going to be a meditating-now feature?
-                    }
-                }
                 if (medinetConnection.getHeaderField("x-MediNET-MaxStreak") != null) {
                     if (!medinetConnection.getHeaderField("x-MediNET-MaxStreak").equals("")) {
                         Integer maxstreak = Integer.valueOf(medinetConnection.getHeaderField("x-MediNET-MaxStreak"));
@@ -301,34 +279,6 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
                                     .putBoolean("asked_staledata", true)
                                     .apply();
                         }
-                    } else if (action.equals("postsession")) {
-                        if (medinet.result.equals("posted")) {
-                            if (actionextra.equals("manualposting")) {
-                                if (fragment_activity != null) {
-                                    fragment_activity
-                                            .runOnUiThread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    getMeditationAssistant()
-                                                            .shortToast(
-                                                                    getMeditationAssistant().getString(R.string.sessionPosted));
-                                                }
-                                            });
-                                }
-                            } else {
-                                medinet.saveSession(false, true);
-                            }
-                        } else if (medinet.result.equals("alreadyposted")
-                                && actionextra.equals("manualposting")
-                                && fragment_activity != null) {
-                            fragment_activity.runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    getMeditationAssistant().shortToast(
-                                            getMeditationAssistant().getString(R.string.sessionAlreadyPosted));
-                                }
-                            });
-                        }
                     } else if (action.equals("deletesession")) {
                         if (medinet.result.equals("deleted")) {
                             Log.d("MeditationAssistant", "Deleted session");
@@ -350,36 +300,61 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
                             getMeditationAssistant().shortToast(
                                     medinet.activity,
                                     getMeditationAssistant().getString(R.string.sessionNotFoundMediNET));
-                        } else if (medinet.result.equals("accessdenied")) {
-                            getMeditationAssistant()
-                                    .shortToast(medinet.activity,
-                                            getMeditationAssistant().getString(R.string.sessionNotProperAccount));
                         }
                     } else if (action.equals("uploadsessions")) {
-                        Integer sessionsuploaded = 0;
-                        if (jsonObj.has("sessionsuploaded")) {
-                            sessionsuploaded = jsonObj.getInt("sessionsuploaded");
-                        }
-                        if (sessionssql != null && medinet.result.equals("uploaded") && sessionsuploaded > 0) {
-                            for (SessionSQL sessionsql : sessionssql) {
-                                sessionsql._isposted = (long) 1;
-                                getMeditationAssistant().db.updateSession(sessionsql);
+                        if (medinet.result.equals("posted")) {
+                            if (actionextra.equals("manualposting")) {
+                                if (fragment_activity != null) {
+                                    fragment_activity
+                                            .runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    getMeditationAssistant()
+                                                            .shortToast(
+                                                                    getMeditationAssistant().getString(R.string.sessionPosted));
+                                                }
+                                            });
+                                }
+                            } else if (actionextra.equals("completeposting")) {
+                                medinet.saveSession(false, true);
+                            }
+                        } else if (medinet.result.equals("alreadyposted")
+                                && actionextra.equals("manualposting")
+                                && fragment_activity != null) {
+                            fragment_activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    getMeditationAssistant().shortToast(
+                                            getMeditationAssistant().getString(R.string.sessionAlreadyPosted));
+                                }
+                            });
+                        } else {
+                            Integer sessionsuploaded = 0;
+                            if (jsonObj.has("sessionsuploaded")) {
+                                sessionsuploaded = jsonObj.getInt("sessionsuploaded");
                             }
 
-                            Integer sessuploaded = sessionssql.size();
-                            getMeditationAssistant().longToast(
-                                    medinet.activity,
-                                    String.format(getMeditationAssistant().getResources().getQuantityString(
-                                            R.plurals.sessionsUploaded, sessuploaded,
-                                            sessuploaded), String.valueOf(sessuploaded))
-                            );
-                        } else {
-                            getMeditationAssistant().longToast(
-                                    medinet.activity,
-                                    getMeditationAssistant().getString(R.string.sessionsNotImported));
+                            if (sessions.size() > 0 && medinet.result.equals("uploaded") && sessionsuploaded > 0) {
+                                for (SessionSQL sessionsql : sessions) {
+                                    sessionsql._isposted = (long) 1;
+                                    getMeditationAssistant().db.updateSession(sessionsql);
+                                }
+
+                                Integer sessuploaded = sessions.size();
+                                getMeditationAssistant().longToast(
+                                        medinet.activity,
+                                        String.format(getMeditationAssistant().getResources().getQuantityString(
+                                                R.plurals.sessionsUploaded, sessuploaded,
+                                                sessuploaded), String.valueOf(sessuploaded))
+                                );
+                            } else {
+                                getMeditationAssistant().longToast(
+                                        medinet.activity,
+                                        getMeditationAssistant().getString(R.string.sessionsNotImported));
+                            }
                         }
-                    } else if (action.equals("syncsessions")) {
-                        JSONArray jArray = jsonObj.getJSONArray("syncsessions");
+                    } else if (action.equals("downloadsessions")) {
+                        JSONArray jArray = jsonObj.getJSONArray("downloadsessions");
 
                         Integer sessimported = 0;
 

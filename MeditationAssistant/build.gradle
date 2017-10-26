@@ -1,32 +1,29 @@
+repositories {
+    jcenter()
+    maven {
+        url 'https://maven.google.com/'
+        name 'Google'
+    }
+}
+
 buildscript {
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.android.tools.build:gradle:3.0.0'
     }
 }
 
 apply plugin: 'com.android.application'
 
-repositories {
-    maven {
-        url "https://maven.google.com"
-    }
-    jcenter()
-}
-
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '27.0.0'
 
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 26
 
-        versionCode 141
-        versionName "1.4.1"
-
-        jackOptions {
-            enabled true
-        }
+        versionCode 142
+        versionName "1.4.2"
 
         applicationId "sh.ftp.rocketninelabs.meditationassistant"
         manifestPlaceholders = [
@@ -39,18 +36,9 @@ android {
         abortOnError false
     }
 
-
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            output.outputFile = new File(
-                    output.outputFile.parent,
-                    output.outputFile.name.replace(".apk", "-${variant.versionName}.apk"))
-        }
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
     }
 
     sourceSets {
@@ -68,12 +56,15 @@ android {
         }
     }
 
+    flavorDimensions "main"
     productFlavors {
         free {
+            dimension "main"
             buildConfigField "String", "GOOGLEOAUTHKEY", "\"163346957857.apps.googleusercontent.com\""
         }
 
         full {
+            dimension "main"
             buildConfigField "String", "GOOGLEOAUTHKEY", "\"153054147563.apps.googleusercontent.com\""
 
             applicationId "sh.ftp.rocketninelabs.meditationassistant.full"
@@ -83,6 +74,7 @@ android {
         }
 
         opensource {
+            dimension "main"
             buildConfigField "String", "GOOGLEOAUTHKEY", "\"821225341172-64l3l6kdk9ull9lc7fjgeuuu7nee7pb9.apps.googleusercontent.com\""
             delete('google-services.json')
 

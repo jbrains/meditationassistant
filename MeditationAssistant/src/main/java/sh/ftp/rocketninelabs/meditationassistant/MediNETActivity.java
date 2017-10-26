@@ -58,10 +58,11 @@ public class MediNETActivity extends Activity {
 
         return "https://medinet.rocketnine.space/client_android.php?v="
                 + MediNET.version.toString() + "&avn="
-                + String.valueOf(getMeditationAssistant().getMAAppVersionNumber()) + "&page=" + page + "&th="
+                + String.valueOf(getMeditationAssistant().getMAAppVersionNumber()) + "&th="
                 + ma.getMAThemeString() + "&tz="
-                + String.valueOf(tz.getOffset(now.getTime())) + "&x="
-                + getMeditationAssistant().getMediNETKey();
+                + TimeZone.getDefault().getID() + "&x="
+                + getMeditationAssistant().getMediNETKey() + "&page="
+                + page;
     }
 
     public void goTo(String go_to) {
@@ -92,9 +93,6 @@ public class MediNETActivity extends Activity {
                     break;
                 case "groups":
                     setTitle(getString(R.string.groups));
-                    break;
-                case "signout":
-
                     break;
                 default:
                     return;

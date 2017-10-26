@@ -10,12 +10,6 @@
     <string name="myEmailAddress">tslocum@gmail.com</string>
 
     <string name="charis">Lord Farquaad</string>
-    <string name="google">Google</string>
-    <string name="facebook">Facebook</string>
-    <string name="twitter">Twitter</string>
-    <string name="windowsLive">Windows Live</string>
-    <string name="aol">America OnLine</string>
-    <string name="openID">OpenID</string>
 
     <string name="helpUpgradeDelayInterval">Due to an application upgrade, the session delay and interval duration preferences have been reverted to their default values.  If you had previously made changes to these preferences, please open the Settings window now, and re-enter your desired values.</string>
 

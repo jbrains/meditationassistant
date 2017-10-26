@@ -97,7 +97,7 @@ public class MediNET {
         session = new MeditationSession();
     }
 
-    public boolean connect() {
+    public boolean  connect() {
         ConnectivityManager cm = (ConnectivityManager) getMeditationAssistant()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
@@ -213,10 +213,11 @@ public class MediNET {
         }
         task = new MediNETTask();
         task.fragment_activity = act;
-        task.action = "postsession";
+        task.action = "uploadsessions";
         if (manualposting) {
             task.actionextra = "manualposting";
         } else {
+            task.actionextra = "completeposting";
             // Only add streak if there isn't already a session for today
             Calendar completedCalendar = Calendar.getInstance();
             completedCalendar.setTimeInMillis(getSession().completed * 1000);
@@ -290,57 +291,27 @@ public class MediNET {
         }
     }
 
-    public void selectProvider(View v) {
-        ImageButton img = (ImageButton) v;
-
-        Intent intent = new Intent(getMeditationAssistant()
-                .getApplicationContext(), MediNETActivity.class);
-        if (img.getId() == R.id.btnGoogle) {
-            intent.putExtra("provider", "Google");
-        } else if (img.getId() == R.id.btnFacebook) {
-            intent.putExtra("provider", "Facebook");
-        } else if (img.getId() == R.id.btnAOL) {
-            intent.putExtra("provider", "AOL");
-        } else if (img.getId() == R.id.btnTwitter) {
-            intent.putExtra("provider", "Twitter");
-        } else if (img.getId() == R.id.btnLive) {
-            intent.putExtra("provider", "Live");
-        } else if (img.getId() == R.id.btnOpenID) {
-            intent.putExtra("provider", "OpenID");
-        }
-
-        getMeditationAssistant().getApplicationContext().startActivity(intent);
-    }
-
     public void signOut() {
         Log.d("MeditationAssistant", "Signing out");
         if (task != null) {
             task.cancel(true);
         }
-        task = new MediNETTask();
-        task.action = "signout";
-        task.context = activity.getApplicationContext();
-        if (debug) {
-            task.nextURL += "&debug77";
-        }
-        task.doIt(this);
 
         status = "stopped";
         getMeditationAssistant().setMediNETKey("", "");
         if (!getMeditationAssistant().getPrefs().getBoolean("pref_autosignin", false)) {
             getMeditationAssistant().getPrefs().edit().putString("key", "").apply();
         }
-        //getMeditationAssistant().setMeditationStreak(0, 0);
         updated();
     }
 
-    public Boolean syncSessions() {
+    public Boolean downloadSessions() {
         getMeditationAssistant().shortToast(getMeditationAssistant().getString(R.string.downloadingSessions));
         if (task != null) {
             task.cancel(true);
         }
         task = new MediNETTask();
-        task.action = "syncsessions";
+        task.action = "downloadsessions";
         task.context = activity.getApplicationContext();
         if (debug) {
             task.nextURL += "&debug77";

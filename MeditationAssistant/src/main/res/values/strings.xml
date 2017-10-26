@@ -232,7 +232,6 @@
     <string name="wordimport">Import</string>
     <string name="sessionDeletedMediNET">Session deleted on MediNET</string>
     <string name="sessionNotFoundMediNET">Session not found on MediNET</string>
-    <string name="sessionNotProperAccount">You are not signed into the proper account</string>
 
     <plurals name="numtimes">
         <item quantity="one">%s time</item>

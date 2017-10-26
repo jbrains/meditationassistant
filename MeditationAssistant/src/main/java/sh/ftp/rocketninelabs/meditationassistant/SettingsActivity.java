@@ -498,9 +498,7 @@ public class SettingsActivity extends PreferenceActivity {
                             if (getMeditationAssistant().getMediNETKey().equals("")) {
                                 getMeditationAssistant().startAuth(true);
                             } else {
-                                ArrayList<SessionSQL> sessionssql = getMeditationAssistant().db.getAllLocalSessions();
-
-                                if (sessionssql.size() == 0) {
+                                if (getMeditationAssistant().db.getNumSessions() == 0) {
                                     getMeditationAssistant().longToast(
                                             getMeditationAssistant().getString(R.string.sessionsNotImported));
 
@@ -533,7 +531,7 @@ public class SettingsActivity extends PreferenceActivity {
                                     importsessions_lastlick = getMeditationAssistant()
                                             .getTimestamp();
                                     getMeditationAssistant().getMediNET()
-                                            .syncSessions();
+                                            .downloadSessions();
                                 }
                             }
 

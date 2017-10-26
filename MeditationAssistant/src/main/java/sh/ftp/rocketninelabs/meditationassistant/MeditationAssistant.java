@@ -1,10 +1,5 @@
 package sh.ftp.rocketninelabs.meditationassistant;
 
-import android.accounts.AccountManager;
-import android.accounts.AccountManagerCallback;
-import android.accounts.AccountManagerFuture;
-import android.accounts.AuthenticatorException;
-import android.accounts.OperationCanceledException;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -32,11 +27,7 @@ import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import net.openid.appauth.AuthorizationRequest;
@@ -47,7 +38,6 @@ import net.openid.appauth.ResponseTypeValues;
 import org.acra.ACRA;
 import org.acra.annotation.ReportsCrashes;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -1057,7 +1047,7 @@ public class MeditationAssistant extends Application {
                                 @Override
                                 public void onClick(DialogInterface dialog,
                                                     int id) {
-                                    getMediNET().syncSessions();
+                                    getMediNET().downloadSessions();
                                 }
                             }
                     )

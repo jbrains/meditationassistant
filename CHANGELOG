@@ -1,3 +1,7 @@
+1.4.2:
+- Updated notification icon to match app icon
+- Fixed data/battery drain introduced in 1.4.1 for some users
+
 1.4.1:
 - Updated app icon (thanks Symbolisch)
 - Changed MediNET Oauth method from Play Services to open-source library AppAuth
