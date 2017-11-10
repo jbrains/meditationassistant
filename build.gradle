@@ -14,3 +14,10 @@ tasks.whenTaskAdded { task ->
         task.enabled = false
     }
 }
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}

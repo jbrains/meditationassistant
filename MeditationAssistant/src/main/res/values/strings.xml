@@ -22,7 +22,6 @@
 
     <!-- Permissions -->
     <string name="permissionRequest">Permission Request</string>
-    <string name="permissionRequestAccounts">Permission to access your Google account is labeled as "contacts".  Your contacts will not be read.\n\nBy allowing this permission, you will not need to enter your Google username and password when signing in to MediNET.</string>
     <string name="permissionRequestReadExternal">This permission is required to choose a custom sound file on the device.</string>
     <string name="permissionRequestNotificationControl">Please grant access on the next screen to control Do Not Disturb.</string>
     <string name="deny">Deny</string>

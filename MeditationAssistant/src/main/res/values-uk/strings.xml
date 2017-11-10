@@ -22,8 +22,8 @@
 
     <!-- Permissions -->
     <string name="permissionRequest">Запит на дозвіл</string>
-    <string name="permissionRequestAccounts">Дозвіл для доступу до вашого рахунку Google, що позначено як "контакти". Ваші контакти не будуть прочитані.\n\n Дозволяючи це, вам не потрібно буде вводити ваше ім\'я та пароль доступу до рахунку Google, коли ви входитимете до MediNET.</string>
     <string name="permissionRequestReadExternal">Цей дозвіл потрібен для вибору звукового файлу користувача на пристрої.</string>
+    <string name="permissionRequestNotificationControl">Будь ласка дозвольте доступ на наступному екрані, щоб управляти "Не заважати".</string>
     <string name="deny">Відмовитись</string>
     <string name="tryAgain">Спробувати ще раз</string>
 
@@ -96,6 +96,8 @@
     <string name="sessionDeletedLocally">Сеанс видалено з пристрою.</string>
 
     <!-- Sign In -->
+    <string name="browser">Веб переглядач</string>
+    <string name="useBrowser">Використовувати веб переглядач:</string>
     <string name="signInWith">Увійти...</string>
     <string name="signInWithProvider">Увійти %s…</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, таке інше.</string>
@@ -203,6 +205,8 @@
     <string name="extralarge">Гіганський</string>
     <string name="restartApp">Перезавантажити додаток щоб застосувати нові налаштування</string>
     <string name="pref_notificationcontrol">Звук виклику та повідомлень</string>
+    <string name="pref_notificationcontrol_priority">Тільки важливе</string>
+    <string name="pref_notificationcontrol_alarms">Тільки нагадування</string>
     <string name="pref_notificationcontrol_vibrate">Увімкнути вібрацію</string>
     <string name="pref_notificationcontrol_silent">Увімкнути беззвучний режим</string>
     <string name="pref_daily_reminder">Щоденний нагадувач</string>
@@ -227,7 +231,6 @@
     <string name="wordimport">Імпортувати</string>
     <string name="sessionDeletedMediNET">Сеанс видалено з MediNET.</string>
     <string name="sessionNotFoundMediNET">Сеанс не знайдено на MediNET.</string>
-    <string name="sessionNotProperAccount">Ви не ввійшли в дійсний обліковий рахунок.</string>
 
     <plurals name="numtimes">
         <item quantity="one">%s раз</item>
@@ -245,7 +248,6 @@
     </plurals>
 
     <string name="sessionsNotImported">Дані пристрою поновлені.</string>
-    <string name="signInToImport">Увійдіть для імпорту даних сеансу.</string>
 
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d день</item>
@@ -265,7 +267,6 @@
     <string name="signOut">Вийти</string>
     <string name="signOutOfMediNET">Вийти з MediNET</string>
     <string name="signOutOfMediNETConfirmTitle">Вийти з MediNET?</string>
-    <string name="signOutOfMediNETConfirm">Ви увійшли як %s.</string>
     <string name="rateMeditationAssistant">Оцінити Асистента Медитації</string>
     <string name="rateMeditationAssistantText">Якщо ви вважаєте цей додаток корисним для вашої практики медитацій, чи не могли б ви додати оцінку?\n\nПлатна версія додатку не містить оголошень та має віджет для головного екрану. Будь ласка, розглядьте питання про придбання, якщо ви взмозі.\n\nЦе вікно більше не з\'являтиметься.</string>
     <string name="translateMeditationAssistantText">Чи могли б ви будь ласка допомогти Асистенту Медитацій досягнути ширшої аудиторії перекладаючи його іншою мовою?\n\nПереклад легко виконати за допомогою веб-інтерфейсу. Ви можете відвідати сторінку перекладу пізніше натиснувши "Перекласти" з вікна "Про програму".\n\nЦе вікно більше не з\'являтиметься.</string>

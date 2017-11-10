@@ -97,7 +97,7 @@ public class MediNET {
         session = new MeditationSession();
     }
 
-    public boolean  connect() {
+    public boolean connect() {
         ConnectivityManager cm = (ConnectivityManager) getMeditationAssistant()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();

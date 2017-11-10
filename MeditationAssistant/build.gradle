@@ -1,20 +1,15 @@
-repositories {
-    jcenter()
-    google()
-}
-
 apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '27.0.0'
+    buildToolsVersion '27.0.1'
 
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 26
 
-        versionCode 142
-        versionName "1.4.2"
+        versionCode 143
+        versionName "1.4.3"
 
         applicationId "sh.ftp.rocketninelabs.meditationassistant"
         manifestPlaceholders = [
@@ -88,17 +83,17 @@ dependencies {
     compile "net.openid:appauth:0.7.0"
     compile "com.squareup.okio:okio:1.13.0"
 
-    freeCompile 'com.google.android.gms:play-services-base:11.4.2'
-    fullCompile 'com.google.android.gms:play-services-base:11.4.2'
-    freeCompile 'com.google.android.gms:play-services-analytics:11.4.2'
-    fullCompile 'com.google.android.gms:play-services-analytics:11.4.2'
-    //freeCompile 'com.google.android.gms:play-services-wearable:11.4.2'
-    //fullCompile 'com.google.android.gms:play-services-wearable:11.4.2'
-    freeCompile 'com.google.android.gms:play-services-appinvite:11.4.2'
-    fullCompile 'com.google.android.gms:play-services-appinvite:11.4.2'
-    freeCompile 'com.google.android.gms:play-services-fitness:11.4.2'
-    fullCompile 'com.google.android.gms:play-services-fitness:11.4.2'
-    freeCompile 'com.google.android.gms:play-services-ads:11.4.2'
+    freeCompile 'com.google.android.gms:play-services-base:11.6.0'
+    fullCompile 'com.google.android.gms:play-services-base:11.6.0'
+    freeCompile 'com.google.android.gms:play-services-analytics:11.6.0'
+    fullCompile 'com.google.android.gms:play-services-analytics:11.6.0'
+    //freeCompile 'com.google.android.gms:play-services-wearable:11.6.0'
+    //fullCompile 'com.google.android.gms:play-services-wearable:11.6.0'
+    freeCompile 'com.google.android.gms:play-services-appinvite:11.6.0'
+    fullCompile 'com.google.android.gms:play-services-appinvite:11.6.0'
+    freeCompile 'com.google.android.gms:play-services-fitness:11.6.0'
+    fullCompile 'com.google.android.gms:play-services-fitness:11.6.0'
+    freeCompile 'com.google.android.gms:play-services-ads:11.6.0'
     //noinspection GradleDynamicVersion
     compile 'ch.acra:acra:4.9.0'
     compile 'com.github.amlcurran.showcaseview:library:5.4.3'

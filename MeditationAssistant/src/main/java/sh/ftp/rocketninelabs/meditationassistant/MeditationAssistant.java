@@ -848,7 +848,9 @@ public class MeditationAssistant extends Application {
             editor.putString("key", key);
             editor.putString("provider", provider);
         }
-        editor.putString("keyupdate", String.valueOf(timestamp));
+        if (!key.equals("")) {
+            editor.putString("keyupdate", String.valueOf(timestamp));
+        }
         editor.apply();
     }
 

@@ -105,8 +105,10 @@ public class AuthResultActivity extends Activity {
             mStateManager.updateAfterAuthorization(response, ex);
             exchangeAuthorizationCode(response);
         } else if (ex != null) {
+            finish();
             // TODO: handle failure "Authorization flow failed: " + ex.getMessage());
         } else {
+            finish();
             // TODO: handle failure No authorization state retained - reauthorization required");
         }
     }

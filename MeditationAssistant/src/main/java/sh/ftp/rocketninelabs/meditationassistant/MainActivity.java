@@ -471,7 +471,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
         //sv.setButtonPosition(lps);
 
-        if (getMeditationAssistant().getPrefs().getBoolean("pref_autosignin", false)) {
+        if (getMeditationAssistant().getPrefs().getBoolean("pref_autosignin", false) && !getMeditationAssistant().getMediNETKey().equals("")) {
             getMeditationAssistant().connectOnce();
         } else {
             getMeditationAssistant().getMediNET().updated();
