@@ -20,6 +20,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Looper;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
@@ -38,11 +39,16 @@ import net.openid.appauth.ResponseTypeValues;
 import org.acra.ACRA;
 import org.acra.annotation.ReportsCrashes;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -130,8 +136,8 @@ public class MeditationAssistant extends Application {
             } else if (BuildConfig.FLAVOR.equals("opensource")) {
                 marketName = "fdroid";
             } else { // To be uncommented based upon target market
-                marketName = "google";
-                //marketName = "amazon";
+                //marketName = "google";
+                marketName = "amazon";
                 //marketName = "getjar";
                 //marketName = "slideme";
             }
@@ -328,6 +334,9 @@ public class MeditationAssistant extends Application {
     }
 
     public void startAuth(boolean showToast) {
+        String trace = Arrays.toString(Thread.currentThread().getStackTrace());
+        Log.d("MeditationAssistant", "startAuth called, current stack trace: " + trace);
+
         if (showToast) {
             shortToast(getString(R.string.signInToMediNET));
         }
@@ -1143,6 +1152,43 @@ public class MeditationAssistant extends Application {
                 accountsAlertDialog.show();
             }
         }
+    }
+
+    public void sendLogcat() {
+        StringBuilder logcat = new StringBuilder();
+        Runtime rt = Runtime.getRuntime();
+        String[] commands = {"logcat", "-d"};
+        Process proc;
+        try {
+            proc = rt.exec(commands);
+
+            BufferedReader stdInput = new BufferedReader(new
+                    InputStreamReader(proc.getInputStream()));
+
+            BufferedReader stdError = new BufferedReader(new
+                    InputStreamReader(proc.getErrorStream()));
+
+            String s;
+            while ((s = stdError.readLine()) != null) {
+                logcat.append("Logcat error: ").append(s).append("\n");
+            }
+            logcat.append("Logcat output:\n");
+            while ((s = stdInput.readLine()) != null) {
+                logcat.append(s).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            shortToast("Failed to retrieve logcat");
+            return;
+        }
+
+        Intent e = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto", "tslocum@gmail.com", null));
+        String to[] = {getString(R.string.myEmailAddress)};
+        e.putExtra(Intent.EXTRA_EMAIL, to);
+        e.putExtra(Intent.EXTRA_SUBJECT, "Meditation Assistant Debug Log");
+        e.putExtra(Intent.EXTRA_TEXT, logcat.toString());
+        startActivity(Intent.createChooser(e, getString(R.string.sendEmail)));
     }
 
     public String getMAAppVersion() {

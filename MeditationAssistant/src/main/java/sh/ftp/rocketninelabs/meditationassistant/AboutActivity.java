@@ -23,6 +23,7 @@ public class AboutActivity extends Activity {
 
     public String license = "";
     private MeditationAssistant ma = null;
+    private int easterEggTaps = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,14 @@ public class AboutActivity extends Activity {
                 charis.setVisibility(View.VISIBLE);
                 charis.startAnimation(AnimationUtils.loadAnimation(
                         getApplicationContext(), R.anim.spin));
+
+                easterEggTaps++;
+                if (easterEggTaps == 3) {
+                    getMeditationAssistant().longToast(AboutActivity.this, "Hold again to send the app developer an application log (to help with debugging) via email");
+                } else if (easterEggTaps == 4) {
+                    getMeditationAssistant().sendLogcat();
+                }
+
                 return true;
             }
         });
@@ -179,13 +188,13 @@ public class AboutActivity extends Activity {
                     .setTitle(getString(R.string.removeAds))
                     .setMessage(getString(R.string.removeAdsHelp))
                     .setIcon(getResources()
-                                    .getDrawable(
-                                            getTheme()
-                                                    .obtainStyledAttributes(
-                                                            getMeditationAssistant().getMATheme(true),
-                                                            new int[]{R.attr.actionIconInfo})
-                                                    .getResourceId(0, 0)
-                                    )
+                            .getDrawable(
+                                    getTheme()
+                                            .obtainStyledAttributes(
+                                                    getMeditationAssistant().getMATheme(true),
+                                                    new int[]{R.attr.actionIconInfo})
+                                            .getResourceId(0, 0)
+                            )
                     ).create();
 
             removeAdsDialog.show();

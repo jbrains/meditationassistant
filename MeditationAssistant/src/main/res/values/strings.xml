@@ -276,4 +276,29 @@
     <string name="widget2x1" tools:ignore="UnusedResources">Meditation Assistant 2x1</string>
     <string name="widget3x1" tools:ignore="UnusedResources">Meditation Assistant 3x1</string>
 
+    <!-- Meta -->
+    <string name="appStoreListingShort">Feature packed meditation session timer and recorder</string>
+    <string name="appStoreListingFull">This application assists with both timed (via duration or ending at a specific time) and untimed sessions, with numerous customizations, including start/interval/end sounds and device behavior. It also provides a monthly overview of your progress.
+
+A major feature in this application is the ability to share your sessions online. Though entirely optional, sharing your progress online adds another dimension to your accountability. Now that you\'ve gone public, as your meditation streak increases more users will see it as a goal of their own. One user has posted over 500 days of consecutive days of meditation.
+
+Your meditation streak is the number of consecutive days you have recorded at least one session. As your streak grows, "not breaking the chain" becomes quite important. Soon you will be meditating once a day, even if it\'s five or ten minutes out of your schedule.
+
+Key features:
+- Automatically put your device into priority only, alarms only, vibrate or silent mode while meditating
+- Choose from several included meditation sounds, or use a sound file of your own
+- Play an interval sound at a duration of your choice
+- Pause your session and come back to it when you're ready
+- Post meditation sessions online to MediNET, and visit the MediNET meditation forum
+- Choose any Holo theme for the application: light, light with dark action bar, or dark
+- Many more features are included, and new features are added with each version
+
+This application is open source: https://gitlab.com/tslocum/meditationassistant
+
+Feedback is welcome. Several features now implemented were originally ideas from users. Open an issue describing your issue/idea: https://gitlab.com/tslocum/meditationassistant/issues
+
+Translate Meditation Assistant into your language: https://www.getlocalization.com/meditationassistant/
+
+Developed by Rocket Nine Laboratories: https://rocketnine.space/</string>
+
 </resources>

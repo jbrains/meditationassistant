@@ -1,3 +1,6 @@
+1.4.4:
+- Add feature to send debug log via email
+
 1.4.3:
 - Potentially resolve a bug affecting some users where their browser is opened to sign in each time the app is opened
 

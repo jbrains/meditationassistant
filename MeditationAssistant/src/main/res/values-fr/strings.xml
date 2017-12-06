@@ -4,7 +4,7 @@
     <string name="appName">Assistant de Méditation Gratuit
 </string>
     <string name="appNameShort">Assistant de Méditation</string>
-    <string name="about">A propos</string>
+    <string name="about">À propos</string>
     <string name="yes">Oui</string>
     <string name="no">Non</string>
     <string name="openWith">Ouvrir avec</string>
@@ -23,8 +23,8 @@
 
     <!-- Permissions -->
     <string name="permissionRequest">Demande d\'autorisation</string>
-    <string name="permissionRequestAccounts">La permission pour accéder à votre compte Google  est appelée "Contacts". Vos contacts ne seront pas lus.\n\nEn autorisant cela, vous n\'aurez pas besoin d\'entrer votre nom d\'utilisateur ni votre mot de passe Google lorsque vous vous connectez à MediNET.</string>
     <string name="permissionRequestReadExternal">L\'autorisation est nécessaire pour choisir un fichier de son personnalisé sur l\'appareil.</string>
+    <string name="permissionRequestNotificationControl">Veuillez autoriser l\'accès à l\'écran suivant pour contrôler "Ne pas déranger"</string>
     <string name="deny">Refuser</string>
     <string name="tryAgain">Essayez encore</string>
 
@@ -97,6 +97,8 @@
     <string name="sessionDeletedLocally">Séance supprimée en local</string>
 
     <!-- Sign In -->
+    <string name="browser">Navigateur</string>
+    <string name="useBrowser">Utiliser le navigateur :</string>
     <string name="signInWith">Se connecter avec ...</string>
     <string name="signInWithProvider">Se connecter avec %s ...</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, etc.</string>
@@ -204,6 +206,8 @@
     <string name="extralarge">Très grand</string>
     <string name="restartApp">Redémarrer l\'application pour appliquer le nouveau thème</string>
     <string name="pref_notificationcontrol">Sonneries et notifications</string>
+    <string name="pref_notificationcontrol_priority">Priorité seulement</string>
+    <string name="pref_notificationcontrol_alarms">Alarmes seulement</string>
     <string name="pref_notificationcontrol_vibrate">Régler sur vibreur</string>
     <string name="pref_notificationcontrol_silent">Régler sur silence</string>
     <string name="pref_daily_reminder">Rappel quotidien</string>
@@ -227,7 +231,6 @@
     <string name="wordimport">Importer</string>
     <string name="sessionDeletedMediNET">Séances supprimées de MediNET</string>
     <string name="sessionNotFoundMediNET">Séance no trouvée sur MediNET</string>
-    <string name="sessionNotProperAccount">Vous n\'êtes pas identifié avec le bon compte</string>
 
     <plurals name="numtimes">
         <item quantity="one">%s fois</item>
@@ -245,7 +248,6 @@
     </plurals>
 
     <string name="sessionsNotImported">Les données locales sont à jour</string>
-    <string name="signInToImport">Conenctez-vous pour importer les données de la séance</string>
 
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d jour</item>
@@ -265,7 +267,6 @@
     <string name="signOut">Se déconnecter</string>
     <string name="signOutOfMediNET">Se déconnecter de MediNET</string>
     <string name="signOutOfMediNETConfirmTitle">Se déconnecter de MediNET ?</string>
-    <string name="signOutOfMediNETConfirm">Vous êtes connecté avec l\'identifiant %s.</string>
     <string name="rateMeditationAssistant">Notez Assistant de Méditation</string>
     <string name="rateMeditationAssistantText">Si vous pensez que cette application a été positive pour votre pratique de la méditation, pensez à noter l\'application.\n\n La version payante ne contient pas de publicité et vous permet d\'ajouter des widgets. Nous vous remercions de l\'acheter si vous le pouvez.\n\nCe message n\'apparaîtra plus.</string>
     <string name="translateMeditationAssistantText">Voulez vous aider Meditation Assistant à toucher une audience plus large en traduisant cette application dans une autre langue?\n\nLa traduction se fait facilement avec une interface en ligne. Vous pourrez plus tard visiter la page de traduction en cliquant sur "Traduire" dans la fenêtre "A propos".\n\n Cette boite de dialogue n’apparaîtra plus.</string>
