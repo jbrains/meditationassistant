@@ -22,8 +22,7 @@
 
     <!-- Permissions -->
     <string name="permissionRequest">Berechtigungsanfrage</string>
-    <string name="permissionRequestAccounts">Die Berechtigung auf Ihre Google Account zugreifen zu dürfen ist als "Kontake" beachrieben. Ihre Kontake western nicht gelesen. Wenn Sie diesel Berechtigung akzeptieren müssen Sie um sich bei MediNET anzumelden Ihre Google Accountdaten nicht immer eingeben.</string>
-    <string name="permissionRequestReadExternal">Diesel Berechtigung wird benötigt um einen beliebigen Ton von Ihrem Great auszuwählen. </string>
+    <string name="permissionRequestReadExternal">Diese Berechtigung wird benötigt, um eine eigene Audiodatei auf dem Gerät auszuwählen.</string>
     <string name="permissionRequestNotificationControl">Bitte gewähren Sie auf dem nächsten Bildschirm Zugriff um die Funktion \'Nicht stören\' kontrollieren zu können.</string>
     <string name="deny">Verweigern </string>
     <string name="tryAgain">Erneut versuchen</string>
@@ -97,10 +96,12 @@
     <string name="sessionDeletedLocally">Sitzung lokal gelöscht</string>
 
     <!-- Sign In -->
+    <string name="browser">Browser</string>
+    <string name="useBrowser">Benutze Browser:</string>
     <string name="signInWith">Anmelden mit ...</string>
     <string name="signInWithProvider">Angemeldet mit %s ...</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, etc.</string>
-    <string name="signInGoogleError">Konnte nicht mit dem Account Manager anmelden. Versuchen Sie OpenID falls dieser Fehler fortbesteht.</string>
+    <string name="signInGoogleError">Konnte nicht mit dem Account Manager anmelden. Versuchen Sie OpenID, sollte  dieser Fehler fortbestehen.</string>
 
     <!-- Progress -->
     <string name="calendar">Kalender</string>
@@ -204,7 +205,7 @@
     <string name="extralarge">Riesig</string>
     <string name="restartApp">Anwendung neustarten, um neue Einstellungen anzuwenden</string>
     <string name="pref_notificationcontrol">Klingelton und Benachrichtigungen</string>
-    <string name="pref_notificationcontrol_priority">Priorität</string>
+    <string name="pref_notificationcontrol_priority">Nur wichtige</string>
     <string name="pref_notificationcontrol_alarms">Nur Alarme</string>
     <string name="pref_notificationcontrol_vibrate">Einstellen auf Vibration</string>
     <string name="pref_notificationcontrol_silent">Stummschalten</string>
@@ -229,7 +230,6 @@
     <string name="wordimport">Importieren</string>
     <string name="sessionDeletedMediNET">Sitzung auf MediNET gelöscht</string>
     <string name="sessionNotFoundMediNET">Sitzung auf MediNET nicht gefunden</string>
-    <string name="sessionNotProperAccount">Sie sind nicht mit dem richtigen Account angemeldet</string>
 
     <plurals name="numtimes">
         <item quantity="one">%s time</item>
@@ -247,7 +247,6 @@
     </plurals>
 
     <string name="sessionsNotImported">Lokale Daten sind aktuell.</string>
-    <string name="signInToImport">Anmelden, um Sitzungsdaten zu importieren</string>
 
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d day</item>
@@ -267,7 +266,6 @@
     <string name="signOut">Abmelden</string>
     <string name="signOutOfMediNET">Von MediNET abmelden</string>
     <string name="signOutOfMediNETConfirmTitle">Von MediNET abmelden?</string>
-    <string name="signOutOfMediNETConfirm">Sie sind angemeldet mit %s</string>
     <string name="rateMeditationAssistant">Meditation Assistant bewerten</string>
     <string name="rateMeditationAssistantText">Falls Sie diese Anwendung hilfreich bei Ihrer Meditation fanden, könnten Sie bitte eine Bewertung abgeben?\n\nDie Bezahlversion dieser App verzichtet auf Werbung und bietet ein Widget für den Homescreen. Bitte ziehen Sie einen Kauf in Erwägung wenn Sie dazu in der Lage sind.\n\nDieser Hinweis wird nicht wiederholt.</string>
     <string name="translateMeditationAssistantText">Könnten Sie uns bitte helfen einen größeren Nutzerkreis zu erreichen, indem Sie Meditation Assistant in eine andere Sprache übersetzen?\n\nDie Übersetzung kann über ein Online-Interface bequem vorgenommen werden. Sie können sich die Übersetzungswebsite später ansehen, indem Sie auf "Übersetzen" im "Über" Fenster klicken.\n\nDieser Hinweis wird nicht wiederholt.</string>
@@ -276,5 +274,29 @@
     <string name="widget1x1" tools:ignore="UnusedResources">Meditation Assistant 1x1</string>
     <string name="widget2x1" tools:ignore="UnusedResources">Meditation Assistant 2x1</string>
     <string name="widget3x1" tools:ignore="UnusedResources">Meditation Assistant 3x1</string>
+
+    <!-- Meta -->
+    <string name="appStoreListingShort">Featurereicher Timer und Aufzeichner für Meditationssitzungen</string>
+    <string name="appStoreListingFull">Dieses Programm unterstützt Sie sowohl bei  zeitlich begrenzten (durch festlegte Dauern oder eine festgelegte Endzeit) wie auch unbegrenzten Sitzungen, mit vielen Anpassungsmöglichkeiten, einschließlich der Start-, Intervall- und Schlussklänge und des Verhaltens des Geräts. Es bietet zudem eine monatsweise Fortschrittsanzeige.
+
+Ein besonderes Merkmal dieses Programms ist die Möglichkeit, Ihre Sitzungen mit anderen online zu teilen. Obwohl dies vollkommen optional ist, hebt das Teilen des eigenen Fortschritts online die Verbindlichkeit auf eine neue Ebene. Jetzt, wo Sie öffentlich geworden sind, da Ihre Meditationsserie wächst, mehr und mehr Benutzer sehen dies als ein eigenes Ziel an. Ein Benutzer hat mehr als 500 aufeinanderfolgende Tage Mediation veröffentlicht.
+
+Ihre Meditationsserie erfasst die Anzahl aufeinanderfolgender Tage, in denen Sie mindestens eine Sitzung aufgezeichnet haben. Während die Series anwächst wird es immer wichtiger, die "Kette nicht zu unterbrechen". Bald werden Sie täglich meditiere, selbst wenn es nur fünf oder zehn Minuten Ihres Tagesablaufs sind.
+
+Schlüsselmerkmale:
+- Automatisches Pausieren Ihres Geräts, so dass nur hoch priorisierte Alarme signalisiert werden, Vibrations- oder stiller Modus während der Mediation
+- Wählen Sie zwischen mehreren mitgelieferten Meditationsklängen oder benutzen Sie Ihren eigenen Klang
+- Spielen Sie einen Intervallklang zu einem Zeitpunkt Ihrer Wahl
+- Posten Sie Ihre Meditationssitzung online auf MediNET und besuchen Sie das MediNET-Meditationsforum
+- Wählen Sie eines von mehreren Holothemen für das Programm: Hell, dunkel, hell mit dunkler Aktionsleiste oder dunkel
+- Viele weitere Features sind vorhanden und neue Features folgen mit jeder weiteren Version
+
+Diese Anwendung ist Open Source: https://gitlab.com/tslocum/meditationassistant
+
+Feedback ist erwünscht. Einige Features, die jetzt umgesetzt sind, beruhen ursprünglich auf Anregungen von Benutzern. Öffnen Sie ein "Issue", in dem Sie Ihre Idee beschreiben: https://gitlab.com/tslocum/meditationassistant/issues
+
+Übersetzen Sie Mediation Assistant in Ihre Sprache: https://www.getlocalization.com/meditationassistant/
+
+Entwickelt von Rocket Nine Laboratories: https://rocketnine.space/</string>
 
 </resources>

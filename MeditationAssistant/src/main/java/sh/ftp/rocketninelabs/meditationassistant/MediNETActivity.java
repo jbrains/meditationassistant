@@ -228,9 +228,8 @@ public class MediNETActivity extends Activity {
                 public boolean onCreateWindow(WebView view, boolean dialog, boolean userGesture, android.os.Message resultMsg) {
                     WebView.HitTestResult result = view.getHitTestResult();
                     String data = result.getExtra();
-                    Context context = view.getContext();
 
-                    context.startActivity(new Intent(
+                    startActivity(new Intent(
                             Intent.ACTION_VIEW,
                             Uri.parse(data)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 

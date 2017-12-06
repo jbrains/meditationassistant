@@ -20,7 +20,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Looper;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
@@ -40,7 +39,6 @@ import org.acra.ACRA;
 import org.acra.annotation.ReportsCrashes;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
@@ -333,7 +331,7 @@ public class MeditationAssistant extends Application {
         return medinetprovider;
     }
 
-    public void startAuth(boolean showToast) {
+    public void startAuth(Context context, boolean showToast) {
         String trace = Arrays.toString(Thread.currentThread().getStackTrace());
         Log.d("MeditationAssistant", "startAuth called, current stack trace: " + trace);
 
@@ -358,12 +356,14 @@ public class MeditationAssistant extends Application {
             builder.setScopes("profile");
             AuthorizationRequest request = builder.build();
 
-            AuthorizationService authorizationService = new AuthorizationService(MeditationAssistant.this);
+            AuthorizationService authorizationService = new AuthorizationService(context);
+
+            PendingIntent authIntent = PendingIntent.getActivity(MeditationAssistant.this, 0, new Intent(context, AuthResultActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK), PendingIntent.FLAG_CANCEL_CURRENT);
 
             authorizationService.performAuthorizationRequest(
                     request,
-                    PendingIntent.getActivity(MeditationAssistant.this, 0, new Intent(MeditationAssistant.this, AuthResultActivity.class), 0),
-                    PendingIntent.getActivity(MeditationAssistant.this, 0, new Intent(MeditationAssistant.this, AuthResultActivity.class), 0));
+                    authIntent,
+                    authIntent);
         });
     }
 

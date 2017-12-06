@@ -11,12 +11,10 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -188,7 +186,7 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
         if (medinetConnection.getHeaderField("x-MediNET") != null) {
             if (medinetConnection.getHeaderField("x-MediNET")
                     .equals("signin")) {
-                getMeditationAssistant().startAuth(false);
+                getMeditationAssistant().startAuth(medinet.activity, false);
             } else {
                 if (action.equals("signin") && medinetConnection.getHeaderField("x-MediNET-Key") != null) { /* Oauth2 sign in */
                     Log.d("MeditationAssistant", "Header key: "

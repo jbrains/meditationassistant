@@ -1,6 +1,5 @@
 package sh.ftp.rocketninelabs.meditationassistant;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
@@ -10,7 +9,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.media.AudioManager;
@@ -20,7 +18,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.support.v4.app.ActivityCompat;
 import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -2482,7 +2479,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     }
 
     public void askToSignIn() {
-        getMeditationAssistant().startAuth(false);
+        getMeditationAssistant().startAuth(MainActivity.this, false);
     }
 
     public void stopMediaPlayer() {

@@ -33,7 +33,6 @@ import android.widget.Toast;
 
 import com.nononsenseapps.filepicker.FilePickerActivity;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -496,7 +495,7 @@ public class SettingsActivity extends PreferenceActivity {
                         public boolean onPreferenceClick(Preference arg0) {
 
                             if (getMeditationAssistant().getMediNETKey().equals("")) {
-                                getMeditationAssistant().startAuth(true);
+                                getMeditationAssistant().startAuth(SettingsActivity.this, true);
                             } else {
                                 if (getMeditationAssistant().db.getNumSessions() == 0) {
                                     getMeditationAssistant().longToast(
@@ -524,7 +523,7 @@ public class SettingsActivity extends PreferenceActivity {
                         @Override
                         public boolean onPreferenceClick(Preference arg0) {
                             if (getMeditationAssistant().getMediNETKey().equals("")) {
-                                getMeditationAssistant().startAuth(true);
+                                getMeditationAssistant().startAuth(SettingsActivity.this, true);
                             } else {
                                 if (getMeditationAssistant().getTimestamp()
                                         - importsessions_lastlick > 5) {

@@ -8,8 +8,6 @@ import android.net.NetworkInfo;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -89,7 +87,7 @@ public class MediNET {
                 }
             });
         } else {
-            getMeditationAssistant().startAuth(false);
+            getMeditationAssistant().startAuth(activity, false);
         }
     }
 
@@ -110,7 +108,7 @@ public class MediNET {
         }
 
         if (getMeditationAssistant().getMediNETKey().equals("")) {
-            getMeditationAssistant().startAuth(false);
+            getMeditationAssistant().startAuth(activity, false);
             return false;
         }
 

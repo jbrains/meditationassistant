@@ -19,8 +19,8 @@ public class JavaScriptInterface implements JavascriptCallback {
     public void askToSignIn() {
         MeditationAssistant ma = (MeditationAssistant) this.activity
                 .getApplication();
+        ma.startAuth(this.activity, false);
         this.activity.finish();
-        ma.startAuth(false);
     }
 
     @JavascriptInterface

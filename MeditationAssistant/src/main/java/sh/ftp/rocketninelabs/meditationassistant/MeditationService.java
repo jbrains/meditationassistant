@@ -24,51 +24,42 @@ public class MeditationService extends Service {
             return START_STICKY;
         }
 
-        int[] allWidgetIds = intent
-                .getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
+        int[] allWidgetIds = intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
+        if (allWidgetIds != null && allWidgetIds.length > 0) {
+            for (int widgetId : allWidgetIds) {
+                RemoteViews updateViews = new RemoteViews(this.getPackageName(),
+                        R.layout.widget_layout);
+                getApplication();
 
-		/*
-         * ComponentName thisWidget = new ComponentName(getApplicationContext(),
-		 * MeditationProvider.class);
-		 */
+                MeditationAssistant ma = (MeditationAssistant) this
+                        .getApplication();
 
-        for (int widgetId : allWidgetIds) {
-            RemoteViews updateViews = new RemoteViews(this.getPackageName(),
-                    R.layout.widget_layout);
-            getApplication();
+                if (ma.getMeditationStreak() > 0) {
+                    updateViews.setTextViewText(R.id.txtWidgetDays,
+                            String.valueOf(ma.getMeditationStreak()));
+                    updateViews.setTextViewText(
+                            R.id.txtWidgetText,
+                            getResources().getQuantityString(
+                                    R.plurals.daysOfMeditationWithoutCount,
+                                    ma.getMeditationStreak())
+                    );
+                } else {
+                    updateViews.setTextViewText(R.id.txtWidgetDays,
+                            getString(R.string.ignore_om));
+                    updateViews.setTextViewText(R.id.txtWidgetText,
+                            getString(R.string.meditateToday));
+                }
 
-            MeditationAssistant ma = (MeditationAssistant) this
-                    .getApplication();
+                Intent clickintent = new Intent(getApplicationContext(), MainActivity.class);
+                clickintent.setAction("widgetclick");
+                PendingIntent pendingIntent = PendingIntent.getActivity(
+                        getApplicationContext(), 0, clickintent, 0);
+                updateViews.setOnClickPendingIntent(R.id.layWidget, pendingIntent);
+                updateViews.setOnClickPendingIntent(R.id.txtWidgetDays, pendingIntent);
+                updateViews.setOnClickPendingIntent(R.id.txtWidgetText, pendingIntent);
 
-            if (ma.getMeditationStreak() > 0) {
-                updateViews.setTextViewText(R.id.txtWidgetDays,
-                        String.valueOf(ma.getMeditationStreak()));
-                updateViews.setTextViewText(
-                        R.id.txtWidgetText,
-                        getResources().getQuantityString(
-                                R.plurals.daysOfMeditationWithoutCount,
-                                ma.getMeditationStreak())
-                );
-            } else {
-                updateViews.setTextViewText(R.id.txtWidgetDays,
-                        getString(R.string.ignore_om));
-                updateViews.setTextViewText(R.id.txtWidgetText,
-                        getString(R.string.meditateToday));
+                appWidgetManager.updateAppWidget(widgetId, updateViews);
             }
-
-            Intent clickintent = new Intent(getApplicationContext(),
-                    MainActivity.class);
-            // clickintent.putExtra("widgetid", startId);
-            clickintent.setAction("widgetclick");
-            PendingIntent pendingIntent = PendingIntent.getActivity(
-                    getApplicationContext(), 0, clickintent, 0);
-            updateViews.setOnClickPendingIntent(R.id.layWidget, pendingIntent);
-            updateViews.setOnClickPendingIntent(R.id.txtWidgetDays,
-                    pendingIntent);
-            updateViews.setOnClickPendingIntent(R.id.txtWidgetText,
-                    pendingIntent);
-
-            appWidgetManager.updateAppWidget(widgetId, updateViews);
         }
 
         return START_STICKY;

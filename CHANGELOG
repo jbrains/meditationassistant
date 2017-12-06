@@ -1,3 +1,7 @@
+1.4.5:
+- Fix app crash when signing in to MediNET
+- Fix widget service crash
+
 1.4.4:
 - Add feature to send debug log via email
 
@@ -7,6 +11,7 @@
 1.4.2:
 - Updated notification icon to match app icon
 - Fixed data/battery drain introduced in 1.4.1 for some users
+- Fixed null alarm receiver cancel bug
 
 1.4.1:
 - Updated app icon (thanks Symbolisch)
