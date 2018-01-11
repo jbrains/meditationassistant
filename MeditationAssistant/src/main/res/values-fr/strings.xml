@@ -20,6 +20,7 @@
     <string name="account">Compte</string>
     <string name="groups">Groupes</string>
     <string name="announcement">Annonce</string>
+    
 
     <!-- Permissions -->
     <string name="permissionRequest">Demande d\'autorisation</string>
@@ -117,6 +118,9 @@
     <string name="daySundayShort">Dim</string>
     <string name="addSession">Ajouter une séance</string>
     <string name="add">Ajouter</string>
+    
+    
+    
     <string name="sessionStartedAt">Démarré à %s</string>
     <string name="started">Démarrée</string>
     <string name="completed">Terminée</string>
@@ -275,5 +279,9 @@
     <string name="widget1x1" tools:ignore="UnusedResources">Assistant de Méditation 1x1</string>
     <string name="widget2x1" tools:ignore="UnusedResources">Assistant de Méditation 2x1</string>
     <string name="widget3x1" tools:ignore="UnusedResources">Assistant de Méditation 3x1</string>
+
+    <!-- Meta -->
+    
+    
 
 </resources>

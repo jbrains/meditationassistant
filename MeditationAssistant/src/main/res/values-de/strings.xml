@@ -19,6 +19,7 @@
     <string name="account">Konto</string>
     <string name="groups">Gruppen</string>
     <string name="announcement">Ankündigung</string>
+    
 
     <!-- Permissions -->
     <string name="permissionRequest">Berechtigungsanfrage</string>
@@ -116,6 +117,9 @@
     <string name="daySundayShort">So</string>
     <string name="addSession">Sitzung hinzufügen</string>
     <string name="add">Hinzuf.</string>
+    
+    
+    
     <string name="sessionStartedAt">Begonnen um %s</string>
     <string name="started">Begonnen</string>
     <string name="completed">Abgeschlossen</string>
@@ -277,14 +281,14 @@
 
     <!-- Meta -->
     <string name="appStoreListingShort">Featurereicher Timer und Aufzeichner für Meditationssitzungen</string>
-    <string name="appStoreListingFull">Dieses Programm unterstützt Sie sowohl bei  zeitlich begrenzten (durch festlegte Dauern oder eine festgelegte Endzeit) wie auch unbegrenzten Sitzungen, mit vielen Anpassungsmöglichkeiten, einschließlich der Start-, Intervall- und Schlussklänge und des Verhaltens des Geräts. Es bietet zudem eine monatsweise Fortschrittsanzeige.
+    <string name="appStoreListingFull">Diese Anwendung unterstützt Sie sowohl bei  zeitlich begrenzten (durch festlegte Dauern oder eine festgelegte Endzeit) wie auch unbegrenzten Sitzungen, mit vielen Anpassungsmöglichkeiten, einschließlich der Start-, Intervall- und Schlussklänge und des Verhaltens des Geräts. Es bietet zudem eine monatsweise Fortschrittsanzeige.
 
-Ein besonderes Merkmal dieses Programms ist die Möglichkeit, Ihre Sitzungen mit anderen online zu teilen. Obwohl dies vollkommen optional ist, hebt das Teilen des eigenen Fortschritts online die Verbindlichkeit auf eine neue Ebene. Jetzt, wo Sie öffentlich geworden sind, da Ihre Meditationsserie wächst, mehr und mehr Benutzer sehen dies als ein eigenes Ziel an. Ein Benutzer hat mehr als 500 aufeinanderfolgende Tage Mediation veröffentlicht.
+Ein besonderes Merkmal dieses Programms ist die Möglichkeit, Ihre Sitzungen mit anderen online zu teilen. Obwohl dies vollkommen optional ist, hebt das Teilen des eigenen Fortschritts online die Verbindlichkeit auf eine neue Ebene. Jetzt, wo Sie öffentlich geworden sind, da Ihre Meditationsserie wächst, sehen dies mehr und mehr Benutzer als ein eigenes Ziel an. Ein Benutzer hat mehr als 500 aufeinanderfolgende Tage Meditation veröffentlicht.
 
 Ihre Meditationsserie erfasst die Anzahl aufeinanderfolgender Tage, in denen Sie mindestens eine Sitzung aufgezeichnet haben. Während die Series anwächst wird es immer wichtiger, die "Kette nicht zu unterbrechen". Bald werden Sie täglich meditiere, selbst wenn es nur fünf oder zehn Minuten Ihres Tagesablaufs sind.
 
 Schlüsselmerkmale:
-- Automatisches Pausieren Ihres Geräts, so dass nur hoch priorisierte Alarme signalisiert werden, Vibrations- oder stiller Modus während der Mediation
+- Automatisches Pausieren Ihres Geräts, so dass nur hoch priorisierte Alarme signalisiert werden, Vibrations- oder stiller Modus während der Meditation
 - Wählen Sie zwischen mehreren mitgelieferten Meditationsklängen oder benutzen Sie Ihren eigenen Klang
 - Spielen Sie einen Intervallklang zu einem Zeitpunkt Ihrer Wahl
 - Posten Sie Ihre Meditationssitzung online auf MediNET und besuchen Sie das MediNET-Meditationsforum
@@ -295,7 +299,7 @@ Diese Anwendung ist Open Source: https://gitlab.com/tslocum/meditationassistant
 
 Feedback ist erwünscht. Einige Features, die jetzt umgesetzt sind, beruhen ursprünglich auf Anregungen von Benutzern. Öffnen Sie ein "Issue", in dem Sie Ihre Idee beschreiben: https://gitlab.com/tslocum/meditationassistant/issues
 
-Übersetzen Sie Mediation Assistant in Ihre Sprache: https://www.getlocalization.com/meditationassistant/
+Übersetzen Sie Meditation Assistant in Ihre Sprache: https://www.getlocalization.com/meditationassistant/
 
 Entwickelt von Rocket Nine Laboratories: https://rocketnine.space/</string>
 

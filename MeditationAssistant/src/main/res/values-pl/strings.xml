@@ -6,6 +6,7 @@
     <string name="about">O aplikacji</string>
     <string name="yes">Tak</string>
     <string name="no">Nie</string>
+    
     <string name="delete">Usuń</string>
     <string name="sessions">Sesje</string>
     <string name="community">Społeczność</string>
@@ -18,18 +19,29 @@
     <string name="account">Konto</string>
     <string name="groups">Grupy</string>
     <string name="announcement">Ogłoszenie</string>
+    
+
+    <!-- Permissions -->
+    
+    
+    
+    
+    
 
     <!-- Main Activity -->
-
-
+    
+    
+    
+    
     <string name="cancel">Anuluj</string>
     <string name="set">Ustaw</string>
     <string name="confirm">Potwierdź</string>
     <string name="meditate">Medytuj</string>
     <string name="tapToSkip">Pomiń</string>
     <string name="pause">Wstrzymaj</string>
-
-
+    
+    
+    
     <string name="pausedNotification">Sezja wstrzymana, przytrzymaj, by zakończyć</string>
     <string name="mediNETConnecting">Łączenie...</string>
     <string name="mediNETConnected">Połączono z MediNET</string>
@@ -37,16 +49,16 @@
     <string name="progress">Postęp</string>
     <string name="setPreset">Ustaw tryb</string>
     <string name="setPresetHint">Przytrzymaj, by ustawić tryb</string>
-
+    
     <string name="setPresetHintBlank">Wpisz czas trwania (lub czas zakończenia) aby ustawić tryb</string>
-
+    
     <string name="setTimerDurationHint">Podaj prawidłowy czas trwania (np. 0:22)</string>
     <string name="setTimerEndAtHint">Podaj prawidłowy czas (np. 4:20)</string>
     <string name="invalidEndAt">Nieprawidłowy czas zakończenia sesji</string>
     <string name="timed">Czas zmierzony</string>
     <string name="endAt">Koniec o</string>
     <string name="untimed">Czas nie zmierzony</string>
-
+    
     <string name="presetLabelEndAt">Koniec %s</string>
 
     <!-- About -->
@@ -54,26 +66,28 @@
     <string name="sendEmail">Wyślij email</string>
     <string name="version">Wersja %s</string>
     <string name="translate">Przetłumacz</string>
+    
+    
+    
     <string name="howToMeditate">Jak medytować</string>
     <string name="share">Udostępnij</string>
 
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
-
+    
 
     <!-- Sessions -->
     <string name="session">Sesja</string>
     <string name="sessionDeleteEverywhere">Usuń wszędzie</string>
     <string name="sessionDeleteLocally">Usuń lokalnie</string>
     <string name="sessionDeleteMediNET">Usuń na MediNET</string>
-
+    
+    
+    
 
     <!-- Session complete -->
     <string name="sessioncomplete">Sesja ukończona</string>
     <string name="sessionMessagePlaceholder">Wiadomość</string>
     <string name="askDiscardText">Przerwać sesję?</string>
-    <string name="shareSessionText">Właśnie medytowałem %1$s przy użyciu %2$s.</string>
-    <string name="aMoment">chwila</string>
-    <string name="shareSessionSubject">Sesja medytacji</string>
     <string name="sessionPosting">Wysyłanie sesji...</string>
     <string name="sessionPosted">Sesja wysłana do MediNET</string>
     <string name="sessionAlreadyPosted">Sesja została już wysłana</string>
@@ -83,6 +97,8 @@
     <string name="sessionDeletedLocally">Sesja usunięta lokalnie</string>
 
     <!-- Sign In -->
+    
+    
     <string name="signInWith">Zaloguj się przy użyciu...</string>
     <string name="signInWithProvider">Zaloguj się przy użyciu %s...</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter itp.</string>
@@ -91,6 +107,7 @@
     <!-- Progress -->
     <string name="calendar">Kalendarz</string>
     <string name="statistics">Statystyki</string>
+    
     <string name="dayMondayShort">Pon</string>
     <string name="dayTuesdayShort">Wt</string>
     <string name="dayWednesdayShort">Śr</string>
@@ -99,7 +116,10 @@
     <string name="daySaturdayShort">Sb</string>
     <string name="daySundayShort">Ndz</string>
     <string name="addSession">Dodaj sesję</string>
-
+    
+    
+    
+    
     <string name="sessionStartedAt">Rozpoczęto o %s</string>
     <string name="started">Rozpoczęto</string>
     <string name="completed">Ukończono</string>
@@ -114,17 +134,24 @@
     <string name="minutes">Minuty</string>
     <string name="totalSessions">Łącznie sesji</string>
     <string name="averageDuration">Średni czas trwania</string>
-
+    
+    
 
     <string name="reminderText">Masz chwilę, aby pomedytować?</string>
 
     <!-- Settings -->
     <string name="meditation">Medytacja</string>
     <string name="pref_vibrate">Wibruj</string>
-
+    
+    
+    
+    
+    
+    
 
     <string name="settings">Ustawienia</string>
     <string name="disabled">Wyłączony</string>
+    
     <string name="noSpecialBehavior">Bez szczególnych zachowań</string>
     <string name="noSound">Bez dźwięku</string>
     <string name="customSound">Własny dźwięk</string>
@@ -137,32 +164,37 @@
     <string name="pref_full_screen">Pełny ekran</string>
     <string name="pref_full_screen_summary">Pasek stanu ukryty na pełnym ekranie</string>
     <string name="pref_delay">Opóźnienie</string>
-
-
+    
+    
     <string name="pref_autosignin_summary">Połącz się z MediNET po otwarciu</string>
     <string name="pref_autosignin">Łączenie automatyczne</string>
     <string name="pref_rememberme_summary">Pozostań zalogowany po zamknięciu</string>
     <string name="pref_rememberme">Pamiętaj mnie</string>
+    <string name="pref_sessionvolume">Głośność</string>
+    
     <string name="pref_screencontrol">Ekran</string>
     <string name="pref_sendusage">Raportuj statystyki użycia</string>
     <string name="pref_sendusage_summary">Anonimowe raportowanie przez Google Analytics. Dostępne po restarcie</string>
     <string name="pref_showstreak">Wyświetl passę medytacji</string>
     <string name="pref_showstreak_summary">Liczba dni pod rząd z co najmniej jedną nagraną sesją</string>
     <string name="selectSound">Wybierz dźwięk</string>
-
-
+    
+    
+    
     <string name="pref_remembermessage">Pamiętaj ostatnią wiadomość</string>
     <string name="pref_remembermessage_summary">Domyślnie: ostatnia wysłana wiadomość</string>
     <string name="pref_theme">Motyw holograficzny</string>
     <string name="pref_theme_light">Jasny</string>
     <string name="pref_theme_lightdark">Jasny z ciemnym paskiem zadań</string>
     <string name="pref_theme_dark">Ciemny</string>
+    
     <string name="pref_notification">Powiadomienie</string>
     <string name="pref_notification_summary">Pokazywane podczas medytacji, gdy z dala od głównego okna</string>
     <string name="pref_usetimepicker">Alternatywny interfejs czasu</string>
     <string name="pref_usetimepicker_summary">Użyj suwaków godzin i minut podczas zmiany czasu</string>
     <string name="pref_askdismiss">Pytaj przed przerwaniem</string>
     <string name="pref_askdismiss_summary">Żądaj potwierdzenia, zanim sesja zostanie przerwana</string>
+    
     <string name="pref_progresstab">Domyślna zakładka postępu</string>
     <string name="importsessions">Importuj sesje</string>
     <string name="importsessions_summary">Odzyskaj wysłane wcześniej sesje</string>
@@ -175,14 +207,17 @@
     <string name="normal">Normalny</string>
     <string name="large">Duży</string>
     <string name="extralarge">Bardzo duży</string>
-    <string name="restartAppApplyTheme">Uruchom ponownie aplikację, by zastosować nowy motyw</string>
-    <string name="restartAppApplyTimePicker">Uruchom ponownie aplikację, by użyć alternatywnego interfejsu czasu</string>
+    
     <string name="pref_notificationcontrol">Dzwonek i powiadomienia</string>
+    
+    
     <string name="pref_notificationcontrol_vibrate">Wibracje</string>
     <string name="pref_notificationcontrol_silent">Cisza</string>
     <string name="pref_daily_reminder">Przypomnienie codzienne</string>
-
-
+    
+    
+    
+    
     <string name="downloadingSessions">Pobieranie sesji...</string>
     <string name="uploadingSessions">Wysyłanie sesji...</string>
 
@@ -199,8 +234,11 @@
     <string name="wordimport">Importuj</string>
     <string name="sessionDeletedMediNET">Sesja usunięta na MediNET</string>
     <string name="sessionNotFoundMediNET">Sesja nie odnaleziona na MediNET</string>
-    <string name="sessionNotProperAccount">Nie jesteś zalogowany na odpowiednie konto</string>
 
+    <plurals name="numtimes">
+        <item quantity="one">%s time</item>
+        <item quantity="other">%s times</item>
+    </plurals>
 
     <plurals name="sessionsImported">
         <item quantity="one">Zaimportowano %s sesję</item>
@@ -213,8 +251,11 @@
     </plurals>
 
     <string name="sessionsNotImported">Dane lokalne są aktualne</string>
-    <string name="signInToImport">Zaloguj się, by importować dane sesji</string>
 
+    <plurals name="daysOfMeditationMinimal">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
     <plurals name="daysOfMeditation">
         <item quantity="one">%d dzień medytacji</item>
         <item quantity="other">%d dni medytacji</item>
@@ -229,7 +270,6 @@
     <string name="signOut">Wyloguj</string>
     <string name="signOutOfMediNET">Wyloguj się z MediNET</string>
     <string name="signOutOfMediNETConfirmTitle">Wylogować się z MediNET?</string>
-    <string name="signOutOfMediNETConfirm">Jesteś zalogowany przy użyciu %s.</string>
     <string name="rateMeditationAssistant">Oceń Meditation Assistant</string>
     <string name="rateMeditationAssistantText">Jeżeli ta aplikacja okazała się pomocna w Twojej medytacji,
 czy mógłbyś ją ocenić?\n\nTo okno nie pojawi się ponownie.</string>
@@ -239,5 +279,9 @@ czy mógłbyś ją ocenić?\n\nTo okno nie pojawi się ponownie.</string>
     <string name="widget1x1" tools:ignore="UnusedResources">Asystent Medytacji 1x1</string>
     <string name="widget2x1" tools:ignore="UnusedResources">Asystent Medytacji 2x1</string>
     <string name="widget3x1" tools:ignore="UnusedResources">Asystent Medytacji 3x1</string>
+
+    <!-- Meta -->
+    
+    
 
 </resources>

@@ -19,10 +19,10 @@
     <string name="account">アカウント</string>
     <string name="groups">グループ</string>
     <string name="announcement">アナウンス</string>
+    
 
     <!-- Permissions -->
     <string name="permissionRequest">アクセス許可リクエスト</string>
-    <string name="permissionRequestAccounts">Google アカウントにアクセスするためのアクセス許可は "連絡先" と表示されます。あなたの連絡先は読み取りません\n\nこのアクセス許可を許可することで、MediNET にサインインするときに Google のユーザー名とパスワードを入力する必要はありません。</string>
     <string name="permissionRequestReadExternal">デバイス上のカスタムサウンドファイルを選択するために、このアクセス許可が必要です。</string>
     <string name="permissionRequestNotificationControl">じゃましないように制御するため、次の画面でアクセス許可を付与してください。</string>
     <string name="deny">拒否</string>
@@ -97,6 +97,8 @@
     <string name="sessionDeletedLocally">ローカルのセッションを削除しました</string>
 
     <!-- Sign In -->
+    <string name="browser">ブラウザー</string>
+    <string name="useBrowser">ブラウザーを使用:</string>
     <string name="signInWith">サインイン…</string>
     <string name="signInWithProvider">%s でサインイン…</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, など.</string>
@@ -115,6 +117,9 @@
     <string name="daySundayShort">日</string>
     <string name="addSession">セッションを追加</string>
     <string name="add">追加</string>
+    
+    
+    
     <string name="sessionStartedAt">開始 %s</string>
     <string name="started">開始しました</string>
     <string name="completed">完了しました</string>
@@ -229,7 +234,6 @@
     <string name="wordimport">インポート</string>
     <string name="sessionDeletedMediNET">MediNET のセッションを削除しました</string>
     <string name="sessionNotFoundMediNET">MediNET にセッションが見つかりません</string>
-    <string name="sessionNotProperAccount">正しいアカウントでサインインしていません</string>
 
     <plurals name="numtimes">
         <item quantity="one">%s 回</item>
@@ -247,7 +251,6 @@
     </plurals>
 
     <string name="sessionsNotImported">ローカルデータは最新です</string>
-    <string name="signInToImport">サインインしてセッションデータをインポート</string>
 
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d 日</item>
@@ -267,7 +270,6 @@
     <string name="signOut">サインアウト</string>
     <string name="signOutOfMediNET">MediNET のサインアウト</string>
     <string name="signOutOfMediNETConfirmTitle">MediNET のサインアウトしますか?</string>
-    <string name="signOutOfMediNETConfirm">%s でサインインしています。</string>
     <string name="rateMeditationAssistant">瞑想アシスタントを評価する</string>
     <string name="rateMeditationAssistantText">このアプリケーションが瞑想の訓練に役立つことが分かった場合、評価を追加していただけませんか?\n\nこのアプリの有料バージョンは、広告が含まれておらず、ホーム画面ウィジェットを提供しています。できれば購入をご検討ください。\n\nこのダイアログは再度表示されません。</string>
     <string name="translateMeditationAssistantText">他の言語に翻訳することによって、瞑想アシスタントがより広く利用者に届くように手伝っていただけませんか?\n\nオンラインインターフェイスを利用して、簡単に翻訳を行うことができます。後で、アプリについてのウインドウから翻訳をクリックすることで、翻訳Webページを訪問することができます。\n\nこのダイアログは再度表示されません。</string>
@@ -276,5 +278,30 @@
     <string name="widget1x1" tools:ignore="UnusedResources">瞑想アシスタント 1x1</string>
     <string name="widget2x1" tools:ignore="UnusedResources">瞑想アシスタント 2x1</string>
     <string name="widget3x1" tools:ignore="UnusedResources">瞑想アシスタント 3x1</string>
+
+    <!-- Meta -->
+    <string name="appStoreListingShort">瞑想セッションタイマーとレコーダーの機能パック</string>
+    <string name="appStoreListingFull">このアプリケーションは、開始/終了/終了音やデバイスの動作など、さまざまなカスタマイズ機能を備えていて、時間指定（継続時間、または特定の時刻に終了）セッションと時間指定のないセッションの両方を支援します。また、毎月の状況の概要を提供します。
+
+このアプリケーションの主な機能は、セッションをオンラインで共有できることです。全く任意ですが、あなたの状況をオンラインで共有すると、あなたの説明に別の尺度を加えます。あなたが公開して、あなたの瞑想のストリークが増えるにつれて、より多くのユーザーがそれを自分の目標として見ることになります。 1人のユーザーは連続して500日以上の瞑想を投稿しました。
+
+瞑想ストリークは、少なくとも1つのセッションを記録した連続した日の数です。ストリークが成長するにつれて、「連続したチェーンを壊さない」ことが非常に重要になります。すぐに、スケジュールのうち5分か10分であっても、あなたは1日に1回瞑想するようになるでしょう。
+
+主な機能:
+- 瞑想中、デバイスを自動的に優先度高のみ、アラームのみ、振動モードまたはサイレントモードにします
+- いくつかの含まれた瞑想音から選択、または自分のサウンドファイルを使用
+- 選択した間隔でインターバルサウンドを再生
+- セッションを一時停止し、準備ができたら再開
+- 瞑想セッションをオンラインでMediNETに投稿したり、MediNET瞑想フォーラムにアクセス
+- アプリケーションの任意のHoloテーマを選択: ライト、ダークアクションバーのライト、またはダーク
+- さらに多くの機能が含まれており、各バージョンで新しい機能が追加されています
+
+このアプリケーションはオープンソースです: https://gitlab.com/tslocum/meditationassistant
+
+フィードバックは大歓迎です。今実装されているいくつかの機能はもともとユーザーからのアイデアでした。イシューを開いて、問題/アイデアを説明してください: https://gitlab.com/tslocum/meditationassistant/issues
+
+お使いの言語にMeditation Assistantを翻訳: https://www.getlocalization.com/meditationassistant/
+
+Rocket Nine Laboratoriesによって開発されました: https://rocketnine.space/</string>
 
 </resources>

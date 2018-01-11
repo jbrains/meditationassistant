@@ -19,6 +19,7 @@
     <string name="account">Account</string>
     <string name="groups">Groups</string>
     <string name="announcement">Announcement</string>
+    <string name="installFileManager">Please install a file manager (e.g. Solid Explorer)</string>
 
     <!-- Permissions -->
     <string name="permissionRequest">Permission Request</string>
@@ -116,6 +117,9 @@
     <string name="daySundayShort">Sun</string>
     <string name="addSession">Add session</string>
     <string name="add">Add</string>
+    <string name="exportSessions">Export sessions</string>
+    <string name="sessionExportFailed">Unable to export sessions</string>
+    <string name="showExportedSessions">Sessions exported.  Would you like to browse the folder containing the export?</string>
     <string name="sessionStartedAt">Started at %s</string>
     <string name="started">Started</string>
     <string name="completed">Completed</string>

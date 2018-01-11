@@ -36,7 +36,10 @@ import net.openid.appauth.AuthorizationServiceConfiguration;
 import net.openid.appauth.ResponseTypeValues;
 
 import org.acra.ACRA;
-import org.acra.annotation.ReportsCrashes;
+import org.acra.annotation.AcraCore;
+import org.acra.annotation.AcraHttpSender;
+import org.acra.data.StringFormat;
+import org.acra.sender.HttpSender;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -54,9 +57,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
 
-@ReportsCrashes(
-        formUri = "https://medinet.rocketnine.space/acra/acra.php"
-)
+@AcraCore(buildConfigClass = BuildConfig.class, reportFormat = StringFormat.KEY_VALUE_LIST)
+@AcraHttpSender(httpMethod = HttpSender.Method.POST, uri= "https://medinet.rocketnine.space/acra/acra.php")
 public class MeditationAssistant extends Application {
 
     private static final String AUTH_PENDING = "auth_state_pending";
@@ -1214,5 +1216,11 @@ public class MeditationAssistant extends Application {
         APP_TRACKER, // Tracker used only in this app.
         GLOBAL_TRACKER, // Tracker used by all the apps from a company. eg: roll-up tracking.
         ECOMMERCE_TRACKER, // Tracker used by all ecommerce transactions from a company.
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        ACRA.init(this);
     }
 }

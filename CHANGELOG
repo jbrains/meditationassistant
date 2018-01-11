@@ -1,3 +1,6 @@
+1.4.6:
+- Add session export feature to Progress window
+
 1.4.5:
 - Fix app crash when signing in to MediNET
 - Fix widget service crash

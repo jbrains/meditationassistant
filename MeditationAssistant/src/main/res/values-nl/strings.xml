@@ -6,7 +6,7 @@
     <string name="about">Over Meditatie Assistent</string>
     <string name="yes">Ja</string>
     <string name="no">Nee</string>
-    
+    <string name="openWith">Open met</string>
     <string name="delete">Verwijderen</string>
     <string name="sessions">Sessies</string>
     <string name="community">Community</string>
@@ -19,9 +19,9 @@
     <string name="account">Account</string>
     <string name="groups">Groepen</string>
     <string name="announcement">Aankondiging</string>
+    
 
     <!-- Permissions -->
-    
     
     
     
@@ -97,6 +97,8 @@
     <string name="sessionDeletedLocally">Sessie lokaal verwijderd</string>
 
     <!-- Sign In -->
+    
+    
     <string name="signInWith">Log in met....</string>
     <string name="signInWithProvider">Log in met %s....</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, etc.</string>
@@ -113,6 +115,9 @@
     <string name="dayFridayShort">Vrij</string>
     <string name="daySaturdayShort">Zat</string>
     <string name="daySundayShort">Zon</string>
+    
+    
+    
     
     
     
@@ -229,7 +234,6 @@
     
     
     
-    
 
     <plurals name="numtimes">
         <item quantity="one">%s time</item>
@@ -246,7 +250,6 @@
         <item quantity="other">Uploaded %s sessions</item>
     </plurals>
 
-    
     
 
     <plurals name="daysOfMeditationMinimal">
@@ -270,10 +273,13 @@
     
     
     
-    
 
     <!-- Widgets -->
     
+    
+    
+
+    <!-- Meta -->
     
     
 
