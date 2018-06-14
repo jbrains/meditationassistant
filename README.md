@@ -3,6 +3,8 @@ The best meditation timer for Android. Its features (e.g., automatically setting
 while you meditate) and customization (e.g., choosing any file on your device as the start/finish/interval sound
 for your session) make it the ideal assistant to your meditation practice.
 
+[MediNET](https://gitlab.com/tslocum/medinet) stores uploaded sessions and provides community-related features.
+
 
 Download
 ------------
