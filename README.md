@@ -1,4 +1,5 @@
-# Meditation Assistant
+# Meditation Assistant [![Donate](http://img.shields.io/liberapay/receives/rocketnine.space.svg?logo=liberapay)](https://liberapay.com/rocketnine.space/donate)
+
 The best meditation timer for Android. Its features (e.g., automatically setting your device to vibrate/silent
 while you meditate) and customization (e.g., choosing any file on your device as the start/finish/interval sound
 for your session) make it the ideal assistant to your meditation practice.
