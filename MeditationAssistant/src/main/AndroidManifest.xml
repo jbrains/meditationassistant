@@ -42,6 +42,17 @@
             </intent-filter>
         </receiver>
 
+        <!-- Providers -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/nnf_provider_paths" />
+        </provider>
+
         <!-- Activities -->
         <activity
             android:name="sh.ftp.rocketninelabs.meditationassistant.MainActivity"

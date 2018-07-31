@@ -2,6 +2,7 @@ package sh.ftp.rocketninelabs.meditationassistant;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -32,6 +33,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.nononsenseapps.filepicker.FilePickerActivity;
+import com.nononsenseapps.filepicker.Utils;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -353,10 +355,13 @@ public class SettingsActivity extends PreferenceActivity {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Uri d = null;
-        String pref = "";
-        String pref_key = "";
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+
+        String pref;
+        String pref_key;
         if (requestCode == PREF_SOUND_START) {
             pref_key = "pref_meditation_sound_start";
             pref = "pref_meditation_sound_start_custom";
@@ -370,13 +375,9 @@ public class SettingsActivity extends PreferenceActivity {
             return;
         }
 
-        if (data != null) {
-            d = data.getData();
-            if (d != null) {
-                if (!d.toString().equals("")) {
-                    getMeditationAssistant().getPrefs().edit().putString(pref, FileUtils.getPath(this, d)).apply();
-                }
-            }
+        List<Uri> files = Utils.getSelectedFilesFromResult(intent);
+        for (Uri uri : files) {
+            getMeditationAssistant().getPrefs().edit().putString(pref, uri.toString()).apply();
         }
 
         if (requestCode == PREF_SOUND_START) {
@@ -611,7 +612,7 @@ public class SettingsActivity extends PreferenceActivity {
         }
 
         try {
-            return meditation_sound.substring(meditation_sound.lastIndexOf("/") + 1);
+            return java.net.URLDecoder.decode(meditation_sound.substring(meditation_sound.lastIndexOf("/") + 1), "UTF-8");
         } catch (Exception e) {
             return meditation_sound;
         }
