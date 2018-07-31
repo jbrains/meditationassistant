@@ -19,10 +19,10 @@
     <string name="account">Conta</string>
     <string name="groups">Grupos</string>
     <string name="announcement">Anúncio</string>
+    <string name="installFileManager">Por favor, instale um gerenciador de arquivos. (ex: Solid Explorer)</string>
 
     <!-- Permissions -->
     <string name="permissionRequest">Pedir permissão</string>
-    <string name="permissionRequestAccounts">Permissão para acessar sua conta do Google é rotulada como "contatos". Seus contatos não serão lidos.\n\nAo conceder essa permissão, você não precisará digitar seu nome de usuário e senha do Google ao entrar no MediNET.</string>
     <string name="permissionRequestReadExternal">Esta permissão é necessária para escolher um arquivo de som personalizado no dispositivo.</string>
     <string name="permissionRequestNotificationControl">Favor dar permissão na próxima tela para controlar Não Perturbe.</string>
     <string name="deny">Negar</string>
@@ -58,7 +58,7 @@ Segure para escolher valor predefinido</string>
 </string>
     <string name="setTimerEndAtHint">Digite um horário válido (ex.: 4:20)</string>
     <string name="invalidEndAt">Horário inválido para encerrar sessão</string>
-    
+    <string name="timed">Cronometrado</string>
     <string name="endAt">Termina em</string>
     <string name="untimed">Não cronometrada</string>
     <string name="unlimited">Ilimitado</string>
@@ -103,6 +103,8 @@ Segure para escolher valor predefinido</string>
     <string name="sessionDeletedLocally">Sessão apagada localmente</string>
 
     <!-- Sign In -->
+    <string name="browser">Navegador</string>
+    <string name="useBrowser">Use o navegador.</string>
     <string name="signInWith">Fazer log in com...</string>
     <string name="signInWithProvider">Fazer log in com %s...</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, etc.
@@ -122,6 +124,9 @@ Segure para escolher valor predefinido</string>
     <string name="daySundayShort">Dom</string>
     <string name="addSession">Adicionar sessão </string>
     <string name="add">Incluir</string>
+    <string name="exportSessions">Exportar sessões</string>
+    <string name="sessionExportFailed">Não foi possível exportar as sessões</string>
+    <string name="showExportedSessions">Sessões exportadas. Quer localizar a pasta contendo os arquivos?</string>
     <string name="sessionStartedAt">Iniciada em %s</string>
     <string name="started">Iniciada</string>
     <string name="completed">Completo</string>
@@ -194,7 +199,7 @@ Segure para escolher valor predefinido</string>
     <string name="pref_notification">Notificação</string>
     <string name="pref_notification_summary">Mostrado durante a meditação, enquanto longe da janela principal</string>
     <string name="pref_usetimepicker">Interface de duração alternativa</string>
-    
+    <string name="pref_usetimepicker_summary">Usar os indicadores de horas e minutes para mudar a duração</string>
     <string name="pref_askdismiss">Perguntar antes de descartar</string>
     <string name="pref_askdismiss_summary">Confirmar antes de descartar uma sessão</string>
     <string name="pref_mainbuttons">Esconder botões</string>
@@ -212,8 +217,8 @@ Segure para escolher valor predefinido</string>
     <string name="extralarge">Extra grande</string>
     <string name="restartApp">Reinicie a aplicação para aplicar as novas configurações</string>
     <string name="pref_notificationcontrol">Toque e notificações</string>
-    
-    
+    <string name="pref_notificationcontrol_priority">Apenas emergências</string>
+    <string name="pref_notificationcontrol_alarms">Apenas alarmes</string>
     <string name="pref_notificationcontrol_vibrate">Vibrar</string>
     <string name="pref_notificationcontrol_silent">Silenciar</string>
     <string name="pref_daily_reminder">Lembrete diário</string>
@@ -236,9 +241,8 @@ Segure para escolher valor predefinido</string>
     <string name="importsessionsmessage">
 Sessões anteriores serão importados. Este diálogo não será exibido novamente. Você pode importar sessões mais tarde na janela Configurações.</string>
     <string name="wordimport">Importar</string>
-    
-    
-    
+    <string name="sessionDeletedMediNET">Sessão deletada do MediNET</string>
+    <string name="sessionNotFoundMediNET">Sessão não encontrada no MediNET</string>
 
     <plurals name="numtimes">
         <item quantity="one">%s time</item>
@@ -256,7 +260,6 @@ Sessões anteriores serão importados. Este diálogo não será exibido novament
     </plurals>
 
     <string name="sessionsNotImported">Dados locais estão atualizados</string>
-    <string name="signInToImport">Efetue login para importar dados de sessão</string>
 
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d day</item>
@@ -272,18 +275,46 @@ Sessões anteriores serão importados. Este diálogo não será exibido novament
     </plurals>
 
     <string name="meditateToday">Meditar hoje</string>
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="signInToMediNET">Entrar no MediNEY</string>
+    <string name="signOut">Sair</string>
+    <string name="signOutOfMediNET">Sair do MediNET</string>
+    <string name="signOutOfMediNETConfirmTitle">Sair do MediNET?</string>
+    <string name="rateMeditationAssistant">Avalie-nos</string>
+    <string name="rateMeditationAssistantText">Se esse aplicativo lhe foi útil e beneficiou sua prática de meditação, por favor, considere adicionar uma avaliação.\n\nA versão paga desse aplicativo é livre de propagandas e contém widgets de início. Considere comprá-la se for possível.\n\nEsse diálogo não aparecerá de novo.</string>
+    <string name="translateMeditationAssistantText">Você poderia ajudar o Assistente de Meditação a ampliar seu público traduzindo-o para outras línguas?\n\nA tradução é feita de forma simples através de uma interface online. Você pode acessar a página de tradução a qualquer momento clicando em Traduzir na aba Sobre das configurações.\n\nEsse diálogo não aparecerá novamente.</string>
 
     <!-- Widgets -->
-    
-    
-    
+    <string name="widget1x1" tools:ignore="UnusedResources">Assistente de Meditação 1x1</string>
+    <string name="widget2x1" tools:ignore="UnusedResources">Assistente de Meditação 2x1</string>
+    <string name="widget3x1" tools:ignore="UnusedResources">Assistente de Meditação 3x1</string>
+
+    <!-- Meta -->
+    <string name="appStoreListingShort">Contém timer e gravador em sessões de meditação</string>
+    <string name="appStoreListingFull">Esse aplicativo auxilia tanto em sessões cronometradas (definindo a duração delas ou terminando-as em horários específicos) quanto em não cronometradas, e conta com várias customizações, como o ajuste de sons de início/intervalo/fim e o controle das notificações do celular. Além de todo mês fornecer um resumo de seu progresso.
+
+Uma das características principais desse aplicativo é a opção de compartilhar suas sessões online. Embora totalmente opcional, isso adiciona um grau de responsabilidade e incentivo. Uma vez online, quanto mais seu streak for crescendo, mais usuários o terão como meta. Um usuário já compartilhou mais de 500 dias consecutivos de meditação.
+
+Seu streak de é o número de dias consecutivos que você meditou. Quanto mais seu streak cresce, "não quebrar a corrente" se tornará bem importante. Cedo ou tarde, 
+você estará meditando todos os dias, ainda que seja por apenas cinco ou dez minutos.
+
+Principais funções:
+- Automaticamente põe seu dispositivo em modo de apenas emergências, apenas alarmes, silencioso ou em vibração enquanto medita.
+- Escolha dentre vários sons para meditação inclusos, ou use outros em seu celular.
+- Toque um som de intervalo pela duração que você escolher.
+- Publique suas sessões de meditação no MediNET, e visite o fórum de meditação do MediNET.
+- Escolha qualquer tema holográfico do aplicativo: claro, claro com painel de ações escuro e escuro.
+- Muito mais funções disponíveis, é a cada atualização são adicionadas mais.
+
+Esse ê um aplicativo open source:
+https://gitlab.com/tslocum/meditationassistant
+
+Feedbacks são bem-vindos. Grande parte das funções adicionadas são originalmente ideias de usuários. Descreva qualquer problema ou ideia que tiver:
+https://gitlab.com/tslocum/meditationassistant/issues
+
+Traduza o Assistente de Meditação para sua língua:
+https://www.getlocalization.com/meditationassistant/
+
+Desenvolvido pela Rocket Nine Laboratories:
+https://rocketnine.space/</string>
 
 </resources>

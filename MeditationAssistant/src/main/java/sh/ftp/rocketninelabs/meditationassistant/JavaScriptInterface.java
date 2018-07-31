@@ -33,10 +33,10 @@ public class JavaScriptInterface implements JavascriptCallback {
         ma.getMediNET().connect();
         /*
          * Bundle bundle = new Bundle(); bundle.putString("action",
-		 * "changekey"); Intent mIntent = new Intent();
-		 * mIntent.putExtras(bundle);
-		 * this.activity.setResult(this.activity.RESULT_OK, mIntent);
-		 */
+         * "changekey"); Intent mIntent = new Intent();
+         * mIntent.putExtras(bundle);
+         * this.activity.setResult(this.activity.RESULT_OK, mIntent);
+         */
         this.activity.finish();
     }
 

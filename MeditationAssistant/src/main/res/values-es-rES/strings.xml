@@ -19,10 +19,10 @@
     <string name="account">Cuenta</string>
     <string name="groups">Grupos</string>
     <string name="announcement">Anuncios</string>
+    <string name="installFileManager">Por favor instale un gestor de archivos (Ej. Solid Explorer)</string>
 
     <!-- Permissions -->
     <string name="permissionRequest">Permiso requerido</string>
-    <string name="permissionRequestAccounts">Los permisos para acceder a tu cuenta de Google vienen dados por el acceso a tus "contactos". No se leerán tus contactos.\n\nAl permitir este acceso, no se necesitará introducir tu nombre de usuario y contraseña de Google al registrarse en MediNET.</string>
     <string name="permissionRequestReadExternal">Este permiso es necesario para elegir un sonido personalizado en cada dispositivo.</string>
     <string name="permissionRequestNotificationControl">Por favor, concede el permiso de la siguiente pantalla para controlar el modo No molestar</string>
     <string name="deny">Denegar</string>
@@ -97,6 +97,8 @@
     <string name="sessionDeletedLocally">Sesión eliminada localmente</string>
 
     <!-- Sign In -->
+    <string name="browser">Navegador</string>
+    <string name="useBrowser">Use el navegador </string>
     <string name="signInWith">Iniciar sesión con…</string>
     <string name="signInWithProvider">Iniciar sesión con %s…</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, etc.</string>
@@ -115,6 +117,9 @@
     <string name="daySundayShort">Dom</string>
     <string name="addSession">Añadir sesión</string>
     <string name="add">Añadir</string>
+    <string name="exportSessions">Exportar sesiones </string>
+    <string name="sessionExportFailed">No se puede exportar sesiones </string>
+    <string name="showExportedSessions">Sesiones exportadas. ¿Quiere navegar a la carpeta conteniendo la exportación?</string>
     <string name="sessionStartedAt">Iniciada a las %s</string>
     <string name="started">Iniciada</string>
     <string name="completed">Completada</string>
@@ -229,7 +234,6 @@
     <string name="wordimport">Importar</string>
     <string name="sessionDeletedMediNET">Sesión eliminada de MediNET</string>
     <string name="sessionNotFoundMediNET">Sesión no encontrada en MediNET</string>
-    <string name="sessionNotProperAccount">No te has registrado con la cuenta correcta</string>
 
     <plurals name="numtimes">
         <item quantity="one">%s vez</item>
@@ -247,7 +251,6 @@
     </plurals>
 
     <string name="sessionsNotImported">La información local ya está al día</string>
-    <string name="signInToImport">Regístrate para importar información de las sesiones</string>
 
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d día</item>
@@ -267,7 +270,6 @@
     <string name="signOut">Cerrar sesión</string>
     <string name="signOutOfMediNET">Cerrar la sesión de MediNET</string>
     <string name="signOutOfMediNETConfirmTitle">¿Salir de MediNET?</string>
-    <string name="signOutOfMediNETConfirm">Estás registrado como %s.</string>
     <string name="rateMeditationAssistant">Valorar el asistente de meditación</string>
     <string name="rateMeditationAssistantText">Si has encontrado esta aplicación beneficiosa para meditar, ¿podrías añadir una valoración, por favor?\n\nLa versión de pago de esta aplicación no contiene anuncios y tiene características de los widgets de la pantalla principal. Por favor, considera pagarla si te es posiblee.\n\nEste mensaje no volverá a aparecer.</string>
     <string name="translateMeditationAssistantText">¿Podrías ayudar al asistente de meditación a llegar a una mayor audiencia traduciéndola a otro idioma?\n\nLa traducción es muy sencilla a través de una interfaz en línea. Puedes visitar la página web de traducción pulsando "Traducir" desde la ventana "Acerca de la aplicación"\n\nEste mensaje no volverá a aparecer.</string>
@@ -276,5 +278,9 @@
     <string name="widget1x1" tools:ignore="UnusedResources">Asistente de meditación 1x1</string>
     <string name="widget2x1" tools:ignore="UnusedResources">Asistente de meditación 2x1</string>
     <string name="widget3x1" tools:ignore="UnusedResources">Asistente de meditación 3x1</string>
+
+    <!-- Meta -->
+    
+    
 
 </resources>

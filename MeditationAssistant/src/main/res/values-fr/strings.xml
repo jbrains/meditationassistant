@@ -20,7 +20,7 @@
     <string name="account">Compte</string>
     <string name="groups">Groupes</string>
     <string name="announcement">Annonce</string>
-    
+    <string name="installFileManager">Installez un gestionnaire de fichiers s\'il vous plaît (e.g. Solid Explorer)</string>
 
     <!-- Permissions -->
     <string name="permissionRequest">Demande d\'autorisation</string>
@@ -118,9 +118,9 @@
     <string name="daySundayShort">Dim</string>
     <string name="addSession">Ajouter une séance</string>
     <string name="add">Ajouter</string>
-    
-    
-    
+    <string name="exportSessions">Exporter les séances</string>
+    <string name="sessionExportFailed">Impossible d\'exporter les séances</string>
+    <string name="showExportedSessions">Les séances ont été exportées. Voulez-vous ouvrir le dossier contenant le fichier exporté? </string>
     <string name="sessionStartedAt">Démarré à %s</string>
     <string name="started">Démarrée</string>
     <string name="completed">Terminée</string>

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="appName">Assistente de meditação grátis</string>
     <string name="appNameShort">Assistente de meditação</string>
     <string name="about">Sobre</string>
     <string name="yes">Sim</string>
     <string name="no">Não</string>
+    
     <string name="delete">Apagar</string>
     <string name="sessions">Sessões</string>
     <string name="community">Comunidade</string>
@@ -18,19 +19,27 @@
     <string name="account">Conta</string>
     <string name="groups">Grupos</string>
     <string name="announcement">Anúncio</string>
+    
+
+    <!-- Permissions -->
+    
+    
+    
+    
+    
 
     <!-- Main Activity -->
     <string name="timer">Temporizador</string>
     <string name="timerHelp">O temporizador está de momento configurado para 15 minutos. Pode alterar a duração, finalizar numa parte específica do dia, ou desactivar o alarme completamente. Toque no temporizador para ver estas opções.</string>
     <string name="settingsHelp">Esta aplicação providencia várias funcionalidades e customizações, como a possibilidade de colocar o seu dispositivo em silêncio de forma automática e lembrá-lo de meditar, diariamente. Pressione o ícone de configurações para visualizar estas opções.</string>
-
+    
     <string name="cancel">Cancelar</string>
     <string name="set">Definir</string>
     <string name="confirm">Confirmar</string>
     <string name="meditate">Meditar</string>
     <string name="tapToSkip">Saltar</string>
     <string name="pause">Pausar</string>
-
+    
     <string name="pauseOrEnd">Pausar ou finalizar</string>
     <string name="resumeOrEnd">Resumir ou finalizar</string>
     <string name="pausedNotification">Sessão pausada, toque para finalizar</string>
@@ -40,9 +49,9 @@
     <string name="progress">Progresso</string>
     <string name="setPreset">Definir padrão</string>
     <string name="setPresetHint">Carregue para definir padrão</string>
-
+    
     <string name="setPresetHintBlank">Escolha uma duração (ou tempo final) para definir padrão</string>
-
+    
     <string name="setTimerDurationHint">Escolha uma duração válida (ex: 0:22)</string>
     <string name="setTimerEndAtHint">Escolha um tempo válido (ex: 4:20)</string>
     <string name="invalidEndAt">Tempo inválido para finalizar sessão</string>
@@ -57,29 +66,39 @@
     <string name="sendEmail">Enviar e-mail</string>
     <string name="version">Versão %s</string>
     <string name="translate">Traduzir</string>
+    
+    
+    
     <string name="howToMeditate">Como Meditar</string>
     <string name="share">Partilhar</string>
 
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
-
+    
 
     <!-- Sessions -->
     <string name="session">Sessão</string>
-
+    
     <string name="sessionDeleteLocally">Eliminar localmente</string>
     <string name="sessionDeleteMediNET">Eliminar na MediNET</string>
-
+    
+    
+    
 
     <!-- Session complete -->
     <string name="sessioncomplete">Sessão Terminada</string>
     <string name="sessionMessagePlaceholder">Mensagem</string>
     <string name="askDiscardText">Descartar sessão?</string>
-
-
+    
+    
+    
+    
+    
     <string name="sessionSaved">Sessão guardada</string>
     <string name="sessionDeletedLocally">Sessão eliminada localmente</string>
 
     <!-- Sign In -->
+    
+    
     <string name="signInWith">Iniciar sessão com...</string>
     <string name="signInWithProvider">Iniciar sessão com %s...</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, etc.</string>
@@ -88,6 +107,7 @@
     <!-- Progress -->
     <string name="calendar">Calendário</string>
     <string name="statistics">Estatísticas</string>
+    
     <string name="dayMondayShort">Seg</string>
     <string name="dayTuesdayShort">Ter</string>
     <string name="dayWednesdayShort">Qua</string>
@@ -96,7 +116,10 @@
     <string name="daySaturdayShort">Sáb</string>
     <string name="daySundayShort">Dom</string>
     <string name="addSession">Adicionar Sessão</string>
-
+    
+    
+    
+    
     <string name="sessionStartedAt">Iniciado a %s</string>
     <string name="started">Iniciado</string>
     <string name="completed">Completo</string>
@@ -111,39 +134,153 @@
     <string name="minutes">Minutos</string>
     <string name="totalSessions">Total de sessões</string>
     <string name="averageDuration">Média de duração</string>
-
+    
+    
 
     <string name="reminderText">Tem um momento?</string>
 
     <!-- Settings -->
     <string name="meditation">Meditação</string>
     <string name="pref_vibrate">Vibrar</string>
-
+    
     <string name="pref_vibrate_reminder_summary">O aviso diário vai activar a vibração do dispositivo</string>
     <string name="pref_sound_reminder">Reproduzir som</string>
     <string name="pref_sound_reminder_summary">O som, por defeito, da notificação vai ser reproduzido</string>
-
+    
+    
 
     <string name="settings">Configurações</string>
     <string name="disabled">Desactivado</string>
+    
     <string name="noSpecialBehavior">Nenhum comportamento em específico</string>
     <string name="noSound">Sem som</string>
-
+    
     <string name="keepScreenOn">Manter o ecrã ligado</string>
     <string name="keepScreenOnAndDim">Manter o ecrã ligado e diminuir o brilho</string>
     <string name="dimScreen">Diminuir o brilho do ecrã</string>
     <string name="turnScreenOff">Desligar o ecrã</string>
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     <!-- MediNET -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
+    <plurals name="numtimes">
+        <item quantity="one">%s time</item>
+        <item quantity="other">%s times</item>
+    </plurals>
+
+    <plurals name="sessionsImported">
+        <item quantity="one">Imported %s session</item>
+        <item quantity="other">Imported %s sessions</item>
+    </plurals>
+
+    <plurals name="sessionsUploaded">
+        <item quantity="one">Uploaded %s session</item>
+        <item quantity="other">Uploaded %s sessions</item>
+    </plurals>
+
+    
+
+    <plurals name="daysOfMeditationMinimal">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+    <plurals name="daysOfMeditation">
+        <item quantity="one">%d day of meditation</item>
+        <item quantity="other">%d days of meditation</item>
+    </plurals>
     <plurals name="daysOfMeditationWithoutCount">
         <item quantity="one">dia de meditação</item>
         <item quantity="other">dias de meditação</item>
     </plurals>
 
+    
+    
+    
+    
+    
+    
+    
+    
 
     <!-- Widgets -->
+    
+    
+    
 
+    <!-- Meta -->
+    
+    
 
 </resources>

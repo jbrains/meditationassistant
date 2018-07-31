@@ -199,9 +199,19 @@ public class AboutActivity extends Activity {
 
             removeAdsDialog.show();
         } else {
-            startActivity(new Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("https://rocketnine.space/donate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            AlertDialog donateDialog = new AlertDialog.Builder(this)
+                    .setPositiveButton("Liberapay",
+                            (dialog, id) -> startActivity(new Intent(
+                                    Intent.ACTION_VIEW,
+                                    Uri.parse("https://liberapay.com/~968545")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)))
+                    .setNegativeButton("PayPal",
+                            (dialog, id) -> startActivity(new Intent(
+                                    Intent.ACTION_VIEW,
+                                    Uri.parse("https://rocketnine.space/donate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)))
+                    .setTitle(getString(R.string.donate))
+                    .create();
+
+            donateDialog.show();
         }
     }
 

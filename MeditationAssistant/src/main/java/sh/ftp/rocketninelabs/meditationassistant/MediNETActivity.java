@@ -199,8 +199,8 @@ public class MediNETActivity extends Activity {
                     } else {
                         /*
                          * setTitle(String.format(getString(R.string.
-						 * signInWithProvider), provider));
-						 */
+                         * signInWithProvider), provider));
+                         */
                     }
 
                     setWindowBackground();

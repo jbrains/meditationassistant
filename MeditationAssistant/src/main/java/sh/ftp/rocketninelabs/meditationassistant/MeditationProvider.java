@@ -61,27 +61,27 @@ public class MeditationProvider extends AppWidgetProvider {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
 
 
-		/*
+        /*
          * int[] allWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
-		 * for (int widgetId : allWidgetIds) { RemoteViews remoteViews = new
-		 * RemoteViews(context.getPackageName(), R.layout.widget_layout);
-		 * 
-		 * SActivity ctx = (SActivity) context; Log.d("MeditationAssistant",
-		 * "!!!" + ctx.getApplication().toString()); // Set the text
-		 * remoteViews.setTextViewText(R.id.txtDays, ctx.getApplication()
-		 * .toString());
-		 * 
-		 * // Register an onClickListener // Intent intent = new Intent(context,
-		 * MeditationProvider.class);
-		 * 
-		 * // intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE); //
-		 * intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, //
-		 * appWidgetIds);
-		 * 
-		 * // PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
-		 * // 0, intent, PendingIntent.FLAG_UPDATE_CURRENT); //
-		 * remoteViews.setOnClickPendingIntent(R.id.update, pendingIntent);
-		 * appWidgetManager.updateAppWidget(widgetId, remoteViews); }
-		 */
+         * for (int widgetId : allWidgetIds) { RemoteViews remoteViews = new
+         * RemoteViews(context.getPackageName(), R.layout.widget_layout);
+         *
+         * SActivity ctx = (SActivity) context; Log.d("MeditationAssistant",
+         * "!!!" + ctx.getApplication().toString()); // Set the text
+         * remoteViews.setTextViewText(R.id.txtDays, ctx.getApplication()
+         * .toString());
+         *
+         * // Register an onClickListener // Intent intent = new Intent(context,
+         * MeditationProvider.class);
+         *
+         * // intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE); //
+         * intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, //
+         * appWidgetIds);
+         *
+         * // PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
+         * // 0, intent, PendingIntent.FLAG_UPDATE_CURRENT); //
+         * remoteViews.setOnClickPendingIntent(R.id.update, pendingIntent);
+         * appWidgetManager.updateAppWidget(widgetId, remoteViews); }
+         */
     }
 }

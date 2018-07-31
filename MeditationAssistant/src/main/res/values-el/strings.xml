@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="appName">Δωρεάν Βοηθός Διαλογισμού</string>
+    <string name="appNameShort">Βοηθός Διαλογισμού</string>
+    <string name="about">Σχετικά</string>
+    <string name="yes">Ναι</string>
+    <string name="no">Όχι</string>
+    <string name="openWith">Άνοιξε με</string>
+    <string name="delete">Διέγραψε</string>
+    <string name="sessions">Συνεδρίες</string>
+    <string name="community">Κοινότητα</string>
+    <string name="forum">Forum</string>
+    <string name="rate">Βαθμολόγησε</string>
+    <string name="refresh">Ανανέωσε</string>
+    <string name="page">Σελίδα</string>
+    <string name="back">Πίσω</string>
+    <string name="forward">Μπροστά</string>
+    <string name="account">Λογαριασμός</string>
+    <string name="groups">Ομάδες</string>
+    <string name="announcement">Ανακοίνωση</string>
+    <string name="installFileManager">Παρακαλώ, εγκαταστήστε έναν διαχειριστή αρχείων (π.χ. Solid Explorer)</string>
+
+    <!-- Permissions -->
+    <string name="permissionRequest">Αίτηση άδειας</string>
+    <string name="permissionRequestReadExternal">Αυτή η άδεια είναι απαραίτητη για την επιλογή ενός αρχείου ήχου της επιλογής σας στη συσκευή.</string>
+    <string name="permissionRequestNotificationControl">Παρακαλώ παρέχεται άδεια στην επόμενη οθόνη για τον έλεγχο της επιλογής "Μην ενοχλείτε".</string>
+    <string name="deny">Άρνηση</string>
+    <string name="tryAgain">Δοκιμάστε ξανά</string>
+
+    <!-- Main Activity -->
+    <string name="timer">Χρονομετρητής</string>
+    <string name="timerHelp">Ο χρονομετρητής είναι ρυθμισμένος προς το παρόν στα 15 λεπτά. Μπορείτε να αλλάξετε την διάρκεια, τη λήξη σε μια ορισμένη στιγμή της ημέρας, ή να απενεργοποιήσετε το συναγερμό πλήρως. Χτυπήστε ελαφρά τον χρονομετρητή τώρα για να δείτε τις επιλογές.</string>
+    <string name="settingsHelp">Αυτή η εφαρμογή περιλαμβάνει πολλά χαρακτηριστικά και παραμετροποιήσεις, όπως, αυτόματη σίγαση της συσκευής και παροχή καθημερινής υπενθύμισης για διαλογισμό. Χτυπήστε ελαφρά το εικονίδιο " Ρυθμίσεις" τώρα για να δείτε τις επιλογές.</string>
+    <string name="medinetHelp">Κάνετε είσοδο στο MediNET για να αποθηκεύσετε τις συνεδρίες σας στον ιστό. Μπορείτε να εισάγετε τις συνεδρίες σας αργότερα, εάν χάσετε τα δεδομένα σας. Αυτό το χαρακτηριστικό είναι πλήρως προαιρετικό, η αποθήκευση των συνεδριών τοπικά δεν θα επηρεάσει την εμπειρία σας. 
+
+ Αυτό ολοκληρώνει την εκμάθηση. Ευελπιστώ πως ο "Βοηθός Διαλογισμού" θα είναι οφέλιμος για την εξάσκησή σας.</string>
+    <string name="cancel">Ακύρωσε</string>
+    <string name="set">Θέσε</string>
+    <string name="confirm">Επιβεβαίωσε</string>
+    <string name="meditate">Διαλογισθείτε</string>
+    <string name="tapToSkip">Προσπέρασε</string>
+    <string name="pause">Παύση</string>
+    <string name="end">Λήξη</string>
+    <string name="pauseOrEnd">Παύση ή λήξη</string>
+    <string name="resumeOrEnd">Συνέχιση ή λήξη</string>
+    <string name="pausedNotification">Συνεδρία σε παύση, κρατήστε πατημένο για λήξη</string>
+    <string name="mediNETConnecting">Συνδέεται...</string>
+    <string name="mediNETConnected">Συνεδεμένος στο MediNET</string>
+    <string name="sessionInProgress">Συνεδρία σε εξέλιξη</string>
+    <string name="progress">Πρόοδος</string>
+    <string name="setPreset">Θέσε προεπιλογή</string>
+    <string name="setPresetHint">Πιέστε για να θέσετε ως προεπιλογή</string>
+    <string name="setPresetTip">Επιλέξτε ποιές ρυθμίσεις να επαναφέρετε χτυπώντας ελαφρώς το εικονίδιο με το γρανάζι (Ρυθμίσεις), μετά πιέστε ρυθμίσεις Προεπιλογής.</string>
+    <string name="setPresetHintBlank">Εισάγετε μια διάρκεια (ή χρόνο λήξης) για να θέσετε ως προεπιλογή.</string>
+    <string name="label">Ετικέτα</string>
+    <string name="setTimerDurationHint">Εισάγετε μια έγκυρη διάρκεια (π.χ. 0:22).</string>
+    <string name="setTimerEndAtHint">Εισάγετε έναν έγκυρο χρόνο (π.χ. 4:20)</string>
+    <string name="invalidEndAt">Άκυρος χρόνος για την λήξη της συνεδρίας</string>
+    <string name="timed">Χρονομετρημένο</string>
+    <string name="endAt">Λήξη στις</string>
+    <string name="untimed">Αχρονομέτρητο</string>
+    <string name="unlimited">Απεριόριστο</string>
+    <string name="presetLabelEndAt">Λήξη %s</string>
+
+    <!-- About -->
+    <string name="tapToSendEmail">Πιέστε οπουδήποτε για την αποστολή ανατροφοδότησης</string>
+    <string name="sendEmail">Στείλτε ηλ. μήνυμα</string>
+    <string name="version">Έκδοση %s</string>
+    <string name="translate">Μεταφράστε</string>
+    <string name="donate">Δωρείστε</string>
+    <string name="removeAds">Αφαίρεσε διαφημίσεις</string>
+    <string name="removeAdsHelp">Η πλήρης έκδοση του Βοηθού Διαλογισμού είναι μια ξεχωριστή εφαρμογή.\n\nΓια να διατηρήσετε τις υπάρχουσες συνεδρίες σας, κάντε είσοδο στο MediNET και πιέστε"Ανέβασμα συνεδριών" στο παράθυρο των Ρυθμίσεων.\n\nΑνοίξτε την πλήρη έκδοση και κάντε είσοδο στο MediNET ξανά, ακολούθως πιέστε "Εισαγωγή".</string>
+    <string name="howToMeditate">Πως να Διαλογισθείτε</string>
+    <string name="share">Μοιράσου</string>
+
+    <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
+    <string name="invitationBlurb">Ο Βοηθός Διαλογισμού είναι ένας σύντροφος με πλήρη χαρακτηριστικά για τη εξάσκησή σας.</string>
+
+    <!-- Sessions -->
+    <string name="session">Συνεδρία</string>
+    <string name="sessionDeleteEverywhere">Διέγραψε παντού</string>
+    <string name="sessionDeleteLocally">Διέγραψε τοπικά</string>
+    <string name="sessionDeleteMediNET">Διέγραψε στο MediNET</string>
+    <string name="pref_sessionintro">Εισαγωγή</string>
+    <string name="presetsettings">Προεπιλεγμένες ρυθμίσεις</string>
+    <string name="modeandduration">Λειτουργία και διάρκεια</string>
+
+    <!-- Session complete -->
+    <string name="sessioncomplete">Συνεδρία Ολοκληρωμένη</string>
+    <string name="sessionMessagePlaceholder">Μήνυμα</string>
+    <string name="askDiscardText">Απόρριψη συνεδρίας;</string>
+    <string name="sessionPosting">Αναρτώντας τη συνεδρία...</string>
+    <string name="sessionPosted">Συνεδρία ανηρτημένη στο MediNET</string>
+    <string name="sessionAlreadyPosted">Συνεδρία ήδη ανηρτημένη</string>
+    <string name="sessionNotPosted">Αδυνατόν να αναρτήσει τη συνεδρία</string>
+    <string name="sessionNotPostedMeditating">Αδυνατόν να αναρτήσει τη συνεδρία ενώσω διαλογίζεστε</string>
+    <string name="sessionSaved">Συνεδρία αποθηκεύθηκε</string>
+    <string name="sessionDeletedLocally">Συνεδρία διεγράφη τοπικά</string>
+
+    <!-- Sign In -->
+    <string name="browser">Περιηγητής</string>
+    <string name="useBrowser">Χρησιμοποιήστε περιηγητή:</string>
+    <string name="signInWith">Κάντε είσοδο με...</string>
+    <string name="signInWithProvider">Κάντε είσοδο με %s...</string>
+    <string name="signInWithOpenID">OpenID - Facebook, Twitter, κλπ.</string>
+    <string name="signInGoogleError">Αδυνατόν να ταυτοποιήσει με χρήση διαχειριστή λογαριασμών. Προσπαθήστε την επιλογή OpenID εάν αυτό το πρόβλημα επιμένει.</string>
+
+    <!-- Progress -->
+    <string name="calendar">Ημερολόγιο</string>
+    <string name="statistics">Στατιστικά</string>
+    <string name="totalTimeSpentMeditating">Ολικός χρόνος για διαλογισμό</string>
+    <string name="dayMondayShort">Δευ</string>
+    <string name="dayTuesdayShort">Τρι</string>
+    <string name="dayWednesdayShort">Τετ</string>
+    <string name="dayThursdayShort">Πεμ</string>
+    <string name="dayFridayShort">Παρ</string>
+    <string name="daySaturdayShort">Σαβ</string>
+    <string name="daySundayShort">Κυρ</string>
+    <string name="addSession">Πρόσθεσε συνεδρία</string>
+    <string name="add">Πρόσθεσε</string>
+    <string name="exportSessions">Εξήγαγε συνεδρίες</string>
+    <string name="sessionExportFailed">Αδυνατόν να εξαγάγει συνεδρίες</string>
+    <string name="showExportedSessions">Συνεδρίες εξήχθησαν. Θα θέλατε να περιηγηθείτε στον φάκελο που περιέχει την εξαγωγή;</string>
+    <string name="sessionStartedAt">Ξεκίνησε στις %s</string>
+    <string name="started">Ξεκίνησε</string>
+    <string name="completed">Ολοκληρώθηκε</string>
+    <string name="setDate">Θέσε ημερομηνία</string>
+    <string name="setTime">Θέσε ώρα</string>
+    <string name="invalidDateOrTime">Άκυρη ημερομηνία ή ώρα</string>
+    <string name="addSessionMeditating">Αδυνατόν να προσθέσει τη συνεδρία ενώσω διαλογίζεστε</string>
+    <string name="addSessionExists">Συνεδρία ήδη υπάρχει</string>
+
+    <string name="days">Ημέρες</string>
+    <string name="hours">Ώρες</string>
+    <string name="minutes">Λεπτά</string>
+    <string name="totalSessions">Σύνολο συνεδριών</string>
+    <string name="averageDuration">Μέση διάρκεια</string>
+    <string name="longestDuration">Μέγιστη διάρκεια</string>
+    <string name="longestStreak">Μέγιστη ακολουθία</string>
+
+    <string name="reminderText">Έχετε ένα λεπτό;</string>
+
+    <!-- Settings -->
+    <string name="meditation">Διαλογισμός</string>
+    <string name="pref_vibrate">Δονήσου</string>
+    <string name="pref_vibrate_summary">Συμβαίνει στην αρχή, στα μεσοδιαστήματα και στη λήξη του διαλογισμού</string>
+    <string name="pref_vibrate_reminder_summary">Η καθημερινή υπενθίμηση θα δονεί τη συσκευή</string>
+    <string name="pref_sound_reminder">Παίξε ήχο</string>
+    <string name="pref_sound_reminder_summary">Ο προκαθορισμένος ήχος ειδοποίησης θα αναπαράγεται</string>
+    <string name="pref_softfinish">Συνεδρία άνευ λήξης</string>
+    <string name="pref_softfinish_summary">Διατήρησε το χρόνο να τρέχει</string>
+
+    <string name="settings">Ρυθμίσεις</string>
+    <string name="disabled">Ανενεργό</string>
+    <string name="none">Κανένα</string>
+    <string name="noSpecialBehavior">Όχι ειδική συμπεριφορά</string>
+    <string name="noSound">Όχι ήχος</string>
+    <string name="customSound">Ήχος της προτίμησής σας</string>
+    <string name="keepScreenOn">Διατήρησε την οθόνη ενεργή</string>
+    <string name="keepScreenOnAndDim">Διατήρησε την οθόνη ενεργή και μείωσε φωτεινότητα</string>
+    <string name="dimScreen">Μείωσε τη φωτεινότητα της οθόνης</string>
+    <string name="turnScreenOff">Κλείσε την οθόνη</string>
+    <string name="pref_display_seconds">Πρόβαλε δευτερόλεπτα</string>
+    <string name="pref_display_seconds_summary">Δείξε κάτω από τον κύριο χρονομετρητή</string>
+    <string name="pref_full_screen">Πλήρης οθόνη</string>
+    <string name="pref_full_screen_summary">Η μπάρα κατάστασης είναι κρυμμένη κατά την πλήρη οθόνη</string>
+    <string name="pref_delay">Καθυστέρηση</string>
+    <string name="pref_interval">Διάρκεια μεσοδιαστήματος</string>
+    <string name="pref_interval_count">Αρίθμηση μεσοδιαστημάτων</string>
+    <string name="pref_autosignin_summary">Συνδέσου στο MediNET κατά το άνοιγμα</string>
+    <string name="pref_autosignin">Συνδέσου αυτομάτως</string>
+    <string name="pref_rememberme_summary">Παρέμεινε σε είσοδο μετά το κλείσιμο</string>
+    <string name="pref_rememberme">Θυμήσου με</string>
+    <string name="pref_sessionvolume">Ένταση</string>
+    <string name="pref_sessionvolume_summary">Η προηγούμενη ένταση θα επανέρθει μόλις η συνεδρία ολοκληρωθεί</string>
+    <string name="pref_screencontrol">Οθόνη</string>
+    <string name="pref_sendusage">Ανέφερε στατιστικά χρήσης</string>
+    <string name="pref_sendusage_summary">Ανώνυμη αναφορά μέσω Google Analytics. Εφαρμόζεται στην επανεκκίνηση</string>
+    <string name="pref_showstreak">Πρόβαλε ακολουθία διαλογισμού</string>
+    <string name="pref_showstreak_summary">Αριθμός συνεχόμενων ημερών με τουλάχιστον μια κατεγραμένη συνεδρία</string>
+    <string name="selectSound">Επέλεξε ήχο</string>
+    <string name="pref_meditation_sound_start">Ήχος εκκίνησης</string>
+    <string name="pref_meditation_sound_interval">Ήχος μεσοδιαστήματος</string>
+    <string name="pref_meditation_sound_finish">Ήχος ολοκλήρωσης</string>
+    <string name="pref_remembermessage">Θυμήσου το τελευταίο μήνυμα</string>
+    <string name="pref_remembermessage_summary">Προκαθορισμένο στο τελευταίο αναρτημένο μήνυμα</string>
+    <string name="pref_theme">Ολογραφικό θέμα</string>
+    <string name="pref_theme_light">Φωτεινό</string>
+    <string name="pref_theme_lightdark">Φωτεινό με σκοτεινή μπάρα δράσης</string>
+    <string name="pref_theme_dark">Σκοτεινό</string>
+    <string name="buddhism">Βουδισμός</string>
+    <string name="pref_notification">Ειδοποίηση</string>
+    <string name="pref_notification_summary">Δείξε κατά τη διάρκεια διαλογισμού ενώσω μακρά του κυρίως παραθύρου</string>
+    <string name="pref_usetimepicker">Εναλλακτική διεπαφή διάρκειας</string>
+    <string name="pref_usetimepicker_summary">Κάνε χρήση των συρτών ώρας και λεπτού όταν αλλάζεται η διάρκεια</string>
+    <string name="pref_askdismiss">Ρώτα πριν την απόρριψη</string>
+    <string name="pref_askdismiss_summary">Επιβεβαίωσε πριν την απόρριψη μιας συνεδρίας</string>
+    <string name="pref_mainbuttons">Κρύψε κομβία</string>
+    <string name="pref_progresstab">Προκαθορισμένη μπάρα Προόδου</string>
+    <string name="importsessions">Εισήγαγε συνεδρίες</string>
+    <string name="importsessions_summary">Επανέκτησε ανεβασμένες συνεδρίες</string>
+    <string name="uploadsessions">Ανέβασε συνεδρίες</string>
+    <string name="uploadsessions_summary">Ανέβασε τοπικές συνεδρίες</string>
+    <string name="miscellaneous">Διάφορα</string>
+    <string name="pref_text_size">Μέγεθος κειμένου χρονομετρητή</string>
+    <string name="tiny">Μικροσκοπικό</string>
+    <string name="small">Μικρό</string>
+    <string name="normal">Κανονικό</string>
+    <string name="large">Μεγάλο</string>
+    <string name="extralarge">Υπερμεγέθες</string>
+    <string name="restartApp">Επανεκκινήστε την εφαρμογή για να εφαρμόσετε τις νέες ρυθμίσεις</string>
+    <string name="pref_notificationcontrol">Κουδούνσμα και ειδοποιήσεις</string>
+    <string name="pref_notificationcontrol_priority">Προτεραιότητα μονο</string>
+    <string name="pref_notificationcontrol_alarms">Συναγερμοί μόνο</string>
+    <string name="pref_notificationcontrol_vibrate">Θέσε σε δόνηση</string>
+    <string name="pref_notificationcontrol_silent">Θέσε σε σιωπηλό</string>
+    <string name="pref_daily_reminder">Ημερήσια υπενθύμιση</string>
+    <string name="pref_daily_reminder_title">Θύμησέ μου</string>
+    <string name="pref_daily_reminder_summary">Πρόβαλε ειδοποίηση όταν δεν κατεγράφησαν συνεδρίες σήμερα</string>
+    <string name="pref_daily_reminder_time">Χρόνος</string>
+    <string name="pref_daily_reminder_text">Κείμενο ενθάρυνσης</string>
+    <string name="downloadingSessions">Κατέβασμα συνεδριών</string>
+    <string name="uploadingSessions">Ανέβασμα συνεδριών</string>
+
+    <!-- MediNET -->
+    <string name="mediNET">MediNET</string>
+    <string name="unableToConnect">Αδυνατόν να συνδεθεί στο MediNET</string>
+    <string name="dismiss">Αποδέσμευσε</string>
+    <string name="discard">Απόρριψε</string>
+    <string name="save">Αποθήκευσε</string>
+    <string name="post">Ανάρτησε</string>
+    <string name="importSessionsHint">Πιέστε το "Εισήγαγε συνεδρίες" στις ρυθμίσεις για την επανάκτηση απόντων συνεδριών</string>
+    <string name="importsessionstitle">Εισαγωγή συνεδριών;</string>
+    <string name="importsessionsmessage">Οι προηγούμενες συνεδρίες θα εισαχθούν.\n\nΑυτός ο διάλογος δεν θα εμφανιστεί ξανά.\nΜπορείτε να εισάγετε συνεδρίες αργότερα από το παράθυρο Ρυθμίσεις.</string>
+    <string name="wordimport">Εισήγαγε</string>
+    <string name="sessionDeletedMediNET">Η συνεδρία διεγράφει στο MediNET</string>
+    <string name="sessionNotFoundMediNET">Η συνεδρία δεν βρέθηκε στο MediNET</string>
+
+    <plurals name="numtimes">
+        <item quantity="one">%s χρόνος</item>
+        <item quantity="other">%s χρόνοι</item>
+    </plurals>
+
+    <plurals name="sessionsImported">
+        <item quantity="one">Εισηγμένη %s συνεδρία</item>
+        <item quantity="other">Εισηγμένες %s συνεδρίες</item>
+    </plurals>
+
+    <plurals name="sessionsUploaded">
+        <item quantity="one">Ανεβασμένη %s συνεδρία</item>
+        <item quantity="other">Ανεβασμένες %s συνεδρίες</item>
+    </plurals>
+
+    <string name="sessionsNotImported">Τα τοπικά αρχεία είναι ενημερωμένα</string>
+
+    <plurals name="daysOfMeditationMinimal">
+        <item quantity="one">%d ημέρα</item>
+        <item quantity="other">%d ημέρες</item>
+    </plurals>
+    <plurals name="daysOfMeditation">
+        <item quantity="one">%d ημέρα διαλογισμού</item>
+        <item quantity="other">%d ημέρες διαλογισμού</item>
+    </plurals>
+    <plurals name="daysOfMeditationWithoutCount">
+        <item quantity="one">ημέρα διαλογισμού</item>
+        <item quantity="other">ημέρες διαλογισμού</item>
+    </plurals>
+
+    <string name="meditateToday">Διαλογισθείτε σήμερα</string>
+    <string name="signInToMediNET">Εισέλθετε στο MediNET</string>
+    <string name="signOut">Έξοδος</string>
+    <string name="signOutOfMediNET">Έξοδος από το MediNET</string>
+    <string name="signOutOfMediNETConfirmTitle">Έξοδος από το MediNET;</string>
+    <string name="rateMeditationAssistant">Βαθμολογήστε τον Βοηθό Διαλογισμού</string>
+    <string name="rateMeditationAssistantText">Εάν βρήκατε αυτήν την εφαρμογή οφέλιμη για την εξάσκησή σας στο διαλογισμό, θα προσθέτατε μια βαθμολογία;\n\nΗ επ\' αμοιβή έκδοση δεν περιέχει διαφημίσεις και φιλοξενεί μικροεφαρμογές αρχικής οθόνης. Παρακαλώ, αναλογισθείτε την αγορά της εάν δύνασθε.\n\nΑυτός ο διάλογος δεν θα επανεμφανισθεί.</string>
+    <string name="translateMeditationAssistantText">Θα βοηθούσατε τον Βοηθό Διαλογισμού να αγγίξει ένα ευρύτερο κοινό μεταφράζοντάς τον σε μια άλλη γλώσσα;
+
+Η μετάφραση γίνεται εύκολα μέσω διεπαφής στον ιστό.Μπορείτε να επισκεφθείτε τη σελίδα μετάφρασης αργότερα πατώντας Μεταφράστε από το παράθυρο Σχετικά.
+
+Αυτός ο διάλογος δεν θα επανεμφανισθεί.</string>
+
+    <!-- Widgets -->
+    <string name="widget1x1" tools:ignore="UnusedResources">Βοηθός Διαλογισμού 1x1</string>
+    <string name="widget2x1" tools:ignore="UnusedResources">Βοηθός Διαλογισμού 2x1</string>
+    <string name="widget3x1" tools:ignore="UnusedResources">Βοηθός Διαλογισμού 3x1</string>
+
+    <!-- Meta -->
+    <string name="appStoreListingShort">Χρονομετρητής και καταγραφέας συνεδρίας διαλογισμού πλούσιος χαρακτηριστικών</string>
+    <string name="appStoreListingFull">Η εφαρμογή αυτή βοηθά και με τις χρονομετρημένες (μέσω διάρκειας ή λήξης σε ορισμένη στιγμή) και με τις αχρονομέτρητες συνεδρίες, με διάφορες παραμετροποιήσεις, συμπεριλαμβάνοντας ήχους έναρξης/μεσοδιαστήματος/λήξης και συμπεριφορά της συσκευής. Παρέχει επίσης μια μηνιαία επισκόπηση της προόδου σας.
+
+Ένα μείζων χαρακτηριστικό αυτής της εφαρμογής είναι η ικανότητα να μοιράζεστε τις συνεδρίες σας στον ιστό. Αν και εντελώς προαιρετικός, ο διαμοιρασμός της προόδου σας στον ιστό προσθέτει μια άλλη διάσταση ευθύνης. Τώρα που είστε δημοσίως γνωστός, καθώς αυξάνεται η ακολουθία διαλογισμού σας, οι χρήστες θα το δούνε σαν στόχο προς ανάληψη. Ένας χρήστης έχει αναρτήσει πάνω από 500 ημέρες συνεχούς διαλογισμού.
+
+Η ακολουθία διαλογισμού σας είναι ο αριθμός των συνεχόμενων ημερών που έχετε καταγράψει τουλάχιστον μια συνεδρία. Καθώς η ακολουθία μεγαλώνει, "η μη θραύση της αλυσίδας" γίνεται αρκετά σημαντική. Σύντομα θα διαλογίζεσθε μια φορά την ημέρα, ακόμη κι αν αυτό είναι πέντε ή δέκα λεπτά εκτός του προγράμματός σας.
+
+Χαρακτηριστικά κλειδιά:
+- Θέστε αυτόματα την συσκευή σας σε λειτουργία προτεραιότητα μόνο, συναγερμοί μόνο, δόνηση ή σιωπηλό καθώς διαλογίζεσθε.
+- Επιλέξτε από αρκετούς συμπεριλειμμένους ήχους διαλογισμού, ή χρησιμοποιήστε ένα αρχείο ήχου της δικής σας επιλογής.
+- Παίξτε έναν ήχο μεσοδιαστήματος με την διάρκεια της αρεσκείας σας.
+- Παύστε την συνεδρία σας και επανέλθετε σε αυτήν, όταν είστε έτοιμος.
+- Αναρτήστε συνεδρίες διαλογισμού στον ιστό του MediNET, και επισκευθείτε το forum διαλογισμού του MediNET.
+- Επιλέξτε οποιοδήποτε ολογραφικό θέμα για την εφαρμογή: φως, μπάρα δράσης φωτός και σκότους, ή σκότος.
+- Πολλά περισσότερα χαρακτηριστικά περιλαμβάνονται, και νέα προστίθενται με κάθε έκδοση.
+
+Αυτή η εφαρμογή είναι ανοιχτού κώδικα:
+https://gitlab.com/tslocum/meditationassistant
+
+
+Η ανατροφοδότηση είναι ευπρόσδεκτη. Αρκετά από τα παρόντα εφαρμοσμένα χαρακτηριστικά ήταν αρχικά ιδέες χρηστών. Ανοίξτε ένα θέμα περιγράφοντας το θέμα/ιδέα σας:
+https://gitlab.com/tslocum/meditationassistant/issues
+
+Μεταφράστε τον Βοηθό Διαλογισμού στην γλώσσα σας:
+https://www.getlocalization.com/meditationassistant/
+
+Ανάπτυξη από Rocket Nine Laboratories: https://rocketnine.space/</string>
+
+</resources>

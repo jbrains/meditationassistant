@@ -58,7 +58,7 @@ import java.util.Map;
 import java.util.TimeZone;
 
 @AcraCore(buildConfigClass = BuildConfig.class, reportFormat = StringFormat.KEY_VALUE_LIST)
-@AcraHttpSender(httpMethod = HttpSender.Method.POST, uri= "https://medinet.rocketnine.space/acra/acra.php")
+@AcraHttpSender(httpMethod = HttpSender.Method.POST, uri = "https://medinet.rocketnine.space/acra/acra.php")
 public class MeditationAssistant extends Application {
 
     private static final String AUTH_PENDING = "auth_state_pending";
@@ -136,8 +136,8 @@ public class MeditationAssistant extends Application {
             } else if (BuildConfig.FLAVOR.equals("opensource")) {
                 marketName = "fdroid";
             } else { // To be uncommented based upon target market
-                //marketName = "google";
-                marketName = "amazon";
+                marketName = "google";
+                //marketName = "amazon";
                 //marketName = "getjar";
                 //marketName = "slideme";
             }

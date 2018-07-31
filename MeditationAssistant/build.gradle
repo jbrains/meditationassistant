@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 27
+    buildToolsVersion '28.0.1'
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 27
 
-        versionCode 147
-        versionName "1.4.7"
+        versionCode 148
+        versionName "1.4.8"
 
         applicationId "sh.ftp.rocketninelabs.meditationassistant"
         manifestPlaceholders = [
@@ -73,31 +73,31 @@ android {
 }
 
 dependencies {
-    compile "com.android.support:support-compat:26.1.0"
-    compile "com.android.support:support-core-utils:26.1.0"
-    compile "com.android.support:support-core-ui:26.1.0"
-    compile "com.android.support:support-media-compat:26.1.0"
-    compile "com.android.support:support-fragment:26.1.0"
-    compile "com.android.support:recyclerview-v7:26.1.0"
-    compile "com.android.support:design:26.1.0"
-    compile "net.openid:appauth:0.7.0"
-    compile "com.squareup.okio:okio:1.13.0"
+    implementation "com.android.support:support-compat:27.1.1"
+    implementation "com.android.support:support-core-utils:27.1.1"
+    implementation "com.android.support:support-core-ui:27.1.1"
+    implementation "com.android.support:support-media-compat:27.1.1"
+    implementation "com.android.support:support-fragment:27.1.1"
+    implementation "com.android.support:recyclerview-v7:27.1.1"
+    implementation "com.android.support:design:27.1.1"
+    implementation "net.openid:appauth:0.7.0"
+    implementation "com.squareup.okio:okio:1.15.0"
 
-    freeCompile 'com.google.android.gms:play-services-base:11.8.0'
-    fullCompile 'com.google.android.gms:play-services-base:11.8.0'
-    freeCompile 'com.google.android.gms:play-services-analytics:11.8.0'
-    fullCompile 'com.google.android.gms:play-services-analytics:11.8.0'
-    //freeCompile 'com.google.android.gms:play-services-wearable:11.8.0'
-    //fullCompile 'com.google.android.gms:play-services-wearable:11.8.0'
-    freeCompile 'com.google.android.gms:play-services-appinvite:11.8.0'
-    fullCompile 'com.google.android.gms:play-services-appinvite:11.8.0'
-    freeCompile 'com.google.android.gms:play-services-fitness:11.8.0'
-    fullCompile 'com.google.android.gms:play-services-fitness:11.8.0'
-    freeCompile 'com.google.android.gms:play-services-ads:11.8.0'
+    freeImplementation 'com.google.android.gms:play-services-base:15.0.1'
+    fullImplementation 'com.google.android.gms:play-services-base:15.0.1'
+    freeImplementation 'com.google.android.gms:play-services-analytics:16.0.1'
+    fullImplementation 'com.google.android.gms:play-services-analytics:16.0.1'
+    //freeImplementation 'com.google.android.gms:play-services-wearable:15.0.1'
+    //fullImplementation 'com.google.android.gms:play-services-wearable:15.0.1'
+    freeImplementation 'com.google.android.gms:play-services-appinvite:16.0.1'
+    fullImplementation 'com.google.android.gms:play-services-appinvite:16.0.1'
+    freeImplementation 'com.google.android.gms:play-services-fitness:15.0.1'
+    fullImplementation 'com.google.android.gms:play-services-fitness:15.0.1'
+    freeImplementation 'com.google.android.gms:play-services-ads:15.0.1'
     //noinspection GradleDynamicVersion
-    compile 'ch.acra:acra-http:5.0.1'
-    compile 'com.github.amlcurran.showcaseview:library:5.4.3'
-    compile 'com.nononsenseapps:filepicker:4.1.0'
+    implementation 'ch.acra:acra-http:5.1.3'
+    implementation 'com.github.amlcurran.showcaseview:library:5.4.3'
+    implementation 'com.nononsenseapps:filepicker:4.2.1'
     //wearApp project(':MeditationAssistantWear')
     // TODO: Uncomment when Wear app is ready
 }
