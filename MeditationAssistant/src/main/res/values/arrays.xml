@@ -109,14 +109,12 @@
         <item>on</item>
         <item>ondim</item>
         <item>dim</item>
-        <item>off</item>
     </string-array>
     <string-array name="screencontrol">
         <item>@string/noSpecialBehavior</item>
         <item>@string/keepScreenOn</item>
         <item>@string/keepScreenOnAndDim</item>
         <item>@string/dimScreen</item>
-        <item>@string/turnScreenOff</item>
     </string-array>
     <string-array name="presetsettings_values">
         <item>modeandduration</item>

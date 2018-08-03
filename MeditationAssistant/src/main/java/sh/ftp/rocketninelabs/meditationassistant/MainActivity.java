@@ -1600,55 +1600,29 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     }
 
     private void screenDimOrOff() {
-        if (getMeditationAssistant().getPrefs().getString("pref_screencontrol", "dim").equals("ondim") || getMeditationAssistant().getPrefs().getString("pref_screencontrol", "dim").equals("dim")) {
-            screenDimRunnable = new Runnable() {
-                @Override
-                public void run() {
-                    if (getMeditationAssistant().getTimeStartMeditate() == 0) {
-                        Log.d("MeditationAssistant",
-                                "Exiting runnable for dimming screen");
-                        return;
-                    }
-
-                    WindowManager.LayoutParams windowParams = getWindow()
-                            .getAttributes();
-                    windowParams.screenBrightness = 0.01f;
-                    getWindow().setAttributes(windowParams);
-
-                    if (getMeditationAssistant().getPrefs().getString("pref_screencontrol", "dim").equals("ondim")) {
-                        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                    } else {
-                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                    }
-                }
-            };
-
-            handler.postDelayed(screenDimRunnable, 250);
-        } else if (getMeditationAssistant().getPrefs().getString("pref_screencontrol", "dim").equals("off")) {
-            WindowManager.LayoutParams windowParams = getWindow()
-                    .getAttributes();
-            windowParams.screenBrightness = 0.0f;
-            getWindow().setAttributes(windowParams);
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
-            screenOffRunnable = new Runnable() {
-                @Override
-                public void run() {
-                    if (getMeditationAssistant().getTimeStartMeditate() == 0) {
-                        Log.d("MeditationAssistant",
-                                "Exiting runnable for turning screen off");
-                        return;
-                    }
-
-                    WindowManager.LayoutParams windowParams = getWindow()
-                            .getAttributes();
-                    windowParams.screenBrightness = -1;
-                    getWindow().setAttributes(windowParams);
-                }
-            };
-
-            handler.postDelayed(screenOffRunnable, 5000);
+        String pref_screencontrol = getMeditationAssistant().getPrefs().getString("pref_screencontrol", "dim");
+        if (!pref_screencontrol.equals("ondim") && !pref_screencontrol.equals("dim") && !pref_screencontrol.equals("off")) {
+            return;
         }
+
+        screenDimRunnable = () -> {
+            if (getMeditationAssistant().getTimeStartMeditate() == 0) {
+                Log.d("MeditationAssistant","Exiting runnable for dimming screen");
+                return;
+            }
+
+            WindowManager.LayoutParams windowParams = getWindow().getAttributes();
+            windowParams.screenBrightness = 0.01f;
+            getWindow().setAttributes(windowParams);
+
+            if (pref_screencontrol.equals("ondim")) {
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            } else {
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            }
+        };
+
+        handler.postDelayed(screenDimRunnable, 250);
     }
 
     public boolean longPressMeditate(View view) {

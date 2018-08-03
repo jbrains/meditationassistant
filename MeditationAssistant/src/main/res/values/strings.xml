@@ -158,7 +158,6 @@
     <string name="keepScreenOn">Keep screen on</string>
     <string name="keepScreenOnAndDim">Keep screen on and dim</string>
     <string name="dimScreen">Dim screen</string>
-    <string name="turnScreenOff">Turn screen off</string>
     <string name="pref_display_seconds">Display seconds</string>
     <string name="pref_display_seconds_summary">Shown below the main timer</string>
     <string name="pref_full_screen">Full screen</string>
