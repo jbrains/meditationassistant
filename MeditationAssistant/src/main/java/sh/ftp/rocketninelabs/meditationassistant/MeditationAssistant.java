@@ -382,13 +382,6 @@ public class MeditationAssistant extends Application {
     public void playSound(int soundresource, String soundpath, boolean restoreVolume) {
         WakeLocker.acquire(getApplicationContext(), false);
         Thread soundThread = new Thread(() -> {
-            String soundLabel = soundpath;
-            if (soundLabel.equals("")) {
-                soundLabel = String.valueOf(soundresource);
-            }
-
-            Log.d("MA", "Play sound: " + soundLabel);
-
             MediaPlayer soundPlayer = null;
             try {
                 if (!soundpath.equals("")) {
@@ -401,10 +394,16 @@ public class MeditationAssistant extends Application {
             }
 
             if (soundPlayer == null) {
-                Log.e("MA", "Failed to load sound: " + soundLabel);
+                String soundLabel = soundpath;
+                if (soundLabel.equals("")) {
+                    soundLabel = String.valueOf(soundresource);
+                }
+                Log.e("MeditationAssistant", "Failed to load sound: " + soundLabel);
+
                 if (restoreVolume) {
                     restoreVolume();
                 }
+
                 WakeLocker.release();
                 return;
             }

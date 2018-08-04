@@ -2,44 +2,44 @@ package sh.ftp.rocketninelabs.meditationassistant;
 
 public class MeditationSounds {
     public static int getMeditationSound(String sound) {
-        if (sound.equals("gong")) {
-            return R.raw.gong;
-        } else if (sound.equals("gong_burmese")) {
-            return R.raw.gong_burmese;
-        } else if (sound.equals("gong_metal")) {
-            return R.raw.gong_metal;
-        } else if (sound.equals("gong_heavy")) {
-            return R.raw.gong_heavy;
-        } else if (sound.equals("bell_indian")) {
-            return R.raw.bell_indian;
-        } else if (sound.equals("bell_temple")) {
-            return R.raw.bell_temple;
-        } else if (sound.equals("tinsha")) {
-            return R.raw.tinsha;
-        } else if (sound.equals("None")) {
-            return 0;
+        switch (sound) {
+            case "gong_burmese":
+                return R.raw.gong_burmese;
+            case "gong_metal":
+                return R.raw.gong_metal;
+            case "gong_heavy":
+                return R.raw.gong_heavy;
+            case "bell_indian":
+                return R.raw.bell_indian;
+            case "bell_temple":
+                return R.raw.bell_temple;
+            case "tinsha":
+                return R.raw.tinsha;
+            case "None":
+                return 0;
+            default:
+                return R.raw.gong;
         }
-        return R.raw.gong;
     }
 
     public static String getMeditationSoundName(String sound) { // TODO: Localize
-        if (sound.equals("gong")) {
-            return "Gong";
-        } else if (sound.equals("gong_burmese")) {
-            return "Burmese gong";
-        } else if (sound.equals("gong_metal")) {
-            return "Metal gong";
-        } else if (sound.equals("gong_heavy")) {
-            return "Heavy gong";
-        } else if (sound.equals("bell_indian")) {
-            return "Indian bell";
-        } else if (sound.equals("bell_temple")) {
-            return "Temple bell";
-        } else if (sound.equals("tinsha")) {
-            return "Three Tinsha";
-        } else if (sound.equals("none")) {
-            return "";
+        switch (sound) {
+            case "gong_burmese":
+                return "Burmese gong";
+            case "gong_metal":
+                return "Metal gong";
+            case "gong_heavy":
+                return "Heavy gong";
+            case "bell_indian":
+                return "Indian bell";
+            case "bell_temple":
+                return "Temple bell";
+            case "tinsha":
+                return "Three Tinsha";
+            case "none":
+                return "";
+            default:
+                return "Gong";
         }
-        return "Gong";
     }
 }
