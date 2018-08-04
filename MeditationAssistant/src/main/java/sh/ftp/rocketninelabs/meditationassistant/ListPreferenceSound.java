@@ -3,6 +3,7 @@ package sh.ftp.rocketninelabs.meditationassistant;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.TypedArray;
 import android.media.AudioManager;
@@ -10,6 +11,7 @@ import android.media.MediaPlayer;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.preference.ListPreference;
+import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.util.Log;
 
@@ -23,6 +25,7 @@ public class ListPreferenceSound extends ListPreference {
     private String mValue;
     private MediaPlayer mMediaPlayer = null;
     private Context ctx = null;
+    private SharedPreferences prefs = null;
 
     public ListPreferenceSound(Context context) {
         this(context, null);
@@ -199,6 +202,8 @@ public class ListPreferenceSound extends ListPreference {
                                 }
                             }
 
+                            float mediaVolume = (float) (getPrefs().getInt("pref_sessionvolume", 50) * 0.01);
+
                             AssetFileDescriptor afd = ctx
                                     .getResources()
                                     .openRawResourceFd(
@@ -212,6 +217,7 @@ public class ListPreferenceSound extends ListPreference {
                                         afd.getStartOffset(),
                                         afd.getDeclaredLength());
                                 mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                                mMediaPlayer.setVolume(mediaVolume, mediaVolume);
                                 mMediaPlayer.prepareAsync();
                             } catch (IllegalArgumentException e) {
                                 e.printStackTrace();
@@ -304,5 +310,12 @@ public class ListPreferenceSound extends ListPreference {
             super.writeToParcel(dest, flags);
             dest.writeString(value);
         }
+    }
+
+    public SharedPreferences getPrefs() {
+        if (prefs == null) {
+            prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        }
+        return prefs;
     }
 }

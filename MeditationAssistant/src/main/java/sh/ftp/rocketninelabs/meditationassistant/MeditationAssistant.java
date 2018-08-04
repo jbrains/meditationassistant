@@ -16,11 +16,13 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -375,6 +377,51 @@ public class MeditationAssistant extends Application {
             return "Unknown";
         }
         return medinetprovider;
+    }
+
+    public void playSound(int soundresource, String soundpath, boolean restoreVolume) {
+        WakeLocker.acquire(getApplicationContext(), false);
+        Thread soundThread = new Thread(() -> {
+            String soundLabel = soundpath;
+            if (soundLabel.equals("")) {
+                soundLabel = String.valueOf(soundresource);
+            }
+
+            Log.d("MA", "Play sound: " + soundLabel);
+
+            MediaPlayer soundPlayer = null;
+            try {
+                if (!soundpath.equals("")) {
+                    soundPlayer = MediaPlayer.create(getApplicationContext(), Uri.parse(soundpath));
+                } else {
+                    soundPlayer = MediaPlayer.create(getApplicationContext(), soundresource);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            if (soundPlayer == null) {
+                Log.e("MA", "Failed to load sound: " + soundLabel);
+                if (restoreVolume) {
+                    restoreVolume();
+                }
+                WakeLocker.release();
+                return;
+            }
+
+            soundPlayer.setOnCompletionListener(mp -> {
+                if (restoreVolume) {
+                    restoreVolume();
+                }
+                mp.release();
+                WakeLocker.release();
+            });
+            soundPlayer.setOnPreparedListener(mp -> {
+                SystemClock.sleep(MeditationAssistant.MEDIA_DELAY);
+                mp.start();
+            });
+        });
+        soundThread.start();
     }
 
     public void startAuth(Context context, boolean showToast) {
@@ -840,21 +887,15 @@ public class MeditationAssistant extends Application {
             editor.apply();
         }
 
-        // Upgrade to the new delay and interval preferences
-        /*long pref_delay = Integer.valueOf(getPrefs().getString("pref_delay", "-1"));
-        if (pref_delay >= 0) {
-            Log.d("MeditationAssistant", "Upgrading pref_delay to TimePreference: from " + String.valueOf(pref_delay) + " to " + String.format("%02d", pref_delay / 60) + ":" + String.format("%02d", pref_delay % 60));
-            getPrefs().edit().putString("pref_session_delay", String.format("%02d", pref_delay / 60) + ":" + String.format("%02d", pref_delay % 60)).apply();
-            getPrefs().edit().putString("pref_delay", "-1").apply();
-            Log.d("MeditationAssistant", "New pref_session_delay value: " + getPrefs().getString("pref_session_delay", "00:15"));
-
+        // Upgrade to the new full screen preference
+        try {
+            if (getPrefs().getBoolean("pref_full_screen", false)) {
+                getPrefs().edit().remove("pref_full_screen").apply();
+                getPrefs().edit().putString("pref_full_screen", "session").apply();
+            }
+        } catch (Exception e) {
+            // Do nothing
         }
-        long pref_interval = Integer.valueOf(getPrefs().getString("pref_interval", "-1"));
-        if (pref_interval >= 0) {
-            Log.d("MeditationAssistant", "Upgrading pref_interval to TimePreference: from " + String.valueOf(pref_interval) + " to " + String.format("%02d", pref_interval / 60) + ":" + String.format("%02d", pref_interval % 60));
-            getPrefs().edit().putString("pref_session_delay", String.format("%02d", pref_interval / 60) + ":" + String.format("%02d", pref_interval % 60)).apply();
-            getPrefs().edit().putString("pref_interval", "-1").apply();
-        }*/
 
         db = DatabaseHandler.getInstance(getApplicationContext());
 

@@ -20,12 +20,6 @@
 
     <CheckBoxPreference
         android:defaultValue="false"
-        android:key="pref_full_screen"
-        android:summary="@string/pref_full_screen_summary"
-        android:title="@string/pref_full_screen"/>
-
-    <CheckBoxPreference
-        android:defaultValue="false"
         android:key="pref_usetimepicker"
         android:summary="@string/pref_usetimepicker_summary"
         android:title="@string/pref_usetimepicker"/>
@@ -37,6 +31,14 @@
         android:entryValues="@array/screencontrol_values"
         android:key="pref_screencontrol"
         android:title="@string/pref_screencontrol"/>
+
+    <ListPreference
+        android:defaultValue=""
+        android:dialogIcon="?attr/actionIconFullScreen"
+        android:entries="@array/full_screen"
+        android:entryValues="@array/full_screen_values"
+        android:key="pref_full_screen"
+        android:title="@string/pref_full_screen"/>
 
     <ListPreference
         android:defaultValue="normal"

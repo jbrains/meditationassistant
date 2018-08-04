@@ -480,6 +480,7 @@ public class SettingsActivity extends PreferenceActivity {
 
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_usetimepicker") : preferenceFragment.findPreference("pref_usetimepicker"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_screencontrol") : preferenceFragment.findPreference("pref_screencontrol"));
+            bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_full_screen") : preferenceFragment.findPreference("pref_full_screen"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_text_size") : preferenceFragment.findPreference("pref_text_size"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_progresstab") : preferenceFragment.findPreference("pref_progresstab"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_mainbuttons") : preferenceFragment.findPreference("pref_mainbuttons"));

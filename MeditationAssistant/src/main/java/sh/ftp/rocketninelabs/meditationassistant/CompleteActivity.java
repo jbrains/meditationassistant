@@ -4,12 +4,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -63,6 +60,10 @@ public class CompleteActivity extends Activity {
         setContentView(R.layout.activity_complete);
 
         getMeditationAssistant().hideNotification(); // Called twice because it seems to help
+
+        if (getMeditationAssistant().getPrefs().getString("pref_full_screen", "").equals("always")) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
 
         long timestamp = System.currentTimeMillis() / 1000;
         if (getMeditationAssistant().getTimeStartMeditate() == 0
@@ -163,53 +164,13 @@ public class CompleteActivity extends Activity {
                 txtDuration.setTextSize(153);
             }
 
-            if (!manual
-                    && !getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish", "")
-                    .equals("none")) {
-
-                mMediaPlayer = null;
-                if (getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish", "").equals(
-                        "custom")) {
-                    String soundpath = getMeditationAssistant().getPrefs().getString(
-                            "pref_meditation_sound_finish_custom", "");
-                    if (!soundpath.equals("")) {
-                        try {
-                            mMediaPlayer = MediaPlayer.create(this,
-                                    Uri.parse(soundpath));
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
+            String finishSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish", "");
+            if (!manual && !finishSoundPath.equals("none")) {
+                if (finishSoundPath.equals("custom")) {
+                    finishSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish_custom", "");
+                    getMeditationAssistant().playSound(0, finishSoundPath, true);
                 } else {
-                    mMediaPlayer = MediaPlayer.create(this, MeditationSounds
-                            .getMeditationSound(getMeditationAssistant().getPrefs().getString(
-                                    "pref_meditation_sound_finish", "")));
-                }
-
-                if (mMediaPlayer != null) {
-                    mMediaPlayer
-                            .setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-
-                                @Override
-                                public void onCompletion(MediaPlayer mp) {
-                                    getMeditationAssistant().restoreVolume();
-                                    WakeLocker.release();
-                                    mp.release();
-                                }
-                            });
-                    mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                    mMediaPlayer
-                            .setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                                @Override
-                                public void onPrepared(
-                                        MediaPlayer mp) {
-                                    SystemClock.sleep(MeditationAssistant.MEDIA_DELAY);
-                                    mp.start();
-                                }
-                            });
-                } else {
-                    getMeditationAssistant().restoreVolume();
-                    handler.postDelayed(clearWakeLock, 5000);
+                    getMeditationAssistant().playSound(MeditationSounds.getMeditationSound(finishSoundPath), "", true);
                 }
             } else {
                 getMeditationAssistant().restoreVolume();

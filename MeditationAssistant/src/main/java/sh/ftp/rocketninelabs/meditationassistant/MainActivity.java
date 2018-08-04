@@ -12,12 +12,10 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -90,7 +88,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     private Runnable meditateRunnable = null;
     private Runnable screenDimRunnable = null;
     private Runnable screenOffRunnable = null;
-    private MediaPlayer mMediaPlayer = null;
     private AlarmManager am = null;
     private PendingIntent pendingintent = null;
     private AlarmManager am_delay = null;
@@ -109,56 +106,15 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                     return; // No interval sounds during the final 30 seconds
                 }
 
-                if (!getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval", "")
-                        .equals("none") || getMeditationAssistant().vibrationEnabled()) {
-                    if (!getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval", "")
-                            .equals("none")) {
-                        stopMediaPlayer();
-                        mMediaPlayer = null;
-                        if (getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval", "")
-                                .equals("custom")) {
-                            String soundpath = getMeditationAssistant().getPrefs().getString(
-                                    "pref_meditation_sound_interval_custom", "");
-                            if (!soundpath.equals("")) {
-                                try {
-                                    mMediaPlayer = MediaPlayer.create(
-                                            getApplicationContext(),
-                                            Uri.parse(soundpath));
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            }
+                String intervalSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval", "");
+
+                if (!intervalSoundPath.equals("none") || getMeditationAssistant().vibrationEnabled()) {
+                    if (!intervalSoundPath.equals("none")) {
+                        if (intervalSoundPath.equals("custom")) {
+                            intervalSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval_custom", "");
+                            getMeditationAssistant().playSound(0, intervalSoundPath, false);
                         } else {
-                            mMediaPlayer = MediaPlayer
-                                    .create(getApplicationContext(),
-                                            MeditationSounds.getMeditationSound(getMeditationAssistant().getPrefs().getString(
-                                                    "pref_meditation_sound_interval",
-                                                    ""))
-                                    );
-                        }
-
-                        if (mMediaPlayer != null) {
-                            mMediaPlayer
-                                    .setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-
-                                        @Override
-                                        public void onCompletion(MediaPlayer mp) {
-                                            mp.release();
-                                            WakeLocker.release();
-                                        }
-                                    });
-
-                            WakeLocker.acquire(getApplicationContext(), false);
-                            mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                            mMediaPlayer
-                                    .setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                                        @Override
-                                        public void onPrepared(
-                                                MediaPlayer mp) {
-                                            SystemClock.sleep(MeditationAssistant.MEDIA_DELAY);
-                                            mp.start();
-                                        }
-                                    });
+                            getMeditationAssistant().playSound(MeditationSounds.getMeditationSound(intervalSoundPath), "", false);
                         }
                     }
 
@@ -1456,52 +1412,13 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
                 screenDimOrOff();
 
-                if (!getMeditationAssistant().getPrefs().getString("pref_meditation_sound_start", "").equals(
-                        "none")) {
-                    mMediaPlayer = null;
-                    if (getMeditationAssistant().getPrefs().getString("pref_meditation_sound_start", "")
-                            .equals("custom")) {
-                        String soundpath = getMeditationAssistant().getPrefs().getString(
-                                "pref_meditation_sound_start_custom", "");
-                        if (!soundpath.equals("")) {
-                            try {
-                                mMediaPlayer = MediaPlayer.create(
-                                        getApplicationContext(),
-                                        Uri.parse(soundpath));
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
+                String startSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_start", "");
+                if (!startSoundPath.equals("none")) {
+                    if (startSoundPath.equals("custom")) {
+                        startSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_start_custom", "");
+                        getMeditationAssistant().playSound(0, startSoundPath, false);
                     } else {
-                        mMediaPlayer = MediaPlayer.create(
-                                getApplicationContext(), MeditationSounds
-                                        .getMeditationSound(getMeditationAssistant().getPrefs().getString(
-                                                "pref_meditation_sound_start",
-                                                ""))
-                        );
-                    }
-
-                    if (mMediaPlayer != null) {
-                        mMediaPlayer
-                                .setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-
-                                    @Override
-                                    public void onCompletion(MediaPlayer mp) {
-                                        mp.release();
-                                        WakeLocker.release();
-                                    }
-                                });
-                        mMediaPlayer
-                                .setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                                    @Override
-                                    public void onPrepared(
-                                            MediaPlayer mp) {
-                                        SystemClock.sleep(MeditationAssistant.MEDIA_DELAY);
-                                        mp.start();
-                                    }
-                                });
-
-                        WakeLocker.acquire(getApplicationContext(), false);
+                        getMeditationAssistant().playSound(MeditationSounds.getMeditationSound(startSoundPath), "", false);
                     }
                 }
 
@@ -1519,7 +1436,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
 
-        if (getMeditationAssistant().getPrefs().getBoolean("pref_full_screen", false)) {
+        String pref_full_screen = getMeditationAssistant().getPrefs().getString("pref_full_screen", "");
+        if (pref_full_screen.equals("session")) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
 
@@ -1607,7 +1525,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
         screenDimRunnable = () -> {
             if (getMeditationAssistant().getTimeStartMeditate() == 0) {
-                Log.d("MeditationAssistant","Exiting runnable for dimming screen");
+                Log.d("MeditationAssistant", "Exiting runnable for dimming screen");
                 return;
             }
 
@@ -1853,6 +1771,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     }
 
     public void updateTexts() {
+        String pref_full_screen = getMeditationAssistant().getPrefs().getString("pref_full_screen", "");
+
         /* Log.d("MeditationAssistant", "Updating texts..."); */
         TextView txtMainStatus = (TextView) findViewById(R.id.txtMainStatus);
         Button btnMeditationStreak = (Button) findViewById(R.id.btnMeditationStreak);
@@ -1862,10 +1782,16 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             resetScreenBrightness();
             getMeditationAssistant().unsetNotificationControl();
 
-            WindowManager.LayoutParams params = getWindow().getAttributes();
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            if (!pref_full_screen.equals("always")) {
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            } else {
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            }
+        } else if (!pref_full_screen.equals("always") && !pref_full_screen.equals("session")) {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            getWindow().setAttributes(params);
+        } else {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
 
         if (!getMeditationAssistant().getPrefs().getBoolean("pref_showstreak", true)
@@ -1965,60 +1891,18 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                             return; // No further intervals
                         }
 
-                        if (!getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval", "")
-                                .equals("none") || getMeditationAssistant().vibrationEnabled()) {
+                        String intervalSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval", "");
+
+                        if (!intervalSoundPath.equals("none") || getMeditationAssistant().vibrationEnabled()) {
                             if (getMeditationAssistant().getTimeToStopMeditate() == -1
                                     || ((System.currentTimeMillis() / 1000) > getMeditationAssistant().getTimeToStopMeditate() && (System.currentTimeMillis() / 1000) - getMeditationAssistant().getTimeToStopMeditate() >= 5) || getMeditationAssistant().getTimeToStopMeditate()
                                     - (System.currentTimeMillis() / 1000) >= 5) { // Not within last 5 seconds
-                                if (!getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval", "")
-                                        .equals("none")) {
-                                    stopMediaPlayer();
-                                    mMediaPlayer = null;
-                                    if (getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval", "")
-                                            .equals("custom")) {
-                                        String soundpath = getMeditationAssistant().getPrefs().getString(
-                                                "pref_meditation_sound_interval_custom", "");
-                                        if (!soundpath.equals("")) {
-                                            try {
-                                                mMediaPlayer = MediaPlayer.create(
-                                                        getApplicationContext(),
-                                                        Uri.parse(soundpath));
-                                            } catch (Exception e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
+                                if (!intervalSoundPath.equals("none")) {
+                                    if (intervalSoundPath.equals("custom")) {
+                                        intervalSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval_custom", "");
+                                        getMeditationAssistant().playSound(0, intervalSoundPath, false);
                                     } else {
-                                        mMediaPlayer = MediaPlayer
-                                                .create(getApplicationContext(),
-                                                        MeditationSounds.getMeditationSound(getMeditationAssistant().getPrefs().getString(
-                                                                "pref_meditation_sound_interval",
-                                                                ""))
-                                                );
-                                    }
-
-                                    if (mMediaPlayer != null) {
-                                        mMediaPlayer
-                                                .setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-
-                                                    @Override
-                                                    public void onCompletion(MediaPlayer mp) {
-                                                        mp.release();
-                                                        WakeLocker.release();
-                                                    }
-                                                });
-
-                                        WakeLocker.acquire(getApplicationContext(), false);
-                                        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-
-                                        mMediaPlayer
-                                                .setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                                                    @Override
-                                                    public void onPrepared(
-                                                            MediaPlayer mp) {
-                                                        SystemClock.sleep(MeditationAssistant.MEDIA_DELAY);
-                                                        mp.start();
-                                                    }
-                                                });
+                                        getMeditationAssistant().playSound(MeditationSounds.getMeditationSound(intervalSoundPath), "", false);
                                     }
                                 }
 
@@ -2075,54 +1959,13 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
                 if (fullWakeUp) {
                     if (getMeditationAssistant().getPrefs().getBoolean("pref_softfinish", false)) {
-                        if (!getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish", "")
-                                .equals("none")) {
-                            stopMediaPlayer();
-                            mMediaPlayer = null;
-                            if (getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish", "")
-                                    .equals("custom")) {
-                                String soundpath = getMeditationAssistant().getPrefs().getString(
-                                        "pref_meditation_sound_finish_custom", "");
-                                if (!soundpath.equals("")) {
-                                    try {
-                                        mMediaPlayer = MediaPlayer.create(
-                                                getApplicationContext(),
-                                                Uri.parse(soundpath));
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                }
+                        String finishSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish", "");
+                        if (!finishSoundPath.equals("none")) {
+                            if (finishSoundPath.equals("custom")) {
+                                finishSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish_custom", "");
+                                getMeditationAssistant().playSound(0, finishSoundPath, true);
                             } else {
-                                mMediaPlayer = MediaPlayer
-                                        .create(getApplicationContext(),
-                                                MeditationSounds.getMeditationSound(getMeditationAssistant().getPrefs().getString(
-                                                        "pref_meditation_sound_finish",
-                                                        ""))
-                                        );
-                            }
-
-                            if (mMediaPlayer != null) {
-                                mMediaPlayer
-                                        .setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-
-                                            @Override
-                                            public void onCompletion(MediaPlayer mp) {
-                                                mp.release();
-                                                WakeLocker.release();
-                                            }
-                                        });
-
-                                WakeLocker.acquire(getApplicationContext(), false);
-                                mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                                mMediaPlayer
-                                        .setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                                            @Override
-                                            public void onPrepared(
-                                                    MediaPlayer mp) {
-                                                SystemClock.sleep(MeditationAssistant.MEDIA_DELAY);
-                                                mp.start();
-                                            }
-                                        });
+                                getMeditationAssistant().playSound(MeditationSounds.getMeditationSound(finishSoundPath), "", true);
                             }
                         }
 
@@ -2154,6 +1997,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         Button btnMeditate = (Button) findViewById(R.id.btnMeditate);
         if (getMeditationAssistant().ispaused) {
             btnMeditate.setText(getString(R.string.resumeOrEnd));
+            updateTexts();
             return;
         }
 
@@ -2237,7 +2081,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             if (getMeditationAssistant().getPrefs().getBoolean("pref_display_seconds", true)) {
                 if (getMeditationAssistant().getTimeStartMeditate() == timestamp
                         || getMeditationAssistant().getTimeToStopMeditate() == timestamp) {
-                    txtDurationSeconds.setText(getString(R.string.ignore_omkara));
+                    txtDurationSeconds.setText(R.string.ignore_omkara);
                 } else if (getMeditationAssistant().getTimeStartMeditate() < timestamp) {
                     txtDurationSeconds.setText(String.valueOf(duration % 60));
                 } else {
@@ -2307,6 +2151,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             btnMeditate.setText(getString(R.string.meditate));
             findViewById(R.id.btnMeditate).setEnabled(false);
         }
+
+        updateTexts();
     }
 
     public void startRunnable() {
@@ -2454,12 +2300,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
     public void askToSignIn() {
         getMeditationAssistant().startAuth(MainActivity.this, false);
-    }
-
-    public void stopMediaPlayer() {
-        if (mMediaPlayer != null) {
-            mMediaPlayer.release();
-        }
     }
 
     public void resetScreenBrightness() {

@@ -155,13 +155,14 @@
     <string name="noSpecialBehavior">No special behavior</string>
     <string name="noSound">No sound</string>
     <string name="customSound">Custom sound</string>
+    <string name="duringSession">During session</string>
+    <string name="always">Always</string>
     <string name="keepScreenOn">Keep screen on</string>
     <string name="keepScreenOnAndDim">Keep screen on and dim</string>
     <string name="dimScreen">Dim screen</string>
     <string name="pref_display_seconds">Display seconds</string>
     <string name="pref_display_seconds_summary">Shown below the main timer</string>
     <string name="pref_full_screen">Full screen</string>
-    <string name="pref_full_screen_summary">Status bar is hidden while full screen</string>
     <string name="pref_delay">Delay</string>
     <string name="pref_interval">Interval duration</string>
     <string name="pref_interval_count">Interval count</string>

@@ -116,6 +116,16 @@
         <item>@string/keepScreenOnAndDim</item>
         <item>@string/dimScreen</item>
     </string-array>
+    <string-array name="full_screen_values">
+        <item></item>
+        <item>session</item>
+        <item>always</item>
+    </string-array>
+    <string-array name="full_screen">
+        <item>@string/disabled</item>
+        <item>@string/duringSession</item>
+        <item>@string/always</item>
+    </string-array>
     <string-array name="presetsettings_values">
         <item>modeandduration</item>
         <item>introduction</item>
