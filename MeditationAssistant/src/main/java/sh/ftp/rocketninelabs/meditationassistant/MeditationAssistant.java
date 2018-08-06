@@ -888,10 +888,16 @@ public class MeditationAssistant extends Application {
 
         // Upgrade to the new full screen preference
         try {
-            if (getPrefs().getBoolean("pref_full_screen", false)) {
-                getPrefs().edit().remove("pref_full_screen").apply();
-                getPrefs().edit().putString("pref_full_screen", "session").apply();
+            boolean oldFullScreenPref = getPrefs().getBoolean("pref_full_screen", false);
+
+            // We didn't encounter an exception, upgrade the preference
+            String newFullScreenPref = "";
+            if (oldFullScreenPref) {
+                newFullScreenPref = "session";
             }
+
+            getPrefs().edit().remove("pref_full_screen").apply();
+            getPrefs().edit().putString("pref_full_screen", newFullScreenPref).apply();
         } catch (Exception e) {
             // Do nothing
         }
