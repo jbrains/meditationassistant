@@ -198,7 +198,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 /*Log.d("MeditationAssistant", "numSessionsByDate " + date + " to " + dateLateNight + " - " + sessionDate  + " - MIDNIGHT CALENDAR: " +  String.valueOf(midnightCalendar.get(Calendar.DAY_OF_MONTH)) + "-"
                         + String.valueOf(midnightCalendar.get(Calendar.MONTH) + 1) + "-"
                         + String.valueOf(midnightCalendar.get(Calendar.YEAR)));*/
-                if ((sessionDate.equals(date) && startedCalendar.getTimeInMillis() - midnightCalendar.getTimeInMillis() > 14400000) || (sessionDate.equals(dateLateNight) && startedCalendar.getTimeInMillis() - midnightCalendar.getTimeInMillis() <= 14400000)) {
+                if ((sessionDate.equals(date) && startedCalendar.getTimeInMillis() - midnightCalendar.getTimeInMillis() > (getMeditationAssistant().getMeditationStreakBuffer() * 1000)) || (sessionDate.equals(dateLateNight) && getMeditationAssistant().getMeditationStreakBuffer() > 0 && startedCalendar.getTimeInMillis() - midnightCalendar.getTimeInMillis() <= (getMeditationAssistant().getMeditationStreakBuffer() * 1000))) {
                     numsessions++;
                     //Log.d("MeditationAssistant", "numSessionsByDate MATCH: " + String.valueOf(startedCalendar.getTimeInMillis() - midnightCalendar.getTimeInMillis()) + " - " + (sessionDate.equals(date) ? "DATE MATCH" : "NO DATE MATCH") + " - " + (sessionDate.equals(dateLateNight) ? "LATE NIGHT MATCH" : "NO LATE NIGHT MATCH"));
                 }

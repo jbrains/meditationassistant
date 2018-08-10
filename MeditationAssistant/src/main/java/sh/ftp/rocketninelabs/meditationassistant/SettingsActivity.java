@@ -181,10 +181,10 @@ public class SettingsActivity extends PreferenceActivity {
                     }
                 }
             } else if (preference instanceof TimePreference) {
-                if (preference.getKey().equals("pref_daily_reminder_time")) {
+                if (preference.getKey().equals("pref_daily_reminder_time") || preference.getKey().equals("pref_meditationstreakbuffer")) {
                     String timeValue = "";
                     try {
-                        String[] timeValueSplit = ((stringValue != null && stringValue != "") ? stringValue : "19:00").split(":");
+                        String[] timeValueSplit = ((stringValue != null && stringValue != "") ? stringValue : (preference.getKey().equals("pref_daily_reminder_time") ? "19:00" : "4:00")).split(":");
 
                         String ampm = "AM";
                         if (Integer.valueOf(timeValueSplit[0]) >= 12) {
@@ -202,9 +202,13 @@ public class SettingsActivity extends PreferenceActivity {
                     }
                     preference.setSummary(timeValue);
 
-                    Intent intent = new Intent();
-                    intent.setAction(MeditationAssistant.ACTION_UPDATED);
-                    sendBroadcast(intent);
+                    if (preference.getKey().equals("pref_daily_reminder_time")) {
+                        Intent intent = new Intent();
+                        intent.setAction(MeditationAssistant.ACTION_UPDATED);
+                        sendBroadcast(intent);
+                    } else {
+                        getMeditationAssistant().meditationstreakbuffer = -1;
+                    }
                 } else { // pref_session_delay and pref_session_interval
                     Log.d("MeditationAssistant", preference.getKey() + " value: " + String.valueOf(stringValue));
 
@@ -479,6 +483,7 @@ public class SettingsActivity extends PreferenceActivity {
             }
 
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_usetimepicker") : preferenceFragment.findPreference("pref_usetimepicker"));
+            bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_meditationstreakbuffer") : preferenceFragment.findPreference("pref_meditationstreakbuffer"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_screencontrol") : preferenceFragment.findPreference("pref_screencontrol"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_full_screen") : preferenceFragment.findPreference("pref_full_screen"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_text_size") : preferenceFragment.findPreference("pref_text_size"));

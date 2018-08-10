@@ -53,7 +53,8 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
                     + MediNET.version.toString() + "&av="
                     + appVersion + "&am="
                     + getMeditationAssistant().getMarketName() + "&avn="
-                    + String.valueOf(getMeditationAssistant().getMAAppVersionNumber()) + "&tz="
+                    + String.valueOf(getMeditationAssistant().getMAAppVersionNumber()) + "&buf="
+                    + String.valueOf(getMeditationAssistant().getMeditationStreakBuffer()) + "&tz="
                     + TimeZone.getDefault().getID();
         }
 

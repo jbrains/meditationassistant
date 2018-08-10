@@ -1,4 +1,5 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <CheckBoxPreference
         android:defaultValue="true"
@@ -23,6 +24,12 @@
         android:key="pref_usetimepicker"
         android:summary="@string/pref_usetimepicker_summary"
         android:title="@string/pref_usetimepicker"/>
+
+    <sh.ftp.rocketninelabs.meditationassistant.TimePreference
+        android:defaultValue="4:00"
+        android:key="pref_meditationstreakbuffer"
+        android:title="@string/pref_meditationstreakbuffer"
+        app:is24hour="false"/>
 
     <ListPreference
         android:defaultValue="dim"

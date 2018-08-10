@@ -162,6 +162,7 @@
     <string name="dimScreen">Dim screen</string>
     <string name="pref_display_seconds">Display seconds</string>
     <string name="pref_display_seconds_summary">Shown below the main timer</string>
+    <string name="pref_meditationstreakbuffer">Streak resets at</string>
     <string name="pref_full_screen">Full screen</string>
     <string name="pref_delay">Delay</string>
     <string name="pref_interval">Interval duration</string>

@@ -105,6 +105,7 @@ public class MeditationAssistant extends Application {
     private Boolean rememberduration = null;
     private Integer meditationstreak = null;
     private long meditationstreakexpires = 0;
+    public long meditationstreakbuffer = -1;
     private long sessrunnablestarttime = 0;
     private boolean sesswassignedout = false;
     private Boolean sendusage = null;
@@ -459,6 +460,15 @@ public class MeditationAssistant extends Application {
         });
     }
 
+    public long getMeditationStreakBuffer() {
+        if (meditationstreakbuffer < 0) {
+            String[] bufferSplit = getPrefs().getString("pref_meditationstreakbuffer", "4:00").split(":");
+            meditationstreakbuffer = (Integer.valueOf(bufferSplit[0]) * 3600) + (Integer.valueOf(bufferSplit[1]) * 60);
+        }
+
+        return meditationstreakbuffer;
+    }
+
     public void recalculateMeditationStreak() {
         Calendar dayCalendar = new GregorianCalendar();
         Integer daysback = 0;
@@ -549,7 +559,7 @@ public class MeditationAssistant extends Application {
         c_midnight_oneday.set(Calendar.MILLISECOND, 0);
         c_midnight_oneday.add(Calendar.DATE, 1); // One day
 
-        return (c_midnight_oneday.getTimeInMillis() / 1000) + 14400;
+        return (c_midnight_oneday.getTimeInMillis() / 1000) + getMeditationStreakBuffer();
     }
 
     public long getStreakExpiresTwoDaysTimestamp() {
@@ -561,7 +571,7 @@ public class MeditationAssistant extends Application {
         c_midnight_twodays.set(Calendar.MILLISECOND, 0);
         c_midnight_twodays.add(Calendar.DATE, 2); // Two days
 
-        return (c_midnight_twodays.getTimeInMillis() / 1000) + 14400;
+        return (c_midnight_twodays.getTimeInMillis() / 1000) + getMeditationStreakBuffer();
     }
 
     public void notifySessionsUpdated() {
