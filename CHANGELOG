@@ -1,4 +1,5 @@
 1.5.2:
+- Potentially fix sounds not reliably playing
 - Add 'Streak resets at' preference
 
 1.5.1:
