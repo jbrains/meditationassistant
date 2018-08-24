@@ -382,46 +382,44 @@ public class MeditationAssistant extends Application {
 
     public void playSound(int soundresource, String soundpath, boolean restoreVolume) {
         WakeLocker.acquire(getApplicationContext(), false);
-        Thread soundThread = new Thread(() -> {
-            MediaPlayer soundPlayer = null;
-            try {
-                if (!soundpath.equals("")) {
-                    soundPlayer = MediaPlayer.create(getApplicationContext(), Uri.parse(soundpath));
-                } else {
-                    soundPlayer = MediaPlayer.create(getApplicationContext(), soundresource);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+
+        MediaPlayer soundPlayer = null;
+        try {
+            if (!soundpath.equals("")) {
+                soundPlayer = MediaPlayer.create(getApplicationContext(), Uri.parse(soundpath));
+            } else {
+                soundPlayer = MediaPlayer.create(getApplicationContext(), soundresource);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (soundPlayer == null) {
+            String soundLabel = soundpath;
+            if (soundLabel.equals("")) {
+                soundLabel = String.valueOf(soundresource);
+            }
+            Log.e("MeditationAssistant", "Failed to load sound: " + soundLabel);
+
+            if (restoreVolume) {
+                restoreVolume();
             }
 
-            if (soundPlayer == null) {
-                String soundLabel = soundpath;
-                if (soundLabel.equals("")) {
-                    soundLabel = String.valueOf(soundresource);
-                }
-                Log.e("MeditationAssistant", "Failed to load sound: " + soundLabel);
+            WakeLocker.release();
+            return;
+        }
 
-                if (restoreVolume) {
-                    restoreVolume();
-                }
-
-                WakeLocker.release();
-                return;
+        soundPlayer.setOnCompletionListener(mp -> {
+            if (restoreVolume) {
+                restoreVolume();
             }
-
-            soundPlayer.setOnCompletionListener(mp -> {
-                if (restoreVolume) {
-                    restoreVolume();
-                }
-                mp.release();
-                WakeLocker.release();
-            });
-            soundPlayer.setOnPreparedListener(mp -> {
-                SystemClock.sleep(MeditationAssistant.MEDIA_DELAY);
-                mp.start();
-            });
+            mp.release();
+            WakeLocker.release();
         });
-        soundThread.start();
+        soundPlayer.setOnPreparedListener(mp -> {
+            SystemClock.sleep(MeditationAssistant.MEDIA_DELAY);
+            mp.start();
+        });
     }
 
     public void startAuth(Context context, boolean showToast) {
