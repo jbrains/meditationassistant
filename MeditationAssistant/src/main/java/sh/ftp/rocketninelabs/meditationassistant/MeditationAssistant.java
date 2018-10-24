@@ -113,11 +113,12 @@ public class MeditationAssistant extends Application {
     private long sessionduration = 0;
     private Integer webview_scale = null;
     private String timerMode = null;
-    private String durationFormatted = "";
     private Activity signin_activity = null;
     private Bundle signin_options = new Bundle();
     private SharedPreferences prefs = null;
     private WakeLocker wakeLocker = new WakeLocker();
+    String pausedTimerHoursMinutes;
+    String pausedTimerSeconds;
 
     public static void setAlphaCompat(View view, float alpha) {
         view.setAlpha(alpha);
@@ -276,17 +277,6 @@ public class MeditationAssistant extends Application {
         }
 
         return 0;
-    }
-
-    public String getDurationFormatted() {
-        return durationFormatted;
-    }
-
-    public void setDurationFormatted(String d) {
-        if (!d.equals(durationFormatted)) {
-            durationFormatted = d;
-            // showNotification();
-        }
     }
 
     public boolean getEditingDuration() {
