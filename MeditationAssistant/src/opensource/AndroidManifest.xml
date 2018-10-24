@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    package="sh.ftp.rocketninelabs.meditationassistant"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="sh.ftp.rocketninelabs.meditationassistant">
 
     <application>
 
         <meta-data
             android:name="com.google.android.backup.api_key"
-            android:value="AEdPqrEAAAAIAUEb3SC2bBJt6pLanNwm7yB1Qy2WFS_nm7pHuw"/>
+            android:value="AEdPqrEAAAAIAUEb3SC2bBJt6pLanNwm7yB1Qy2WFS_nm7pHuw" />
 
         <!-- Widgets -->
         <!--
@@ -26,23 +25,23 @@
             android:name=".MeditationProvider2"
             android:label="@string/widget2x1">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_2"/>
+                android:resource="@xml/widget_2" />
         </receiver>
         <receiver
             android:name=".MeditationProvider3"
             android:label="@string/widget3x1">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_3"/>
+                android:resource="@xml/widget_3" />
         </receiver>
 
     </application>
