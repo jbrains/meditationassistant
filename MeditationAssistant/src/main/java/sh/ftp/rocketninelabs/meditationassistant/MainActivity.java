@@ -169,10 +169,12 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     private Runnable clearWakeLock = new Runnable() {
         @Override
         public void run() {
-            WakeLocker.release();
+            getMeditationAssistant().releaseWakeLock(wakeLockID);
+            wakeLockID = null;
         }
     };
     private Boolean finishedTutorial = null;
+    private String wakeLockID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -1563,6 +1565,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             Log.d("MeditationAssistant", "Cancelled interval alarm");
         }
 
+        getMeditationAssistant().releaseAllWakeLocks();
         getMeditationAssistant().restoreVolume();
 
         if (getMeditationAssistant().getTimeStartMeditate() != 0) {
@@ -1773,7 +1776,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     public void updateTexts() {
         String pref_full_screen = getMeditationAssistant().getPrefs().getString("pref_full_screen", "");
 
-        /* Log.d("MeditationAssistant", "Updating texts..."); */
         TextView txtMainStatus = (TextView) findViewById(R.id.txtMainStatus);
         Button btnMeditationStreak = (Button) findViewById(R.id.btnMeditationStreak);
         Resources res = getResources();
@@ -1814,19 +1816,16 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         }
 
         if (getMeditationAssistant().getMediNET().status != null) {
-            Log.d("MeditationAssistant", "Updating texts with status "
-                    + getMeditationAssistant().getMediNET().status);
-            if (getMeditationAssistant().getMediNET().status
-                    .equals("connecting")) {
-                txtMainStatus.setText(getString(R.string.mediNETConnecting));
-            } else if (getMeditationAssistant().getMediNET().status
-                    .equals("success")) {
-                txtMainStatus.setText(getString(R.string.mediNETConnected));
-            } else if (getMeditationAssistant().getMediNET().status
-                    .equals("connectingasf")) {
-                txtMainStatus.setText(getString(R.string.mediNETConnecting));
-            } else {
-                txtMainStatus.setText("");
+            switch (getMeditationAssistant().getMediNET().status) {
+                case "connecting":
+                    txtMainStatus.setText(getString(R.string.mediNETConnecting));
+                    break;
+                case "success":
+                    txtMainStatus.setText(getString(R.string.mediNETConnected));
+                    break;
+                default:
+                    txtMainStatus.setText("");
+                    break;
             }
         }
 
@@ -1866,7 +1865,10 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                 Boolean wakeUpInterval = intent.getBooleanExtra("wakeupinterval", false);
                 Log.d("MeditationAssistant", "ALARM RECEIVER INTEGRATED: Received broadcast - Full: " + (fullWakeUp ? "Full" : "Partial") + " - Start/interval: " + (wakeUpStart ? "Start" : (wakeUpInterval ? "Interval" : "Neither")));
 
-                WakeLocker.acquire(getApplicationContext(), fullWakeUp);
+                if (wakeLockID != null) {
+                    getMeditationAssistant().releaseWakeLock(wakeLockID);
+                }
+                wakeLockID = getMeditationAssistant().acquireWakeLock(fullWakeUp);
 
                 handler.removeCallbacks(clearWakeLock);
                 handler.postDelayed(clearWakeLock, 7000);

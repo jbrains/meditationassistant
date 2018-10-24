@@ -117,6 +117,7 @@ public class MeditationAssistant extends Application {
     private Activity signin_activity = null;
     private Bundle signin_options = new Bundle();
     private SharedPreferences prefs = null;
+    private WakeLocker wakeLocker = new WakeLocker();
 
     public static void setAlphaCompat(View view, float alpha) {
         view.setAlpha(alpha);
@@ -381,7 +382,7 @@ public class MeditationAssistant extends Application {
     }
 
     public void playSound(int soundresource, String soundpath, boolean restoreVolume) {
-        WakeLocker.acquire(getApplicationContext(), false);
+        String wakeLockID = acquireWakeLock(false);
 
         MediaPlayer soundPlayer = null;
         try {
@@ -405,7 +406,7 @@ public class MeditationAssistant extends Application {
                 restoreVolume();
             }
 
-            WakeLocker.release();
+            releaseWakeLock(wakeLockID);
             return;
         }
 
@@ -414,7 +415,7 @@ public class MeditationAssistant extends Application {
                 restoreVolume();
             }
             mp.release();
-            WakeLocker.release();
+            releaseWakeLock(wakeLockID);
         });
         soundPlayer.setOnPreparedListener(mp -> {
             SystemClock.sleep(MeditationAssistant.MEDIA_DELAY);
@@ -1314,6 +1315,18 @@ public class MeditationAssistant extends Application {
 
     public int getMAAppVersionNumber() {
         return BuildConfig.VERSION_CODE;
+    }
+
+    public String acquireWakeLock(Boolean fullWakeUp) {
+        return wakeLocker.acquire(getApplicationContext(), fullWakeUp);
+    }
+
+    public void releaseWakeLock(String wakeLockID) {
+        wakeLocker.release(wakeLockID);
+    }
+
+    public void releaseAllWakeLocks() {
+        wakeLocker.releaseAll();
     }
 
     public enum TrackerName {

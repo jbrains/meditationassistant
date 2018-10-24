@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -16,10 +15,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class CompleteActivity extends Activity {
-    private MediaPlayer mMediaPlayer;
     private MeditationAssistant ma;
     private Handler handler = new Handler();
-    private Runnable runnable = new Runnable() {
+    private Runnable completeRunnable = new Runnable() {
         @Override
         public void run() {
             handler.removeCallbacks(this);
@@ -42,13 +40,6 @@ public class CompleteActivity extends Activity {
                 Log.d("MeditationAssistant", "Waiting on MediNET runnable... (" + getMeditationAssistant().getMediNET().status + "/" + getMeditationAssistant().getMediNET().result + ")");
                 handler.postDelayed(this, 2000);
             }
-        }
-    };
-    private Runnable clearWakeLock = new Runnable() {
-        public void run() {
-            handler.removeCallbacks(clearWakeLock);
-
-            WakeLocker.release();
         }
     };
 
@@ -259,20 +250,7 @@ public class CompleteActivity extends Activity {
     @Override
     public void onDestroy() {
         getMeditationAssistant().utility_ads.destroyAd(this);
-        if (mMediaPlayer != null) {
-            try {
-                mMediaPlayer.release();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        try {
-            WakeLocker.release();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        handler.removeCallbacks(runnable);
+        handler.removeCallbacks(completeRunnable);
         super.onDestroy();
     }
 
@@ -312,8 +290,8 @@ public class CompleteActivity extends Activity {
         getMeditationAssistant().getMediNET().session.message = getSessionMessage();
         getMeditationAssistant().getMediNET().postSession();
 
-        handler.removeCallbacks(runnable);
-        handler.postDelayed(runnable, 5);
+        handler.removeCallbacks(completeRunnable);
+        handler.postDelayed(completeRunnable, 5);
     }
 
     private void saveLastMessage() {
