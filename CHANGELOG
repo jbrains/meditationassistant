@@ -1,3 +1,8 @@
+1.5.3:
+- Fix interval sounds not reliably playing
+- Fix timer not displaying when returning to the app while paused
+- Add 'Widget color' preference
+
 1.5.2:
 - Potentially fix sounds not reliably playing
 - Add 'Streak resets at' preference
