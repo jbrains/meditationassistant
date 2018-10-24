@@ -3,6 +3,7 @@ package sh.ftp.rocketninelabs.meditationassistant;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.appwidget.AppWidgetManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
@@ -33,6 +34,9 @@ public class MeditationService extends Service {
 
                 MeditationAssistant ma = (MeditationAssistant) this
                         .getApplication();
+
+                updateViews.setTextColor(R.id.txtWidgetDays, ma.getPrefs().getInt("pref_widgetcolor", -16777216));
+                updateViews.setTextColor(R.id.txtWidgetText, ma.getPrefs().getInt("pref_widgetcolor", -16777216));
 
                 if (ma.getMeditationStreak() > 0) {
                     updateViews.setTextViewText(R.id.txtWidgetDays,

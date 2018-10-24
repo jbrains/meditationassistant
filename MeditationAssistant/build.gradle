@@ -82,6 +82,7 @@ dependencies {
     implementation "com.android.support:design:27.1.1"
     implementation "net.openid:appauth:0.7.0"
     implementation "com.squareup.okio:okio:1.15.0"
+    implementation 'net.margaritov.preference.colorpicker.ColorPickerPreference:ColorPickerPreference:1.0.0'
 
     freeImplementation 'com.google.android.gms:play-services-base:16.0.1'
     fullImplementation 'com.google.android.gms:play-services-base:16.0.1'

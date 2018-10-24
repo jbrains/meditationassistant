@@ -6,12 +6,18 @@
         android:entryValues="@array/mathemes_values"
         android:key="pref_theme"
         android:summary=""
-        android:title="@string/pref_theme"/>
+        android:title="@string/pref_theme" />
+
+    <net.margaritov.preference.colorpicker.ColorPickerPreference
+        alphaSlider="true"
+        android:defaultValue="-16777216"
+        android:key="pref_widgetcolor"
+        android:title="@string/pref_widgetcolor" />
 
     <CheckBoxPreference
         android:defaultValue="true"
         android:key="pref_sendusage"
         android:summary="@string/pref_sendusage_summary"
-        android:title="@string/pref_sendusage"/>
+        android:title="@string/pref_sendusage" />
 
 </PreferenceScreen>

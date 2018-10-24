@@ -4,6 +4,8 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -34,6 +36,8 @@ import android.widget.Toast;
 
 import com.nononsenseapps.filepicker.FilePickerActivity;
 import com.nononsenseapps.filepicker.Utils;
+
+import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -74,6 +78,20 @@ public class SettingsActivity extends PreferenceActivity {
                     }
                     initialTimePickerChange = false;
                 }
+
+                return true;
+            } else if (preference instanceof ColorPickerPreference) {
+                Intent intent2 = new Intent(getApplicationContext(), MeditationProvider2.class);
+                intent2.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+                int[] ids2 = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), MeditationProvider2.class));
+                intent2.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids2);
+                sendBroadcast(intent2);
+
+                Intent intent3 = new Intent(getApplicationContext(), MeditationProvider3.class);
+                intent3.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+                int[] ids3 = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), MeditationProvider3.class));
+                intent3.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids3);
+                sendBroadcast(intent3);
 
                 return true;
             }
@@ -552,6 +570,13 @@ public class SettingsActivity extends PreferenceActivity {
 
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_theme") : preferenceFragment.findPreference("pref_theme"));
 
+            if (!BuildConfig.FLAVOR.equals("free")) {
+                bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_widgetcolor") : preferenceFragment.findPreference("pref_widgetcolor"));
+            } else { // Hide widget color preference
+                ColorPickerPreference pref_widgetcolor = (ColorPickerPreference) (preferenceFragment == null ? findPreference("pref_widgetcolor") : preferenceFragment.findPreference("pref_widgetcolor"));
+                (preferenceFragment == null ? getPreferenceScreen() : preferenceFragment.getPreferenceScreen()).removePreference(pref_widgetcolor);
+            }
+
             if (BuildConfig.FLAVOR.equals("opensource")) { // Hide usage statistics preference, as tracking is completely disabled
                 CheckBoxPreference pref_sendusage = (CheckBoxPreference) (preferenceFragment == null ? findPreference("pref_sendusage") : preferenceFragment.findPreference("pref_sendusage"));
                 (preferenceFragment == null ? getPreferenceScreen() : preferenceFragment.getPreferenceScreen()).removePreference(pref_sendusage);
@@ -627,6 +652,10 @@ public class SettingsActivity extends PreferenceActivity {
     private void bindPreferenceSummaryToValue(Preference preference) {
         // Set the listener to watch for value changes.
         preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);
+
+        if (preference.getKey().equals("pref_widgetcolor")) {
+            return;
+        }
 
         // Trigger the listener immediately with the preference's
         // current value.
