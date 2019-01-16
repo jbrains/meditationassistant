@@ -6,6 +6,7 @@
     <string name="about">About</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="warning">Warning</string>
     <string name="openWith">Open with</string>
     <string name="delete">Delete</string>
     <string name="sessions">Sessions</string>
@@ -83,6 +84,7 @@
     <string name="pref_sessionintro">Introduction</string>
     <string name="presetsettings">Preset settings</string>
     <string name="modeandduration">Mode and duration</string>
+    <string name="streakdifferencewarning">Your current meditation streak does not seem correct based on current session data. Use updated meditation streak?\n\nCurrent streak: %1$d\nUpdated streak: %2$d</string>
 
     <!-- Session complete -->
     <string name="sessioncomplete">Session Complete</string>

@@ -58,7 +58,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         db.insert(TABLE_SESSIONS, null, values);
 
-        getMeditationAssistant().recalculateMeditationStreak();
         getMeditationAssistant().notifySessionsUpdated();
     }
 

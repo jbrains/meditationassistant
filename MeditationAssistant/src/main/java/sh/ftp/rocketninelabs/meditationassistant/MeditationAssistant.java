@@ -458,7 +458,7 @@ public class MeditationAssistant extends Application {
         return meditationstreakbuffer;
     }
 
-    public void recalculateMeditationStreak() {
+    public void recalculateMeditationStreak(Activity activity) {
         Calendar dayCalendar = new GregorianCalendar();
         Integer daysback = 0;
         Integer recalculatedstreak = 0;
@@ -480,8 +480,11 @@ public class MeditationAssistant extends Application {
             dayCalendar.add(Calendar.DATE, -1);
         }
 
-        if (getMeditationStreak() < recalculatedstreak) {
+        Integer currentStreak = getMeditationStreak();
+        if (currentStreak < recalculatedstreak) {
             setMeditationStreak(recalculatedstreak, sessionexiststoday ? getStreakExpiresTwoDaysTimestamp() : getStreakExpiresOneDayTimestamp());
+        } else if (currentStreak > recalculatedstreak) {
+            showStreakDifferenceWarning(currentStreak, recalculatedstreak, sessionexiststoday, activity);
         }
     }
 
@@ -505,7 +508,9 @@ public class MeditationAssistant extends Application {
             meditationstreak = 0;
             meditationstreakexpires = 0;
 
-            getPrefs().edit().putInt("meditationstreak", meditationstreak).putLong("meditationstreakexpires", meditationstreakexpires).apply();
+            getPrefs().edit().putInt("meditationstreak", meditationstreak)
+                    .putLong("meditationstreakexpires", meditationstreakexpires)
+                    .putBoolean("meditationstreakwarningshown", false).apply();
         }
 
         return meditationstreak;
@@ -958,30 +963,28 @@ public class MeditationAssistant extends Application {
         if (meditationstreak == null) {
             meditationstreak = getMeditationStreak();
         }
-        if (ms >= meditationstreak) {
-            meditationstreak = ms;
-            meditationstreakexpires = expires;
+        meditationstreak = ms;
+        meditationstreakexpires = expires;
 
-            Calendar date = new GregorianCalendar();
-            date.setTimeZone(TimeZone.getDefault());
-            long timestamp = date.getTimeInMillis() / 1000;
-            Log.d("MeditationAssistant",
-                    "Streak: " + String.valueOf(meditationstreak) + ", expires: "
-                            + String.valueOf(expires) + " (in "
-                            + String.valueOf(expires - timestamp) + " seconds)"
-            );
+        Calendar date = new GregorianCalendar();
+        date.setTimeZone(TimeZone.getDefault());
+        long timestamp = date.getTimeInMillis() / 1000;
+        Log.d("MeditationAssistant",
+                "Streak: " + String.valueOf(meditationstreak) + ", expires: "
+                        + String.valueOf(expires) + " (in "
+                        + String.valueOf(expires - timestamp) + " seconds)"
+        );
 
-            getPrefs().edit().putInt("meditationstreak", meditationstreak).putLong("meditationstreakexpires", meditationstreakexpires).apply();
+        getPrefs().edit().putInt("meditationstreak", meditationstreak).putLong("meditationstreakexpires", meditationstreakexpires).apply();
 
-            if (meditationstreak > getLongestMeditationStreak()) {
-                setLongestMeditationStreak(meditationstreak);
-            }
-
-            updateWidgets();
-        } else {
-            Log.d("MeditationAssistant",
-                    "Not setting new meditation streak, current streak is higher");
+        if (meditationstreak == 1) {
+            getPrefs().edit().putBoolean("meditationstreakwarningshown", false).apply();
         }
+        if (meditationstreak > getLongestMeditationStreak()) {
+            setLongestMeditationStreak(meditationstreak);
+        }
+
+        updateWidgets();
 
         /* Update all widgets */
         Intent update_widgets = new Intent(getApplicationContext(), MeditationProvider.class);
@@ -1081,6 +1084,46 @@ public class MeditationAssistant extends Application {
         }
 
         return null;
+    }
+
+    public void showStreakDifferenceWarning(int oldstreak, int newstreak, boolean twodays, Activity activity) {
+        try {
+            Looper.prepare();
+        } catch (Exception e) {
+            //e.printStackTrace();
+        }
+
+        if (activity == null) {
+            return;
+        }
+
+        if (getPrefs().getBoolean("meditationstreakwarningshown", false)) {
+            return;
+        }
+        getPrefs().edit().putBoolean("meditationstreakwarningshown", true).apply();
+
+        AlertDialog streakDifferenceDialog = new AlertDialog.Builder(
+                activity)
+                .setPositiveButton(R.string.yes,
+                        (dialog, id) -> {
+                            setMeditationStreak(newstreak, twodays ? getStreakExpiresTwoDaysTimestamp() : getStreakExpiresOneDayTimestamp());
+                        }
+                )
+                .setNegativeButton(R.string.no,
+                        (dialog, id) -> {
+                            // Do nothing
+                        }
+                )
+                .setTitle(R.string.warning)
+                .setMessage(String.format(getString(R.string.streakdifferencewarning), oldstreak, newstreak))
+                .setIcon(activity.getResources().getDrawable(
+                        getTheme().obtainStyledAttributes(getMATheme(true),
+                                new int[]{R.attr.actionIconGoToToday}).getResourceId(0, 0)
+                        )
+                )
+                .setCancelable(false).create();
+
+        streakDifferenceDialog.show();
     }
 
     public void showNotification() {

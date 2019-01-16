@@ -73,7 +73,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             } else if (key.equals("pref_meditation_sound_finish")
                     || key.equals("pref_meditation_sound_finish_custom")
                     || key.equals("pref_meditation_sound_start")
-                    || key.equals("pref_meditation_sound_start_custom")) {
+                    || key.equals("pref_meditation_sound_start_custom")
+                    || key.equals("meditationstreak")) {
                 updateTexts();
             } else if (key.equals("pref_text_size")) {
                 updateTextSize();
@@ -473,7 +474,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         }
 
         showNextTutorial();
-        getMeditationAssistant().recalculateMeditationStreak();
+        getMeditationAssistant().recalculateMeditationStreak(MainActivity.this);
 
         long pref_delay = Integer.valueOf(getMeditationAssistant().getPrefs().getString("pref_delay", "-1"));
         long pref_interval = Integer.valueOf(getMeditationAssistant().getPrefs().getString("pref_interval", "-1"));

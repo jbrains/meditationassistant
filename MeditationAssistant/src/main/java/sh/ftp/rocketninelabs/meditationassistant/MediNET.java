@@ -284,6 +284,8 @@ public class MediNET {
 
         resetSession();
 
+        getMeditationAssistant().recalculateMeditationStreak(activity);
+
         if (!manualposting && getMeditationAssistant().db.getNumSessions() >= 3) {
             getMeditationAssistant().asktorate = true;
         }

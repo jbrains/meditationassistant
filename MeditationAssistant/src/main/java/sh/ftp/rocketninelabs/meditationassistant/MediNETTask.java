@@ -211,7 +211,7 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
                         String streak_header = medinetConnection.getHeaderField("x-MediNET-Streak");
                         if (streak_header.contains(",")) {
                             getMeditationAssistant().setMeditationStreak(Integer.valueOf(streak_header.split(",")[0]), Integer.valueOf(streak_header.split(",")[1]));
-                            getMeditationAssistant().recalculateMeditationStreak();
+                            getMeditationAssistant().recalculateMeditationStreak(medinet.activity);
                         }
                     }
                 }
@@ -316,6 +316,7 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
                                 }
                             } else if (actionextra.equals("completeposting")) {
                                 medinet.saveSession(false, true);
+                                getMeditationAssistant().recalculateMeditationStreak(medinet.activity);
                             }
                         } else if (medinet.result.equals("alreadyposted")
                                 && actionextra.equals("manualposting")
@@ -379,6 +380,7 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
                                                 + String.valueOf(sess._started)
                                 );
                                 getMeditationAssistant().db.addSession(sess);
+                                getMeditationAssistant().recalculateMeditationStreak(medinet.activity);
                             } else {
                                 Log.d("MeditationAssistant",
                                         "Skipping session " + String.valueOf(session));
