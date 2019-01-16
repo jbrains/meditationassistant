@@ -1845,8 +1845,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                     + getIntent().toString());
             if (getIntent().getAction() != null) {
                 if (getIntent().getAction().equals("widgetclick")) {
-                    if (!getMeditationAssistant().getMediNET().status
-                            .equals("success")) {
+                    if (!getMeditationAssistant().getMediNET().status.equals("success") && getMeditationAssistant().getPrefs().getBoolean("pref_autosignin", false)) {
                         getMeditationAssistant().getMediNET().connect();
                     }
                 } else if (getIntent().getAction().equals("notificationPause")) {
