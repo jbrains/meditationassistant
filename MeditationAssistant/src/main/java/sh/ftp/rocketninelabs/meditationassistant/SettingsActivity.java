@@ -224,8 +224,6 @@ public class SettingsActivity extends PreferenceActivity {
                         Intent intent = new Intent();
                         intent.setAction(MeditationAssistant.ACTION_UPDATED);
                         sendBroadcast(intent);
-                    } else {
-                        getMeditationAssistant().meditationstreakbuffer = -1;
                     }
                 } else { // pref_session_delay and pref_session_interval
                     Log.d("MeditationAssistant", preference.getKey() + " value: " + String.valueOf(stringValue));

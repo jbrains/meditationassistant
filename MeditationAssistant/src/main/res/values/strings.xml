@@ -118,7 +118,9 @@
     <string name="daySaturdayShort">Sat</string>
     <string name="daySundayShort">Sun</string>
     <string name="addSession">Add session</string>
+    <string name="editSession">Edit session</string>
     <string name="add">Add</string>
+    <string name="edit">Edit</string>
     <string name="exportSessions">Export sessions</string>
     <string name="sessionExportFailed">Unable to export sessions</string>
     <string name="showExportedSessions">Sessions exported.  Would you like to browse the folder containing the export?</string>
@@ -129,7 +131,8 @@
     <string name="setTime">Set time</string>
     <string name="invalidDateOrTime">Invalid date or time</string>
     <string name="addSessionMeditating">Unable to add a session while meditating</string>
-    <string name="addSessionExists">Session already exists</string>
+    <string name="editSessionMeditating">Unable to edit a session while meditating</string>
+    <string name="sessionExists">Session already exists</string>
 
     <string name="days">Days</string>
     <string name="hours">Hours</string>

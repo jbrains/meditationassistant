@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.Application;
+import android.app.DatePickerDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -16,6 +17,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
+import android.media.MediaCas;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -29,7 +31,14 @@ import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import net.openid.appauth.AuthorizationRequest;
@@ -50,12 +59,14 @@ import java.io.UnsupportedEncodingException;
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
 
@@ -88,7 +99,6 @@ public class MeditationAssistant extends Application {
     public UtilityMA utility = new UtilityMA();
     public UtilityAdsMA utility_ads = new UtilityAdsMA();
     public Integer previous_volume = null;
-    AlertDialog alertDialog = null;
     String AUTH_TOKEN_TYPE = "oauth2:https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
     private String appVersion = null;
     private Boolean appFull = null;
@@ -105,7 +115,8 @@ public class MeditationAssistant extends Application {
     private Boolean rememberduration = null;
     private Integer meditationstreak = null;
     private long meditationstreakexpires = 0;
-    public long meditationstreakbuffer = -1;
+    public ArrayList<Integer> streaktime = new ArrayList<>();
+    public long streakbuffer = -1;
     private long sessrunnablestarttime = 0;
     private boolean sesswassignedout = false;
     private Boolean sendusage = null;
@@ -119,6 +130,101 @@ public class MeditationAssistant extends Application {
     private WakeLocker wakeLocker = new WakeLocker();
     String pausedTimerHoursMinutes;
     String pausedTimerSeconds;
+
+    private AlertDialog sessionDialog = null;
+    private int sessionDialogStartedYear = -1;
+    private int sessionDialogStartedMonth = -1;
+    private int sessionDialogStartedDay = -1;
+    private int sessionDialogStartedHour = -1;
+    private int sessionDialogStartedMinute = -1;
+    private int sessionDialogCompletedYear = -1;
+    private int sessionDialogCompletedMonth = -1;
+    private int sessionDialogCompletedDay = -1;
+    private int sessionDialogCompletedHour = -1;
+    private int sessionDialogCompletedMinute = -1;
+    private String sessionDialogCurrentOption = "";
+    private Button sessionDialogStartedDateButton = null;
+    private Button sessionDialogStartedTimeButton = null;
+    private Button sessionDialogCompletedDateButton = null;
+    private Button sessionDialogCompletedTimeButton = null;
+    private EditText sessionDialogMessage = null;
+    private DatePickerDialog.OnDateSetListener sessionDialogDateSetListener =
+            new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year,
+                                      int monthOfYear, int dayOfMonth) {
+                    if (sessionDialogCurrentOption.equals("started")) {
+                        sessionDialogStartedYear = year;
+                        sessionDialogStartedMonth = monthOfYear;
+                        sessionDialogStartedDay = dayOfMonth;
+
+                        if (sessionDialogCompletedYear == -1 || sessionDialogCompletedMonth == -1 || sessionDialogCompletedDay == -1) {
+                            sessionDialogCompletedYear = sessionDialogStartedYear;
+                            sessionDialogCompletedMonth = sessionDialogStartedMonth;
+                            sessionDialogCompletedDay = sessionDialogStartedDay;
+                        } else if (sessionDialogCompletedYear != -1 && sessionDialogCompletedMonth != -1 && sessionDialogCompletedDay != -1) {
+                            Calendar c_started = Calendar.getInstance();
+                            c_started.set(Calendar.YEAR, sessionDialogStartedYear);
+                            c_started.set(Calendar.MONTH, sessionDialogStartedMonth);
+                            c_started.set(Calendar.DAY_OF_MONTH, sessionDialogStartedDay);
+                            c_started.set(Calendar.HOUR_OF_DAY, 0);
+                            c_started.set(Calendar.MINUTE, 0);
+                            c_started.set(Calendar.SECOND, 0);
+                            c_started.set(Calendar.MILLISECOND, 0);
+
+                            Calendar c_completed = Calendar.getInstance();
+                            c_completed.set(Calendar.YEAR, sessionDialogCompletedYear);
+                            c_completed.set(Calendar.MONTH, sessionDialogCompletedMonth);
+                            c_completed.set(Calendar.DAY_OF_MONTH, sessionDialogCompletedDay);
+                            c_completed.set(Calendar.HOUR_OF_DAY, 0);
+                            c_completed.set(Calendar.MINUTE, 0);
+                            c_completed.set(Calendar.SECOND, 0);
+                            c_completed.set(Calendar.MILLISECOND, 0);
+
+                            if (c_started.getTimeInMillis() > c_completed.getTimeInMillis()) {
+                                sessionDialogCompletedYear = sessionDialogStartedYear;
+                                sessionDialogCompletedMonth = sessionDialogStartedMonth;
+                                sessionDialogCompletedDay = sessionDialogStartedDay;
+                            }
+                        }
+                    } else {
+                        sessionDialogCompletedYear = year;
+                        sessionDialogCompletedMonth = monthOfYear;
+                        sessionDialogCompletedDay = dayOfMonth;
+                    }
+
+                    updateSessionDialog();
+                }
+            };
+    private TimePickerDialog.OnTimeSetListener sessionDialogTimeSetListener =
+            new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                    if (sessionDialogCurrentOption.equals("started")) {
+                        sessionDialogStartedHour = hourOfDay;
+                        sessionDialogStartedMinute = minute;
+
+                        if (sessionDialogCompletedHour == -1 && sessionDialogCompletedMinute == -1) {
+                            sessionDialogCompletedHour = sessionDialogStartedHour;
+                            sessionDialogCompletedMinute = sessionDialogStartedMinute;
+                        }
+                    } else {
+                        sessionDialogCompletedHour = hourOfDay;
+                        sessionDialogCompletedMinute = minute;
+                    }
+
+                    updateSessionDialog();
+                }
+            };
+
+    SharedPreferences.OnSharedPreferenceChangeListener sharedPrefslistener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+        public void onSharedPreferenceChanged(SharedPreferences newprefs, String key) {
+            if (key.equals("pref_meditationstreakbuffer")) {
+                streakbuffer = -1;
+                streaktime = new ArrayList<>();
+            }
+        }
+    };
 
     public static void setAlphaCompat(View view, float alpha) {
         view.setAlpha(alpha);
@@ -449,13 +555,23 @@ public class MeditationAssistant extends Application {
         });
     }
 
-    public long getMeditationStreakBuffer() {
-        if (meditationstreakbuffer < 0) {
+    public ArrayList<Integer> getStreakBufferTime() {
+        if (streaktime.isEmpty()) {
             String[] bufferSplit = getPrefs().getString("pref_meditationstreakbuffer", "4:00").split(":");
-            meditationstreakbuffer = (Integer.valueOf(bufferSplit[0]) * 3600) + (Integer.valueOf(bufferSplit[1]) * 60);
+            streaktime.add(Integer.valueOf(bufferSplit[0]));
+            streaktime.add(Integer.valueOf(bufferSplit[1]));
         }
 
-        return meditationstreakbuffer;
+        return streaktime;
+    }
+
+    public long getStreakBufferSeconds() {
+        if (streakbuffer < 0) {
+            ArrayList<Integer> streakbuffertime = getStreakBufferTime();
+            streakbuffer = (streakbuffertime.get(0) * 3600) + (streakbuffertime.get(1) * 60);
+        }
+
+        return streakbuffer;
     }
 
     public void recalculateMeditationStreak(Activity activity) {
@@ -553,7 +669,7 @@ public class MeditationAssistant extends Application {
         c_midnight_oneday.set(Calendar.MILLISECOND, 0);
         c_midnight_oneday.add(Calendar.DATE, 1); // One day
 
-        return (c_midnight_oneday.getTimeInMillis() / 1000) + getMeditationStreakBuffer();
+        return (c_midnight_oneday.getTimeInMillis() / 1000) + getStreakBufferSeconds();
     }
 
     public long getStreakExpiresTwoDaysTimestamp() {
@@ -565,7 +681,7 @@ public class MeditationAssistant extends Application {
         c_midnight_twodays.set(Calendar.MILLISECOND, 0);
         c_midnight_twodays.add(Calendar.DATE, 2); // Two days
 
-        return (c_midnight_twodays.getTimeInMillis() / 1000) + getMeditationStreakBuffer();
+        return (c_midnight_twodays.getTimeInMillis() / 1000) + getStreakBufferSeconds();
     }
 
     public void notifySessionsUpdated() {
@@ -880,6 +996,8 @@ public class MeditationAssistant extends Application {
                         + String.valueOf(Build.VERSION.SDK_INT)
         );
 
+        getPrefs().registerOnSharedPreferenceChangeListener(sharedPrefslistener);
+
         // Reset timer to default values
         if (!getPrefs().getBoolean("pref_rememberlasttimer", true)) {
             SharedPreferences.Editor editor = getPrefs().edit();
@@ -1173,6 +1291,295 @@ public class MeditationAssistant extends Application {
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(0, notification);
+    }
+
+    public void showSessionDialog(final SessionSQL session, Activity activity) {
+        if (sessionDialog != null) {
+            try {
+                if (sessionDialog.isShowing()) {
+                    sessionDialog.dismiss();
+                }
+            } catch (WindowManager.BadTokenException e) {
+                // Activity is not in the foreground
+            }
+        }
+
+        if (getTimeStartMeditate() > 0) {
+            shortToast(getString(session._started == 0 ? R.string.addSessionMeditating : R.string.editSessionMeditating));
+            return;
+        }
+
+        sessionDialogStartedYear = -1;
+        sessionDialogStartedMonth = -1;
+        sessionDialogStartedDay = -1;
+        sessionDialogStartedHour = -1;
+        sessionDialogStartedMinute = -1;
+
+        sessionDialogCompletedYear = -1;
+        sessionDialogCompletedMonth = -1;
+        sessionDialogCompletedDay = -1;
+        sessionDialogCompletedHour = -1;
+        sessionDialogCompletedMinute = -1;
+
+        if (session._started > 0) {
+            Calendar c_session_started = Calendar.getInstance();
+            c_session_started.setTimeInMillis(session._started * 1000);
+            sessionDialogStartedYear = c_session_started.get(Calendar.YEAR);
+            sessionDialogStartedMonth = c_session_started.get(Calendar.MONTH);
+            sessionDialogStartedDay = c_session_started.get(Calendar.DAY_OF_MONTH);
+            sessionDialogStartedHour =  c_session_started.get(Calendar.HOUR_OF_DAY);
+            sessionDialogStartedMinute =  c_session_started.get(Calendar.MINUTE);
+
+            Calendar c_session_completed = Calendar.getInstance();
+            c_session_completed.setTimeInMillis(session._completed * 1000);
+            sessionDialogCompletedYear = c_session_completed.get(Calendar.YEAR);
+            sessionDialogCompletedMonth = c_session_completed.get(Calendar.MONTH);
+            sessionDialogCompletedDay = c_session_completed.get(Calendar.DAY_OF_MONTH);
+            sessionDialogCompletedHour = c_session_completed.get(Calendar.HOUR_OF_DAY);
+            sessionDialogCompletedMinute = c_session_completed.get(Calendar.MINUTE);
+        }
+
+        View sessionDialogView = LayoutInflater.from(activity).inflate(R.layout.session_dialog, (ViewGroup) activity.findViewById(R.id.sessionDialog));
+        sessionDialogStartedDateButton = (Button) sessionDialogView.findViewById(R.id.sessionDialogSetDateStarted);
+        sessionDialogStartedTimeButton = (Button) sessionDialogView.findViewById(R.id.sessionDialogSetTimeStarted);
+        sessionDialogCompletedDateButton = (Button) sessionDialogView.findViewById(R.id.sessionDialogSetDateCompleted);
+        sessionDialogCompletedTimeButton = (Button) sessionDialogView.findViewById(R.id.sessionDialogSetTimeCompleted);
+        sessionDialogMessage = (EditText) sessionDialogView.findViewById(R.id.sessionDialogSetMessage);
+
+        sessionDialogStartedDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sessionDialogCurrentOption = "started";
+                DatePickerDialog dateDialog = null;
+
+                if (sessionDialogStartedYear == -1 || sessionDialogStartedMonth == -1 || sessionDialogStartedDay == -1) {
+                    Calendar c = Calendar.getInstance();
+                    dateDialog = new DatePickerDialog(activity,
+                            sessionDialogDateSetListener,
+                            c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+                } else {
+                    dateDialog = new DatePickerDialog(activity,
+                            sessionDialogDateSetListener,
+                            sessionDialogStartedYear, sessionDialogStartedMonth, sessionDialogStartedDay);
+                }
+
+                dateDialog.show();
+            }
+        });
+        sessionDialogStartedTimeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sessionDialogCurrentOption = "started";
+                TimePickerDialog timeDialog = null;
+
+                if (sessionDialogStartedHour == -1 || sessionDialogStartedMinute == -1) {
+                    Calendar c = Calendar.getInstance();
+                    timeDialog = new TimePickerDialog(activity,
+                            sessionDialogTimeSetListener,
+                            c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), false);
+                } else {
+                    timeDialog = new TimePickerDialog(activity,
+                            sessionDialogTimeSetListener,
+                            sessionDialogStartedHour, sessionDialogStartedMinute, false);
+                }
+
+                timeDialog.show();
+            }
+        });
+        sessionDialogCompletedDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sessionDialogCurrentOption = "completed";
+                DatePickerDialog dateDialog = null;
+
+                if (sessionDialogCompletedYear == -1 || sessionDialogCompletedMonth == -1 || sessionDialogCompletedDay == -1) {
+                    Calendar c = Calendar.getInstance();
+                    dateDialog = new DatePickerDialog(activity,
+                            sessionDialogDateSetListener,
+                            c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+                } else {
+                    dateDialog = new DatePickerDialog(activity,
+                            sessionDialogDateSetListener,
+                            sessionDialogCompletedYear, sessionDialogCompletedMonth, sessionDialogCompletedDay);
+                }
+
+                dateDialog.show();
+            }
+        });
+        sessionDialogCompletedTimeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sessionDialogCurrentOption = "completed";
+                TimePickerDialog timeDialog = null;
+
+                if (sessionDialogCompletedHour == -1 || sessionDialogCompletedMinute == -1) {
+                    Calendar c = Calendar.getInstance();
+                    timeDialog = new TimePickerDialog(activity,
+                            sessionDialogTimeSetListener,
+                            c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), false);
+                } else {
+                    timeDialog = new TimePickerDialog(activity,
+                            sessionDialogTimeSetListener,
+                            sessionDialogCompletedHour, sessionDialogCompletedMinute, false);
+                }
+
+                timeDialog.show();
+            }
+        });
+
+        sessionDialog = new AlertDialog.Builder(activity)
+                .setIcon(
+                        getResources().getDrawable(
+                                getTheme().obtainStyledAttributes(getMATheme(true),
+                                        new int[]{session._started == 0 ? R.attr.actionIconNew : R.attr.actionIconGoToToday})
+                                        .getResourceId(0, 0)
+                        )
+                )
+                .setTitle(getString(session._started == 0 ? R.string.addSession : R.string.editSession))
+                .setView(sessionDialogView)
+                .setPositiveButton(getString(session._started == 0 ? R.string.add : R.string.edit), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface,
+                                        int which) {
+                        // Overridden later
+                    }
+                })
+                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface,
+                                        int which) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .create();
+
+        updateSessionDialog();
+        sessionDialog.show();
+
+        Button saveButton = sessionDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (sessionDialogStartedYear == -1 || sessionDialogStartedMonth == -1 || sessionDialogStartedDay == -1 || sessionDialogStartedHour == -1 || sessionDialogStartedMinute == -1 || sessionDialogCompletedYear == -1 || sessionDialogCompletedMonth == -1 || sessionDialogCompletedDay == -1 || sessionDialogCompletedHour == -1 || sessionDialogCompletedMinute == -1) {
+                    shortToast(getString(R.string.invalidDateOrTime));
+                } else {
+                    Calendar c_started = Calendar.getInstance();
+                    c_started.set(Calendar.YEAR, sessionDialogStartedYear);
+                    c_started.set(Calendar.MONTH, sessionDialogStartedMonth);
+                    c_started.set(Calendar.DAY_OF_MONTH, sessionDialogStartedDay);
+                    c_started.set(Calendar.HOUR_OF_DAY, sessionDialogStartedHour);
+                    c_started.set(Calendar.MINUTE, sessionDialogStartedMinute);
+                    c_started.set(Calendar.SECOND, 0);
+                    c_started.set(Calendar.MILLISECOND, 0);
+
+                    Calendar c_completed = Calendar.getInstance();
+                    c_completed.set(Calendar.YEAR, sessionDialogCompletedYear);
+                    c_completed.set(Calendar.MONTH, sessionDialogCompletedMonth);
+                    c_completed.set(Calendar.DAY_OF_MONTH,sessionDialogCompletedDay);
+                    c_completed.set(Calendar.HOUR_OF_DAY, sessionDialogCompletedHour);
+                    c_completed.set(Calendar.MINUTE, sessionDialogCompletedMinute);
+                    c_completed.set(Calendar.SECOND, 0);
+                    c_completed.set(Calendar.MILLISECOND, 0);
+
+                    if (c_started.getTimeInMillis() > Calendar.getInstance().getTimeInMillis() || c_completed.getTimeInMillis() > Calendar.getInstance().getTimeInMillis() || c_completed.getTimeInMillis() <= c_started.getTimeInMillis()) {
+                        shortToast(getString(R.string.invalidDateOrTime));
+                        return;
+                    }
+
+                    boolean sessionExists = db.getSessionByStarted(c_started.getTimeInMillis() / 1000) == null;
+                    if (session._started == 0) {
+                        if (!sessionExists) {
+                            getMediNET().resetSession();
+                            getMediNET().session.started = c_started.getTimeInMillis() / 1000;
+                            getMediNET().session.length = ((c_completed.getTimeInMillis() / 1000) - (c_started.getTimeInMillis() / 1000));
+                            getMediNET().session.completed = c_completed.getTimeInMillis() / 1000;
+                            getMediNET().session.message = sessionDialogMessage.getText().toString().trim();
+                            getMediNET().saveSession(true, false);
+
+                            notifySessionsUpdated();
+
+                            sessionDialog.dismiss();
+                        } else {
+                            shortToast(getString(R.string.sessionExists));
+                        }
+                    } else {
+                        if (sessionExists) {
+                            // TODO: Edit
+                        } else {
+                            // Session was updated or deleted in the background
+                        }
+
+                        sessionDialog.dismiss();
+                    }
+                }
+            }
+        });
+    }
+
+    public void updateSessionDialog() {
+        if (sessionDialogStartedDateButton == null || sessionDialogCompletedDateButton == null || sessionDialogStartedTimeButton == null || sessionDialogCompletedTimeButton == null) {
+            return;
+        }
+
+        SimpleDateFormat sdf_date = new SimpleDateFormat("MMMM d",
+                Locale.getDefault());
+        SimpleDateFormat sdf_time = new SimpleDateFormat("h:mm a",
+                Locale.getDefault());
+
+        sdf_date.setTimeZone(TimeZone.getDefault());
+        sdf_time.setTimeZone(TimeZone.getDefault());
+
+        if (sessionDialogStartedYear == -1 || sessionDialogStartedMonth == -1 || sessionDialogStartedDay == -1) {
+            sessionDialogStartedDateButton.setText(getString(R.string.setDate));
+        } else {
+            Calendar c = Calendar.getInstance();
+            c.set(Calendar.YEAR, sessionDialogStartedYear);
+            c.set(Calendar.MONTH, sessionDialogStartedMonth);
+            c.set(Calendar.DAY_OF_MONTH, sessionDialogStartedDay);
+            c.set(Calendar.HOUR_OF_DAY, 0);
+            c.set(Calendar.MINUTE, 0);
+            c.set(Calendar.SECOND, 0);
+            c.set(Calendar.MILLISECOND, 0);
+
+            sessionDialogStartedDateButton.setText(sdf_date.format(c.getTime()));
+        }
+        if (sessionDialogCompletedYear == -1 || sessionDialogCompletedMonth == -1 || sessionDialogCompletedDay == -1) {
+            sessionDialogCompletedDateButton.setText(getString(R.string.setDate));
+        } else {
+            Calendar c = Calendar.getInstance();
+            c.set(Calendar.YEAR, sessionDialogCompletedYear);
+            c.set(Calendar.MONTH, sessionDialogCompletedMonth);
+            c.set(Calendar.DAY_OF_MONTH, sessionDialogCompletedDay);
+            c.set(Calendar.HOUR_OF_DAY, 0);
+            c.set(Calendar.MINUTE, 0);
+            c.set(Calendar.SECOND, 0);
+            c.set(Calendar.MILLISECOND, 0);
+
+            sessionDialogCompletedDateButton.setText(sdf_date.format(c.getTime()));
+        }
+
+        if (sessionDialogStartedHour == -1 || sessionDialogStartedMinute == -1) {
+            sessionDialogStartedTimeButton.setText(getString(R.string.setTime));
+        } else {
+            Calendar c = Calendar.getInstance();
+            c.set(Calendar.HOUR_OF_DAY, sessionDialogStartedHour);
+            c.set(Calendar.MINUTE, sessionDialogStartedMinute);
+            c.set(Calendar.SECOND, 0);
+            c.set(Calendar.MILLISECOND, 0);
+
+            sessionDialogStartedTimeButton.setText(sdf_time.format(c.getTime()));
+        }
+        if (sessionDialogCompletedHour == -1 || sessionDialogCompletedMinute == -1) {
+            sessionDialogCompletedTimeButton.setText(getString(R.string.setTime));
+        } else {
+            Calendar c = Calendar.getInstance();
+            c.set(Calendar.HOUR_OF_DAY, sessionDialogCompletedHour);
+            c.set(Calendar.MINUTE, sessionDialogCompletedMinute);
+            c.set(Calendar.SECOND, 0);
+            c.set(Calendar.MILLISECOND, 0);
+
+            sessionDialogCompletedTimeButton.setText(sdf_time.format(c.getTime()));
+        }
     }
 
     public AlertDialog showStaleDataDialog() {

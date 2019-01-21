@@ -1,4 +1,8 @@
 1.5.3:
+- Fix tapping widget always causing MediNET sign in dialog to be shown
+- Potentially fix
+
+1.5.3:
 - Fix interval sounds not reliably playing
 - Fix timer not displaying when returning to the app while paused
 - Add 'Widget color' preference

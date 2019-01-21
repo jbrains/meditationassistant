@@ -50,98 +50,13 @@ public class ProgressActivity extends FragmentActivity {
     ViewPager mViewPager;
     ProgressPagerAdapter mPagerAdapter = null;
     int pagePosition = 0;
-    private AlertDialog addSessionDialog = null;
     private int SESSIONS_FRAGMENT = 0;
     private int CALENDAR_FRAGMENT = 1;
     private int STATS_FRAGMENT = 2;
     private SessionsFragment sessionsFragment = null;
     private MeditationAssistant ma = null;
-    private MenuItem menuCalendarBack = null;
-    private MenuItem menuCalendarForward = null;
-    private String beingSet = "started";
-    private Button btnSetDateStarted = null;
-    private Button btnSetTimeStarted = null;
-    private Button btnSetDateCompleted = null;
-    private Button btnSetTimeCompleted = null;
-    private EditText editAddSessionMessage = null;
-    private int startedYear = -1;
-    private int startedMonth = -1;
-    private int startedDay = -1;
-    private int startedHour = -1;
-    private int startedMinute = -1;
-    private int completedYear = -1;
-    private int completedMonth = -1;
-    private int completedDay = -1;
-    private int completedHour = -1;
-    private int completedMinute = -1;
-    private DatePickerDialog.OnDateSetListener mDateSetListener =
-            new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker view, int year,
-                                      int monthOfYear, int dayOfMonth) {
-                    if (beingSet.equals("started")) {
-                        startedYear = year;
-                        startedMonth = monthOfYear;
-                        startedDay = dayOfMonth;
 
-                        if (completedYear == -1 || completedMonth == -1 || completedDay == -1) {
-                            completedYear = startedYear;
-                            completedMonth = startedMonth;
-                            completedDay = startedDay;
-                        } else if (completedYear != -1 && completedMonth != -1 && completedDay != -1) {
-                            Calendar c_started = Calendar.getInstance();
-                            c_started.set(Calendar.YEAR, startedYear);
-                            c_started.set(Calendar.MONTH, startedMonth);
-                            c_started.set(Calendar.DAY_OF_MONTH, startedDay);
-                            c_started.set(Calendar.HOUR_OF_DAY, 0);
-                            c_started.set(Calendar.MINUTE, 0);
-                            c_started.set(Calendar.SECOND, 0);
-                            c_started.set(Calendar.MILLISECOND, 0);
 
-                            Calendar c_completed = Calendar.getInstance();
-                            c_completed.set(Calendar.YEAR, completedYear);
-                            c_completed.set(Calendar.MONTH, completedMonth);
-                            c_completed.set(Calendar.DAY_OF_MONTH, completedDay);
-                            c_completed.set(Calendar.HOUR_OF_DAY, 0);
-                            c_completed.set(Calendar.MINUTE, 0);
-                            c_completed.set(Calendar.SECOND, 0);
-                            c_completed.set(Calendar.MILLISECOND, 0);
-
-                            if (c_started.getTimeInMillis() > c_completed.getTimeInMillis()) {
-                                completedYear = startedYear;
-                                completedMonth = startedMonth;
-                                completedDay = startedDay;
-                            }
-                        }
-                    } else {
-                        completedYear = year;
-                        completedMonth = monthOfYear;
-                        completedDay = dayOfMonth;
-                    }
-
-                    updateDateAndTimeButtons();
-                }
-            };
-    private TimePickerDialog.OnTimeSetListener mTimeSetListener =
-            new TimePickerDialog.OnTimeSetListener() {
-                @Override
-                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                    if (beingSet.equals("started")) {
-                        startedHour = hourOfDay;
-                        startedMinute = minute;
-
-                        if (completedHour == -1 && completedMinute == -1) {
-                            completedHour = startedHour;
-                            completedMinute = startedMinute;
-                        }
-                    } else {
-                        completedHour = hourOfDay;
-                        completedMinute = minute;
-                    }
-
-                    updateDateAndTimeButtons();
-                }
-            };
     private AlertDialog sessionsExportedDialog = null;
     private AlertDialog sessionDetailsDialog = null;
 
@@ -152,76 +67,13 @@ public class ProgressActivity extends FragmentActivity {
         return ma;
     }
 
-    public void updateDateAndTimeButtons() {
-        SimpleDateFormat sdf_date = new SimpleDateFormat("MMMM d",
-                Locale.getDefault());
-        SimpleDateFormat sdf_time = new SimpleDateFormat("h:mm a",
-                Locale.getDefault());
-
-        sdf_date.setTimeZone(TimeZone.getDefault());
-        sdf_time.setTimeZone(TimeZone.getDefault());
-
-        if (startedYear == -1 || startedMonth == -1 || startedDay == -1) {
-            btnSetDateStarted.setText(getString(R.string.setDate));
-        } else {
-            Calendar c = Calendar.getInstance();
-            c.set(Calendar.YEAR, startedYear);
-            c.set(Calendar.MONTH, startedMonth);
-            c.set(Calendar.DAY_OF_MONTH, startedDay);
-            c.set(Calendar.HOUR_OF_DAY, 0);
-            c.set(Calendar.MINUTE, 0);
-            c.set(Calendar.SECOND, 0);
-            c.set(Calendar.MILLISECOND, 0);
-
-            btnSetDateStarted.setText(sdf_date.format(c.getTime()));
-        }
-        if (completedYear == -1 || completedMonth == -1 || completedDay == -1) {
-            btnSetDateCompleted.setText(getString(R.string.setDate));
-        } else {
-            Calendar c = Calendar.getInstance();
-            c.set(Calendar.YEAR, completedYear);
-            c.set(Calendar.MONTH, completedMonth);
-            c.set(Calendar.DAY_OF_MONTH, completedDay);
-            c.set(Calendar.HOUR_OF_DAY, 0);
-            c.set(Calendar.MINUTE, 0);
-            c.set(Calendar.SECOND, 0);
-            c.set(Calendar.MILLISECOND, 0);
-
-            btnSetDateCompleted.setText(sdf_date.format(c.getTime()));
-        }
-
-        if (startedHour == -1 || startedMinute == -1) {
-            btnSetTimeStarted.setText(getString(R.string.setTime));
-        } else {
-            Calendar c = Calendar.getInstance();
-            c.set(Calendar.HOUR_OF_DAY, startedHour);
-            c.set(Calendar.MINUTE, startedMinute);
-            c.set(Calendar.SECOND, 0);
-            c.set(Calendar.MILLISECOND, 0);
-
-            btnSetTimeStarted.setText(sdf_time.format(c.getTime()));
-        }
-        if (completedHour == -1 || completedMinute == -1) {
-            btnSetTimeCompleted.setText(getString(R.string.setTime));
-        } else {
-            Calendar c = Calendar.getInstance();
-            c.set(Calendar.HOUR_OF_DAY, completedHour);
-            c.set(Calendar.MINUTE, completedMinute);
-            c.set(Calendar.SECOND, 0);
-            c.set(Calendar.MILLISECOND, 0);
-
-            btnSetTimeCompleted.setText(sdf_time.format(c.getTime()));
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setTheme(getMeditationAssistant().getMATheme());
         setContentView(R.layout.activity_progress);
-        getActionBar().setDisplayHomeAsUpEnabled(true); /// todo: not necessary on settings activity why?
-        //getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         getMeditationAssistant().utility_ads.loadAd(this);
 
@@ -231,33 +83,6 @@ public class ProgressActivity extends FragmentActivity {
                 getSupportFragmentManager());
 
         mViewPager.setAdapter(mPagerAdapter);
-
-        /*ActionBar.TabListener tabListener = new ActionBar.TabListener() {
-
-            public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
-                // hide the given tab
-            }
-
-            public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
-                // probably ignore this event
-            }
-
-            @Override
-            public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-
-            }
-        };
-
-        getActionBar().addTab(getActionBar().newTab()
-                .setText(getString(R.string.sessions))
-                .setTabListener(tabListener));
-        getActionBar().addTab(getActionBar().newTab()
-                .setText(getString(R.string.statistics))
-                .setTabListener(tabListener));
-
-        getActionBar().addTab(getActionBar().newTab()
-                .setText(getString(R.string.calendar))
-                .setTabListener(tabListener));*/
 
         PagerTabStrip tabStrip = (PagerTabStrip) findViewById(R.id.titles);
         tabStrip.setDrawFullUnderline(true);
@@ -269,32 +94,6 @@ public class ProgressActivity extends FragmentActivity {
         } else {
             tabStrip.setTabIndicatorColor(getResources().getColor(android.R.color.holo_blue_dark));
         }
-
-
-       /*ViewPagerIndicator titleIndicator = (TitlePageIndicator) findViewById(R.id.titles);
-        titleIndicator.setViewPager(mViewPager);
-
-        titleIndicator.setFooterIndicatorStyle(IndicatorStyle.Underline);
-
-        titleIndicator
-                .setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-                    @Override
-                    public void onPageScrolled(int position,
-                                               float positionOffset, int positionOffsetPixels) {
-                    }
-
-                    @Override
-                    public void onPageScrollStateChanged(int state) {
-                    }
-
-                    @Override
-                    public void onPageSelected(int position) {
-                        if (menuCalendarBack != null
-                                && menuCalendarForward != null) {
-                            pagePosition = position;
-                        }
-                    }
-                });*/
 
         String defaulttab = getMeditationAssistant().getPrefs().getString(
                 "pref_progresstab", "calendar");
@@ -311,7 +110,14 @@ public class ProgressActivity extends FragmentActivity {
 
     public void goToSessionAtDate(int[] date) {
         if (date != null) {
-            SessionSQL sessionsql = getMeditationAssistant().db.getSessionByDate(String.valueOf(date[0]) + "-" + String.valueOf(date[1] + 1) + "-" + String.valueOf(date[2]));
+            Calendar c = Calendar.getInstance();
+            c.set(Calendar.DAY_OF_MONTH, date[0]);
+            c.set(Calendar.MONTH, date[1]);
+            c.set(Calendar.YEAR, date[2]);
+
+            Log.d("MeditationAssistant", "Req date " + String.valueOf(date[0]) + " " + String.valueOf(date[1]) + " " + String.valueOf(date[2]) + " " + " - Proc date " + String.valueOf(c.getTimeInMillis() / 1000));
+
+            SessionSQL sessionsql = getMeditationAssistant().db.getSessionByDate(c);
             if (sessionsql != null) {
                 final Calendar cal = Calendar.getInstance();
                 cal.setTimeInMillis(sessionsql._completed * 1000);
@@ -327,7 +133,7 @@ public class ProgressActivity extends FragmentActivity {
                     SimpleDateFormat sdf2 = new SimpleDateFormat("h:mm a",
                             Locale.getDefault());
 
-                    ArrayList<SessionSQL> sessions = getMeditationAssistant().db.getSessionsByDate(String.valueOf(date[0]) + "-" + String.valueOf(date[1] + 1) + "-" + String.valueOf(date[2]));
+                    ArrayList<SessionSQL> sessions = getMeditationAssistant().db.getSessionsByDate(c);
 
                     final ArrayAdapter<String> sessionsDialogAdapter = new ArrayAdapter<String>(
                             this,
@@ -383,13 +189,6 @@ public class ProgressActivity extends FragmentActivity {
                 } else {
                     showSessionPopup(sessionsql);
                 }
-
-                /*mViewPager.setCurrentItem(SESSIONS_FRAGMENT, false);
-                Integer session_position = ((SessionAdapter) sessionsFragment.getListAdapter()).sessions_map.get(String.valueOf(date[0]) + "-" + String.valueOf(date[1] + 1) + "-" + String.valueOf(date[2]));
-                if (session_position != null) {
-                    Log.d("MeditationAssistant", "Position: " + String.valueOf(session_position));
-                    sessionsFragment.getListView().smoothScrollToPosition(session_position);
-                }*/
             }
         }
     }
@@ -534,209 +333,7 @@ public class ProgressActivity extends FragmentActivity {
                 sessionsExportedDialog.show();
             }
         } else if (i == R.id.addSession) {
-            if (addSessionDialog != null) {
-                try {
-                    if (addSessionDialog.isShowing()) {
-                        addSessionDialog.dismiss();
-                    }
-                } catch (WindowManager.BadTokenException e) {
-                    // Activity is not in the foreground
-                }
-            }
-
-            //debug
-
-            if (getMeditationAssistant()
-                    .getTimeStartMeditate() > 0) {
-                getMeditationAssistant().shortToast(getString(R.string.addSessionMeditating));
-                return true;
-            }
-
-            startedYear = -1;
-            startedMonth = -1;
-            startedDay = -1;
-            startedHour = -1;
-            startedMinute = -1;
-
-            completedYear = -1;
-            completedMonth = -1;
-            completedDay = -1;
-            completedHour = -1;
-            completedMinute = -1;
-
-            View addSessionView = LayoutInflater.from(this).inflate(
-                    R.layout.session_add,
-                    (ViewGroup) findViewById(R.id.sessionAdd_root));
-
-            btnSetDateStarted = (Button) addSessionView.findViewById(R.id.btnSetDateStarted);
-            btnSetTimeStarted = (Button) addSessionView.findViewById(R.id.btnSetTimeStarted);
-            btnSetDateCompleted = (Button) addSessionView.findViewById(R.id.btnSetDateCompleted);
-            btnSetTimeCompleted = (Button) addSessionView.findViewById(R.id.btnSetTimeCompleted);
-            editAddSessionMessage = (EditText) addSessionView.findViewById(R.id.editAddSessionMessage);
-
-            btnSetDateStarted.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    beingSet = "started";
-                    DatePickerDialog dateDialog = null;
-
-                    if (startedYear == -1 || startedMonth == -1 || startedDay == -1) {
-                        Calendar c = Calendar.getInstance();
-                        dateDialog = new DatePickerDialog(ProgressActivity.this,
-                                mDateSetListener,
-                                c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
-                    } else {
-                        dateDialog = new DatePickerDialog(ProgressActivity.this,
-                                mDateSetListener,
-                                startedYear, startedMonth, startedDay);
-                    }
-
-                    dateDialog.show();
-                }
-            });
-            btnSetTimeStarted.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    beingSet = "started";
-                    TimePickerDialog timeDialog = null;
-
-                    if (startedHour == -1 || startedMinute == -1) {
-                        Calendar c = Calendar.getInstance();
-                        timeDialog = new TimePickerDialog(ProgressActivity.this,
-                                mTimeSetListener,
-                                c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), false);
-                    } else {
-                        timeDialog = new TimePickerDialog(ProgressActivity.this,
-                                mTimeSetListener,
-                                startedHour, startedMinute, false);
-                    }
-
-                    timeDialog.show();
-                }
-            });
-            btnSetDateCompleted.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    beingSet = "completed";
-                    DatePickerDialog dateDialog = null;
-
-                    if (completedYear == -1 || completedMonth == -1 || completedDay == -1) {
-                        Calendar c = Calendar.getInstance();
-                        dateDialog = new DatePickerDialog(ProgressActivity.this,
-                                mDateSetListener,
-                                c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
-                    } else {
-                        dateDialog = new DatePickerDialog(ProgressActivity.this,
-                                mDateSetListener,
-                                completedYear, completedMonth, completedDay);
-                    }
-
-                    dateDialog.show();
-                }
-            });
-            btnSetTimeCompleted.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    beingSet = "completed";
-                    TimePickerDialog timeDialog = null;
-
-                    if (completedHour == -1 || completedMinute == -1) {
-                        Calendar c = Calendar.getInstance();
-                        timeDialog = new TimePickerDialog(ProgressActivity.this,
-                                mTimeSetListener,
-                                c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), false);
-                    } else {
-                        timeDialog = new TimePickerDialog(ProgressActivity.this,
-                                mTimeSetListener,
-                                completedHour, completedMinute, false);
-                    }
-
-                    timeDialog.show();
-                }
-            });
-
-            updateDateAndTimeButtons();
-
-            addSessionDialog = new AlertDialog.Builder(this)
-                    .setIcon(
-                            getResources().getDrawable(
-                                    getMeditationAssistant().getTheme().obtainStyledAttributes(getMeditationAssistant().getMATheme(true),
-                                            new int[]{R.attr.actionIconNew})
-                                            .getResourceId(0, 0)
-                            )
-                    )
-                    .setTitle(getString(R.string.addSession))
-                    .setView(addSessionView)
-                    .setPositiveButton(getString(R.string.add), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface,
-                                            int which) {
-                            // Overridden later
-                        }
-                    })
-                    .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface,
-                                            int which) {
-                            dialogInterface.dismiss();
-                        }
-                    })
-                    .create();
-
-            addSessionDialog.show();
-
-            Button saveButton = addSessionDialog.getButton(AlertDialog.BUTTON_POSITIVE);
-            saveButton.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View view) {
-                    if (startedYear == -1 || startedMonth == -1 || startedDay == -1 || startedHour == -1 || startedMinute == -1 || completedYear == -1 || completedMonth == -1 || completedDay == -1 || completedHour == -1 || completedMinute == -1) {
-                        getMeditationAssistant().shortToast(getString(R.string.invalidDateOrTime));
-                    } else {
-                        Calendar c_started = Calendar.getInstance();
-                        c_started.set(Calendar.YEAR, startedYear);
-                        c_started.set(Calendar.MONTH, startedMonth);
-                        c_started.set(Calendar.DAY_OF_MONTH, startedDay);
-                        c_started.set(Calendar.HOUR_OF_DAY, startedHour);
-                        c_started.set(Calendar.MINUTE, startedMinute);
-                        c_started.set(Calendar.SECOND, 0);
-                        c_started.set(Calendar.MILLISECOND, 0);
-
-                        Calendar c_completed = Calendar.getInstance();
-                        c_completed.set(Calendar.YEAR, completedYear);
-                        c_completed.set(Calendar.MONTH, completedMonth);
-                        c_completed.set(Calendar.DAY_OF_MONTH, completedDay);
-                        c_completed.set(Calendar.HOUR_OF_DAY, completedHour);
-                        c_completed.set(Calendar.MINUTE, completedMinute);
-                        c_completed.set(Calendar.SECOND, 0);
-                        c_completed.set(Calendar.MILLISECOND, 0);
-
-                        if (c_started.getTimeInMillis() > Calendar.getInstance().getTimeInMillis() || c_completed.getTimeInMillis() > Calendar.getInstance().getTimeInMillis() || c_completed.getTimeInMillis() <= c_started.getTimeInMillis()) {
-                            getMeditationAssistant().shortToast(getString(R.string.invalidDateOrTime));
-                        } else if (getMeditationAssistant().db
-                                .getSessionByStarted(c_started.getTimeInMillis() / 1000) == null) {
-                            getMeditationAssistant().getMediNET().resetSession();
-                            getMeditationAssistant().getMediNET().session.started = c_started.getTimeInMillis() / 1000;
-                            getMeditationAssistant().getMediNET().session.length = ((c_completed.getTimeInMillis() / 1000) - (c_started.getTimeInMillis() / 1000));
-                            getMeditationAssistant().getMediNET().session.completed = c_completed.getTimeInMillis() / 1000;
-                            getMeditationAssistant().getMediNET().session.message = editAddSessionMessage.getText().toString().trim();
-                            getMeditationAssistant().getMediNET().saveSession(true, false);
-
-                            addSessionDialog.dismiss();
-
-                            if (sessionsFragment != null) {
-                                sessionsFragment.refreshSessionList();
-                            }
-
-                            /*if (calendarFragment != null) {
-                                calendarFragment.refreshMonthDisplay();
-                            }*/
-                        } else {
-                            getMeditationAssistant().shortToast(getString(R.string.addSessionExists));
-                        }
-                    }
-                }
-            });
+            getMeditationAssistant().showSessionDialog(new SessionSQL(), ProgressActivity.this);
 
             return true;
         }
@@ -808,60 +405,3 @@ public class ProgressActivity extends FragmentActivity {
         }
     }
 }
-
-/*
-public class ProgressActivity extends FragmentActivity
-        implements ItemListFragment.Callbacks {
-
-    /**
-     * Whether or not the activity is in two-pane mode, i.e. running on a tablet
-     * device.
-    private boolean mTwoPane;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item_list);
-
-        if (findViewById(R.id.item_detail_container) != null) {
-            // The detail container view will be present only in the
-            // large-screen layouts (res/values-large and
-            // res/values-sw600dp). If this view is present, then the
-            // activity should be in two-pane mode.
-            mTwoPane = true;
-
-            // In two-pane mode, list items should be given the
-            // 'activated' state when touched.
-            ((ItemListFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.item_list))
-                    .setActivateOnItemClick(true);
-        }
-    }
-
-    /**
-     * Callback method from {@link ItemListFragment.Callbacks}
-     * indicating that the item with the given ID was selected.
-    @Override
-    public void onItemSelected(String id) {
-        if (mTwoPane) {
-            // In two-pane mode, show the detail view in this activity by
-            // adding or replacing the detail fragment using a
-            // fragment transaction.
-            Bundle arguments = new Bundle();
-            arguments.putString(ItemDetailFragment.ARG_ITEM_ID, id);
-            ItemDetailFragment fragment = new ItemDetailFragment();
-            fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.item_detail_container, fragment)
-                    .apply();
-
-        } else {
-            // In single-pane mode, simply start the detail activity
-            // for the selected item ID.
-            Intent detailIntent = new Intent(this, ItemDetailActivity.class);
-            detailIntent.putExtra(ItemDetailFragment.ARG_ITEM_ID, id);
-            startActivity(detailIntent);
-        }
-    }
-}
-*/

@@ -1,5 +1,5 @@
 <RelativeLayout
-    android:id="@+id/sessionAdd_root"
+    android:id="@+id/sessionDialog"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/btnSetDateStarted"
+                        android:id="@+id/sessionDialogSetDateStarted"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -52,7 +52,7 @@
                         android:background="?android:attr/listDivider"/>
 
                     <Button
-                        android:id="@+id/btnSetTimeStarted"
+                        android:id="@+id/sessionDialogSetTimeStarted"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -101,7 +101,7 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/btnSetDateCompleted"
+                        android:id="@+id/sessionDialogSetDateCompleted"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -121,7 +121,7 @@
                         android:background="?android:attr/listDivider"/>
 
                     <Button
-                        android:id="@+id/btnSetTimeCompleted"
+                        android:id="@+id/sessionDialogSetTimeCompleted"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -164,7 +164,7 @@
                     android:background="?android:attr/listDivider"/>
 
                 <EditText
-                    android:id="@+id/editAddSessionMessage"
+                    android:id="@+id/sessionDialogSetMessage"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="top"
@@ -172,8 +172,8 @@
                     android:inputType="textMultiLine"
                     android:lines="2"
                     android:maxLength="160"
-                    android:nextFocusLeft="@+id/addSessionMessage"
-                    android:nextFocusUp="@+id/addSessionMessage"
+                    android:nextFocusLeft="@+id/sessionDialogSetMessage"
+                    android:nextFocusUp="@+id/sessionDialogSetMessage"
                     android:scrollbars="vertical"
                     android:singleLine="false"
                     android:text=""

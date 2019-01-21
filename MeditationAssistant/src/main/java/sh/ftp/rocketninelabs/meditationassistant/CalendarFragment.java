@@ -203,6 +203,16 @@ public class CalendarFragment extends Fragment {
                 updateMonthScroll();
             }
         });
+        prevMonth.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                mCalendar.add(Calendar.YEAR, -1);
+                gridCalendar.setAdapter(getMonthAdapter());
+
+                updateMonthScroll();
+                return true;
+            }
+        });
 
         nextMonth.setOnClickListener(new OnClickListener() {
             @Override
@@ -213,8 +223,26 @@ public class CalendarFragment extends Fragment {
                 updateMonthScroll();
             }
         });
+        nextMonth.setOnLongClickListener(new View.OnLongClickListener() {
+             @Override
+             public boolean onLongClick(View view) {
+                 Calendar midnightToday = Calendar.getInstance();
+                 midnightToday.set(Calendar.HOUR, 0);
+                 midnightToday.set(Calendar.MINUTE, 0);
+                 midnightToday.set(Calendar.SECOND, 0);
 
-        LinearLayout ldate = new LinearLayout(ctx);
+                 mCalendar.add(Calendar.YEAR, 1);
+                 if (mCalendar.after(midnightToday)) {
+                     mCalendar = midnightToday;
+                 }
+                 gridCalendar.setAdapter(getMonthAdapter());
+
+                 updateMonthScroll();
+                 return true;
+             }
+         });
+
+                LinearLayout ldate = new LinearLayout(ctx);
         ldate.setOrientation(LinearLayout.VERTICAL);
 
         LinearLayout.LayoutParams lp_horiz = new LinearLayout.LayoutParams(
