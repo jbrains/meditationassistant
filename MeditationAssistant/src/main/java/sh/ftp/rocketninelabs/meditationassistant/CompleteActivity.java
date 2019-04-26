@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,29 +15,17 @@ import android.widget.TextView;
 
 public class CompleteActivity extends Activity {
     private MeditationAssistant ma;
-    private Handler handler = new Handler();
     private Runnable completeRunnable = new Runnable() {
         @Override
         public void run() {
-            handler.removeCallbacks(this);
-
             if (getMeditationAssistant().getMediNET().result.equals("posted")) {
-                getMeditationAssistant()
-                        .shortToast(getString(R.string.sessionPosted));
+                getMeditationAssistant().shortToast(getString(R.string.sessionPosted));
                 finish();
-            } else if (getMeditationAssistant().getMediNET().result
-                    .equals("alreadyposted")) {
+            } else if (getMeditationAssistant().getMediNET().result.equals("alreadyposted")) {
                 getMeditationAssistant().longToast(getString(R.string.sessionAlreadyPosted));
-            } else if (getMeditationAssistant().getMediNET().status
-                    .equals("failure")
-                    && getMeditationAssistant().getMediNET().result
-                    .equals("corrupt")) {
-                getMeditationAssistant()
-                        .longToast(
-                                getString(R.string.sessionNotPosted));
+                finish();
             } else {
-                Log.d("MeditationAssistant", "Waiting on MediNET runnable... (" + getMeditationAssistant().getMediNET().status + "/" + getMeditationAssistant().getMediNET().result + ")");
-                handler.postDelayed(this, 2000);
+                getMeditationAssistant().longToast(getString(R.string.sessionNotPosted));
             }
         }
     };
@@ -250,7 +237,6 @@ public class CompleteActivity extends Activity {
     @Override
     public void onDestroy() {
         getMeditationAssistant().utility_ads.destroyAd(this);
-        handler.removeCallbacks(completeRunnable);
         super.onDestroy();
     }
 
@@ -279,7 +265,7 @@ public class CompleteActivity extends Activity {
     }
 
     public void postMediNET(View view) {
-        if (getMeditationAssistant().getMediNETKey() == "") {
+        if (getMeditationAssistant().getMediNETKey().equals("")) {
             getMeditationAssistant().startAuth(CompleteActivity.this, true);
             return;
         }
@@ -288,10 +274,8 @@ public class CompleteActivity extends Activity {
 
         getMeditationAssistant().shortToast(getString(R.string.sessionPosting));
         getMeditationAssistant().getMediNET().session.message = getSessionMessage();
-        getMeditationAssistant().getMediNET().postSession();
-
-        handler.removeCallbacks(completeRunnable);
-        handler.postDelayed(completeRunnable, 5);
+        getMeditationAssistant().getMediNET().session.modified = getMeditationAssistant().getTimestamp();
+        getMeditationAssistant().getMediNET().postSession(0,null,  completeRunnable);
     }
 
     private void saveLastMessage() {
@@ -302,7 +286,8 @@ public class CompleteActivity extends Activity {
         saveLastMessage();
 
         getMeditationAssistant().getMediNET().session.message = getSessionMessage();
-        getMeditationAssistant().getMediNET().saveSession(false, false);
+        getMeditationAssistant().getMediNET().session.modified = getMeditationAssistant().getTimestamp();
+        getMeditationAssistant().getMediNET().saveSession(0, false, false);
         getMeditationAssistant().shortToast(getString(R.string.sessionSaved));
         finish();
     }

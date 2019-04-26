@@ -1,3 +1,9 @@
+1.5.4:
+- Add long press shortcut to calendar buttons moving one year forward/backward
+- Improve calculation of meditation streak window (streak buffer was not being applied consistently)
+- Session start, length, end and message are now editable
+- Fix tapping home screen widget asking to sign in to MediNET
+
 1.5.3:
 - Fix tapping widget always causing MediNET sign in dialog to be shown
 - Potentially fix

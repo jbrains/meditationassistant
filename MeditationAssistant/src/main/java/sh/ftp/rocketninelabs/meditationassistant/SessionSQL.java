@@ -8,6 +8,7 @@ public class SessionSQL {
     public String _message;
     public Long _isposted;
     public Long _streakday;
+    public Long _modified;
 
     public SessionSQL() {
         this._id = (long)0;
@@ -17,10 +18,11 @@ public class SessionSQL {
         this._message = "";
         this._isposted = (long)0;
         this._streakday = (long)0;
+        this._modified = (long)0;
     }
 
     public SessionSQL(Long id, Long started, Long completed, Long length, String message,
-                      Long isposted, Long streakday) {
+                      Long isposted, Long streakday, Long modified) {
         this._id = id;
         this._started = started;
         this._completed = completed;
@@ -28,15 +30,17 @@ public class SessionSQL {
         this._message = message;
         this._isposted = isposted;
         this._streakday = streakday;
+        this._modified = modified;
     }
 
-    public SessionSQL(Long started, Long completed, Long length, String message, Long isposted, Long streakday) {
+    public SessionSQL(Long started, Long completed, Long length, String message, Long isposted, Long streakday, Long modified) {
         this._started = started;
         this._completed = completed;
         this._length = length;
         this._message = message;
         this._isposted = isposted;
         this._streakday = streakday;
+        this._modified = modified;
     }
 
     public Long getID() {

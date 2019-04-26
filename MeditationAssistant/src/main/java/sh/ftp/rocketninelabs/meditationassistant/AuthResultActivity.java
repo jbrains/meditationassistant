@@ -56,13 +56,13 @@ public class AuthResultActivity extends Activity {
                         .setConnectionBuilder(config.getConnectionBuilder())
                         .build());
 
-        displayLoading("Restoring state...");
+        log("Restoring state...");
 
         if (savedInstanceState != null) {
             try {
                 mUserInfoJson.set(new JSONObject(savedInstanceState.getString(KEY_USER_INFO)));
             } catch (JSONException ex) {
-                Log.e("MA", "Failed to parse saved user info JSON, discarding", ex);
+                log("Failed to parse saved user info JSON, discarding " + ex);
             }
         }
     }
@@ -89,16 +89,17 @@ public class AuthResultActivity extends Activity {
             mStateManager.updateAfterAuthorization(response, ex);
         }
 
-        if (response != null && response.authorizationCode != null) {
+        if (ex == null && response != null && response.authorizationCode != null) {
             // authorization code exchange is required
             mStateManager.updateAfterAuthorization(response, ex);
             exchangeAuthorizationCode(response);
-        } else if (ex != null) {
-            finish();
-            // TODO: handle failure "Authorization flow failed: " + ex.getMessage());
         } else {
+            if (ex != null) {
+                log("Auth failed: " + ex.toString());
+            }
+
+            // TODO: Display error when auth was not cancelled by user
             finish();
-            // TODO: handle failure No authorization state retained - reauthorization required");
         }
     }
 
@@ -120,17 +121,15 @@ public class AuthResultActivity extends Activity {
     }
 
     @MainThread
-    private void displayLoading(String message) {
-        Log.d("MA", "Auth: " + message);
+    private void log(String message) {
+        Log.d("MeditationAssistant", "Auth: " + message);
     }
 
     @MainThread
     private void updateState() {
         AuthState state = mStateManager.getCurrent();
 
-        if (state.getAccessToken() == null) {
-            Log.d("MA", "Access token was null: ");
-            // TODO: Handle auth failure, prompt to retry
+        if (!state.isAuthorized()) {
             finish();
             return;
         }
@@ -141,14 +140,16 @@ public class AuthResultActivity extends Activity {
             return;
         }
 
-        Log.d("MA", "Got token");
+        log("Got token");
         getMeditationAssistant().getMediNET().signInWithAuthToken(state.getAccessToken());
+        mStateManager.replace(new AuthState());
+
         finish();
     }
 
     @MainThread
     private void refreshAccessToken() {
-        displayLoading("Refreshing access token");
+        log("Refreshing access token");
         performTokenRequest(
                 mStateManager.getCurrent().createTokenRefreshRequest(),
                 this::handleAccessTokenResponse);
@@ -156,7 +157,7 @@ public class AuthResultActivity extends Activity {
 
     @MainThread
     private void exchangeAuthorizationCode(AuthorizationResponse authorizationResponse) {
-        displayLoading("Exchanging authorization code");
+        log("Exchanging authorization code");
         performTokenRequest(
                 authorizationResponse.createTokenExchangeRequest(),
                 this::handleCodeExchangeResponse);
@@ -170,8 +171,7 @@ public class AuthResultActivity extends Activity {
         try {
             clientAuthentication = mStateManager.getCurrent().getClientAuthentication();
         } catch (ClientAuthentication.UnsupportedAuthenticationMethod ex) {
-            Log.d("MA", "Token request cannot be made, client authentication for the token "
-                    + "endpoint could not be constructed (%s)", ex);
+            log("Token request cannot be made, client authentication for the token endpoint could not be constructed " + ex);
             // TODO handle failure Client authentication method is unsupported");
             return;
         }
@@ -196,16 +196,7 @@ public class AuthResultActivity extends Activity {
             @Nullable AuthorizationException authException) {
 
         mStateManager.updateAfterTokenResponse(tokenResponse, authException);
-        if (!mStateManager.getCurrent().isAuthorized()) {
-            final String message = "Authorization Code exchange failed"
-                    + ((authException != null) ? authException.error : "");
-
-            // WrongThread inference is incorrect for lambdas
-            //noinspection WrongThread
-            // TODO: Handle not authorized, show error
-        } else {
-            runOnUiThread(this::updateState);
-        }
+        runOnUiThread(this::updateState);
     }
 
     public MeditationAssistant getMeditationAssistant() {

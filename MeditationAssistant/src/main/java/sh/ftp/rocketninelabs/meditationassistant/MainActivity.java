@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -59,18 +60,18 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     public static int ID_END = 77703;
 
     public MeditationAssistant ma = null;
-    SharedPreferences.OnSharedPreferenceChangeListener sharedPrefslistener = new SharedPreferences.OnSharedPreferenceChangeListener() {
-        public void onSharedPreferenceChanged(SharedPreferences newprefs, String key) {
-            Log.d("MeditationAssistant",
-                    key + " changed to " + getMeditationAssistant().getPrefs().getAll().get(key).toString());
-            if (getMeditationAssistant().getTimeToStopMeditate() < 1
-                    && (key.equals("timerHours") || key.equals("timerMinutes"))) {
+    SharedPreferences.OnSharedPreferenceChangeListener sharedPrefslistener = (newprefs, key) -> {
+        Log.d("MeditationAssistant",key + " changed to " + getMeditationAssistant().getPrefs().getAll().get(key).toString());
+
+        new Handler(Looper.getMainLooper()).post(() -> {
+            if ((key.equals("timerHours") || key.equals("timerMinutes")) && getMeditationAssistant().getTimeToStopMeditate() < 1) {
                 TextView txtTimer = (TextView) findViewById(R.id.txtTimer);
                 txtTimer.setText(getMeditationAssistant().getPrefs().getString("timerHours", "0")
                         + ":"
                         + String.format("%02d", Integer.valueOf(getMeditationAssistant().getPrefs().getString(
                         "timerMinutes", "15"))));
-            } else if (key.equals("pref_meditation_sound_finish")
+            } else if (key.equals("medinetupdate")
+                    || key.equals("pref_meditation_sound_finish")
                     || key.equals("pref_meditation_sound_finish_custom")
                     || key.equals("pref_meditation_sound_start")
                     || key.equals("pref_meditation_sound_start_custom")
@@ -83,7 +84,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                     getMeditationAssistant().getMediNET().connect();
                 }
             }
-        }
+        });
     };
     private Handler handler;
     private Runnable meditateRunnable = null;
@@ -244,10 +245,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             }
         });
 
-        /*CheckBox chkUseTimer = (CheckBox) findViewById(R.id.chkUseTimer);
-        chkUseTimer.setChecked(getMeditationAssistant().getUseTimer());
-        changeUseTimer(null);*/
-
         usetimepicker = getMeditationAssistant().getPrefs().getBoolean("pref_usetimepicker", false);
 
         final EditText editDuration = (EditText) findViewById(R.id.editDuration);
@@ -256,20 +253,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         if (usetimepicker) {
             editDuration.setVisibility(View.GONE);
             timepickerDuration.setVisibility(View.VISIBLE);
-            /*EditText newEditDuration = new EditText(this);
-            newEditDuration.setId(R.id.editDuration);
-            FrameLayout.LayoutParams editDurationLayoutParams = new FrameLayout.LayoutParams(
-            android.view.ViewGroup.LayoutParams.FILL_PARENT,
-            android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
-            editDurationLayoutParams.gravity = Gravity.CENTER;
-            editDurationLayoutParams.setMargins(0, 0, 0, 0);
-            newEditDuration.setLayoutParams(editDurationLayoutParams);
-            newEditDuration.setIncludeFontPadding(false);
-            newEditDuration.setInputType(InputType.TYPE_DATETIME_VARIATION_TIME);
-            newEditDuration.setSingleLine(true);
-            newEditDuration.imeOp
-            RelativeLayout layEditDuration = (RelativeLayout) findViewById(R.id.layEditDuration);
-            layEditDuration.addView(newEditDuration);*/
         } else {
             timepickerDuration.setVisibility(View.GONE);
             editDuration.setVisibility(View.VISIBLE);
@@ -327,7 +310,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                     }
 
                     if (duration_formatted == null || duration_formatted.size() != 2) {
-                        getMeditationAssistant().shortToast(MainActivity.this, getString(R.string.setPresetHintBlank));
+                        getMeditationAssistant().shortToast(getString(R.string.setPresetHintBlank));
                         return true;
                     }
                 } else if (!getMeditationAssistant().getTimerMode().equals("untimed")) {
@@ -341,7 +324,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                     }
 
                     if (duration_formatted == null || duration_formatted.size() != 2) {
-                        getMeditationAssistant().shortToast(MainActivity.this, getString(R.string.setPresetHintBlank));
+                        getMeditationAssistant().shortToast(getString(R.string.setPresetHintBlank));
                         return true;
                     }
                 }
@@ -410,16 +393,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             changeDuration(null);
         }
 
-        // String pass = "br[qs$jQ>$_rr1~ bu')5\1]fw| }";
-
-        /*RelativeLayout.LayoutParams lps = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        lps.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-        lps.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-        int margin = ((Number) (getResources().getDisplayMetrics().density * 24)).intValue();
-        lps.setMargins(margin, margin, margin, margin);*/
-
-        //sv.setButtonPosition(lps);
-
         if (getMeditationAssistant().getPrefs().getBoolean("pref_autosignin", false) && !getMeditationAssistant().getMediNETKey().equals("")) {
             getMeditationAssistant().connectOnce();
         } else {
@@ -441,7 +414,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                         case DialogInterface.BUTTON_POSITIVE:
                             startActivity(new Intent(
                                     Intent.ACTION_VIEW,
-                                    Uri.parse("https://medinet.rocketnine.space/translate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                                    Uri.parse(MeditationAssistant.URL_MEDINET + "/translate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 
                             break;
 
@@ -599,7 +572,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                     editor.putString("timerMinutes", duration_formatted.get(1));
                     editor.apply();
                 } else {
-                    getMeditationAssistant().shortToast(this, getString(R.string.setTimerDurationHint));
+                    getMeditationAssistant().shortToast(getString(R.string.setTimerDurationHint));
                     return;
                 }
             } else if (getMeditationAssistant().getTimerMode().equals("endat")) {
@@ -610,7 +583,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                     editor.putString("timerMinutesEndAt", duration_formatted.get(1));
                     editor.apply();
                 } else {
-                    getMeditationAssistant().shortToast(this, getString(R.string.setTimerEndAtHint));
+                    getMeditationAssistant().shortToast(getString(R.string.setTimerEndAtHint));
                     return;
                 }
             }
@@ -645,9 +618,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                 e.printStackTrace();
             }
         }
-
-        // RelativeLayout layRememberDurationOuter = (RelativeLayout)
-        // findViewById(R.id.layRememberDurationOuter);
 
         Boolean wasEditing = false;
         if (txtTimer.getVisibility() == View.GONE) {
@@ -811,7 +781,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     }
 
     public void updateVisibleViews(boolean fadeViews) {
-        // Log.d("MeditationAssistant", "updateVisibleViews");
         RadioGroup radgMainTimerMode = (RadioGroup) findViewById(R.id.radgMainTimerMode);
 
         RelativeLayout layLowerViews = (RelativeLayout) findViewById(R.id.layLowerViews);
@@ -1059,7 +1028,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             presetIntent.setAction(MeditationAssistant.ACTION_PRESET);
             sendBroadcast(presetIntent);
         } else {
-            getMeditationAssistant().shortToast(this, getString(R.string.setPresetHint));
+            getMeditationAssistant().shortToast(getString(R.string.setPresetHint));
         }
     }
 
@@ -1205,9 +1174,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                     params.screenBrightness = -1;
                     getWindow().setAttributes(params);
 
-                    // Always show this notification (add to tutorial?)
-                    //if (getMeditationAssistant().getPrefs().getBoolean("firstpause", true)) {
-                    //    getMeditationAssistant().getPrefs().edit().putBoolean("firstpause", false).apply();
                     getMeditationAssistant().longToast(getString(R.string.pausedNotification));
                     //}
                 } else { // Paused, un-pause
@@ -1300,7 +1266,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                 if ((end_at_hour + 12) >= c_now.get(Calendar.HOUR_OF_DAY)) { // later today
                     Log.d("MeditationAssistant", "End at debug: A LATER TODAY");
                     if ((end_at_hour + 12) == c_now.get(Calendar.HOUR_OF_DAY) && end_at_minute <= c_now.get(Calendar.MINUTE)) { // End at is now or earlier
-                        getMeditationAssistant().shortToast(this, getString(R.string.invalidEndAt));
+                        getMeditationAssistant().shortToast(getString(R.string.invalidEndAt));
                         return;
                     }
 
@@ -1315,7 +1281,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                 if (end_at_hour >= c_now.get(Calendar.HOUR_OF_DAY)) { // later today (before noon)
                     Log.d("MeditationAssistant", "End at debug: B LATER TODAY BEFORE NOON");
                     if (end_at_hour == c_now.get(Calendar.HOUR_OF_DAY) && end_at_minute <= c_now.get(Calendar.MINUTE)) { // End at is now or earlier
-                        getMeditationAssistant().shortToast(this, getString(R.string.invalidEndAt));
+                        getMeditationAssistant().shortToast( getString(R.string.invalidEndAt));
                         return;
                     }
 
@@ -1336,7 +1302,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             secondsTillFinished = (int) ((c_endat.getTimeInMillis() - c_now.getTimeInMillis()) / 1000) + 2;
 
             if (secondsTillFinished < 60) {
-                getMeditationAssistant().shortToast(this, getString(R.string.invalidEndAt));
+                getMeditationAssistant().shortToast(getString(R.string.invalidEndAt));
                 return;
             }
         }
@@ -1612,7 +1578,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         }
 
         getMeditationAssistant().setTimerMode(newTimerMode);
-        //updateEditDuration(); should the duration be reset when changing modes?
         if (newTimerMode.equals("untimed")) {
             if (usetimepicker) {
                 timepickerDuration.setEnabled(false);
@@ -1799,9 +1764,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         }
 
         if (!getMeditationAssistant().getPrefs().getBoolean("pref_showstreak", true)
-                || getMeditationAssistant().getMeditationStreak() == null
-                || getMeditationAssistant().getMeditationStreak() < 1) {
-
+                || getMeditationAssistant().getMeditationStreak().get(0) < 1) {
             if (getMeditationAssistant().getMediNET().status.equals("success")) {
                 btnMeditationStreak
                         .setText(getString(R.string.signOutOfMediNET));
@@ -1812,8 +1775,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         } else {
             btnMeditationStreak.setText(res.getQuantityString(
                     R.plurals.daysOfMeditation, getMeditationAssistant()
-                            .getMeditationStreak(),
-                    getMeditationAssistant().getMeditationStreak()
+                            .getMeditationStreak().get(0).intValue(),
+                    getMeditationAssistant().getMeditationStreak().get(0).intValue()
             ));
         }
 
@@ -1982,17 +1945,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                 }
             }
         }
-    }
-
-    public void updateTextsAsync() {
-        Log.d("MeditationAssistant", "Update texts async: begin");
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Log.d("MeditationAssistant", "Update texts async: run");
-                updateTexts();
-            }
-        });
     }
 
     public void updateMeditate(boolean setDisabled, boolean complete) {

@@ -1,7 +1,6 @@
 package sh.ftp.rocketninelabs.meditationassistant;
 
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -21,11 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.TabHost;
 import android.widget.TextView;
 
@@ -115,80 +110,72 @@ public class ProgressActivity extends FragmentActivity {
             c.set(Calendar.MONTH, date[1]);
             c.set(Calendar.YEAR, date[2]);
 
-            Log.d("MeditationAssistant", "Req date " + String.valueOf(date[0]) + " " + String.valueOf(date[1]) + " " + String.valueOf(date[2]) + " " + " - Proc date " + String.valueOf(c.getTimeInMillis() / 1000));
-
             SessionSQL sessionsql = getMeditationAssistant().db.getSessionByDate(c);
             if (sessionsql != null) {
                 final Calendar cal = Calendar.getInstance();
                 cal.setTimeInMillis(sessionsql._completed * 1000);
                 Date sess_date = cal.getTime();
 
-                if (getMeditationAssistant().db.numSessionsByDate(cal) > 1) {
-                    if (sessionDetailsDialog != null && sessionDetailsDialog.isShowing()) {
-                        sessionDetailsDialog.dismiss();
-                    }
-
-                    SimpleDateFormat sdf = new SimpleDateFormat("d MMM yyyy",
-                            Locale.getDefault());
-                    SimpleDateFormat sdf2 = new SimpleDateFormat("h:mm a",
-                            Locale.getDefault());
-
-                    ArrayList<SessionSQL> sessions = getMeditationAssistant().db.getSessionsByDate(c);
-
-                    final ArrayAdapter<String> sessionsDialogAdapter = new ArrayAdapter<String>(
-                            this,
-                            android.R.layout.select_dialog_item);
-
-                    sessions_map.clear();
-                    int session_index = 0;
-                    for (Iterator<SessionSQL> i = sessions.iterator(); i.hasNext(); ) {
-                        SessionSQL session = i.next();
-                        Calendar cal2 = Calendar.getInstance();
-                        cal2.setTimeInMillis(session._completed * 1000);
-                        sessionsDialogAdapter.add(String.valueOf(session._length / 3600) + ":"
-                                + String.format("%02d", (session._length % 3600) / 60)
-                                + " - " + sdf2.format(cal2.getTime()));
-
-                        sessions_map.put(session_index, session);
-                        session_index++;
-                    }
-
-                    if (sessionDetailsDialog != null && sessionDetailsDialog.isShowing()) {
-                        sessionDetailsDialog.dismiss();
-                    }
-
-                    sessionDetailsDialog = new AlertDialog.Builder(this)
-                            .setIcon(
-                                    getResources().getDrawable(
-                                            getMeditationAssistant().getTheme().obtainStyledAttributes(getMeditationAssistant().getMATheme(true),
-                                                    new int[]{R.attr.actionIconGoToToday})
-                                                    .getResourceId(0, 0)
-                                    )
-                            )
-                            .setTitle(sdf.format(sess_date))
-                            .setAdapter(sessionsDialogAdapter,
-                                    new DialogInterface.OnClickListener() {
-
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            SessionSQL session = sessions_map.get(which);
-                                            if (session != null) {
-                                                showSessionPopup(session);
-                                            }
-
-                                            try {
-                                                dialog.dismiss();
-                                            } catch (Exception e) {
-
-                                            }
-                                        }
-                                    })
-                            .create();
-
-                    sessionDetailsDialog.show();
-                } else {
-                    showSessionPopup(sessionsql);
+                if (getMeditationAssistant().db.numSessionsByDate(cal) == 1) {
+                    getMeditationAssistant().showSessionDialog(sessionsql, ProgressActivity.this);
+                    return;
                 }
+
+                if (sessionDetailsDialog != null && sessionDetailsDialog.isShowing()) {
+                    sessionDetailsDialog.dismiss();
+                }
+
+                SimpleDateFormat sdf = new SimpleDateFormat("d MMM yyyy",
+                        Locale.getDefault());
+                SimpleDateFormat sdf2 = new SimpleDateFormat("h:mm a",
+                        Locale.getDefault());
+
+                ArrayList<SessionSQL> sessions = getMeditationAssistant().db.getSessionsByDate(c);
+
+                final ArrayAdapter<String> sessionsDialogAdapter = new ArrayAdapter<String>(
+                        this,
+                        android.R.layout.select_dialog_item);
+
+                sessions_map.clear();
+                int session_index = 0;
+                for (Iterator<SessionSQL> i = sessions.iterator(); i.hasNext(); ) {
+                    SessionSQL session = i.next();
+                    Calendar cal2 = Calendar.getInstance();
+                    cal2.setTimeInMillis(session._completed * 1000);
+                    sessionsDialogAdapter.add(String.valueOf(session._length / 3600) + ":"
+                            + String.format("%02d", (session._length % 3600) / 60)
+                            + " - " + sdf2.format(cal2.getTime()));
+
+                    sessions_map.put(session_index, session);
+                    session_index++;
+                }
+
+                sessionDetailsDialog = new AlertDialog.Builder(this)
+                        .setIcon(
+                                getResources().getDrawable(
+                                        getMeditationAssistant().getTheme().obtainStyledAttributes(getMeditationAssistant().getMATheme(true),
+                                                new int[]{R.attr.actionIconGoToToday})
+                                                .getResourceId(0, 0)
+                                )
+                        )
+                        .setTitle(sdf.format(sess_date))
+                        .setAdapter(sessionsDialogAdapter,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        SessionSQL session = sessions_map.get(which);
+                                        if (session != null) {
+                                            getMeditationAssistant().showSessionDialog(session, ProgressActivity.this);
+                                        }
+
+                                        try {
+                                            dialog.dismiss();
+                                        } catch (Exception e) {
+                                        }
+                                    }
+                                })
+                        .create();
+                sessionDetailsDialog.show();
             }
         }
     }
@@ -283,7 +270,7 @@ public class ProgressActivity extends FragmentActivity {
                 outf.close();
                 success = true;
             } catch (IOException e) {
-                getMeditationAssistant().longToast(ProgressActivity.this, getString(R.string.sessionExportFailed) + ": " + e.toString() + " - " + file);
+                getMeditationAssistant().longToast(getString(R.string.sessionExportFailed) + ": " + e.toString() + " - " + file);
                 Log.e("MeditationAssistant", "Error exporting sessions to " + file, e);
             }
 
@@ -315,7 +302,7 @@ public class ProgressActivity extends FragmentActivity {
                                 if (intent.resolveActivityInfo(getPackageManager(), 0) != null) {
                                     startActivity(intent);
                                 } else {
-                                    getMeditationAssistant().longToast(ProgressActivity.this, getString(R.string.installFileManager));
+                                    getMeditationAssistant().longToast(getString(R.string.installFileManager));
                                 }
 
                                 dialogInterface.dismiss();

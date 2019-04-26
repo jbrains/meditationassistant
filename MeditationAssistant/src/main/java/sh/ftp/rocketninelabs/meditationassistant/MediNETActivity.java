@@ -56,7 +56,7 @@ public class MediNETActivity extends Activity {
         TimeZone tz = TimeZone.getDefault();
         Date now = new Date();
 
-        return "https://medinet.rocketnine.space/client_android.php?v="
+        return MeditationAssistant.URL_MEDINET + "/client_android.php?v="
                 + MediNET.version.toString() + "&avn="
                 + String.valueOf(getMeditationAssistant().getMAAppVersionNumber()) + "&th="
                 + ma.getMAThemeString() + "&tz="
@@ -192,8 +192,7 @@ public class MediNETActivity extends Activity {
                 @Override
                 public void onPageFinished(WebView view, String url) {
                     if (Uri.parse(url) != null && Uri.parse(url).getHost() != null && Uri.parse(url).getHost().equals("medinet.rocketnine.space")) {
-                        if (webView.getTitle() != null
-                                && !webView.getTitle().trim().equals("")) {
+                        if (webView.getTitle() != null && !webView.getTitle().trim().equals("")) {
                             setTitle(webView.getTitle());
                         }
                     } else {
@@ -427,7 +426,7 @@ public class MediNETActivity extends Activity {
                             getResources().getDrawable(
                                     android.R.drawable.background_holo_dark));*/
             webView.getSettings();
-            webView.setBackgroundColor(Color.argb(1, 0, 0, 0)); // TODO: Is this still necessary?
+            webView.setBackgroundColor(Color.argb(1, 0, 0, 0));
         }
     }
 }

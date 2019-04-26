@@ -123,9 +123,9 @@ public final class AuthConfiguration {
     }
 
     private void readConfiguration() throws InvalidConfigurationException {
-        mClientId = ""; // TODO: blank?
+        mClientId = "";
         mScope = "openid email profile";
-        mRedirectUri = Uri.parse("https://medinet.rocketnine.space/oauth");
+        mRedirectUri = Uri.parse(MeditationAssistant.URL_MEDINET + "/oauth");
 
         if (!isRedirectUriRegistered()) {
             throw new InvalidConfigurationException(

@@ -38,7 +38,7 @@ public class MeditationProvider extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        Intent intent = new Intent(context, MeditationService.class);
+        Intent intent = new Intent(context, WidgetService.class);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
         context.startService(intent);
 

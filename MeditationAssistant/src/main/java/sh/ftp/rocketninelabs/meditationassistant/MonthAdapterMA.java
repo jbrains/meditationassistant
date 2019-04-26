@@ -195,11 +195,6 @@ public abstract class MonthAdapterMA extends BaseAdapter {
                     view.setBackgroundColor(getMeditationAssistant()
                             .getResources().getColor(bgcolor));
                 }
-
-                if (numSessions > 1) { // Make large and bold if there's more than one session
-                    view.setTypeface(null, Typeface.BOLD);
-                    view.setTextSize(23);
-                }
             }
 
             view.setHeight(mDayHeight);
@@ -226,8 +221,8 @@ public abstract class MonthAdapterMA extends BaseAdapter {
                         ));
 
                 if (isToday(date[0], date[1], date[2])) {
-                    view.setPaintFlags(view.getPaintFlags()
-                            | Paint.UNDERLINE_TEXT_FLAG);
+                    view.setTypeface(null, Typeface.BOLD);
+                    view.setPaintFlags(view.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
                 }
             }
         } else {

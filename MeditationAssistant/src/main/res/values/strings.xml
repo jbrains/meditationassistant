@@ -21,6 +21,7 @@
     <string name="groups">Groups</string>
     <string name="announcement">Announcement</string>
     <string name="installFileManager">Please install a file manager (e.g. Solid Explorer)</string>
+    <string name="disableBatteryOptimizations">Meditation Assistant must run in the background</string>
 
     <!-- Permissions -->
     <string name="permissionRequest">Permission Request</string>
@@ -63,7 +64,7 @@
     <string name="presetLabelEndAt">End %s</string>
 
     <!-- About -->
-    <string name="tapToSendEmail">Tap anywhere to send feedback</string>
+    <string name="tapToLearnMore">Tap anywhere to learn more</string>
     <string name="sendEmail">Send email</string>
     <string name="version">Version %s</string>
     <string name="translate">Translate</string>
@@ -85,6 +86,7 @@
     <string name="presetsettings">Preset settings</string>
     <string name="modeandduration">Mode and duration</string>
     <string name="streakdifferencewarning">Your current meditation streak does not seem correct based on current session data. Use updated meditation streak?\n\nCurrent streak: %1$d\nUpdated streak: %2$d</string>
+    <string name="postUpdatedSession">Post updated session to MediNET?</string>
 
     <!-- Session complete -->
     <string name="sessioncomplete">Session Complete</string>
@@ -119,6 +121,8 @@
     <string name="daySundayShort">Sun</string>
     <string name="addSession">Add session</string>
     <string name="editSession">Edit session</string>
+    <string name="sessionAdded">Session added</string>
+    <string name="sessionEdited">Session edited</string>
     <string name="add">Add</string>
     <string name="edit">Edit</string>
     <string name="exportSessions">Export sessions</string>
@@ -127,9 +131,11 @@
     <string name="sessionStartedAt">Started at %s</string>
     <string name="started">Started</string>
     <string name="completed">Completed</string>
+    <string name="length">Length</string>
     <string name="setDate">Set date</string>
     <string name="setTime">Set time</string>
     <string name="invalidDateOrTime">Invalid date or time</string>
+    <string name="invalidLength">Invalid length</string>
     <string name="addSessionMeditating">Unable to add a session while meditating</string>
     <string name="editSessionMeditating">Unable to edit a session while meditating</string>
     <string name="sessionExists">Session already exists</string>
@@ -310,6 +316,6 @@ Feedback is welcome. Several features now implemented were originally ideas from
 
 Translate Meditation Assistant into your language: https://www.getlocalization.com/meditationassistant/
 
-Developed by Rocket Nine Laboratories: https://rocketnine.space/</string>
+Developed by Rocket Nine Laboratories: https://rocketnine.space</string>
 
 </resources>

@@ -1,20 +1,22 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     buildToolsVersion '28.0.3'
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
 
-        versionCode 153
-        versionName "1.5.3"
+        versionCode 154
+        versionName "1.5.4"
 
         applicationId "sh.ftp.rocketninelabs.meditationassistant"
         manifestPlaceholders = [
                 'appAuthRedirectScheme': applicationId
         ]
+
+        multiDexEnabled true
     }
 
     lintOptions {
@@ -73,30 +75,30 @@ android {
 }
 
 dependencies {
-    implementation "com.android.support:support-compat:27.1.1"
-    implementation "com.android.support:support-core-utils:27.1.1"
-    implementation "com.android.support:support-core-ui:27.1.1"
-    implementation "com.android.support:support-media-compat:27.1.1"
-    implementation "com.android.support:support-fragment:27.1.1"
-    implementation "com.android.support:recyclerview-v7:27.1.1"
-    implementation "com.android.support:design:27.1.1"
-    implementation "net.openid:appauth:0.7.0"
-    implementation "com.squareup.okio:okio:1.15.0"
-    implementation 'net.margaritov.preference.colorpicker.ColorPickerPreference:ColorPickerPreference:1.0.0'
+    implementation "com.android.support:support-compat:28.0.0"
+    implementation "com.android.support:support-core-utils:28.0.0"
+    implementation "com.android.support:support-core-ui:28.0.0"
+    implementation "com.android.support:support-media-compat:28.0.0"
+    implementation "com.android.support:support-fragment:28.0.0"
+    implementation "com.android.support:recyclerview-v7:28.0.0"
+    implementation "com.android.support:design:28.0.0"
+    implementation "net.openid:appauth:0.7.1"
+    implementation "com.squareup.okio:okio:2.2.2"
+    implementation "net.margaritov.preference.colorpicker.ColorPickerPreference:ColorPickerPreference:1.0.0"
 
-    freeImplementation 'com.google.android.gms:play-services-base:16.0.1'
-    fullImplementation 'com.google.android.gms:play-services-base:16.0.1'
-    freeImplementation 'com.google.android.gms:play-services-analytics:16.0.4'
-    fullImplementation 'com.google.android.gms:play-services-analytics:16.0.4'
+    freeImplementation 'com.google.android.gms:play-services-base:16.1.0'
+    fullImplementation 'com.google.android.gms:play-services-base:16.1.0'
+    freeImplementation 'com.google.android.gms:play-services-analytics:16.0.8'
+    fullImplementation 'com.google.android.gms:play-services-analytics:16.0.8'
     //freeImplementation 'com.google.android.gms:play-services-wearable:15.0.1'
     //fullImplementation 'com.google.android.gms:play-services-wearable:15.0.1'
-    freeImplementation 'com.google.android.gms:play-services-appinvite:16.0.4'
-    fullImplementation 'com.google.android.gms:play-services-appinvite:16.0.4'
+    freeImplementation 'com.google.android.gms:play-services-appinvite:16.1.1'
+    fullImplementation 'com.google.android.gms:play-services-appinvite:16.1.1'
     freeImplementation 'com.google.android.gms:play-services-fitness:16.0.1'
     fullImplementation 'com.google.android.gms:play-services-fitness:16.0.1'
-    freeImplementation 'com.google.android.gms:play-services-ads:17.0.0'
+    freeImplementation 'com.google.android.gms:play-services-ads:17.2.0'
     //noinspection GradleDynamicVersion
-    implementation 'ch.acra:acra-http:5.1.3'
+    implementation 'ch.acra:acra-http:5.3.0'
     implementation 'com.github.amlcurran.showcaseview:library:5.4.3'
     implementation 'com.nononsenseapps:filepicker:4.2.1'
     //wearApp project(':MeditationAssistantWear')

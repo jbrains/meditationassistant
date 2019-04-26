@@ -1,12 +1,13 @@
 package sh.ftp.rocketninelabs.meditationassistant;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
-import android.support.v4.app.FragmentActivity;
+import android.os.Looper;
 import android.util.Log;
 
 import org.json.JSONException;
@@ -24,7 +25,7 @@ public class MediNET {
 
     public String status = "disconnected";
     public String result = "";
-    public MainActivity activity;
+    public Activity activity;
     public MeditationSession session = new MeditationSession();
     public String provider = "";
     public ArrayList<MeditationSession> result_sessions = null;
@@ -45,7 +46,13 @@ public class MediNET {
             @Override
             public void run() {
                 handler.removeCallbacks(this);
+
+                try {
+                    _activity.updateTexts();
+                } catch (Exception e) {
+                }
                 getMeditationAssistant().updateWidgets();
+
                 runnable_finished = true;
             }
         };
@@ -134,7 +141,6 @@ public class MediNET {
             }
             task = new MediNETTask();
             task.action = "connect";
-            task.context = activity.getApplicationContext();
 
             Log.d("MeditationAssistant", "Executing MediNET Task");
             task.doIt(this);
@@ -151,7 +157,6 @@ public class MediNET {
         task = new MediNETTask();
         task.action = "deletesession";
         task.actionextra = String.valueOf(started);
-        task.context = activity.getApplicationContext();
         if (debug) {
             task.nextURL += "&debug77";
         }
@@ -167,12 +172,11 @@ public class MediNET {
         task = new MediNETTask();
         task.action = "signin";
         task.actionextra = authtoken;
-        task.context = activity.getApplicationContext();
 
         task.doIt(this);
     }
 
-    public MainActivity getActivity() {
+    public Activity getActivity() {
         return activity;
     }
 
@@ -199,42 +203,32 @@ public class MediNET {
         this.status = status;
     }
 
-    public Boolean postSession() {
-        return postSession(false, null);
-    }
-
-    public Boolean postSession(Boolean manualposting, FragmentActivity act) {
-        Log.d("MeditationAssistant", "Session.toString(): "
-                + this.getSession().export().toString());
+    public Boolean postSession(long updateSessionStarted, Activity activity, Runnable onComplete) {
+        Log.d("MeditationAssistant", "Session.toString(): " + this.getSession().export().toString());
         if (task != null) {
             task.cancel(true);
         }
-        task = new MediNETTask();
-        task.fragment_activity = act;
-        task.action = "uploadsessions";
-        if (manualposting) {
-            task.actionextra = "manualposting";
-        } else {
-            task.actionextra = "completeposting";
-            // Only add streak if there isn't already a session for today
-            Calendar completedCalendar = Calendar.getInstance();
-            completedCalendar.setTimeInMillis(getSession().completed * 1000);
-            if (getMeditationAssistant().db.numSessionsByDate(completedCalendar) == 0) {
-                getMeditationAssistant().addMeditationStreak();
-                if (getSession().streakday == 0) {
-                    getSession().streakday = getMeditationAssistant().getMeditationStreak();
-                }
-            }
+
+        if (activity != null) {
+            getMeditationAssistant().getMediNET().activity = activity;
         }
-        task.context = activity.getApplicationContext();
+
+        task = new MediNETTask();
+        task.actionextranumber = updateSessionStarted;
+        task.action = "uploadsessions";
+        task.actionextra = "manualposting";
+        task.onComplete = onComplete;
         if (debug) {
             task.nextURL += "&debug77";
         }
         task.doIt(this);
+
         return true;
     }
 
-    public void saveSession(Boolean manualposting, Boolean posted) {
+    public boolean saveSession(long updateSessionStarted, Boolean manualposting, Boolean posted) {
+        Boolean saved;
+
         Long postedlong = (long) 0;
         if (posted) {
             postedlong = (long) 1;
@@ -248,7 +242,7 @@ public class MediNET {
                 getMeditationAssistant().addMeditationStreak();
 
                 if (getSession().streakday == 0) {
-                    getSession().streakday = getMeditationAssistant().getMeditationStreak();
+                    getSession().streakday = getMeditationAssistant().getMeditationStreak().get(0);
                 }
             } else {
                 Calendar c_midnight = new GregorianCalendar();
@@ -262,7 +256,7 @@ public class MediNET {
                     getMeditationAssistant().addMeditationStreak();
 
                     if (getSession().streakday == 0) {
-                        getSession().streakday = getMeditationAssistant().getMeditationStreak();
+                        getSession().streakday = getMeditationAssistant().getMeditationStreak().get(0);
                     }
                 } else {
                     c_midnight.add(Calendar.DATE, -1);
@@ -271,16 +265,17 @@ public class MediNET {
                         getMeditationAssistant().addMeditationStreak(false);
 
                         if (getSession().streakday == 0) {
-                            getSession().streakday = getMeditationAssistant().getMeditationStreak();
+                            getSession().streakday = getMeditationAssistant().getMeditationStreak().get(0);
                         }
                     }
                 }
             }
         }
 
-        getMeditationAssistant().db.addSession(new SessionSQL(
+        Log.d("MeditationAssistant", "Saving session...");
+        saved = getMeditationAssistant().db.addSession(new SessionSQL(getSession().id,
                 getSession().started, getSession().completed, getSession().length,
-                getSession().message, postedlong, getSession().streakday));
+                getSession().message, postedlong, getSession().streakday, getSession().modified), updateSessionStarted);
 
         resetSession();
 
@@ -289,6 +284,8 @@ public class MediNET {
         if (!manualposting && getMeditationAssistant().db.getNumSessions() >= 3) {
             getMeditationAssistant().asktorate = true;
         }
+
+        return saved;
     }
 
     public void signOut() {
@@ -312,7 +309,6 @@ public class MediNET {
         }
         task = new MediNETTask();
         task.action = "downloadsessions";
-        task.context = activity.getApplicationContext();
         if (debug) {
             task.nextURL += "&debug77";
         }
@@ -327,7 +323,6 @@ public class MediNET {
         }
         task = new MediNETTask();
         task.action = "uploadsessions";
-        task.context = activity.getApplicationContext();
         if (debug) {
             task.nextURL += "&debug77";
         }
@@ -343,10 +338,10 @@ public class MediNET {
     public void updated() {
         Log.d("MeditationAssistant", "updated() " + status);
 
-        activity.updateTextsAsync();
+        getMeditationAssistant().notifyMediNETUpdated();
         if (runnable_finished) {
             runnable_finished = false;
-            handler.postDelayed(runnable, 750);
+            new Handler(Looper.getMainLooper()).post(runnable);
         }
     }
 }

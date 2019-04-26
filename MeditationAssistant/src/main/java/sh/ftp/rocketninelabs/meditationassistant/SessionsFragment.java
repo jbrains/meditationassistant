@@ -6,18 +6,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ListView;
-import android.widget.TextView;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-import java.util.TimeZone;
 
 public class SessionsFragment extends ListFragment {
     public MeditationAssistant ma = null;
@@ -98,9 +89,8 @@ public class SessionsFragment extends ListFragment {
                                                 getMeditationAssistant().getMediNET().session.length = selected_session._length;
                                                 getMeditationAssistant().getMediNET().session.message = selected_session._message;
                                                 getMeditationAssistant().getMediNET().session.streakday = selected_session._streakday;
-                                                getMeditationAssistant().getMediNET()
-                                                        .postSession(true,
-                                                                getActivity());
+                                                getMeditationAssistant().getMediNET().session.modified = selected_session._modified;
+                                                getMeditationAssistant().getMediNET().postSession(0,null, null);
                                             }
                                         } else { // Delete
                                             AlertDialog deleteDialog = new AlertDialog.Builder(

@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class DailyNotification extends BroadcastReceiver {
+public class DailyReminderReceiver extends BroadcastReceiver {
     MeditationAssistant ma = null;
 
     @Override
@@ -33,7 +33,7 @@ public class DailyNotification extends BroadcastReceiver {
             cancelReminder(context);
             return; // The user has not enabled the daily reminder
         }
-        Log.d("MeditationAssistant", "onReceive in DailyNotification");
+        Log.d("MeditationAssistant", "onReceive in DailyReminderReceiver");
 
         if (intent != null && intent.getAction() != null && intent.getAction().equals(MeditationAssistant.ACTION_REMINDER)) { // otherwise, it was just an update
             Log.d("MeditationAssistant", "Daily notification intent!");

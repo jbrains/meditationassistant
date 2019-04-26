@@ -17,12 +17,11 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
-import android.media.MediaCas;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
 import android.os.Vibrator;
@@ -38,7 +37,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import net.openid.appauth.AuthorizationRequest;
@@ -73,22 +71,22 @@ import java.util.TimeZone;
 @AcraCore(buildConfigClass = BuildConfig.class, reportFormat = StringFormat.KEY_VALUE_LIST)
 @AcraHttpSender(httpMethod = HttpSender.Method.POST, uri = "https://medinet.rocketnine.space/acra/acra.php")
 public class MeditationAssistant extends Application {
+    public static String URL_ROCKETNINELABS = "https://rocketnine.space";
+    public static String URL_MEDINET = "https://medinet.rocketnine.space";
+    public static String URL_SOURCE = "https://gitlab.com/tslocum/meditationassistant";
 
-    private static final String AUTH_PENDING = "auth_state_pending";
     public static String ACTION_PRESET = "sh.ftp.rocketninelabs.meditationassistant.PRESET";
     public static String ACTION_REMINDER = "sh.ftp.rocketninelabs.meditationassistant.DAILY_NOTIFICATION";
     public static String ACTION_UPDATED = "sh.ftp.rocketninelabs.meditationassistant.DAILY_NOTIFICATION_UPDATED";
-    public static String ACTION_AUTH = "sh.ftp.rocketninelabs.meditationassistant.AUTH";
+
     public static int REQUEST_FIT = 22;
     public static int MEDIA_DELAY = 1000;
-    public Boolean debug_widgets = false; // Debug
-    public long lastpostedsessionstart = 0;
+
     public boolean ispaused = false;
     public long pausestart = 0;
     public long pausetime = 0;
     public int previousRingerFilter = -1;
     public int previousRingerMode = -1;
-    public String toastText = "";
     public String pendingNotificationAction = "";
     public Boolean asktorate = false;
     public DatabaseHandler db = null;
@@ -99,11 +97,10 @@ public class MeditationAssistant extends Application {
     public UtilityMA utility = new UtilityMA();
     public UtilityAdsMA utility_ads = new UtilityAdsMA();
     public Integer previous_volume = null;
-    String AUTH_TOKEN_TYPE = "oauth2:https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email";
     private String appVersion = null;
-    private Boolean appFull = null;
     private long timeToStopMeditate = 0;
     private long timeStartMeditate = 0;
+    public boolean hideConnectedMsg;
     private MediNET medinet = null;
     private boolean screenoff = false;
     private boolean runnablestopped = true;
@@ -120,12 +117,9 @@ public class MeditationAssistant extends Application {
     private long sessrunnablestarttime = 0;
     private boolean sesswassignedout = false;
     private Boolean sendusage = null;
-    private Activity toastActivity;
     private long sessionduration = 0;
     private Integer webview_scale = null;
     private String timerMode = null;
-    private Activity signin_activity = null;
-    private Bundle signin_options = new Bundle();
     private SharedPreferences prefs = null;
     private WakeLocker wakeLocker = new WakeLocker();
     String pausedTimerHoursMinutes;
@@ -142,11 +136,17 @@ public class MeditationAssistant extends Application {
     private int sessionDialogCompletedDay = -1;
     private int sessionDialogCompletedHour = -1;
     private int sessionDialogCompletedMinute = -1;
+    private boolean sessionDialogLengthSetManually = false;
+    private int sessionDialogLengthHour = -1;
+    private int sessionDialogLengthMinute = -1;
+    private long sessionDialogUpdateSessionStarted = 0;
+    private Activity sessionDialogActivity = null;
     private String sessionDialogCurrentOption = "";
     private Button sessionDialogStartedDateButton = null;
     private Button sessionDialogStartedTimeButton = null;
     private Button sessionDialogCompletedDateButton = null;
     private Button sessionDialogCompletedTimeButton = null;
+    private Button sessionDialogLengthButton = null;
     private EditText sessionDialogMessage = null;
     private DatePickerDialog.OnDateSetListener sessionDialogDateSetListener =
             new DatePickerDialog.OnDateSetListener() {
@@ -162,7 +162,7 @@ public class MeditationAssistant extends Application {
                             sessionDialogCompletedYear = sessionDialogStartedYear;
                             sessionDialogCompletedMonth = sessionDialogStartedMonth;
                             sessionDialogCompletedDay = sessionDialogStartedDay;
-                        } else if (sessionDialogCompletedYear != -1 && sessionDialogCompletedMonth != -1 && sessionDialogCompletedDay != -1) {
+                        } else {
                             Calendar c_started = Calendar.getInstance();
                             c_started.set(Calendar.YEAR, sessionDialogStartedYear);
                             c_started.set(Calendar.MONTH, sessionDialogStartedMonth);
@@ -207,6 +207,16 @@ public class MeditationAssistant extends Application {
                         if (sessionDialogCompletedHour == -1 && sessionDialogCompletedMinute == -1) {
                             sessionDialogCompletedHour = sessionDialogStartedHour;
                             sessionDialogCompletedMinute = sessionDialogStartedMinute;
+                        }
+                    } else if (sessionDialogCurrentOption.equals("length")) {
+                        if (hourOfDay > 0 || minute > 0) {
+                            sessionDialogLengthSetManually = true;
+                            sessionDialogLengthHour = hourOfDay;
+                            sessionDialogLengthMinute = minute;
+                        } else {
+                            sessionDialogLengthSetManually = false;
+                            sessionDialogLengthHour = -1;
+                            sessionDialogLengthMinute = -1;
                         }
                     } else {
                         sessionDialogCompletedHour = hourOfDay;
@@ -336,6 +346,7 @@ public class MeditationAssistant extends Application {
         }
     }
 
+    @SuppressLint("WrongConstant")
     public void unsetNotificationControl() {
         if (previousRingerFilter >= 0 && (getPrefs().getString("pref_notificationcontrol", "").equals("priority") || getPrefs().getString("pref_notificationcontrol", "").equals("alarms")) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!haveNotificationPermission()) {
@@ -522,6 +533,7 @@ public class MeditationAssistant extends Application {
     public void startAuth(Context context, boolean showToast) {
         String trace = Arrays.toString(Thread.currentThread().getStackTrace());
         Log.d("MeditationAssistant", "startAuth called, current stack trace: " + trace);
+        hideConnectedMsg = !showToast;
 
         if (showToast) {
             shortToast(getString(R.string.signInToMediNET));
@@ -596,31 +608,24 @@ public class MeditationAssistant extends Application {
             dayCalendar.add(Calendar.DATE, -1);
         }
 
-        Integer currentStreak = getMeditationStreak();
+        Long currentStreak = getMeditationStreak().get(0);
         if (currentStreak < recalculatedstreak) {
             setMeditationStreak(recalculatedstreak, sessionexiststoday ? getStreakExpiresTwoDaysTimestamp() : getStreakExpiresOneDayTimestamp());
         } else if (currentStreak > recalculatedstreak) {
-            showStreakDifferenceWarning(currentStreak, recalculatedstreak, sessionexiststoday, activity);
+            showStreakDifferenceWarning(currentStreak.intValue(), recalculatedstreak, sessionexiststoday, activity);
         }
     }
 
-    public Integer getMeditationStreak() {
+    public ArrayList<Long> getMeditationStreak() {
         long timestamp = System.currentTimeMillis() / 1000;
 
-        if (meditationstreak == null || meditationstreakexpires < 1) { // streak
-            // or
-            // expires
-            // timestamp
-            // not
-            // set
+        if (meditationstreak == null || meditationstreakexpires < 1) {
             meditationstreak = getPrefs().getInt("meditationstreak", 0);
-            meditationstreakexpires = getPrefs().getLong("meditationstreakexpires",
-                    0);
+            meditationstreakexpires = getPrefs().getLong("meditationstreakexpires", 0);
         }
 
-        if (meditationstreakexpires > 0 && meditationstreakexpires < timestamp) { // expires
-            // timestamp
-            // has passed
+        if (meditationstreakexpires > 0 && meditationstreakexpires < timestamp) {
+            // Streak window has passed
             meditationstreak = 0;
             meditationstreakexpires = 0;
 
@@ -629,7 +634,10 @@ public class MeditationAssistant extends Application {
                     .putBoolean("meditationstreakwarningshown", false).apply();
         }
 
-        return meditationstreak;
+        ArrayList<Long> streak = new ArrayList<>();
+        streak.add((long) meditationstreak);
+        streak.add(meditationstreakexpires);
+        return streak;
     }
 
     public void addMeditationStreak() {
@@ -637,16 +645,18 @@ public class MeditationAssistant extends Application {
     }
 
     public void addMeditationStreak(Boolean twodays) {
-        Integer streak = getMeditationStreak();
-        Log.d("MeditationAssistant", "addMeditationStreak() - Streak: " + String.valueOf(streak) + " Expires: in " + String.valueOf(meditationstreakexpires - getTimestamp()) + " seconds");
-        if (meditationstreak == null || meditationstreak == 0 || meditationstreakexpires - getTimestamp() < 86400) {
-            streak++;
+        ArrayList<Long> streak = getMeditationStreak();
+        Long streakday = streak.get(0);
+        Long streakexpires = streak.get(1);
+        Log.d("MeditationAssistant", "addMeditationStreak() - Streak: " + String.valueOf(streakday) + " Expires: in " + String.valueOf(streakexpires - getTimestamp()) + " seconds");
+        if (streakday == 0 || streakexpires - getTimestamp() < 86400) {
+            streakday++;
 
             if (twodays) {
-                setMeditationStreak(streak,
+                setMeditationStreak(streakday.intValue(),
                         getStreakExpiresTwoDaysTimestamp());
             } else {
-                setMeditationStreak(streak,
+                setMeditationStreak(streakday.intValue(),
                         getStreakExpiresOneDayTimestamp());
             }
         }
@@ -687,6 +697,11 @@ public class MeditationAssistant extends Application {
     public void notifySessionsUpdated() {
         Log.d("MeditationAssistant", "Sending session update notification");
         getPrefs().edit().putLong("sessionsupdate", getTimestamp()).apply();
+    }
+
+    public void notifyMediNETUpdated() {
+        Log.d("MeditationAssistant", "Sending MediNET update notification");
+        getPrefs().edit().putLong("medinetupdate", getTimestamp()).apply();
     }
 
     public Integer timePreferenceValueToSeconds(String timePreferenceValue, String defaultValue) {
@@ -951,31 +966,10 @@ public class MeditationAssistant extends Application {
         notificationManager.cancelAll();
     }
 
-    public void longToast(Activity activity, String text) {
-        try {
-            Looper.prepare();
-        } catch (Exception e) {
-            //e.printStackTrace();
-        }
-
-        if (activity == null) {
-            Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG)
-                    .show();
-        } else {
-            toastActivity = activity;
-            toastText = text;
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(toastActivity, toastText, Toast.LENGTH_LONG)
-                            .show();
-                }
-            });
-        }
-    }
-
     public void longToast(String text) {
-        longToast(null, text);
+        new Handler(Looper.getMainLooper()).post(() -> {
+            Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
+        });
     }
 
     @Override
@@ -1078,9 +1072,6 @@ public class MeditationAssistant extends Application {
     }
 
     public void setMeditationStreak(Integer ms, long expires) {
-        if (meditationstreak == null) {
-            meditationstreak = getMeditationStreak();
-        }
         meditationstreak = ms;
         meditationstreakexpires = expires;
 
@@ -1134,31 +1125,10 @@ public class MeditationAssistant extends Application {
         return thispausetime;
     }
 
-    public void shortToast(Activity activity, String text) {
-        try {
-            Looper.prepare();
-        } catch (Exception e) {
-            //e.printStackTrace();
-        }
-
-        if (activity == null) {
-            Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT)
-                    .show();
-        } else {
-            toastActivity = activity;
-            toastText = text;
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(toastActivity, toastText, Toast.LENGTH_SHORT)
-                            .show();
-                }
-            });
-        }
-    }
-
     public void shortToast(String text) {
-        shortToast(null, text);
+        new Handler(Looper.getMainLooper()).post(() -> {
+            Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
+        });
     }
 
     public AlertDialog showAnnouncementDialog(String title) {
@@ -1272,8 +1242,8 @@ public class MeditationAssistant extends Application {
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
         String streaktext = "";
-        if (getMeditationStreak() > 1) {
-            streaktext = String.valueOf(getMeditationStreak());
+        if (getMeditationStreak().get(0) > 1) {
+            streaktext = String.valueOf(getMeditationStreak().get(0));
         }
 
         Notification notification = new NotificationCompat.Builder(this)
@@ -1305,9 +1275,11 @@ public class MeditationAssistant extends Application {
         }
 
         if (getTimeStartMeditate() > 0) {
-            shortToast(getString(session._started == 0 ? R.string.addSessionMeditating : R.string.editSessionMeditating));
+            shortToast(getString(session._id == 0 ? R.string.addSessionMeditating : R.string.editSessionMeditating));
             return;
         }
+
+        sessionDialogActivity = activity;
 
         sessionDialogStartedYear = -1;
         sessionDialogStartedMonth = -1;
@@ -1321,14 +1293,28 @@ public class MeditationAssistant extends Application {
         sessionDialogCompletedHour = -1;
         sessionDialogCompletedMinute = -1;
 
-        if (session._started > 0) {
+        sessionDialogLengthSetManually = false;
+        sessionDialogLengthHour = -1;
+        sessionDialogLengthMinute = -1;
+
+        View sessionDialogView = LayoutInflater.from(sessionDialogActivity).inflate(R.layout.session_dialog, (ViewGroup) sessionDialogActivity.findViewById(R.id.sessionDialog));
+        sessionDialogStartedDateButton = (Button) sessionDialogView.findViewById(R.id.sessionDialogSetDateStarted);
+        sessionDialogStartedTimeButton = (Button) sessionDialogView.findViewById(R.id.sessionDialogSetTimeStarted);
+        sessionDialogCompletedDateButton = (Button) sessionDialogView.findViewById(R.id.sessionDialogSetDateCompleted);
+        sessionDialogCompletedTimeButton = (Button) sessionDialogView.findViewById(R.id.sessionDialogSetTimeCompleted);
+        sessionDialogLengthButton = (Button) sessionDialogView.findViewById(R.id.sessionDialogSetLength);
+        sessionDialogMessage = (EditText) sessionDialogView.findViewById(R.id.sessionDialogSetMessage);
+
+        if (session._id > 0) {
+            sessionDialogUpdateSessionStarted = session._started;
+
             Calendar c_session_started = Calendar.getInstance();
             c_session_started.setTimeInMillis(session._started * 1000);
             sessionDialogStartedYear = c_session_started.get(Calendar.YEAR);
             sessionDialogStartedMonth = c_session_started.get(Calendar.MONTH);
             sessionDialogStartedDay = c_session_started.get(Calendar.DAY_OF_MONTH);
-            sessionDialogStartedHour =  c_session_started.get(Calendar.HOUR_OF_DAY);
-            sessionDialogStartedMinute =  c_session_started.get(Calendar.MINUTE);
+            sessionDialogStartedHour = c_session_started.get(Calendar.HOUR_OF_DAY);
+            sessionDialogStartedMinute = c_session_started.get(Calendar.MINUTE);
 
             Calendar c_session_completed = Calendar.getInstance();
             c_session_completed.setTimeInMillis(session._completed * 1000);
@@ -1337,14 +1323,16 @@ public class MeditationAssistant extends Application {
             sessionDialogCompletedDay = c_session_completed.get(Calendar.DAY_OF_MONTH);
             sessionDialogCompletedHour = c_session_completed.get(Calendar.HOUR_OF_DAY);
             sessionDialogCompletedMinute = c_session_completed.get(Calendar.MINUTE);
-        }
 
-        View sessionDialogView = LayoutInflater.from(activity).inflate(R.layout.session_dialog, (ViewGroup) activity.findViewById(R.id.sessionDialog));
-        sessionDialogStartedDateButton = (Button) sessionDialogView.findViewById(R.id.sessionDialogSetDateStarted);
-        sessionDialogStartedTimeButton = (Button) sessionDialogView.findViewById(R.id.sessionDialogSetTimeStarted);
-        sessionDialogCompletedDateButton = (Button) sessionDialogView.findViewById(R.id.sessionDialogSetDateCompleted);
-        sessionDialogCompletedTimeButton = (Button) sessionDialogView.findViewById(R.id.sessionDialogSetTimeCompleted);
-        sessionDialogMessage = (EditText) sessionDialogView.findViewById(R.id.sessionDialogSetMessage);
+            sessionDialogLengthSetManually = true;
+            sessionDialogLengthHour = Long.valueOf(session._length / 3600).intValue();
+            sessionDialogLengthMinute = Long.valueOf((session._length % 3600) / 60).intValue();
+            if (sessionDialogLengthHour == 0 && sessionDialogLengthMinute == 0) {
+                sessionDialogLengthMinute = 1;
+            }
+
+            sessionDialogMessage.setText(session._message);
+        }
 
         sessionDialogStartedDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1354,11 +1342,11 @@ public class MeditationAssistant extends Application {
 
                 if (sessionDialogStartedYear == -1 || sessionDialogStartedMonth == -1 || sessionDialogStartedDay == -1) {
                     Calendar c = Calendar.getInstance();
-                    dateDialog = new DatePickerDialog(activity,
+                    dateDialog = new DatePickerDialog(sessionDialogActivity,
                             sessionDialogDateSetListener,
                             c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
                 } else {
-                    dateDialog = new DatePickerDialog(activity,
+                    dateDialog = new DatePickerDialog(sessionDialogActivity,
                             sessionDialogDateSetListener,
                             sessionDialogStartedYear, sessionDialogStartedMonth, sessionDialogStartedDay);
                 }
@@ -1374,11 +1362,11 @@ public class MeditationAssistant extends Application {
 
                 if (sessionDialogStartedHour == -1 || sessionDialogStartedMinute == -1) {
                     Calendar c = Calendar.getInstance();
-                    timeDialog = new TimePickerDialog(activity,
+                    timeDialog = new TimePickerDialog(sessionDialogActivity,
                             sessionDialogTimeSetListener,
                             c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), false);
                 } else {
-                    timeDialog = new TimePickerDialog(activity,
+                    timeDialog = new TimePickerDialog(sessionDialogActivity,
                             sessionDialogTimeSetListener,
                             sessionDialogStartedHour, sessionDialogStartedMinute, false);
                 }
@@ -1394,11 +1382,11 @@ public class MeditationAssistant extends Application {
 
                 if (sessionDialogCompletedYear == -1 || sessionDialogCompletedMonth == -1 || sessionDialogCompletedDay == -1) {
                     Calendar c = Calendar.getInstance();
-                    dateDialog = new DatePickerDialog(activity,
+                    dateDialog = new DatePickerDialog(sessionDialogActivity,
                             sessionDialogDateSetListener,
                             c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
                 } else {
-                    dateDialog = new DatePickerDialog(activity,
+                    dateDialog = new DatePickerDialog(sessionDialogActivity,
                             sessionDialogDateSetListener,
                             sessionDialogCompletedYear, sessionDialogCompletedMonth, sessionDialogCompletedDay);
                 }
@@ -1414,11 +1402,11 @@ public class MeditationAssistant extends Application {
 
                 if (sessionDialogCompletedHour == -1 || sessionDialogCompletedMinute == -1) {
                     Calendar c = Calendar.getInstance();
-                    timeDialog = new TimePickerDialog(activity,
+                    timeDialog = new TimePickerDialog(sessionDialogActivity,
                             sessionDialogTimeSetListener,
                             c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), false);
                 } else {
-                    timeDialog = new TimePickerDialog(activity,
+                    timeDialog = new TimePickerDialog(sessionDialogActivity,
                             sessionDialogTimeSetListener,
                             sessionDialogCompletedHour, sessionDialogCompletedMinute, false);
                 }
@@ -1426,18 +1414,37 @@ public class MeditationAssistant extends Application {
                 timeDialog.show();
             }
         });
+        sessionDialogLengthButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sessionDialogCurrentOption = "length";
+                TimePickerDialog timeDialog = null;
 
-        sessionDialog = new AlertDialog.Builder(activity)
+                if (sessionDialogLengthHour == -1 || sessionDialogLengthMinute == -1) {
+                    timeDialog = new TimePickerDialog(sessionDialogActivity,
+                            sessionDialogTimeSetListener,
+                            0, 0, true);
+                } else {
+                    timeDialog = new TimePickerDialog(sessionDialogActivity,
+                            sessionDialogTimeSetListener,
+                            sessionDialogLengthHour, sessionDialogLengthMinute, true);
+                }
+
+                timeDialog.show();
+            }
+        });
+
+        sessionDialog = new AlertDialog.Builder(sessionDialogActivity)
                 .setIcon(
                         getResources().getDrawable(
                                 getTheme().obtainStyledAttributes(getMATheme(true),
-                                        new int[]{session._started == 0 ? R.attr.actionIconNew : R.attr.actionIconGoToToday})
+                                        new int[]{session._id == 0 ? R.attr.actionIconNew : R.attr.actionIconGoToToday})
                                         .getResourceId(0, 0)
                         )
                 )
-                .setTitle(getString(session._started == 0 ? R.string.addSession : R.string.editSession))
+                .setTitle(getString(session._id == 0 ? R.string.addSession : R.string.editSession))
                 .setView(sessionDialogView)
-                .setPositiveButton(getString(session._started == 0 ? R.string.add : R.string.edit), new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(session._id == 0 ? R.string.add : R.string.edit), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface,
                                         int which) {
@@ -1475,51 +1482,64 @@ public class MeditationAssistant extends Application {
                     Calendar c_completed = Calendar.getInstance();
                     c_completed.set(Calendar.YEAR, sessionDialogCompletedYear);
                     c_completed.set(Calendar.MONTH, sessionDialogCompletedMonth);
-                    c_completed.set(Calendar.DAY_OF_MONTH,sessionDialogCompletedDay);
+                    c_completed.set(Calendar.DAY_OF_MONTH, sessionDialogCompletedDay);
                     c_completed.set(Calendar.HOUR_OF_DAY, sessionDialogCompletedHour);
                     c_completed.set(Calendar.MINUTE, sessionDialogCompletedMinute);
                     c_completed.set(Calendar.SECOND, 0);
                     c_completed.set(Calendar.MILLISECOND, 0);
 
-                    if (c_started.getTimeInMillis() > Calendar.getInstance().getTimeInMillis() || c_completed.getTimeInMillis() > Calendar.getInstance().getTimeInMillis() || c_completed.getTimeInMillis() <= c_started.getTimeInMillis()) {
+                    if (c_started.getTimeInMillis() > Calendar.getInstance().getTimeInMillis() || c_completed.getTimeInMillis() > Calendar.getInstance().getTimeInMillis() || c_started.getTimeInMillis() >= c_completed.getTimeInMillis()) {
                         shortToast(getString(R.string.invalidDateOrTime));
                         return;
                     }
 
-                    boolean sessionExists = db.getSessionByStarted(c_started.getTimeInMillis() / 1000) == null;
-                    if (session._started == 0) {
-                        if (!sessionExists) {
-                            getMediNET().resetSession();
-                            getMediNET().session.started = c_started.getTimeInMillis() / 1000;
-                            getMediNET().session.length = ((c_completed.getTimeInMillis() / 1000) - (c_started.getTimeInMillis() / 1000));
-                            getMediNET().session.completed = c_completed.getTimeInMillis() / 1000;
-                            getMediNET().session.message = sessionDialogMessage.getText().toString().trim();
-                            getMediNET().saveSession(true, false);
-
-                            notifySessionsUpdated();
-
-                            sessionDialog.dismiss();
-                        } else {
-                            shortToast(getString(R.string.sessionExists));
-                        }
-                    } else {
-                        if (sessionExists) {
-                            // TODO: Edit
-                        } else {
-                            // Session was updated or deleted in the background
-                        }
-
-                        sessionDialog.dismiss();
+                    if (((sessionDialogLengthHour * 3600) + (sessionDialogLengthMinute * 60)) > ((c_completed.getTimeInMillis() - c_started.getTimeInMillis()) / 1000)) {
+                        shortToast(getString(R.string.invalidLength));
+                        return;
                     }
+
+                    final SessionSQL existingSession = db.getSessionByStarted(c_started.getTimeInMillis() / 1000);
+                    if (existingSession != null && existingSession._id > 0 && (session._id == 0 || !existingSession._id.equals(session._id))) {
+                        shortToast(getString(R.string.sessionExists));
+                        return;
+                    }
+
+                    AlertDialog postSessionDialog = new AlertDialog.Builder(activity)
+                            .setIcon(getResources().getDrawable(getTheme().obtainStyledAttributes(getMATheme(true),
+                                    new int[]{R.attr.actionIconInfo})
+                                    .getResourceId(0, 0)))
+                            .setTitle(getString(R.string.sessionPosted))
+                            .setMessage(getString(R.string.postUpdatedSession))
+                            .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface,
+                                                    int which) {
+                                    dialogInterface.dismiss();
+                                    completeSessionDialog(session, true);
+                                }
+                            })
+                            .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface,
+                                                    int which) {
+                                    dialogInterface.dismiss();
+                                    completeSessionDialog(session, false);
+                                }
+                            })
+                            .setCancelable(true)
+                            .create();
+                    postSessionDialog.show();
                 }
             }
         });
     }
 
     public void updateSessionDialog() {
-        if (sessionDialogStartedDateButton == null || sessionDialogCompletedDateButton == null || sessionDialogStartedTimeButton == null || sessionDialogCompletedTimeButton == null) {
+        if (sessionDialogStartedDateButton == null || sessionDialogCompletedDateButton == null || sessionDialogStartedTimeButton == null || sessionDialogCompletedTimeButton == null || sessionDialogLengthButton == null) {
             return;
         }
+
+        fillSessionDialogLength();
 
         SimpleDateFormat sdf_date = new SimpleDateFormat("MMMM d",
                 Locale.getDefault());
@@ -1579,6 +1599,130 @@ public class MeditationAssistant extends Application {
             c.set(Calendar.MILLISECOND, 0);
 
             sessionDialogCompletedTimeButton.setText(sdf_time.format(c.getTime()));
+        }
+
+        if (sessionDialogLengthHour == -1 || sessionDialogLengthMinute == -1) {
+            sessionDialogLengthButton.setText(getString(R.string.setTime));
+        } else {
+            String summary = "";
+            if (sessionDialogLengthHour > 0) {
+                summary += String.valueOf(sessionDialogLengthHour) + " hour";
+                if (sessionDialogLengthHour > 1) {
+                    summary += "s";
+                }
+            }
+            if (sessionDialogLengthMinute > 0) {
+                summary += " " + String.valueOf(sessionDialogLengthMinute) + " minute";
+                if (sessionDialogLengthMinute > 1) {
+                    summary += "s";
+                }
+            }
+
+            sessionDialogLengthButton.setText(summary.trim());
+        }
+    }
+
+    public void fillSessionDialogLength() {
+        if (sessionDialogLengthSetManually) {
+            return;
+        }
+
+        if (sessionDialogStartedYear == -1 || sessionDialogStartedMonth == -1 || sessionDialogStartedDay == -1
+                || sessionDialogStartedHour == -1 || sessionDialogStartedMinute == -1
+                || sessionDialogCompletedYear == -1 || sessionDialogCompletedMonth == -1 || sessionDialogCompletedDay == -1
+                || sessionDialogCompletedHour == -1 || sessionDialogCompletedMinute == -1) {
+            return;
+        }
+
+        Calendar sc = Calendar.getInstance();
+        sc.set(Calendar.YEAR, sessionDialogStartedYear);
+        sc.set(Calendar.MONTH, sessionDialogStartedMonth);
+        sc.set(Calendar.DAY_OF_MONTH, sessionDialogStartedDay);
+        sc.set(Calendar.HOUR_OF_DAY, sessionDialogStartedHour);
+        sc.set(Calendar.MINUTE, sessionDialogStartedMinute);
+        sc.set(Calendar.SECOND, 0);
+        sc.set(Calendar.MILLISECOND, 0);
+
+        Calendar cc = Calendar.getInstance();
+        cc.set(Calendar.YEAR, sessionDialogCompletedYear);
+        cc.set(Calendar.MONTH, sessionDialogCompletedMonth);
+        cc.set(Calendar.DAY_OF_MONTH, sessionDialogCompletedDay);
+        cc.set(Calendar.HOUR_OF_DAY, sessionDialogCompletedHour);
+        cc.set(Calendar.MINUTE, sessionDialogCompletedMinute);
+        cc.set(Calendar.SECOND, 0);
+        cc.set(Calendar.MILLISECOND, 0);
+
+        long length = (cc.getTimeInMillis() / 1000) - (sc.getTimeInMillis() / 1000);
+        if (length <= 0) {
+            return;
+        }
+
+        sessionDialogLengthHour = (int) length / 3600;
+        sessionDialogLengthMinute = (int) (length % 3600) / 60;
+
+        if (sessionDialogLengthHour == 0 && sessionDialogLengthMinute == 0) {
+            sessionDialogLengthMinute = 1;
+        }
+    }
+
+    public ArrayList<Long> getSessionDialogValues() {
+        Calendar c_started = Calendar.getInstance();
+        c_started.set(Calendar.YEAR, sessionDialogStartedYear);
+        c_started.set(Calendar.MONTH, sessionDialogStartedMonth);
+        c_started.set(Calendar.DAY_OF_MONTH, sessionDialogStartedDay);
+        c_started.set(Calendar.HOUR_OF_DAY, sessionDialogStartedHour);
+        c_started.set(Calendar.MINUTE, sessionDialogStartedMinute);
+        c_started.set(Calendar.SECOND, 0);
+        c_started.set(Calendar.MILLISECOND, 0);
+
+        Calendar c_completed = Calendar.getInstance();
+        c_completed.set(Calendar.YEAR, sessionDialogCompletedYear);
+        c_completed.set(Calendar.MONTH, sessionDialogCompletedMonth);
+        c_completed.set(Calendar.DAY_OF_MONTH, sessionDialogCompletedDay);
+        c_completed.set(Calendar.HOUR_OF_DAY, sessionDialogCompletedHour);
+        c_completed.set(Calendar.MINUTE, sessionDialogCompletedMinute);
+        c_completed.set(Calendar.SECOND, 0);
+        c_completed.set(Calendar.MILLISECOND, 0);
+
+        ArrayList<Long> sc = new ArrayList<>();
+        sc.add(c_started.getTimeInMillis() / 1000);
+        sc.add(c_completed.getTimeInMillis() / 1000);
+        sc.add((long) ((sessionDialogLengthHour * 3600) + (sessionDialogLengthMinute * 60)));
+        return sc;
+    }
+
+    public void completeSessionDialog(SessionSQL session, boolean postSession) {
+        ArrayList<Long> sc = getSessionDialogValues();
+        Long started = sc.get(0);
+        Long completed = sc.get(1);
+        Long length = sc.get(2);
+
+        if (postSession) {
+            getMediNET().resetSession();
+            getMediNET().session.started = started;
+            getMediNET().session.length = length;
+            getMediNET().session.completed = completed;
+            getMediNET().session.message = sessionDialogMessage.getText().toString().trim();
+            getMediNET().session.modified = getTimestamp();
+
+            getMediNET().status = "";
+            getMediNET().postSession(sessionDialogUpdateSessionStarted, sessionDialogActivity, () -> {
+                if (getMediNET().status.equals("success")) {
+                    notifySessionsUpdated();
+                    sessionDialog.dismiss();
+                }
+            });
+        } else {
+            if (db.addSession(new SessionSQL((long) 0, started, completed, length, sessionDialogMessage.getText().toString().trim(), (long) 0, (long) 0, getTimestamp()), sessionDialogUpdateSessionStarted)) {
+                if (session._id == 0) { // Add session
+                    shortToast(getString(R.string.sessionAdded));
+                } else {
+                    shortToast(getString(R.string.sessionEdited));
+                }
+
+                notifySessionsUpdated();
+                sessionDialog.dismiss();
+            }
         }
     }
 
@@ -1701,6 +1845,41 @@ public class MeditationAssistant extends Application {
         accountsAlertDialog.show();
     }
 
+    public ArrayList<Long> dateToSessionWindow(Calendar c) {
+        ArrayList<Long>sessionWindow = new ArrayList<Long>();
+        ArrayList<Integer> streakbuffertime = getStreakBufferTime();
+        Calendar sessionWindowCalendar = (Calendar) c.clone();
+
+        sessionWindowCalendar.set(Calendar.HOUR_OF_DAY, streakbuffertime.get(0));
+        sessionWindowCalendar.set(Calendar.MINUTE, streakbuffertime.get(1));
+        sessionWindow.add(sessionWindowCalendar.getTimeInMillis() / 1000);
+
+        sessionWindowCalendar.add(Calendar.DATE, 1);
+        sessionWindowCalendar.set(Calendar.HOUR_OF_DAY, streakbuffertime.get(0));
+        sessionWindowCalendar.set(Calendar.MINUTE, streakbuffertime.get(1));
+        sessionWindow.add(sessionWindowCalendar.getTimeInMillis() / 1000);
+
+        return sessionWindow;
+    }
+
+    public String sessionToDate(SessionSQL session) {
+        if (session._completed != null) {
+            return timestampToDate(session._completed * 1000);
+        } else {
+            return timestampToDate((session._started + session._length) * 1000);
+        }
+    }
+
+    private String timestampToDate(long timestamp) {
+        SimpleDateFormat sdf = new SimpleDateFormat("d-M-yyyy", Locale.US);
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(timestamp);
+        Date api_date = cal.getTime();
+
+        return sdf.format(api_date);
+    }
+
     public void sendLogcat() {
         StringBuilder logcat = new StringBuilder();
         Runtime rt = Runtime.getRuntime();
@@ -1729,8 +1908,7 @@ public class MeditationAssistant extends Application {
             return;
         }
 
-        Intent e = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                "mailto", "tslocum@gmail.com", null));
+        Intent e = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", getString(R.string.myEmailAddress), null));
         String to[] = {getString(R.string.myEmailAddress)};
         e.putExtra(Intent.EXTRA_EMAIL, to);
         e.putExtra(Intent.EXTRA_SUBJECT, "Meditation Assistant Debug Log");

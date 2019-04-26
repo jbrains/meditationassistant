@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
     private static final String DATABASE_NAME = "meditationassistant";
     private static final String TABLE_SESSIONS = "sessions";
 
@@ -27,6 +27,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_MESSAGE = "message";
     private static final String KEY_ISPOSTED = "isposted";
     private static final String KEY_STREAKDAY = "streakday";
+    private static final String KEY_MODIFIED = "modified";
     private static DatabaseHandler databaseHandler;
 
     private SQLiteDatabase db = null;
@@ -45,41 +46,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return databaseHandler;
     }
 
-    public ArrayList<Long> dateToSessionWindow(Calendar c) {
-        ArrayList<Long>sessionWindow = new ArrayList<Long>();
-        ArrayList<Integer> streakbuffertime = getMeditationAssistant().getStreakBufferTime();
-        Calendar sessionWindowCalendar = (Calendar) c.clone();
-        
-        sessionWindowCalendar.set(Calendar.HOUR_OF_DAY, streakbuffertime.get(0));
-        sessionWindowCalendar.set(Calendar.MINUTE, streakbuffertime.get(1));
-        sessionWindow.add(sessionWindowCalendar.getTimeInMillis() / 1000);
-
-        sessionWindowCalendar.add(Calendar.DATE, 1);
-        sessionWindowCalendar.set(Calendar.HOUR_OF_DAY, streakbuffertime.get(0));
-        sessionWindowCalendar.set(Calendar.MINUTE, streakbuffertime.get(1));
-        sessionWindow.add(sessionWindowCalendar.getTimeInMillis() / 1000);
-
-        return sessionWindow;
-    }
-
-    public String sessionToDate(SessionSQL session) {
-        if (session._completed != null) {
-            return timestampToDate(session._completed * 1000);
-        } else {
-            return timestampToDate((session._started + session._length) * 1000);
-        }
-    }
-
-    private String timestampToDate(long timestamp) {
-        SimpleDateFormat sdf = new SimpleDateFormat("d-M-yyyy", Locale.US);
-
-        Calendar cal = Calendar.getInstance();
-        cal.setTimeInMillis(timestamp);
-        Date api_date = cal.getTime();
-
-        return sdf.format(api_date);
-    }
-
     private ArrayList<SessionSQL> unmarshalResult(Cursor c) {
         ArrayList<SessionSQL> sessionList = new ArrayList<SessionSQL>();
         if (c != null) {
@@ -92,7 +58,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                             c.getLong(c.getColumnIndex(KEY_LENGTH)),
                             c.getString(c.getColumnIndex(KEY_MESSAGE)),
                             c.getLong(c.getColumnIndex(KEY_ISPOSTED)),
-                            c.getLong(c.getColumnIndex(KEY_STREAKDAY)));
+                            c.getLong(c.getColumnIndex(KEY_STREAKDAY)),
+                            c.getLong(c.getColumnIndex(KEY_MODIFIED)));
 
                     sessionList.add(session);
                 } while (c.moveToNext());
@@ -108,7 +75,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return ma;
     }
 
-    void addSession(SessionSQL session) {
+    boolean addSession(SessionSQL session, long updateSessionStarted) {
+        if (session._modified == 0) {
+            session._modified = getMeditationAssistant().getTimestamp();
+        }
+
         ContentValues values = new ContentValues();
         values.put(KEY_STARTED, session._started);
         values.put(KEY_COMPLETED, session._completed);
@@ -116,26 +87,33 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_MESSAGE, session._message);
         values.put(KEY_ISPOSTED, session._isposted);
         values.put(KEY_STREAKDAY, session._streakday);
+        values.put(KEY_MODIFIED, session._modified);
 
-        db.insert(TABLE_SESSIONS, null, values);
+        if (updateSessionStarted == 0) {
+            updateSessionStarted = session._started;
+        }
+
+        ArrayList<SessionSQL> existingSessions = unmarshalResult(db.rawQuery("SELECT  * FROM `" + TABLE_SESSIONS + "` WHERE `" + KEY_STARTED + "`=? OR `" + KEY_STARTED + "`=?", new String[]{String.valueOf(session._started), String.valueOf(updateSessionStarted)}));
+        if (existingSessions.isEmpty()) {
+            Log.d("MeditationAssistant", "INSERTING");
+            db.insert(TABLE_SESSIONS, null, values);
+        } else {
+            Log.d("MeditationAssistant", "UPDATING");
+            for (SessionSQL es : existingSessions) {
+                if (es._modified >= session._modified) {
+                    Log.d("MeditationAssistant", "EXISTING SESSION MODIFIED");
+                    return false;
+                }
+            }
+
+            Cursor c = db.rawQuery("UPDATE `" + TABLE_SESSIONS + "` SET `" + KEY_STARTED + "`=?, `" + KEY_COMPLETED + "`=?, `" + KEY_LENGTH + "`=?, `" + KEY_MESSAGE + "`=?, `" + KEY_ISPOSTED + "`=?, `" + KEY_STREAKDAY + "`=?, `" + KEY_MODIFIED + "`=? WHERE `" + KEY_STARTED + "`=? OR`" + KEY_STARTED + "`=?",
+                    new String[]{String.valueOf(session._started), String.valueOf(session._completed), String.valueOf(session._length),session._message,String.valueOf(session._isposted),String.valueOf(session._streakday),String.valueOf(session._modified), String.valueOf(session._started), String.valueOf(updateSessionStarted)});
+            c.moveToFirst();
+            c.close();
+        }
 
         getMeditationAssistant().notifySessionsUpdated();
-    }
-
-    public int updateSession(SessionSQL session) {
-        ContentValues values = new ContentValues();
-        values.put(KEY_STARTED, session._started);
-        values.put(KEY_COMPLETED, session._completed);
-        values.put(KEY_LENGTH, session._length);
-        values.put(KEY_MESSAGE, session._message);
-        values.put(KEY_ISPOSTED, session._isposted);
-        values.put(KEY_STREAKDAY, session._streakday);
-
-        int result = db.update(TABLE_SESSIONS, values, KEY_ID + " = ?",
-                new String[]{String.valueOf(session.getID())});
-
-        getMeditationAssistant().notifySessionsUpdated();
-        return result;
+        return true;
     }
 
     public void deleteSession(SessionSQL session) {
@@ -178,7 +156,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     int numSessionsByDate(Calendar date) {
-        ArrayList<Long> sessionWindow = dateToSessionWindow(date);
+        ArrayList<Long> sessionWindow = getMeditationAssistant().dateToSessionWindow(date);
         Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM `" + TABLE_SESSIONS + "` WHERE `" + KEY_STARTED + "`>=? AND `" + KEY_STARTED + "`<?", new String[]{String.valueOf(sessionWindow.get(0)), String.valueOf(sessionWindow.get(1))});
 
         cursor.moveToFirst();
@@ -189,8 +167,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public ArrayList<SessionSQL> getSessionsByDate(Calendar date) {
-        ArrayList<Long> sessionWindow = dateToSessionWindow(date);
-        return unmarshalResult(db.rawQuery("SELECT * FROM `" + TABLE_SESSIONS + "` WHERE `" + KEY_STARTED + "`>=? AND `" + KEY_STARTED + "`<? ORDER BY `" + KEY_STARTED + "` ASC LIMIT 1", new String[]{String.valueOf(sessionWindow.get(0)), String.valueOf(sessionWindow.get(1))}));
+        ArrayList<Long> sessionWindow = getMeditationAssistant().dateToSessionWindow(date);
+        return unmarshalResult(db.rawQuery("SELECT * FROM `" + TABLE_SESSIONS + "` WHERE `" + KEY_STARTED + "`>=? AND `" + KEY_STARTED + "`<? ORDER BY `" + KEY_STARTED + "` ASC", new String[]{String.valueOf(sessionWindow.get(0)), String.valueOf(sessionWindow.get(1))}));
     }
 
     public SessionSQL getSessionByDate(Calendar date) {
@@ -229,7 +207,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + "`" + KEY_ID + "` INTEGER PRIMARY KEY, "
                 + "`" + KEY_STARTED + "` INTEGER, `" + KEY_COMPLETED + "` INTEGER, "
                 + "`" + KEY_LENGTH + "` INTEGER, `" + KEY_MESSAGE + "` STRING, "
-                + "`" + KEY_ISPOSTED + "` INTEGER, `" + KEY_STREAKDAY + "` INTEGER" + ")");
+                + "`" + KEY_ISPOSTED + "` INTEGER, `" + KEY_STREAKDAY + "` INTEGER, "
+                + "`" + KEY_MODIFIED + "` INTEGER" + ")");
 
         db.execSQL("CREATE INDEX `" + KEY_STARTED + "_idx` ON `" + TABLE_SESSIONS + "` (`" + KEY_STARTED + "`)");
         db.execSQL("CREATE INDEX `" + KEY_COMPLETED + "_idx` ON `" + TABLE_SESSIONS + "` (`" + KEY_COMPLETED + "`)");
@@ -241,20 +220,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         int curVer = oldVersion;
         while (curVer < newVersion) {
             curVer++;
+            Log.d("MeditationAssistant", "UPGRADING DATABASE to " + String.valueOf(curVer));
             switch (curVer) {
                 case 2:
-                    Log.d("MeditationAssistant", "UPGRADING DATABASE to " + String.valueOf(curVer));
-
                     db.execSQL("ALTER TABLE `" + TABLE_SESSIONS + "` ADD COLUMN `" + KEY_STREAKDAY + "` INTEGER");
                     break;
                 case 3:
-                    Log.d("MeditationAssistant", "UPGRADING DATABASE to " + String.valueOf(curVer));
-
                     db.execSQL("CREATE INDEX `" + KEY_STARTED + "_idx` ON `" + TABLE_SESSIONS + "` (`" + KEY_STARTED + "`)");
                     break;
                 case 4:
-                    Log.d("MeditationAssistant", "UPGRADING DATABASE to " + String.valueOf(curVer));
-
                     /* Fix for incorrect upgrade code */
                     try {
                         db.execSQL("ALTER TABLE `" + TABLE_SESSIONS + "` ADD COLUMN `" + KEY_STREAKDAY + "` INTEGER");
@@ -287,13 +261,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                                 Log.d("MeditationAssistant", "UPDATE `" + TABLE_SESSIONS + "` SET `" + KEY_COMPLETED +
                                         "`='" + (cursor.getLong(cursor.getColumnIndex(KEY_STARTED)) + cursor.getLong(cursor.getColumnIndex(KEY_LENGTH))) + "' WHERE `" + KEY_ID + "`='"
                                         + cursor.getLong(cursor.getColumnIndex(KEY_ID)) + "'");
-                                db.rawQuery("UPDATE `" + TABLE_SESSIONS + "` SET `" + KEY_COMPLETED +
+                                Cursor c = db.rawQuery("UPDATE `" + TABLE_SESSIONS + "` SET `" + KEY_COMPLETED +
                                         "`='" + (cursor.getLong(cursor.getColumnIndex(KEY_STARTED)) + cursor.getLong(cursor.getColumnIndex(KEY_LENGTH))) + "' WHERE `" + KEY_ID + "`='"
                                         + cursor.getLong(cursor.getColumnIndex(KEY_ID)) + "'", null);
+                                c.moveToFirst();
+                                c.close();
                             }
                         } while (cursor.moveToNext());
                     }
                     cursor.close();
+
+                    break;
+                case 5:
+                    try {
+                        db.execSQL("ALTER TABLE `" + TABLE_SESSIONS + "` ADD COLUMN `" + KEY_MODIFIED + "` INTEGER");
+                    } catch (Exception e) {
+                        // Column already exists
+                    }
 
                     break;
             }

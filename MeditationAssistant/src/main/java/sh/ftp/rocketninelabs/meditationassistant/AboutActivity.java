@@ -9,7 +9,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -65,7 +64,7 @@ public class AboutActivity extends Activity {
 
                 easterEggTaps++;
                 if (easterEggTaps == 3) {
-                    getMeditationAssistant().longToast(AboutActivity.this, "Hold again to send the app developer an application log (to help with debugging) via email");
+                    getMeditationAssistant().longToast("Hold again to send the app developer an application log (to help with debugging) via email");
                 } else if (easterEggTaps == 4) {
                     getMeditationAssistant().sendLogcat();
                 }
@@ -127,36 +126,16 @@ public class AboutActivity extends Activity {
         getMeditationAssistant().utility.trackingStop(this);
     }
 
-    public void sendMeEmail(View view) {
-        Log.d("MeditationAssistant", "Open about");
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("plain/text");
-        intent.putExtra(Intent.EXTRA_EMAIL,
-                new String[]{"tslocum@gmail.com"});
-        try {
-            PackageInfo pInfo = getPackageManager().getPackageInfo(
-                    getPackageName(), 0);
-            intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.appNameShort) + " "
-                    + pInfo.versionName + " (" + getMeditationAssistant().capitalizeFirst(getMeditationAssistant().getMarketName()) + ")");
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-            intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.appNameShort) + " (" + getMeditationAssistant().capitalizeFirst(getMeditationAssistant().getMarketName()) + ")");
-        }
-        intent.putExtra(android.content.Intent.EXTRA_TEXT, "");
-
-        startActivity(Intent.createChooser(intent, getString(R.string.sendEmail)));
+    public void learnMore(View view) {
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(MeditationAssistant.URL_SOURCE)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
     public void openHowToMeditate(View view) {
-        startActivity(new Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse("https://medinet.rocketnine.space/howtomeditate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(MeditationAssistant.URL_MEDINET + "/howtomeditate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
     public void openTranslate(View view) {
-        startActivity(new Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse("https://medinet.rocketnine.space/translate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(MeditationAssistant.URL_MEDINET + "/translate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
     public void openDonate(View view) {
@@ -207,7 +186,7 @@ public class AboutActivity extends Activity {
                     .setNegativeButton("PayPal",
                             (dialog, id) -> startActivity(new Intent(
                                     Intent.ACTION_VIEW,
-                                    Uri.parse("https://rocketnine.space/donate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)))
+                                    Uri.parse(MeditationAssistant.URL_ROCKETNINELABS + "/donate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)))
                     .setTitle(getString(R.string.donate))
                     .create();
 

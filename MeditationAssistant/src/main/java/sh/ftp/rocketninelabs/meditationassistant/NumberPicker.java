@@ -2530,7 +2530,6 @@ public class NumberPicker extends LinearLayout {
             info.setEnabled(NumberPicker.this.isEnabled());
             Rect boundsInParent = mTempRect;
             boundsInParent.set(left, top, right, bottom);
-            // TODO info.setVisibleToUser(isVisibleToUser(boundsInParent));
             info.setBoundsInParent(boundsInParent);
             Rect boundsInScreen = boundsInParent;
             int[] locationOnScreen = mTempArray;
@@ -2569,25 +2568,6 @@ public class NumberPicker extends LinearLayout {
             info.setParent((View) getParentForAccessibility());
             info.setEnabled(NumberPicker.this.isEnabled());
             info.setScrollable(true);
-
-            /** TODO: Figure out compat implementation for this
-             final float applicationScale =
-             getContext().getResources().getCompatibilityInfo().applicationScale;
-
-             Rect boundsInParent = mTempRect;
-             boundsInParent.set(left, top, right, bottom);
-             boundsInParent.scale(applicationScale);
-             info.setBoundsInParent(boundsInParent);
-
-             info.setVisibleToUser(isVisibleToUser());
-
-             Rect boundsInScreen = boundsInParent;
-             int[] locationOnScreen = mTempArray;
-             getLocationOnScreen(locationOnScreen);
-             boundsInScreen.offset(locationOnScreen[0], locationOnScreen[1]);
-             boundsInScreen.scale(applicationScale);
-             info.setBoundsInScreen(boundsInScreen);
-             */
 
             if (mAccessibilityFocusedView != View.NO_ID) {
                 info.addAction(AccessibilityNodeInfo.ACTION_ACCESSIBILITY_FOCUS);

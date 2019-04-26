@@ -37,20 +37,22 @@
         android:theme="@style/MeditationDarkTheme">
 
         <!-- Services -->
-        <service android:name="sh.ftp.rocketninelabs.meditationassistant.MeditationService"></service>
+        <service android:name="sh.ftp.rocketninelabs.meditationassistant.WidgetService"></service>
 
         <!-- Receivers -->
         <receiver
-            android:name="sh.ftp.rocketninelabs.meditationassistant.DailyNotification"
+            android:name="sh.ftp.rocketninelabs.meditationassistant.DailyReminderReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="sh.ftp.rocketninelabs.meditationassistant.DAILY_NOTIFICATION"></action>
                 <action android:name="sh.ftp.rocketninelabs.meditationassistant.DAILY_NOTIFICATION_UPDATED"></action>
                 <action android:name="android.intent.action.EXTERNAL_APPLICATIONS_AVAILABLE" />
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.MY_PACKAGE_UNSUSPENDED" />
                 <data
                     android:path="${applicationId}"
                     android:scheme="package" />

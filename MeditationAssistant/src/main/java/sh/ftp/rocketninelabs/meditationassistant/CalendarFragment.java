@@ -242,7 +242,7 @@ public class CalendarFragment extends Fragment {
              }
          });
 
-                LinearLayout ldate = new LinearLayout(ctx);
+        LinearLayout ldate = new LinearLayout(ctx);
         ldate.setOrientation(LinearLayout.VERTICAL);
 
         LinearLayout.LayoutParams lp_horiz = new LinearLayout.LayoutParams(

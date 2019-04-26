@@ -16,7 +16,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:descendantFocusability="blocksDescendants"
-            android:onClick="sendMeEmail"
+            android:onClick="learnMore"
             android:orientation="vertical">
 
             <LinearLayout
@@ -37,42 +37,16 @@
                     android:gravity="center"
                     android:text=""
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textSize="25sp"/>
+                    android:textSize="28sp"/>
 
                 <TextView
                     android:id="@+id/txtAboutAppVersion"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="108dp"
+                    android:layout_marginBottom="36dp"
                     android:gravity="center"
                     android:text=""
                     android:textAppearance="?android:attr/textAppearanceSmall"/>
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/byTrevorSlocum"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textSize="21sp"/>
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:gravity="center"
-                    android:text="@string/availableForHire"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textSize="15sp"/>
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:gravity="center"
-                    android:text="@string/myEmailAddress"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="12sp"/>
 
             </LinearLayout>
 
@@ -99,7 +73,7 @@
                         android:layout_marginBottom="4dp"
                         android:clickable="false"
                         android:gravity="center"
-                        android:text="@string/tapToSendEmail"
+                        android:text="@string/tapToLearnMore"
                         android:textAppearance="?android:attr/textAppearanceSmall"/>
 
                     <View
