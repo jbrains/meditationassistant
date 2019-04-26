@@ -489,9 +489,11 @@ public class SettingsActivity extends PreferenceActivity {
                 reminderPreferenceFragment = (ReminderPreferenceFragment) preferenceFragment;
             }
 
-            bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_daily_reminder_text") : preferenceFragment.findPreference("pref_daily_reminder_text"));
-            bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_daily_reminder_time") : preferenceFragment.findPreference("pref_daily_reminder_time"));
-            bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_daily_reminder") : preferenceFragment.findPreference("pref_daily_reminder"));
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_daily_reminder_text") : preferenceFragment.findPreference("pref_daily_reminder_text"));
+                bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_daily_reminder_time") : preferenceFragment.findPreference("pref_daily_reminder_time"));
+                bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_daily_reminder") : preferenceFragment.findPreference("pref_daily_reminder"));
+            }
         }
         if (pref_type.equals("all") || pref_type.equals("meditation")) {
             if (preferenceFragment != null) {
@@ -595,10 +597,12 @@ public class SettingsActivity extends PreferenceActivity {
         addPreferencesFromResource(R.xml.pref_session);
 
         // Add 'Daily Reminder' preferences
-        fakeHeader = new PreferenceCategory(this);
-        fakeHeader.setTitle(R.string.pref_daily_reminder);
-        getPreferenceScreen().addPreference(fakeHeader);
-        addPreferencesFromResource(R.xml.pref_reminder);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            fakeHeader = new PreferenceCategory(this);
+            fakeHeader.setTitle(R.string.pref_daily_reminder);
+            getPreferenceScreen().addPreference(fakeHeader);
+            addPreferencesFromResource(R.xml.pref_reminder);
+        }
 
         // Add 'Meditation' preferences
         fakeHeader = new PreferenceCategory(this);
@@ -632,6 +636,10 @@ public class SettingsActivity extends PreferenceActivity {
     public void onBuildHeaders(List<Header> target) {
         if (!isSimplePreferences(this)) {
             loadHeadersFromResource(R.xml.pref_headers, target);
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                loadHeadersFromResource(R.xml.pref_headers_pre26, target);
+            }
+            loadHeadersFromResource(R.xml.pref_headers_footer, target);
         }
     }
 

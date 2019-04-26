@@ -22,6 +22,9 @@ public class DailyReminderReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return;
+        }
         try {
             ma = (MeditationAssistant) context.getApplicationContext();
         } catch (Exception e) {

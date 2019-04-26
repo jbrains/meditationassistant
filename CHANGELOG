@@ -1,8 +1,10 @@
 1.5.4:
+- Past sessions may now be edited
+- Add prompt to disable battery optimizations on Android 8.0+ (fixes sounds not playing reliably)
 - Add long press shortcut to calendar buttons moving one year forward/backward
 - Improve calculation of meditation streak window (streak buffer was not being applied consistently)
-- Session start, length, end and message are now editable
 - Fix tapping home screen widget asking to sign in to MediNET
+- Remove daily reminder on Android 8.0+ (Google's new background execution policy no longer allows this behavior)
 
 1.5.3:
 - Fix tapping widget always causing MediNET sign in dialog to be shown

@@ -1020,13 +1020,15 @@ public class MeditationAssistant extends Application {
 
         db = DatabaseHandler.getInstance(getApplicationContext());
 
-        reminderAlarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            reminderAlarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-        /* Send the daily notification updated intent just in case the receiver hasn't been called yet */
-        Log.d("MeditationAssistant", "Sending initial daily notification updated intent");
-        Intent intent = new Intent();
-        intent.setAction(MeditationAssistant.ACTION_UPDATED);
-        sendBroadcast(intent);
+            /* Send the daily notification updated intent just in case the receiver hasn't been called yet */
+            Log.d("MeditationAssistant", "Sending initial daily notification updated intent");
+            Intent intent = new Intent();
+            intent.setAction(MeditationAssistant.ACTION_UPDATED);
+            sendBroadcast(intent);
+        }
     }
 
     public String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException {
