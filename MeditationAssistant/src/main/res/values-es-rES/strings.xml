@@ -6,6 +6,7 @@
     <string name="about">Sobre la aplicación</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
+    
     <string name="openWith">Abrir con</string>
     <string name="delete">Eliminar</string>
     <string name="sessions">Sesiones</string>
@@ -20,6 +21,7 @@
     <string name="groups">Grupos</string>
     <string name="announcement">Anuncios</string>
     <string name="installFileManager">Por favor instale un gestor de archivos (Ej. Solid Explorer)</string>
+    
 
     <!-- Permissions -->
     <string name="permissionRequest">Permiso requerido</string>
@@ -62,7 +64,7 @@
     <string name="presetLabelEndAt">Acabar %s</string>
 
     <!-- About -->
-    <string name="tapToSendEmail">Pulsa donde sea para enviar un comentario</string>
+    
     <string name="sendEmail">Enviar correo electrónico</string>
     <string name="version">Versión %s</string>
     <string name="translate">Traducir</string>
@@ -83,6 +85,8 @@
     <string name="pref_sessionintro">Introducción</string>
     <string name="presetsettings">Ajustes predeterminados</string>
     <string name="modeandduration">Modo y duración</string>
+    
+    
 
     <!-- Session complete -->
     <string name="sessioncomplete">Sesión completada</string>
@@ -116,18 +120,25 @@
     <string name="daySaturdayShort">Sáb</string>
     <string name="daySundayShort">Dom</string>
     <string name="addSession">Añadir sesión</string>
+    
+    
+    
     <string name="add">Añadir</string>
+    
     <string name="exportSessions">Exportar sesiones </string>
     <string name="sessionExportFailed">No se puede exportar sesiones </string>
     <string name="showExportedSessions">Sesiones exportadas. ¿Quiere navegar a la carpeta conteniendo la exportación?</string>
     <string name="sessionStartedAt">Iniciada a las %s</string>
     <string name="started">Iniciada</string>
     <string name="completed">Completada</string>
+    
     <string name="setDate">Establecer día</string>
     <string name="setTime">Establecer hora</string>
     <string name="invalidDateOrTime">Fecha u hora inválida</string>
+    
     <string name="addSessionMeditating">No se puede añadir una sesión mientras se medita</string>
-    <string name="addSessionExists">La sesión ya existe</string>
+    
+    <string name="sessionExists">La sesión ya existe</string>
 
     <string name="days">Días</string>
     <string name="hours">Horas</string>
@@ -155,14 +166,15 @@
     <string name="noSpecialBehavior">Ningún comportamiento especial</string>
     <string name="noSound">Sin sonido</string>
     <string name="customSound">Sonido personalizado</string>
+    <string name="duringSession">Durante la sesión</string>
+    <string name="always">Siempre</string>
     <string name="keepScreenOn">Mantener la pantalla encendida</string>
     <string name="keepScreenOnAndDim">Mantiene la pantalla levemente encendida</string>
     <string name="dimScreen">Bajo brillo de la pantalla</string>
-    <string name="turnScreenOff">Apagar la pantalla</string>
     <string name="pref_display_seconds">Mostrar los segundos</string>
     <string name="pref_display_seconds_summary">Mostrados debajo del temporizador principal</string>
+    
     <string name="pref_full_screen">Pantalla completa</string>
-    <string name="pref_full_screen_summary">La barra de estado se oculta en pantalla completa</string>
     <string name="pref_delay">Retraso</string>
     <string name="pref_interval">Duración del intervalo</string>
     <string name="pref_interval_count">Número de intervalos</string>
@@ -188,6 +200,7 @@
     <string name="pref_theme_lightdark">Claro con la barra de herramientas oscura</string>
     <string name="pref_theme_dark">Oscuro</string>
     <string name="buddhism">Budismo</string>
+    <string name="pref_widgetcolor">Color del widget</string>
     <string name="pref_notification">Notificación</string>
     <string name="pref_notification_summary">Mostrar durante la meditación mientras no se muestra la ventana principal</string>
     <string name="pref_usetimepicker">Interfaz de duración alternativa</string>

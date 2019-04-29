@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <string name="appName">Assistente de Meditação Grátis</string>
-    <string name="appNameShort">Assistente de Meditação</string>
+    <string name="appName">Tempo de Meditar (Gratuito)</string>
+    <string name="appNameShort">Tempo de Meditar</string>
     <string name="about">Sobre</string>
     <string name="yes">Sim</string>
     <string name="no">Não</string>
+    
     <string name="openWith">Abrir com</string>
     <string name="delete">Deletar</string>
     <string name="sessions">Sessões</string>
@@ -20,6 +21,7 @@
     <string name="groups">Grupos</string>
     <string name="announcement">Anúncio</string>
     <string name="installFileManager">Por favor, instale um gerenciador de arquivos. (ex: Solid Explorer)</string>
+    
 
     <!-- Permissions -->
     <string name="permissionRequest">Pedir permissão</string>
@@ -65,7 +67,7 @@ Segure para escolher valor predefinido</string>
     <string name="presetLabelEndAt">Fim %s</string>
 
     <!-- About -->
-    <string name="tapToSendEmail">Toque em qualquer lugar para enviar sua opinião</string>
+    <string name="tapToLearnMore">Toque para enviar sua opinião.</string>
     <string name="sendEmail">Enviar e-mail</string>
     <string name="version">Versão %s</string>
     <string name="translate">Traduzir</string>
@@ -86,6 +88,8 @@ Segure para escolher valor predefinido</string>
     <string name="pref_sessionintro">Introdução</string>
     <string name="presetsettings">Configurações predefinidas</string>
     <string name="modeandduration">Modo e duração</string>
+    <string name="streakdifferencewarning">Sua sequência de meditação atual não parece correta com base nos dados da sessão atual. Usar a sequência de meditação atualizada?\n\nSequência atual: %1$d\nSequência atualizada: %2$d</string>
+    
 
     <!-- Session complete -->
     <string name="sessioncomplete">Sessão completa</string>
@@ -123,18 +127,25 @@ Segure para escolher valor predefinido</string>
     <string name="daySaturdayShort">Sáb</string>
     <string name="daySundayShort">Dom</string>
     <string name="addSession">Adicionar sessão </string>
+    <string name="editSession">Editar sessão</string>
+    
+    
     <string name="add">Incluir</string>
+    <string name="edit">Editar</string>
     <string name="exportSessions">Exportar sessões</string>
     <string name="sessionExportFailed">Não foi possível exportar as sessões</string>
     <string name="showExportedSessions">Sessões exportadas. Quer localizar a pasta contendo os arquivos?</string>
     <string name="sessionStartedAt">Iniciada em %s</string>
     <string name="started">Iniciada</string>
     <string name="completed">Completo</string>
+    <string name="length">Duração</string>
     <string name="setDate">Definir data</string>
     <string name="setTime">Definir horário</string>
     <string name="invalidDateOrTime">Data ou horário inválidos</string>
+    <string name="invalidLength">Duração inválida</string>
     <string name="addSessionMeditating">Não é possível adicionar uma sessão enquanto você estiver meditando</string>
-    <string name="addSessionExists">Sessão já existe</string>
+    <string name="editSessionMeditating">Impossível editar uma sessão enquanto medita</string>
+    <string name="sessionExists">Sessão já existe</string>
 
     <string name="days">Dias</string>
     <string name="hours">Horas</string>
@@ -162,14 +173,15 @@ Segure para escolher valor predefinido</string>
     <string name="noSpecialBehavior">Nenhum comportamento especial</string>
     <string name="noSound">Sem som</string>
     <string name="customSound">Som personalizado</string>
+    <string name="duringSession">Durante sessão</string>
+    <string name="always">Sempre</string>
     <string name="keepScreenOn">Manter tela ligada</string>
     <string name="keepScreenOnAndDim">Manter ligada</string>
     <string name="dimScreen">Diminuir brilho</string>
-    <string name="turnScreenOff">Desligar tela</string>
     <string name="pref_display_seconds">Mostrar segundos</string>
     <string name="pref_display_seconds_summary">Mostrado abaixo do cronômetro principal</string>
+    <string name="pref_meditationstreakbuffer">Sequência reseta às</string>
     <string name="pref_full_screen">Tela cheia</string>
-    <string name="pref_full_screen_summary">Barra de status escondida em tela cheia</string>
     <string name="pref_delay">Atraso</string>
     <string name="pref_interval">Duração de intervalo</string>
     <string name="pref_interval_count">Quantidade de intervalos</string>
@@ -196,6 +208,7 @@ Segure para escolher valor predefinido</string>
     <string name="pref_theme_lightdark">Claro com barra de ação escura</string>
     <string name="pref_theme_dark">Escuro</string>
     <string name="buddhism">Budismo</string>
+    <string name="pref_widgetcolor">Cor do widget</string>
     <string name="pref_notification">Notificação</string>
     <string name="pref_notification_summary">Mostrado durante a meditação, enquanto longe da janela principal</string>
     <string name="pref_usetimepicker">Interface de duração alternativa</string>

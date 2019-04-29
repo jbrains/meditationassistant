@@ -7,6 +7,7 @@
     <string name="about">À propos</string>
     <string name="yes">Oui</string>
     <string name="no">Non</string>
+    
     <string name="openWith">Ouvrir avec</string>
     <string name="delete">Effacer</string>
     <string name="sessions">Séances</string>
@@ -21,6 +22,7 @@
     <string name="groups">Groupes</string>
     <string name="announcement">Annonce</string>
     <string name="installFileManager">Installez un gestionnaire de fichiers s\'il vous plaît (e.g. Solid Explorer)</string>
+    
 
     <!-- Permissions -->
     <string name="permissionRequest">Demande d\'autorisation</string>
@@ -63,7 +65,7 @@
     <string name="presetLabelEndAt">Fin %s</string>
 
     <!-- About -->
-    <string name="tapToSendEmail">Appuyez pour envoyer un message à l\'auteur</string>
+    
     <string name="sendEmail">Envoyer un email</string>
     <string name="version">Version %s</string>
     <string name="translate">Traduire</string>
@@ -84,6 +86,8 @@
     <string name="pref_sessionintro">Introduction</string>
     <string name="presetsettings">Réglages prédéfinis</string>
     <string name="modeandduration">Mode et durée</string>
+    
+    
 
     <!-- Session complete -->
     <string name="sessioncomplete">Séance terminée</string>
@@ -117,18 +121,25 @@
     <string name="daySaturdayShort">Sam</string>
     <string name="daySundayShort">Dim</string>
     <string name="addSession">Ajouter une séance</string>
+    
+    
+    
     <string name="add">Ajouter</string>
+    
     <string name="exportSessions">Exporter les séances</string>
     <string name="sessionExportFailed">Impossible d\'exporter les séances</string>
     <string name="showExportedSessions">Les séances ont été exportées. Voulez-vous ouvrir le dossier contenant le fichier exporté? </string>
     <string name="sessionStartedAt">Démarré à %s</string>
     <string name="started">Démarrée</string>
     <string name="completed">Terminée</string>
+    
     <string name="setDate">Régler la date</string>
     <string name="setTime">Régler l\'heure</string>
     <string name="invalidDateOrTime">Date ou heure incorrecte</string>
+    
     <string name="addSessionMeditating">Impossible d\'ajouter une séance pendant la méditation</string>
-    <string name="addSessionExists">La séance existe déjà</string>
+    
+    <string name="sessionExists">La séance existe déjà</string>
 
     <string name="days">Jours</string>
     <string name="hours">Heures</string>
@@ -156,14 +167,15 @@
     <string name="noSpecialBehavior">Pas de comportement particulier</string>
     <string name="noSound">Pas de son</string>
     <string name="customSound">Son personnalisé</string>
+    
+    
     <string name="keepScreenOn">Laisser l\'écran allumé</string>
     <string name="keepScreenOnAndDim">Laisser l\'écran allumé et diminuer l\'éclairage</string>
     <string name="dimScreen">Diminuer l\'éclairage</string>
-    <string name="turnScreenOff">Eteindre l\'écran</string>
     <string name="pref_display_seconds">Afficher les secondes</string>
     <string name="pref_display_seconds_summary">Affiché sous le compteur principal</string>
+    
     <string name="pref_full_screen">Plein écran</string>
-    <string name="pref_full_screen_summary">Barre d\'état cachée en plein écran</string>
     <string name="pref_delay">Délai</string>
     <string name="pref_interval">Durée des étapes intermédiaires</string>
     <string name="pref_interval_count">Nombre d\'étapes intermédiaires</string>
@@ -189,6 +201,7 @@
     <string name="pref_theme_lightdark">Clair avec une barre d\'action foncée</string>
     <string name="pref_theme_dark">Foncé</string>
     <string name="buddhism">Bouddhisme</string>
+    
     <string name="pref_notification">Notification</string>
     <string name="pref_notification_summary">Affiché durant la méditation hors de la fenêtre principale</string>
     <string name="pref_usetimepicker">Interface alternative de réglage de durée</string>

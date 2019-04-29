@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="appName">ध्यान सहायक नि:शुल्क</string>
+    <string name="appNameShort">ध्यान सहायक</string>
+    <string name="about">ऐप के बारे में</string>
+    <string name="yes">हाँ</string>
+    <string name="no">नहीं</string>
+    
+    <string name="openWith">... के साथ खोलें</string>
+    <string name="delete">मिटाएँ</string>
+    <string name="sessions">सत्र</string>
+    <string name="community">समाज​</string>
+    <string name="forum">मंच​</string>
+    <string name="rate">दर​</string>
+    <string name="refresh">रिफ़्रेश​</string>
+    <string name="page">पृष्ठ</string>
+    <string name="back">पिछली तरफ</string>
+    <string name="forward">आगे</string>
+    <string name="account">खाता</string>
+    <string name="groups">समूह​</string>
+    <string name="announcement">घोषणा</string>
+    <string name="installFileManager">कृपया फाईल मॅनेजर इन्स्टाल करें (उदाहरणार्थ Solid Explorer)</string>
+    
+
+    <!-- Permissions -->
+    <string name="permissionRequest">अनुमति अनुरोध</string>
+    <string name="permissionRequestReadExternal">डिवाइस पर कस्टम ध्वनि फ़ाइल चुनने के लिए यह अनुमति आवश्यक है</string>
+    <string name="permissionRequestNotificationControl">Do Not Disturb को नियंत्रित करने के लिए कृपया अगली स्क्रीन पर प्रवेश​ प्रदान करे</string>
+    <string name="deny">मना</string>
+    <string name="tryAgain">पुनः प्रयास करें</string>
+
+    <!-- Main Activity -->
+    <string name="timer">टाइमर</string>
+    <string name="timerHelp">टाइमर वर्तमान में 15 मिनट पर सेट है। आप अवधि बदल सकते हैं, दिन के एक निश्चित समय पर समाप्त कर सकते हैं, या अलार्म को पूरी तरह से निष्क्रिय कर सकते हैं। इन विकल्पों को देखने के लिए अब टाइमर टैप करें।</string>
+    <string name="settingsHelp">इस एप्लिकेशन में कई सुविधाएं और अनुकूलन शामिल हैं, जैसे स्वचालित रूप से आपके डिवाइस को चुप करना और ध्यान के लिए दैनिक अनुस्मारक प्रदान करना। इन विकल्पों को देखने के लिए अब सेटिंग्स आइकन टैप करें।</string>
+    <string name="medinetHelp">अपने सत्र ऑनलाइन सहेजने के लिए MediNET में साइन इन करें। यदि आप अपना डेटा खो देते हैं तो आप बाद में अपने सत्र आयात कर सकते हैं। यह सुविधा पूरी तरह से वैकल्पिक है, स्थानीय स्तर पर सत्रों को संग्रहीत करने से आपके अनुभव में बाधा नहीं आयेगी। यहाँ पर​ यह ट्यूटोरियल समाप्त होता है। मुझे उम्मीद है कि ध्यान सहायक आपके अभ्यास के लिए फायदेमंद होगा।</string>
+    <string name="cancel">रद्द करें</string>
+    <string name="set">स्थापित​</string>
+    <string name="confirm">पुष्टीकरण</string>
+    <string name="meditate">ध्यान​</string>
+    <string name="tapToSkip">छोड़ें</string>
+    <string name="pause">विराम​</string>
+    <string name="end">समाप्त​</string>
+    <string name="pauseOrEnd">विराम या समाप्त​</string>
+    <string name="resumeOrEnd">शुरू या समाप्त​</string>
+    <string name="pausedNotification">सत्र रुका है, समाप्त करने के लिये बटन दबाये रखें</string>
+    <string name="mediNETConnecting">कनेक्टिंग​...</string>
+    <string name="mediNETConnected">MediNet से जुड़ा है</string>
+    <string name="sessionInProgress">सत्र चालू है</string>
+    <string name="progress">प्रगती</string>
+    <string name="setPreset">प्रीसेट सेट करें</string>
+    <string name="setPresetHint">प्रीसेट सेट करने के लिये दबाये रखें</string>
+    <string name="setPresetTip">गियर आइकन (सेटिंग्स) टैप करके कौन सी सेटिंग्स को पुनर्स्थापित करनी है उन्हें चुनें, फिर प्रीसेट सेटिंग्स टैप करें।</string>
+    <string name="setPresetHintBlank">प्रीसेट सेट करने के लिए एक अवधि (या अंत समय) दर्ज करें</string>
+    <string name="label">लेबल​</string>
+    <string name="setTimerDurationHint">वैध अवधि दर्ज करें (उदा। 0:22)</string>
+    <string name="setTimerEndAtHint">वैध समय दर्ज करें (उदा. 4:20)</string>
+    <string name="invalidEndAt">सत्र समाप्त करने के लिए अवैध समय</string>
+    <string name="timed">समय​</string>
+    <string name="endAt">समाप्त करें</string>
+    <string name="untimed">समय नहीं</string>
+    <string name="unlimited">असीमित</string>
+    <string name="presetLabelEndAt">समाप्त​ %s</string>
+
+    <!-- About -->
+    
+    <string name="sendEmail">ईमेल भेजें</string>
+    <string name="version">संस्करण %s</string>
+    <string name="translate">अनुवाद​ करें</string>
+    <string name="donate">दान करें</string>
+    <string name="removeAds">विज्ञापन हटाएँ</string>
+    <string name="removeAdsHelp">ध्यान सहायक का पूरा संस्करण एक अलग ऐप है। अपने मौजूदा सत्रों को रखने के लिए, MediNET में साइन इन करें और सेटिंग विंडो में "अपलोड सत्र" टैप करें। पूर्ण संस्करण खोलें और MediNET में एक बार फिर साइन इन करें, फिर "आयात करें" टैप करें।</string>
+    <string name="howToMeditate">ध्यान कैसे करें</string>
+    <string name="share">शेयर</string>
+
+    <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
+    <string name="invitationBlurb">ध्यान सहायक आपके अभ्यास के लिए एक पूरी तरह से विशेषीकृत साथी है।</string>
+
+    <!-- Sessions -->
+    <string name="session">सत्र​</string>
+    <string name="sessionDeleteEverywhere">हर जगह से मिटाएँ</string>
+    <string name="sessionDeleteLocally">स्थानीय रूप से मिटाएँ</string>
+    <string name="sessionDeleteMediNET">MediNet पर से मिटाएँ</string>
+    <string name="pref_sessionintro">परिचय​</string>
+    <string name="presetsettings">प्रीसेट सेटिंग्स</string>
+    <string name="modeandduration">मोड और अवधि</string>
+    
+    
+
+    <!-- Session complete -->
+    <string name="sessioncomplete">सत्र समाप्त​</string>
+    <string name="sessionMessagePlaceholder">संदेश</string>
+    <string name="askDiscardText">सत्र छोड़ दें?</string>
+    <string name="sessionPosting">सत्र पोस्ट हो रहा है</string>
+    <string name="sessionPosted">सत्र MediNet पर​ पोस्ट किया गया</string>
+    <string name="sessionAlreadyPosted">सत्र पहले ही पोस्ट किया गया है</string>
+    <string name="sessionNotPosted">सत्र पोस्ट करने में असमर्थ</string>
+    <string name="sessionNotPostedMeditating">ध्यान के दौरान सत्र पोस्ट करने में असमर्थ</string>
+    <string name="sessionSaved">सत्र सेव हुआ है</string>
+    <string name="sessionDeletedLocally">सत्र स्थानीय रूप से हटा दिया गया</string>
+
+    <!-- Sign In -->
+    <string name="browser">ब्राउज़र</string>
+    <string name="useBrowser">ब्राउज़र का प्रयोग करें:</string>
+    <string name="signInWith">... के साथ साइन इन करें</string>
+    <string name="signInWithProvider">%s... के साथ साइन इन करें</string>
+    <string name="signInWithOpenID">OpenID - Facebook, Twitter, आदि.
+</string>
+    <string name="signInGoogleError">खाता प्रबंधक का उपयोग कर प्रमाणित करने में असमर्थ। अगर यह त्रुटि बनी रहती है तो OpenID आज़माएं।</string>
+
+    <!-- Progress -->
+    <string name="calendar">कैलेंडर</string>
+    <string name="statistics">आंकड़े</string>
+    <string name="totalTimeSpentMeditating">ध्यान में बिताए गए कुल समय</string>
+    <string name="dayMondayShort">सोम​</string>
+    <string name="dayTuesdayShort">मंगल​</string>
+    <string name="dayWednesdayShort">बुध​</string>
+    <string name="dayThursdayShort">गुरु</string>
+    <string name="dayFridayShort">शुक्र​</string>
+    <string name="daySaturdayShort">शनि</string>
+    <string name="daySundayShort">रवि</string>
+    <string name="addSession">सत्र जोड़ें</string>
+    
+    
+    
+    <string name="add">जोडें</string>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    <!-- Settings -->
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <!-- MediNET -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <!-- Widgets -->
+    
+    
+    
+
+    <!-- Meta -->
+    
+    
+
+</resources>

@@ -6,6 +6,7 @@
     <string name="about">ｱﾌﾟﾘについて</string>
     <string name="yes">はい</string>
     <string name="no">いいえ</string>
+    <string name="warning">警告</string>
     <string name="openWith">...で開く</string>
     <string name="delete">削除</string>
     <string name="sessions">セッション</string>
@@ -20,6 +21,7 @@
     <string name="groups">グループ</string>
     <string name="announcement">アナウンス</string>
     <string name="installFileManager">ファイルマネージャーをインストールしてください (例 Solid Explorer)</string>
+    
 
     <!-- Permissions -->
     <string name="permissionRequest">アクセス許可リクエスト</string>
@@ -62,7 +64,7 @@
     <string name="presetLabelEndAt">終了 %s</string>
 
     <!-- About -->
-    <string name="tapToSendEmail">任意の場所をタップするとフィードバックを送信します</string>
+    <string name="tapToLearnMore">任意の場所をタップすると詳細を表示します</string>
     <string name="sendEmail">メールを送信</string>
     <string name="version">バージョン %s</string>
     <string name="translate">翻訳</string>
@@ -83,6 +85,8 @@
     <string name="pref_sessionintro">はじめに</string>
     <string name="presetsettings">プリセット設定</string>
     <string name="modeandduration">モードと継続時間</string>
+    <string name="streakdifferencewarning">現在の瞑想の継続は、現在のセッションデータに正しく基づいていないようです。 瞑想の継続を更新しますか?\n\n現在の継続日数: %1$d\n更新された継続日数: %2$d</string>
+    
 
     <!-- Session complete -->
     <string name="sessioncomplete">セッションが完了しました</string>
@@ -116,18 +120,25 @@
     <string name="daySaturdayShort">土</string>
     <string name="daySundayShort">日</string>
     <string name="addSession">セッションを追加</string>
+    <string name="editSession">セッションを編集</string>
+    
+    
     <string name="add">追加</string>
+    <string name="edit">編集</string>
     <string name="exportSessions">セッションをエクスポート</string>
     <string name="sessionExportFailed">セッションをエクスポートできません</string>
     <string name="showExportedSessions">セッションをエクスポートしました。エクスポートしたファイルを含むフォルダーを表示しますか?</string>
     <string name="sessionStartedAt">開始 %s</string>
     <string name="started">開始しました</string>
     <string name="completed">完了しました</string>
+    <string name="length">長さ</string>
     <string name="setDate">日付を設定</string>
     <string name="setTime">時間を設定</string>
     <string name="invalidDateOrTime">日付または時間が正しくありません</string>
+    <string name="invalidLength">長さが正しくありません</string>
     <string name="addSessionMeditating">瞑想中はセッションを追加できません</string>
-    <string name="addSessionExists">セッションは既に存在します</string>
+    <string name="editSessionMeditating">瞑想中はセッションを編集できません</string>
+    <string name="sessionExists">セッションは既に存在します</string>
 
     <string name="days">日</string>
     <string name="hours">時間</string>
@@ -155,14 +166,15 @@
     <string name="noSpecialBehavior">特別な動作を行わない</string>
     <string name="noSound">サウンドなし</string>
     <string name="customSound">カスタムサウンド</string>
+    <string name="duringSession">セッション中</string>
+    <string name="always">常に</string>
     <string name="keepScreenOn">画面をオンのままにする</string>
     <string name="keepScreenOnAndDim">画面をオンのままにして減光する</string>
     <string name="dimScreen">画面を減光する</string>
-    <string name="turnScreenOff">画面をオフにする</string>
     <string name="pref_display_seconds">表示秒数</string>
     <string name="pref_display_seconds_summary">メインタイマーの下に表示します</string>
+    <string name="pref_meditationstreakbuffer">継続期間のリセット</string>
     <string name="pref_full_screen">全画面</string>
-    <string name="pref_full_screen_summary">全画面の間、ステータスバーは非表示になります</string>
     <string name="pref_delay">遅延</string>
     <string name="pref_interval">インターバル期間</string>
     <string name="pref_interval_count">インターバル回数</string>
@@ -188,6 +200,7 @@
     <string name="pref_theme_lightdark">ライト、ダークアクションバー</string>
     <string name="pref_theme_dark">ダーク</string>
     <string name="buddhism">仏教</string>
+    <string name="pref_widgetcolor">ウィジェットの色</string>
     <string name="pref_notification">通知</string>
     <string name="pref_notification_summary">メインウィンドウから離れているとき、瞑想中に表示されます</string>
     <string name="pref_usetimepicker">代替の期間インターフェイス</string>

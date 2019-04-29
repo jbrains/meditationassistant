@@ -6,6 +6,7 @@
     <string name="about">Über</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
+    <string name="warning">Warnung</string>
     <string name="openWith">Öffnen mit</string>
     <string name="delete">Löschen</string>
     <string name="sessions">Sitzungen</string>
@@ -19,7 +20,8 @@
     <string name="account">Konto</string>
     <string name="groups">Gruppen</string>
     <string name="announcement">Ankündigung</string>
-    <string name="installFileManager">Bitte installieren Sie eine Dateimanager-App (bspw. Solid Explorer)</string>
+    <string name="installFileManager">Bitte installieren Sie einen Dateimanager (z.B. Solid Explorer)</string>
+    
 
     <!-- Permissions -->
     <string name="permissionRequest">Berechtigungsanfrage</string>
@@ -62,7 +64,7 @@
     <string name="presetLabelEndAt">Ende %s</string>
 
     <!-- About -->
-    <string name="tapToSendEmail">Irgendwo tippen um Feedback zu senden</string>
+    <string name="tapToLearnMore">Eine beliebige Stelle antippen um mehr zu erfahren</string>
     <string name="sendEmail">E-Mail senden</string>
     <string name="version">Version %s</string>
     <string name="translate">Übersetzen</string>
@@ -83,6 +85,8 @@
     <string name="pref_sessionintro">Einleitung</string>
     <string name="presetsettings">Voreinstellungen</string>
     <string name="modeandduration">Modus und Dauer</string>
+    <string name="streakdifferencewarning">Aufgrund Ihrer aktuellen Sitzungsdaten scheint ihre gegenwärtige Meditationsserie nicht korrekt zu sein. Wollen Sie die aktualisierte Meditationsserie nutzen? \n\nAktuelle Serie: %1$d\nAktualisierte Serie: %2$d</string>
+    
 
     <!-- Session complete -->
     <string name="sessioncomplete">Sitzung beendet</string>
@@ -116,18 +120,25 @@
     <string name="daySaturdayShort">Sa</string>
     <string name="daySundayShort">So</string>
     <string name="addSession">Sitzung hinzufügen</string>
+    <string name="editSession">Sitzung bearbeiten</string>
+    
+    
     <string name="add">Hinzuf.</string>
+    <string name="edit">Bearbeiten</string>
     <string name="exportSessions">Sitzungen exportieren</string>
     <string name="sessionExportFailed">Exportieren der Sitzungen nicht möglich</string>
-    <string name="showExportedSessions">Sitzungen Exportiert. Möchten Sie das Verzeichnis öffnen, in das der Export gespeichert wurde?</string>
+    <string name="showExportedSessions">Sitzungen exportiert. Möchten Sie das Verzeichnis öffnen, in das der Export gespeichert wurde?</string>
     <string name="sessionStartedAt">Begonnen um %s</string>
     <string name="started">Begonnen</string>
     <string name="completed">Abgeschlossen</string>
+    <string name="length">Dauer</string>
     <string name="setDate">Setze Datum</string>
     <string name="setTime">Setze Zeit</string>
     <string name="invalidDateOrTime">Ungültiges Datum oder Zeit</string>
+    <string name="invalidLength">Ungültige Dauer</string>
     <string name="addSessionMeditating">Das Hinzufügen einer Sitzung ist während der Meditation nicht möglich</string>
-    <string name="addSessionExists">Sitzung besteht bereits.</string>
+    <string name="editSessionMeditating">Bearbeiten der Sitzung ist während der Meditation nicht möglich</string>
+    <string name="sessionExists">Sitzung besteht bereits.</string>
 
     <string name="days">Tage</string>
     <string name="hours">Stunden</string>
@@ -155,14 +166,15 @@
     <string name="noSpecialBehavior">Kein spezielles Verhalten</string>
     <string name="noSound">Kein Sound</string>
     <string name="customSound">Benutzerdefinierter Sound</string>
+    <string name="duringSession">Während der Sitzung</string>
+    <string name="always">Immer</string>
     <string name="keepScreenOn">Bildschirm anlassen</string>
     <string name="keepScreenOnAndDim">Bildschirm anlassen und dimmen</string>
     <string name="dimScreen">Bildschirm dimmen</string>
-    <string name="turnScreenOff">Bildschirm abschalten</string>
     <string name="pref_display_seconds">Sekunden anzeigen</string>
     <string name="pref_display_seconds_summary">Anzeige unter dem Haupttimer</string>
+    
     <string name="pref_full_screen">Vollbild</string>
-    <string name="pref_full_screen_summary">Die Statuszeile wird im Vollbildmodus ausgeblendet</string>
     <string name="pref_delay">Verzögerung</string>
     <string name="pref_interval">Intervalldauer</string>
     <string name="pref_interval_count">Intervallzähler</string>
@@ -188,10 +200,11 @@
     <string name="pref_theme_lightdark">Hell mit dunkler Aktionsleiste</string>
     <string name="pref_theme_dark">Dunkel</string>
     <string name="buddhism">Buddhismus</string>
+    
     <string name="pref_notification">Benachrichtigung</string>
     <string name="pref_notification_summary">Anzeige während der Meditation wenn das Hauptfenster nicht angezeigt wird.</string>
     <string name="pref_usetimepicker">Alternative Dauer-Anzeige</string>
-    <string name="pref_usetimepicker_summary">Benutzen Sie bitte die Stunden- und Minuten-Slider, um die Dauer anzupassen</string>
+    <string name="pref_usetimepicker_summary">Benutzen Sie bitte die Schieberegler für Stunden und Minuten, um die Dauer anzupassen</string>
     <string name="pref_askdismiss">Vor dem Verwerfen nachfragen</string>
     <string name="pref_askdismiss_summary">Vor dem Verwerfen einer Sitzung Bestätigung anfordern</string>
     <string name="pref_mainbuttons">Buttons verstecken</string>
@@ -200,8 +213,8 @@
     <string name="importsessions_summary">Hochgeladene Sitzungen laden</string>
     <string name="uploadsessions">Sitzungen hochladen</string>
     <string name="uploadsessions_summary">Lokale Sitzungen hochladen</string>
-    <string name="miscellaneous">Vermischtes</string>
-    <string name="pref_text_size">Timer Textgröße</string>
+    <string name="miscellaneous">Verschiedenes</string>
+    <string name="pref_text_size">Textgröße des Timers</string>
     <string name="tiny">Winzig</string>
     <string name="small">Klein</string>
     <string name="normal">Normal</string>
@@ -211,7 +224,7 @@
     <string name="pref_notificationcontrol">Klingelton und Benachrichtigungen</string>
     <string name="pref_notificationcontrol_priority">Nur wichtige</string>
     <string name="pref_notificationcontrol_alarms">Nur Alarme</string>
-    <string name="pref_notificationcontrol_vibrate">Einstellen auf Vibration</string>
+    <string name="pref_notificationcontrol_vibrate">Auf Vibration einstellen</string>
     <string name="pref_notificationcontrol_silent">Stummschalten</string>
     <string name="pref_daily_reminder">Tägliche Erinnerung</string>
     <string name="pref_daily_reminder_title">Erinnere mich</string>

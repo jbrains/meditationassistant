@@ -6,6 +6,7 @@
     <string name="about">Informazioni</string>
     <string name="yes">Sì</string>
     <string name="no">No</string>
+    
     <string name="openWith">Apri con</string>
     <string name="delete">Elimina</string>
     <string name="sessions">Sessioni</string>
@@ -20,6 +21,7 @@
     <string name="groups">Gruppi</string>
     <string name="announcement">Annuncio</string>
     <string name="installFileManager">Installa un file manager, per favore (p.es. Solid Explorer) </string>
+    
 
     <!-- Permissions -->
     <string name="permissionRequest">Richiesta di permesso</string>
@@ -62,7 +64,7 @@
     <string name="presetLabelEndAt">Termina a %s</string>
 
     <!-- About -->
-    <string name="tapToSendEmail">Tocca dove vuoi per mandare un suggerimento</string>
+    
     <string name="sendEmail">Invia email</string>
     <string name="version">Versione %s</string>
     <string name="translate">Traduci</string>
@@ -83,6 +85,8 @@
     <string name="pref_sessionintro">Introduzione</string>
     <string name="presetsettings">Impostazioni</string>
     <string name="modeandduration">Modalità e durata</string>
+    
+    
 
     <!-- Session complete -->
     <string name="sessioncomplete">Sessione completata</string>
@@ -107,7 +111,7 @@
     <!-- Progress -->
     <string name="calendar">Calendario</string>
     <string name="statistics">Statistiche</string>
-    
+    <string name="totalTimeSpentMeditating">Tempo totale trascorso meditando</string>
     <string name="dayMondayShort">Lun</string>
     <string name="dayTuesdayShort">Mar</string>
     <string name="dayWednesdayShort">Mer</string>
@@ -116,18 +120,25 @@
     <string name="daySaturdayShort">Sab</string>
     <string name="daySundayShort">Dom</string>
     <string name="addSession">Aggiungi sessione</string>
+    
+    
+    
     <string name="add">Aggiungi</string>
+    
     <string name="exportSessions">Esporta sessione</string>
     <string name="sessionExportFailed">Impossibile esportare le sessione</string>
-    
+    <string name="showExportedSessions">Sessioni esportate. Vuoi visitare la cartella con i file esportati?</string>
     <string name="sessionStartedAt">Iniziata a %s</string>
     <string name="started">Iniziata</string>
     <string name="completed">Completata</string>
+    
     <string name="setDate">Imposta data</string>
     <string name="setTime">Imposta orario</string>
     <string name="invalidDateOrTime">Data o orario invalidi</string>
+    
     <string name="addSessionMeditating">Impossibile aggiungere una sessione mentre si sta meditando</string>
-    <string name="addSessionExists">La sessione esiste di già</string>
+    
+    <string name="sessionExists">La sessione esiste di già</string>
 
     <string name="days">Giorni</string>
     <string name="hours">Ore</string>
@@ -155,14 +166,15 @@
     <string name="noSpecialBehavior">Nessun comportamento speciale</string>
     <string name="noSound">Nessun suono</string>
     <string name="customSound">Suono personalizzato</string>
+    <string name="duringSession">Durante la sessione</string>
+    <string name="always">Sempre</string>
     <string name="keepScreenOn">Tieni lo schermo acceso</string>
     <string name="keepScreenOnAndDim">Tieni lo schermo acceso e la luminosità bassa</string>
     <string name="dimScreen">Abbassa la luminosità</string>
-    <string name="turnScreenOff">Spegni lo schermo</string>
     <string name="pref_display_seconds">Mostra i secondi</string>
     <string name="pref_display_seconds_summary">Mostra sotto il timer principale</string>
+    
     <string name="pref_full_screen">Schermo intero</string>
-    <string name="pref_full_screen_summary">La barra di stato è nascosta quando a schermo intero</string>
     <string name="pref_delay">Ritarda</string>
     
     
@@ -178,7 +190,7 @@
     <string name="pref_showstreak">Mostra serie di meditazioni</string>
     <string name="pref_showstreak_summary">Numero di giorni consecutivi nei quali è stata registrata almeno una sessione</string>
     <string name="selectSound">Scegli suono</string>
-    
+    <string name="pref_meditation_sound_start">Suono iniziale</string>
     
     
     <string name="pref_remembermessage">Ricorda ultimo messaggio</string>
@@ -187,6 +199,7 @@
     <string name="pref_theme_light">Chiaro</string>
     <string name="pref_theme_lightdark">Chiaro con action bar scura</string>
     <string name="pref_theme_dark">Scuro</string>
+    <string name="buddhism">Buddismo</string>
     
     <string name="pref_notification">Notifiche</string>
     <string name="pref_notification_summary">Mostra durante la meditazione quando non si è sulla schermata principale</string>

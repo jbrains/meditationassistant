@@ -7,30 +7,32 @@
     <string name="yes">Jo</string>
     <string name="no">Nej</string>
     
+    <string name="openWith">Öpnna med</string>
     <string name="delete">Ta bort</string>
+    <string name="sessions">Sessioner</string>
     
     
+    <string name="rate">Betygsätt</string>
+    <string name="refresh">Uppdatera</string>
+    <string name="page">Sida</string>
+    <string name="back">Bakåt</string>
+    <string name="forward">Framåt</string>
+    <string name="account">Konto</string>
+    <string name="groups">Grupper</string>
     
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="installFileManager">Var vänlig installera en filhanterare (t.ex. Solid Explorer)</string>
     
 
     <!-- Permissions -->
     
-    
+    <string name="permissionRequestReadExternal">Tillstånd krävs för att välja en extern ljudfil på enheten.</string>
     
     
     
 
     <!-- Main Activity -->
     
-    
+    <string name="timerHelp">Timern är för närvarande satt till 15 minuter. Du kan ändra längden, avsluta vid en specifik tidpunkt på dagen, eller avaktivera alarmet helt. Klicka på timern nu för att se dessa alternativ.</string>
     
     
     <string name="cancel">Avbryt</string>
@@ -83,6 +85,8 @@
     
     
     
+    
+    
 
     <!-- Session complete -->
     
@@ -115,6 +119,13 @@
     <string name="dayFridayShort">Fre</string>
     <string name="daySaturdayShort">Lör</string>
     <string name="daySundayShort">Sön</string>
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -172,6 +183,7 @@
     
     
     
+    
     <string name="pref_screencontrol">Skärmen</string>
     
     
@@ -187,6 +199,7 @@
     <string name="pref_theme_light">Ljus</string>
     
     <string name="pref_theme_dark">Mörk</string>
+    
     
     
     
