@@ -1,6 +1,5 @@
 package sh.ftp.rocketninelabs.meditationassistant;
 
-import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -124,21 +123,8 @@ public class DailyReminderReceiver extends BroadcastReceiver {
                         PendingIntent.FLAG_CANCEL_CURRENT
                 );
 
-        if (Build.VERSION.SDK_INT >= 23) {
-            /* Don't use setAlarmClock here as it will always place an alarm icon in the status bar */
-            getMeditationAssistant().reminderAlarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,
-                    calendar.getTimeInMillis(),
-                    getMeditationAssistant().reminderPendingIntent);
-        } else if (Build.VERSION.SDK_INT >= 19) {
-            getMeditationAssistant().reminderAlarmManager.setExact(AlarmManager.RTC_WAKEUP,
-                    calendar.getTimeInMillis(),
-                    getMeditationAssistant().reminderPendingIntent);
-        } else {
-            getMeditationAssistant().reminderAlarmManager.set(AlarmManager.RTC_WAKEUP,
-                    calendar.getTimeInMillis(),
-                    getMeditationAssistant().reminderPendingIntent);
-        }
-
+        /* Don't use setAlarmClock here as it will always place an alarm icon in the status bar */
+        getMeditationAssistant().setAlarm(false, calendar.getTimeInMillis(), getMeditationAssistant().reminderPendingIntent);
         Log.d("MeditationAssistant", "Set daily reminder alarm for " + calendar.toString());
     }
 

@@ -121,6 +121,7 @@ public class MeditationAssistant extends Application {
     private Integer webview_scale = null;
     private String timerMode = null;
     private SharedPreferences prefs = null;
+    private AlarmManager am;
     private WakeLocker wakeLocker = new WakeLocker();
     String pausedTimerHoursMinutes;
     String pausedTimerSeconds;
@@ -307,6 +308,22 @@ public class MeditationAssistant extends Application {
             startActivity(Intent.createChooser(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName())), getString(R.string.openWith)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         } else if (getMarketName().equals("amazon")) {
             startActivity(Intent.createChooser(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.amazon.com/gp/mas/dl/android?p=" + getApplicationContext().getPackageName())), getString(R.string.openWith)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        }
+    }
+
+    public void setAlarm(boolean allowAlarmClock, long triggerAtMillis, PendingIntent pendingIntent) {
+        if (am == null) {
+            am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        }
+
+        if (Build.VERSION.SDK_INT >= 23) {
+            am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+        } else if (Build.VERSION.SDK_INT >= 21 && allowAlarmClock) {
+            am.setAlarmClock(new AlarmManager.AlarmClockInfo(triggerAtMillis, PendingIntent.getActivity(this, 0, new Intent(getApplicationContext(), MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT)), pendingIntent);
+        } else if (Build.VERSION.SDK_INT >= 19) {
+            am.setExact(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+        } else {
+            am.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
         }
     }
 

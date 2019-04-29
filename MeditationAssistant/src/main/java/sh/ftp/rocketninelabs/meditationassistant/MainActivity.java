@@ -13,7 +13,6 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.media.AudioManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -146,15 +145,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                                 getApplicationContext(), ID_INTERVAL,
                                 intent_interval, PendingIntent.FLAG_CANCEL_CURRENT);
                         am_interval = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-                        if (Build.VERSION.SDK_INT >= 23) {
-                            am_interval.setAlarmClock(new AlarmManager.AlarmClockInfo(cal.getTimeInMillis(), PendingIntent.getActivity(MainActivity.this, 0, new Intent(MainActivity.this, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT)), pendingintent_interval);
-                        } else if (Build.VERSION.SDK_INT >= 19) {
-                            am_interval.setExact(AlarmManager.RTC_WAKEUP,
-                                    cal.getTimeInMillis(), pendingintent_interval);
-                        } else {
-                            am_interval.set(AlarmManager.RTC_WAKEUP,
-                                    cal.getTimeInMillis(), pendingintent_interval);
-                        }
+                        getMeditationAssistant().setAlarm(true, cal.getTimeInMillis(), pendingintent_interval);
+
                         handler.postDelayed(this, interval * 1000);
                     }
                 }
@@ -1208,20 +1200,11 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                         pendingintent = PendingIntent.getActivity(
                                 getApplicationContext(), ID_END, intent,
                                 PendingIntent.FLAG_CANCEL_CURRENT);
-                        am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-                        if (Build.VERSION.SDK_INT >= 23) {
-                            am.setAlarmClock(new AlarmManager.AlarmClockInfo(cal.getTimeInMillis(), PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT)), pendingintent);
-                        } else if (Build.VERSION.SDK_INT >= 19) {
-                            am.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-                                    pendingintent);
-                        } else {
-                            am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-                                    pendingintent);
-                        }
 
                         Log.d("MeditationAssistant", "Setting MAIN WAKEUP alarm for "
                                 + String.valueOf(cal.getTimeInMillis()) + " (Now: "
                                 + System.currentTimeMillis() + ", in: " + String.valueOf((cal.getTimeInMillis() - System.currentTimeMillis()) / 1000) + ")");
+                        getMeditationAssistant().setAlarm(true, cal.getTimeInMillis(), pendingintent);
                     }
 
                     getMeditationAssistant().ispaused = false;
@@ -1362,20 +1345,11 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                     pendingintent = PendingIntent.getActivity(
                             getApplicationContext(), ID_END, intent,
                             PendingIntent.FLAG_CANCEL_CURRENT);
-                    am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-                    if (Build.VERSION.SDK_INT >= 23) {
-                        am.setAlarmClock(new AlarmManager.AlarmClockInfo(cal.getTimeInMillis(), PendingIntent.getActivity(MainActivity.this, 0, new Intent(MainActivity.this, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT)), pendingintent);
-                    } else if (Build.VERSION.SDK_INT >= 19) {
-                        am.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-                                pendingintent);
-                    } else {
-                        am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-                                pendingintent);
-                    }
 
                     Log.d("MeditationAssistant", "Setting MAIN WAKEUP alarm for "
                             + String.valueOf(cal.getTimeInMillis()) + " (Now: "
                             + System.currentTimeMillis() + ", in: " + String.valueOf((cal.getTimeInMillis() - System.currentTimeMillis()) / 1000) + ")");
+                    getMeditationAssistant().setAlarm(true, cal.getTimeInMillis(), pendingintent);
                 }
 
                 if (!skipDelay) {
@@ -1438,16 +1412,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             pendingintent_delay = PendingIntent.getActivity(
                     getApplicationContext(), ID_DELAY, intent_delay,
                     PendingIntent.FLAG_CANCEL_CURRENT);
-            am_delay = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            if (Build.VERSION.SDK_INT >= 23) {
-                am_delay.setAlarmClock(new AlarmManager.AlarmClockInfo(cal.getTimeInMillis(), PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT)), pendingintent_delay);
-            } else if (Build.VERSION.SDK_INT >= 19) {
-                am_delay.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-                        pendingintent_delay);
-            } else {
-                am_delay.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-                        pendingintent_delay);
-            }
+            getMeditationAssistant().setAlarm(true, cal.getTimeInMillis(), pendingintent_delay);
         } else {
             handler.postDelayed(meditateRunnable, 50);
         }
@@ -1476,16 +1441,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             pendingintent_interval = PendingIntent.getActivity(
                     getApplicationContext(), ID_INTERVAL,
                     intent_interval, PendingIntent.FLAG_CANCEL_CURRENT);
-            am_interval = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            if (Build.VERSION.SDK_INT >= 23) {
-                am_interval.setAlarmClock(new AlarmManager.AlarmClockInfo(cal.getTimeInMillis(), PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT)), pendingintent_interval);
-            } else if (Build.VERSION.SDK_INT >= 19) {
-                am_interval.setExact(AlarmManager.RTC_WAKEUP,
-                        cal.getTimeInMillis(), pendingintent_interval);
-            } else {
-                am_interval.set(AlarmManager.RTC_WAKEUP,
-                        cal.getTimeInMillis(), pendingintent_interval);
-            }
+            getMeditationAssistant().setAlarm(true, cal.getTimeInMillis(), pendingintent_interval);
         }
     }
 
@@ -1906,16 +1862,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                                 pendingintent_interval = PendingIntent.getActivity(
                                         getApplicationContext(), ID_INTERVAL,
                                         intent_interval, PendingIntent.FLAG_CANCEL_CURRENT);
-                                am_interval = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-                                if (Build.VERSION.SDK_INT >= 23) {
-                                    am_interval.setAlarmClock(new AlarmManager.AlarmClockInfo(cal.getTimeInMillis(), PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT)), pendingintent_interval);
-                                } else if (Build.VERSION.SDK_INT >= 19) {
-                                    am_interval.setExact(AlarmManager.RTC_WAKEUP,
-                                            cal.getTimeInMillis(), pendingintent_interval);
-                                } else {
-                                    am_interval.set(AlarmManager.RTC_WAKEUP,
-                                            cal.getTimeInMillis(), pendingintent_interval);
-                                }
+                                getMeditationAssistant().setAlarm(true, cal.getTimeInMillis(), pendingintent_interval);
                             } else {
                                 Log.d("MeditationAssistant", "Skipping INTERVAL WAKEUP alarm");
                             }
