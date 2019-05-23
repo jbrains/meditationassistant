@@ -1288,7 +1288,7 @@ public class MeditationAssistant extends Application {
                 if (sessionDialog.isShowing()) {
                     sessionDialog.dismiss();
                 }
-            } catch (WindowManager.BadTokenException e) {
+            } catch (Exception e) {
                 // Activity is not in the foreground
             }
         }
@@ -1298,6 +1298,7 @@ public class MeditationAssistant extends Application {
             return;
         }
 
+        sessionDialogUpdateSessionStarted = 0;
         sessionDialogActivity = activity;
 
         sessionDialogStartedYear = -1;
