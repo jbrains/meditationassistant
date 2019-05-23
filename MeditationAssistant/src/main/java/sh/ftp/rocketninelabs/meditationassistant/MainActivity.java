@@ -154,7 +154,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         }
     };
     private String lastKey = "";
-    private Boolean skipDelay = false;
+    private boolean skipDelay;
+    private boolean playedStartSound;
     private String previous_timermode = "timed";
     private Boolean usetimepicker = true;
     private ShowcaseView sv = null;
@@ -1218,6 +1219,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         getMeditationAssistant().releaseAllWakeLocks();
         getMeditationAssistant().ispaused = false;
         getMeditationAssistant().pausetime = 0;
+        playedStartSound = false;
         skipDelay = false;
         intervals = 0;
 
@@ -1325,50 +1327,56 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         meditateRunnable = new Runnable() {
             @Override
             public void run() {
+                Log.d("MeditationAssistant", "Execute meditateRunnable");
+
                 setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
                 if (getMeditationAssistant().getTimeStartMeditate() == 0) {
                     return;
                 }
 
-                if (getMeditationAssistant().getTimeToStopMeditate() != -1) {
-                    Calendar cal = Calendar.getInstance();
-                    cal.add(Calendar.SECOND, (int) (getMeditationAssistant()
-                            .getTimeToStopMeditate() - getMeditationAssistant()
-                            .getTimeStartMeditate()));
+                if (!playedStartSound) {
+                    playedStartSound = true;
 
-                    Intent intent = new Intent(getApplicationContext(),
-                            MainActivity.class);
-                    intent.putExtra("wakeup", true);
-                    intent.putExtra("fullwakeup", true);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    intent.setAction(BROADCAST_ACTION_ALARM);
-                    pendingintent = PendingIntent.getActivity(
-                            getApplicationContext(), ID_END, intent,
-                            PendingIntent.FLAG_CANCEL_CURRENT);
+                    if (getMeditationAssistant().getTimeToStopMeditate() != -1) {
+                        Calendar cal = Calendar.getInstance();
+                        cal.add(Calendar.SECOND, (int) (getMeditationAssistant()
+                                .getTimeToStopMeditate() - getMeditationAssistant()
+                                .getTimeStartMeditate()));
 
-                    Log.d("MeditationAssistant", "Setting MAIN WAKEUP alarm for "
-                            + String.valueOf(cal.getTimeInMillis()) + " (Now: "
-                            + System.currentTimeMillis() + ", in: " + String.valueOf((cal.getTimeInMillis() - System.currentTimeMillis()) / 1000) + ")");
-                    getMeditationAssistant().setAlarm(true, cal.getTimeInMillis(), pendingintent);
-                }
+                        Intent intent = new Intent(getApplicationContext(),
+                                MainActivity.class);
+                        intent.putExtra("wakeup", true);
+                        intent.putExtra("fullwakeup", true);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        intent.setAction(BROADCAST_ACTION_ALARM);
+                        pendingintent = PendingIntent.getActivity(
+                                getApplicationContext(), ID_END, intent,
+                                PendingIntent.FLAG_CANCEL_CURRENT);
 
-                if (!skipDelay) {
-                    getMeditationAssistant().vibrateDevice();
+                        Log.d("MeditationAssistant", "Setting MAIN WAKEUP alarm for "
+                                + String.valueOf(cal.getTimeInMillis()) + " (Now: "
+                                + System.currentTimeMillis() + ", in: " + String.valueOf((cal.getTimeInMillis() - System.currentTimeMillis()) / 1000) + ")");
+                        getMeditationAssistant().setAlarm(true, cal.getTimeInMillis(), pendingintent);
+                    }
+
+                    if (!skipDelay) {
+                        getMeditationAssistant().vibrateDevice();
+                    }
+
+                    String startSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_start", "");
+                    if (!startSoundPath.equals("none")) {
+                        if (startSoundPath.equals("custom")) {
+                            startSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_start_custom", "");
+                            getMeditationAssistant().playSound(0, startSoundPath, false);
+                        } else {
+                            getMeditationAssistant().playSound(MeditationSounds.getMeditationSound(startSoundPath), "", false);
+                        }
+                    }
+
+                    setIntervalAlarm();
                 }
 
                 screenDimOrOff();
-
-                String startSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_start", "");
-                if (!startSoundPath.equals("none")) {
-                    if (startSoundPath.equals("custom")) {
-                        startSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_start_custom", "");
-                        getMeditationAssistant().playSound(0, startSoundPath, false);
-                    } else {
-                        getMeditationAssistant().playSound(MeditationSounds.getMeditationSound(startSoundPath), "", false);
-                    }
-                }
-
-                setIntervalAlarm();
             }
         };
 
@@ -1783,6 +1791,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                 Boolean fullWakeUp = intent.getBooleanExtra("fullwakeup", false);
                 Boolean wakeUpStart = intent.getBooleanExtra("wakeupstart", false);
                 Boolean wakeUpInterval = intent.getBooleanExtra("wakeupinterval", false);
+
                 Log.d("MeditationAssistant", "ALARM RECEIVER INTEGRATED: Received broadcast - Full: " + (fullWakeUp ? "Full" : "Partial") + " - Start/interval: " + (wakeUpStart ? "Start" : (wakeUpInterval ? "Interval" : "Neither")));
 
                 if (wakeLockID != null) {

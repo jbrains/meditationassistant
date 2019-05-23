@@ -1,11 +1,15 @@
+1.5.5:
+- Fixed add session dialog sometimes overwriting existing session when adding a new session
+- Fixed skipping session delay causing start sound to be played twice
+
 1.5.4:
 - Recorded sessions may now be edited
-- Improved calculation of meditation streak window (streak buffer was not being applied consistently)
-- Added: Prompt when calculated streak does not match current streak
-- Added: Long press shortcut to calendar buttons moving one year backward/forward
-- Fixed: tapping home screen widget asks to sign in to MediNET
-- Possibly fixed: Issues with sounds not reliably playing on Android 8.0+ (related to OS battery optimization)
-- Removed: Daily reminder on Android 8.0+ (this behavior is no longer possible without the application constantly running)
+- A prompt is now shown when calculated streak does not match current streak
+- Calculation of meditation streak window has been improved (streak buffer was not being applied consistently)
+- Long press shortcuts have been added to calendar buttons moving one year backward/forward
+- Fixed tapping home screen widget causing sign in to MediNET dialog to be shown
+- Possibly fixed issues with sounds not reliably playing on Android 8.0+ (related to OS battery optimization)
+- Removed daily reminder on Android 8.0+ (this behavior is no longer possible without the application constantly running)
 
 1.5.3:
 - Fix tapping widget always causing MediNET sign in dialog to be shown
