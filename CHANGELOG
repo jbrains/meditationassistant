@@ -12,10 +12,6 @@
 - Removed daily reminder on Android 8.0+ (this behavior is no longer possible without the application constantly running)
 
 1.5.3:
-- Fix tapping widget always causing MediNET sign in dialog to be shown
-- Potentially fix
-
-1.5.3:
 - Fix interval sounds not reliably playing
 - Fix timer not displaying when returning to the app while paused
 - Add 'Widget color' preference
@@ -278,4 +274,3 @@
 - Added calendar and session list to Progress window
 - Changed automatic sign in to disabled by default 
 - Removed Sessions button from the main window
-

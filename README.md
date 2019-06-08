@@ -1,4 +1,8 @@
-# Meditation Assistant [![Donate](http://img.shields.io/liberapay/receives/rocketnine.space.svg?logo=liberapay)](https://liberapay.com/rocketnine.space)
+# Meditation Assistant [![Donate](https://img.shields.io/liberapay/receives/rocketnine.space.svg?logo=liberapay)](https://liberapay.com/rocketnine.space)
+
+<a href="https://f-droid.org/packages/sh.ftp.rocketninelabs.meditationassistant.opensource/"><img width="121" height="36" alt="F-Droid" border="0" src="https://rocketnine.space/static/badge_fdroid_36.png"></a>
+ &nbsp; <a href="https://play.google.com/store/apps/details?id=sh.ftp.rocketninelabs.meditationassistant"><img width="121" height="36" alt="Google Play" border="0" src="https://rocketnine.space/static/badge_google_36.png"></a>
+ &nbsp; <a href="https://www.amazon.com/Rocket-Nine-Laboratories-Meditation-Assistant/dp/B00BQVZ9DU"><img width="121" height="36" alt="Amazon Appstore" border="0" src="https://rocketnine.space/static/badge_amazon_36.png"></a>
 
 This application assists with both timed (via duration or ending at a specific time) and
 untimed sessions, with numerous customizations, including start/interval/end sounds and
@@ -22,16 +26,6 @@ Features
 - Pause your session and come back to it when you are ready
 - Upload sessions to [MediNET](https://gitlab.com/tslocum/medinet)
 
-
-Download
-------------
-- Google Play: [free](https://play.google.com/store/apps/details?id=sh.ftp.rocketninelabs.meditationassistant) /
-[paid](https://play.google.com/store/apps/details?id=sh.ftp.rocketninelabs.meditationassistant.full)
-- Amazon: [free](http://www.amazon.com/Rocket-Nine-Laboratories-Meditation-Assistant/dp/B00BQVZ9DU) /
-[paid](http://www.amazon.com/Rocket-Nine-Laboratories-Meditation-Assistant/dp/B00BQVXDL0/)
-- F-Droid: [free](https://f-droid.org/packages/sh.ftp.rocketninelabs.meditationassistant.opensource/)
-
-
 Remove Ads
 ------------
 Please purchase the paid version of the app to remove ads.  You could also use the open
@@ -52,7 +46,7 @@ contact the developer: trevor@rocketnine.space
 
 Translate
 ------------
-Translation is handled via [Get Localization](http://www.getlocalization.com/meditationassistant/).
+Translation is handled [online](https://medinet.rocketnine.space/translate/).
 
 
 Contribute
