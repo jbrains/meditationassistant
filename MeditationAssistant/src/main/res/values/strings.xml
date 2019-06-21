@@ -209,8 +209,12 @@
     <string name="pref_askdismiss_summary">Confirm before discarding a session</string>
     <string name="pref_mainbuttons">Hide buttons</string>
     <string name="pref_progresstab">Default Progress tab</string>
+    <string name="exportsessions">Export sessions</string>
+    <string name="exportsessions_summary">Export CSV file</string>
     <string name="importsessions">Import sessions</string>
-    <string name="importsessions_summary">Retrieve uploaded sessions</string>
+    <string name="importsessions_summary">Import CSV file</string>
+    <string name="downloadsessions">Download sessions</string>
+    <string name="downloadsessions_summary">Download remote sessions</string>
     <string name="uploadsessions">Upload sessions</string>
     <string name="uploadsessions_summary">Upload local sessions</string>
     <string name="miscellaneous">Miscellaneous</string>

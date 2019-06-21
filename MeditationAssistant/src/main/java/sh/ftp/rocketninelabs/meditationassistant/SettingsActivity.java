@@ -343,7 +343,7 @@ public class SettingsActivity extends PreferenceActivity {
     }
 
     private Long uploadsessions_lastlick = (long) 0;
-    private Long importsessions_lastlick = (long) 0;
+    private Long downloadsessions_lastlick = (long) 0;
 
     private static boolean isXLargeTablet(Context context) {
         return FORCE_TABLET_VIEW || ((context.getResources().getConfiguration().screenLayout
@@ -542,8 +542,8 @@ public class SettingsActivity extends PreferenceActivity {
                         }
                     });
 
-            Preference importSessions = (preferenceFragment == null ? findPreference("importsessions") : preferenceFragment.findPreference("importsessions"));
-            importSessions
+            Preference downloadSessions = (preferenceFragment == null ? findPreference("downloadsessions") : preferenceFragment.findPreference("downloadsessions"));
+            downloadSessions
                     .setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                         @Override
                         public boolean onPreferenceClick(Preference arg0) {
@@ -551,8 +551,8 @@ public class SettingsActivity extends PreferenceActivity {
                                 getMeditationAssistant().startAuth(SettingsActivity.this, true);
                             } else {
                                 if (getMeditationAssistant().getTimestamp()
-                                        - importsessions_lastlick > 5) {
-                                    importsessions_lastlick = getMeditationAssistant()
+                                        - downloadsessions_lastlick > 5) {
+                                    downloadsessions_lastlick = getMeditationAssistant()
                                             .getTimestamp();
                                     getMeditationAssistant().getMediNET()
                                             .downloadSessions();

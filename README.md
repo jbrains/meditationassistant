@@ -1,4 +1,6 @@
-# Meditation Assistant [![Donate](https://img.shields.io/liberapay/receives/rocketnine.space.svg?logo=liberapay)](https://liberapay.com/rocketnine.space)
+# Meditation Assistant
+[![Translate](https://hosted.weblate.org/widgets/meditation-assistant/-/svg-badge.svg)](https://medinet.rocketnine.space/translate/)
+[![Donate](https://img.shields.io/liberapay/receives/rocketnine.space.svg?logo=liberapay)](https://liberapay.com/rocketnine.space)
 
 <a href="https://f-droid.org/packages/sh.ftp.rocketninelabs.meditationassistant.opensource/"><img width="121" height="36" alt="F-Droid" border="0" src="https://rocketnine.space/static/badge_fdroid_36.png"></a>
  &nbsp; <a href="https://play.google.com/store/apps/details?id=sh.ftp.rocketninelabs.meditationassistant"><img width="121" height="36" alt="Google Play" border="0" src="https://rocketnine.space/static/badge_google_36.png"></a>

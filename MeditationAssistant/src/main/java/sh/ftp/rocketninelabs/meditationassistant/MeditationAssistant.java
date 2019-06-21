@@ -289,7 +289,7 @@ public class MeditationAssistant extends Application {
     public void restoreVolume() {
         if (previous_volume != null) {
             AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-            mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, previous_volume, 0);
+            mAudioManager.setStreamVolume(AudioManager.STREAM_SYSTEM, previous_volume, 0);
             previous_volume = null;
         }
     }
