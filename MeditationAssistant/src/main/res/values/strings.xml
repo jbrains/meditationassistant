@@ -235,8 +235,8 @@
     <string name="pref_daily_reminder_summary">Display a notification when no sessions were recorded today</string>
     <string name="pref_daily_reminder_time">Time</string>
     <string name="pref_daily_reminder_text">Encouragement text</string>
-    <string name="downloadingSessions">Downloading sessions...</string>
-    <string name="uploadingSessions">Uploading sessions...</string>
+    <string name="downloadingSessions">Downloading sessions…</string>
+    <string name="uploadingSessions">Uploading sessions…</string>
 
     <!-- MediNET -->
     <string name="mediNET">MediNET</string>
