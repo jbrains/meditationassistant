@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <string name="appName">Darmowy Asystent Medytacji</string>
     <string name="appNameShort">Asystent Medytacji</string>
     <string name="about">O programie</string>
@@ -20,16 +19,13 @@
     <string name="account">Konto</string>
     <string name="groups">Grupy</string>
     <string name="announcement">Ogłoszenie</string>
-    <string name="installFileManager">Proszę zainstaluj menedżer plików (np. Solid Explorer)</string>
-    
-
+    <string name="installFileManager">Proszę zainstaluj menedżer plików</string>
     <!-- Permissions -->
     <string name="permissionRequest">Prośba o uprawnienia</string>
     <string name="permissionRequestReadExternal">Te uprawnienia są wymagane by wybrać własny dźwięk z pamięci urządzenia.</string>
     <string name="permissionRequestNotificationControl">Proszę udziel uprawnień na następnym ekranie, by zarządzać trybem Nie Przeszkadzać.</string>
     <string name="deny">Odmów</string>
     <string name="tryAgain">Spróbuj ponownie</string>
-
     <!-- Main Activity -->
     <string name="timer">Minutnik</string>
     <string name="timerHelp">Minutnik jest aktualnie ustawiony na 15 minut. Możesz zmienić okres czasu, ustawić zakończenie o określonej porze dnia lub wyłączyć alarm całkowicie. Tapnij minutnik by ujrzeć te opcje.</string>
@@ -62,7 +58,6 @@
     <string name="untimed">Czas nie zmierzony</string>
     <string name="unlimited">Bez limitu</string>
     <string name="presetLabelEndAt">Koniec %s</string>
-
     <!-- About -->
     <string name="tapToLearnMore">Dotknij gdziekolwiek, by dowiedzieć się więcej</string>
     <string name="sendEmail">Wyślij email</string>
@@ -73,10 +68,8 @@
     <string name="removeAdsHelp">Pełna wersja Asystenta Medytacji to osobny program.\n\nBy zachować dotychczasowe sesje, zaloguj się do MediNET i tapnij "Wyślij sesje" w oknie Ustawień.\n\nOtwórz pełną wersją i zaloguj się do MediNET ponownie, następnie tapnij "Importuj".</string>
     <string name="howToMeditate">Jak medytować</string>
     <string name="share">Udostępnij</string>
-
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
     <string name="invitationBlurb">Asystent Medytacji to bogato wyposażony towarzysz w Twojej praktyce.</string>
-
     <!-- Sessions -->
     <string name="session">Sesja</string>
     <string name="sessionDeleteEverywhere">Usuń wszędzie</string>
@@ -86,8 +79,6 @@
     <string name="presetsettings">Ustawienia wstępne</string>
     <string name="modeandduration">Tryb i czas trwania</string>
     <string name="streakdifferencewarning">Twoja aktualna seria medytacji wydaje się nieprawidłowa w odniesieniu do aktualnej sesji. Użyć zaktualizowanej serii?\n\nAktualna seria: %1$d\nZaktualizowana seria: %2$d</string>
-    
-
     <!-- Session complete -->
     <string name="sessioncomplete">Sesja ukończona</string>
     <string name="sessionMessagePlaceholder">Wiadomość</string>
@@ -99,7 +90,6 @@
     <string name="sessionNotPostedMeditating">Nie można przesłać sesji podczas medytacji</string>
     <string name="sessionSaved">Sesja zapisana</string>
     <string name="sessionDeletedLocally">Sesja usunięta lokalnie</string>
-
     <!-- Sign In -->
     <string name="browser">Przeglądarka</string>
     <string name="useBrowser">Użyj przeglądarki:</string>
@@ -107,7 +97,6 @@
     <string name="signInWithProvider">Zaloguj się przy użyciu %s...</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter itp.</string>
     <string name="signInGoogleError">Nie można zalogować przy użyciu menedżera kont. Spróbuj OpenID, jeżeli błąd się powtarza.</string>
-
     <!-- Progress -->
     <string name="calendar">Kalendarz</string>
     <string name="statistics">Statystyki</string>
@@ -121,8 +110,6 @@
     <string name="daySundayShort">Ndz</string>
     <string name="addSession">Dodaj sesję</string>
     <string name="editSession">Edytuj sesję</string>
-    
-    
     <string name="add">Dodaj</string>
     <string name="edit">Edytuj</string>
     <string name="exportSessions">Eksportuj sesje</string>
@@ -139,7 +126,6 @@
     <string name="addSessionMeditating">Nie można dodać sesji w trakcie medytacji</string>
     <string name="editSessionMeditating">Nie można edytować sesji podczas medytacji</string>
     <string name="sessionExists">Sesja już istnieje</string>
-
     <string name="days">Dni</string>
     <string name="hours">Godziny</string>
     <string name="minutes">Minuty</string>
@@ -147,9 +133,7 @@
     <string name="averageDuration">Średni czas trwania</string>
     <string name="longestDuration">Najdłuższy czas trwania</string>
     <string name="longestStreak">Najdłuższy okres</string>
-
     <string name="reminderText">Masz chwilę, aby pomedytować?</string>
-
     <!-- Settings -->
     <string name="meditation">Medytacja</string>
     <string name="pref_vibrate">Wibruj</string>
@@ -159,7 +143,6 @@
     <string name="pref_sound_reminder_summary">Zostanie odtworzony domyślny dźwięk powiadomienia</string>
     <string name="pref_softfinish">Sesja nielimitowana</string>
     <string name="pref_softfinish_summary">Utrzymuj minutnik włączony</string>
-
     <string name="settings">Ustawienia</string>
     <string name="disabled">Wyłączony</string>
     <string name="none">Brak</string>
@@ -233,7 +216,6 @@
     <string name="pref_daily_reminder_text">Tekst na zachętę</string>
     <string name="downloadingSessions">Pobieranie sesji...</string>
     <string name="uploadingSessions">Przesyłanie sesji...</string>
-
     <!-- MediNET -->
     <string name="mediNET">MediNET</string>
     <string name="unableToConnect">Nie można połączyć się z MediNET</string>
@@ -247,24 +229,19 @@
     <string name="wordimport">Importuj</string>
     <string name="sessionDeletedMediNET">Sesja usunięta na MediNET</string>
     <string name="sessionNotFoundMediNET">Sesja nie odnaleziona na MediNET</string>
-
     <plurals name="numtimes">
         <item quantity="one">%s czasu</item>
         <item quantity="other">%s razy</item>
     </plurals>
-
     <plurals name="sessionsImported">
         <item quantity="one">Zaimportowano %s sesji</item>
         <item quantity="other">Zaimportowano %s sesji</item>
     </plurals>
-
     <plurals name="sessionsUploaded">
         <item quantity="one">Przesłano %s sesji</item>
         <item quantity="other">Przesłano %s sesji</item>
     </plurals>
-
     <string name="sessionsNotImported">Dane lokalne są aktualne</string>
-
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d dni</item>
         <item quantity="other">%d dni</item>
@@ -277,7 +254,6 @@
         <item quantity="one">dzień medytacji</item>
         <item quantity="other">dni medytacji</item>
     </plurals>
-
     <string name="meditateToday">Medytuj dzisiaj</string>
     <string name="signInToMediNET">Zaloguj się do MediNET</string>
     <string name="signOut">Wyloguj</string>
@@ -286,12 +262,10 @@
     <string name="rateMeditationAssistant">Oceń Asystenta Medytacji</string>
     <string name="rateMeditationAssistantText">Jeśli niniejsza aplikacja przydaje Ci się w praktyce medytacyjnej, czy mógłbyś/mogłabyś proszę ją ocenić?\n\nPłatna wersja aplikacji nie zawiera reklam oraz wprowadza widżety. Rozważ proszę jej zakup, jeśli możesz.\n\nTa informacja nie pojawi się ponownie.</string>
     <string name="translateMeditationAssistantText">Czy chciał(a)byś pomóc Asystentowi Medytacji dotrzeć do szerszego grona użytkowników poprzez przetłumaczenie go na inny język?\n\nTłumaczenie jest łatwe do przeprowadzenia z pomocą interfejsu on-line. Możesz odwiedzić stronę tłumaczeń później, klikając Przetłumacz z okna O programie.\n\nTa informacja nie pojawi się ponownie.</string>
-
     <!-- Widgets -->
     <string name="widget1x1" tools:ignore="UnusedResources">Asystent Medytacji 1x1</string>
     <string name="widget2x1" tools:ignore="UnusedResources">Asystent Medytacji 2x1</string>
     <string name="widget3x1" tools:ignore="UnusedResources">Asystent Medytacji 3x1</string>
-
     <!-- Meta -->
     <string name="appStoreListingShort">Funkcja minutnika oraz rejestratora sesji</string>
     <string name="appStoreListingFull">Niniejsza aplikacja towarzyszy zarówno okresowym (poprzez czas trwania lub zakończenie o określonej porze), jak i nielimitowanym sesjom, z wieloma dostosowaniami, włączając dźwięki rozpoczęcia/przedziałów/zakończenia, jak i zachowanie urządzenia. Ponadto dostarcza miesięczny przegląd Twoich postępów.
@@ -316,5 +290,4 @@
 	Przetłumacz Asystenta Medytacji na Twój język: https://www.getlocalization.com/meditationassistant/
 	
 	Aplikacja rozwijana przez Rocket Nine Laboratories: https://rocketnine.space/</string>
-
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <string name="appName">Асистент Медитації безкоштовний</string>
     <string name="appNameShort">Асистент Медитації</string>
     <string name="about">Про програму</string>
@@ -19,14 +18,12 @@
     <string name="account">Обліковий рахунок</string>
     <string name="groups">Групи</string>
     <string name="announcement">оголошення</string>
-
     <!-- Permissions -->
     <string name="permissionRequest">Запит на дозвіл</string>
     <string name="permissionRequestReadExternal">Цей дозвіл потрібен для вибору звукового файлу користувача на пристрої.</string>
     <string name="permissionRequestNotificationControl">Будь ласка дозвольте доступ на наступному екрані, щоб управляти "Не заважати".</string>
     <string name="deny">Відмовитись</string>
     <string name="tryAgain">Спробувати ще раз</string>
-
     <!-- Main Activity -->
     <string name="timer">Таймер</string>
     <string name="timerHelp">Таймер зараз налаштовано на 15 хвилин. Ви можете змінити тривалість, закінчити у визначений час доби або відключити сигнал повністю. Доторкніться зараз до таймера щоб оглянути ці параметри.</string>
@@ -59,9 +56,7 @@
     <string name="untimed">Необмежено</string>
     <string name="unlimited">Необмежено</string>
     <string name="presetLabelEndAt">Зупинити о %s</string>
-
     <!-- About -->
-    <string name="tapToSendEmail">Доторкніться де небуть щоб відправити відгук.</string>
     <string name="sendEmail">Вислати електронне повідомлення</string>
     <string name="version">Версія %s</string>
     <string name="translate">Перекласти</string>
@@ -70,10 +65,8 @@
     <string name="removeAdsHelp">Повна версія додатку Асистент Медитації це окремий додаток.\n\n Щоб зберегти існуючі сеанси, увійдіть до MediNET та натисніть "Завантажити сеанси" у вікні налаштувань.\n\n Відкрийте повну версію та увійдіть до MediNET ще раз, тоді натисніть "Імпортувати".</string>
     <string name="howToMeditate">Як медитувати</string>
     <string name="share">Поділитися</string>
-
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
     <string name="invitationBlurb">Асистент Медитації є повнофункціональний супутник вашій практиці.</string>
-
     <!-- Sessions -->
     <string name="session">Сеанс</string>
     <string name="sessionDeleteEverywhere">Видалити скрізь</string>
@@ -82,7 +75,6 @@
     <string name="pref_sessionintro">Вступ</string>
     <string name="presetsettings">Відновити налаштування.</string>
     <string name="modeandduration">Режим та тривалість</string>
-
     <!-- Session complete -->
     <string name="sessioncomplete">Сеанс завершено.</string>
     <string name="sessionMessagePlaceholder">Повідомлення</string>
@@ -94,7 +86,6 @@
     <string name="sessionNotPostedMeditating">Неможливо розмісти сеанс під час медитації.</string>
     <string name="sessionSaved">Сеанс збережено.</string>
     <string name="sessionDeletedLocally">Сеанс видалено з пристрою.</string>
-
     <!-- Sign In -->
     <string name="browser">Веб переглядач</string>
     <string name="useBrowser">Використовувати веб переглядач:</string>
@@ -102,7 +93,6 @@
     <string name="signInWithProvider">Увійти %s…</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, таке інше.</string>
     <string name="signInGoogleError">Неможливо увійти за допомогою керівника облікових рахунків. Спробуйте OpenID якщо ця помилка не усувається.</string>
-
     <!-- Progress -->
     <string name="calendar">Календар</string>
     <string name="statistics">Статистика</string>
@@ -123,8 +113,6 @@
     <string name="setTime">Встановити час</string>
     <string name="invalidDateOrTime">Невірний день або час</string>
     <string name="addSessionMeditating">Неможливо додати сеанс під час медитації.</string>
-    <string name="addSessionExists">Сеанс вже існує.</string>
-
     <string name="days">дні</string>
     <string name="hours">години</string>
     <string name="minutes">хвилини</string>
@@ -132,9 +120,7 @@
     <string name="averageDuration">середня тривалість</string>
     <string name="longestDuration">Найдовша тривалість</string>
     <string name="longestStreak">Найдовша наполегливість</string>
-
     <string name="reminderText">Чи маєте ви трохи часу?</string>
-
     <!-- Settings -->
     <string name="meditation">Медитація</string>
     <string name="pref_vibrate">Вібрація</string>
@@ -144,7 +130,6 @@
     <string name="pref_sound_reminder_summary">Відтворюватиметься звук повідомлення за замовчуванням.</string>
     <string name="pref_softfinish">Нескінченний сеанс</string>
     <string name="pref_softfinish_summary">Залишити таймер працювати.</string>
-
     <string name="settings">Налаштування</string>
     <string name="disabled">Відключено</string>
     <string name="none">Нічого</string>
@@ -154,11 +139,9 @@
     <string name="keepScreenOn">Залишити екран увімкненим</string>
     <string name="keepScreenOnAndDim">Залишити екран увімкненим та затемнити.</string>
     <string name="dimScreen">Затемнити екран.</string>
-    <string name="turnScreenOff">Вимкнути екран</string>
     <string name="pref_display_seconds">Відображати секунди</string>
     <string name="pref_display_seconds_summary">Показувати під головним таймером</string>
     <string name="pref_full_screen">Повний екран</string>
-    <string name="pref_full_screen_summary">Статусну строку приховано у повноекранному режимі</string>
     <string name="pref_delay">Затримка</string>
     <string name="pref_interval">Тривалість інтервалу</string>
     <string name="pref_interval_count">Рахунок проміжків</string>
@@ -216,7 +199,6 @@
     <string name="pref_daily_reminder_text">Текст заоохочення</string>
     <string name="downloadingSessions">Завантаження сеансів...</string>
     <string name="uploadingSessions">Завантаження сеансів...</string>
-
     <!-- MediNET -->
     <string name="mediNET">MediNET</string>
     <string name="unableToConnect">Неможливо під\'єднатись до MediNET.</string>
@@ -231,24 +213,19 @@
     <string name="wordimport">Імпортувати</string>
     <string name="sessionDeletedMediNET">Сеанс видалено з MediNET.</string>
     <string name="sessionNotFoundMediNET">Сеанс не знайдено на MediNET.</string>
-
     <plurals name="numtimes">
         <item quantity="one">%s раз</item>
         <item quantity="other">%s разів</item>
     </plurals>
-
     <plurals name="sessionsImported">
         <item quantity="one">Імпортовано %s сеанс</item>
         <item quantity="other">Імпортовано %s  сеансів.</item>
     </plurals>
-
     <plurals name="sessionsUploaded">
         <item quantity="one">Завантажено %s сеанс</item>
         <item quantity="other">Завантажено %s сеансів.</item>
     </plurals>
-
     <string name="sessionsNotImported">Дані пристрою поновлені.</string>
-
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d день</item>
         <item quantity="other">%d днів</item>
@@ -261,7 +238,6 @@
         <item quantity="one">день медитації</item>
         <item quantity="other">дні медитації</item>
     </plurals>
-
     <string name="meditateToday">Медитувати сьогодні</string>
     <string name="signInToMediNET">Увійти до MediNET</string>
     <string name="signOut">Вийти</string>
@@ -270,10 +246,8 @@
     <string name="rateMeditationAssistant">Оцінити Асистента Медитації</string>
     <string name="rateMeditationAssistantText">Якщо ви вважаєте цей додаток корисним для вашої практики медитацій, чи не могли б ви додати оцінку?\n\nПлатна версія додатку не містить оголошень та має віджет для головного екрану. Будь ласка, розглядьте питання про придбання, якщо ви взмозі.\n\nЦе вікно більше не з\'являтиметься.</string>
     <string name="translateMeditationAssistantText">Чи могли б ви будь ласка допомогти Асистенту Медитацій досягнути ширшої аудиторії перекладаючи його іншою мовою?\n\nПереклад легко виконати за допомогою веб-інтерфейсу. Ви можете відвідати сторінку перекладу пізніше натиснувши "Перекласти" з вікна "Про програму".\n\nЦе вікно більше не з\'являтиметься.</string>
-
     <!-- Widgets -->
     <string name="widget1x1" tools:ignore="UnusedResources">Асистент медитації 1х1</string>
     <string name="widget2x1" tools:ignore="UnusedResources">Асистент медитації 2х1</string>
     <string name="widget3x1" tools:ignore="UnusedResources">Асистент медитації 3х1</string>
-
 </resources>

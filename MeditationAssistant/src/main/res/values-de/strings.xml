@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <string name="appName">Meditation Assistant Free</string>
     <string name="appNameShort">Meditation Assistant</string>
     <string name="about">Über</string>
@@ -10,7 +9,7 @@
     <string name="openWith">Öffnen mit</string>
     <string name="delete">Löschen</string>
     <string name="sessions">Sitzungen</string>
-    <string name="community">Community</string>
+    <string name="community">Gemeinschaft</string>
     <string name="forum">Forum</string>
     <string name="rate">Bewerten</string>
     <string name="refresh">Aktualisieren</string>
@@ -20,16 +19,13 @@
     <string name="account">Konto</string>
     <string name="groups">Gruppen</string>
     <string name="announcement">Ankündigung</string>
-    <string name="installFileManager">Bitte installieren Sie einen Dateimanager (z.B. Solid Explorer)</string>
-    
-
+    <string name="installFileManager">Bitte installieren Sie einen Dateimanager</string>
     <!-- Permissions -->
     <string name="permissionRequest">Berechtigungsanfrage</string>
     <string name="permissionRequestReadExternal">Diese Berechtigung wird benötigt, um eine eigene Audiodatei auf dem Gerät auszuwählen.</string>
     <string name="permissionRequestNotificationControl">Bitte gewähren Sie auf dem nächsten Bildschirm Zugriff um die Funktion \'Nicht stören\' kontrollieren zu können.</string>
     <string name="deny">Verweigern </string>
     <string name="tryAgain">Erneut versuchen</string>
-
     <!-- Main Activity -->
     <string name="timer">Timer</string>
     <string name="timerHelp">Der Timer ist aktuell auf 15 Minuten gesetzt. Sie können die Dauer anpassen, zu einer definierten Zeit eines Tages beenden oder den Alarm komplett deaktivieren. Um diese Optionen zu sehen, tippen Sie den Timer an.</string>
@@ -45,7 +41,7 @@
     <string name="pauseOrEnd">Pausieren oder beenden</string>
     <string name="resumeOrEnd">Fortsetzen oder beenden</string>
     <string name="pausedNotification">Sitzung pausiert, halten zum Beenden</string>
-    <string name="mediNETConnecting">Verbinde...</string>
+    <string name="mediNETConnecting">Verbinde…</string>
     <string name="mediNETConnected">Mit MediNET verbunden</string>
     <string name="sessionInProgress">Sitzung im Gang</string>
     <string name="progress">Fortschritt</string>
@@ -62,7 +58,6 @@
     <string name="untimed">Unbegrenzt</string>
     <string name="unlimited">Unbegrenzt</string>
     <string name="presetLabelEndAt">Ende %s</string>
-
     <!-- About -->
     <string name="tapToLearnMore">Eine beliebige Stelle antippen um mehr zu erfahren</string>
     <string name="sendEmail">E-Mail senden</string>
@@ -73,10 +68,8 @@
     <string name="removeAdsHelp">Die Vollversion von Meditation Assistant ist eine separate Anwendung.\n\nUm Ihre bestehenden Sitzungen zu behalten, melden Sie sich bitte bei MediNET an und wählen Sie "Session hochladen" im Einstellungsfenster.\n\nStarten Sie bitte danach die Vollversion, melden Sie sich dort ebenfalls im MediNET an und wählen Sie "Importieren".</string>
     <string name="howToMeditate">Wie man meditiert</string>
     <string name="share">Teilen</string>
-
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
     <string name="invitationBlurb">Meditation Assistant ist ein featurereicher Begleiter für Ihre Übungen.</string>
-
     <!-- Sessions -->
     <string name="session">Sitzung</string>
     <string name="sessionDeleteEverywhere">Überall löschen</string>
@@ -86,28 +79,24 @@
     <string name="presetsettings">Voreinstellungen</string>
     <string name="modeandduration">Modus und Dauer</string>
     <string name="streakdifferencewarning">Aufgrund Ihrer aktuellen Sitzungsdaten scheint ihre gegenwärtige Meditationsserie nicht korrekt zu sein. Wollen Sie die aktualisierte Meditationsserie nutzen? \n\nAktuelle Serie: %1$d\nAktualisierte Serie: %2$d</string>
-    
-
     <!-- Session complete -->
     <string name="sessioncomplete">Sitzung beendet</string>
     <string name="sessionMessagePlaceholder">Meldung</string>
     <string name="askDiscardText">Sitzung verwerfen?</string>
-    <string name="sessionPosting">Poste Sitzung...</string>
+    <string name="sessionPosting">Poste Sitzung…</string>
     <string name="sessionPosted">Sitzung gepostet bei MediNET</string>
     <string name="sessionAlreadyPosted">Sitzung bereits gepostet</string>
     <string name="sessionNotPosted">Posten der Sitzung nicht möglich</string>
     <string name="sessionNotPostedMeditating">Das Posten der Sitzung ist während der Meditation nicht möglich</string>
     <string name="sessionSaved">Sitzung gespeichert</string>
     <string name="sessionDeletedLocally">Sitzung lokal gelöscht</string>
-
     <!-- Sign In -->
     <string name="browser">Browser</string>
     <string name="useBrowser">Benutze Browser:</string>
-    <string name="signInWith">Anmelden mit ...</string>
-    <string name="signInWithProvider">Angemeldet mit %s ...</string>
+    <string name="signInWith">Anmelden mit…</string>
+    <string name="signInWithProvider">Anmelden mit %s…</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, etc.</string>
     <string name="signInGoogleError">Konnte nicht mit dem Account Manager anmelden. Versuchen Sie OpenID, sollte  dieser Fehler fortbestehen.</string>
-
     <!-- Progress -->
     <string name="calendar">Kalender</string>
     <string name="statistics">Statistiken</string>
@@ -121,8 +110,6 @@
     <string name="daySundayShort">So</string>
     <string name="addSession">Sitzung hinzufügen</string>
     <string name="editSession">Sitzung bearbeiten</string>
-    
-    
     <string name="add">Hinzuf.</string>
     <string name="edit">Bearbeiten</string>
     <string name="exportSessions">Sitzungen exportieren</string>
@@ -138,8 +125,7 @@
     <string name="invalidLength">Ungültige Dauer</string>
     <string name="addSessionMeditating">Das Hinzufügen einer Sitzung ist während der Meditation nicht möglich</string>
     <string name="editSessionMeditating">Bearbeiten der Sitzung ist während der Meditation nicht möglich</string>
-    <string name="sessionExists">Sitzung besteht bereits.</string>
-
+    <string name="sessionExists">Sitzung besteht bereits</string>
     <string name="days">Tage</string>
     <string name="hours">Stunden</string>
     <string name="minutes">Minuten</string>
@@ -147,19 +133,16 @@
     <string name="averageDuration">Durchschnittliche Dauer</string>
     <string name="longestDuration">Längste Sitzung</string>
     <string name="longestStreak">Längste Anzahl durchgängiger Tage</string>
-
     <string name="reminderText">Hast du einen Moment Zeit?</string>
-
     <!-- Settings -->
     <string name="meditation">Meditation</string>
     <string name="pref_vibrate">Vibrieren</string>
-    <string name="pref_vibrate_summary">Findet zu Beginn, bei Intervallen und am Ende der Meditation statt.</string>
-    <string name="pref_vibrate_reminder_summary">Die tägliche Erinnerung lässt das Gerät vibrieren.</string>
+    <string name="pref_vibrate_summary">Findet zu Beginn, bei Intervallen und am Ende der Meditation statt</string>
+    <string name="pref_vibrate_reminder_summary">Die tägliche Erinnerung lässt das Gerät vibrieren</string>
     <string name="pref_sound_reminder">Spiele Sound</string>
     <string name="pref_sound_reminder_summary">Der Standard-Benachrichtigungssound wird gespielt werden</string>
     <string name="pref_softfinish">Endlose Sitzung</string>
     <string name="pref_softfinish_summary">Den Timer laufen lassen</string>
-
     <string name="settings">Einstellungen</string>
     <string name="disabled">Deaktiviert</string>
     <string name="none">Keine</string>
@@ -173,7 +156,6 @@
     <string name="dimScreen">Bildschirm dimmen</string>
     <string name="pref_display_seconds">Sekunden anzeigen</string>
     <string name="pref_display_seconds_summary">Anzeige unter dem Haupttimer</string>
-    
     <string name="pref_full_screen">Vollbild</string>
     <string name="pref_delay">Verzögerung</string>
     <string name="pref_interval">Intervalldauer</string>
@@ -185,9 +167,9 @@
     <string name="pref_sessionvolume">Lautstärke</string>
     <string name="pref_sessionvolume_summary">Die vorherige Lautstärke wird wiederhergestellt, sobald die Sitzung abgeschlossen ist.</string>
     <string name="pref_screencontrol">Bildschirm</string>
-    <string name="pref_sendusage">Nutzerstatistiken übertragen.</string>
-    <string name="pref_sendusage_summary">Anonyme Reportübertragungen mittels Google Analytics. Tritt nach Neustart in Kraft.</string>
-    <string name="pref_showstreak">Meditationssträhne anzeigen.</string>
+    <string name="pref_sendusage">Nutzerstatistiken übertragen</string>
+    <string name="pref_sendusage_summary">Anonyme Berichterstattung per Google Analytics. Tritt nach Neustart in Kraft</string>
+    <string name="pref_showstreak">Meditationsserie anzeigen</string>
     <string name="pref_showstreak_summary">Anzahl der aufeinanderfolgenden Tage mit mindestens einer aufgezeichneten Sitzung</string>
     <string name="selectSound">Klang auswählen</string>
     <string name="pref_meditation_sound_start">Klang abspielen</string>
@@ -200,9 +182,8 @@
     <string name="pref_theme_lightdark">Hell mit dunkler Aktionsleiste</string>
     <string name="pref_theme_dark">Dunkel</string>
     <string name="buddhism">Buddhismus</string>
-    
     <string name="pref_notification">Benachrichtigung</string>
-    <string name="pref_notification_summary">Anzeige während der Meditation wenn das Hauptfenster nicht angezeigt wird.</string>
+    <string name="pref_notification_summary">Anzeige während der Meditation wenn das Hauptfenster nicht angezeigt wird</string>
     <string name="pref_usetimepicker">Alternative Dauer-Anzeige</string>
     <string name="pref_usetimepicker_summary">Benutzen Sie bitte die Schieberegler für Stunden und Minuten, um die Dauer anzupassen</string>
     <string name="pref_askdismiss">Vor dem Verwerfen nachfragen</string>
@@ -233,7 +214,6 @@
     <string name="pref_daily_reminder_text">Ermutigungstext</string>
     <string name="downloadingSessions">Lade Sitzungen herunter...</string>
     <string name="uploadingSessions">Lade Sitzungen hoch...</string>
-
     <!-- MediNET -->
     <string name="mediNET">MediNET</string>
     <string name="unableToConnect">Kann nicht zum MediNET verbinden</string>
@@ -247,37 +227,31 @@
     <string name="wordimport">Importieren</string>
     <string name="sessionDeletedMediNET">Sitzung auf MediNET gelöscht</string>
     <string name="sessionNotFoundMediNET">Sitzung auf MediNET nicht gefunden</string>
-
     <plurals name="numtimes">
-        <item quantity="one">%s time</item>
-        <item quantity="other">%s times</item>
+        <item quantity="one">%s mal</item>
+        <item quantity="other">%s male</item>
     </plurals>
-
     <plurals name="sessionsImported">
-        <item quantity="one">Imported %s session</item>
-        <item quantity="other">Imported %s sessions</item>
+        <item quantity="one">%s Sitzung importiert</item>
+        <item quantity="other">%s Sitzungen importiert</item>
     </plurals>
-
     <plurals name="sessionsUploaded">
-        <item quantity="one">Uploaded %s session</item>
-        <item quantity="other">Uploaded %s sessions</item>
+        <item quantity="one">%s Sitzung hochgeladen</item>
+        <item quantity="other">%s Sitzungen hochgeladen</item>
     </plurals>
-
-    <string name="sessionsNotImported">Lokale Daten sind aktuell.</string>
-
+    <string name="sessionsNotImported">Lokale Daten sind aktuell</string>
     <plurals name="daysOfMeditationMinimal">
-        <item quantity="one">%d day</item>
-        <item quantity="other">%d days</item>
+        <item quantity="one">%d Tag</item>
+        <item quantity="other">%d Tage</item>
     </plurals>
     <plurals name="daysOfMeditation">
-        <item quantity="one">%d day of meditation</item>
-        <item quantity="other">%d days of meditation</item>
+        <item quantity="one">%d Tag meditiert</item>
+        <item quantity="other">%d Tage meditiert</item>
     </plurals>
     <plurals name="daysOfMeditationWithoutCount">
-        <item quantity="one">day of meditation</item>
-        <item quantity="other">days of meditation</item>
+        <item quantity="one">Tag meditiert</item>
+        <item quantity="other">Tage meditiert</item>
     </plurals>
-
     <string name="meditateToday">Meditiere heute</string>
     <string name="signInToMediNET">Bei MediNET anmelden</string>
     <string name="signOut">Abmelden</string>
@@ -286,12 +260,10 @@
     <string name="rateMeditationAssistant">Meditation Assistant bewerten</string>
     <string name="rateMeditationAssistantText">Falls Sie diese Anwendung hilfreich bei Ihrer Meditation fanden, könnten Sie bitte eine Bewertung abgeben?\n\nDie Bezahlversion dieser App verzichtet auf Werbung und bietet ein Widget für den Homescreen. Bitte ziehen Sie einen Kauf in Erwägung wenn Sie dazu in der Lage sind.\n\nDieser Hinweis wird nicht wiederholt.</string>
     <string name="translateMeditationAssistantText">Könnten Sie uns bitte helfen einen größeren Nutzerkreis zu erreichen, indem Sie Meditation Assistant in eine andere Sprache übersetzen?\n\nDie Übersetzung kann über ein Online-Interface bequem vorgenommen werden. Sie können sich die Übersetzungswebsite später ansehen, indem Sie auf "Übersetzen" im "Über" Fenster klicken.\n\nDieser Hinweis wird nicht wiederholt.</string>
-
     <!-- Widgets -->
     <string name="widget1x1" tools:ignore="UnusedResources">Meditation Assistant 1x1</string>
     <string name="widget2x1" tools:ignore="UnusedResources">Meditation Assistant 2x1</string>
     <string name="widget3x1" tools:ignore="UnusedResources">Meditation Assistant 3x1</string>
-
     <!-- Meta -->
     <string name="appStoreListingShort">Featurereicher Timer und Aufzeichner für Meditationssitzungen</string>
     <string name="appStoreListingFull">Diese Anwendung unterstützt Sie sowohl bei  zeitlich begrenzten (durch festlegte Dauern oder eine festgelegte Endzeit) wie auch unbegrenzten Sitzungen, mit vielen Anpassungsmöglichkeiten, einschließlich der Start-, Intervall- und Schlussklänge und des Verhaltens des Geräts. Es bietet zudem eine monatsweise Fortschrittsanzeige.
@@ -315,5 +287,13 @@ Feedback ist erwünscht. Einige Features, die jetzt umgesetzt sind, beruhen ursp
 Übersetzen Sie Meditation Assistant in Ihre Sprache: https://www.getlocalization.com/meditationassistant/
 
 Entwickelt von Rocket Nine Laboratories: https://rocketnine.space/</string>
-
+    <string name="disableBatteryOptimizations">Meditation Assistant muss im Hintergrund laufen</string>
+    <string name="postUpdatedSession">Aktualisierte Sitzung in MediNET posten\?</string>
+    <string name="sessionAdded">Sitzung hinzugefügt</string>
+    <string name="sessionEdited">Sitzung bearbeitet</string>
+    <string name="pref_meditationstreakbuffer">Die Serie wird zurückgesetzt bei</string>
+    <string name="pref_widgetcolor">Widget-Farbe</string>
+    <string name="exportsessions">Sitzungen exportieren</string>
+    <string name="exportsessions_summary">CSV-Datei exportieren</string>
+    <string name="downloadsessions">Sitzungen herunterladen</string>
 </resources>

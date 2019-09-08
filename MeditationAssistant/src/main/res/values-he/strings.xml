@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <string name="appName">Meditation Assistant Free</string>
     <string name="appNameShort">Meditation Assistant</string>
     <string name="about">על אודות</string>
@@ -19,94 +18,36 @@
     <string name="account">חשבון</string>
     <string name="groups">קבוצות</string>
     <string name="announcement">הכרזה</string>
-
     <!-- Permissions -->
     <string name="permissionRequest">בקשת הרשאה</string>
     <string name="permissionRequestReadExternal">הרשאה זו נדרשת על מנת לבחור קובץ קול מותאם אישית ממכשיר זה</string>
-    
-    
     <string name="tryAgain">נסה שנית</string>
-
     <!-- Main Activity -->
-    
-    
-    
-    
     <string name="cancel">ביטול</string>
     <string name="set">הגדרה</string>
     <string name="confirm">אישור</string>
     <string name="meditate">לעשות מדיטציה</string>
     <string name="tapToSkip">דילוג</string>
-    
-    
-    
-    
-    
     <string name="mediNETConnecting">בהתחברות…</string>
     <string name="mediNETConnected">התחברת ל־MediNET</string>
     <string name="sessionInProgress">מתבצעת פעילות</string>
     <string name="progress">התקדמות</string>
     <string name="setPreset">הגדרת ערכה</string>
     <string name="setPresetHint">יש להחזיק כדי להגדיר ערכה</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- About -->
-    <string name="tapToSendEmail">יש לגעת בכל מקום שהוא כדי לשלוח משוב</string>
     <string name="sendEmail">שליחת דוא״ל</string>
     <string name="version">גרסה %s</string>
     <string name="translate">תרגום</string>
-    
-    
-    
-    
     <string name="share">שיתוף</string>
-
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
-    
-
     <!-- Sessions -->
     <string name="session">פעילות</string>
-    
-    
-    
-    
-    
-    
-
     <!-- Session complete -->
-    
     <string name="sessionMessagePlaceholder">הודעה</string>
     <string name="askDiscardText">האם להתעלם מהפעילות?</string>
-    
-    
-    
-    
-    
-    
-    
-
     <!-- Sign In -->
-    
-    
-    
-    
-    
-    
-
     <!-- Progress -->
     <string name="calendar">לוח שנה</string>
-    
-    
     <string name="dayMondayShort">שני</string>
     <string name="dayTuesdayShort">שלישי</string>
     <string name="dayWednesdayShort">רביעי</string>
@@ -114,140 +55,44 @@
     <string name="dayFridayShort">שישי</string>
     <string name="daySaturdayShort">שבת</string>
     <string name="daySundayShort">ראשון</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-
-    
-
     <!-- Settings -->
-    
     <string name="pref_vibrate">רטט</string>
-    
-    
-    
-    
-    
-    
-
     <string name="settings">הגדרות</string>
     <string name="disabled">מנוטרל</string>
-    
     <string name="noSpecialBehavior">אין התנהגות מיוחדת</string>
     <string name="noSound">ללא שמע</string>
-    
     <string name="keepScreenOn">להשאיר את המסך דולק</string>
     <string name="keepScreenOnAndDim">להשאיר את המסך דולק אך מעומעם</string>
     <string name="dimScreen">עמעום המסך</string>
-    <string name="turnScreenOff">כיבוי המסך</string>
     <string name="pref_display_seconds">הצגת השניות</string>
     <string name="pref_display_seconds_summary">הצגה מתחת למתזמן הראשי</string>
     <string name="pref_full_screen">מסך מלא</string>
-    <string name="pref_full_screen_summary">שורת המצב תוסתר במצב מסך מלא</string>
     <string name="pref_delay">השהיה</string>
-    
-    
     <string name="pref_autosignin_summary">התחברות ל־MediNET כאשר התכנית פתוחה</string>
     <string name="pref_autosignin">התחברות אוטומטית</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <string name="pref_text_size">גודל הטקסט במתזמן</string>
-    
     <string name="small">קטן</string>
     <string name="normal">רגיל</string>
     <string name="large">גדול</string>
     <string name="extralarge">גדול במיוחד</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- MediNET -->
-    
-    
-    
     <string name="discard">התעלמות</string>
     <string name="save">שמירה</string>
-    
-    
     <string name="importsessionstitle">האם לייבא פעילויות?</string>
-    
     <string name="wordimport">יבוא</string>
-    
-    
-
     <plurals name="numtimes">
         <item quantity="one">%s time</item>
         <item quantity="other">%s times</item>
     </plurals>
-
     <plurals name="sessionsImported">
         <item quantity="one">Imported %s session</item>
         <item quantity="other">Imported %s sessions</item>
     </plurals>
-
     <plurals name="sessionsUploaded">
         <item quantity="one">Uploaded %s session</item>
         <item quantity="other">Uploaded %s sessions</item>
     </plurals>
-
     <string name="sessionsNotImported">הנתונים המקומיים עדכניים</string>
-
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d day</item>
         <item quantity="other">%d days</item>
@@ -260,19 +105,7 @@
         <item quantity="one">day of meditation</item>
         <item quantity="other">days of meditation</item>
     </plurals>
-
-    
-    
     <string name="signOut">יציאה</string>
     <string name="signOutOfMediNET">לצאת מ־MediNET</string>
-    
-    
-    
-    
-
     <!-- Widgets -->
-    
-    
-    
-
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <string name="appName">Bedava Meditasyon Asistanı </string>
     <string name="appNameShort">Meditasyon Asistanı</string>
     <string name="about">Hakkında</string>
@@ -19,15 +18,13 @@
     <string name="account">Hesap</string>
     <string name="groups">Gruplar</string>
     <string name="announcement">Duyuru</string>
-    <string name="installFileManager">Lütfen bir dosya yöneticisi indirin (örneğin Solid Gezgini)</string>
-
+    <string name="installFileManager">Lütfen bir dosya yöneticisi indirin</string>
     <!-- Permissions -->
     <string name="permissionRequest">İzin İsteği</string>
     <string name="permissionRequestReadExternal">Bu izin istenilen ses dosyasını seçmek için gerekli</string>
     <string name="permissionRequestNotificationControl">Rahatsız etme modunu kontrol edebilmemiz için lütfen sonraki ekranda yetki verin</string>
     <string name="deny">Reddet</string>
     <string name="tryAgain">Tekrar dene</string>
-
     <!-- Main Activity -->
     <string name="timer">Zamanlayıcı</string>
     <string name="timerHelp">Zamanlayıcı şu anda 15 dakikaya ayarlı. Süreyi değiştirebilirsin,  günün istediğin zamanında bitirtebilirsin veya alarmı tamamen kapatabilirsin. Bu ayarlara erişmek için zamanlayıcıya dokun</string>
@@ -49,220 +46,14 @@
     <string name="progress">İlerleme</string>
     <string name="setPreset">Önayarları ayarla</string>
     <string name="setPresetHint">Önayarları ayarlamak için basılı tutun</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- About -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
-    
-
     <!-- Sessions -->
-    
-    
-    
-    
-    
-    
-    
-
     <!-- Session complete -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- Sign In -->
-    
-    
-    
-    
-    
-    
-
     <!-- Progress -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-
-    
-
     <!-- Settings -->
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- MediNET -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- Widgets -->
-    
-    
-    
-
     <!-- Meta -->
-    
-    
-
 </resources>

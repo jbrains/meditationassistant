@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="appName">Meditatsiooniabiline Tasuta</string>
     <string name="appNameShort">Meditatsiooniabiline</string>
     <string name="about">Äpi kohta</string>
@@ -18,60 +17,42 @@
     <string name="account">Kasutaja</string>
     <string name="groups">Grupid</string>
     <string name="announcement">Kuulutus</string>
-
     <!-- Main Activity -->
-
-
     <string name="cancel">Tühista</string>
     <string name="set">Vali</string>
     <string name="confirm">Kinnita</string>
     <string name="meditate">Mediteeri</string>
     <string name="tapToSkip">Jäta vahele</string>
-
-
     <string name="mediNETConnecting">Ühendan...</string>
     <string name="mediNETConnected">Ühendatud MediNET\'i</string>
     <string name="sessionInProgress">Sessioon käigus</string>
     <string name="progress">Edumaa</string>
     <string name="setPreset">Sea eelseadistus</string>
     <string name="setPresetHint">Hoia, et seada eelseadistus</string>
-
     <string name="setPresetHintBlank">Sisesta kestus (või lõpetamisaeg), et seada eelseadistus</string>
-
     <string name="setTimerDurationHint">Sisesta õige kestus (n. 0:22)</string>
     <string name="setTimerEndAtHint">Sisesta õige aeg (n. 16:20)</string>
     <string name="invalidEndAt">Kehtetu aeg sessiooni lõpetamiseks</string>
     <string name="timed">Ajaga</string>
     <string name="endAt">Lõppeb</string>
     <string name="untimed">Ajatu</string>
-
     <string name="presetLabelEndAt">Lõpp %s</string>
-
     <!-- About -->
-    <string name="tapToSendEmail">Vajuta suvalisse kohta, et saata tagasisidet</string>
     <string name="sendEmail">Saada meil</string>
     <string name="version">Versioon %s</string>
     <string name="translate">Tõlgi</string>
     <string name="howToMeditate">Kuidas mediteerida</string>
     <string name="share">Jaga</string>
-
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
-
-
     <!-- Sessions -->
     <string name="session">Sessioon</string>
     <string name="sessionDeleteEverywhere">Kustuta kõikjalt</string>
     <string name="sessionDeleteLocally">Kustuta kohalikult</string>
     <string name="sessionDeleteMediNET">Kustuta MediNET\'st</string>
-
-
     <!-- Session complete -->
     <string name="sessioncomplete">Sessioon lõpetatud</string>
     <string name="sessionMessagePlaceholder">Sõnum</string>
     <string name="askDiscardText">Tühista sessioon?</string>
-    <string name="shareSessionText">Ma just mediteerisin %1$s koos %2$s.</string>
-    <string name="aMoment">üks moment</string>
-    <string name="shareSessionSubject">Meditatsioonsessioon</string>
     <string name="sessionPosting">Postitan sessiooni...</string>
     <string name="sessionPosted">Sessioon postitatud MediNET\'i</string>
     <string name="sessionAlreadyPosted">Sessioon juba postitatud</string>
@@ -79,23 +60,12 @@
     <string name="sessionNotPostedMeditating">Ei saa mediteerimise ajal sessiooni postitada</string>
     <string name="sessionSaved">Sessioon salvestatud</string>
     <string name="sessionDeletedLocally">Sessioon salvestatud kohalikult</string>
-
     <!-- Sign In -->
     <string name="signInWith">Logi sisse...</string>
     <string name="signInWithProvider">Logi sisse kasutades %s…</string>
     <string name="signInWithOpenID">OpenID, Facebook, Twitter, jne.</string>
-
-
     <!-- Progress -->
-
-
     <!-- Settings -->
-
-
     <!-- MediNET -->
-
-
     <!-- Widgets -->
-
-
 </resources>

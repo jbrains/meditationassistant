@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <string name="appName">Помощник в Медитации</string>
     <string name="appNameShort">Помощник в Медитации</string>
     <string name="about">О программе</string>
@@ -18,7 +17,6 @@
     <string name="account">Аккаунт</string>
     <string name="groups">Группы</string>
     <string name="announcement">Анонс</string>
-
     <!-- Main Activity -->
     <string name="timer">Таймер</string>
     <string name="timerHelp">Таймер установлен на 15 минут. Ты можешь поставить другую продолжительность, задать точное время для окончания, или отключить таймер. Нажми на на него сейчас, чтобы увидеть эти настройки.</string>
@@ -34,7 +32,7 @@
     <string name="pauseOrEnd">Пауза или конец</string>
     <string name="resumeOrEnd">Продолжить или закончить</string>
     <string name="pausedNotification">Сеанс приостановлен, удерживай чтобы закончить</string>
-    <string name="mediNETConnecting">Соединение...</string>
+    <string name="mediNETConnecting">Соединение…</string>
     <string name="mediNETConnected">Соединено с MediNet</string>
     <string name="sessionInProgress">Идёт сеанс</string>
     <string name="progress">Прогресс</string>
@@ -51,18 +49,14 @@
     <string name="untimed">Без таймера</string>
     <string name="unlimited">Неограниченно</string>
     <string name="presetLabelEndAt">Конец %s</string>
-
     <!-- About -->
-    <string name="tapToSendEmail">Нажми на экран, чтобы отправить отзыв</string>
     <string name="sendEmail">Написать письмо</string>
     <string name="version">Версия %s</string>
     <string name="translate">Перевод</string>
     <string name="howToMeditate">Как медитировать</string>
     <string name="share">Поделиться</string>
-
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
     <string name="invitationBlurb">Помощник в Медитации совершенно подготовленный спутник в вашей практике.</string>
-
     <!-- Sessions -->
     <string name="session">Сеанс</string>
     <string name="sessionDeleteEverywhere">Удалить везде</string>
@@ -70,28 +64,22 @@
     <string name="sessionDeleteMediNET">Удалить на MediNET</string>
     <string name="presetsettings">Заданные параметры</string>
     <string name="modeandduration">Режим и продолжительность</string>
-
     <!-- Session complete -->
     <string name="sessioncomplete">Сеанс окончен</string>
     <string name="sessionMessagePlaceholder">Сообщение</string>
     <string name="askDiscardText">Удалить сеанс?</string>
-    <string name="shareSessionText">Я только что медитировал %1$s с %2$s.</string>
-    <string name="aMoment">минутка</string>
-    <string name="shareSessionSubject">Сеанс медитации</string>
-    <string name="sessionPosting">Отправка сеанса...</string>
+    <string name="sessionPosting">Отправка сеанса…</string>
     <string name="sessionPosted">Сеанс опубликован на MediNET</string>
     <string name="sessionAlreadyPosted">Сеанс уже опубликован</string>
     <string name="sessionNotPosted">Не удалось опубликовать сеанс</string>
     <string name="sessionNotPostedMeditating">Не удалось опубликовать сеанс во время медитации</string>
     <string name="sessionSaved">Сеанс сохранён</string>
     <string name="sessionDeletedLocally">Локальный сеанс удалён</string>
-
     <!-- Sign In -->
-    <string name="signInWith">Зайти через...</string>
+    <string name="signInWith">Зайти через…</string>
     <string name="signInWithProvider">Зайти через %s…</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter и так далее.</string>
     <string name="signInGoogleError">Не получается зайти через менеджер аккаунтов. Попробуй OpenID, если эта ошибка повторится.</string>
-
     <!-- Progress -->
     <string name="calendar">Календарь</string>
     <string name="statistics">Статистика</string>
@@ -111,8 +99,6 @@
     <string name="setTime">Ввести время</string>
     <string name="invalidDateOrTime">Неверное время или дата</string>
     <string name="addSessionMeditating">Не удалось добавить сеанс во время медитации</string>
-    <string name="addSessionExists">Сеанс уже существует</string>
-
     <string name="days">Дней</string>
     <string name="hours">Часов</string>
     <string name="minutes">Минут</string>
@@ -120,9 +106,7 @@
     <string name="averageDuration">Средняя длительность</string>
     <string name="longestDuration">Наибольшая длительность</string>
     <string name="longestStreak">Лучшее комбо</string>
-
     <string name="reminderText">Есть минутка?</string>
-
     <!-- Settings -->
     <string name="meditation">Медитация</string>
     <string name="pref_vibrate">Вибрация</string>
@@ -132,7 +116,6 @@
     <string name="pref_sound_reminder_summary">Будет использован стандартный звук уведомлений</string>
     <string name="pref_softfinish">Бесконечный сеанс</string>
     <string name="pref_softfinish_summary">Не останавливать секундомер</string>
-
     <string name="settings">Настройки</string>
     <string name="disabled">Отключено</string>
     <string name="noSpecialBehavior">Без изменений</string>
@@ -141,12 +124,10 @@
     <string name="keepScreenOn">Не выключать экран</string>
     <string name="keepScreenOnAndDim">Не выключать экран и убрать яркость</string>
     <string name="dimScreen">Убрать яркость</string>
-    <string name="turnScreenOff">Выключить экран</string>
     <string name="pref_display_seconds">Показывать секунды</string>
     <string name="pref_display_seconds_summary">Отобржаются под главным таймером</string>
     <string name="pref_full_screen">На весь экран</string>
-    <string name="pref_full_screen_summary">В полноэкранном режиме скрывается строка состояния</string>
-    <string name="pref_delay">Эхо</string>
+    <string name="pref_delay">Подготовка</string>
     <string name="pref_interval">Размер интервала</string>
     <string name="pref_interval_count">Количество интервалов</string>
     <string name="pref_autosignin_summary">Соединяться с MediNET при открытии</string>
@@ -186,8 +167,6 @@
     <string name="normal">Нормальный</string>
     <string name="large">Большой</string>
     <string name="extralarge">Огромный</string>
-    <string name="restartAppApplyTheme">Перезапустить приложение, чтобы применить тему</string>
-    <string name="restartAppApplyTimePicker">Перезапусти приложение, чтобы изменить вид таймера</string>
     <string name="pref_notificationcontrol">Звонки и уведомления</string>
     <string name="pref_notificationcontrol_vibrate">Поставить на вибрацию</string>
     <string name="pref_notificationcontrol_silent">Убрать громкость</string>
@@ -198,11 +177,10 @@
     <string name="pref_daily_reminder_text">Текст поддержки</string>
     <string name="downloadingSessions">Скачивание сеансов...</string>
     <string name="uploadingSessions">Загрузка сеансов...</string>
-
     <!-- MediNET -->
     <string name="mediNET">MediNET</string>
     <string name="unableToConnect">Не удалось соединиться с MediNET</string>
-    <string name="dismiss">Отбросить</string>
+    <string name="dismiss">Отклонить</string>
     <string name="discard">Удалить</string>
     <string name="save">Сохранить</string>
     <string name="post">Опубликовать</string>
@@ -212,52 +190,89 @@
     <string name="wordimport">Скачать</string>
     <string name="sessionDeletedMediNET">Сеанс удалён с MediNET</string>
     <string name="sessionNotFoundMediNET">Сеанс не найден на MediNET</string>
-    <string name="sessionNotProperAccount">Вы не зашли в существующий аккаунт</string>
-
     <plurals name="numtimes">
         <item quantity="one">%s раз</item>
-        <item quantity="other">%s раз</item>
+        <item quantity="few">%s раза</item>
+        <item quantity="many">%s раз</item>
     </plurals>
-
     <plurals name="sessionsImported">
-        <item quantity="one">Скачен %s сеанс</item>
-        <item quantity="other">Скачено %s сеансов</item>
+        <item quantity="one">Импортирован %s сеанс</item>
+        <item quantity="few">Импортировано %s сеанса</item>
+        <item quantity="many">Импортировано %s сеансов</item>
     </plurals>
-
     <plurals name="sessionsUploaded">
         <item quantity="one">Загружен %s сеанс</item>
-        <item quantity="other">Загружено %s сеанса(ов)</item>
+        <item quantity="few">Загружено %s сеанса</item>
+        <item quantity="many">Загружено %s сеансов</item>
     </plurals>
-
     <string name="sessionsNotImported">Личные данные обновлены</string>
-    <string name="signInToImport">Войти, чтобы скачать сеансы</string>
-
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d день</item>
-        <item quantity="other">%d дней</item>
+        <item quantity="few">%d дня</item>
+        <item quantity="many">%d дней</item>
     </plurals>
     <plurals name="daysOfMeditation">
         <item quantity="one">%d день медитации</item>
-        <item quantity="other">%d дней медитации</item>
+        <item quantity="few">%d дня медитации</item>
+        <item quantity="many">%d дней медитации</item>
     </plurals>
     <plurals name="daysOfMeditationWithoutCount">
         <item quantity="one">день медитации</item>
-        <item quantity="other">дней медитации</item>
+        <item quantity="few">дня медитации</item>
+        <item quantity="many">дней медитации</item>
     </plurals>
-
     <string name="meditateToday">Помедитируй сегодня</string>
     <string name="signInToMediNET">Войти в MediNET</string>
     <string name="signOut">Выйти</string>
     <string name="signOutOfMediNET">Выйти из MediNET</string>
     <string name="signOutOfMediNETConfirmTitle">Войти в MediNET?</string>
-    <string name="signOutOfMediNETConfirm">Вы зашли как %s.</string>
     <string name="rateMeditationAssistant">Оценить Помощника в Медитации</string>
     <string name="rateMeditationAssistantText">Если это приложение помогает твоей практике медитации, пожалуйста, оцени его.\n\nВ платной версии этого приложения нет рекламы и добавлены виджеты для домашнего экрана. Если можешь, пожалуйста, подумай о покупке.\n\nЭто сообщение больше не будет появляться.</string>
     <string name="translateMeditationAssistantText">Хочешь помочь Помощнику в Медитации расширить аудиторию, переведя его на другой язык?\n\nПеревод осуществляется на сайте онлайн. Ты можешь сделать это позже, зайдя на Перевод в окошке О программе.\n\nЭто сообщение больше не будет появляться.</string>
-
     <!-- Widgets -->
     <string name="widget1x1" tools:ignore="UnusedResources">Помощник в Медитации 1x1</string>
     <string name="widget2x1" tools:ignore="UnusedResources">Помощник в Медитации 2x1</string>
     <string name="widget3x1" tools:ignore="UnusedResources">Помощник в Медитации 3x1</string>
-
+    <string name="warning">Внимание</string>
+    <string name="openWith">Открыть с помощью</string>
+    <string name="installFileManager">Пожалуйста, установите файловый менеджер</string>
+    <string name="disableBatteryOptimizations">Meditation Assistant должна работать в фоне</string>
+    <string name="permissionRequest">Необходимы разрешения</string>
+    <string name="permissionRequestReadExternal">Необходимо разрешение на выбор звука устройства.</string>
+    <string name="permissionRequestNotificationControl">Пожалуйста, на следующем экране дайте программе доступ к режиму \"не беспокоить\".</string>
+    <string name="deny">Запретить</string>
+    <string name="tryAgain">Попробуйте ещё раз</string>
+    <string name="tapToLearnMore">Нажмите в любом месте, чтобы узнать больше</string>
+    <string name="donate">Пожертвование</string>
+    <string name="removeAds">Убрать рекламу</string>
+    <string name="pref_sessionintro">Приветствие</string>
+    <string name="postUpdatedSession">Отправить обновлённую сессию на MediNET\?</string>
+    <string name="totalTimeSpentMeditating">Общее время медитации</string>
+    <string name="editSession">Изменить сеанс</string>
+    <string name="sessionAdded">Сеанс добавлен</string>
+    <string name="sessionEdited">Сеанс изменён</string>
+    <string name="edit">Изменить</string>
+    <string name="exportSessions">Экспорт сеансов</string>
+    <string name="sessionExportFailed">Невозможно экспортировать сеансы</string>
+    <string name="showExportedSessions">Сеансы экспортированы. Вы хотите открыть папку с ними\?</string>
+    <string name="length">Продолжительность</string>
+    <string name="invalidLength">Неверная продолжительность</string>
+    <string name="editSessionMeditating">Невозможно изменить сеанс во время медитации</string>
+    <string name="sessionExists">Сеанс уже существует</string>
+    <string name="none">Нет</string>
+    <string name="duringSession">Во время сеанса</string>
+    <string name="always">Всегда</string>
+    <string name="pref_meditationstreakbuffer">Серия сбрасывается в</string>
+    <string name="pref_sessionvolume">Громкость</string>
+    <string name="pref_sessionvolume_summary">Предыдущая громкость будет восстановлена после окончания сеанса.</string>
+    <string name="buddhism">Буддизм</string>
+    <string name="pref_widgetcolor">Цвет виджета</string>
+    <string name="pref_mainbuttons">Скрыть кнопки</string>
+    <string name="restartApp">Перезапустите приложение для применения новых настроек</string>
+    <string name="pref_notificationcontrol_priority">Избранные только</string>
+    <string name="pref_notificationcontrol_alarms">Будильник только</string>
+    <string name="exportsessions">Экспорт сеансов</string>
+    <string name="exportsessions_summary">Экспорт в CSV файл</string>
+    <string name="downloadsessions">Загрузить сеансы</string>
+    <string name="downloadsessions_summary">Загрузить удалённые сеансы</string>
 </resources>

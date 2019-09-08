@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <string name="appName">Asistente de Meditación Gratis</string>
     <string name="appNameShort">Asistente de Meditación</string>
     <string name="about">Acerca de</string>
@@ -19,15 +18,11 @@
     <string name="account">Cuenta</string>
     <string name="groups">Grupos</string>
     <string name="announcement">Anuncio</string>
-
     <!-- Permissions -->
     <string name="permissionRequest">Permisos requeridos</string>
-    <string name="permissionRequestAccounts">Permiso para acceder a tu cuenta de Google etiquetada como "contactos". Tus contactos no serán leídos. \n\nPor dar esta autorización, no necesitarás ingresar tu nombre de usuario de Google ni tu contraseña cuando te registres en MediNET.</string>
-    
     <string name="permissionRequestNotificationControl">Por favor acepta el acceso en la siguiente pantalla para controlar Do Not Disturb (No molestar)</string>
     <string name="deny">Negar</string>
     <string name="tryAgain">Inténtalo otra vez</string>
-
     <!-- Main Activity -->
     <string name="timer">Temporizadod</string>
     <string name="timerHelp">Actualmente el tiempo está configurado en 15 minutos. Puedes cambiar la duración, hacer que termine en un momento específico del día o desactivar por completo la alarma. Toca el reloj ahora para ver esas opciones.</string>
@@ -60,9 +55,7 @@
     <string name="untimed">Sin programar</string>
     <string name="unlimited">Ilimitado</string>
     <string name="presetLabelEndAt">Terminar %s</string>
-
     <!-- About -->
-    <string name="tapToSendEmail">Presione para enviar sugerencias</string>
     <string name="sendEmail">Enviar correo electronico</string>
     <string name="version">Versión %s</string>
     <string name="translate">Traducir</string>
@@ -71,10 +64,8 @@
     <string name="removeAdsHelp">La versión completa del Asistente de Meditación es una aplicación separada. \n\n Para mantener tu sesión existente, regístrate en MediNET y toca "Subir sesión" en la ventana de Configuraciones. \n\nAbre la versión completa y regístrate en MediNET una vez más. Luego aprieta "importar".</string>
     <string name="howToMeditate">Como Meditar</string>
     <string name="share">Compartir</string>
-
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
     <string name="invitationBlurb">Asistente de Meditación es un compañero lleno de características para tu práctica.</string>
-
     <!-- Sessions -->
     <string name="session">Sesión</string>
     <string name="sessionDeleteEverywhere">Borrar en todos lados</string>
@@ -83,7 +74,6 @@
     <string name="pref_sessionintro">Introducción</string>
     <string name="presetsettings">Configuración Predeterminada</string>
     <string name="modeandduration">Modo y duración</string>
-
     <!-- Session complete -->
     <string name="sessioncomplete">Sesión completada</string>
     <string name="sessionMessagePlaceholder">Mensaje</string>
@@ -95,13 +85,11 @@
     <string name="sessionNotPostedMeditating">Incapaz de publicar sesión mientras meditas</string>
     <string name="sessionSaved">Sesión guardada</string>
     <string name="sessionDeletedLocally">Sesión eliminada localmente</string>
-
     <!-- Sign In -->
     <string name="signInWith">Entra con...</string>
     <string name="signInWithProvider">Entra con %s...</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, etc.</string>
     <string name="signInGoogleError">Incapaz de autentificar el usuario utilizando el administrador de cuentas. Intenta usar OpenID si este error persiste.</string>
-
     <!-- Progress -->
     <string name="calendar">Calendario</string>
     <string name="statistics">Estadísticas</string>
@@ -122,8 +110,6 @@
     <string name="setTime">Establecer hora</string>
     <string name="invalidDateOrTime">Fecha o hora invalida</string>
     <string name="addSessionMeditating">Incapaz de publicar sesión mientras meditas</string>
-    <string name="addSessionExists">La sesión ya existe</string>
-
     <string name="days">Dias</string>
     <string name="hours">Horas</string>
     <string name="minutes">Minutos</string>
@@ -131,9 +117,7 @@
     <string name="averageDuration">Duración promedio</string>
     <string name="longestDuration">Duración más Larga</string>
     <string name="longestStreak">Racha más larga</string>
-
     <string name="reminderText">¿Tienes un momento para meditar?</string>
-
     <!-- Settings -->
     <string name="meditation">Meditación</string>
     <string name="pref_vibrate">Vibrar</string>
@@ -143,7 +127,6 @@
     <string name="pref_sound_reminder_summary">Sonará la notificación por defecto</string>
     <string name="pref_softfinish">Fin de la sesión</string>
     <string name="pref_softfinish_summary">Mantener el reloj corriendo</string>
-
     <string name="settings">Configuración</string>
     <string name="disabled">Desactivado</string>
     <string name="none">Ninguno</string>
@@ -153,11 +136,9 @@
     <string name="keepScreenOn">Mantener la pantalla prendida</string>
     <string name="keepScreenOnAndDim">Mantener la pantalla prendida y oscurecer</string>
     <string name="dimScreen">Oscurecer pantalla</string>
-    <string name="turnScreenOff">Apagar pantalla</string>
     <string name="pref_display_seconds">Mostrar segundos</string>
     <string name="pref_display_seconds_summary">Mostrar el contador abajo</string>
     <string name="pref_full_screen">Pantalla completa</string>
-    <string name="pref_full_screen_summary">Barra de estado oculta en pantalla completa</string>
     <string name="pref_delay">Retrasar</string>
     <string name="pref_interval">Duración del Intervalo</string>
     <string name="pref_interval_count">Cuenta del Intervalo</string>
@@ -185,16 +166,12 @@
     <string name="buddhism">Budismo</string>
     <string name="pref_notification">Notificación</string>
     <string name="pref_notification_summary">Se muestra durante la meditación mientras que fuera de la ventana principal</string>
-    
-    
     <string name="pref_askdismiss">Preguntar antes de descarte</string>
     <string name="pref_askdismiss_summary">Confirmar antes de descartar una sesión</string>
     <string name="pref_mainbuttons">Esconder botones</string>
     <string name="pref_progresstab">Pestaña de progreso predeterminado</string>
     <string name="importsessions">Importar sesiones</string>
     <string name="importsessions_summary">Recuperar sesiones subidas</string>
-    
-    
     <string name="miscellaneous">Misceláneo </string>
     <string name="pref_text_size">Tamaño de texto del contador</string>
     <string name="tiny">Chiquitín</string>
@@ -202,20 +179,16 @@
     <string name="normal">Normal</string>
     <string name="large">Grande</string>
     <string name="extralarge">Extra-grande</string>
-    
     <string name="pref_notificationcontrol">Ringtone y notificaciones</string>
-    
     <string name="pref_notificationcontrol_alarms">Sólo Alarmas</string>
     <string name="pref_notificationcontrol_vibrate">Vibrar</string>
     <string name="pref_notificationcontrol_silent">Silencioso</string>
     <string name="pref_daily_reminder">Recordatorio diario</string>
-    
     <string name="pref_daily_reminder_summary">Notificar cuando no se hayan grabado sesiones el día de hoy.</string>
     <string name="pref_daily_reminder_time">Tiempo</string>
     <string name="pref_daily_reminder_text">Texto para dar ánimo</string>
     <string name="downloadingSessions">Sesiones Descargadas</string>
     <string name="uploadingSessions">Sesiones Importadas</string>
-
     <!-- MediNET -->
     <string name="mediNET">MediNET</string>
     <string name="unableToConnect">No se puede conectar a MediNET</string>
@@ -230,26 +203,19 @@ puede importar sesiones de tarde desde la ventana Configuración.</string>
     <string name="wordimport">Importar</string>
     <string name="sessionDeletedMediNET">Sesión eliminada de MediNET</string>
     <string name="sessionNotFoundMediNET">Sesión no encontrada en MediNET</string>
-    <string name="sessionNotProperAccount">No está inscrito en el registro adecuado</string>
-
     <plurals name="numtimes">
         <item quantity="one">%s time</item>
         <item quantity="other">%s times</item>
     </plurals>
-
     <plurals name="sessionsImported">
         <item quantity="one">Sesión %s importada</item>
         <item quantity="other">Sesiónes %s importadas</item>
     </plurals>
-
     <plurals name="sessionsUploaded">
         <item quantity="one">Uploaded %s session</item>
         <item quantity="other">Uploaded %s sessions</item>
     </plurals>
-
     <string name="sessionsNotImported">Datos locales actualizados</string>
-    <string name="signInToImport">Inicia sesión para importar datos de la sesión</string>
-
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d day</item>
         <item quantity="other">%d days</item>
@@ -262,20 +228,16 @@ puede importar sesiones de tarde desde la ventana Configuración.</string>
         <item quantity="one">dia de la meditación</item>
         <item quantity="other">días de las meditaciones</item>
     </plurals>
-
     <string name="meditateToday">Meditar hoy</string>
     <string name="signInToMediNET">Iniciar sesión en Medinet</string>
     <string name="signOut">Cerrar sesión</string>
     <string name="signOutOfMediNET">Cerrar sesión de MediNET</string>
     <string name="signOutOfMediNETConfirmTitle">Cerrar sesión de MediNET?</string>
-    <string name="signOutOfMediNETConfirm">Has accedido con %s.</string>
     <string name="rateMeditationAssistant">Valorar asistente de meditación</string>
     <string name="rateMeditationAssistantText">Si usted ha encontrado esta aplicación beneficioso para su práctica de la meditación, ¿podría añadir una calificación? La versión de pago de esta aplicación no contiene anuncios y cuenta con widgets de la pantalla de inicio. Por favor considerar la compra si usted es capaz de hacerlo. Este cuadro de diálogo no volverá a aparecer.</string>
     <string name="translateMeditationAssistantText">¿Te gustaría ayudar a que el Asistente de Meditación llegue a una audiencia más grande traduciéndola a otro lenguaje?\n\n Traducir es una tarea fácil que se hace en un programa online. Puedes visitar la página de traducción más tarde haciendo clic en la ventana Acerca De.\n\nÉste diálogo no volverá a aparecer.</string>
-
     <!-- Widgets -->
     <string name="widget1x1" tools:ignore="UnusedResources">Asistente de Meditación 1x1</string>
     <string name="widget2x1" tools:ignore="UnusedResources">Asistente de Meditación 2x1</string>
     <string name="widget3x1" tools:ignore="UnusedResources">Asistente de Meditación 3x1</string>
-
 </resources>

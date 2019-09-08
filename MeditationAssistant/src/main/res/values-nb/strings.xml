@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
-    <string name="appName">Meditasjonsassistent Gratis</string>
-    <string name="appNameShort">Meditasjonsassistent</string>
+    <string name="appName">Meditasjonsassistenten Gratis</string>
+    <string name="appNameShort">Meditasjonsassistenten</string>
     <string name="about">Om</string>
     <string name="yes">Ja</string>
     <string name="no">Nei</string>
@@ -11,23 +10,20 @@
     <string name="sessions">Økter</string>
     <string name="community">Fellesskap</string>
     <string name="forum">Forum</string>
-    <string name="rate">Ranger</string>
-    <string name="refresh">Oppdater</string>
+    <string name="rate">Vurder</string>
+    <string name="refresh">Gjenoppfrisk</string>
     <string name="page">Side</string>
     <string name="back">Tilbake</string>
     <string name="forward">Fremover</string>
     <string name="account">Konto</string>
     <string name="groups">Grupper</string>
-    <string name="announcement">Kunngjøringer</string>
-
+    <string name="announcement">Kunngjøring</string>
     <!-- Permissions -->
     <string name="permissionRequest">Forespørsel om tillatelse</string>
-    <string name="permissionRequestAccounts">Tillatelsen som gir tilgang til Google-kontoen din kalles "Kontakter". Kontaktene dine vil ikke bli lest.\n\nHvis du gir denne tilgangen slipper du å skrive inn brukernavnet og passordet til Google-kontoen din når du logger på MediNET</string>
     <string name="permissionRequestReadExternal">Tillatelsen trengs for å kunne velge andre lydfiler fra enheten.</string>
     <string name="permissionRequestNotificationControl">Vennligst gi tillatelse i neste steg for å kunne kontrollere "Ikke forstyrr"</string>
     <string name="deny">Nekt</string>
     <string name="tryAgain">Prøv igjen</string>
-
     <!-- Main Activity -->
     <string name="timer">Tidtaker</string>
     <string name="timerHelp">Akkurat nå er tidtakeren stilt inn på 15 minutter. Du kan endre varigheten, sette den til å stoppe på et visst klokkeslett eller slå av alarmen helt. Trykk på tidtakeren nå for å se disse mulighetene.</string>
@@ -49,214 +45,260 @@
     <string name="progress">Fremgang</string>
     <string name="setPreset">Bruk forhåndsvalg</string>
     <string name="setPresetHint">Hold for å bruke forhåndsvalg</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- About -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
-    
-
     <!-- Sessions -->
-    
-    
-    
-    
-    
-    
-    
-
     <!-- Session complete -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- Sign In -->
-    
-    
-    
-    
-
     <!-- Progress -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-
-    
-
     <!-- Settings -->
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- MediNET -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- Widgets -->
-    
-    
-    
-
+    <string name="warning">Advarsel</string>
+    <string name="installFileManager">Installer en filbehandler</string>
+    <string name="disableBatteryOptimizations">Meditation Assistant må kjøre i bakgrunnen</string>
+    <string name="label">Etikett</string>
+    <string name="setTimerDurationHint">Skriv inn gyldig varighet (f.eks 0:22)</string>
+    <string name="setTimerEndAtHint">Skriv inn gyldig tid (f.eks 4:20)</string>
+    <string name="invalidEndAt">Ugyldig tid å sluttføre økt</string>
+    <string name="timed">Tidsavgrenset</string>
+    <string name="endAt">Sluttfør</string>
+    <string name="untimed">Tidsubegrenset</string>
+    <string name="unlimited">Ubegrenset</string>
+    <string name="presetLabelEndAt">Sluttfør %s</string>
+    <string name="tapToLearnMore">Trykk hvor som helst for å lære mer</string>
+    <string name="sendEmail">Send e-post</string>
+    <string name="version">Versjon %s</string>
+    <string name="translate">Oversett</string>
+    <string name="donate">Doner</string>
+    <string name="removeAds">Fjern reklame</string>
+    <string name="removeAdsHelp">Fullversjonen av Meditasjonsassistenten er et eget program.
+\n
+\nFor å beholde øktene dine, logg inn på MediNET og trykk \"Last opp økter\" i innstillingsvinduet.
+\n
+\nÅpne fullversjonen og logg inn på MediNET igjen, trykk så \"Importer\".</string>
+    <string name="howToMeditate">Hvordan meditere</string>
+    <string name="share">Del</string>
+    <string name="invitationBlurb">Meditasjonsassistenten er en fullverdig støttepart i dine meditasjon.</string>
+    <string name="session">Økt</string>
+    <string name="sessionDeleteEverywhere">Slett overalt</string>
+    <string name="sessionDeleteLocally">Slett lokalt</string>
+    <string name="sessionDeleteMediNET">Slett på MediNET</string>
+    <string name="pref_sessionintro">Intro</string>
+    <string name="presetsettings">Forvalgsinnstillinger</string>
+    <string name="modeandduration">Modus og varighet</string>
+    <string name="postUpdatedSession">Post oppdatert økt til MediNET\?</string>
+    <string name="sessioncomplete">Økt fullført</string>
+    <string name="sessionMessagePlaceholder">Melding</string>
+    <string name="askDiscardText">Forkast økt\?</string>
+    <string name="sessionPosting">Poster økt…</string>
+    <string name="sessionPosted">Økt postet til MediNET</string>
+    <string name="sessionAlreadyPosted">Økt allerede postet</string>
+    <string name="sessionNotPosted">Kunne ikke poste økt</string>
+    <string name="sessionNotPostedMeditating">Kan ikke poste økt under meditasjon</string>
+    <string name="sessionSaved">Økt lagret</string>
+    <string name="sessionDeletedLocally">Økt slettet lokalt</string>
+    <string name="browser">Nettleser</string>
+    <string name="useBrowser">Bruk nettleser…</string>
+    <string name="signInWith">Logg inn med…</string>
+    <string name="signInWithProvider">Logg inn med %s…</string>
+    <string name="signInWithOpenID">OpenID - Facebook, Twitter, osv.</string>
+    <string name="signInGoogleError">Kunne ikke identitetsbekrefte med kontobehandler. Prøv OpenID hvis feilen vedvarer.</string>
+    <string name="calendar">Kalender</string>
+    <string name="statistics">Statistikk</string>
+    <string name="totalTimeSpentMeditating">Totalt tidsforbruk på meditasjon</string>
+    <string name="dayMondayShort">Man</string>
+    <string name="dayTuesdayShort">Tir</string>
+    <string name="dayWednesdayShort">Ons</string>
+    <string name="dayThursdayShort">Tor</string>
+    <string name="dayFridayShort">Fre</string>
+    <string name="daySaturdayShort">Lør</string>
+    <string name="daySundayShort">Søn</string>
+    <string name="addSession">Legg til økt</string>
+    <string name="editSession">Rediger økt</string>
+    <string name="sessionAdded">Økt lagt til</string>
+    <string name="sessionEdited">Økt redigert</string>
+    <string name="add">Legg til</string>
+    <string name="edit">Rediger</string>
+    <string name="exportSessions">Eksporter økter</string>
+    <string name="sessionExportFailed">Kunne ikke eksportere økter</string>
+    <string name="showExportedSessions">Økter eksportert. Ønsker du å utforske mappen inneholdende eksporten\?</string>
+    <string name="sessionStartedAt">Startet klokken %s</string>
+    <string name="started">Startet</string>
+    <string name="completed">Fullført</string>
+    <string name="length">Lengde</string>
+    <string name="setDate">Sett dato</string>
+    <string name="setTime">Sett tid</string>
+    <string name="invalidDateOrTime">Ugyldig dato eller tid</string>
+    <string name="invalidLength">Ugydlig lengde</string>
+    <string name="addSessionMeditating">Kunne ikke legge til en økt under meditasjon</string>
+    <string name="editSessionMeditating">Kunne ikke redigere en økt under meditasjon</string>
+    <string name="sessionExists">Økt finnes allerede</string>
+    <string name="days">Dager</string>
+    <string name="hours">Timer</string>
+    <string name="minutes">Minutter</string>
+    <string name="totalSessions">Totale økter</string>
+    <string name="averageDuration">Gjennomsnittlig varighet</string>
+    <string name="longestDuration">Lengste varighet</string>
+    <string name="reminderText">Har du et øyeblikk\?</string>
+    <string name="meditation">Meditasjon</string>
+    <string name="pref_vibrate">Vibrer</string>
+    <string name="pref_vibrate_summary">Inntreffer på begynnelsen, i intervallene, og på slutten av meditasjon</string>
+    <string name="pref_vibrate_reminder_summary">Daglig påminnelse vil vibrere enheten</string>
+    <string name="pref_sound_reminder">Spill lyd</string>
+    <string name="pref_sound_reminder_summary">Forvalgt merknadslyd vil bli avspilt</string>
+    <string name="pref_softfinish">Uendelig økt</string>
+    <string name="pref_softfinish_summary">La tidtakeren fortsette å gå</string>
+    <string name="settings">Innstillinger</string>
+    <string name="disabled">Avskrudd</string>
+    <string name="none">Ingen</string>
+    <string name="noSpecialBehavior">Ingen spesiell oppførsel</string>
+    <string name="noSound">Ingen lyd</string>
+    <string name="customSound">Egendefinert lyd</string>
+    <string name="duringSession">Under økt</string>
+    <string name="always">Alltid</string>
+    <string name="keepScreenOn">Behold skjermen påslått</string>
+    <string name="keepScreenOnAndDim">Behold skjermen påslått og ton ned</string>
+    <string name="dimScreen">Ton ned skjerm</string>
+    <string name="pref_display_seconds">Vis sekunder</string>
+    <string name="pref_display_seconds_summary">Vist under hovedtidtakeren</string>
+    <string name="pref_full_screen">Fullskjerm</string>
+    <string name="pref_delay">Forsinkelse</string>
+    <string name="pref_interval">Intervallvarighet</string>
+    <string name="pref_interval_count">Intervallantall</string>
+    <string name="pref_autosignin_summary">Koble til MediNET ved åpning</string>
+    <string name="pref_autosignin">Koble til automatisk</string>
+    <string name="pref_rememberme_summary">Forbli innlogget etter lukking</string>
+    <string name="pref_rememberme">Husk meg</string>
+    <string name="pref_sessionvolume">Lydstyrke</string>
+    <string name="pref_sessionvolume_summary">Tidligere lydstyrkenivå vil bli gjenopprettet når økten er over.</string>
+    <string name="pref_screencontrol">Skjerm</string>
+    <string name="pref_sendusage">Rapporter bruksstatistikk</string>
+    <string name="pref_sendusage_summary">Anonym innrapportering via Google Analytics. Trer i effekt ved omstart.</string>
+    <string name="selectSound">Velg lyd</string>
+    <string name="pref_meditation_sound_start">Startlyd</string>
+    <string name="pref_meditation_sound_interval">Intervall-lyd</string>
+    <string name="pref_meditation_sound_finish">Fullføringslyd</string>
+    <string name="pref_remembermessage">Husk siste melding</string>
+    <string name="pref_remembermessage_summary">Setter forvalg til siste postede melding</string>
+    <string name="pref_theme">Holografisk drakt</string>
+    <string name="pref_theme_light">Lys</string>
+    <string name="pref_theme_lightdark">Lys med mørkt handlingsfelt</string>
+    <string name="pref_theme_dark">Mørk</string>
+    <string name="buddhism">Buddisme</string>
+    <string name="pref_widgetcolor">Miniprogramsfarge</string>
+    <string name="pref_notification">Merknad</string>
+    <string name="pref_usetimepicker">Alternativt varighetsgrensesnitt</string>
+    <string name="pref_usetimepicker_summary">Bruk time- og minutt-glidebrytere ved endring av varighet</string>
+    <string name="pref_askdismiss">Spør før forkasting</string>
+    <string name="pref_askdismiss_summary">Bekreft før forkasting av økt</string>
+    <string name="pref_mainbuttons">Skjul knapper</string>
+    <string name="pref_progresstab">Forvalgt framdriftsfane</string>
+    <string name="importsessions">Importer økter</string>
+    <string name="importsessions_summary">Importer CSV-fil</string>
+    <string name="uploadsessions">Last opp økter</string>
+    <string name="uploadsessions_summary">Last opp lokale økter</string>
+    <string name="miscellaneous">Ymse</string>
+    <string name="pref_text_size">Tekststørrelse for tidtaker</string>
+    <string name="tiny">Knøtt</string>
+    <string name="small">Liten</string>
+    <string name="normal">Normal</string>
+    <string name="large">Stor</string>
+    <string name="extralarge">Enorm</string>
+    <string name="restartApp">Start programmet på ny for å ta i bruk nye innstillinger</string>
+    <string name="pref_notificationcontrol">Ringetone og merknader</string>
+    <string name="pref_notificationcontrol_priority">Kun prioritet</string>
+    <string name="pref_notificationcontrol_alarms">Kun alarmer</string>
+    <string name="pref_notificationcontrol_vibrate">Sett til vibrering</string>
+    <string name="pref_notificationcontrol_silent">Sett til stille</string>
+    <string name="pref_daily_reminder">Daglig påminnelse</string>
+    <string name="pref_daily_reminder_title">Påminn meg</string>
+    <string name="pref_daily_reminder_summary">Viser en merknad når ingen økter ble tatt opp på en dag</string>
+    <string name="pref_daily_reminder_time">Tid</string>
+    <string name="pref_daily_reminder_text">Motivasjonstekst</string>
+    <string name="downloadingSessions">Laster ned økter…</string>
+    <string name="uploadingSessions">Laster opp økter…</string>
+    <string name="mediNET">MediNET</string>
+    <string name="unableToConnect">Kunne ikke koble til MediNET</string>
+    <string name="save">Lagre</string>
+    <string name="post">Post</string>
+    <string name="importsessionstitle">Importer økter\?</string>
+    <string name="wordimport">Importer</string>
+    <string name="sessionDeletedMediNET">Økt slettet på MediNET</string>
+    <string name="sessionNotFoundMediNET">Fant ikke økten på MediNET</string>
+    <plurals name="numtimes">
+        <item quantity="one">%d gang</item>
+        <item quantity="other">%d ganger</item>
+    </plurals>
+    <plurals name="sessionsImported">
+        <item quantity="one">Importerte en økt</item>
+        <item quantity="other">Importerte %s økter</item>
+    </plurals>
+    <plurals name="sessionsUploaded">
+        <item quantity="one">Lastet opp en økt</item>
+        <item quantity="other">Lastet opp %s økter</item>
+    </plurals>
+    <string name="sessionsNotImported">Lokal data er oppdatert</string>
+    <plurals name="daysOfMeditationMinimal">
+        <item quantity="one">%d dag</item>
+        <item quantity="other">%d dager</item>
+    </plurals>
+    <plurals name="daysOfMeditation">
+        <item quantity="one">%d dag med meditasjon</item>
+        <item quantity="other">%d dager med meditasjon</item>
+    </plurals>
+    <plurals name="daysOfMeditationWithoutCount">
+        <item quantity="one">dag med meditasjon</item>
+        <item quantity="other">dager med meditasjon</item>
+    </plurals>
+    <string name="meditateToday">Mediter i dag</string>
+    <string name="signInToMediNET">Logg inn på MediNET</string>
+    <string name="signOut">Logg ut</string>
+    <string name="signOutOfMediNET">Logg ut av MediNET</string>
+    <string name="signOutOfMediNETConfirmTitle">Logg ut av MediNET\?</string>
+    <string name="rateMeditationAssistant">Vurder Meditasjonsassistenten</string>
+    <string name="widget1x1" tools:ignore="UnusedResources">Meditasjonsassistent 1x1</string>
+    <string name="widget2x1" tools:ignore="UnusedResources">Meditasjonsassistent 2x1</string>
+    <string name="widget3x1" tools:ignore="UnusedResources">Meditasjonsassistent 3x1</string>
+    <string name="appStoreListingShort">Funksjons meditasjonsøkttidtaker og opptaker</string>
+    <string name="setPresetTip">Velg hvilke innstillinger som skal gjenopprettes ved å trykke tannhjulsikonet (Innstillinger), trykk så forhåndsinnstillinger.</string>
+    <string name="setPresetHintBlank">Skriv inn varighet (eller sluttid) for å sette forhåndsinnstilling</string>
+    <string name="streakdifferencewarning">Din nåværende meditasjonsserie ser ikke ut til å stemme basert på nåværende øktdata. Bruk oppdatert meditasjonsserie\?
+\n
+\nNåværende serie: %1$d
+\nOppdatert serie: %2$d</string>
+    <string name="longestStreak">Lengste serie</string>
+    <string name="pref_meditationstreakbuffer">Serie tilbakestilles ved</string>
+    <string name="pref_showstreak">Vis meditasjonsserie</string>
+    <string name="pref_showstreak_summary">Antall dager på rad med minst én innspilt økt</string>
+    <string name="pref_notification_summary">Vis under meditasjon mens borte fra hovedvindu</string>
+    <string name="dismiss">Avfei</string>
+    <string name="discard">Forkast</string>
+    <string name="importSessionsHint">Klikk \"Importer økter\" i innstillingene for å hente manglende økter.</string>
+    <string name="importsessionsmessage">Tidligere økter vil bli importert.
+\n
+\nDenne dialogen vil ikke vises igjen.
+\nDu kan importere økter senere fra innstillingene.</string>
+    <string name="rateMeditationAssistantText">Denne ene gangen blir du spurt om å vurdere programmet :)
+\nOvervei at den betalte versjonen har miniprogrammer, og ingen reklame.</string>
+    <string name="translateMeditationAssistantText">Denne ene gangen blir du spurt om å vurdere programmet :)
+\nOvervei at den betalte versjonen har miniprogrammer, og ingen reklame.</string>
+    <string name="appStoreListingFull">- Automatisk enhetsmodus under meditasjon.
+\n- Pausbare økter.
+\n- Justerbar start/intervall/slutt, lyder, drakter og enhetsoppførsel.
+\n- Månedlig framdriftsoversikt.
+\n- Valgfri innsending av økter til MediNet, og du kan besøke dets forum.
+\n(Deling av fremdrift av dager med meditasjon motiverer daglige økter, selv fem eller ti minutter.)
+\n
+\nMeditasjonsassistenten er gemenhetlig fri programvare.
+\nSend inn din problemrapport, idé, eller fiks: https://gitlab.com/tslocum/meditationassistant/issues
+\nFlere funksjoner i programmet ble introdusert som brukeridéer. 
+\n
+\nOversett Meditasjonsassistenten: https://www.getlocalization.com/meditationassistant/
+\n
+\nAv Rocket Nine Laboratories: https://rocketnine.space</string>
+    <string name="exportsessions">Eksporter økter</string>
+    <string name="exportsessions_summary">Eksporter CSV-fil</string>
+    <string name="downloadsessions">Last ned økter</string>
+    <string name="downloadsessions_summary">Last ned økter annensteds fra</string>
 </resources>

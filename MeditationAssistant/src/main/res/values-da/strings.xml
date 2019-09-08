@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <string name="appName">Meditations Assistent Gratis</string>
     <string name="appNameShort">Meditations Assistent</string>
     <string name="about">Om</string>
@@ -8,261 +7,37 @@
     <string name="no">Nej</string>
     <string name="openWith">Åben med</string>
     <string name="delete">Slet</string>
-    
     <string name="community">Fællesskab</string>
     <string name="forum">Forum</string>
     <string name="rate">Bedøm</string>
     <string name="refresh">Opdater</string>
     <string name="page">Side</string>
-    
     <string name="forward">Frem</string>
     <string name="account">Konto</string>
     <string name="groups">Grupper</string>
     <string name="announcement">Bekendtgørelse</string>
-    <string name="installFileManager">Installer venligst en stifinder (fx. Solid Explorer)</string>
-
+    <string name="installFileManager">Installer venligst en stifinder</string>
     <!-- Permissions -->
     <string name="permissionRequest">Kræver tilladelse</string>
-    
-    
-    
-    
-
     <!-- Main Activity -->
-    
-    
-    
-    
     <string name="cancel">Annuler</string>
     <string name="set">Indstil</string>
     <string name="confirm">Bekræft</string>
     <string name="meditate">Meditér</string>
     <string name="tapToSkip">Spring over</string>
-    
-    
-    
-    
-    
     <string name="mediNETConnecting">Forbinder...</string>
     <string name="mediNETConnected">Forbundet til MediNET</string>
     <string name="sessionInProgress">Sessioner i gang</string>
     <string name="progress">Fremskridt</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- About -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
-    
-
     <!-- Sessions -->
-    
-    
-    
-    
-    
-    
-    
-
     <!-- Session complete -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- Sign In -->
-    
-    
-    
-    
-    
-    
-
     <!-- Progress -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <string name="exportSessions">Sessioner</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-
-    
-
     <!-- Settings -->
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- MediNET -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- Widgets -->
-    
-    
-    
-
     <!-- Meta -->
-    
-    
-
 </resources>

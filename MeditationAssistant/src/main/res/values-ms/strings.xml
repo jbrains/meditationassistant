@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <string name="appName">Meditation Assistant Free</string>
     <string name="appNameShort">Meditation Assistant</string>
     <string name="about">Mengenai</string>
@@ -18,60 +17,42 @@
     <string name="account">Akaun</string>
     <string name="groups">Kumpulan</string>
     <string name="announcement">Pengumuman</string>
-
     <!-- Main Activity -->
-
-
     <string name="cancel">Batal</string>
     <string name="set">Tetapkan</string>
     <string name="confirm">Sahkan</string>
     <string name="meditate">Tafakur</string>
     <string name="tapToSkip">Langkau</string>
-
-
     <string name="mediNETConnecting">Menyambung...</string>
     <string name="mediNETConnected">Disambung ke MediNET</string>
     <string name="sessionInProgress">Sesi sedang berjalan</string>
     <string name="progress">Perkembangan</string>
     <string name="setPreset">Tetapkan Praset</string>
     <string name="setPresetHint">Tahan untuk tetapkan praset</string>
-
     <string name="setPresetHintBlank">Masukkan tempoh (atau masa berakhir) untuk menetapkan praset</string>
-
     <string name="setTimerDurationHint">Sila masukkan tempoh yang sah (cth. 0:22)</string>
     <string name="setTimerEndAtHint">Sila masukkan masa yang sah (cth. 4:20)</string>
     <string name="invalidEndAt">Masa akhir sesi tidak sah</string>
     <string name="timed">Tertempoh</string>
     <string name="endAt">Berakhir pada</string>
     <string name="untimed">Tidak tertempoh</string>
-
     <string name="presetLabelEndAt">Berakhir %s</string>
-
     <!-- About -->
-    <string name="tapToSendEmail">Ketik di mana-mana untuk menghantar maklum balas</string>
     <string name="sendEmail">Hantar e-mel</string>
     <string name="version">Versi %s</string>
     <string name="translate">Terjemah</string>
     <string name="howToMeditate">Bagaimanakah Cara Untuk Bertafakur</string>
     <string name="share">Kongsi</string>
-
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
-
-
     <!-- Sessions -->
     <string name="session">Sesi</string>
     <string name="sessionDeleteEverywhere">Hapuskan pada semua tempat</string>
     <string name="sessionDeleteLocally">Hapuskan pada stor tempatan</string>
     <string name="sessionDeleteMediNET">Hapuskan pada MediNET</string>
-
-
     <!-- Session complete -->
     <string name="sessioncomplete">Sesi Tamat</string>
     <string name="sessionMessagePlaceholder">Mesej</string>
     <string name="askDiscardText">Buang sesi?</string>
-    <string name="shareSessionText">Saya telah bertakafur untuk %1$s dengan %2$s.</string>
-    <string name="aMoment">sekejap</string>
-    <string name="shareSessionSubject">Sesi tafakur</string>
     <string name="sessionPosting">Mengepos sesi...</string>
     <string name="sessionPosted">Sesi diposkan ke MediNET</string>
     <string name="sessionAlreadyPosted">Sesi telah diposkan</string>
@@ -79,13 +60,11 @@
     <string name="sessionNotPostedMeditating">Tidak dapat mengepos sesi semasa bertafakur</string>
     <string name="sessionSaved">Sesi disimpan</string>
     <string name="sessionDeletedLocally">Sesi dihapuskan pada stor tempatan</string>
-
     <!-- Sign In -->
     <string name="signInWith">Log masuk dengan...</string>
     <string name="signInWithProvider">Log masuk dengan %s...</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, dsbg.</string>
     <string name="signInGoogleError">Tidak dapat mengesahkan menggunakan pengurus akaun. Sila cuba OpenID sekiranya ralat ini berterusan.</string>
-
     <!-- Progress -->
     <string name="calendar">Kalendar</string>
     <string name="statistics">Statistik</string>
@@ -97,7 +76,6 @@
     <string name="daySaturdayShort">Sab</string>
     <string name="daySundayShort">Ahd</string>
     <string name="addSession">Tambah sesi</string>
-
     <string name="sessionStartedAt">Dimulakan pada %s</string>
     <string name="started">Dimulakan</string>
     <string name="completed">Tamat</string>
@@ -105,38 +83,26 @@
     <string name="setTime">Tetapkan masa</string>
     <string name="invalidDateOrTime">Tarikh atau masa tidak sah</string>
     <string name="addSessionMeditating">Tidak dapat  menambah sesi semasa bertafakur</string>
-    <string name="addSessionExists">Sesi telah wujud</string>
-
     <string name="days">Hari</string>
     <string name="hours">Jam</string>
     <string name="minutes">Minit</string>
     <string name="totalSessions">Jumlah Sesi</string>
     <string name="averageDuration">Tempoh purata</string>
-
-
     <string name="reminderText">Ada masa untuk bertafakur?</string>
-
     <!-- Settings -->
     <string name="meditation">Pertakafuran</string>
     <string name="pref_vibrate">Getar</string>
-
-
     <string name="settings">Tetapan</string>
     <string name="disabled">Dinyahupayakan</string>
     <string name="noSpecialBehavior">Tidak ada perlakuan khas</string>
     <string name="noSound">Tidak ada bunyi</string>
-
     <string name="keepScreenOn">Kekalkan skrin hidup</string>
     <string name="keepScreenOnAndDim">Kekalkan skrin hidup dan malap</string>
     <string name="dimScreen">Malapkan skrin</string>
-    <string name="turnScreenOff">Matikan skrin</string>
     <string name="pref_display_seconds">Paparkan saat</string>
     <string name="pref_display_seconds_summary">Ditunjukkan di bawah pemasa utama</string>
     <string name="pref_full_screen">Skrin penuh</string>
-    <string name="pref_full_screen_summary">Bar status disembunyikan semasa skrin penuh</string>
     <string name="pref_delay">Lengah</string>
-
-
     <string name="pref_autosignin_summary">Disambungkan ke MediNET apabila dibuka</string>
     <string name="pref_autosignin">Sambungkan secara automatik</string>
     <string name="pref_rememberme_summary">Kekalkan dalam keadaan log masuk setelah ditutup</string>
@@ -147,8 +113,6 @@
     <string name="pref_showstreak">Paparkan jumlah kali bertakafur secara berturut-turut</string>
     <string name="pref_showstreak_summary">Jumlah hari sekurang-kurangnya satu sesi telah direkodkan secara berturut-turut</string>
     <string name="selectSound">Pilih bunyi</string>
-
-
     <string name="pref_remembermessage">Ingat mesej terakhir</string>
     <string name="pref_remembermessage_summary">Tetapkan mesej terakhir yang telah diposkan</string>
     <string name="pref_theme">Tema holografik</string>
@@ -157,15 +121,11 @@
     <string name="pref_theme_dark">Gelap</string>
     <string name="pref_notification">Pemberitahuan</string>
     <string name="pref_notification_summary">Ditunjukkan semasa bertafakur apabila berada di luar tetingkap utama</string>
-
-
     <string name="pref_askdismiss">Tanya sebelum buang</string>
     <string name="pref_askdismiss_summary">Pengesahan sebelum membuang sesi</string>
     <string name="pref_progresstab">Tab Kemajuan Lalai</string>
     <string name="importsessions">Import sesi</string>
     <string name="importsessions_summary">Dapat kembali sesi yang telah dimuat naik</string>
-
-
     <string name="miscellaneous">Lain-lain</string>
     <string name="pref_text_size">Saiz teks pemasa</string>
     <string name="tiny">Sangat kecil</string>
@@ -173,14 +133,10 @@
     <string name="normal">Sederhana</string>
     <string name="large">Besar</string>
     <string name="extralarge">Sangat besar</string>
-    <string name="restartAppApplyTheme">Tema baharu akan berkesan setelah aplikasi dimulakan semula</string>
-
     <string name="pref_notificationcontrol">Nada dering dan pemberitahuan</string>
     <string name="pref_notificationcontrol_vibrate">Tetapkan mod getar</string>
     <string name="pref_notificationcontrol_silent">Tetapkan mod bisu</string>
     <string name="pref_daily_reminder">Peringatan harian</string>
-
-
     <!-- MediNET -->
     <string name="mediNET">MediNET</string>
     <string name="unableToConnect">Tidak boleh sambung ke MediNET</string>
@@ -195,17 +151,11 @@ boleh mengimport sesi selepas ini dari tetingkap Tetapan.</string>
     <string name="wordimport">Import</string>
     <string name="sessionDeletedMediNET">Sesi dihapuskan pada MediNET</string>
     <string name="sessionNotFoundMediNET">Sesi tidak dapat dijumpai pada MediNET</string>
-    <string name="sessionNotProperAccount">Anda tidak dilog masuk ke akaun yang sepatutnya.</string>
-
-
     <plurals name="sessionsImported">
         <item quantity="one">%s sesi diimport</item>
         <item quantity="other">%s sesi diimport</item>
     </plurals>
-
     <string name="sessionsNotImported">Data tempatan dalam keadaan terkini</string>
-    <string name="signInToImport">Log masuk untuk mengimport data sesi</string>
-
     <plurals name="daysOfMeditation">
         <item quantity="one">%d hari bertafakur</item>
         <item quantity="other">%d hari bertafakur</item>
@@ -214,20 +164,15 @@ boleh mengimport sesi selepas ini dari tetingkap Tetapan.</string>
         <item quantity="one">hari bertafakur</item>
         <item quantity="other">hari bertafakur</item>
     </plurals>
-
     <string name="meditateToday">Bertafakur hari ini</string>
     <string name="signInToMediNET">Log masuk ke MediNET</string>
     <string name="signOut">Log keluar</string>
     <string name="signOutOfMediNET">Log keluar dari MediNET</string>
     <string name="signOutOfMediNETConfirmTitle">Log keluar dari MediNET?</string>
-    <string name="signOutOfMediNETConfirm">Anda melog masuk dengan %s.</string>
     <string name="rateMeditationAssistant">Kadarkan Meditation Assistant</string>
     <string name="rateMeditationAssistantText">Jika anda mendapati bahawa aplikasi ini mendatangkan faedah kepada amalan bertakafur anda, sudikah anda memberikan pengkadaran?\n\nVersi berbayar aplikasi ini tidak mengandungi iklan dan mempunyai ciri-ciri widget skrin rumah.\n\nDialog ini tidak akan muncul lagi.</string>
-
-
     <!-- Widgets -->
     <string name="widget1x1" tools:ignore="UnusedResources">Meditation Assistant 1x1</string>
     <string name="widget2x1" tools:ignore="UnusedResources">Meditation Assistant 2x1</string>
     <string name="widget3x1" tools:ignore="UnusedResources">Meditation Assistant 3x1</string>
-
 </resources>

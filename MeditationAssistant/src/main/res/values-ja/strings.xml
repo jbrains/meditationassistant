@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <string name="appName">瞑想アシスタント フリー</string>
     <string name="appNameShort">瞑想アシスタント</string>
     <string name="about">ｱﾌﾟﾘについて</string>
@@ -20,16 +19,13 @@
     <string name="account">アカウント</string>
     <string name="groups">グループ</string>
     <string name="announcement">アナウンス</string>
-    <string name="installFileManager">ファイルマネージャーをインストールしてください (例 Solid Explorer)</string>
-    
-
+    <string name="installFileManager">ファイルマネージャーをインストールしてください</string>
     <!-- Permissions -->
     <string name="permissionRequest">アクセス許可リクエスト</string>
     <string name="permissionRequestReadExternal">デバイス上のカスタムサウンドファイルを選択するために、このアクセス許可が必要です。</string>
     <string name="permissionRequestNotificationControl">じゃましないように制御するため、次の画面でアクセス許可を付与してください。</string>
     <string name="deny">拒否</string>
     <string name="tryAgain">再試行</string>
-
     <!-- Main Activity -->
     <string name="timer">タイマー</string>
     <string name="timerHelp">タイマーは現在15分に設定されています。継続時間や、一日の終わりの時間を変更したり、完全にアラームを無効にすることができます。これらのオプションを表示するには、タイマーをタップしてください。</string>
@@ -62,7 +58,6 @@
     <string name="untimed">時間指定なし</string>
     <string name="unlimited">無制限</string>
     <string name="presetLabelEndAt">終了 %s</string>
-
     <!-- About -->
     <string name="tapToLearnMore">任意の場所をタップすると詳細を表示します</string>
     <string name="sendEmail">メールを送信</string>
@@ -73,10 +68,8 @@
     <string name="removeAdsHelp">フルバージョンの瞑想アシスタントは独立したアプリケーションです。\n\n既存のセッションを維持するには、MediNET にログインして、設定ウィンドウで "セッションをアップロード" をタップします。\n\nフルバージョンを開いて、もう一度 MediNET にサインインし、その後、"インポート" をタップします。</string>
     <string name="howToMeditate">瞑想の方法</string>
     <string name="share">共有</string>
-
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
     <string name="invitationBlurb">瞑想アシスタントは、完全な機能を備えた、あなたの訓練の仲間です。</string>
-
     <!-- Sessions -->
     <string name="session">セッション</string>
     <string name="sessionDeleteEverywhere">どちらも削除</string>
@@ -86,8 +79,6 @@
     <string name="presetsettings">プリセット設定</string>
     <string name="modeandduration">モードと継続時間</string>
     <string name="streakdifferencewarning">現在の瞑想の継続は、現在のセッションデータに正しく基づいていないようです。 瞑想の継続を更新しますか?\n\n現在の継続日数: %1$d\n更新された継続日数: %2$d</string>
-    
-
     <!-- Session complete -->
     <string name="sessioncomplete">セッションが完了しました</string>
     <string name="sessionMessagePlaceholder">メッセージ</string>
@@ -99,7 +90,6 @@
     <string name="sessionNotPostedMeditating">瞑想中はセッションを投稿できません</string>
     <string name="sessionSaved">セッションを保存しました</string>
     <string name="sessionDeletedLocally">ローカルのセッションを削除しました</string>
-
     <!-- Sign In -->
     <string name="browser">ブラウザー</string>
     <string name="useBrowser">ブラウザーを使用:</string>
@@ -107,7 +97,6 @@
     <string name="signInWithProvider">%s でサインイン…</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, など.</string>
     <string name="signInGoogleError">アカウントマネージャーを使用して認証することができません。このエラーが解決しない場合はOpenIDをお試しください。</string>
-
     <!-- Progress -->
     <string name="calendar">カレンダー</string>
     <string name="statistics">統計</string>
@@ -121,8 +110,6 @@
     <string name="daySundayShort">日</string>
     <string name="addSession">セッションを追加</string>
     <string name="editSession">セッションを編集</string>
-    
-    
     <string name="add">追加</string>
     <string name="edit">編集</string>
     <string name="exportSessions">セッションをエクスポート</string>
@@ -139,7 +126,6 @@
     <string name="addSessionMeditating">瞑想中はセッションを追加できません</string>
     <string name="editSessionMeditating">瞑想中はセッションを編集できません</string>
     <string name="sessionExists">セッションは既に存在します</string>
-
     <string name="days">日</string>
     <string name="hours">時間</string>
     <string name="minutes">分</string>
@@ -147,9 +133,7 @@
     <string name="averageDuration">平均継続時間</string>
     <string name="longestDuration">最長継続時間</string>
     <string name="longestStreak">最長継続日数</string>
-
     <string name="reminderText">時間はありますか?</string>
-
     <!-- Settings -->
     <string name="meditation">瞑想</string>
     <string name="pref_vibrate">振動</string>
@@ -159,7 +143,6 @@
     <string name="pref_sound_reminder_summary">デフォルトの通知サウンドが再生されます</string>
     <string name="pref_softfinish">エンドレスのセッション</string>
     <string name="pref_softfinish_summary">タイマーの実行を続けます</string>
-
     <string name="settings">設定</string>
     <string name="disabled">無効</string>
     <string name="none">なし</string>
@@ -233,7 +216,6 @@
     <string name="pref_daily_reminder_text">奨励するテキスト</string>
     <string name="downloadingSessions">セッションのダウンロード中...</string>
     <string name="uploadingSessions">セッションのアップロード中...</string>
-
     <!-- MediNET -->
     <string name="mediNET">MediNET</string>
     <string name="unableToConnect">MediNET に接続できません</string>
@@ -247,24 +229,19 @@
     <string name="wordimport">インポート</string>
     <string name="sessionDeletedMediNET">MediNET のセッションを削除しました</string>
     <string name="sessionNotFoundMediNET">MediNET にセッションが見つかりません</string>
-
     <plurals name="numtimes">
         <item quantity="one">%s 回</item>
         <item quantity="other">%s 回</item>
     </plurals>
-
     <plurals name="sessionsImported">
         <item quantity="one">%s セッションをインポートしました</item>
         <item quantity="other">%s セッションをインポートしました</item>
     </plurals>
-
     <plurals name="sessionsUploaded">
         <item quantity="one">%s セッションをアップロードしました</item>
         <item quantity="other">%s セッションをアップロードしました</item>
     </plurals>
-
     <string name="sessionsNotImported">ローカルデータは最新です</string>
-
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d 日</item>
         <item quantity="other">%d 日</item>
@@ -277,7 +254,6 @@
         <item quantity="one">日の瞑想</item>
         <item quantity="other">日の瞑想</item>
     </plurals>
-
     <string name="meditateToday">今日の瞑想</string>
     <string name="signInToMediNET">MediNET にサインイン</string>
     <string name="signOut">サインアウト</string>
@@ -286,12 +262,10 @@
     <string name="rateMeditationAssistant">瞑想アシスタントを評価する</string>
     <string name="rateMeditationAssistantText">このアプリケーションが瞑想の訓練に役立つことが分かった場合、評価を追加していただけませんか?\n\nこのアプリの有料バージョンは、広告が含まれておらず、ホーム画面ウィジェットを提供しています。できれば購入をご検討ください。\n\nこのダイアログは再度表示されません。</string>
     <string name="translateMeditationAssistantText">他の言語に翻訳することによって、瞑想アシスタントがより広く利用者に届くように手伝っていただけませんか?\n\nオンラインインターフェイスを利用して、簡単に翻訳を行うことができます。後で、アプリについてのウインドウから翻訳をクリックすることで、翻訳Webページを訪問することができます。\n\nこのダイアログは再度表示されません。</string>
-
     <!-- Widgets -->
     <string name="widget1x1" tools:ignore="UnusedResources">瞑想アシスタント 1x1</string>
     <string name="widget2x1" tools:ignore="UnusedResources">瞑想アシスタント 2x1</string>
     <string name="widget3x1" tools:ignore="UnusedResources">瞑想アシスタント 3x1</string>
-
     <!-- Meta -->
     <string name="appStoreListingShort">瞑想セッションタイマーとレコーダーの機能パック</string>
     <string name="appStoreListingFull">このアプリケーションは、開始/終了/終了音やデバイスの動作など、さまざまなカスタマイズ機能を備えていて、時間指定（継続時間、または特定の時刻に終了）セッションと時間指定のないセッションの両方を支援します。また、毎月の状況の概要を提供します。
@@ -316,5 +290,4 @@
 お使いの言語にMeditation Assistantを翻訳: https://www.getlocalization.com/meditationassistant/
 
 Rocket Nine Laboratoriesによって開発されました: https://rocketnine.space/</string>
-
 </resources>

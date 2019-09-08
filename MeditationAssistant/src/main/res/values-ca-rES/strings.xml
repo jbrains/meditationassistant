@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <string name="appName">Assistent per a la meditació gratuït</string>
     <string name="appNameShort">Assistent de meditació</string>
     <string name="about">Sobre</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
-    
     <string name="delete">Esborra</string>
     <string name="sessions">Sessions</string>
     <string name="community">Comunitat</string>
@@ -19,14 +17,12 @@
     <string name="account">Compte</string>
     <string name="groups">Grups</string>
     <string name="announcement">Anunci</string>
-
     <!-- Permissions -->
     <string name="permissionRequest">Sol·licitud de permís</string>
     <string name="permissionRequestReadExternal">Aquest permís és obligatori per triar un fitxer de so personalitzat al dispositiu.</string>
     <string name="permissionRequestNotificationControl">Proporcioneu accés a la pantalla següent per controlar No molestar.</string>
     <string name="deny">Denegar</string>
     <string name="tryAgain">Torna-ho a provar</string>
-
     <!-- Main Activity -->
     <string name="timer">Temporitzador</string>
     <string name="timerHelp">El temporitzador està actualment posat a 15 minuts. Pots canviar la durada, acabar a un moment específic del dia, o desactivar l\'alarma del tot. Pica el temporitzador ara per a veure aquestes opcions.</string>
@@ -59,9 +55,7 @@
     <string name="untimed">No temporitzat</string>
     <string name="unlimited">No limitat</string>
     <string name="presetLabelEndAt">Fi %s</string>
-
     <!-- About -->
-    <string name="tapToSendEmail">Pica a qualsevol lloc per a enviar retroalimentació</string>
     <string name="sendEmail">Envia email</string>
     <string name="version">Versió %s</string>
     <string name="translate">Tradueix</string>
@@ -70,44 +64,31 @@
     <string name="removeAdsHelp">La versió completa de Meditation Assistant és una aplicació per separat.\n\nPer mantenir les sessions existents, inicieu la sessió a MediNet i toqueu "Càrrega de sessions" a la finestra Configuració..\n\nObriu la versió completa i inicieu sessió a MediTet una vegada més, llavors toqueu "Importar".</string>
     <string name="howToMeditate">Com meditar</string>
     <string name="share">Comparteix</string>
-
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
-    
-
     <!-- Sessions -->
     <string name="session">Sessió</string>
     <string name="sessionDeleteEverywhere">Esborra a tot arreu</string>
     <string name="sessionDeleteLocally">Esborra localment</string>
     <string name="sessionDeleteMediNET">Esborra a MediNET</string>
     <string name="pref_sessionintro">Introducció</string>
-    
-    
-
     <!-- Session complete -->
     <string name="sessioncomplete">Sessió completa</string>
     <string name="sessionMessagePlaceholder">Missatge</string>
     <string name="askDiscardText">Descartar sessió?</string>
-    
-    
     <string name="sessionAlreadyPosted">Sessió ja enviada</string>
     <string name="sessionNotPosted">No disponible penjar la sessió</string>
     <string name="sessionNotPostedMeditating">No disponible d\'enviar la sessió mentre medites</string>
     <string name="sessionSaved">Sessió desada</string>
     <string name="sessionDeletedLocally">
 Sessió esborrada localment</string>
-
     <!-- Sign In -->
-    
-    
     <string name="signInWith">Entra amb ...</string>
     <string name="signInWithProvider">Entra amb %s...</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, etc.</string>
     <string name="signInGoogleError">No disponible l\'autentificació usant  el gestor de comptes. Intenta OpenID si aquest error persisteix.</string>
-
     <!-- Progress -->
     <string name="calendar">Calendari</string>
     <string name="statistics">Estadístiques</string>
-    
     <string name="dayMondayShort">Dl</string>
     <string name="dayTuesdayShort">Dm</string>
     <string name="dayWednesdayShort">Dx</string>
@@ -116,139 +97,27 @@ Sessió esborrada localment</string>
     <string name="daySaturdayShort">Ds</string>
     <string name="daySundayShort">Dg</string>
     <string name="addSession">Afegeix sessió</string>
-    
     <string name="sessionStartedAt">Començat a %s</string>
     <string name="started">Començat</string>
     <string name="completed">Acabat</string>
     <string name="setDate">Ajusta data</string>
     <string name="setTime">Ajusta hora</string>
     <string name="invalidDateOrTime">Data i hora invàlids</string>
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-
-    
-
     <!-- Settings -->
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <string name="pref_progresstab">Pestanya de progrés per defecte</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- MediNET -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <plurals name="numtimes">
         <item quantity="one">%s time</item>
         <item quantity="other">%s times</item>
     </plurals>
-
     <plurals name="sessionsImported">
         <item quantity="one">Imported %s session</item>
         <item quantity="other">Imported %s sessions</item>
     </plurals>
-
     <plurals name="sessionsUploaded">
         <item quantity="one">Uploaded %s session</item>
         <item quantity="other">Uploaded %s sessions</item>
     </plurals>
-
-    
-
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d day</item>
         <item quantity="other">%d days</item>
@@ -261,19 +130,5 @@ Sessió esborrada localment</string>
         <item quantity="one">day of meditation</item>
         <item quantity="other">days of meditation</item>
     </plurals>
-
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- Widgets -->
-    
-    
-    
-
 </resources>

@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <string name="appName">Tempo de Meditar (Gratuito)</string>
     <string name="appNameShort">Tempo de Meditar</string>
     <string name="about">Sobre</string>
     <string name="yes">Sim</string>
     <string name="no">Não</string>
-    
     <string name="openWith">Abrir com</string>
     <string name="delete">Deletar</string>
     <string name="sessions">Sessões</string>
@@ -20,16 +18,13 @@
     <string name="account">Conta</string>
     <string name="groups">Grupos</string>
     <string name="announcement">Anúncio</string>
-    <string name="installFileManager">Por favor, instale um gerenciador de arquivos. (ex: Solid Explorer)</string>
-    
-
+    <string name="installFileManager">Por favor, instale um gerenciador de arquivos.</string>
     <!-- Permissions -->
     <string name="permissionRequest">Pedir permissão</string>
     <string name="permissionRequestReadExternal">Esta permissão é necessária para escolher um arquivo de som personalizado no dispositivo.</string>
     <string name="permissionRequestNotificationControl">Favor dar permissão na próxima tela para controlar Não Perturbe.</string>
     <string name="deny">Negar</string>
     <string name="tryAgain">Tente novamente</string>
-
     <!-- Main Activity -->
     <string name="timer">Timer</string>
     <string name="timerHelp">O timer está marcado para 15 minutos. Você pode mudar a duração, terminar em um horário específico, ou desativar o alarme. Clique no timer para ver essas opções.</string>
@@ -65,7 +60,6 @@ Segure para escolher valor predefinido</string>
     <string name="untimed">Não cronometrada</string>
     <string name="unlimited">Ilimitado</string>
     <string name="presetLabelEndAt">Fim %s</string>
-
     <!-- About -->
     <string name="tapToLearnMore">Toque para enviar sua opinião.</string>
     <string name="sendEmail">Enviar e-mail</string>
@@ -76,10 +70,8 @@ Segure para escolher valor predefinido</string>
     <string name="removeAdsHelp">A versão completa de Assistente de Meditação é um aplicativo separado. Para manter suas sessões existentes, faça login em MediNET e toque em "Enviar sessões" na janela Configurações. Abra a versão completa e entre para MediNET mais uma vez, em seguida, toque em "Importar".</string>
     <string name="howToMeditate">Como meditar</string>
     <string name="share">Compartilhar</string>
-
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
     <string name="invitationBlurb">Assistente de Meditação é um companheiro com todos os recursos para a sua prática.</string>
-
     <!-- Sessions -->
     <string name="session">Sessão</string>
     <string name="sessionDeleteEverywhere">Excluir tudo</string>
@@ -89,8 +81,6 @@ Segure para escolher valor predefinido</string>
     <string name="presetsettings">Configurações predefinidas</string>
     <string name="modeandduration">Modo e duração</string>
     <string name="streakdifferencewarning">Sua sequência de meditação atual não parece correta com base nos dados da sessão atual. Usar a sequência de meditação atualizada?\n\nSequência atual: %1$d\nSequência atualizada: %2$d</string>
-    
-
     <!-- Session complete -->
     <string name="sessioncomplete">Sessão completa</string>
     <string name="sessionMessagePlaceholder">Massagem</string>
@@ -105,7 +95,6 @@ Segure para escolher valor predefinido</string>
     <string name="sessionNotPostedMeditating">Impossível postar sessão durante a meditação</string>
     <string name="sessionSaved">Sessão salva</string>
     <string name="sessionDeletedLocally">Sessão apagada localmente</string>
-
     <!-- Sign In -->
     <string name="browser">Navegador</string>
     <string name="useBrowser">Use o navegador.</string>
@@ -114,7 +103,6 @@ Segure para escolher valor predefinido</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, etc.
 </string>
     <string name="signInGoogleError">Impossivel autentar usando administrador de contas. Use OpenID se esse erro persistir</string>
-
     <!-- Progress -->
     <string name="calendar">Calendário</string>
     <string name="statistics">Estatísticas</string>
@@ -128,8 +116,6 @@ Segure para escolher valor predefinido</string>
     <string name="daySundayShort">Dom</string>
     <string name="addSession">Adicionar sessão </string>
     <string name="editSession">Editar sessão</string>
-    
-    
     <string name="add">Incluir</string>
     <string name="edit">Editar</string>
     <string name="exportSessions">Exportar sessões</string>
@@ -146,7 +132,6 @@ Segure para escolher valor predefinido</string>
     <string name="addSessionMeditating">Não é possível adicionar uma sessão enquanto você estiver meditando</string>
     <string name="editSessionMeditating">Impossível editar uma sessão enquanto medita</string>
     <string name="sessionExists">Sessão já existe</string>
-
     <string name="days">Dias</string>
     <string name="hours">Horas</string>
     <string name="minutes">Minutos</string>
@@ -154,9 +139,7 @@ Segure para escolher valor predefinido</string>
     <string name="averageDuration">Duração média</string>
     <string name="longestDuration">Mais longa</string>
     <string name="longestStreak">Maior sequência</string>
-
     <string name="reminderText">Você tem um momento?</string>
-
     <!-- Settings -->
     <string name="meditation">Meditação</string>
     <string name="pref_vibrate">Vibrar</string>
@@ -166,7 +149,6 @@ Segure para escolher valor predefinido</string>
     <string name="pref_sound_reminder_summary">O som de notificação padrão será reproduzido</string>
     <string name="pref_softfinish">Sessão sem fim</string>
     <string name="pref_softfinish_summary">Manter cronômetro ligado</string>
-
     <string name="settings">Configurações</string>
     <string name="disabled">Desabilitado</string>
     <string name="none">Nenhum</string>
@@ -241,7 +223,6 @@ Segure para escolher valor predefinido</string>
     <string name="pref_daily_reminder_text">Texto de incentivo</string>
     <string name="downloadingSessions">Baixando sessões...</string>
     <string name="uploadingSessions">Enviando sessões...</string>
-
     <!-- MediNET -->
     <string name="mediNET">MediNET</string>
     <string name="unableToConnect">Impossível conectar com MediNET</string>
@@ -256,24 +237,19 @@ Sessões anteriores serão importados. Este diálogo não será exibido novament
     <string name="wordimport">Importar</string>
     <string name="sessionDeletedMediNET">Sessão deletada do MediNET</string>
     <string name="sessionNotFoundMediNET">Sessão não encontrada no MediNET</string>
-
     <plurals name="numtimes">
         <item quantity="one">%s time</item>
         <item quantity="other">%s times</item>
     </plurals>
-
     <plurals name="sessionsImported">
         <item quantity="one">Imported %s session</item>
         <item quantity="other">Imported %s sessions</item>
     </plurals>
-
     <plurals name="sessionsUploaded">
         <item quantity="one">Uploaded %s session</item>
         <item quantity="other">Uploaded %s sessions</item>
     </plurals>
-
     <string name="sessionsNotImported">Dados locais estão atualizados</string>
-
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d day</item>
         <item quantity="other">%d days</item>
@@ -286,7 +262,6 @@ Sessões anteriores serão importados. Este diálogo não será exibido novament
         <item quantity="one">day of meditation</item>
         <item quantity="other">days of meditation</item>
     </plurals>
-
     <string name="meditateToday">Meditar hoje</string>
     <string name="signInToMediNET">Entrar no MediNEY</string>
     <string name="signOut">Sair</string>
@@ -295,12 +270,10 @@ Sessões anteriores serão importados. Este diálogo não será exibido novament
     <string name="rateMeditationAssistant">Avalie-nos</string>
     <string name="rateMeditationAssistantText">Se esse aplicativo lhe foi útil e beneficiou sua prática de meditação, por favor, considere adicionar uma avaliação.\n\nA versão paga desse aplicativo é livre de propagandas e contém widgets de início. Considere comprá-la se for possível.\n\nEsse diálogo não aparecerá de novo.</string>
     <string name="translateMeditationAssistantText">Você poderia ajudar o Assistente de Meditação a ampliar seu público traduzindo-o para outras línguas?\n\nA tradução é feita de forma simples através de uma interface online. Você pode acessar a página de tradução a qualquer momento clicando em Traduzir na aba Sobre das configurações.\n\nEsse diálogo não aparecerá novamente.</string>
-
     <!-- Widgets -->
     <string name="widget1x1" tools:ignore="UnusedResources">Assistente de Meditação 1x1</string>
     <string name="widget2x1" tools:ignore="UnusedResources">Assistente de Meditação 2x1</string>
     <string name="widget3x1" tools:ignore="UnusedResources">Assistente de Meditação 3x1</string>
-
     <!-- Meta -->
     <string name="appStoreListingShort">Contém timer e gravador em sessões de meditação</string>
     <string name="appStoreListingFull">Esse aplicativo auxilia tanto em sessões cronometradas (definindo a duração delas ou terminando-as em horários específicos) quanto em não cronometradas, e conta com várias customizações, como o ajuste de sons de início/intervalo/fim e o controle das notificações do celular. Além de todo mês fornecer um resumo de seu progresso.
@@ -329,5 +302,4 @@ https://www.getlocalization.com/meditationassistant/
 
 Desenvolvido pela Rocket Nine Laboratories:
 https://rocketnine.space/</string>
-
 </resources>

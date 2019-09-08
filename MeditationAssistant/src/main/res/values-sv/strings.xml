@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <string name="appName">Meditation Assistenten Gratis</string>
     <string name="appNameShort">Meditation Assistent</string>
     <string name="about">Om appen</string>
     <string name="yes">Jo</string>
     <string name="no">Nej</string>
-    
     <string name="openWith">Öpnna med</string>
     <string name="delete">Ta bort</string>
     <string name="sessions">Sessioner</string>
-    
-    
     <string name="rate">Betygsätt</string>
     <string name="refresh">Uppdatera</string>
     <string name="page">Sida</string>
@@ -19,99 +15,26 @@
     <string name="forward">Framåt</string>
     <string name="account">Konto</string>
     <string name="groups">Grupper</string>
-    
-    <string name="installFileManager">Var vänlig installera en filhanterare (t.ex. Solid Explorer)</string>
-    
-
+    <string name="installFileManager">Var vänlig installera en filhanterare</string>
     <!-- Permissions -->
-    
     <string name="permissionRequestReadExternal">Tillstånd krävs för att välja en extern ljudfil på enheten.</string>
-    
-    
-    
-
     <!-- Main Activity -->
-    
     <string name="timerHelp">Timern är för närvarande satt till 15 minuter. Du kan ändra längden, avsluta vid en specifik tidpunkt på dagen, eller avaktivera alarmet helt. Klicka på timern nu för att se dessa alternativ.</string>
-    
-    
     <string name="cancel">Avbryt</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <string name="progress">Framsteg</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- About -->
-    
-    
-    
     <string name="translate">Översätt</string>
     <string name="donate">Donera</string>
-    
-    
     <string name="howToMeditate">Hur man kan meditera</string>
     <string name="share">Dela</string>
-
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
-    
-
     <!-- Sessions -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- Session complete -->
-    
     <string name="sessionMessagePlaceholder">Meddelande</string>
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- Sign In -->
     <string name="browser">Webbläsare</string>
-    
-    
-    
-    
-    
-
     <!-- Progress -->
     <string name="calendar">Kalender</string>
-    
-    
     <string name="dayMondayShort">Mån</string>
     <string name="dayTuesdayShort">Tis</string>
     <string name="dayWednesdayShort">Ons</string>
@@ -119,166 +42,24 @@
     <string name="dayFridayShort">Fre</string>
     <string name="daySaturdayShort">Lör</string>
     <string name="daySundayShort">Sön</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <string name="days">Dagar</string>
     <string name="hours">Timmar</string>
     <string name="minutes">Minuter</string>
-    
-    
-    
-    
-
     <string name="reminderText">Har du ett ögonblick?</string>
-
     <!-- Settings -->
     <string name="meditation">Meditation</string>
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <string name="pref_screencontrol">Skärmen</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <string name="pref_theme_light">Ljus</string>
-    
     <string name="pref_theme_dark">Mörk</string>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <string name="pref_daily_reminder_time">Tid</string>
-    
-    
-    
-
     <!-- MediNET -->
     <string name="mediNET">MediNET</string>
-    
-    
-    
     <string name="save">Spara</string>
     <string name="post">Dela</string>
-    
-    
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    
-
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d dag</item>
         <item quantity="other">%d dagar</item>
     </plurals>
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- Widgets -->
-    
-    
-    
-
     <!-- Meta -->
-    
-    
-
 </resources>
