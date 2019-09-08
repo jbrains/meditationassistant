@@ -38,6 +38,7 @@
     <string name="meditate">Meditate</string>
     <string name="tapToSkip">Skip</string>
     <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
     <string name="end">End</string>
     <string name="pauseOrEnd">Pause or end</string>
     <string name="resumeOrEnd">Resume or end</string>
@@ -45,6 +46,7 @@
     <string name="mediNETConnecting">Connecting…</string>
     <string name="mediNETConnected">Connected to MediNET</string>
     <string name="sessionInProgress">Session in progress</string>
+    <string name="sessionPaused">Session paused</string>
     <string name="progress">Progress</string>
     <string name="setPreset">Set preset</string>
     <string name="setPresetHint">Hold to set preset</string>

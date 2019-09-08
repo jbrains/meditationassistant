@@ -26,7 +26,7 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
     public String nextURL = null;
     public String action = "";
     public String actionextra = "";
-    public Long actionextranumber = (long)0;
+    public Long actionextranumber = (long) 0;
     public MediNET medinet;
     private MeditationAssistant ma = null;
     public Runnable onComplete;
@@ -299,13 +299,13 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
                                 for (SessionSQL sessionsql : sessions) {
                                     sessionsql._isposted = (long) 1;
                                     sessionsql._modified = getMeditationAssistant().getTimestamp();
-                                    getMeditationAssistant().db.addSession(sessionsql, (long)0);
+                                    getMeditationAssistant().db.addSession(sessionsql, (long) 0);
                                 }
 
                                 Integer sessuploaded = sessions.size();
                                 getMeditationAssistant().longToast(String.format(getMeditationAssistant().getResources().getQuantityString(
-                                                R.plurals.sessionsUploaded, sessuploaded,
-                                                sessuploaded), String.valueOf(sessuploaded))
+                                        R.plurals.sessionsUploaded, sessuploaded,
+                                        sessuploaded), String.valueOf(sessuploaded))
                                 );
                             } else {
                                 getMeditationAssistant().longToast(getMeditationAssistant().getString(R.string.sessionsNotImported));
@@ -337,7 +337,7 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
                                         "Adding session started at "
                                                 + String.valueOf(sess._started)
                                 );
-                                getMeditationAssistant().db.addSession(sess, (long)0);
+                                getMeditationAssistant().db.addSession(sess, (long) 0);
                                 getMeditationAssistant().recalculateMeditationStreak(medinet.activity);
                             } else {
                                 Log.d("MeditationAssistant",
@@ -347,8 +347,8 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
 
                         if (sessimported > 0) {
                             getMeditationAssistant().longToast(String.format(getMeditationAssistant().getResources().getQuantityString(
-                                            R.plurals.sessionsImported, sessimported,
-                                            sessimported), String.valueOf(sessimported))
+                                    R.plurals.sessionsImported, sessimported,
+                                    sessimported), String.valueOf(sessimported))
                             );
                         } else {
                             getMeditationAssistant().longToast(getMeditationAssistant().getString(R.string.sessionsNotImported));
@@ -388,7 +388,7 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
 
     @Override
     protected void onPostExecute(MediNET medinet) {
-        Log.d("MeditationAssistant","onPostExecute: " + action);
+        Log.d("MeditationAssistant", "onPostExecute: " + action);
         medinet.updated();
 
         if (onComplete != null) {

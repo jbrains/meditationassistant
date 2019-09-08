@@ -90,7 +90,7 @@ public class SessionsFragment extends ListFragment {
                                                 getMeditationAssistant().getMediNET().session.message = selected_session._message;
                                                 getMeditationAssistant().getMediNET().session.streakday = selected_session._streakday;
                                                 getMeditationAssistant().getMediNET().session.modified = selected_session._modified;
-                                                getMeditationAssistant().getMediNET().postSession(0,null, null);
+                                                getMeditationAssistant().getMediNET().postSession(0, null, null);
                                             }
                                         } else { // Delete
                                             AlertDialog deleteDialog = new AlertDialog.Builder(

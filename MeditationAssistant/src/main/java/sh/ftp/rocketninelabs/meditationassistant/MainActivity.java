@@ -60,7 +60,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
     public MeditationAssistant ma = null;
     SharedPreferences.OnSharedPreferenceChangeListener sharedPrefslistener = (newprefs, key) -> {
-        Log.d("MeditationAssistant",key + " changed to " + getMeditationAssistant().getPrefs().getAll().get(key).toString());
+        Log.d("MeditationAssistant", key + " changed to " + getMeditationAssistant().getPrefs().getAll().get(key).toString());
 
         new Handler(Looper.getMainLooper()).post(() -> {
             if ((key.equals("timerHours") || key.equals("timerMinutes")) && getMeditationAssistant().getTimeToStopMeditate() < 1) {
@@ -1167,8 +1167,9 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                     params.screenBrightness = -1;
                     getWindow().setAttributes(params);
 
-                    getMeditationAssistant().longToast(getString(R.string.pausedNotification));
-                    //}
+                    if (view != null) {
+                        getMeditationAssistant().longToast(getString(R.string.pausedNotification));
+                    }
                 } else { // Paused, un-pause
                     long pausetime = getMeditationAssistant().unPauseSession();
 
@@ -1266,7 +1267,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                 if (end_at_hour >= c_now.get(Calendar.HOUR_OF_DAY)) { // later today (before noon)
                     Log.d("MeditationAssistant", "End at debug: B LATER TODAY BEFORE NOON");
                     if (end_at_hour == c_now.get(Calendar.HOUR_OF_DAY) && end_at_minute <= c_now.get(Calendar.MINUTE)) { // End at is now or earlier
-                        getMeditationAssistant().shortToast( getString(R.string.invalidEndAt));
+                        getMeditationAssistant().shortToast(getString(R.string.invalidEndAt));
                         return;
                     }
 
@@ -1776,7 +1777,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                         getMeditationAssistant().getMediNET().connect();
                     }
                 } else if (getIntent().getAction().equals("notificationPause")) {
-                    if (getMeditationAssistant().getTimeStartMeditate() > 0 && !getMeditationAssistant().ispaused) {
+                    if (getMeditationAssistant().getTimeStartMeditate() > 0) {
                         updateMeditate(false, false);
                         pressMeditate(new View(getApplicationContext()));
                     }

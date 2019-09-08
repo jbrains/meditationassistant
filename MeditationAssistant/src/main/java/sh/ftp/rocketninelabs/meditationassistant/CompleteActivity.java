@@ -275,7 +275,7 @@ public class CompleteActivity extends Activity {
         getMeditationAssistant().shortToast(getString(R.string.sessionPosting));
         getMeditationAssistant().getMediNET().session.message = getSessionMessage();
         getMeditationAssistant().getMediNET().session.modified = getMeditationAssistant().getTimestamp();
-        getMeditationAssistant().getMediNET().postSession(0,null,  completeRunnable);
+        getMeditationAssistant().getMediNET().postSession(0, null, completeRunnable);
     }
 
     private void saveLastMessage() {

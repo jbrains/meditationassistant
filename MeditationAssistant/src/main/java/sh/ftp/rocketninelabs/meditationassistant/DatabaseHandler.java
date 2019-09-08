@@ -104,7 +104,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             }
 
             Cursor c = db.rawQuery("UPDATE `" + TABLE_SESSIONS + "` SET `" + KEY_STARTED + "`=?, `" + KEY_COMPLETED + "`=?, `" + KEY_LENGTH + "`=?, `" + KEY_MESSAGE + "`=?, `" + KEY_ISPOSTED + "`=?, `" + KEY_STREAKDAY + "`=?, `" + KEY_MODIFIED + "`=? WHERE `" + KEY_STARTED + "`=? OR`" + KEY_STARTED + "`=?",
-                    new String[]{String.valueOf(session._started), String.valueOf(session._completed), String.valueOf(session._length),session._message,String.valueOf(session._isposted),String.valueOf(session._streakday),String.valueOf(session._modified), String.valueOf(session._started), String.valueOf(updateSessionStarted)});
+                    new String[]{String.valueOf(session._started), String.valueOf(session._completed), String.valueOf(session._length), session._message, String.valueOf(session._isposted), String.valueOf(session._streakday), String.valueOf(session._modified), String.valueOf(session._started), String.valueOf(updateSessionStarted)});
             c.moveToFirst();
             c.close();
         }
@@ -178,7 +178,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     SessionSQL getSessionByStarted(long started) {
-        ArrayList<SessionSQL> sessions =  unmarshalResult(db.rawQuery("SELECT * FROM `" + TABLE_SESSIONS + "` WHERE `" + KEY_STARTED + "`=? LIMIT 1", new String[]{String.valueOf(started)}));
+        ArrayList<SessionSQL> sessions = unmarshalResult(db.rawQuery("SELECT * FROM `" + TABLE_SESSIONS + "` WHERE `" + KEY_STARTED + "`=? LIMIT 1", new String[]{String.valueOf(started)}));
         if (sessions.isEmpty()) {
             return null;
         }

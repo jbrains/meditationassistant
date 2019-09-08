@@ -224,23 +224,23 @@ public class CalendarFragment extends Fragment {
             }
         });
         nextMonth.setOnLongClickListener(new View.OnLongClickListener() {
-             @Override
-             public boolean onLongClick(View view) {
-                 Calendar midnightToday = Calendar.getInstance();
-                 midnightToday.set(Calendar.HOUR, 0);
-                 midnightToday.set(Calendar.MINUTE, 0);
-                 midnightToday.set(Calendar.SECOND, 0);
+            @Override
+            public boolean onLongClick(View view) {
+                Calendar midnightToday = Calendar.getInstance();
+                midnightToday.set(Calendar.HOUR, 0);
+                midnightToday.set(Calendar.MINUTE, 0);
+                midnightToday.set(Calendar.SECOND, 0);
 
-                 mCalendar.add(Calendar.YEAR, 1);
-                 if (mCalendar.after(midnightToday)) {
-                     mCalendar = midnightToday;
-                 }
-                 gridCalendar.setAdapter(getMonthAdapter());
+                mCalendar.add(Calendar.YEAR, 1);
+                if (mCalendar.after(midnightToday)) {
+                    mCalendar = midnightToday;
+                }
+                gridCalendar.setAdapter(getMonthAdapter());
 
-                 updateMonthScroll();
-                 return true;
-             }
-         });
+                updateMonthScroll();
+                return true;
+            }
+        });
 
         LinearLayout ldate = new LinearLayout(ctx);
         ldate.setOrientation(LinearLayout.VERTICAL);

@@ -6,7 +6,7 @@ import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.Application;
 import android.app.DatePickerDialog;
-import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -27,13 +27,13 @@ import android.os.SystemClock;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -1009,6 +1009,10 @@ public class MeditationAssistant extends Application {
 
         getPrefs().registerOnSharedPreferenceChangeListener(sharedPrefslistener);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            createNotificationChannel();
+        }
+
         // Reset timer to default values
         if (!getPrefs().getBoolean("pref_rememberlasttimer", true)) {
             SharedPreferences.Editor editor = getPrefs().edit();
@@ -1141,6 +1145,7 @@ public class MeditationAssistant extends Application {
         Log.d("MeditationAssistant", "PAUSE: Un-paused.  Paused for " + String.valueOf(thispausetime) + " seconds (" + String.valueOf(pausetime) + " total)");
 
         ispaused = false;
+
         return thispausetime;
     }
 
@@ -1233,6 +1238,16 @@ public class MeditationAssistant extends Application {
         streakDifferenceDialog.show();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void createNotificationChannel() {
+        NotificationChannel channel = new NotificationChannel("session", getString(R.string.session), NotificationManager.IMPORTANCE_LOW);
+        channel.enableLights(false);
+        channel.enableVibration(false);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.createNotificationChannel(channel);
+    }
+
     public void showNotification() {
         if (!getPrefs().getBoolean("pref_notification", true)
                 || getTimeStartMeditate() < 1) {
@@ -1265,21 +1280,25 @@ public class MeditationAssistant extends Application {
             streaktext = String.valueOf(getMeditationStreak().get(0));
         }
 
-        Notification notification = new NotificationCompat.Builder(this)
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setOngoing(true)
                 .setSmallIcon(R.drawable.ic_notification)
-                .setContentTitle(getString(R.string.sessionInProgress))
+                .setContentTitle(getString(!ispaused ? R.string.sessionInProgress : R.string.sessionPaused))
                 .setContentText(getString(R.string.appName))
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setPriority(NotificationCompat.PRIORITY_LOW)
                 .setContentInfo(streaktext)
                 .setContentIntent(pIntent)
                 .addAction(R.drawable.ic_action_pause,
-                        getString(R.string.pause), pIntentPause)
+                        getString(!ispaused ? R.string.pause : R.string.resume), pIntentPause)
                 .addAction(R.drawable.ic_action_stop,
-                        getString(R.string.end), pIntentEnd).build();
+                        getString(R.string.end), pIntentEnd);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            notificationBuilder.setChannelId("session");
+        }
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.notify(0, notification);
+        notificationManager.notify(0, notificationBuilder.build());
     }
 
     public void showSessionDialog(final SessionSQL session, Activity activity) {
@@ -1866,7 +1885,7 @@ public class MeditationAssistant extends Application {
     }
 
     public ArrayList<Long> dateToSessionWindow(Calendar c) {
-        ArrayList<Long>sessionWindow = new ArrayList<Long>();
+        ArrayList<Long> sessionWindow = new ArrayList<Long>();
         ArrayList<Integer> streakbuffertime = getStreakBufferTime();
         Calendar sessionWindowCalendar = (Calendar) c.clone();
 
