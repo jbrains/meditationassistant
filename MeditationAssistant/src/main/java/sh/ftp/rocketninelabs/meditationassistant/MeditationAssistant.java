@@ -288,8 +288,12 @@ public class MeditationAssistant extends Application {
 
     public void restoreVolume() {
         if (previous_volume != null) {
-            AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-            mAudioManager.setStreamVolume(AudioManager.STREAM_SYSTEM, previous_volume, 0);
+            try {
+                AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+                mAudioManager.setStreamVolume(AudioManager.STREAM_SYSTEM, previous_volume, 0);
+            } catch (java.lang.SecurityException e) {
+                // Do nothing
+            }
             previous_volume = null;
         }
     }
@@ -365,7 +369,7 @@ public class MeditationAssistant extends Application {
 
     @SuppressLint("WrongConstant")
     public void unsetNotificationControl() {
-        if (previousRingerFilter >= 0 && (getPrefs().getString("pref_notificationcontrol", "").equals("priority") || getPrefs().getString("pref_notificationcontrol", "").equals("alarms")) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (previousRingerFilter > 0 && (getPrefs().getString("pref_notificationcontrol", "").equals("priority") || getPrefs().getString("pref_notificationcontrol", "").equals("alarms")) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!haveNotificationPermission()) {
                 return;
             }
