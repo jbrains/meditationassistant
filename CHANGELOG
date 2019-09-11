@@ -1,3 +1,6 @@
+1.5.6:
+- Sessions may now be imported from previous exports (CSV files)
+
 1.5.5:
 - Fixed add session dialog sometimes overwriting existing session when adding a new session
 - Fixed skipping session delay causing start sound to be played twice

@@ -9,12 +9,6 @@
 
     <CheckBoxPreference
         android:defaultValue="true"
-        android:key="pref_showstreak"
-        android:summary="@string/pref_showstreak_summary"
-        android:title="@string/pref_showstreak"/>
-
-    <CheckBoxPreference
-        android:defaultValue="true"
         android:key="pref_notification"
         android:summary="@string/pref_notification_summary"
         android:title="@string/pref_notification"/>
@@ -24,12 +18,6 @@
         android:key="pref_usetimepicker"
         android:summary="@string/pref_usetimepicker_summary"
         android:title="@string/pref_usetimepicker"/>
-
-    <sh.ftp.rocketninelabs.meditationassistant.TimePreference
-        android:defaultValue="4:00"
-        android:key="pref_meditationstreakbuffer"
-        android:title="@string/pref_meditationstreakbuffer"
-        app:is24hour="false"/>
 
     <ListPreference
         android:defaultValue="dim"
@@ -54,21 +42,5 @@
         android:key="pref_text_size"
         android:summary=""
         android:title="@string/pref_text_size"/>
-
-    <ListPreference
-        android:defaultValue="calendar"
-        android:entries="@array/progresstabs"
-        android:entryValues="@array/progresstabs_values"
-        android:key="pref_progresstab"
-        android:summary=""
-        android:title="@string/pref_progresstab"/>
-
-    <MultiSelectListPreference
-        android:entries="@array/mainbuttons"
-        android:entryValues="@array/mainbuttons_values"
-        android:defaultValue="@array/empty_array"
-        android:key="pref_mainbuttons"
-        android:summary=""
-        android:title="@string/pref_mainbuttons"/>
 
 </PreferenceScreen>

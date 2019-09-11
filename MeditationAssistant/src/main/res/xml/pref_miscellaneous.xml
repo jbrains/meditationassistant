@@ -8,6 +8,14 @@
         android:summary=""
         android:title="@string/pref_theme" />
 
+    <MultiSelectListPreference
+        android:entries="@array/mainbuttons"
+        android:entryValues="@array/mainbuttons_values"
+        android:defaultValue="@array/empty_array"
+        android:key="pref_mainbuttons"
+        android:summary=""
+        android:title="@string/pref_mainbuttons"/>
+
     <net.margaritov.preference.colorpicker.ColorPickerPreference
         alphaSlider="true"
         android:defaultValue="-16777216"

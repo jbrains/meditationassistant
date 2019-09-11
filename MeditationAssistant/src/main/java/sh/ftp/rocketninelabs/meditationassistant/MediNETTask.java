@@ -86,7 +86,7 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
                         postData.put("editstarted", String.valueOf(actionextranumber));
                         sessions.add(new SessionSQL(medinet.getSession().id, medinet.getSession().started, medinet.getSession().completed, medinet.getSession().length, medinet.getSession().message, (long) 1, medinet.getSession().streakday, medinet.getSession().modified));
                     } else if (getMeditationAssistant().db.getNumSessions() == 0) {
-                        getMeditationAssistant().longToast(getMeditationAssistant().getString(R.string.sessionsNotImported));
+                        getMeditationAssistant().longToast(getMeditationAssistant().getString(R.string.sessionsUpToDate));
 
                         return medinet;
                     } else {
@@ -308,7 +308,7 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
                                         sessuploaded), String.valueOf(sessuploaded))
                                 );
                             } else {
-                                getMeditationAssistant().longToast(getMeditationAssistant().getString(R.string.sessionsNotImported));
+                                getMeditationAssistant().longToast(getMeditationAssistant().getString(R.string.sessionsUpToDate));
                             }
                         }
                     } else if (action.equals("downloadsessions")) {
@@ -347,11 +347,11 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
 
                         if (sessimported > 0) {
                             getMeditationAssistant().longToast(String.format(getMeditationAssistant().getResources().getQuantityString(
-                                    R.plurals.sessionsImported, sessimported,
+                                    R.plurals.sessionsDownloaded, sessimported,
                                     sessimported), String.valueOf(sessimported))
                             );
                         } else {
-                            getMeditationAssistant().longToast(getMeditationAssistant().getString(R.string.sessionsNotImported));
+                            getMeditationAssistant().longToast(getMeditationAssistant().getString(R.string.sessionsUpToDate));
                         }
                     }
                 } catch (JSONException e) {

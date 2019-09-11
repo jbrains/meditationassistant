@@ -7,6 +7,10 @@
     <header
         android:fragment="sh.ftp.rocketninelabs.meditationassistant.SettingsActivity$MeditationPreferenceFragment"
         android:title="@string/meditation"/>
+    
+    <header
+        android:fragment="sh.ftp.rocketninelabs.meditationassistant.SettingsActivity$ProgressPreferenceFragment"
+        android:title="@string/progress"/>
 
     <header
         android:fragment="sh.ftp.rocketninelabs.meditationassistant.SettingsActivity$MediNETPreferenceFragment"

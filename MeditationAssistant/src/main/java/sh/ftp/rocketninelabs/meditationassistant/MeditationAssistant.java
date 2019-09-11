@@ -21,6 +21,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
@@ -37,7 +38,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.nononsenseapps.filepicker.FilePickerActivity;
+import com.nononsenseapps.filepicker.Utils;
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 
 import net.openid.appauth.AuthorizationRequest;
 import net.openid.appauth.AuthorizationService;
@@ -51,12 +58,17 @@ import org.acra.data.StringFormat;
 import org.acra.sender.HttpSender;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.URLEncoder;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,9 +76,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 
 @AcraCore(buildConfigClass = BuildConfig.class, reportFormat = StringFormat.KEY_VALUE_LIST)
 @AcraHttpSender(httpMethod = HttpSender.Method.POST, uri = "https://medinet.rocketnine.space/acra/acra.php")
@@ -81,6 +96,8 @@ public class MeditationAssistant extends Application {
 
     public static int REQUEST_FIT = 22;
     public static int MEDIA_DELAY = 1000;
+
+    public static int CSV_COLUMN_COUNT = 5;
 
     public boolean ispaused = false;
     public long pausestart = 0;
@@ -1799,8 +1816,8 @@ public class MeditationAssistant extends Application {
                                 }
                             }
                     )
-                    .setTitle(R.string.importsessionstitle)
-                    .setMessage(R.string.importsessionsmessage)
+                    .setTitle(R.string.downloadsessionstitle)
+                    .setMessage(R.string.downloadsessionsmessage)
                     .setIcon(
                             getMediNET().activity
                                     .getResources()
@@ -1818,10 +1835,308 @@ public class MeditationAssistant extends Application {
 
             return staleDataDialog;
         } else {
-            longToast(getString(R.string.importSessionsHint));
+            longToast(getString(R.string.downloadSessionsHint));
         }
 
         return null;
+    }
+
+    public void showFilePickerDialog(Activity activity, int resultCode, int mode) {
+        Intent i = new Intent(activity, FilePickerActivity.class);
+        i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false);
+        i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true);
+        i.putExtra(FilePickerActivity.EXTRA_MODE, mode);
+        i.putExtra(FilePickerActivity.EXTRA_START_PATH, Environment.getExternalStorageDirectory().getPath());
+        i.putExtra(FilePickerActivity.EXTRA_PATHS, mode);
+
+        activity.startActivityForResult(i, resultCode);
+    }
+
+    public void showImportSessionsDialog(Activity activity) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setIcon(
+                getResources()
+                        .getDrawable(
+                                getTheme()
+                                        .obtainStyledAttributes(
+                                                getMATheme(true),
+                                                new int[]{R.attr.actionIconForward}
+                                        )
+                                        .getResourceId(0, 0)
+                        )
+        )
+                .setTitle(getString(R.string.importsessions))
+                .setMessage(
+                        getString(R.string.importsessions_utc_or_local))
+                .setPositiveButton(getString(R.string.utc),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                showFilePickerDialog(activity, SettingsActivity.FILEPICKER_IMPORT_SESSIONS_UTC, FilePickerActivity.MODE_FILE);
+                            }
+                        })
+                .setNegativeButton(getString(R.string.local),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                showFilePickerDialog(activity, SettingsActivity.FILEPICKER_IMPORT_SESSIONS_LOCAL, FilePickerActivity.MODE_FILE);
+                            }
+                        }).show();
+    }
+
+    public void importSessions(Activity activity, Uri uri, boolean useLocalTimeZone) {
+        if (uri == null) {
+            return;
+        }
+
+        final Pattern lengthPattern = Pattern.compile("^[0-9]{1,2}:[0-9][0-9]$");
+
+        File file = Utils.getFileForUri(uri);
+        FileReader inputfile;
+        try {
+            inputfile = new FileReader(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return;
+        }
+        CSVReader reader = new CSVReader(inputfile);
+
+        long lengthHours, lengthMinutes;
+        Date startedDate, completedDate;
+        String[] lengthSplit;
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+        TimeZone tz;
+        if (useLocalTimeZone) {
+            Calendar cal = Calendar.getInstance();
+            tz = cal.getTimeZone();
+        } else {
+            tz = TimeZone.getTimeZone("UTC");
+        }
+        df.setTimeZone(tz);
+
+        ArrayList<SessionSQL> sessions = new ArrayList<SessionSQL>();
+        int existingSessions = 0;
+
+        try {
+            List<String[]> data = reader.readAll();
+            int i = 0;
+            boolean foundHeader = false;
+            for (String[] d : data) {
+                i++;
+                if (d.length != CSV_COLUMN_COUNT) {
+                    longToast("Invalid row on line #" + i + ": expected " + CSV_COLUMN_COUNT + " columns, found " + d.length);
+                    closeCSVReader(reader, inputfile);
+                    return;
+                } else if (d[0].trim().toLowerCase().equals("id")) {
+                    if (foundHeader) {
+                        longToast("Invalid row on line #" + i + ": header appears twice");
+                        closeCSVReader(reader, inputfile);
+                        return;
+                    }
+
+                    foundHeader = true;
+                    continue;
+                }
+
+                SessionSQL s = new SessionSQL();
+
+                try {
+                    if (!lengthPattern.matcher(d[1].trim()).matches()) {
+                        throw new Exception();
+                    }
+
+                    lengthSplit = d[1].trim().split(":");
+                    if (lengthSplit.length != 2) {
+                        throw new Exception();
+                    }
+
+                    lengthHours = Long.parseLong(lengthSplit[0]);
+                    lengthMinutes = Long.parseLong(lengthSplit[1]);
+
+                    if (lengthHours < 0 || lengthMinutes < 0 || lengthHours > 24 || lengthMinutes > 59) {
+                        throw new Exception();
+                    }
+
+                    s._length = (lengthHours * 3600) + (lengthMinutes * 60);
+                } catch (Exception e) {
+                    longToast("Invalid row on line #" + i + ": invalid session length");
+                    closeCSVReader(reader, inputfile);
+                    return;
+                }
+
+                try {
+                    if (d[2].trim().equals("")) {
+                        throw new Exception();
+                    }
+
+                    startedDate = df.parse(d[2].trim());
+                    s._started = startedDate.getTime() / 1000;
+                } catch (Exception e) {
+                    longToast("Invalid row on line #" + i + ": invalid session started date/time");
+                    closeCSVReader(reader, inputfile);
+                    return;
+                }
+
+                try {
+                    if (d[3].trim().equals("")) {
+                        throw new Exception();
+                    }
+
+                    completedDate = df.parse(d[3].trim());
+                    s._completed = completedDate.getTime() / 1000;
+                } catch (Exception e) {
+                    longToast("Invalid row on line #" + i + ": invalid session completed date/time");
+                    closeCSVReader(reader, inputfile);
+                    return;
+                }
+
+                s._message = d[4].trim();
+
+                boolean existing = false;
+                for (int searchStarted = 0; searchStarted <= 59; searchStarted++) {
+                    if (db.numSessionsByStarted(s._started + searchStarted) != 0) {
+                        existing = true;
+                        break;
+                    }
+                }
+
+                if (existing) {
+                    existingSessions++;
+                } else {
+                    sessions.add(s);
+                }
+            }
+
+            closeCSVReader(reader, inputfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (sessions.size() == 0) {
+            longToast(getString(R.string.sessionsUpToDate));
+            return;
+        }
+
+        AlertDialog sessionsImportedDialog = new AlertDialog.Builder(activity)
+                .setIcon(
+                        getResources().getDrawable(
+                                getTheme().obtainStyledAttributes(getMATheme(true),
+                                        new int[]{R.attr.actionIconForward})
+                                        .getResourceId(0, 0)
+                        )
+                )
+                .setTitle(getString(R.string.importsessions))
+                .setMessage(String.format(getString(R.string.importsessions_complete), existingSessions, sessions.size()))
+                .setPositiveButton(getString(R.string.wordimport), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface,
+                                        int which) {
+                        for (SessionSQL s : sessions) {
+                            db.addSession(s, (long) 0);
+                        }
+                        recalculateMeditationStreak(activity);
+
+                        dialogInterface.dismiss();
+                    }
+                })
+                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface,
+                                        int which) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .create();
+        sessionsImportedDialog.show();
+    }
+
+    private void closeCSVReader(CSVReader reader, FileReader file) {
+        try {
+            reader.close();
+        } catch (IOException e) {
+            // Do nothing
+        }
+
+        try {
+            file.close();
+        } catch (IOException e) {
+            // Do nothing
+        }
+    }
+
+    public void exportSessions(Activity activity, Uri uri) {
+        File file = Utils.getFileForUri(uri);
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            FileWriter outputfile = new FileWriter(file);
+            CSVWriter writer = new CSVWriter(outputfile);
+            List<String[]> data = new ArrayList<String[]>();
+
+            ArrayList<SessionSQL> sessions = db.getAllSessions();
+
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+            df.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+            data.add(new String[]{"ID", "Length", "Started", "Completed", "Message"});
+            for (SessionSQL s : sessions) {
+                data.add(new String[]{Long.toString(s._id), String.format(Locale.getDefault(), "%02d:%02d", TimeUnit.SECONDS.toHours(s._length), TimeUnit.SECONDS.toMinutes(s._length) % TimeUnit.HOURS.toMinutes(1)), df.format(s._started * 1000), df.format(s._completed * 1000), s._message});
+            }
+
+            writer.writeAll(data);
+            writer.close();
+        } catch (IOException e) {
+            longToast(getString(R.string.sessionExportFailed) + ": " + e.toString() + " - " + file);
+            Log.e("MeditationAssistant", "Error exporting sessions to " + file, e);
+            return;
+        }
+
+        View exp = LayoutInflater.from(activity).inflate(
+                R.layout.sessions_exported,
+                (ViewGroup) activity.findViewById(R.id.sessionsExported_root));
+
+        TextView txtSessionsExportedPath = (TextView) exp.findViewById(R.id.txtSessionsExportedPath);
+        txtSessionsExportedPath.setText(file.getPath());
+
+        AlertDialog sessionsExportedDialog = new AlertDialog.Builder(activity)
+                .setIcon(
+                        getResources().getDrawable(
+                                getTheme().obtainStyledAttributes(getMATheme(true),
+                                        new int[]{R.attr.actionIconSignOut})
+                                        .getResourceId(0, 0)
+                        )
+                )
+                .setTitle(getString(R.string.exportSessions))
+                .setView(exp)
+                .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface,
+                                        int which) {
+                        Uri selectedUri = Uri.parse(file.getParent());
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setDataAndType(selectedUri, "resource/folder");
+                        if (intent.resolveActivityInfo(getPackageManager(), 0) != null) {
+                            startActivity(intent);
+                        } else {
+                            longToast(getString(R.string.installFileManager));
+                        }
+
+                        dialogInterface.dismiss();
+                    }
+                })
+                .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface,
+                                        int which) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .create();
+        sessionsExportedDialog.show();
     }
 
     public void updateWidgets() {

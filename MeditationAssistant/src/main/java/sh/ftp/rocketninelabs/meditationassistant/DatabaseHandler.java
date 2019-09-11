@@ -3,6 +3,7 @@ package sh.ftp.rocketninelabs.meditationassistant;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -125,20 +126,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return unmarshalResult(db.rawQuery(selectQuery, null));
     }
 
-    public ArrayList<SessionSQL> getAllLocalSessions() {
-        String selectQuery = "SELECT  * FROM `" + TABLE_SESSIONS + "`";
-        return unmarshalResult(db.rawQuery(selectQuery, null));
-    }
-
     public int getNumSessions() {
-        String countQuery = "SELECT COUNT(*) FROM `" + TABLE_SESSIONS + "`";
-
-        Cursor cursor = db.rawQuery(countQuery, null);
-        cursor.moveToFirst();
-        int numsessions = cursor.getInt(0);
-        cursor.close();
-
-        return numsessions;
+        return (int) DatabaseUtils.queryNumEntries(db, TABLE_SESSIONS);
     }
 
     public int getTotalTimeSpentMeditating() {
@@ -154,13 +143,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     int numSessionsByDate(Calendar date) {
         ArrayList<Long> sessionWindow = getMeditationAssistant().dateToSessionWindow(date);
-        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM `" + TABLE_SESSIONS + "` WHERE `" + KEY_STARTED + "`>=? AND `" + KEY_STARTED + "`<?", new String[]{String.valueOf(sessionWindow.get(0)), String.valueOf(sessionWindow.get(1))});
+        return (int) DatabaseUtils.queryNumEntries(db, TABLE_SESSIONS, "started>=? AND started<?", new String[]{String.valueOf(sessionWindow.get(0)), String.valueOf(sessionWindow.get(1))});
+    }
 
-        cursor.moveToFirst();
-        int numsessions = cursor.getInt(0);
-        cursor.close();
-
-        return numsessions;
+    int numSessionsByStarted(long started) {
+        return (int) DatabaseUtils.queryNumEntries(db, TABLE_SESSIONS, "started=?", new String[]{String.valueOf(started)});
     }
 
     public ArrayList<SessionSQL> getSessionsByDate(Calendar date) {

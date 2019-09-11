@@ -2,8 +2,6 @@ package sh.ftp.rocketninelabs.meditationassistant;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -12,8 +10,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,20 +20,13 @@ import android.widget.ArrayAdapter;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.TimeZone;
-import java.util.concurrent.TimeUnit;
 
 public class ProgressActivity extends FragmentActivity {
     public SparseArray<SessionSQL> sessions_map = new SparseArray<SessionSQL>();
@@ -248,77 +237,6 @@ public class ProgressActivity extends FragmentActivity {
         int i = item.getItemId();
         if (i == android.R.id.home) {
             NavUtils.navigateUpFromSameTask(this);
-        } else if (i == R.id.exportSessions) {
-            StringBuilder data = new StringBuilder();
-            ArrayList<SessionSQL> sessions = getMeditationAssistant().db.getAllSessions();
-
-            Calendar cal = Calendar.getInstance();
-            TimeZone tz = cal.getTimeZone();//get your local time zone.
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
-            df.setTimeZone(tz);
-
-            data.append("\"").append(TextUtils.join("\",\"", Arrays.asList("ID", "Length", "Started", "Completed", "Message"))).append("\",\n");
-            for (SessionSQL s : sessions) {
-                data.append("\"").append(TextUtils.join("\",\"", Arrays.asList(Long.toString(s._id), String.format(Locale.getDefault(), "%02d:%02d", TimeUnit.SECONDS.toHours(s._length), TimeUnit.SECONDS.toMinutes(s._length) % TimeUnit.HOURS.toMinutes(1)), df.format(s._started * 1000), df.format(s._completed * 1000), s._message.replace("\n", " ")))).append("\",\n");
-            }
-
-            File file = new File(getExternalFilesDir(null), "meditationassistant-sessions.csv");
-            Boolean success = false;
-            try {
-                OutputStream outf = new FileOutputStream(file);
-                outf.write(data.toString().getBytes());
-                outf.close();
-                success = true;
-            } catch (IOException e) {
-                getMeditationAssistant().longToast(getString(R.string.sessionExportFailed) + ": " + e.toString() + " - " + file);
-                Log.e("MeditationAssistant", "Error exporting sessions to " + file, e);
-            }
-
-            if (success) {
-                View exp = LayoutInflater.from(this).inflate(
-                        R.layout.sessions_exported,
-                        (ViewGroup) findViewById(R.id.sessionsExported_root));
-
-                TextView txtSessionsExportedPath = (TextView) exp.findViewById(R.id.txtSessionsExportedPath);
-                txtSessionsExportedPath.setText(file.getPath());
-
-                sessionsExportedDialog = new AlertDialog.Builder(this)
-                        .setIcon(
-                                getResources().getDrawable(
-                                        getMeditationAssistant().getTheme().obtainStyledAttributes(getMeditationAssistant().getMATheme(true),
-                                                new int[]{R.attr.actionIconForward})
-                                                .getResourceId(0, 0)
-                                )
-                        )
-                        .setTitle(getString(R.string.exportSessions))
-                        .setView(exp)
-                        .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface,
-                                                int which) {
-                                Uri selectedUri = Uri.parse(file.getParent());
-                                Intent intent = new Intent(Intent.ACTION_VIEW);
-                                intent.setDataAndType(selectedUri, "resource/folder");
-                                if (intent.resolveActivityInfo(getPackageManager(), 0) != null) {
-                                    startActivity(intent);
-                                } else {
-                                    getMeditationAssistant().longToast(getString(R.string.installFileManager));
-                                }
-
-                                dialogInterface.dismiss();
-                            }
-                        })
-                        .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface,
-                                                int which) {
-                                dialogInterface.dismiss();
-                            }
-                        })
-                        .create();
-
-                sessionsExportedDialog.show();
-            }
         } else if (i == R.id.addSession) {
             getMeditationAssistant().showSessionDialog(new SessionSQL(), ProgressActivity.this);
 

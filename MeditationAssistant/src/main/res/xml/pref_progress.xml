@@ -1,0 +1,36 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="pref_showstreak"
+        android:summary="@string/pref_showstreak_summary"
+        android:title="@string/pref_showstreak"/>
+
+    <sh.ftp.rocketninelabs.meditationassistant.TimePreference
+        android:defaultValue="4:00"
+        android:key="pref_meditationstreakbuffer"
+        android:title="@string/pref_meditationstreakbuffer"
+        app:is24hour="false"/>
+
+    <ListPreference
+        android:defaultValue="calendar"
+        android:entries="@array/progresstabs"
+        android:entryValues="@array/progresstabs_values"
+        android:key="pref_progresstab"
+        android:summary=""
+        android:title="@string/pref_progresstab"/>
+
+    <Preference
+        android:icon="?attr/actionIconForward"
+        android:key="importsessions"
+        android:summary="@string/importsessions_summary"
+        android:title="@string/importsessions"/>
+
+    <Preference
+        android:icon="?attr/actionIconSignOut"
+        android:key="exportsessions"
+        android:summary="@string/exportsessions_summary"
+        android:title="@string/exportsessions"/>
+
+</PreferenceScreen>

@@ -22,15 +22,15 @@
         android:title="@string/pref_askdismiss"/>
 
     <Preference
-        android:icon="?attr/actionIconUpCloud"
-        android:key="uploadsessions"
-        android:summary="@string/uploadsessions_summary"
-        android:title="@string/uploadsessions"/>
-
-    <Preference
         android:icon="?attr/actionIconDownCloud"
         android:key="downloadsessions"
         android:summary="@string/downloadsessions_summary"
         android:title="@string/downloadsessions"/>
+
+    <Preference
+        android:icon="?attr/actionIconUpCloud"
+        android:key="uploadsessions"
+        android:summary="@string/uploadsessions_summary"
+        android:title="@string/uploadsessions"/>
 
 </PreferenceScreen>
