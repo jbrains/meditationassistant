@@ -131,7 +131,7 @@ public class DailyReminderReceiver extends BroadcastReceiver {
     private void cancelReminder(Context context) {
         if (getMeditationAssistant().reminderPendingIntent != null) {
             try {
-                getMeditationAssistant().reminderAlarmManager.cancel(getMeditationAssistant().reminderPendingIntent);
+                getMeditationAssistant().getAlarmManager().cancel(getMeditationAssistant().reminderPendingIntent);
             } catch (Exception e) {
                 Log.e("MeditationAssistant", "AlarmManager update was not canceled. " + e.toString());
             }

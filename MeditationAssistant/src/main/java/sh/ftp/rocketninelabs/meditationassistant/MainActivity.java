@@ -91,9 +91,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     private Runnable screenOffRunnable = null;
     private AlarmManager am = null;
     private PendingIntent pendingintent = null;
-    private AlarmManager am_delay = null;
     private PendingIntent pendingintent_delay = null;
-    private AlarmManager am_interval = null;
     private PendingIntent pendingintent_interval = null;
     private Runnable intervalRunnable = new Runnable() {
         @Override
@@ -144,7 +142,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                         pendingintent_interval = PendingIntent.getActivity(
                                 getApplicationContext(), ID_INTERVAL,
                                 intent_interval, PendingIntent.FLAG_CANCEL_CURRENT);
-                        am_interval = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                         getMeditationAssistant().setAlarm(true, cal.getTimeInMillis(), pendingintent_interval);
 
                         handler.postDelayed(this, interval * 1000);
@@ -181,6 +178,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         getMeditationAssistant().utility.initializeTracker(this);
 
         handler = new Handler();
+
+        am = getMeditationAssistant().getAlarmManager();
 
         lastKey = getMeditationAssistant().getPrefs().getString("key", "");
 
@@ -1140,13 +1139,12 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                 handler.removeCallbacks(meditateRunnable);
                 handler.removeCallbacks(intervalRunnable);
                 skipDelay = true;
-                if (am_delay != null && pendingintent_delay != null) {
-                    am_delay.cancel(pendingintent_delay);
+                if (pendingintent_delay != null) {
+                    am.cancel(pendingintent_delay);
                 }
                 handler.postDelayed(meditateRunnable, 50);
             } else { // Currently in meditation phase
                 if (!getMeditationAssistant().ispaused) { // In progress, pause the session
-                    am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                     if (pendingintent != null) {
                         am.cancel(pendingintent);
                     }
@@ -1399,7 +1397,9 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         getWindow().setAttributes(params);
 
         AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        getMeditationAssistant().previous_volume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        if (getMeditationAssistant().previous_volume == null) {
+            getMeditationAssistant().previous_volume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        }
         mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, (int) ((mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC) * getMeditationAssistant().getPrefs().getInt("pref_sessionvolume", 50) * 0.1) / 10), 0);
 
         if (delay > 0) {
@@ -1487,16 +1487,16 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
         setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
 
-        if (am != null && pendingintent != null) {
+        if (pendingintent != null) {
             am.cancel(pendingintent);
             Log.d("MeditationAssistant", "Cancelled main wake alarm");
         }
-        if (am_delay != null && pendingintent_delay != null) {
-            am_delay.cancel(pendingintent_delay);
+        if (pendingintent_delay != null) {
+            am.cancel(pendingintent_delay);
             Log.d("MeditationAssistant", "Cancelled delay alarm");
         }
-        if (am_interval != null && pendingintent_interval != null) {
-            am_interval.cancel(pendingintent_interval);
+        if (pendingintent_interval != null) {
+            am.cancel(pendingintent_interval);
             Log.d("MeditationAssistant", "Cancelled interval alarm");
         }
 

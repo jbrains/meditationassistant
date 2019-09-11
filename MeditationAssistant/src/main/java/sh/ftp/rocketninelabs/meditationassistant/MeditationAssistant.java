@@ -107,7 +107,6 @@ public class MeditationAssistant extends Application {
     public String pendingNotificationAction = "";
     public Boolean asktorate = false;
     public DatabaseHandler db = null;
-    public AlarmManager reminderAlarmManager = null;
     public PendingIntent reminderPendingIntent = null;
     public String theme = null;
     public String marketName = null;
@@ -307,7 +306,7 @@ public class MeditationAssistant extends Application {
         if (previous_volume != null) {
             try {
                 AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-                mAudioManager.setStreamVolume(AudioManager.STREAM_SYSTEM, previous_volume, 0);
+                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, previous_volume, 0);
             } catch (java.lang.SecurityException e) {
                 // Do nothing
             }
@@ -332,19 +331,23 @@ public class MeditationAssistant extends Application {
         }
     }
 
-    public void setAlarm(boolean allowAlarmClock, long triggerAtMillis, PendingIntent pendingIntent) {
+    public AlarmManager getAlarmManager() {
         if (am == null) {
             am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         }
 
+        return am;
+    }
+
+    public void setAlarm(boolean allowAlarmClock, long triggerAtMillis, PendingIntent pendingIntent) {
         if (Build.VERSION.SDK_INT >= 23) {
-            am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+            getAlarmManager().setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
         } else if (Build.VERSION.SDK_INT >= 21 && allowAlarmClock) {
-            am.setAlarmClock(new AlarmManager.AlarmClockInfo(triggerAtMillis, PendingIntent.getActivity(this, 0, new Intent(getApplicationContext(), MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT)), pendingIntent);
+            getAlarmManager().setAlarmClock(new AlarmManager.AlarmClockInfo(triggerAtMillis, PendingIntent.getActivity(this, 0, new Intent(getApplicationContext(), MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT)), pendingIntent);
         } else if (Build.VERSION.SDK_INT >= 19) {
-            am.setExact(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+            getAlarmManager().setExact(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
         } else {
-            am.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
+            getAlarmManager().set(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
         }
     }
 
@@ -1063,8 +1066,6 @@ public class MeditationAssistant extends Application {
         db = DatabaseHandler.getInstance(getApplicationContext());
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            reminderAlarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-
             /* Send the daily notification updated intent just in case the receiver hasn't been called yet */
             Log.d("MeditationAssistant", "Sending initial daily notification updated intent");
             Intent intent = new Intent();
