@@ -1,5 +1,6 @@
 1.5.6:
 - Sessions may now be imported from previous exports (CSV files)
+- Advertisements have been removed
 
 1.5.5:
 - Fixed add session dialog sometimes overwriting existing session when adding a new session

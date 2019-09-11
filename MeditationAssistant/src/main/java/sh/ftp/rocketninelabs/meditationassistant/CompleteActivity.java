@@ -81,8 +81,6 @@ public class CompleteActivity extends Activity {
         getMeditationAssistant().unsetNotificationControl();
         getMeditationAssistant().hideNotification(); // Called twice because it seems to help
 
-        getMeditationAssistant().utility_ads.loadAd(this);
-
         EditText editSessionMessage = (EditText) findViewById(R.id.editSessionMessage);
         if (editSessionMessage.getText().toString().equals("")
                 && getMeditationAssistant().getPrefs().getBoolean("pref_remembermessage", false)) {
@@ -167,7 +165,6 @@ public class CompleteActivity extends Activity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        getMeditationAssistant().utility_ads.loadAd(this);
     }
 
     @Override
@@ -236,20 +233,17 @@ public class CompleteActivity extends Activity {
 
     @Override
     public void onDestroy() {
-        getMeditationAssistant().utility_ads.destroyAd(this);
         super.onDestroy();
     }
 
     @Override
     public void onPause() {
-        getMeditationAssistant().utility_ads.pauseAd(this);
         super.onPause();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getMeditationAssistant().utility_ads.resumeAd(this);
     }
 
     @Override

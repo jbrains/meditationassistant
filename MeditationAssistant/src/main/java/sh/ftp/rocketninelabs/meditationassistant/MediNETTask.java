@@ -46,7 +46,10 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
         TimeZone tz = TimeZone.getDefault();
         Date now = new Date();
         int offsetFromUTC = tz.getOffset(now.getTime());
-        String appVersion = getMeditationAssistant().getMAAppVersion() + BuildConfig.FLAVOR;
+        String appVersion = getMeditationAssistant().getMAAppVersion();
+        if (BuildConfig.FLAVOR != "free") {
+            appVersion += BuildConfig.FLAVOR;
+        }
 
         if (this.nextURL == null) {
             this.nextURL = MeditationAssistant.URL_MEDINET + "/om?v="

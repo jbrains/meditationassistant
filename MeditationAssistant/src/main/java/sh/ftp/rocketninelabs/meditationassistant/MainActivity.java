@@ -391,8 +391,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             getMeditationAssistant().getMediNET().updated();
         }
 
-        getMeditationAssistant().utility_ads.loadAd(this);
-
         onNewIntent(getIntent());
 
         Object language = Locale.getDefault().getLanguage();
@@ -457,6 +455,11 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         }
 
         getMeditationAssistant().checkNotificationControl(MainActivity.this, "");
+
+        if (getMeditationAssistant().asktodonate) {
+            getMeditationAssistant().asktodonate = false;
+            getMeditationAssistant().askToDonate(MainActivity.this);
+        }
 
         // TODO: Implement
         //getMeditationAssistant().setupGoogleClient(MainActivity.this);
@@ -1585,8 +1588,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             getMeditationAssistant().showNotification();
         }
 
-        getMeditationAssistant().utility_ads.pauseAd(this);
-
         getMeditationAssistant().setScreenOff(true);
         getMeditationAssistant().getPrefs().unregisterOnSharedPreferenceChangeListener(sharedPrefslistener);
 
@@ -1663,8 +1664,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         showNextTutorial();
 
         super.onResume();
-
-        getMeditationAssistant().utility_ads.resumeAd(this);
     }
 
     @Override
@@ -1689,8 +1688,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         if (!getMeditationAssistant().getPrefs().getBoolean("pref_autosignin", false) && !getMeditationAssistant().getPrefs().getString("key", "").equals("")) {
             getMeditationAssistant().getPrefs().edit().putString("key", "").apply();
         }
-
-        getMeditationAssistant().utility_ads.destroyAd(this);
 
         super.onDestroy();
     }
@@ -2205,7 +2202,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         if (sv != null && sv.isShown()) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
-        getMeditationAssistant().utility_ads.loadAd(this);
     }
 
     @Override

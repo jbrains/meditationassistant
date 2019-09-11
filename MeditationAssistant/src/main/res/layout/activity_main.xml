@@ -30,13 +30,6 @@
                     android:gravity="top"
                     android:orientation="vertical">
 
-                    <RelativeLayout
-                        android:id="@+id/adMain"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content">
-
-                    </RelativeLayout>
-
                     <TextView
                         android:id="@+id/txtTimer"
                         android:layout_width="fill_parent"

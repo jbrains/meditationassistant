@@ -1,8 +1,6 @@
 package sh.ftp.rocketninelabs.meditationassistant;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -13,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -35,14 +32,7 @@ public class AboutActivity extends Activity {
         TextView txtAboutAppName = (TextView) findViewById(R.id.txtAboutAppName);
         TextView txtAboutAppVersion = (TextView) findViewById(R.id.txtAboutAppVersion);
 
-        if (BuildConfig.FLAVOR.equals("free")) {
-            txtAboutAppName.setText(getString(R.string.appName));
-
-            Button btnDonate = (Button) findViewById(R.id.btnDonate);
-            btnDonate.setText(getString(R.string.removeAds));
-        } else {
-            txtAboutAppName.setText(getString(R.string.appNameShort));
-        }
+        txtAboutAppName.setText(getString(R.string.appNameShort));
 
         PackageInfo pInfo;
         try {
@@ -139,59 +129,7 @@ public class AboutActivity extends Activity {
     }
 
     public void openDonate(View view) {
-        if (BuildConfig.FLAVOR.equals("free")) {
-            AlertDialog removeAdsDialog = new AlertDialog.Builder(this)
-                    .setPositiveButton(R.string.ok,
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog,
-                                                    int id) {
-                                    if (getMeditationAssistant().getMarketName().equals("bb")) {
-                                        startActivity(Intent.createChooser(new Intent(Intent.ACTION_VIEW, Uri.parse("https://appworld.blackberry.com/webstore/content/59939922/")), getString(R.string.openWith)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                                    } else if (getMeditationAssistant().getMarketName().equals("google")) {
-                                        startActivity(Intent.createChooser(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=sh.ftp.rocketninelabs.meditationassistant.full")), getString(R.string.openWith)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                                    } else if (getMeditationAssistant().getMarketName().equals("amazon")) {
-                                        startActivity(Intent.createChooser(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.amazon.com/gp/mas/dl/android?p=sh.ftp.rocketninelabs.meditationassistant.full")), getString(R.string.openWith)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                                    }
-                                }
-                            }
-                    )
-                    .setNegativeButton(getString(R.string.cancel),
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog,
-                                                    int id) {
-
-                                }
-                            })
-                    .setTitle(getString(R.string.removeAds))
-                    .setMessage(getString(R.string.removeAdsHelp))
-                    .setIcon(getResources()
-                            .getDrawable(
-                                    getTheme()
-                                            .obtainStyledAttributes(
-                                                    getMeditationAssistant().getMATheme(true),
-                                                    new int[]{R.attr.actionIconInfo})
-                                            .getResourceId(0, 0)
-                            )
-                    ).create();
-
-            removeAdsDialog.show();
-        } else {
-            AlertDialog donateDialog = new AlertDialog.Builder(this)
-                    .setPositiveButton("Liberapay",
-                            (dialog, id) -> startActivity(new Intent(
-                                    Intent.ACTION_VIEW,
-                                    Uri.parse("https://liberapay.com/~968545")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)))
-                    .setNegativeButton("PayPal",
-                            (dialog, id) -> startActivity(new Intent(
-                                    Intent.ACTION_VIEW,
-                                    Uri.parse(MeditationAssistant.URL_ROCKETNINELABS + "/donate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)))
-                    .setTitle(getString(R.string.donate))
-                    .create();
-
-            donateDialog.show();
-        }
+        getMeditationAssistant().showDonationDialog(AboutActivity.this);
     }
 
     public MeditationAssistant getMeditationAssistant() {

@@ -256,8 +256,6 @@ public class MediNETActivity extends Activity {
                     .getStringExtra("page").equals("lgpl"))) {
                 goTo(getIntent().getStringExtra("page"));
             }
-        } else {
-            getMeditationAssistant().utility_ads.loadAd(this);
         }
     }
 
@@ -283,8 +281,6 @@ public class MediNETActivity extends Activity {
         setContentView(R.layout.activity_medinet);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        getMeditationAssistant().utility_ads.loadAd(this);
-
         getMeditationAssistant().utility.initializeTracker(this);
 
         initUI(true);
@@ -307,8 +303,6 @@ public class MediNETActivity extends Activity {
             }
             getMeditationAssistant().getMediNET().updated();
         }
-
-        getMeditationAssistant().utility_ads.destroyAd(this);
 
         super.onDestroy();
     }
@@ -365,7 +359,6 @@ public class MediNETActivity extends Activity {
 
     @Override
     protected void onPause() {
-        getMeditationAssistant().utility_ads.pauseAd(this);
         super.onPause();
     }
 
@@ -392,7 +385,6 @@ public class MediNETActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        getMeditationAssistant().utility_ads.resumeAd(this);
     }
 
     @Override

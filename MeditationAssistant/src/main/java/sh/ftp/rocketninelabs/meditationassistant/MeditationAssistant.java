@@ -106,12 +106,12 @@ public class MeditationAssistant extends Application {
     public int previousRingerMode = -1;
     public String pendingNotificationAction = "";
     public Boolean asktorate = false;
+    public Boolean asktodonate = false;
     public DatabaseHandler db = null;
     public PendingIntent reminderPendingIntent = null;
     public String theme = null;
     public String marketName = null;
     public UtilityMA utility = new UtilityMA();
-    public UtilityAdsMA utility_ads = new UtilityAdsMA();
     public Integer previous_volume = null;
     private String appVersion = null;
     private long timeToStopMeditate = 0;
@@ -1024,6 +1024,12 @@ public class MeditationAssistant extends Application {
         CookieHandler.setDefault(cookieManager);
 
         Integer applaunches = getPrefs().getInt("applaunches", 0) + 1;
+        if (applaunches == 1) {
+            getPrefs().edit().putBoolean("askedtodonate156", true).apply();
+        } else if (!getPrefs().getBoolean("askedtodonate156", false)) {
+            asktodonate = true;
+            getPrefs().edit().putBoolean("askedtodonate156", true).apply();
+        }
         getPrefs().edit().putInt("applaunches", applaunches).apply();
 
         Log.d("MeditationAssistant",
@@ -1220,6 +1226,23 @@ public class MeditationAssistant extends Application {
         return null;
     }
 
+    public void showDonationDialog(Activity activity) {
+        AlertDialog donateDialog = new AlertDialog.Builder(activity)
+                .setTitle(getString(R.string.donate))
+                .setMessage(R.string.chooseDonationMethod)
+                .setPositiveButton("Liberapay",
+                        (dialog, id) -> startActivity(new Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse("https://liberapay.com/~968545")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)))
+                .setNegativeButton("PayPal",
+                        (dialog, id) -> startActivity(new Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse(MeditationAssistant.URL_ROCKETNINELABS + "/donate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)))
+                .create();
+
+        donateDialog.show();
+    }
+
     public void showStreakDifferenceWarning(int oldstreak, int newstreak, boolean twodays, Activity activity) {
         try {
             Looper.prepare();
@@ -1306,7 +1329,7 @@ public class MeditationAssistant extends Application {
                 .setOngoing(true)
                 .setSmallIcon(R.drawable.ic_notification)
                 .setContentTitle(getString(!ispaused ? R.string.sessionInProgress : R.string.sessionPaused))
-                .setContentText(getString(R.string.appName))
+                .setContentText(getString(R.string.appNameShort))
                 .setPriority(NotificationCompat.PRIORITY_LOW)
                 .setContentInfo(streaktext)
                 .setContentIntent(pIntent)
@@ -1851,6 +1874,37 @@ public class MeditationAssistant extends Application {
         i.putExtra(FilePickerActivity.EXTRA_PATHS, mode);
 
         activity.startActivityForResult(i, resultCode);
+    }
+
+    public void askToDonate(Activity activity) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setIcon(
+                getResources()
+                        .getDrawable(
+                                getTheme()
+                                        .obtainStyledAttributes(
+                                                getMATheme(true),
+                                                new int[]{R.attr.actionIconInfo}
+                                        )
+                                        .getResourceId(0, 0)
+                        )
+        )
+                .setTitle(getString(R.string.announcement))
+                .setMessage(
+                        getString(R.string.donate156))
+                .setPositiveButton(getString(R.string.donate),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                showDonationDialog(activity);
+                            }
+                        })
+                .setNegativeButton(getString(R.string.dismiss),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        }).show();
     }
 
     public void showImportSessionsDialog(Activity activity) {

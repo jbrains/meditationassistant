@@ -8,8 +8,8 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
 
-        versionCode 155
-        versionName "1.5.5"
+        versionCode 156
+        versionName "1.5.6"
 
         applicationId "sh.ftp.rocketninelabs.meditationassistant"
         manifestPlaceholders = [
@@ -97,7 +97,6 @@ dependencies {
     fullImplementation 'com.google.android.gms:play-services-appinvite:16.1.1'
     freeImplementation 'com.google.android.gms:play-services-fitness:16.0.1'
     fullImplementation 'com.google.android.gms:play-services-fitness:16.0.1'
-    freeImplementation 'com.google.android.gms:play-services-ads:17.2.0'
     //noinspection GradleDynamicVersion
     implementation 'ch.acra:acra-http:5.3.0'
     implementation 'com.github.amlcurran.showcaseview:library:5.4.3'

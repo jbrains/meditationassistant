@@ -8,42 +8,6 @@
             android:name="com.google.android.backup.api_key"
             android:value="AEdPqrEAAAAIAUEb3SC2bBJt6pLanNwm7yB1Qy2WFS_nm7pHuw" />
 
-        <!-- Widgets -->
-        <!--
-        <receiver
-            android:name=".MeditationProvider1"
-            android:label="@string/widget1x1" >
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_1" />
-        </receiver>-->
-        <receiver
-            android:name=".MeditationProvider2"
-            android:label="@string/widget2x1">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_2" />
-        </receiver>
-        <receiver
-            android:name=".MeditationProvider3"
-            android:label="@string/widget3x1">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_3" />
-        </receiver>
-
     </application>
 
 </manifest>

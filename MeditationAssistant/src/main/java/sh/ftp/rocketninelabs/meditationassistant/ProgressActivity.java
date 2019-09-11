@@ -59,8 +59,6 @@ public class ProgressActivity extends FragmentActivity {
         setContentView(R.layout.activity_progress);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        getMeditationAssistant().utility_ads.loadAd(this);
-
         mViewPager = (ViewPager) findViewById(R.id.pager);
 
         mPagerAdapter = new ProgressPagerAdapter(
@@ -260,19 +258,16 @@ public class ProgressActivity extends FragmentActivity {
 
     @Override
     public void onPause() {
-        getMeditationAssistant().utility_ads.pauseAd(this);
         super.onPause();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getMeditationAssistant().utility_ads.resumeAd(this);
     }
 
     @Override
     public void onDestroy() {
-        getMeditationAssistant().utility_ads.destroyAd(this);
         super.onDestroy();
     }
 

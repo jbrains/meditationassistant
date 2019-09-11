@@ -14,4 +14,6 @@
     <!-- @hide DO NOT TRANSLATE. Separator between the hour and minute elements in a TimePicker widget -->
     <string name="time_picker_separator">:</string>
 
+    <string name="donate156">Advertisements have been removed from the application.\n\nIf you would like to support the continued development of Meditation Assistant, please consider donating.\n\nThis dialog will not appear again.</string>
+
 </resources>

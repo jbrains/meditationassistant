@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="appName">Meditation Assistant Free</string>
     <string name="appNameShort">Meditation Assistant</string>
     <string name="about">About</string>
     <string name="yes">Yes</string>
@@ -67,8 +66,7 @@
     <string name="version">Version %s</string>
     <string name="translate">Translate</string>
     <string name="donate">Donate</string>
-    <string name="removeAds">Remove ads</string>
-    <string name="removeAdsHelp">The full version of Meditation Assistant is a separate application.\n\nTo keep your existing sessions, sign in to MediNET and tap "Upload sessions" in the Settings window.\n\nOpen the full version and sign in to MediNET once more, then tap "Import".</string>
+    <string name="chooseDonationMethod">Please choose how you would like to donate.\n\nLiberapay is preferred by the developer and supports more countries and currencies.</string>
     <string name="howToMeditate">How to Meditate</string>
     <string name="share">Share</string>
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
@@ -276,13 +274,10 @@
     <string name="signOutOfMediNET">Sign out of MediNET</string>
     <string name="signOutOfMediNETConfirmTitle">Sign out of MediNET?</string>
     <string name="rateMeditationAssistant">Rate Meditation Assistant</string>
-    <string name="rateMeditationAssistantText">"If you have found this application beneficial to your meditation practice, would you please add a rating\?
+    <string name="rateMeditationAssistantText">If you have found this application beneficial to your meditation practice, would you please add a rating?
 \n
-\nThe paid version of this app contains no ads and features home screen widgets.  Please consider purchasing it if you are able to.
-\n
-\nThis dialog will not appear again."</string>
-    <string name="translateMeditationAssistantText">This one time you are asked to rate the app :)
-\nConsider the paid version has widgets, and no ads.</string>
+\nThis dialog will not appear again.</string>
+    <string name="translateMeditationAssistantText">Are you interested in assisting with translating Meditation Assistant?</string>
     <!-- Widgets -->
     <string name="widget1x1" tools:ignore="UnusedResources">Meditation Assistant 1x1</string>
     <string name="widget2x1" tools:ignore="UnusedResources">Meditation Assistant 2x1</string>

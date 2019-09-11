@@ -148,14 +148,6 @@
                             android:textAppearance="?android:attr/textAppearanceSmall"/>
                     </LinearLayout>
 
-                    <RelativeLayout
-                        android:id="@+id/adComplete"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/layLowerSessionComplete">
-
-                    </RelativeLayout>
-
                 </RelativeLayout>
             </RelativeLayout>
         </RelativeLayout>

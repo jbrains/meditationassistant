@@ -3,74 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="sh.ftp.rocketninelabs.meditationassistant">
 
-    <uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE"
-        tools:node="replace" />
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        tools:node="replace" />
-    <uses-permission
-        android:name="android.permission.WAKE_LOCK"
-        tools:node="replace" />
-    <uses-permission
-        android:name="android.permission.INTERNET"
-        tools:node="replace" />
-    <uses-permission
-        android:name="android.permission.ACCESS_NETWORK_STATE"
-        tools:node="replace" />
-    <uses-permission
-        android:name="android.permission.ACCESS_NOTIFICATION_POLICY"
-        tools:node="replace" />
-    <uses-permission
-        android:name="android.permission.VIBRATE"
-        tools:node="replace" />
-    <uses-permission
-        android:name="android.permission.RECEIVE_BOOT_COMPLETED"
-        tools:node="replace" />
-
     <application
         android:name="sh.ftp.rocketninelabs.meditationassistant.MeditationAssistant"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/appName"
+        android:label="@string/appNameShort"
         android:theme="@style/MeditationDarkTheme">
 
         <!-- Services -->
-        <service android:name="sh.ftp.rocketninelabs.meditationassistant.WidgetService"></service>
-
-        <!-- Receivers -->
-        <receiver
-            android:name="sh.ftp.rocketninelabs.meditationassistant.DailyReminderReceiver"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="sh.ftp.rocketninelabs.meditationassistant.DAILY_NOTIFICATION"></action>
-                <action android:name="sh.ftp.rocketninelabs.meditationassistant.DAILY_NOTIFICATION_UPDATED"></action>
-                <action android:name="android.intent.action.EXTERNAL_APPLICATIONS_AVAILABLE" />
-                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REPLACED" />
-                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-                <action android:name="android.intent.action.MY_PACKAGE_UNSUSPENDED" />
-                <data
-                    android:path="${applicationId}"
-                    android:scheme="package" />
-            </intent-filter>
-        </receiver>
-
-        <!-- Providers -->
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="${applicationId}.provider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/nnf_provider_paths" />
-        </provider>
-
-        <!-- Activities -->
         <activity
             android:name="sh.ftp.rocketninelabs.meditationassistant.MainActivity"
             android:configChanges="keyboard|keyboardHidden|screenSize|orientation"
@@ -84,6 +25,8 @@
                 <action android:name="sh.ftp.rocketninelabs.meditationassistant.ALARM"></action>
             </intent-filter>
         </activity>
+
+        <!-- Receivers -->
         <activity
             android:name="sh.ftp.rocketninelabs.meditationassistant.SettingsActivity"
             android:configChanges="keyboard|keyboardHidden|screenSize|orientation"
@@ -95,6 +38,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="sh.ftp.rocketninelabs.meditationassistant.MainActivity" />
         </activity>
+
+        <!-- Providers -->
         <activity
             android:name="sh.ftp.rocketninelabs.meditationassistant.AuthResultActivity"
             android:configChanges="keyboard|keyboardHidden|screenSize|orientation"
@@ -104,6 +49,20 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="sh.ftp.rocketninelabs.meditationassistant.MainActivity" />
         </activity>
+
+        <!-- Widgets -->
+        <!--
+        <receiver
+            android:name=".MeditationProvider1"
+            android:label="@string/widget1x1" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_1" />
+        </receiver>-->
         <activity
             android:name="sh.ftp.rocketninelabs.meditationassistant.MediNETActivity"
             android:configChanges="keyboard|keyboardHidden|screenSize|orientation"
@@ -121,6 +80,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="sh.ftp.rocketninelabs.meditationassistant.MainActivity" />
         </activity>
+
+        <!-- Activities -->
         <activity
             android:name="sh.ftp.rocketninelabs.meditationassistant.AboutActivity"
             android:configChanges="keyboard|keyboardHidden|screenSize|orientation"
@@ -146,6 +107,82 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/nnf_provider_paths" />
+        </provider>
+        <receiver
+            android:name="sh.ftp.rocketninelabs.meditationassistant.DailyReminderReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="sh.ftp.rocketninelabs.meditationassistant.DAILY_NOTIFICATION"></action>
+                <action android:name="sh.ftp.rocketninelabs.meditationassistant.DAILY_NOTIFICATION_UPDATED"></action>
+                <action android:name="android.intent.action.EXTERNAL_APPLICATIONS_AVAILABLE" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.MY_PACKAGE_UNSUSPENDED" />
+
+                <data
+                    android:path="${applicationId}"
+                    android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".MeditationProvider2"
+            android:label="@string/widget2x1">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_2" />
+        </receiver>
+        <receiver
+            android:name=".MeditationProvider3"
+            android:label="@string/widget3x1">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_3" />
+        </receiver>
+        <service android:name="sh.ftp.rocketninelabs.meditationassistant.WidgetService"></service>
     </application>
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:node="replace" />
+    <uses-permission
+        android:name="android.permission.WAKE_LOCK"
+        tools:node="replace" />
+    <uses-permission
+        android:name="android.permission.INTERNET"
+        tools:node="replace" />
+    <uses-permission
+        android:name="android.permission.ACCESS_NETWORK_STATE"
+        tools:node="replace" />
+    <uses-permission
+        android:name="android.permission.ACCESS_NOTIFICATION_POLICY"
+        tools:node="replace" />
+    <uses-permission
+        android:name="android.permission.VIBRATE"
+        tools:node="replace" />
+    <uses-permission
+        android:name="android.permission.RECEIVE_BOOT_COMPLETED"
+        tools:node="replace" />
+
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        tools:node="replace" />
 
 </manifest>

@@ -19,7 +19,6 @@ Your meditation streak is the number of consecutive days you have recorded at le
 session. As your streak grows, "not breaking the chain" becomes quite important. Soon you
 will be meditating once a day, even if it's five or ten minutes out of your schedule.
 
-
 Features
 ------------
 - Automatically put your device into priority only, alarms only, vibrate or silent mode while meditating
@@ -28,28 +27,19 @@ Features
 - Pause your session and come back to it when you are ready
 - Upload sessions to [MediNET](https://gitlab.com/tslocum/medinet)
 
-Remove Ads
-------------
-Please purchase the paid version of the app to remove ads.  You could also use the open
-source version available on F-Droid, which is ad free.
-
-
 Donate
 ------------
+- [LiberaPay](https://liberapay.com/rocketnine.space) (preferred)
 - [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TEP9HT98XK7QA)
-- [LiberaPay](https://liberapay.com/rocketnine.space)
-
 
 Get Support
 ------------
 Feel free to [open an issue](https://gitlab.com/tslocum/meditationassistant/issues) or
 contact the developer: trevor@rocketnine.space
 
-
 Translate
 ------------
 Translation is handled [online](https://medinet.rocketnine.space/translate/).
-
 
 Contribute
 ------------
@@ -57,7 +47,6 @@ Contribute
  2. Fork this repository.
  3. Commit code changes to your forked repository.
  4. Submit a pull request describing your changes.
-
 
 License
 ------------
