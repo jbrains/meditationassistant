@@ -405,9 +405,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                             startActivity(new Intent(
                                     Intent.ACTION_VIEW,
                                     Uri.parse(MeditationAssistant.URL_MEDINET + "/translate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-
                             break;
-
                         case DialogInterface.BUTTON_NEGATIVE:
                             break;
                     }
@@ -1629,9 +1627,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                         switch (which) {
                             case DialogInterface.BUTTON_POSITIVE:
                                 getMeditationAssistant().rateApp();
-
                                 break;
-
                             case DialogInterface.BUTTON_NEGATIVE:
                                 break;
                         }
@@ -2149,7 +2145,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                             case DialogInterface.BUTTON_POSITIVE:
                                 getMeditationAssistant().getMediNET().signOut();
                                 break;
-
                             case DialogInterface.BUTTON_NEGATIVE:
                                 break;
                         }

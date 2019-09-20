@@ -1822,7 +1822,7 @@ public class MeditationAssistant extends Application {
         if (getMediNET().activity != null) {
             AlertDialog staleDataDialog = new AlertDialog.Builder(
                     getMediNET().activity)
-                    .setPositiveButton(R.string.wordimport,
+                    .setPositiveButton(R.string.download,
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog,

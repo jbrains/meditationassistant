@@ -236,6 +236,7 @@
     <string name="discard">Discard</string>
     <string name="save">Save</string>
     <string name="post">Post</string>
+    <string name="download">Download</string>
     <string name="downloadSessionsHint">Click "Download sessions" in settings to retrieve missing sessions.</string>
     <string name="downloadsessionstitle">Download sessions?</string>
     <string name="downloadsessionsmessage">Previous sessions will be downloaded.\n\nThis dialog will not appear again.\nYou

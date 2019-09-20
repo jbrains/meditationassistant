@@ -307,10 +307,10 @@ public class SettingsActivity extends PreferenceActivity {
         switch (requestCode) {
             case PERMISSION_REQUEST_SOUND_READ_EXTERNAL_STORAGE: {
                 if ((grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) || !ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     getMeditationAssistant().showFilePickerDialog(SettingsActivity.this, selectingPrefsound, FilePickerActivity.MODE_FILE);
-                } else {
+                } else if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.READ_EXTERNAL_STORAGE)) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     builder.setIcon(
                             getResources()
@@ -338,17 +338,17 @@ public class SettingsActivity extends PreferenceActivity {
                                     new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
-                                            getMeditationAssistant().showFilePickerDialog(SettingsActivity.this, selectingPrefsound, FilePickerActivity.MODE_FILE);
                                         }
                                     }).show();
+                    break;
                 }
             }
             case PERMISSION_REQUEST_IMPORT_READ_EXTERNAL_STORAGE: {
                 if ((grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) || !ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     getMeditationAssistant().showImportSessionsDialog(SettingsActivity.this);
-                } else {
+                } else if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.READ_EXTERNAL_STORAGE)) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     builder.setIcon(
                             getResources()
@@ -380,14 +380,15 @@ public class SettingsActivity extends PreferenceActivity {
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                         }
                                     }).show();
+                    break;
                 }
             }
             case PERMISSION_REQUEST_EXPORT_WRITE_EXTERNAL_STORAGE: {
                 if ((grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) || !ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     getMeditationAssistant().showFilePickerDialog(SettingsActivity.this, FILEPICKER_EXPORT_SESSIONS, FilePickerActivity.MODE_NEW_FILE);
-                } else {
+                } else if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     builder.setIcon(
                             getResources()
@@ -419,6 +420,7 @@ public class SettingsActivity extends PreferenceActivity {
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                         }
                                     }).show();
+                    break;
                 }
             }
         }
