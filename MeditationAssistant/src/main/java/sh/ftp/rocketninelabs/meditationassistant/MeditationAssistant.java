@@ -24,7 +24,6 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.SystemClock;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -95,7 +94,6 @@ public class MeditationAssistant extends Application {
     public static String ACTION_UPDATED = "sh.ftp.rocketninelabs.meditationassistant.DAILY_NOTIFICATION_UPDATED";
 
     public static int REQUEST_FIT = 22;
-    public static int MEDIA_DELAY = 1000;
 
     public static int CSV_COLUMN_COUNT = 5;
 
@@ -306,7 +304,7 @@ public class MeditationAssistant extends Application {
         if (previous_volume != null) {
             try {
                 AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, previous_volume, 0);
+                mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM, previous_volume, 0);
             } catch (java.lang.SecurityException e) {
                 // Do nothing
             }
@@ -373,17 +371,6 @@ public class MeditationAssistant extends Application {
             }
 
             audioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-        } else if (getPrefs().getString("pref_notificationcontrol", "").equals("silent")) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (!haveNotificationPermission()) {
-                    return;
-                }
-
-                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_NONE);
-            } else {
-                audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-            }
         }
     }
 
@@ -398,26 +385,17 @@ public class MeditationAssistant extends Application {
             mNotificationManager.setInterruptionFilter(previousRingerFilter);
         }
 
-        if (getPrefs().getString("pref_notificationcontrol", "").equals("silent") && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!haveNotificationPermission()) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            int currentfilter = mNotificationManager.getCurrentInterruptionFilter();
+            if (!haveNotificationPermission() && currentfilter != 0 && currentfilter != 1) {
                 return;
             }
+        }
 
-            NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_ALL);
-        } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                int currentfilter = mNotificationManager.getCurrentInterruptionFilter();
-                if (!haveNotificationPermission() && currentfilter != 0 && currentfilter != 1) {
-                    return;
-                }
-            }
-
-            AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-            if (previousRingerMode >= 0 && (getPrefs().getString("pref_notificationcontrol", "").equals("vibrate") || getPrefs().getString("pref_notificationcontrol", "").equals("silent"))) {
-                audioManager.setRingerMode(previousRingerMode);
-            }
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        if (previousRingerMode >= 0 && getPrefs().getString("pref_notificationcontrol", "").equals("vibrate")) {
+            audioManager.setRingerMode(previousRingerMode);
         }
 
         previousRingerFilter = -1;
@@ -532,18 +510,17 @@ public class MeditationAssistant extends Application {
     public void playSound(int soundresource, String soundpath, boolean restoreVolume) {
         String wakeLockID = acquireWakeLock(false);
 
-        MediaPlayer soundPlayer = null;
+        MediaPlayer mp = new MediaPlayer();
+        mp.setAudioStreamType(AudioManager.STREAM_ALARM);
         try {
             if (!soundpath.equals("")) {
-                soundPlayer = MediaPlayer.create(getApplicationContext(), Uri.parse(soundpath));
+                mp.setDataSource(getApplicationContext(), Uri.parse(soundpath));
             } else {
-                soundPlayer = MediaPlayer.create(getApplicationContext(), soundresource);
+                mp.setDataSource(getApplicationContext(), Uri.parse("android.resource://" + getPackageName() + "/" + soundresource));
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
 
-        if (soundPlayer == null) {
             String soundLabel = soundpath;
             if (soundLabel.equals("")) {
                 soundLabel = String.valueOf(soundresource);
@@ -558,17 +535,35 @@ public class MeditationAssistant extends Application {
             return;
         }
 
-        soundPlayer.setOnCompletionListener(mp -> {
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                if (restoreVolume) {
+                    MeditationAssistant.this.restoreVolume();
+                }
+
+                mp.release();
+                MeditationAssistant.this.releaseWakeLock(wakeLockID);
+            }
+        });
+        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.start();
+            }
+        });
+
+        try {
+            mp.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+
             if (restoreVolume) {
                 restoreVolume();
             }
-            mp.release();
+
             releaseWakeLock(wakeLockID);
-        });
-        soundPlayer.setOnPreparedListener(mp -> {
-            SystemClock.sleep(MeditationAssistant.MEDIA_DELAY);
-            mp.start();
-        });
+        }
     }
 
     public void startAuth(Context context, boolean showToast) {
@@ -2238,7 +2233,7 @@ public class MeditationAssistant extends Application {
         if (prefnotificationcontrol.equals("")) {
             prefnotificationcontrol = getPrefs().getString("pref_notificationcontrol", "");
         }
-        if (!prefnotificationcontrol.equals("priority") && !prefnotificationcontrol.equals("alarms") && !prefnotificationcontrol.equals("silent")) {
+        if (!prefnotificationcontrol.equals("priority") && !prefnotificationcontrol.equals("alarms")) {
             return; // Notification filter will not be changed
         }
 

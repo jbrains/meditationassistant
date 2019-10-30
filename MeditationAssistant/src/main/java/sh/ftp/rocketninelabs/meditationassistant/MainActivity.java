@@ -1399,12 +1399,12 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
         AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         if (getMeditationAssistant().previous_volume == null) {
-            getMeditationAssistant().previous_volume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+            getMeditationAssistant().previous_volume = mAudioManager.getStreamVolume(AudioManager.STREAM_ALARM);
         }
-        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, (int) ((mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC) * getMeditationAssistant().getPrefs().getInt("pref_sessionvolume", 50) * 0.1) / 10), 0);
+        mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM, (int) ((mAudioManager.getStreamMaxVolume(AudioManager.STREAM_ALARM) * getMeditationAssistant().getPrefs().getInt("pref_sessionvolume", 50) * 0.1) / 10), 0);
 
         if (delay > 0) {
-            setVolumeControlStream(AudioManager.STREAM_MUSIC);
+            setVolumeControlStream(AudioManager.STREAM_ALARM);
 
             Calendar cal = Calendar.getInstance();
             cal.add(Calendar.SECOND, (int) delay);

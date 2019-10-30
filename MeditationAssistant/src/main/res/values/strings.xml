@@ -221,7 +221,6 @@
     <string name="pref_notificationcontrol_priority">Priority only</string>
     <string name="pref_notificationcontrol_alarms">Alarms only</string>
     <string name="pref_notificationcontrol_vibrate">Set to vibrate</string>
-    <string name="pref_notificationcontrol_silent">Set to silent</string>
     <string name="pref_daily_reminder">Daily reminder</string>
     <string name="pref_daily_reminder_title">Remind me</string>
     <string name="pref_daily_reminder_summary">Display a notification when no sessions were recorded today</string>

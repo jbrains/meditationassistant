@@ -1,3 +1,6 @@
+1.5.7:
+- Removed "Set to silent" notification control setting (use "Alarms only" instead)
+
 1.5.6:
 - Sessions may now be imported from previous exports (CSV files)
 - Advertisements have been removed
