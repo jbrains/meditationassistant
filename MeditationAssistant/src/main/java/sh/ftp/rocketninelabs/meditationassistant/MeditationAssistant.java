@@ -338,9 +338,7 @@ public class MeditationAssistant extends Application {
     }
 
     public void setAlarm(boolean allowAlarmClock, long triggerAtMillis, PendingIntent pendingIntent) {
-        if (Build.VERSION.SDK_INT >= 23) {
-            getAlarmManager().setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
-        } else if (Build.VERSION.SDK_INT >= 21 && allowAlarmClock) {
+        if (Build.VERSION.SDK_INT >= 21 && allowAlarmClock) {
             getAlarmManager().setAlarmClock(new AlarmManager.AlarmClockInfo(triggerAtMillis, PendingIntent.getActivity(this, 0, new Intent(getApplicationContext(), MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT)), pendingIntent);
         } else if (Build.VERSION.SDK_INT >= 19) {
             getAlarmManager().setExact(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
