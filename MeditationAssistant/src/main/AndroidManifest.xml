@@ -53,7 +53,7 @@
         <!-- Widgets -->
         <!--
         <receiver
-            android:name=".MeditationProvider1"
+            android:name=".WidgetStreakProvider1"
             android:label="@string/widget1x1" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -61,7 +61,7 @@
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_1" />
+                android:resource="@xml/widget_streak_1" />
         </receiver>-->
         <activity
             android:name="sh.ftp.rocketninelabs.meditationassistant.MediNETActivity"
@@ -97,6 +97,14 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="sh.ftp.rocketninelabs.meditationassistant.MainActivity" />
+        </activity>
+        <activity
+            android:name="sh.ftp.rocketninelabs.meditationassistant.PresetWidgetActivity"
+            android:excludeFromRecents="true"
+            android:theme="@style/MeditationDarkDialogTheme">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.nononsenseapps.filepicker.FilePickerActivity"
@@ -136,28 +144,62 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".MeditationProvider2"
-            android:label="@string/widget2x1">
+            android:name=".WidgetPresetProvider1"
+            android:label="@string/widgetpreset1x1">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_2" />
+                android:resource="@xml/widget_preset_1" />
         </receiver>
         <receiver
-            android:name=".MeditationProvider3"
-            android:label="@string/widget3x1">
+            android:name=".WidgetPresetProvider2"
+            android:label="@string/widgetpreset2x1">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_3" />
+                android:resource="@xml/widget_preset_2" />
         </receiver>
-        <service android:name="sh.ftp.rocketninelabs.meditationassistant.WidgetService"></service>
+        <receiver
+            android:name=".WidgetPresetProvider3"
+            android:label="@string/widgetpreset3x1">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_preset_3" />
+        </receiver>
+        <receiver
+            android:name=".WidgetStreakProvider2"
+            android:label="@string/widgetstreak2x1">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_streak_2" />
+        </receiver>
+        <receiver
+            android:name=".WidgetStreakProvider3"
+            android:label="@string/widgetstreak3x1">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_streak_3" />
+        </receiver>
+        <service android:name="sh.ftp.rocketninelabs.meditationassistant.WidgetPresetService"></service>
+        <service android:name="sh.ftp.rocketninelabs.meditationassistant.WidgetStreakService"></service>
     </application>
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"

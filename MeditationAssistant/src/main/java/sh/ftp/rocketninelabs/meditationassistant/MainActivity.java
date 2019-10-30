@@ -60,7 +60,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
     public MeditationAssistant ma = null;
     SharedPreferences.OnSharedPreferenceChangeListener sharedPrefslistener = (newprefs, key) -> {
-        Log.d("MeditationAssistant", key + " changed to " + getMeditationAssistant().getPrefs().getAll().get(key).toString());
+        Object newValue = getMeditationAssistant().getPrefs().getAll().get(key);
+        Log.d("MeditationAssistant", key + " changed to " + newValue);
 
         new Handler(Looper.getMainLooper()).post(() -> {
             if ((key.equals("timerHours") || key.equals("timerMinutes")) && getMeditationAssistant().getTimeToStopMeditate() < 1) {
@@ -1758,6 +1759,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
     @Override
     protected void onNewIntent(Intent intent) {
+        int widgetId =  intent.getIntExtra("widgetid", -1);
+
         super.onNewIntent(intent);
         setIntent(intent);
 
@@ -1766,6 +1769,30 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                     + getIntent().toString());
             if (getIntent().getAction() != null) {
                 if (getIntent().getAction().equals("widgetclick")) {
+                    if (widgetId >= 0) {
+                        int preset = PresetWidgetActivity.loadPresetPref(getApplicationContext(), widgetId);
+                        if (preset >= 0) {
+                            String preset_value = getMeditationAssistant().getPrefs().getString("pref_preset_" + preset, "");
+                            if (!preset_value.isEmpty()) {
+                                View presetView;
+                                if (preset == 1) {
+                                    presetView = findViewById(R.id.btnPreset1);
+                                } else if (preset == 2) {
+                                    presetView = findViewById(R.id.btnPreset2);
+                                } else {
+                                    presetView = findViewById(R.id.btnPreset3);
+                                }
+
+                                if (!getMeditationAssistant().getEditingDuration()) {
+                                    changeDuration(null);
+                                }
+
+                                pressPreset(presetView);
+                            }
+                        }
+                        return;
+                    }
+
                     if (!getMeditationAssistant().getMediNET().status.equals("success") && getMeditationAssistant().getPrefs().getBoolean("pref_autosignin", false)) {
                         getMeditationAssistant().getMediNET().connect();
                     }

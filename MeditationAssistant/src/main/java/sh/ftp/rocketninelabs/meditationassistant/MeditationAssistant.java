@@ -1140,7 +1140,7 @@ public class MeditationAssistant extends Application {
         updateWidgets();
 
         /* Update all widgets */
-        Intent update_widgets = new Intent(getApplicationContext(), MeditationProvider.class);
+        Intent update_widgets = new Intent(getApplicationContext(), WidgetStreakProvider.class);
         update_widgets.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         sendBroadcast(update_widgets);
     }
@@ -2191,7 +2191,7 @@ public class MeditationAssistant extends Application {
         AppWidgetManager man = AppWidgetManager
                 .getInstance(getApplicationContext());
         /*int[] ids = man.getAppWidgetIds(new ComponentName(
-                getApplicationContext(), MeditationProvider.class));*/
+                getApplicationContext(), WidgetStreakProvider.class));*/
         Intent updateIntent = new Intent();
         updateIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         getApplicationContext().sendBroadcast(updateIntent);

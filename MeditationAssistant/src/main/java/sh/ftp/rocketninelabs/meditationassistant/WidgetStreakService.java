@@ -8,7 +8,7 @@ import android.os.IBinder;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-public class WidgetService extends Service {
+public class WidgetStreakService extends Service {
     public IBinder onBind(Intent intent) {
         return null;
     }
@@ -17,7 +17,6 @@ public class WidgetService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this
                 .getApplicationContext());
-        Log.d("MeditationAssistant", "Widget onStartCommand(): " + String.valueOf(intent));
 
         if (intent == null) {
             Log.d("MeditationAssistant", "Widget intent was null, exiting...");
@@ -28,28 +27,27 @@ public class WidgetService extends Service {
         if (allWidgetIds != null && allWidgetIds.length > 0) {
             for (int widgetId : allWidgetIds) {
                 RemoteViews updateViews = new RemoteViews(this.getPackageName(),
-                        R.layout.widget_layout);
-                getApplication();
+                        R.layout.widget_streak);
 
                 MeditationAssistant ma = (MeditationAssistant) this
                         .getApplication();
 
-                updateViews.setTextColor(R.id.txtWidgetDays, ma.getPrefs().getInt("pref_widgetcolor", -16777216));
-                updateViews.setTextColor(R.id.txtWidgetText, ma.getPrefs().getInt("pref_widgetcolor", -16777216));
+                updateViews.setTextColor(R.id.txtWidgetStreakDays, ma.getPrefs().getInt("pref_widgetcolor", -16777216));
+                updateViews.setTextColor(R.id.txtWidgetStreakText, ma.getPrefs().getInt("pref_widgetcolor", -16777216));
 
                 if (ma.getMeditationStreak().get(0) > 0) {
-                    updateViews.setTextViewText(R.id.txtWidgetDays,
+                    updateViews.setTextViewText(R.id.txtWidgetStreakDays,
                             String.valueOf(ma.getMeditationStreak().get(0)));
                     updateViews.setTextViewText(
-                            R.id.txtWidgetText,
+                            R.id.txtWidgetStreakText,
                             getResources().getQuantityString(
                                     R.plurals.daysOfMeditationWithoutCount,
                                     ma.getMeditationStreak().get(0).intValue())
                     );
                 } else {
-                    updateViews.setTextViewText(R.id.txtWidgetDays,
+                    updateViews.setTextViewText(R.id.txtWidgetStreakDays,
                             getString(R.string.ignore_om));
-                    updateViews.setTextViewText(R.id.txtWidgetText,
+                    updateViews.setTextViewText(R.id.txtWidgetStreakText,
                             getString(R.string.meditateToday));
                 }
 
@@ -58,8 +56,8 @@ public class WidgetService extends Service {
                 PendingIntent pendingIntent = PendingIntent.getActivity(
                         getApplicationContext(), 0, clickintent, 0);
                 updateViews.setOnClickPendingIntent(R.id.layWidget, pendingIntent);
-                updateViews.setOnClickPendingIntent(R.id.txtWidgetDays, pendingIntent);
-                updateViews.setOnClickPendingIntent(R.id.txtWidgetText, pendingIntent);
+                updateViews.setOnClickPendingIntent(R.id.txtWidgetStreakDays, pendingIntent);
+                updateViews.setOnClickPendingIntent(R.id.txtWidgetStreakText, pendingIntent);
 
                 appWidgetManager.updateAppWidget(widgetId, updateViews);
             }

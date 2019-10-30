@@ -1,4 +1,5 @@
 1.5.7:
+- Added preset widgets
 - Removed "Set to silent" notification control setting (use "Alarms only" instead)
 
 1.5.6:

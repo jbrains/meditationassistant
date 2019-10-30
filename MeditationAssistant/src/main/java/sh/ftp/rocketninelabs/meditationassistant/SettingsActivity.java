@@ -85,15 +85,25 @@ public class SettingsActivity extends PreferenceActivity {
 
                 return true;
             } else if (preference instanceof ColorPickerPreference) {
-                Intent intent2 = new Intent(getApplicationContext(), MeditationProvider2.class);
+                AppWidgetManager wm = AppWidgetManager.getInstance(getApplicationContext());
+                int[] ids = wm.getAppWidgetIds(new ComponentName(getApplicationContext(), WidgetPresetProvider.class));
+                ids = mergeInts(ids, wm.getAppWidgetIds(new ComponentName(getApplicationContext(), WidgetPresetProvider1.class)));
+                ids = mergeInts(ids, wm.getAppWidgetIds(new ComponentName(getApplicationContext(), WidgetPresetProvider2.class)));
+                ids = mergeInts(ids, wm.getAppWidgetIds(new ComponentName(getApplicationContext(), WidgetPresetProvider3.class)));
+
+                for (int widgetId : ids) {
+                    WidgetPresetProvider.updateAppWidget(getApplicationContext(), wm, widgetId);
+                }
+
+                Intent intent2 = new Intent(getApplicationContext(), WidgetStreakProvider2.class);
                 intent2.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-                int[] ids2 = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), MeditationProvider2.class));
+                int[] ids2 = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetStreakProvider2.class));
                 intent2.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids2);
                 sendBroadcast(intent2);
 
-                Intent intent3 = new Intent(getApplicationContext(), MeditationProvider3.class);
+                Intent intent3 = new Intent(getApplicationContext(), WidgetStreakProvider3.class);
                 intent3.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-                int[] ids3 = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), MeditationProvider3.class));
+                int[] ids3 = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetStreakProvider3.class));
                 intent3.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids3);
                 sendBroadcast(intent3);
 
@@ -930,5 +940,12 @@ public class SettingsActivity extends PreferenceActivity {
             SettingsActivity settingsactivity = (SettingsActivity) getActivity();
             settingsactivity.setupPreferences("miscellaneous", this);
         }
+    }
+
+    private int[] mergeInts(int[] arg1, int[] arg2) {
+        int[] result = new int[arg1.length + arg2.length];
+        System.arraycopy(arg1, 0, result, 0, arg1.length);
+        System.arraycopy(arg2, 0, result, arg1.length, arg2.length);
+        return result;
     }
 }

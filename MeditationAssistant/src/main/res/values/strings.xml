@@ -51,6 +51,7 @@
     <string name="setPresetHint">Hold to set preset</string>
     <string name="setPresetTip">Choose which settings to restore by tapping the gear icon (Settings), then tap Preset settings.</string>
     <string name="setPresetHintBlank">Enter a duration (or end time) to set preset</string>
+    <string name="configureWidget">Configure Widget</string>
     <string name="label">Label</string>
     <string name="setTimerDurationHint">Enter a valid duration (e.g. 0:22)</string>
     <string name="setTimerEndAtHint">Enter a valid time (e.g. 4:20)</string>
@@ -279,9 +280,12 @@
 \nThis dialog will not appear again.</string>
     <string name="translateMeditationAssistantText">Are you interested in assisting with translating Meditation Assistant?</string>
     <!-- Widgets -->
-    <string name="widget1x1" tools:ignore="UnusedResources">Meditation Assistant 1x1</string>
-    <string name="widget2x1" tools:ignore="UnusedResources">Meditation Assistant 2x1</string>
-    <string name="widget3x1" tools:ignore="UnusedResources">Meditation Assistant 3x1</string>
+    <string name="widgetpreset1x1" tools:ignore="UnusedResources">Preset 1x1</string>
+    <string name="widgetpreset2x1" tools:ignore="UnusedResources">Preset 2x1</string>
+    <string name="widgetpreset3x1" tools:ignore="UnusedResources">Preset 3x1</string>
+    <string name="widgetstreak1x1" tools:ignore="UnusedResources">Streak 1x1</string>
+    <string name="widgetstreak2x1" tools:ignore="UnusedResources">Streak 2x1</string>
+    <string name="widgetstreak3x1" tools:ignore="UnusedResources">Streak 3x1</string>
     <!-- Meta -->
     <string name="appStoreListingShort">Feature packed meditation session timer and recorder</string>
     <string name="appStoreListingFull">- Automatic device mode while meditating.

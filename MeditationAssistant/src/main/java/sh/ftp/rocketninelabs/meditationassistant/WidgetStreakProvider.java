@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-public class MeditationProvider extends AppWidgetProvider {
+public class WidgetStreakProvider extends AppWidgetProvider {
 
     private int[] mergeInts(int[] arg1, int[] arg2) {
         int[] result = new int[arg1.length + arg2.length];
@@ -18,7 +18,6 @@ public class MeditationProvider extends AppWidgetProvider {
 
     @Override
     public void onEnabled(Context context) {
-        Log.d("MeditationAssistant", "Widget onEnabled");
         super.onEnabled(context);
     }
 
@@ -28,9 +27,10 @@ public class MeditationProvider extends AppWidgetProvider {
 
         if (intent != null && intent.getAction() != null && intent.getAction().equals(AppWidgetManager.ACTION_APPWIDGET_UPDATE)) {
             AppWidgetManager gm = AppWidgetManager.getInstance(context);
-            int[] ids = gm.getAppWidgetIds(new ComponentName(context, MeditationProvider.class));
-            ids = mergeInts(ids, gm.getAppWidgetIds(new ComponentName(context, MeditationProvider2.class)));
-            ids = mergeInts(ids, gm.getAppWidgetIds(new ComponentName(context, MeditationProvider3.class)));
+            int[] ids = gm.getAppWidgetIds(new ComponentName(context, WidgetStreakProvider.class));
+            ids = mergeInts(ids, gm.getAppWidgetIds(new ComponentName(context, WidgetStreakProvider1.class)));
+            ids = mergeInts(ids, gm.getAppWidgetIds(new ComponentName(context, WidgetStreakProvider2.class)));
+            ids = mergeInts(ids, gm.getAppWidgetIds(new ComponentName(context, WidgetStreakProvider3.class)));
 
             onUpdate(context, gm, ids);
         }
@@ -38,7 +38,7 @@ public class MeditationProvider extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        Intent intent = new Intent(context, WidgetService.class);
+        Intent intent = new Intent(context, WidgetStreakService.class);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
         context.startService(intent);
 
