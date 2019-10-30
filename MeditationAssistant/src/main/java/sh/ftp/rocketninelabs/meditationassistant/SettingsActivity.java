@@ -610,17 +610,18 @@ public class SettingsActivity extends PreferenceActivity {
             }
 
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_usetimepicker") : preferenceFragment.findPreference("pref_usetimepicker"));
-            bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_meditationstreakbuffer") : preferenceFragment.findPreference("pref_meditationstreakbuffer"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_screencontrol") : preferenceFragment.findPreference("pref_screencontrol"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_full_screen") : preferenceFragment.findPreference("pref_full_screen"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_text_size") : preferenceFragment.findPreference("pref_text_size"));
-            bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_progresstab") : preferenceFragment.findPreference("pref_progresstab"));
-            bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_mainbuttons") : preferenceFragment.findPreference("pref_mainbuttons"));
+            bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_autosave") : preferenceFragment.findPreference("pref_autosave"));
         }
         if (pref_type.equals("all") || pref_type.equals("progress")) {
             if (preferenceFragment != null) {
                 progressPreferenceFragment = (ProgressPreferenceFragment) preferenceFragment;
             }
+
+            bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_meditationstreakbuffer") : preferenceFragment.findPreference("pref_meditationstreakbuffer"));
+            bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_progresstab") : preferenceFragment.findPreference("pref_progresstab"));
 
             Preference importSessions = (preferenceFragment == null ? findPreference("importsessions") : preferenceFragment.findPreference("importsessions"));
             importSessions.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -717,6 +718,7 @@ public class SettingsActivity extends PreferenceActivity {
 
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_theme") : preferenceFragment.findPreference("pref_theme"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_widgetcolor") : preferenceFragment.findPreference("pref_widgetcolor"));
+            bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_mainbuttons") : preferenceFragment.findPreference("pref_mainbuttons"));
 
             if (BuildConfig.FLAVOR.equals("opensource")) { // Hide usage statistics preference, as tracking is completely disabled
                 CheckBoxPreference pref_sendusage = (CheckBoxPreference) (preferenceFragment == null ? findPreference("pref_sendusage") : preferenceFragment.findPreference("pref_sendusage"));

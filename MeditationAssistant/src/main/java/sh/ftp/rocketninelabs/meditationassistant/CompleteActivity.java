@@ -159,6 +159,13 @@ public class CompleteActivity extends Activity {
 
         if (!manual) {
             getMeditationAssistant().vibrateDevice();
+
+            String autosave = getMeditationAssistant().getPrefs().getString("pref_autosave", "");
+            if (autosave.equals("save")) {
+                saveMediNET(null);
+            } else if (autosave.equals("post")) {
+                postMediNET(null);
+            }
         }
     }
 

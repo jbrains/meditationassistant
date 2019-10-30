@@ -168,6 +168,7 @@
     <string name="pref_interval_count">Interval count</string>
     <string name="pref_autosignin_summary">Connect to MediNET when opened</string>
     <string name="pref_autosignin">Automatically connect</string>
+    <string name="pref_autosave">Autosave</string>
     <string name="pref_rememberme_summary">Remain signed in after closed</string>
     <string name="pref_rememberme">Remember me</string>
     <string name="pref_sessionvolume">Volume</string>

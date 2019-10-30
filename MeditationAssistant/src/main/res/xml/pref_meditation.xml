@@ -43,4 +43,12 @@
         android:summary=""
         android:title="@string/pref_text_size"/>
 
+    <ListPreference
+        android:defaultValue=""
+        android:entries="@array/autosave_labels"
+        android:entryValues="@array/autosave_values"
+        android:key="pref_autosave"
+        android:summary=""
+        android:title="@string/pref_autosave"/>
+
 </PreferenceScreen>

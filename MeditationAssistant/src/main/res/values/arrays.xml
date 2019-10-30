@@ -153,5 +153,15 @@
     <string-array name="presetsettings_default">
         <item>modeandduration</item>
     </string-array>
+    <string-array name="autosave_labels">
+        <item>@string/disabled</item>
+        <item>@string/save</item>
+        <item>@string/post</item>
+    </string-array>
+    <string-array name="autosave_values">
+        <item></item>
+        <item>save</item>
+        <item>post</item>
+    </string-array>
 
 </resources>
