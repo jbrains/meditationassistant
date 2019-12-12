@@ -6,8 +6,10 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.TypedArray;
+import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.preference.ListPreference;
@@ -216,7 +218,14 @@ public class ListPreferenceSound extends ListPreference {
                                         afd.getFileDescriptor(),
                                         afd.getStartOffset(),
                                         afd.getDeclaredLength());
-                                mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                    AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                                            .setUsage(AudioAttributes.USAGE_MEDIA)
+                                            .build();
+                                    mMediaPlayer.setAudioAttributes(audioAttributes);
+                                } else {
+                                    mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                                }
                                 mMediaPlayer.setVolume(mediaVolume, mediaVolume);
                                 mMediaPlayer.prepareAsync();
                             } catch (IllegalArgumentException e) {

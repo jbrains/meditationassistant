@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -139,6 +140,7 @@ public class MeditationAssistant extends Application {
     private WakeLocker wakeLocker = new WakeLocker();
     String pausedTimerHoursMinutes;
     String pausedTimerSeconds;
+    private HashMap<String, MediaPlayer> mediaPlayers = new HashMap<String, MediaPlayer>();
 
     private AlertDialog sessionDialog = null;
     private int sessionDialogStartedYear = -1;
@@ -505,17 +507,33 @@ public class MeditationAssistant extends Application {
         return medinetprovider;
     }
 
-    public void playSound(int soundresource, String soundpath, boolean restoreVolume) {
-        String wakeLockID = acquireWakeLock(false);
+    public void cacheSound(int soundresource, String soundpath) {
+        String cacheKey = soundpath;
+        if (cacheKey.equals("")) {
+            cacheKey = Integer.toString(soundresource);
+        }
+        if (mediaPlayers.containsKey(cacheKey)) {
+            return;
+        }
 
         MediaPlayer mp = new MediaPlayer();
-        mp.setAudioStreamType(AudioManager.STREAM_ALARM);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_ALARM)
+                    .build();
+            mp.setAudioAttributes(audioAttributes);
+        } else {
+            mp.setAudioStreamType(AudioManager.STREAM_ALARM);
+        }
         try {
             if (!soundpath.equals("")) {
                 mp.setDataSource(getApplicationContext(), Uri.parse(soundpath));
             } else {
                 mp.setDataSource(getApplicationContext(), Uri.parse("android.resource://" + getPackageName() + "/" + soundresource));
             }
+
+            mp.prepareAsync();
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -524,11 +542,76 @@ public class MeditationAssistant extends Application {
                 soundLabel = String.valueOf(soundresource);
             }
             Log.e("MeditationAssistant", "Failed to load sound: " + soundLabel);
+            return;
+        }
 
-            if (restoreVolume) {
-                restoreVolume();
+        mediaPlayers.put(cacheKey, mp);
+    }
+
+    public void cacheSessionSounds() {
+        String label;
+        for (int i = 0;i < 3;i++) {
+            switch (i) {
+                case 0:
+                    label = "start";
+                    break;
+                case 1:
+                    label = "interval";
+                    break;
+                case 2:
+                    label = "finish";
+                    break;
+                default:
+                    return;
             }
 
+            SharedPreferences prefs = getPrefs();
+            String soundPath = prefs.getString("pref_meditation_sound_" + label, "");
+            if (!soundPath.equals("none")) {
+                if (soundPath.equals("custom")) {
+                    cacheSound(0, prefs.getString("pref_meditation_sound_" + label + "_custom", ""));
+                } else {
+                    cacheSound(MeditationSounds.getMeditationSound(soundPath), "");
+                }
+            }
+        }
+    }
+
+    public void clearSoundCache() {
+        for (MediaPlayer mp : mediaPlayers.values()) {
+            try {
+                mp.stop();
+            } catch (Exception e) {
+                // Do nothing
+            }
+            try {
+                mp.release();
+            } catch (Exception e) {
+                // Do nothing
+            }
+        }
+
+        mediaPlayers.clear();
+    }
+
+    public void playSound(int soundresource, String soundpath, boolean restoreVolume) {
+        String wakeLockID = acquireWakeLock(false);
+
+        String cacheKey = soundpath;
+        if (cacheKey.equals("")) {
+            cacheKey = Integer.toString(soundresource);
+        }
+        if (!mediaPlayers.containsKey(cacheKey)) {
+            cacheSound(soundresource, soundpath);
+        }
+        if (!mediaPlayers.containsKey(cacheKey)) {
+            Log.d("MeditationAssistant", "Failed to cache sound");
+            return; // Failed to load sound
+        }
+        MediaPlayer mp  = mediaPlayers.get(cacheKey);
+
+        if (mp.isPlaying()) {
+            Log.d("MeditationAssistant", "Failed to play sound: already playing");
             releaseWakeLock(wakeLockID);
             return;
         }
@@ -540,20 +623,24 @@ public class MeditationAssistant extends Application {
                     MeditationAssistant.this.restoreVolume();
                 }
 
-                mp.release();
+                try {
+                    mp.stop();
+                } catch (Exception e) {
+                    // Do nothing
+                }
+                try {
+                    mp.prepareAsync();
+                } catch (Exception e) {
+                    // Do nothing
+                }
+
                 MeditationAssistant.this.releaseWakeLock(wakeLockID);
-            }
-        });
-        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.start();
             }
         });
 
         try {
-            mp.prepare();
-        } catch (IOException e) {
+            mp.start();
+        } catch (Exception e) {
             e.printStackTrace();
 
             if (restoreVolume) {
@@ -561,6 +648,33 @@ public class MeditationAssistant extends Application {
             }
 
             releaseWakeLock(wakeLockID);
+        }
+    }
+
+    public void playSessionSound(int sound, boolean restoreVolume) {
+        String label;
+        switch (sound) {
+            case 0:
+                label = "start";
+                break;
+            case 1:
+                label = "interval";
+                break;
+            case 2:
+                label = "finish";
+                break;
+            default:
+                return;
+        }
+
+        SharedPreferences prefs = getPrefs();
+        String soundPath = prefs.getString("pref_meditation_sound_" + label, "");
+        if (!soundPath.equals("none")) {
+            if (soundPath.equals("custom")) {
+               playSound(0, prefs.getString("pref_meditation_sound_" + label + "_custom", ""), restoreVolume);
+            } else {
+               playSound(MeditationSounds.getMeditationSound(soundPath), "", restoreVolume);
+            }
         }
     }
 

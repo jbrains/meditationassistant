@@ -142,12 +142,7 @@ public class CompleteActivity extends Activity {
 
             String finishSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish", "");
             if (!manual && !finishSoundPath.equals("none")) {
-                if (finishSoundPath.equals("custom")) {
-                    finishSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish_custom", "");
-                    getMeditationAssistant().playSound(0, finishSoundPath, true);
-                } else {
-                    getMeditationAssistant().playSound(MeditationSounds.getMeditationSound(finishSoundPath), "", true);
-                }
+                getMeditationAssistant().playSessionSound(2, false);
             } else {
                 getMeditationAssistant().restoreVolume();
             }

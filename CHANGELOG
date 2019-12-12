@@ -1,6 +1,10 @@
+1.5.8:
+- Resolve minor sound delay by preloading sounds
+
 1.5.7:
 - Added preset widgets
 - Removed "Set to silent" notification control setting (use "Alarms only" instead)
+- Resolve sound/vibration delays on some devices
 
 1.5.6:
 - Sessions may now be imported from previous exports (CSV files)

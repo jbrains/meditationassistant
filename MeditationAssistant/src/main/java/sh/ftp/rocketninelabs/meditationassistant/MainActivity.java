@@ -107,15 +107,9 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                 }
 
                 String intervalSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval", "");
-
                 if (!intervalSoundPath.equals("none") || getMeditationAssistant().vibrationEnabled()) {
                     if (!intervalSoundPath.equals("none")) {
-                        if (intervalSoundPath.equals("custom")) {
-                            intervalSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval_custom", "");
-                            getMeditationAssistant().playSound(0, intervalSoundPath, false);
-                        } else {
-                            getMeditationAssistant().playSound(MeditationSounds.getMeditationSound(intervalSoundPath), "", false);
-                        }
+                        getMeditationAssistant().playSessionSound(1, false);
                     }
 
                     getMeditationAssistant().vibrateDevice();
@@ -1224,6 +1218,9 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         skipDelay = false;
         intervals = 0;
 
+        getMeditationAssistant().clearSoundCache();
+        getMeditationAssistant().cacheSessionSounds();
+
         Log.d("MeditationAssistant", "Timestamp: " + String.valueOf(timestamp));
         Integer secondsTillFinished = 0;
         if (getMeditationAssistant().getTimerMode().equals("timed")) {
@@ -1364,15 +1361,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                         getMeditationAssistant().vibrateDevice();
                     }
 
-                    String startSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_start", "");
-                    if (!startSoundPath.equals("none")) {
-                        if (startSoundPath.equals("custom")) {
-                            startSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_start_custom", "");
-                            getMeditationAssistant().playSound(0, startSoundPath, false);
-                        } else {
-                            getMeditationAssistant().playSound(MeditationSounds.getMeditationSound(startSoundPath), "", false);
-                        }
-                    }
+                    getMeditationAssistant().playSessionSound(0, false);
 
                     setIntervalAlarm();
                 }
@@ -1844,18 +1833,12 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                         }
 
                         String intervalSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval", "");
-
                         if (!intervalSoundPath.equals("none") || getMeditationAssistant().vibrationEnabled()) {
                             if (getMeditationAssistant().getTimeToStopMeditate() == -1
                                     || ((System.currentTimeMillis() / 1000) > getMeditationAssistant().getTimeToStopMeditate() && (System.currentTimeMillis() / 1000) - getMeditationAssistant().getTimeToStopMeditate() >= 5) || getMeditationAssistant().getTimeToStopMeditate()
                                     - (System.currentTimeMillis() / 1000) >= 5) { // Not within last 5 seconds
                                 if (!intervalSoundPath.equals("none")) {
-                                    if (intervalSoundPath.equals("custom")) {
-                                        intervalSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval_custom", "");
-                                        getMeditationAssistant().playSound(0, intervalSoundPath, false);
-                                    } else {
-                                        getMeditationAssistant().playSound(MeditationSounds.getMeditationSound(intervalSoundPath), "", false);
-                                    }
+                                    getMeditationAssistant().playSessionSound(1, false);
                                 }
 
                                 getMeditationAssistant().vibrateDevice();
@@ -1902,15 +1885,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
                 if (fullWakeUp) {
                     if (getMeditationAssistant().getPrefs().getBoolean("pref_softfinish", false)) {
-                        String finishSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish", "");
-                        if (!finishSoundPath.equals("none")) {
-                            if (finishSoundPath.equals("custom")) {
-                                finishSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish_custom", "");
-                                getMeditationAssistant().playSound(0, finishSoundPath, true);
-                            } else {
-                                getMeditationAssistant().playSound(MeditationSounds.getMeditationSound(finishSoundPath), "", true);
-                            }
-                        }
+                        getMeditationAssistant().playSessionSound(2, false);
 
                         getMeditationAssistant().vibrateDevice();
                     } else {
