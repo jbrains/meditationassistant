@@ -1,46 +1,45 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+      xmlns:tools="http://schemas.android.com/tools"
       tools:context=".MediNETActivity">
 
     <item
         android:id="@+id/refreshMediNET"
         android:icon="?attr/actionIconRefresh"
+        android:showAsAction="always"
         android:title="@string/refresh"
-        tools:ignore="AlwaysShowAction"
-        app:showAsAction="always" />
+        tools:ignore="AlwaysShowAction"/>
     <item
         android:id="@+id/menuMediNET"
         android:icon="?attr/actionIconSortBySize"
+        android:showAsAction="always"
         android:title="@string/page"
-        tools:ignore="AlwaysShowAction"
-        app:showAsAction="always">
+        tools:ignore="AlwaysShowAction">
         <menu>
             <item
                 android:id="@+id/menuMediNETCommunity"
                 android:icon="?attr/actionIconWebsite"
-                android:title="@string/community"
-                app:showAsAction="never" />
+                android:showAsAction="never"
+                android:title="@string/community"/>
             <item
                 android:id="@+id/menuMediNETSessions"
                 android:icon="?attr/actionIconViewAsList"
-                android:title="@string/sessions"
-                app:showAsAction="never" />
+                android:showAsAction="never"
+                android:title="@string/sessions"/>
             <item
                 android:id="@+id/menuMediNETAccount"
                 android:icon="?attr/actionIconPerson"
-                android:title="@string/account"
-                app:showAsAction="never" />
+                android:showAsAction="never"
+                android:title="@string/account"/>
             <item
                 android:id="@+id/menuMediNETGroups"
                 android:icon="?attr/actionIconGroup"
-                android:title="@string/groups"
-                app:showAsAction="never" />
+                android:showAsAction="never"
+                android:title="@string/groups"/>
             <item
                 android:id="@+id/menuMediNETForum"
                 android:icon="?attr/actionIconChat"
-                android:title="@string/forum"
-                app:showAsAction="never" />
+                android:showAsAction="never"
+                android:title="@string/forum"/>
         </menu>
     </item>
 
