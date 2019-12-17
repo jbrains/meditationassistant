@@ -81,7 +81,7 @@ public class CompleteActivity extends Activity {
         getMeditationAssistant().unsetNotificationControl();
         getMeditationAssistant().hideNotification(); // Called twice because it seems to help
 
-        EditText editSessionMessage = (EditText) findViewById(R.id.editSessionMessage);
+        EditText editSessionMessage = findViewById(R.id.editSessionMessage);
         if (editSessionMessage.getText().toString().equals("")
                 && getMeditationAssistant().getPrefs().getBoolean("pref_remembermessage", false)) {
             editSessionMessage.setText(getMeditationAssistant().getPrefs().getString("lastmessage", ""));
@@ -100,13 +100,13 @@ public class CompleteActivity extends Activity {
         getMeditationAssistant().getMediNET().session.started = getMeditationAssistant()
                 .getTimeStartMeditate();
         if (getMeditationAssistant().getTimerMode().equals("endat")) {
-            Log.d("MeditationAssistant", String.valueOf(Math.min(timestamp, getMeditationAssistant().getTimeToStopMeditate())) + " - "
-                    + String.valueOf(getMeditationAssistant().getTimeStartMeditate()) + " - " + String.valueOf(getMeditationAssistant().pausetime));
+            Log.d("MeditationAssistant", Math.min(timestamp, getMeditationAssistant().getTimeToStopMeditate()) + " - "
+                    + getMeditationAssistant().getTimeStartMeditate() + " - " + getMeditationAssistant().pausetime);
             getMeditationAssistant().getMediNET().session.length = Math.min(timestamp, getMeditationAssistant().getTimeToStopMeditate())
                     - getMeditationAssistant().getTimeStartMeditate() - getMeditationAssistant().pausetime;
         } else {
-            Log.d("MeditationAssistant", String.valueOf(timestamp) + " - "
-                    + String.valueOf(getMeditationAssistant().getTimeStartMeditate()) + " - " + String.valueOf(getMeditationAssistant().pausetime));
+            Log.d("MeditationAssistant", timestamp + " - "
+                    + getMeditationAssistant().getTimeStartMeditate() + " - " + getMeditationAssistant().pausetime);
             getMeditationAssistant().getMediNET().session.length = timestamp
                     - getMeditationAssistant().getTimeStartMeditate() - getMeditationAssistant().pausetime;
         }
@@ -118,26 +118,31 @@ public class CompleteActivity extends Activity {
         getMeditationAssistant().setTimeToStopMeditate(0);
 
         Log.d("MeditationAssistant",
-                "Session length: "
-                        + String.valueOf(getMeditationAssistant().getMediNET().session.length)
+                "Session length: " + getMeditationAssistant().getMediNET().session.length
         );
         if (getMeditationAssistant().getMediNET().session.length > 0) {
-            TextView txtDuration = (TextView) findViewById(R.id.txtDuration);
+            TextView txtDuration = findViewById(R.id.txtDuration);
             txtDuration.setText(MediNET
                     .durationToTimerString(getMeditationAssistant()
                             .getMediNET().session.length, false));
 
             String text_size = getMeditationAssistant().getPrefs().getString("pref_text_size", "normal");
-            if (text_size.equals("tiny")) {
-                txtDuration.setTextSize(85);
-            } else if (text_size.equals("small")) {
-                txtDuration.setTextSize(115);
-            } else if (text_size.equals("large")) {
-                txtDuration.setTextSize(175);
-            } else if (text_size.equals("extralarge")) {
-                txtDuration.setTextSize(200);
-            } else { // Normal
-                txtDuration.setTextSize(153);
+            switch (text_size) {
+                case "tiny":
+                    txtDuration.setTextSize(85);
+                    break;
+                case "small":
+                    txtDuration.setTextSize(115);
+                    break;
+                case "large":
+                    txtDuration.setTextSize(175);
+                    break;
+                case "extralarge":
+                    txtDuration.setTextSize(200);
+                    break;
+                default:
+                    txtDuration.setTextSize(153); // Normal
+                    break;
             }
 
             String finishSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish", "");
@@ -220,7 +225,7 @@ public class CompleteActivity extends Activity {
     }
 
     private String getSessionMessage() {
-        EditText editSessionMessage = (EditText) findViewById(R.id.editSessionMessage);
+        EditText editSessionMessage = findViewById(R.id.editSessionMessage);
         return editSessionMessage.getText().toString().trim();
     }
 

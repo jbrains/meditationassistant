@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.TimeZone;
 
 public class SessionAdapter extends ArrayAdapter<SessionSQL> {
-    public Map<String, Integer> sessions_map = new HashMap<String, Integer>();
+    public Map<String, Integer> sessions_map = new HashMap<>();
     // private final ArrayList<MeditationSession> sessions;
     private Context context = null;
     private ArrayList<SessionSQL> sessions = null;
@@ -35,15 +35,15 @@ public class SessionAdapter extends ArrayAdapter<SessionSQL> {
 
         View rowView = inflater.inflate(R.layout.activity_sessions_item,
                 parent, false);
-        TextView txtSessionLength = (TextView) rowView
+        TextView txtSessionLength = rowView
                 .findViewById(R.id.session_length);
-        TextView txtSessionStarted = (TextView) rowView
+        TextView txtSessionStarted = rowView
                 .findViewById(R.id.session_started);
-        TextView txtSessionStartedTime = (TextView) rowView
+        TextView txtSessionStartedTime = rowView
                 .findViewById(R.id.session_started_time);
 
         txtSessionLength
-                .setText(String.valueOf(sessions.get(position)._length / 3600)
+                .setText(sessions.get(position)._length / 3600
                         + ":"
                         + String.format("%02d",
                         (sessions.get(position)._length % 3600) / 60));

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 class WakeLocker {
-    private List<String> wakeLocks = new CopyOnWriteArrayList<String>();
+    private List<String> wakeLocks = new CopyOnWriteArrayList<>();
 
     private PowerManager.WakeLock wakeLockScreenOff;
     private PowerManager.WakeLock wakeLockScreenOn;
