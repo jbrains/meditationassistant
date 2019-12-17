@@ -25,8 +25,8 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.RingtonePreference;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -346,8 +346,8 @@ public class SettingsActivity extends PreferenceActivity {
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                 }
                             }).show();
-                    break;
                 }
+                break;
             }
             case PERMISSION_REQUEST_IMPORT_READ_EXTERNAL_STORAGE: {
                 if ((grantResults.length > 0
@@ -386,8 +386,8 @@ public class SettingsActivity extends PreferenceActivity {
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                 }
                             }).show();
-                    break;
                 }
+                break;
             }
             case PERMISSION_REQUEST_EXPORT_WRITE_EXTERNAL_STORAGE: {
                 if ((grantResults.length > 0
@@ -426,8 +426,8 @@ public class SettingsActivity extends PreferenceActivity {
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                 }
                             }).show();
-                    break;
                 }
+                break;
             }
         }
     }

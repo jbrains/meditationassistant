@@ -1967,7 +1967,7 @@ public class NumberPicker extends LinearLayout {
     /**
      * @hide
      */
-    public static class CustomEditText extends android.support.v7.widget.AppCompatEditText {
+    public static class CustomEditText extends androidx.appcompat.widget.AppCompatEditText {
 
         public CustomEditText(Context context, AttributeSet attrs) {
             super(context, attrs);
