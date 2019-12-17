@@ -120,7 +120,7 @@ public class TimePicker extends FrameLayout {
         inflater.inflate(layoutResourceId, TimePicker.this, true);
 
         // hour
-        mHourSpinner = (NumberPicker) findViewById(R.id.hour);
+        mHourSpinner = findViewById(R.id.hour);
         mHourSpinner.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             public void onValueChange(NumberPicker spinner, int oldVal, int newVal) {
                 updateInputState();
@@ -134,17 +134,17 @@ public class TimePicker extends FrameLayout {
                 onTimeChanged();
             }
         });
-        mHourSpinnerInput = (EditText) mHourSpinner.findViewById(R.id.np__numberpicker_input);
+        mHourSpinnerInput = mHourSpinner.findViewById(R.id.np__numberpicker_input);
         mHourSpinnerInput.setImeOptions(EditorInfo.IME_ACTION_NEXT);
 
         // divider (only for the new widget style)
-        mDivider = (TextView) findViewById(R.id.divider);
+        mDivider = findViewById(R.id.divider);
         if (mDivider != null) {
             mDivider.setText(R.string.time_picker_separator);
         }
 
         // minute
-        mMinuteSpinner = (NumberPicker) findViewById(R.id.minute);
+        mMinuteSpinner = findViewById(R.id.minute);
         mMinuteSpinner.setMinValue(0);
         mMinuteSpinner.setMaxValue(59);
         mMinuteSpinner.setOnLongPressUpdateInterval(100);
@@ -172,7 +172,7 @@ public class TimePicker extends FrameLayout {
                 onTimeChanged();
             }
         });
-        mMinuteSpinnerInput = (EditText) mMinuteSpinner.findViewById(R.id.np__numberpicker_input);
+        mMinuteSpinnerInput = mMinuteSpinner.findViewById(R.id.np__numberpicker_input);
         mMinuteSpinnerInput.setImeOptions(EditorInfo.IME_ACTION_NEXT);
 
         /* Get the localized am/pm strings and use them in the spinner */
@@ -207,7 +207,7 @@ public class TimePicker extends FrameLayout {
                     onTimeChanged();
                 }
             });
-            mAmPmSpinnerInput = (EditText) mAmPmSpinner.findViewById(R.id.np__numberpicker_input);
+            mAmPmSpinnerInput = mAmPmSpinner.findViewById(R.id.np__numberpicker_input);
             mAmPmSpinnerInput.setImeOptions(EditorInfo.IME_ACTION_DONE);
         }
 
@@ -508,7 +508,7 @@ public class TimePicker extends FrameLayout {
      */
     private static class SavedState extends BaseSavedState {
 
-        @SuppressWarnings({"unused", "hiding"})
+        @SuppressWarnings({"unused"})
         public static final Parcelable.Creator<SavedState> CREATOR = new Creator<SavedState>() {
             public SavedState createFromParcel(Parcel in) {
                 return new SavedState(in);

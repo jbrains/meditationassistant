@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 public class UtilityMA {
     public MeditationAssistant ma = null;
     public GoogleApiClient googleClient = null;
-    public HashMap<MeditationAssistant.TrackerName, Tracker> mTrackers = new HashMap<MeditationAssistant.TrackerName, Tracker>();
+    public HashMap<MeditationAssistant.TrackerName, Tracker> mTrackers = new HashMap<>();
     public boolean googleAPIAuthInProgress = false;
 
     private MeditationAssistant getMeditationAssistant() {

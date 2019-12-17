@@ -56,16 +56,16 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
                     + MediNET.version.toString() + "&av="
                     + appVersion + "&am="
                     + getMeditationAssistant().getMarketName() + "&avn="
-                    + String.valueOf(getMeditationAssistant().getMAAppVersionNumber()) + "&buf="
-                    + String.valueOf(getMeditationAssistant().getStreakBufferSeconds()) + "&tz="
+                    + getMeditationAssistant().getMAAppVersionNumber() + "&buf="
+                    + getMeditationAssistant().getStreakBufferSeconds() + "&tz="
                     + TimeZone.getDefault().getID();
         }
 
         Log.d("MeditationAssistant", "URL => " + this.nextURL);
 
-        ArrayList<SessionSQL> sessions = new ArrayList<SessionSQL>();
+        ArrayList<SessionSQL> sessions = new ArrayList<>();
 
-        HashMap<String, String> postData = new HashMap<String, String>();
+        HashMap<String, String> postData = new HashMap<>();
         try {
             postData.put("x", medinet
                     .getMeditationAssistant().getMediNETKey());
@@ -122,7 +122,7 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
             e.printStackTrace();
         }
 
-        String result = "";
+        StringBuilder result = new StringBuilder();
         HttpURLConnection medinetConnection = null;
 
         try {
@@ -145,12 +145,11 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
             medinetConnection.connect();
             int responseCode = medinetConnection.getResponseCode();
 
-            result = "";
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 String line;
                 BufferedReader br = new BufferedReader(new InputStreamReader(medinetConnection.getInputStream()));
                 while ((line = br.readLine()) != null) {
-                    result += line;
+                    result.append(line);
                 }
             } else {
                 Log.d("MeditationAssistant", "Unable to connect to MediNET");
@@ -212,13 +211,11 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
             Log.d("MeditationAssistant", "Header: "
                     + medinetConnection.getHeaderField("x-MediNET"));
 
-            if (!result.equals("")
-                    && !result.trim().startsWith("<")) {
+            if (result.length() > 0 && !result.toString().trim().startsWith("<")) {
                 JSONObject jsonObj;
                 try {
-                    jsonObj = new JSONObject(result);
-                    Log.d("MeditationAssistant",
-                            "jsonobj: " + jsonObj.toString());
+                    jsonObj = new JSONObject(result.toString());
+                    Log.d("MeditationAssistant", "jsonobj: " + jsonObj.toString());
                     if (jsonObj.has("status")) {
                         medinet.status = jsonObj.getString("status");
                     }
@@ -338,13 +335,13 @@ public class MediNETTask extends AsyncTask<MediNET, Integer, MediNET> {
 
                                 Log.d("MeditationAssistant",
                                         "Adding session started at "
-                                                + String.valueOf(sess._started)
+                                                + sess._started
                                 );
                                 getMeditationAssistant().db.addSession(sess, (long) 0);
                                 getMeditationAssistant().recalculateMeditationStreak(medinet.activity);
                             } else {
                                 Log.d("MeditationAssistant",
-                                        "Skipping session " + String.valueOf(session));
+                                        "Skipping session " + session);
                             }
                         }
 

@@ -48,7 +48,6 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Locale;
 import java.util.Set;
 
@@ -65,7 +64,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
         new Handler(Looper.getMainLooper()).post(() -> {
             if ((key.equals("timerHours") || key.equals("timerMinutes")) && getMeditationAssistant().getTimeToStopMeditate() < 1) {
-                TextView txtTimer = (TextView) findViewById(R.id.txtTimer);
+                TextView txtTimer = findViewById(R.id.txtTimer);
                 txtTimer.setText(getMeditationAssistant().getPrefs().getString("timerHours", "0")
                         + ":"
                         + String.format("%02d", Integer.valueOf(getMeditationAssistant().getPrefs().getString(
@@ -107,6 +106,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                 }
 
                 String intervalSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval", "");
+
                 if (!intervalSoundPath.equals("none") || getMeditationAssistant().vibrationEnabled()) {
                     if (!intervalSoundPath.equals("none")) {
                         getMeditationAssistant().playSessionSound(1, false);
@@ -116,7 +116,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
                     long interval = Math.max(
                             getMeditationAssistant().timePreferenceValueToSeconds(getMeditationAssistant().getPrefs().getString("pref_session_interval", "00:00"), "00:00"), 0);
-                    Log.d("MeditationAssistant", "Interval is set to " + String.valueOf(interval) + " seconds");
+                    Log.d("MeditationAssistant", "Interval is set to " + interval + " seconds");
 
                     if (interval > 0 && (getMeditationAssistant().getTimeToStopMeditate() == -1
                             || getMeditationAssistant().getTimeToStopMeditate()
@@ -125,8 +125,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                         cal.add(Calendar.SECOND, (int) interval);
 
                         Log.d("MeditationAssistant", "Setting INTERVAL WAKEUP alarm for "
-                                + String.valueOf(cal.getTimeInMillis()) + " (Now: "
-                                + System.currentTimeMillis() + ", in: " + String.valueOf((cal.getTimeInMillis() - System.currentTimeMillis()) / 1000) + ")");
+                                + cal.getTimeInMillis() + " (Now: "
+                                + System.currentTimeMillis() + ", in: " + (cal.getTimeInMillis() - System.currentTimeMillis()) / 1000 + ")");
 
                         Intent intent_interval = new Intent(
                                 getApplicationContext(), MainActivity.class);
@@ -190,20 +190,19 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             Boolean hidProgress = false;
             Boolean hidCommunity = false;
 
-            for (Iterator<String> hidebtni = hideMainButtons.iterator(); hidebtni.hasNext(); ) {
-                String hideButton = hidebtni.next();
+            for (String hideButton : hideMainButtons) {
                 if (hideButton.equals("medinet")) {
                     View divStreakUpper = findViewById(R.id.divstreakUpper);
-                    Button btnMeditationStreak = (Button) findViewById(R.id.btnMeditationStreak);
+                    Button btnMeditationStreak = findViewById(R.id.btnMeditationStreak);
                     divStreakUpper.setVisibility(View.GONE);
                     btnMeditationStreak.setVisibility(View.GONE);
                 } else if (hideButton.equals("progress")) {
-                    Button btnProgress = (Button) findViewById(R.id.btnProgress);
+                    Button btnProgress = findViewById(R.id.btnProgress);
                     btnProgress.setVisibility(View.GONE);
 
                     hidProgress = true;
                 } else if (hideButton.equals("community")) {
-                    Button btnCommunity = (Button) findViewById(R.id.btnCommunity);
+                    Button btnCommunity = findViewById(R.id.btnCommunity);
                     btnCommunity.setVisibility(View.GONE);
 
                     hidCommunity = true;
@@ -212,7 +211,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
             if (hidProgress && hidCommunity) {
                 View divMainControls = findViewById(R.id.divMainControls);
-                LinearLayout layMainControls = (LinearLayout) findViewById(R.id.layMainControls);
+                LinearLayout layMainControls = findViewById(R.id.layMainControls);
                 divMainControls.setVisibility(View.GONE);
                 layMainControls.setVisibility(View.GONE);
             } else if (hidProgress || hidCommunity) {
@@ -234,8 +233,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
         usetimepicker = getMeditationAssistant().getPrefs().getBoolean("pref_usetimepicker", false);
 
-        final EditText editDuration = (EditText) findViewById(R.id.editDuration);
-        final TimePicker timepickerDuration = (TimePicker) findViewById(R.id.timepickerDuration);
+        final EditText editDuration = findViewById(R.id.editDuration);
+        final TimePicker timepickerDuration = findViewById(R.id.timepickerDuration);
         timepickerDuration.setIs24HourView(true);
         if (usetimepicker) {
             editDuration.setVisibility(View.GONE);
@@ -251,7 +250,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                     public boolean onEditorAction(android.widget.TextView v,
                                                   int actionId, KeyEvent event) {
                         if (actionId == EditorInfo.IME_ACTION_DONE) {
-                            RelativeLayout layEditDuration = (RelativeLayout) findViewById(R.id.layEditDuration);
+                            RelativeLayout layEditDuration = findViewById(R.id.layEditDuration);
                             if (layEditDuration.getVisibility() == View.VISIBLE) {
                                 setDuration(null);
                             }
@@ -267,7 +266,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_UP
                         && keyCode == KeyEvent.KEYCODE_ENTER) {
-                    RelativeLayout layEditDuration = (RelativeLayout) findViewById(R.id.layEditDuration);
+                    RelativeLayout layEditDuration = findViewById(R.id.layEditDuration);
                     if (layEditDuration.getVisibility() == View.VISIBLE) {
                         setDuration(null);
                     }
@@ -279,15 +278,15 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             }
         });
 
-        Button btnPreset1 = (Button) findViewById(R.id.btnPreset1);
-        Button btnPreset2 = (Button) findViewById(R.id.btnPreset2);
-        Button btnPreset3 = (Button) findViewById(R.id.btnPreset3);
+        Button btnPreset1 = findViewById(R.id.btnPreset1);
+        Button btnPreset2 = findViewById(R.id.btnPreset2);
+        Button btnPreset3 = findViewById(R.id.btnPreset3);
 
         View.OnLongClickListener presetListener = new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(final View view) {
                 if (getMeditationAssistant().getTimerMode().equals("endat")) {
-                    ArrayList<String> duration_formatted = new ArrayList<String>();
+                    ArrayList<String> duration_formatted = new ArrayList<>();
                     if (usetimepicker) {
                         duration_formatted.add(String.valueOf(timepickerDuration.getCurrentHour()));
                         duration_formatted.add(String.format("%02d",
@@ -301,7 +300,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                         return true;
                     }
                 } else if (!getMeditationAssistant().getTimerMode().equals("untimed")) {
-                    ArrayList<String> duration_formatted = new ArrayList<String>();
+                    ArrayList<String> duration_formatted = new ArrayList<>();
                     if (usetimepicker) {
                         duration_formatted.add(String.valueOf(timepickerDuration.getCurrentHour()));
                         duration_formatted.add(String.format("%02d",
@@ -329,7 +328,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
                 LayoutInflater presetInflater = getLayoutInflater();
                 View presetLayout = presetInflater.inflate(R.layout.set_preset, null);
-                final EditText editPresetTitle = (EditText) presetLayout.findViewById(R.id.editPresetTitle);
+                final EditText editPresetTitle = presetLayout.findViewById(R.id.editPresetTitle);
                 editPresetTitle.setText(getPresetDefaultLabel());
                 editPresetTitle.setSelection(editPresetTitle.getText().length());
                 editPresetTitle.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
@@ -495,7 +494,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     }
 
     public void cancelSetDuration(View view) {
-        TextView txtTimer = (TextView) findViewById(R.id.txtTimer);
+        TextView txtTimer = findViewById(R.id.txtTimer);
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(txtTimer.getWindowToken(), 0);
         getMeditationAssistant().setEditingDuration(false);
@@ -506,7 +505,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
     public void updateEditDuration() {
         if (usetimepicker) {
-            TimePicker timepickerDuration = (TimePicker) findViewById(R.id.timepickerDuration);
+            TimePicker timepickerDuration = findViewById(R.id.timepickerDuration);
 
             if (getMeditationAssistant().getTimerMode().equals("timed")) {
                 timepickerDuration.setEnabled(true);
@@ -520,7 +519,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                 timepickerDuration.setEnabled(false);
             }
         } else {
-            EditText editDuration = (EditText) findViewById(R.id.editDuration);
+            EditText editDuration = findViewById(R.id.editDuration);
 
             if (getMeditationAssistant().getTimerMode().equals("timed")) {
                 editDuration.setText(getMeditationAssistant().getPrefs().getString("timerHours", "0")
@@ -542,7 +541,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
     public void setDuration(View view) {
         if (usetimepicker) {
-            TimePicker timepickerDuration = (TimePicker) findViewById(R.id.timepickerDuration);
+            TimePicker timepickerDuration = findViewById(R.id.timepickerDuration);
 
             if (getMeditationAssistant().getTimerMode().equals("timed")) {
                 getMeditationAssistant().getPrefs().edit().putString("timerHours", String.valueOf(timepickerDuration.getCurrentHour())).putString("timerMinutes", String.valueOf(timepickerDuration.getCurrentMinute())).apply();
@@ -550,7 +549,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                 getMeditationAssistant().getPrefs().edit().putString("timerHoursEndAt", String.valueOf(timepickerDuration.getCurrentHour())).putString("timerMinutesEndAt", String.valueOf(timepickerDuration.getCurrentMinute())).apply();
             }
         } else {
-            EditText editDuration = (EditText) findViewById(R.id.editDuration);
+            EditText editDuration = findViewById(R.id.editDuration);
 
             if (getMeditationAssistant().getTimerMode().equals("timed")) {
                 ArrayList<String> duration_formatted = getMeditationAssistant().formatDuration(editDuration.getText().toString().trim());
@@ -576,7 +575,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                 }
             }
 
-            TextView txtTimer = (TextView) findViewById(R.id.txtTimer);
+            TextView txtTimer = findViewById(R.id.txtTimer);
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(txtTimer.getWindowToken(), 0);
         }
@@ -587,9 +586,9 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
     /* Called when the duration is clicked */
     public void changeDuration(View view) {
-        RelativeLayout layEditDuration = (RelativeLayout) findViewById(R.id.layEditDuration);
-        TextView txtTimer = (TextView) findViewById(R.id.txtTimer);
-        EditText editDuration = (EditText) findViewById(R.id.editDuration);
+        RelativeLayout layEditDuration = findViewById(R.id.layEditDuration);
+        TextView txtTimer = findViewById(R.id.txtTimer);
+        EditText editDuration = findViewById(R.id.editDuration);
 
         if (getMeditationAssistant().getTimeStartMeditate() > 0) {
             return; // Don't switch during a meditation session
@@ -769,10 +768,10 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     }
 
     public void updateVisibleViews(boolean fadeViews) {
-        RadioGroup radgMainTimerMode = (RadioGroup) findViewById(R.id.radgMainTimerMode);
+        RadioGroup radgMainTimerMode = findViewById(R.id.radgMainTimerMode);
 
-        RelativeLayout layLowerViews = (RelativeLayout) findViewById(R.id.layLowerViews);
-        LinearLayout layLowerViewsEditing = (LinearLayout) findViewById(R.id.layLowerViewsEditing);
+        RelativeLayout layLowerViews = findViewById(R.id.layLowerViews);
+        LinearLayout layLowerViewsEditing = findViewById(R.id.layLowerViewsEditing);
 
         if (getMeditationAssistant().getEditingDuration()) {
             hideViewMA(layLowerViews, false);
@@ -782,7 +781,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             hideViewMA(layLowerViewsEditing, false);
         }
 
-        EditText editDuration = (EditText) findViewById(R.id.editDuration);
+        EditText editDuration = findViewById(R.id.editDuration);
 
         if (getMeditationAssistant().getEditingDuration()) {
             if (getMeditationAssistant().getTimerMode().equals("timed") || getMeditationAssistant().getTimerMode().equals("endat")) {
@@ -813,8 +812,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     }
 
     public void updateTextSize() {
-        TextView txtTimer = (TextView) findViewById(R.id.txtTimer);
-        EditText editDuration = (EditText) findViewById(R.id.editDuration);
+        TextView txtTimer = findViewById(R.id.txtTimer);
+        EditText editDuration = findViewById(R.id.editDuration);
         String text_size = getMeditationAssistant().getPrefs().getString("pref_text_size", "normal");
         if (text_size.equals("tiny")) {
             txtTimer.setTextSize(85);
@@ -835,9 +834,9 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     }
 
     public void updatePresets() {
-        Button btnPreset1 = (Button) findViewById(R.id.btnPreset1);
-        Button btnPreset2 = (Button) findViewById(R.id.btnPreset2);
-        Button btnPreset3 = (Button) findViewById(R.id.btnPreset3);
+        Button btnPreset1 = findViewById(R.id.btnPreset1);
+        Button btnPreset2 = findViewById(R.id.btnPreset2);
+        Button btnPreset3 = findViewById(R.id.btnPreset3);
 
         btnPreset1.setText(getMeditationAssistant().getPrefs().getString("pref_preset_1_label", getString(R.string.setPreset)));
         btnPreset2.setText(getMeditationAssistant().getPrefs().getString("pref_preset_2_label", getString(R.string.setPreset)));
@@ -845,13 +844,13 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     }
 
     public String getPresetDefaultLabel() {
-        EditText editDuration = (EditText) findViewById(R.id.editDuration);
-        TimePicker timepickerDuration = (TimePicker) findViewById(R.id.timepickerDuration);
+        EditText editDuration = findViewById(R.id.editDuration);
+        TimePicker timepickerDuration = findViewById(R.id.timepickerDuration);
 
         if (getMeditationAssistant().getTimerMode().equals("untimed")) {
             return "Untimed";
         } else if (getMeditationAssistant().getTimerMode().equals("endat")) {
-            ArrayList<String> duration_formatted = new ArrayList<String>();
+            ArrayList<String> duration_formatted = new ArrayList<>();
             if (usetimepicker) {
                 duration_formatted.add(String.valueOf(timepickerDuration.getCurrentHour()));
                 duration_formatted.add(String.format("%02d",
@@ -864,7 +863,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                 return String.format(getString(R.string.presetLabelEndAt), duration_formatted.get(0) + ":" + duration_formatted.get(1));
             }
         } else { // timed
-            ArrayList<String> duration_formatted = new ArrayList<String>();
+            ArrayList<String> duration_formatted = new ArrayList<>();
             if (usetimepicker) {
                 duration_formatted.add(String.valueOf(timepickerDuration.getCurrentHour()));
                 duration_formatted.add(String.format("%02d",
@@ -882,7 +881,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     }
 
     public void pressPreset(View view) {
-        final EditText editDuration = (EditText) findViewById(R.id.editDuration);
+        final EditText editDuration = findViewById(R.id.editDuration);
 
         String preset_key;
         if (view.getId() == R.id.btnPreset1) {
@@ -900,7 +899,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
         if (!preset_value.equals("")) {
             try {
-                Set<String> presetSettings = getMeditationAssistant().getPrefs().getStringSet("pref_presetsettings", new HashSet<String>(Arrays.asList(getResources().getStringArray(R.array.presetsettings_default))));
+                Set<String> presetSettings = getMeditationAssistant().getPrefs().getStringSet("pref_presetsettings", new HashSet<>(Arrays.asList(getResources().getStringArray(R.array.presetsettings_default))));
                 JSONObject preset = new JSONObject(preset_value);
                 Log.d("MeditationAssistant", "Restore preset settings: " + presetSettings.toString() + " - Values: " + preset_value);
 
@@ -916,7 +915,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                         if (usetimepicker) {
                             String[] preset_split = preset.getString("modeandduration").substring(1).split(":");
                             if (preset_split.length == 2) {
-                                TimePicker timepickerDuration = (TimePicker) findViewById(R.id.timepickerDuration);
+                                TimePicker timepickerDuration = findViewById(R.id.timepickerDuration);
                                 timepickerDuration.setCurrentHour(Integer.valueOf(preset_split[0]));
                                 timepickerDuration.setCurrentMinute(Integer.valueOf(preset_split[1]));
                             }
@@ -930,7 +929,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                         if (usetimepicker) {
                             String[] preset_split = preset.getString("modeandduration").split(":");
                             if (preset_split.length == 2) {
-                                TimePicker timepickerDuration = (TimePicker) findViewById(R.id.timepickerDuration);
+                                TimePicker timepickerDuration = findViewById(R.id.timepickerDuration);
                                 timepickerDuration.setCurrentHour(Integer.valueOf(preset_split[0]));
                                 timepickerDuration.setCurrentMinute(Integer.valueOf(preset_split[1]));
                             }
@@ -1035,14 +1034,14 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     }
 
     public void savePreset(String preset_key) {
-        EditText editDuration = (EditText) findViewById(R.id.editDuration);
-        TimePicker timepickerDuration = (TimePicker) findViewById(R.id.timepickerDuration);
+        EditText editDuration = findViewById(R.id.editDuration);
+        TimePicker timepickerDuration = findViewById(R.id.timepickerDuration);
 
         Preset preset = new Preset();
         if (getMeditationAssistant().getTimerMode().equals("untimed")) {
             preset.modeandduration = "untimed";
         } else if (getMeditationAssistant().getTimerMode().equals("endat")) {
-            ArrayList<String> duration_formatted = new ArrayList<String>();
+            ArrayList<String> duration_formatted = new ArrayList<>();
             if (usetimepicker) {
                 duration_formatted.add(String.valueOf(timepickerDuration.getCurrentHour()));
                 duration_formatted.add(String.format("%02d",
@@ -1055,7 +1054,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                 preset.modeandduration = "e" + duration_formatted.get(0) + ":" + duration_formatted.get(1);
             }
         } else { // timed
-            ArrayList<String> duration_formatted = new ArrayList<String>();
+            ArrayList<String> duration_formatted = new ArrayList<>();
             if (usetimepicker) {
                 duration_formatted.add(String.valueOf(timepickerDuration.getCurrentHour()));
                 duration_formatted.add(String.format("%02d",
@@ -1104,13 +1103,13 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             if (getMeditationAssistant().getTimeStartMeditate() > timestamp) { // currently in delay phase
                 Log.d("MeditationAssistant",
                         "PREVIOUS Timestamp: "
-                                + String.valueOf(timestamp)
+                                + timestamp
                                 + " Stop: "
-                                + String.valueOf(getMeditationAssistant()
-                                .getTimeToStopMeditate())
+                                + getMeditationAssistant()
+                            .getTimeToStopMeditate()
                                 + " Start: "
-                                + String.valueOf(getMeditationAssistant()
-                                .getTimeStartMeditate())
+                                + getMeditationAssistant()
+                            .getTimeStartMeditate()
                 );
                 getMeditationAssistant().setTimeStartMeditate(timestamp);
 
@@ -1124,13 +1123,13 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
                 Log.d("MeditationAssistant",
                         "NEW Timestamp: "
-                                + String.valueOf(timestamp)
+                                + timestamp
                                 + " Stop: "
-                                + String.valueOf(getMeditationAssistant()
-                                .getTimeToStopMeditate())
+                                + getMeditationAssistant()
+                            .getTimeToStopMeditate()
                                 + " Start: "
-                                + String.valueOf(getMeditationAssistant()
-                                .getTimeStartMeditate())
+                                + getMeditationAssistant()
+                            .getTimeStartMeditate()
                 );
                 handler.removeCallbacks(meditateRunnable);
                 handler.removeCallbacks(intervalRunnable);
@@ -1149,8 +1148,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                     }
                     Log.d("MeditationAssistant", "CANCELLED MAIN WAKEUP AND INTERVAL ALARMS");
 
-                    TextView txtTimer = (TextView) findViewById(R.id.txtTimer);
-                    TextView txtDurationSeconds = (TextView) findViewById(R.id.txtDurationSeconds);
+                    TextView txtTimer = findViewById(R.id.txtTimer);
+                    TextView txtDurationSeconds = findViewById(R.id.txtDurationSeconds);
                     getMeditationAssistant().pausedTimerHoursMinutes = txtTimer.getText().toString();
                     getMeditationAssistant().pausedTimerSeconds = txtDurationSeconds.getText().toString();
                     getMeditationAssistant().pauseSession();
@@ -1198,8 +1197,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                                 PendingIntent.FLAG_CANCEL_CURRENT);
 
                         Log.d("MeditationAssistant", "Setting MAIN WAKEUP alarm for "
-                                + String.valueOf(cal.getTimeInMillis()) + " (Now: "
-                                + System.currentTimeMillis() + ", in: " + String.valueOf((cal.getTimeInMillis() - System.currentTimeMillis()) / 1000) + ")");
+                                + cal.getTimeInMillis() + " (Now: "
+                                + System.currentTimeMillis() + ", in: " + (cal.getTimeInMillis() - System.currentTimeMillis()) / 1000 + ")");
                         getMeditationAssistant().setAlarm(true, cal.getTimeInMillis(), pendingintent);
                     }
 
@@ -1221,7 +1220,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         getMeditationAssistant().clearSoundCache();
         getMeditationAssistant().cacheSessionSounds();
 
-        Log.d("MeditationAssistant", "Timestamp: " + String.valueOf(timestamp));
+        Log.d("MeditationAssistant", "Timestamp: " + timestamp);
         Integer secondsTillFinished = 0;
         if (getMeditationAssistant().getTimerMode().equals("timed")) {
             secondsTillFinished = Integer.parseInt(getMeditationAssistant().getPrefs().getString(
@@ -1277,9 +1276,9 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             c_endat.set(Calendar.MINUTE, end_at_minute);
             c_endat.set(Calendar.SECOND, 0);
 
-            Log.d("MeditationAssistant", "NOW HOUROFDAY: " + String.valueOf(c_now.get(Calendar.HOUR_OF_DAY)) + " MINUTE: " + String.valueOf(c_now.get(Calendar.MINUTE)));
-            Log.d("MeditationAssistant", "END HOUROFDAY: " + String.valueOf(c_endat.get(Calendar.HOUR_OF_DAY)) + " MINUTE: " + String.valueOf(c_endat.get(Calendar.MINUTE)));
-            Log.d("MeditationAssistant", "-- END AT: " + String.valueOf(c_endat.getTimeInMillis() / 1000) + " NOW: " + String.valueOf(c_now.getTimeInMillis() / 1000));
+            Log.d("MeditationAssistant", "NOW HOUROFDAY: " + c_now.get(Calendar.HOUR_OF_DAY) + " MINUTE: " + c_now.get(Calendar.MINUTE));
+            Log.d("MeditationAssistant", "END HOUROFDAY: " + c_endat.get(Calendar.HOUR_OF_DAY) + " MINUTE: " + c_endat.get(Calendar.MINUTE));
+            Log.d("MeditationAssistant", "-- END AT: " + c_endat.getTimeInMillis() / 1000 + " NOW: " + c_now.getTimeInMillis() / 1000);
 
             // Add two seconds to account for partial seconds between now and the end at time for pretty durations
             secondsTillFinished = (int) ((c_endat.getTimeInMillis() - c_now.getTimeInMillis()) / 1000) + 2;
@@ -1352,8 +1351,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                                 PendingIntent.FLAG_CANCEL_CURRENT);
 
                         Log.d("MeditationAssistant", "Setting MAIN WAKEUP alarm for "
-                                + String.valueOf(cal.getTimeInMillis()) + " (Now: "
-                                + System.currentTimeMillis() + ", in: " + String.valueOf((cal.getTimeInMillis() - System.currentTimeMillis()) / 1000) + ")");
+                                + cal.getTimeInMillis() + " (Now: "
+                                + System.currentTimeMillis() + ", in: " + (cal.getTimeInMillis() - System.currentTimeMillis()) / 1000 + ")");
                         getMeditationAssistant().setAlarm(true, cal.getTimeInMillis(), pendingintent);
                     }
 
@@ -1400,8 +1399,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             cal.add(Calendar.SECOND, (int) delay);
 
             Log.d("MeditationAssistant", "Setting DELAY WAKEUP alarm for "
-                    + String.valueOf(cal.getTimeInMillis()) + " (Now: "
-                    + System.currentTimeMillis() + ", in: " + String.valueOf((cal.getTimeInMillis() - System.currentTimeMillis()) / 1000) + ")");
+                    + cal.getTimeInMillis() + " (Now: "
+                    + System.currentTimeMillis() + ", in: " + (cal.getTimeInMillis() - System.currentTimeMillis()) / 1000 + ")");
 
             Intent intent_delay = new Intent(getApplicationContext(),
                     MainActivity.class);
@@ -1421,7 +1420,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     private void setIntervalAlarm() {
         long interval = Math.max(
                 getMeditationAssistant().timePreferenceValueToSeconds(getMeditationAssistant().getPrefs().getString("pref_session_interval", "00:00"), "00:00"), 0);
-        Log.d("MeditationAssistant", "Interval is set to " + String.valueOf(interval) + " seconds");
+        Log.d("MeditationAssistant", "Interval is set to " + interval + " seconds");
 
         if (interval > 0) {
             Log.d("MeditationAssistant", "Reached postDelayed for interval runnable");
@@ -1429,8 +1428,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             cal.add(Calendar.SECOND, (int) interval);
 
             Log.d("MeditationAssistant", "Setting INITIAL INTERVAL WAKEUP alarm for "
-                    + String.valueOf(cal.getTimeInMillis()) + " (Now: "
-                    + System.currentTimeMillis() + ", in: " + String.valueOf((cal.getTimeInMillis() - System.currentTimeMillis()) / 1000) + ")");
+                    + cal.getTimeInMillis() + " (Now: "
+                    + System.currentTimeMillis() + ", in: " + (cal.getTimeInMillis() - System.currentTimeMillis()) / 1000 + ")");
 
             Intent intent_interval = new Intent(
                     getApplicationContext(), MainActivity.class);
@@ -1523,8 +1522,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     }
 
     public void onTimerModeSelected(View view) {
-        EditText editDuration = (EditText) findViewById(R.id.editDuration);
-        TimePicker timepickerDuration = (TimePicker) findViewById(R.id.timepickerDuration);
+        EditText editDuration = findViewById(R.id.editDuration);
+        TimePicker timepickerDuration = findViewById(R.id.timepickerDuration);
 
         String newTimerMode = "timed";
         if (view.getId() == R.id.radMainEndAt || view.getId() == R.id.layMainEndAt) {
@@ -1691,8 +1690,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     public void updateTexts() {
         String pref_full_screen = getMeditationAssistant().getPrefs().getString("pref_full_screen", "");
 
-        TextView txtMainStatus = (TextView) findViewById(R.id.txtMainStatus);
-        Button btnMeditationStreak = (Button) findViewById(R.id.btnMeditationStreak);
+        TextView txtMainStatus = findViewById(R.id.txtMainStatus);
+        Button btnMeditationStreak = findViewById(R.id.btnMeditationStreak);
         Resources res = getResources();
 
         if (getMeditationAssistant().getTimeToStopMeditate() < 1) {
@@ -1833,6 +1832,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                         }
 
                         String intervalSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_interval", "");
+
                         if (!intervalSoundPath.equals("none") || getMeditationAssistant().vibrationEnabled()) {
                             if (getMeditationAssistant().getTimeToStopMeditate() == -1
                                     || ((System.currentTimeMillis() / 1000) > getMeditationAssistant().getTimeToStopMeditate() && (System.currentTimeMillis() / 1000) - getMeditationAssistant().getTimeToStopMeditate() >= 5) || getMeditationAssistant().getTimeToStopMeditate()
@@ -1846,7 +1846,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
                             long interval = Math.max(
                                     getMeditationAssistant().timePreferenceValueToSeconds(getMeditationAssistant().getPrefs().getString("pref_session_interval", "00:00"), "00:00"), 0);
-                            Log.d("MeditationAssistant", "Interval is set to " + String.valueOf(interval) + " seconds");
+                            Log.d("MeditationAssistant", "Interval is set to " + interval + " seconds");
 
                             if (interval > 0 && (getMeditationAssistant().getTimeToStopMeditate() == -1
                                     || ((getMeditationAssistant().getTimeToStopMeditate()
@@ -1862,9 +1862,9 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                                 cal.add(Calendar.SECOND, (int) interval);
 
                                 Log.d("MeditationAssistant", "Setting INTERVAL WAKEUP alarm for "
-                                        + String.valueOf(cal.getTimeInMillis()) + " (Now: "
-                                        + System.currentTimeMillis() + ", in: " + String.valueOf((cal.getTimeInMillis() - System.currentTimeMillis()) / 1000) + ") - TOTAL TIME LEFT: " + String.valueOf(getMeditationAssistant().getTimeToStopMeditate()
-                                        - (System.currentTimeMillis() / 1000)));
+                                        + cal.getTimeInMillis() + " (Now: "
+                                        + System.currentTimeMillis() + ", in: " + (cal.getTimeInMillis() - System.currentTimeMillis()) / 1000 + ") - TOTAL TIME LEFT: " + (getMeditationAssistant().getTimeToStopMeditate()
+                                    - (System.currentTimeMillis() / 1000)));
 
                                 Intent intent_interval = new Intent(
                                         getApplicationContext(), MainActivity.class);
@@ -1900,9 +1900,9 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     }
 
     public void updateMeditate(boolean setDisabled, boolean complete) {
-        Button btnMeditate = (Button) findViewById(R.id.btnMeditate);
-        TextView txtTimer = (TextView) findViewById(R.id.txtTimer);
-        TextView txtDurationSeconds = (TextView) findViewById(R.id.txtDurationSeconds);
+        Button btnMeditate = findViewById(R.id.btnMeditate);
+        TextView txtTimer = findViewById(R.id.txtTimer);
+        TextView txtDurationSeconds = findViewById(R.id.txtDurationSeconds);
 
         long duration = 0;
         Long timestamp = System.currentTimeMillis() / 1000;
@@ -1944,8 +1944,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             if (timestamp >= getMeditationAssistant().getTimeStartMeditate()) {
                 int hoursSince = (int) duration / 3600;
                 int minutesSince = ((int) duration % 3600) / 60;
-                txtTimer.setText(String.valueOf(hoursSince) + ":"
-                        + String.format("%02d", minutesSince));
+                txtTimer.setText(hoursSince + ":" + String.format("%02d", minutesSince));
             } else {
                 txtTimer.setText(getString(R.string.ignore_om));
             }
@@ -1957,8 +1956,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                 minutesLeft = 0;
             }
 
-            txtTimer.setText(String.valueOf(hoursLeft) + ":"
-                    + String.format("%02d", minutesLeft));
+            txtTimer.setText(hoursLeft + ":" + String.format("%02d", minutesLeft));
         }
 
         if (getMeditationAssistant().getTimeToStopMeditate() == -1 || duration > 0 || (getMeditationAssistant().getTimeToStopMeditate() > 0 && getMeditationAssistant().getPrefs().getBoolean("pref_softfinish", false))) {
@@ -2079,11 +2077,11 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                     } else {
                         Log.d("MeditationAssistant",
                                 "Stopping - start:"
-                                        + String.valueOf(getMeditationAssistant()
-                                        .getTimeStartMeditate())
+                                        + getMeditationAssistant()
+                                    .getTimeStartMeditate()
                                         + " stop:"
-                                        + String.valueOf(getMeditationAssistant()
-                                        .getTimeToStopMeditate())
+                                        + getMeditationAssistant()
+                                    .getTimeToStopMeditate()
                         );
 
                         getMeditationAssistant().setRunnableStopped(true);

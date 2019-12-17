@@ -34,7 +34,6 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -486,11 +485,11 @@ public class MeditationAssistant extends Application {
 
     public void setMediNET(MediNET medi) {
         medinet = medi;
-        Log.d("MeditationAssistant", "Session: " + String.valueOf(medinet));
+        Log.d("MeditationAssistant", "Session: " + medinet);
     }
 
     public String getMediNETKey() {
-        Log.d("MeditationAssistant", "getMediNETKey() - medinetkey: " + String.valueOf(medinetkey) + " prefs: " + getPrefs().getString("key", ""));
+        Log.d("MeditationAssistant", "getMediNETKey() - medinetkey: " + medinetkey + " prefs: " + getPrefs().getString("key", ""));
         if (medinetkey == null) {
             medinetkey = getPrefs().getString("key", "");
         }
@@ -741,7 +740,7 @@ public class MeditationAssistant extends Application {
         Boolean sessionexiststoday = false;
 
         while (true) {
-            Log.d("MeditationAssistant", "Checking (" + String.valueOf(daysback) + ") " + String.valueOf(dayCalendar));
+            Log.d("MeditationAssistant", "Checking (" + daysback + ") " + dayCalendar);
             if (db.numSessionsByDate(dayCalendar) > 0) {
                 recalculatedstreak++;
 
@@ -796,7 +795,7 @@ public class MeditationAssistant extends Application {
         ArrayList<Long> streak = getMeditationStreak();
         Long streakday = streak.get(0);
         Long streakexpires = streak.get(1);
-        Log.d("MeditationAssistant", "addMeditationStreak() - Streak: " + String.valueOf(streakday) + " Expires: in " + String.valueOf(streakexpires - getTimestamp()) + " seconds");
+        Log.d("MeditationAssistant", "addMeditationStreak() - Streak: " + streakday + " Expires: in " + (streakexpires - getTimestamp()) + " seconds");
         if (streakday == 0 || streakexpires - getTimestamp() < 86400) {
             streakday++;
 
@@ -910,7 +909,7 @@ public class MeditationAssistant extends Application {
 
             if (!newHours.equals("-1") && !newMinutes.equals("-1")
                     && !(newHours.equals("0") && newMinutes.equals("0"))) {
-                ArrayList<String> formatted_duration = new ArrayList<String>();
+                ArrayList<String> formatted_duration = new ArrayList<>();
                 formatted_duration.add(newHours);
                 formatted_duration.add(String.format("%02d",
                         Integer.valueOf(newMinutes)));
@@ -983,7 +982,7 @@ public class MeditationAssistant extends Application {
 
             if (!newHours.equals("-1") && !newMinutes.equals("-1")
                     && !(newHours.equals("0") && newMinutes.equals("0"))) {
-                ArrayList<String> formatted_duration = new ArrayList<String>();
+                ArrayList<String> formatted_duration = new ArrayList<>();
                 formatted_duration.add(newHours);
                 formatted_duration.add(String.format("%02d",
                         Integer.valueOf(newMinutes)));
@@ -1080,7 +1079,7 @@ public class MeditationAssistant extends Application {
         getPrefs().edit().putLong("last_reminder", getTimestamp()).apply();
         //(new Exception()).printStackTrace();
         Log.d("MeditationAssistant", "Setting time to stop meditating: "
-                + String.valueOf(timeToStopMeditate));
+                + timeToStopMeditate);
     }
 
     public String getTimerMode() {
@@ -1141,7 +1140,7 @@ public class MeditationAssistant extends Application {
 
         Log.d("MeditationAssistant",
                 "Meditation Assistant running (" + applaunches + " launches) on API level "
-                        + String.valueOf(Build.VERSION.SDK_INT)
+                        + Build.VERSION.SDK_INT
         );
 
         getPrefs().registerOnSharedPreferenceChangeListener(sharedPrefslistener);
@@ -1237,9 +1236,9 @@ public class MeditationAssistant extends Application {
         date.setTimeZone(TimeZone.getDefault());
         long timestamp = date.getTimeInMillis() / 1000;
         Log.d("MeditationAssistant",
-                "Streak: " + String.valueOf(meditationstreak) + ", expires: "
-                        + String.valueOf(expires) + " (in "
-                        + String.valueOf(expires - timestamp) + " seconds)"
+                "Streak: " + meditationstreak + ", expires: "
+                        + expires + " (in "
+                        + (expires - timestamp) + " seconds)"
         );
 
         getPrefs().edit().putInt("meditationstreak", meditationstreak).putLong("meditationstreakexpires", meditationstreakexpires).apply();
@@ -1277,7 +1276,7 @@ public class MeditationAssistant extends Application {
         }
         pausetime += thispausetime;
 
-        Log.d("MeditationAssistant", "PAUSE: Un-paused.  Paused for " + String.valueOf(thispausetime) + " seconds (" + String.valueOf(pausetime) + " total)");
+        Log.d("MeditationAssistant", "PAUSE: Un-paused.  Paused for " + thispausetime + " seconds (" + pausetime + " total)");
 
         ispaused = false;
 
@@ -1488,13 +1487,13 @@ public class MeditationAssistant extends Application {
         sessionDialogLengthHour = -1;
         sessionDialogLengthMinute = -1;
 
-        View sessionDialogView = LayoutInflater.from(sessionDialogActivity).inflate(R.layout.session_dialog, (ViewGroup) sessionDialogActivity.findViewById(R.id.sessionDialog));
-        sessionDialogStartedDateButton = (Button) sessionDialogView.findViewById(R.id.sessionDialogSetDateStarted);
-        sessionDialogStartedTimeButton = (Button) sessionDialogView.findViewById(R.id.sessionDialogSetTimeStarted);
-        sessionDialogCompletedDateButton = (Button) sessionDialogView.findViewById(R.id.sessionDialogSetDateCompleted);
-        sessionDialogCompletedTimeButton = (Button) sessionDialogView.findViewById(R.id.sessionDialogSetTimeCompleted);
-        sessionDialogLengthButton = (Button) sessionDialogView.findViewById(R.id.sessionDialogSetLength);
-        sessionDialogMessage = (EditText) sessionDialogView.findViewById(R.id.sessionDialogSetMessage);
+        View sessionDialogView = LayoutInflater.from(sessionDialogActivity).inflate(R.layout.session_dialog, sessionDialogActivity.findViewById(R.id.sessionDialog));
+        sessionDialogStartedDateButton = sessionDialogView.findViewById(R.id.sessionDialogSetDateStarted);
+        sessionDialogStartedTimeButton = sessionDialogView.findViewById(R.id.sessionDialogSetTimeStarted);
+        sessionDialogCompletedDateButton = sessionDialogView.findViewById(R.id.sessionDialogSetDateCompleted);
+        sessionDialogCompletedTimeButton = sessionDialogView.findViewById(R.id.sessionDialogSetTimeCompleted);
+        sessionDialogLengthButton = sessionDialogView.findViewById(R.id.sessionDialogSetLength);
+        sessionDialogMessage = sessionDialogView.findViewById(R.id.sessionDialogSetMessage);
 
         if (session._id > 0) {
             sessionDialogUpdateSessionStarted = session._started;
@@ -1797,13 +1796,13 @@ public class MeditationAssistant extends Application {
         } else {
             String summary = "";
             if (sessionDialogLengthHour > 0) {
-                summary += String.valueOf(sessionDialogLengthHour) + " hour";
+                summary += sessionDialogLengthHour + " hour";
                 if (sessionDialogLengthHour > 1) {
                     summary += "s";
                 }
             }
             if (sessionDialogLengthMinute > 0) {
-                summary += " " + String.valueOf(sessionDialogLengthMinute) + " minute";
+                summary += " " + sessionDialogLengthMinute + " minute";
                 if (sessionDialogLengthMinute > 1) {
                     summary += "s";
                 }
@@ -2077,7 +2076,7 @@ public class MeditationAssistant extends Application {
         }
         df.setTimeZone(tz);
 
-        ArrayList<SessionSQL> sessions = new ArrayList<SessionSQL>();
+        ArrayList<SessionSQL> sessions = new ArrayList<>();
         int existingSessions = 0;
 
         try {
@@ -2237,7 +2236,7 @@ public class MeditationAssistant extends Application {
         try {
             FileWriter outputfile = new FileWriter(file);
             CSVWriter writer = new CSVWriter(outputfile);
-            List<String[]> data = new ArrayList<String[]>();
+            List<String[]> data = new ArrayList<>();
 
             ArrayList<SessionSQL> sessions = db.getAllSessions();
 
@@ -2259,9 +2258,9 @@ public class MeditationAssistant extends Application {
 
         View exp = LayoutInflater.from(activity).inflate(
                 R.layout.sessions_exported,
-                (ViewGroup) activity.findViewById(R.id.sessionsExported_root));
+                activity.findViewById(R.id.sessionsExported_root));
 
-        TextView txtSessionsExportedPath = (TextView) exp.findViewById(R.id.txtSessionsExportedPath);
+        TextView txtSessionsExportedPath = exp.findViewById(R.id.txtSessionsExportedPath);
         txtSessionsExportedPath.setText(file.getPath());
 
         AlertDialog sessionsExportedDialog = new AlertDialog.Builder(activity)
@@ -2366,7 +2365,7 @@ public class MeditationAssistant extends Application {
     }
 
     public ArrayList<Long> dateToSessionWindow(Calendar c) {
-        ArrayList<Long> sessionWindow = new ArrayList<Long>();
+        ArrayList<Long> sessionWindow = new ArrayList<>();
         ArrayList<Integer> streakbuffertime = getStreakBufferTime();
         Calendar sessionWindowCalendar = (Calendar) c.clone();
 
@@ -2429,7 +2428,7 @@ public class MeditationAssistant extends Application {
         }
 
         Intent e = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", getString(R.string.myEmailAddress), null));
-        String to[] = {getString(R.string.myEmailAddress)};
+        String[] to = {getString(R.string.myEmailAddress)};
         e.putExtra(Intent.EXTRA_EMAIL, to);
         e.putExtra(Intent.EXTRA_SUBJECT, "Meditation Assistant Debug Log");
         e.putExtra(Intent.EXTRA_TEXT, logcat.toString());

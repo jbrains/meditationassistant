@@ -60,7 +60,7 @@ public class TimePreference extends DialogPreference {
         picker.setCurrentHour(lastHour);
         picker.setCurrentMinute(lastMinute);
 
-        Log.d("MeditationAssistant", "TimePreference onBindDialogView: " + String.valueOf(lastHour) + ":" + String.valueOf(lastMinute));
+        Log.d("MeditationAssistant", "TimePreference onBindDialogView: " + lastHour + ":" + lastMinute);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class TimePreference extends DialogPreference {
             lastHour = picker.getCurrentHour();
             lastMinute = picker.getCurrentMinute();
 
-            String time = String.valueOf(lastHour) + ":" + String.valueOf(lastMinute);
+            String time = lastHour + ":" + lastMinute;
 
             Log.d("MeditationAssistant", "TimePreference positive result: " + time);
 
@@ -104,9 +104,9 @@ public class TimePreference extends DialogPreference {
         /*if (getKey() != null) {
             time = PreferenceManager.getDefaultSharedPreferences(ctx).getString(getKey(), getKey().equals("pref_session_delay") ? "00:15" : (getKey().equals("pref_daily_reminder") ? "19:00" : "00:00"));
         }*/
-        Log.d("MeditationAssistant", String.valueOf(getKey()) + " current value - " + PreferenceManager.getDefaultSharedPreferences(ctx).getString(getKey(), ""));
+        Log.d("MeditationAssistant", getKey() + " current value - " + PreferenceManager.getDefaultSharedPreferences(ctx).getString(getKey(), ""));
 
-        Log.d("MeditationAssistant", "TimePreference (" + String.valueOf(getKey()) + ") restoreValue: " + String.valueOf(restoreValue) + " - defaultValue: " + String.valueOf(defaultValue) + " - defaultv: " + String.valueOf(defaultv) + " - time: " + String.valueOf(time));
+        Log.d("MeditationAssistant", "TimePreference (" + getKey() + ") restoreValue: " + restoreValue + " - defaultValue: " + defaultValue + " - defaultv: " + defaultv + " - time: " + time);
 
         lastHour = getHour(time);
         lastMinute = getMinute(time);

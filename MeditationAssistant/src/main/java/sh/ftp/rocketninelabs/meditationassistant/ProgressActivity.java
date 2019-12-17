@@ -15,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -24,12 +23,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.Locale;
 import java.util.TimeZone;
 
 public class ProgressActivity extends FragmentActivity {
-    public SparseArray<SessionSQL> sessions_map = new SparseArray<SessionSQL>();
+    public SparseArray<SessionSQL> sessions_map = new SparseArray<>();
     TabHost mTabHost;
     ViewPager mViewPager;
     ProgressPagerAdapter mPagerAdapter = null;
@@ -59,14 +57,14 @@ public class ProgressActivity extends FragmentActivity {
         setContentView(R.layout.activity_progress);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager = findViewById(R.id.pager);
 
         mPagerAdapter = new ProgressPagerAdapter(
                 getSupportFragmentManager());
 
         mViewPager.setAdapter(mPagerAdapter);
 
-        PagerTabStrip tabStrip = (PagerTabStrip) findViewById(R.id.titles);
+        PagerTabStrip tabStrip = findViewById(R.id.titles);
         tabStrip.setDrawFullUnderline(true);
 
         if (getMeditationAssistant().getMAThemeString().equals("buddhism")) {
@@ -119,17 +117,16 @@ public class ProgressActivity extends FragmentActivity {
 
                 ArrayList<SessionSQL> sessions = getMeditationAssistant().db.getSessionsByDate(c);
 
-                final ArrayAdapter<String> sessionsDialogAdapter = new ArrayAdapter<String>(
+                final ArrayAdapter<String> sessionsDialogAdapter = new ArrayAdapter<>(
                         this,
                         android.R.layout.select_dialog_item);
 
                 sessions_map.clear();
                 int session_index = 0;
-                for (Iterator<SessionSQL> i = sessions.iterator(); i.hasNext(); ) {
-                    SessionSQL session = i.next();
+                for (SessionSQL session : sessions) {
                     Calendar cal2 = Calendar.getInstance();
                     cal2.setTimeInMillis(session._completed * 1000);
-                    sessionsDialogAdapter.add(String.valueOf(session._length / 3600) + ":"
+                    sessionsDialogAdapter.add(session._length / 3600 + ":"
                             + String.format("%02d", (session._length % 3600) / 60)
                             + " - " + sdf2.format(cal2.getTime()));
 
@@ -180,7 +177,7 @@ public class ProgressActivity extends FragmentActivity {
                 Locale.getDefault());
         sdf2.setTimeZone(TimeZone.getDefault());
 
-        String session_title = String.valueOf(sessionsql._length / 3600) + ":"
+        String session_title = sessionsql._length / 3600 + ":"
                 + String.format("%02d", (sessionsql._length % 3600) / 60)
                 + " - " + sdf.format(sess_date);
 
@@ -189,10 +186,10 @@ public class ProgressActivity extends FragmentActivity {
 
         View detailsView = LayoutInflater.from(this).inflate(
                 R.layout.session_details,
-                (ViewGroup) findViewById(R.id.sessionDetails_root));
+                findViewById(R.id.sessionDetails_root));
 
-        TextView txtSessionDetailsStarted = (TextView) detailsView.findViewById(R.id.txtSessionDetailsStarted);
-        TextView txtSessionDetailsMessage = (TextView) detailsView.findViewById(R.id.txtSessionDetailsMessage);
+        TextView txtSessionDetailsStarted = detailsView.findViewById(R.id.txtSessionDetailsStarted);
+        TextView txtSessionDetailsMessage = detailsView.findViewById(R.id.txtSessionDetailsMessage);
 
         txtSessionDetailsStarted.setText(String.format(getString(R.string.sessionStartedAt), session_started));
 

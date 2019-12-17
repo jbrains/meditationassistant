@@ -29,8 +29,8 @@ public class AboutActivity extends Activity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_about);
 
-        TextView txtAboutAppName = (TextView) findViewById(R.id.txtAboutAppName);
-        TextView txtAboutAppVersion = (TextView) findViewById(R.id.txtAboutAppVersion);
+        TextView txtAboutAppName = findViewById(R.id.txtAboutAppName);
+        TextView txtAboutAppVersion = findViewById(R.id.txtAboutAppVersion);
 
         txtAboutAppName.setText(getString(R.string.appNameShort));
 
@@ -43,11 +43,11 @@ public class AboutActivity extends Activity {
             e.printStackTrace();
         }
 
-        LinearLayout layAbout = (LinearLayout) findViewById(R.id.layAbout);
+        LinearLayout layAbout = findViewById(R.id.layAbout);
         layAbout.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View arg0) {
-                ImageView charis = (ImageView) findViewById(R.id.charis);
+                ImageView charis = findViewById(R.id.charis);
                 charis.setVisibility(View.VISIBLE);
                 charis.startAnimation(AnimationUtils.loadAnimation(
                         getApplicationContext(), R.anim.spin));

@@ -45,7 +45,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     private ArrayList<SessionSQL> unmarshalResult(Cursor c) {
-        ArrayList<SessionSQL> sessionList = new ArrayList<SessionSQL>();
+        ArrayList<SessionSQL> sessionList = new ArrayList<>();
         if (c != null) {
             if (c.moveToFirst()) {
                 do {
@@ -186,7 +186,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.d("MeditationAssistant", "CREATING DATABASE VERSION " + String.valueOf(DATABASE_VERSION));
+        Log.d("MeditationAssistant", "CREATING DATABASE VERSION " + DATABASE_VERSION);
         db.execSQL("CREATE TABLE `" + TABLE_SESSIONS + "` ("
                 + "`" + KEY_ID + "` INTEGER PRIMARY KEY, "
                 + "`" + KEY_STARTED + "` INTEGER, `" + KEY_COMPLETED + "` INTEGER, "
@@ -200,11 +200,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.d("MeditationAssistant", "DATABASE UPGRADE INITIATED - Old: " + String.valueOf(oldVersion) + " New: " + String.valueOf(newVersion));
+        Log.d("MeditationAssistant", "DATABASE UPGRADE INITIATED - Old: " + oldVersion + " New: " + newVersion);
         int curVer = oldVersion;
         while (curVer < newVersion) {
             curVer++;
-            Log.d("MeditationAssistant", "UPGRADING DATABASE to " + String.valueOf(curVer));
+            Log.d("MeditationAssistant", "UPGRADING DATABASE to " + curVer);
             switch (curVer) {
                 case 2:
                     db.execSQL("ALTER TABLE `" + TABLE_SESSIONS + "` ADD COLUMN `" + KEY_STREAKDAY + "` INTEGER");

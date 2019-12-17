@@ -183,7 +183,7 @@ public class ListPreferenceSound extends ListPreference {
                                 .toString();
 
                         Log.d("MeditationAssistant",
-                                "Selected: " + String.valueOf(which) + " - "
+                                "Selected: " + which + " - "
                                         + itemSelected
                         );
 

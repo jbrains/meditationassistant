@@ -73,7 +73,7 @@ public class MediNET {
             minutes += 1;
         }
 
-        return String.valueOf(hours) + ":" + String.format("%02d", minutes);
+        return hours + ":" + String.format("%02d", minutes);
     }
 
     public void browseTo(MainActivity act, String page) {

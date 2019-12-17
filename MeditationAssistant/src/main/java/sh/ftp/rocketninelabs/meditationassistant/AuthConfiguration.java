@@ -49,7 +49,7 @@ public final class AuthConfiguration {
         AuthConfiguration config = sInstance.get();
         if (config == null) {
             config = new AuthConfiguration(context);
-            sInstance = new WeakReference<AuthConfiguration>(config);
+            sInstance = new WeakReference<>(config);
         }
 
         return config;

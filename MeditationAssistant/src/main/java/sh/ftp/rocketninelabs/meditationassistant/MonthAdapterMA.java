@@ -82,7 +82,7 @@ public abstract class MonthAdapterMA extends BaseAdapter {
     }
 
     private int[] getDate(int position) {
-        int date[] = new int[3];
+        int[] date = new int[3];
         if (position <= 6) {
             return null; // day names
         } else if (position <= mDaysLastMonth + 6) {
@@ -264,7 +264,7 @@ public abstract class MonthAdapterMA extends BaseAdapter {
     protected abstract void onDate(int[] date, int position, View item);
 
     private void populateMonth() {
-        mItems = new ArrayList<String>();
+        mItems = new ArrayList<>();
         for (String day : mDays) {
             mItems.add(day);
             mDaysShown++;

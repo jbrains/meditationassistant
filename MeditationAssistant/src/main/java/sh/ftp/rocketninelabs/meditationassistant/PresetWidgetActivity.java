@@ -38,10 +38,10 @@ public class PresetWidgetActivity extends Activity {
         MeditationAssistant ma = (MeditationAssistant) getApplicationContext();
 
         getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        mAppWidgetText = (EditText) findViewById(R.id.presetWidgetLabel);
-        final ListView listView = (ListView) findViewById(R.id.presetWidgetList);
+        mAppWidgetText = findViewById(R.id.presetWidgetLabel);
+        final ListView listView = findViewById(R.id.presetWidgetList);
 
-        List<String> values = new ArrayList<String>();
+        List<String> values = new ArrayList<>();
         for (int i = 1; i < 4; i++) {
             String presetLabel = ma.getPrefs().getString("pref_preset_" + i + "_label", "");
             if (!presetLabel.isEmpty()) {
