@@ -19,37 +19,40 @@ Your meditation streak is the number of consecutive days you have recorded at le
 session. As your streak grows, "not breaking the chain" becomes quite important. Soon you
 will be meditating once a day, even if it's five or ten minutes out of your schedule.
 
-Features
-------------
+## Features
+
 - Automatically put your device into priority only, alarms only, vibrate or silent mode while meditating
 - Choose from several included meditation sounds, or use a sound file of your own
 - Play an interval sound at a duration of your choice
 - Pause your session and come back to it when you are ready
 - Upload sessions to [MediNET](https://gitlab.com/tslocum/medinet)
 
-Donate
-------------
+## Donate
+
 - [LiberaPay](https://liberapay.com/rocketnine.space) (preferred)
 - [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TEP9HT98XK7QA)
 
-Get Support
-------------
-Feel free to [open an issue](https://gitlab.com/tslocum/meditationassistant/issues) or
-contact the developer: trevor@rocketnine.space
+## Get Support
 
-Translate
-------------
+[Open an issue](https://gitlab.com/tslocum/meditationassistant/issues) describing your problem.
+
+## Translate
+
 Translation is handled [online](https://medinet.rocketnine.space/translate/).
 
-Contribute
-------------
+## Build
+
+See [BUILDING.md](https://gitlab.com/tslocum/meditationassistant/blob/master/BUILDING.md).
+
+## Contribute
+
  1. Read the [GitLab forking workflow guide](https://docs.gitlab.com/ee/workflow/forking_workflow.html).
  2. Fork this repository.
  3. Commit code changes to your forked repository.
  4. Submit a pull request describing your changes.
 
-License
-------------
+## License
+
 **GNU GPLv3**
 
 This program is free software: you can redistribute it and/or modify
