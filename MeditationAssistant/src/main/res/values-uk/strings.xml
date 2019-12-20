@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="appName">Асистент Медитації безкоштовний</string>
     <string name="appNameShort">Асистент Медитації</string>
     <string name="about">Про програму</string>
     <string name="yes">Так</string>
@@ -20,7 +19,6 @@
     <string name="announcement">оголошення</string>
     <!-- Permissions -->
     <string name="permissionRequest">Запит на дозвіл</string>
-    <string name="permissionRequestReadExternal">Цей дозвіл потрібен для вибору звукового файлу користувача на пристрої.</string>
     <string name="permissionRequestNotificationControl">Будь ласка дозвольте доступ на наступному екрані, щоб управляти "Не заважати".</string>
     <string name="deny">Відмовитись</string>
     <string name="tryAgain">Спробувати ще раз</string>
@@ -61,8 +59,6 @@
     <string name="version">Версія %s</string>
     <string name="translate">Перекласти</string>
     <string name="donate">Пожертвувати</string>
-    <string name="removeAds">Видалити оголошення</string>
-    <string name="removeAdsHelp">Повна версія додатку Асистент Медитації це окремий додаток.\n\n Щоб зберегти існуючі сеанси, увійдіть до MediNET та натисніть "Завантажити сеанси" у вікні налаштувань.\n\n Відкрийте повну версію та увійдіть до MediNET ще раз, тоді натисніть "Імпортувати".</string>
     <string name="howToMeditate">Як медитувати</string>
     <string name="share">Поділитися</string>
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
@@ -191,7 +187,6 @@
     <string name="pref_notificationcontrol_priority">Тільки важливе</string>
     <string name="pref_notificationcontrol_alarms">Тільки нагадування</string>
     <string name="pref_notificationcontrol_vibrate">Увімкнути вібрацію</string>
-    <string name="pref_notificationcontrol_silent">Увімкнути беззвучний режим</string>
     <string name="pref_daily_reminder">Щоденний нагадувач</string>
     <string name="pref_daily_reminder_title">Нагадати мені</string>
     <string name="pref_daily_reminder_summary">Показати повідомлення, якщо сьогодні не було записано жодного сеансу.</string>
@@ -206,10 +201,6 @@
     <string name="discard">Відмінити</string>
     <string name="save">Зберегти</string>
     <string name="post">Розмістити</string>
-    <string name="importSessionsHint">Натисніть "Імпортувати сеанси" в налаштуваннях щоб отримати бракуючі сеанси.</string>
-    <string name="importsessionstitle">Імпортувати сеанси?</string>
-    <string name="importsessionsmessage">Попередні сеанси буде імпортовано. \n\nЦе вікно більше не з\'являтиметься.
-\nВи можете пізніше імпортувати сеанси з вікна налаштувань.</string>
     <string name="wordimport">Імпортувати</string>
     <string name="sessionDeletedMediNET">Сеанс видалено з MediNET.</string>
     <string name="sessionNotFoundMediNET">Сеанс не знайдено на MediNET.</string>
@@ -217,15 +208,10 @@
         <item quantity="one">%s раз</item>
         <item quantity="other">%s разів</item>
     </plurals>
-    <plurals name="sessionsImported">
-        <item quantity="one">Імпортовано %s сеанс</item>
-        <item quantity="other">Імпортовано %s  сеансів.</item>
-    </plurals>
     <plurals name="sessionsUploaded">
         <item quantity="one">Завантажено %s сеанс</item>
         <item quantity="other">Завантажено %s сеансів.</item>
     </plurals>
-    <string name="sessionsNotImported">Дані пристрою поновлені.</string>
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d день</item>
         <item quantity="other">%d днів</item>
@@ -247,7 +233,4 @@
     <string name="rateMeditationAssistantText">Якщо ви вважаєте цей додаток корисним для вашої практики медитацій, чи не могли б ви додати оцінку?\n\nПлатна версія додатку не містить оголошень та має віджет для головного екрану. Будь ласка, розглядьте питання про придбання, якщо ви взмозі.\n\nЦе вікно більше не з\'являтиметься.</string>
     <string name="translateMeditationAssistantText">Чи могли б ви будь ласка допомогти Асистенту Медитацій досягнути ширшої аудиторії перекладаючи його іншою мовою?\n\nПереклад легко виконати за допомогою веб-інтерфейсу. Ви можете відвідати сторінку перекладу пізніше натиснувши "Перекласти" з вікна "Про програму".\n\nЦе вікно більше не з\'являтиметься.</string>
     <!-- Widgets -->
-    <string name="widget1x1" tools:ignore="UnusedResources">Асистент медитації 1х1</string>
-    <string name="widget2x1" tools:ignore="UnusedResources">Асистент медитації 2х1</string>
-    <string name="widget3x1" tools:ignore="UnusedResources">Асистент медитації 3х1</string>
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="appName">Assistente Meditazione Gratis</string>
     <string name="appNameShort">Assistente Meditazione</string>
     <string name="about">Informazioni</string>
     <string name="yes">Sì</string>
@@ -21,7 +20,6 @@
     <string name="installFileManager">Installa un file manager, per favore</string>
     <!-- Permissions -->
     <string name="permissionRequest">Richiesta di permesso</string>
-    <string name="permissionRequestReadExternal">Questo permesso è necessario per scegliere il file di un suono personalizzato sul dispositivo</string>
     <string name="deny">Vieta</string>
     <string name="tryAgain">Prova di nuovo</string>
     <!-- Main Activity -->
@@ -56,7 +54,6 @@
     <string name="version">Versione %s</string>
     <string name="translate">Traduci</string>
     <string name="donate">Dona</string>
-    <string name="removeAds">Rimuovi pubblicità</string>
     <string name="howToMeditate">Come meditare</string>
     <string name="share">Condividi</string>
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
@@ -169,7 +166,6 @@
     <string name="extralarge">Enorme</string>
     <string name="pref_notificationcontrol">Suonerie e notifiche</string>
     <string name="pref_notificationcontrol_vibrate">Imposta su vibrazione</string>
-    <string name="pref_notificationcontrol_silent">Imposta su silenzioso</string>
     <string name="pref_daily_reminder">Promemoria giornaliero</string>
     <!-- MediNET -->
     <string name="mediNET">MediNET</string>
@@ -178,10 +174,6 @@
     <string name="discard">Annulla</string>
     <string name="save">Salva</string>
     <string name="post">Pubblica</string>
-    <string name="importSessionsHint">Clicca "Importa sessioni" nelle impostazioni per ripristinare le sessioni mancanti</string>
-    <string name="importsessionstitle">Importare sessioni?</string>
-    <string name="importsessionsmessage">Le sessioni precedenti saranno importante\n\nQuesto messaggio non comparirà nuovamente\nPuoi 
-importare altre sessioni dalla schermata delle Impostazioni.</string>
     <string name="wordimport">Importa</string>
     <string name="sessionDeletedMediNET">Sessione cancellata su MediNET</string>
     <string name="sessionNotFoundMediNET">Sessione non trovata su MediNET</string>
@@ -189,15 +181,10 @@ importare altre sessioni dalla schermata delle Impostazioni.</string>
         <item quantity="one">%s time</item>
         <item quantity="other">%s times</item>
     </plurals>
-    <plurals name="sessionsImported">
-        <item quantity="one">Importata %s sessione</item>
-        <item quantity="other">Importate %s sessioni</item>
-    </plurals>
     <plurals name="sessionsUploaded">
         <item quantity="one">Uploaded %s session</item>
         <item quantity="other">Uploaded %s sessions</item>
     </plurals>
-    <string name="sessionsNotImported">Dati locali aggiornati</string>
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d day</item>
         <item quantity="other">%d days</item>
@@ -219,8 +206,5 @@ importare altre sessioni dalla schermata delle Impostazioni.</string>
     <string name="rateMeditationAssistantText">Se hai trovato questa applicazione utile per le tue sessioni di meditazione,
 ti dispiacerebbe aggiungere una valutazione?\n\nQuesto messaggio non apparirà nuovamente.</string>
     <!-- Widgets -->
-    <string name="widget1x1" tools:ignore="UnusedResources">Assistente Meditazione 1x1</string>
-    <string name="widget2x1" tools:ignore="UnusedResources">Assistente Meditazione 2x1</string>
-    <string name="widget3x1" tools:ignore="UnusedResources">Assistente Meditazione 3x1</string>
     <!-- Meta -->
 </resources>

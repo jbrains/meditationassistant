@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="appName">Meditasjonsassistenten Gratis</string>
     <string name="appNameShort">Meditasjonsassistenten</string>
     <string name="about">Om</string>
     <string name="yes">Ja</string>
@@ -20,8 +19,7 @@
     <string name="announcement">Kunngjøring</string>
     <!-- Permissions -->
     <string name="permissionRequest">Forespørsel om tillatelse</string>
-    <string name="permissionRequestReadExternal">Tillatelsen trengs for å kunne velge andre lydfiler fra enheten.</string>
-    <string name="permissionRequestNotificationControl">Vennligst gi tillatelse i neste steg for å kunne kontrollere "Ikke forstyrr"</string>
+    <string name="permissionRequestNotificationControl">Innvilg tillatelse i neste steg for å kunne kontrollere \"Ikke forstyrr\".</string>
     <string name="deny">Nekt</string>
     <string name="tryAgain">Prøv igjen</string>
     <!-- Main Activity -->
@@ -39,7 +37,7 @@
     <string name="pauseOrEnd">Pause eller avslutt</string>
     <string name="resumeOrEnd">Gjenoppta eller avslutt</string>
     <string name="pausedNotification">Økt satt på pause, hold for å avslutte</string>
-    <string name="mediNETConnecting">Kobler til...</string>
+    <string name="mediNETConnecting">Kobler til…</string>
     <string name="mediNETConnected">Koble til MediNET</string>
     <string name="sessionInProgress">Økt pågår</string>
     <string name="progress">Fremgang</string>
@@ -71,12 +69,6 @@
     <string name="version">Versjon %s</string>
     <string name="translate">Oversett</string>
     <string name="donate">Doner</string>
-    <string name="removeAds">Fjern reklame</string>
-    <string name="removeAdsHelp">Fullversjonen av Meditasjonsassistenten er et eget program.
-\n
-\nFor å beholde øktene dine, logg inn på MediNET og trykk \"Last opp økter\" i innstillingsvinduet.
-\n
-\nÅpne fullversjonen og logg inn på MediNET igjen, trykk så \"Importer\".</string>
     <string name="howToMeditate">Hvordan meditere</string>
     <string name="share">Del</string>
     <string name="invitationBlurb">Meditasjonsassistenten er en fullverdig støttepart i dine meditasjon.</string>
@@ -99,7 +91,7 @@
     <string name="sessionSaved">Økt lagret</string>
     <string name="sessionDeletedLocally">Økt slettet lokalt</string>
     <string name="browser">Nettleser</string>
-    <string name="useBrowser">Bruk nettleser…</string>
+    <string name="useBrowser">Bruk nettleser:</string>
     <string name="signInWith">Logg inn med…</string>
     <string name="signInWithProvider">Logg inn med %s…</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, osv.</string>
@@ -180,7 +172,7 @@
     <string name="pref_meditation_sound_interval">Intervall-lyd</string>
     <string name="pref_meditation_sound_finish">Fullføringslyd</string>
     <string name="pref_remembermessage">Husk siste melding</string>
-    <string name="pref_remembermessage_summary">Setter forvalg til siste postede melding</string>
+    <string name="pref_remembermessage_summary">Setter forvalg til siste melding</string>
     <string name="pref_theme">Holografisk drakt</string>
     <string name="pref_theme_light">Lys</string>
     <string name="pref_theme_lightdark">Lys med mørkt handlingsfelt</string>
@@ -193,7 +185,7 @@
     <string name="pref_askdismiss">Spør før forkasting</string>
     <string name="pref_askdismiss_summary">Bekreft før forkasting av økt</string>
     <string name="pref_mainbuttons">Skjul knapper</string>
-    <string name="pref_progresstab">Forvalgt framdriftsfane</string>
+    <string name="pref_progresstab">Forvalgt fane</string>
     <string name="importsessions">Importer økter</string>
     <string name="importsessions_summary">Importer CSV-fil</string>
     <string name="uploadsessions">Last opp økter</string>
@@ -210,7 +202,6 @@
     <string name="pref_notificationcontrol_priority">Kun prioritet</string>
     <string name="pref_notificationcontrol_alarms">Kun alarmer</string>
     <string name="pref_notificationcontrol_vibrate">Sett til vibrering</string>
-    <string name="pref_notificationcontrol_silent">Sett til stille</string>
     <string name="pref_daily_reminder">Daglig påminnelse</string>
     <string name="pref_daily_reminder_title">Påminn meg</string>
     <string name="pref_daily_reminder_summary">Viser en merknad når ingen økter ble tatt opp på en dag</string>
@@ -222,7 +213,6 @@
     <string name="unableToConnect">Kunne ikke koble til MediNET</string>
     <string name="save">Lagre</string>
     <string name="post">Post</string>
-    <string name="importsessionstitle">Importer økter\?</string>
     <string name="wordimport">Importer</string>
     <string name="sessionDeletedMediNET">Økt slettet på MediNET</string>
     <string name="sessionNotFoundMediNET">Fant ikke økten på MediNET</string>
@@ -230,15 +220,10 @@
         <item quantity="one">%d gang</item>
         <item quantity="other">%d ganger</item>
     </plurals>
-    <plurals name="sessionsImported">
-        <item quantity="one">Importerte en økt</item>
-        <item quantity="other">Importerte %s økter</item>
-    </plurals>
     <plurals name="sessionsUploaded">
         <item quantity="one">Lastet opp en økt</item>
         <item quantity="other">Lastet opp %s økter</item>
     </plurals>
-    <string name="sessionsNotImported">Lokal data er oppdatert</string>
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d dag</item>
         <item quantity="other">%d dager</item>
@@ -257,9 +242,6 @@
     <string name="signOutOfMediNET">Logg ut av MediNET</string>
     <string name="signOutOfMediNETConfirmTitle">Logg ut av MediNET\?</string>
     <string name="rateMeditationAssistant">Vurder Meditasjonsassistenten</string>
-    <string name="widget1x1" tools:ignore="UnusedResources">Meditasjonsassistent 1x1</string>
-    <string name="widget2x1" tools:ignore="UnusedResources">Meditasjonsassistent 2x1</string>
-    <string name="widget3x1" tools:ignore="UnusedResources">Meditasjonsassistent 3x1</string>
     <string name="appStoreListingShort">Funksjons meditasjonsøkttidtaker og opptaker</string>
     <string name="setPresetTip">Velg hvilke innstillinger som skal gjenopprettes ved å trykke tannhjulsikonet (Innstillinger), trykk så forhåndsinnstillinger.</string>
     <string name="setPresetHintBlank">Skriv inn varighet (eller sluttid) for å sette forhåndsinnstilling</string>
@@ -274,15 +256,10 @@
     <string name="pref_notification_summary">Vis under meditasjon mens borte fra hovedvindu</string>
     <string name="dismiss">Avfei</string>
     <string name="discard">Forkast</string>
-    <string name="importSessionsHint">Klikk \"Importer økter\" i innstillingene for å hente manglende økter.</string>
-    <string name="importsessionsmessage">Tidligere økter vil bli importert.
+    <string name="rateMeditationAssistantText">Hvis du synes programmet er nyttig i din meditasjon, vil du legge til en vurdering\?
 \n
-\nDenne dialogen vil ikke vises igjen.
-\nDu kan importere økter senere fra innstillingene.</string>
-    <string name="rateMeditationAssistantText">Denne ene gangen blir du spurt om å vurdere programmet :)
-\nOvervei at den betalte versjonen har miniprogrammer, og ingen reklame.</string>
-    <string name="translateMeditationAssistantText">Denne ene gangen blir du spurt om å vurdere programmet :)
-\nOvervei at den betalte versjonen har miniprogrammer, og ingen reklame.</string>
+\nDette vil ikke bli spurt om igjen.</string>
+    <string name="translateMeditationAssistantText">Er du interessert i å hjelpe til med Meditasjonsassistenten\?</string>
     <string name="appStoreListingFull">- Automatisk enhetsmodus under meditasjon.
 \n- Pausbare økter.
 \n- Justerbar start/intervall/slutt, lyder, drakter og enhetsoppførsel.
@@ -301,4 +278,37 @@
     <string name="exportsessions_summary">Eksporter CSV-fil</string>
     <string name="downloadsessions">Last ned økter</string>
     <string name="downloadsessions_summary">Last ned økter annensteds fra</string>
+    <string name="resume">Gjenoppta</string>
+    <string name="sessionPaused">Økt satt på pause</string>
+    <string name="permissionRequired">Denne tilgangen er påkrevd.</string>
+    <string name="importsessions_in_progress">Importerer økter…</string>
+    <string name="importsessions_complete">Fant %1$d eksisterende, og %2$d ny.</string>
+    <string name="importsessions_utc_or_local">Har denne eksporten lokale tider og datoer, eller bruker den UTC\?
+\n
+\nEksporter lagret siden versjon 1.5.6 har dato og tid i UTC.</string>
+    <string name="utc">UTC</string>
+    <string name="local">Lokal</string>
+    <string name="downloadSessionsHint">Klikk \"Last ned økter\" i innstillingene for å hente manglende økter.</string>
+    <string name="downloadsessionstitle">Last ned økter\?</string>
+    <string name="downloadsessionsmessage">Tidligere økter vil bli lastet ned.
+\n
+\nDenne teksten vil ikke vises igjen.
+\nDu kan laste ned økter senere fra innstillingene.</string>
+    <plurals name="sessionsDownloaded">
+        <item quantity="one">Lastet ned %s økt</item>
+        <item quantity="other">Lastet ned %s økter</item>
+    </plurals>
+    <string name="sessionsUpToDate">Lokal data er oppdatert</string>
+    <string name="chooseDonationMethod">Velg hvordan du ønsker å donere.
+\n
+\nLiberapay foretrekkes av utvikleren, og støtter flere land og valutaer.</string>
+    <string name="download">Last ned</string>
+    <string name="configureWidget">Sett opp miniprogram</string>
+    <string name="widgetpreset1x1" tools:ignore="UnusedResources">Forhåndsinnstilling 1x1</string>
+    <string name="widgetpreset2x1" tools:ignore="UnusedResources">Forhåndsinnstilling 2x1</string>
+    <string name="widgetpreset3x1" tools:ignore="UnusedResources">Forhåndsinnstilling 3x1</string>
+    <string name="widgetstreak1x1" tools:ignore="UnusedResources">Serie 1x1</string>
+    <string name="widgetstreak2x1" tools:ignore="UnusedResources">Serie 2x1</string>
+    <string name="widgetstreak3x1" tools:ignore="UnusedResources">Serie 3x1</string>
+    <string name="pref_autosave">Autolagring</string>
 </resources>

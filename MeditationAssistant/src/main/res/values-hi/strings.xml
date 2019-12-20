@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="appName">ध्यान सहायक नि:शुल्क</string>
     <string name="appNameShort">ध्यान सहायक</string>
     <string name="about">ऐप के बारे में</string>
     <string name="yes">हाँ</string>
@@ -21,7 +20,6 @@
     <string name="installFileManager">कृपया फाईल मॅनेजर इन्स्टाल करें</string>
     <!-- Permissions -->
     <string name="permissionRequest">अनुमति अनुरोध</string>
-    <string name="permissionRequestReadExternal">डिवाइस पर कस्टम ध्वनि फ़ाइल चुनने के लिए यह अनुमति आवश्यक है</string>
     <string name="permissionRequestNotificationControl">Do Not Disturb को नियंत्रित करने के लिए कृपया अगली स्क्रीन पर प्रवेश प्रदान करे</string>
     <string name="deny">मना</string>
     <string name="tryAgain">पुनः प्रयास करें</string>
@@ -62,8 +60,6 @@
     <string name="version">संस्करण %s</string>
     <string name="translate">अनुवाद करें</string>
     <string name="donate">दान करें</string>
-    <string name="removeAds">विज्ञापन हटाएँ</string>
-    <string name="removeAdsHelp">ध्यान सहायक का पूरा संस्करण एक अलग ऐप है। अपने मौजूदा सत्रों को रखने के लिए, MediNET में साइन इन करें और सेटिंग विंडो में "अपलोड सत्र" टैप करें। पूर्ण संस्करण खोलें और MediNET में एक बार फिर साइन इन करें, फिर "आयात करें" टैप करें।</string>
     <string name="howToMeditate">ध्यान कैसे करें</string>
     <string name="share">शेयर</string>
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->

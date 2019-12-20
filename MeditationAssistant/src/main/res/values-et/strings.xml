@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="appName">Meditatsiooniabiline Tasuta</string>
     <string name="appNameShort">Meditatsiooniabiline</string>
     <string name="about">Äpi kohta</string>
     <string name="yes">Jah</string>

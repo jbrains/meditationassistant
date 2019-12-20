@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="appName">Tempo de Meditar (Gratuito)</string>
     <string name="appNameShort">Tempo de Meditar</string>
     <string name="about">Sobre</string>
     <string name="yes">Sim</string>
@@ -21,7 +20,6 @@
     <string name="installFileManager">Por favor, instale um gerenciador de arquivos.</string>
     <!-- Permissions -->
     <string name="permissionRequest">Pedir permissão</string>
-    <string name="permissionRequestReadExternal">Esta permissão é necessária para escolher um arquivo de som personalizado no dispositivo.</string>
     <string name="permissionRequestNotificationControl">Favor dar permissão na próxima tela para controlar Não Perturbe.</string>
     <string name="deny">Negar</string>
     <string name="tryAgain">Tente novamente</string>
@@ -66,8 +64,6 @@ Segure para escolher valor predefinido</string>
     <string name="version">Versão %s</string>
     <string name="translate">Traduzir</string>
     <string name="donate">Doar</string>
-    <string name="removeAds">Remover propagandas</string>
-    <string name="removeAdsHelp">A versão completa de Assistente de Meditação é um aplicativo separado. Para manter suas sessões existentes, faça login em MediNET e toque em "Enviar sessões" na janela Configurações. Abra a versão completa e entre para MediNET mais uma vez, em seguida, toque em "Importar".</string>
     <string name="howToMeditate">Como meditar</string>
     <string name="share">Compartilhar</string>
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
@@ -215,7 +211,6 @@ Segure para escolher valor predefinido</string>
     <string name="pref_notificationcontrol_priority">Apenas emergências</string>
     <string name="pref_notificationcontrol_alarms">Apenas alarmes</string>
     <string name="pref_notificationcontrol_vibrate">Vibrar</string>
-    <string name="pref_notificationcontrol_silent">Silenciar</string>
     <string name="pref_daily_reminder">Lembrete diário</string>
     <string name="pref_daily_reminder_title">Lembre-me</string>
     <string name="pref_daily_reminder_summary">Exibir uma notificação quando não houver sessões gravadas hoje</string>
@@ -230,10 +225,6 @@ Segure para escolher valor predefinido</string>
     <string name="discard">Descartar</string>
     <string name="save">Salvar</string>
     <string name="post">Publicar</string>
-    <string name="importSessionsHint">Clique em "Importar sessões" em configurações para recuperar sessões perdidas.</string>
-    <string name="importsessionstitle">Importar sessões?</string>
-    <string name="importsessionsmessage">
-Sessões anteriores serão importados. Este diálogo não será exibido novamente. Você pode importar sessões mais tarde na janela Configurações.</string>
     <string name="wordimport">Importar</string>
     <string name="sessionDeletedMediNET">Sessão deletada do MediNET</string>
     <string name="sessionNotFoundMediNET">Sessão não encontrada no MediNET</string>
@@ -241,15 +232,10 @@ Sessões anteriores serão importados. Este diálogo não será exibido novament
         <item quantity="one">%s time</item>
         <item quantity="other">%s times</item>
     </plurals>
-    <plurals name="sessionsImported">
-        <item quantity="one">Imported %s session</item>
-        <item quantity="other">Imported %s sessions</item>
-    </plurals>
     <plurals name="sessionsUploaded">
         <item quantity="one">Uploaded %s session</item>
         <item quantity="other">Uploaded %s sessions</item>
     </plurals>
-    <string name="sessionsNotImported">Dados locais estão atualizados</string>
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d day</item>
         <item quantity="other">%d days</item>
@@ -271,9 +257,6 @@ Sessões anteriores serão importados. Este diálogo não será exibido novament
     <string name="rateMeditationAssistantText">Se esse aplicativo lhe foi útil e beneficiou sua prática de meditação, por favor, considere adicionar uma avaliação.\n\nA versão paga desse aplicativo é livre de propagandas e contém widgets de início. Considere comprá-la se for possível.\n\nEsse diálogo não aparecerá de novo.</string>
     <string name="translateMeditationAssistantText">Você poderia ajudar o Assistente de Meditação a ampliar seu público traduzindo-o para outras línguas?\n\nA tradução é feita de forma simples através de uma interface online. Você pode acessar a página de tradução a qualquer momento clicando em Traduzir na aba Sobre das configurações.\n\nEsse diálogo não aparecerá novamente.</string>
     <!-- Widgets -->
-    <string name="widget1x1" tools:ignore="UnusedResources">Assistente de Meditação 1x1</string>
-    <string name="widget2x1" tools:ignore="UnusedResources">Assistente de Meditação 2x1</string>
-    <string name="widget3x1" tools:ignore="UnusedResources">Assistente de Meditação 3x1</string>
     <!-- Meta -->
     <string name="appStoreListingShort">Contém timer e gravador em sessões de meditação</string>
     <string name="appStoreListingFull">Esse aplicativo auxilia tanto em sessões cronometradas (definindo a duração delas ou terminando-as em horários específicos) quanto em não cronometradas, e conta com várias customizações, como o ajuste de sons de início/intervalo/fim e o controle das notificações do celular. Além de todo mês fornecer um resumo de seu progresso.

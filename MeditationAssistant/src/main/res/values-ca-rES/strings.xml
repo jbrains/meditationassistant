@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="appName">Assistent per a la meditació gratuït</string>
     <string name="appNameShort">Assistent de meditació</string>
     <string name="about">Sobre</string>
     <string name="yes">Si</string>
@@ -19,7 +18,6 @@
     <string name="announcement">Anunci</string>
     <!-- Permissions -->
     <string name="permissionRequest">Sol·licitud de permís</string>
-    <string name="permissionRequestReadExternal">Aquest permís és obligatori per triar un fitxer de so personalitzat al dispositiu.</string>
     <string name="permissionRequestNotificationControl">Proporcioneu accés a la pantalla següent per controlar No molestar.</string>
     <string name="deny">Denegar</string>
     <string name="tryAgain">Torna-ho a provar</string>
@@ -60,8 +58,6 @@
     <string name="version">Versió %s</string>
     <string name="translate">Tradueix</string>
     <string name="donate">Donat</string>
-    <string name="removeAds">Eliminar anuncis</string>
-    <string name="removeAdsHelp">La versió completa de Meditation Assistant és una aplicació per separat.\n\nPer mantenir les sessions existents, inicieu la sessió a MediNet i toqueu "Càrrega de sessions" a la finestra Configuració..\n\nObriu la versió completa i inicieu sessió a MediTet una vegada més, llavors toqueu "Importar".</string>
     <string name="howToMeditate">Com meditar</string>
     <string name="share">Comparteix</string>
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
@@ -109,10 +105,6 @@ Sessió esborrada localment</string>
     <plurals name="numtimes">
         <item quantity="one">%s time</item>
         <item quantity="other">%s times</item>
-    </plurals>
-    <plurals name="sessionsImported">
-        <item quantity="one">Imported %s session</item>
-        <item quantity="other">Imported %s sessions</item>
     </plurals>
     <plurals name="sessionsUploaded">
         <item quantity="one">Uploaded %s session</item>

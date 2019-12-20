@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="appName">Meditation Assistenten Gratis</string>
     <string name="appNameShort">Meditation Assistent</string>
     <string name="about">Om appen</string>
     <string name="yes">Jo</string>
     <string name="no">Nej</string>
-    <string name="openWith">Öpnna med</string>
+    <string name="openWith">Öppna med</string>
     <string name="delete">Ta bort</string>
     <string name="sessions">Sessioner</string>
     <string name="rate">Betygsätt</string>
@@ -17,7 +16,6 @@
     <string name="groups">Grupper</string>
     <string name="installFileManager">Var vänlig installera en filhanterare</string>
     <!-- Permissions -->
-    <string name="permissionRequestReadExternal">Tillstånd krävs för att välja en extern ljudfil på enheten.</string>
     <!-- Main Activity -->
     <string name="timerHelp">Timern är för närvarande satt till 15 minuter. Du kan ändra längden, avsluta vid en specifik tidpunkt på dagen, eller avaktivera alarmet helt. Klicka på timern nu för att se dessa alternativ.</string>
     <string name="cancel">Avbryt</string>
@@ -62,4 +60,21 @@
     </plurals>
     <!-- Widgets -->
     <!-- Meta -->
+    <string name="warning">Varning</string>
+    <string name="forum">Forum</string>
+    <string name="disableBatteryOptimizations">Meditation Assistant behöver köras i bakgrunden</string>
+    <string name="permissionRequest">Åtkomstbegäran</string>
+    <string name="deny">Neka</string>
+    <string name="tryAgain">Försök igen</string>
+    <string name="confirm">Bekräfta</string>
+    <string name="meditate">Meditera</string>
+    <string name="tapToSkip">Hoppa över</string>
+    <string name="pause">Paus</string>
+    <string name="end">Avsluta</string>
+    <string name="resumeOrEnd">Återuppta eller avsluta</string>
+    <string name="pausedNotification">Sessionen är pausad, håll kvar för att avsluta</string>
+    <string name="mediNETConnecting">Ansluter…</string>
+    <string name="mediNETConnected">Ansluten till MediNET</string>
+    <string name="resume">Återuppta</string>
+    <string name="permissionRequired">Denna åtkomst är obligatorisk.</string>
 </resources>

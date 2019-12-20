@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="appName">Assistente de meditação grátis</string>
     <string name="appNameShort">Assistente de meditação</string>
     <string name="about">Sobre</string>
     <string name="yes">Sim</string>
@@ -110,10 +109,6 @@
         <item quantity="one">%s vez</item>
         <item quantity="other">%s vezes</item>
     </plurals>
-    <plurals name="sessionsImported">
-        <item quantity="one">%s sessão importada</item>
-        <item quantity="other">%s sessões importadas</item>
-    </plurals>
     <plurals name="sessionsUploaded">
         <item quantity="one">%s sessão senviada</item>
         <item quantity="other">%s sessões enviadas</item>
@@ -136,7 +131,6 @@
     <string name="openWith">Abrir com</string>
     <string name="installFileManager">Por favor instale um gestor de ficheiros</string>
     <string name="permissionRequest">Permissões</string>
-    <string name="permissionRequestReadExternal">Esta permissão é necessária para poder escolher um ficheiro áudio personalizado no aparelho.</string>
     <string name="deny">Negar</string>
     <string name="tryAgain">Tente de novo</string>
     <string name="medinetHelp">Inicie sessão para poder guardar as suas sessões online. Pode importar as suas sessões mais tarde caso perca a informação. Este recurso é inteiramente opcional. Guardar as sessões localmente não dificulta a sua experiência.
@@ -147,10 +141,8 @@
     <string name="label">Etiqueta</string>
     <string name="tapToLearnMore">Pressione em qualquer lado para saber mais</string>
     <string name="donate">Doar</string>
-    <string name="removeAds">Remover anúncios</string>
     <string name="disableBatteryOptimizations">Meditation Assistant deve ser executado no fundo</string>
     <string name="permissionRequestNotificationControl">Favor dar permissão na próxima tela para controlar Não Perturbe.</string>
-    <string name="removeAdsHelp">A versão completa de Assistente de Meditação é um aplicativo separado. Para manter suas sessões existentes, faça login em MediNET e toque em Enviar sessões na janela Configurações. Abra a versão completa e entre para MediNET mais uma vez, em seguida, toque em Importar.</string>
     <string name="invitationBlurb">Assistente de Meditação é um companheiro com todos os recursos para a sua prática.</string>
     <string name="sessionDeleteEverywhere">Excluir tudo</string>
     <string name="pref_sessionintro">Introdução</string>
@@ -244,7 +236,6 @@
     <string name="pref_notificationcontrol_priority">Apenas emergências</string>
     <string name="pref_notificationcontrol_alarms">Apenas alarmes</string>
     <string name="pref_notificationcontrol_vibrate">Vibrar</string>
-    <string name="pref_notificationcontrol_silent">Silenciar</string>
     <string name="pref_daily_reminder">Lembrete diário</string>
     <string name="pref_daily_reminder_title">Lembre-me</string>
     <string name="pref_daily_reminder_summary">Exibir uma notificação quando não houver sessões gravadas hoje</string>
@@ -258,13 +249,9 @@
     <string name="discard">Descartar</string>
     <string name="save">Salvar</string>
     <string name="post">Publicar</string>
-    <string name="importSessionsHint">Clique em Importar sessões em configurações para recuperar sessões perdidas.</string>
-    <string name="importsessionstitle">Importar sessões\?</string>
-    <string name="importsessionsmessage">Sessões anteriores serão importados. Este diálogo não será exibido novamente. Você pode importar sessões mais tarde na janela Configurações.</string>
     <string name="wordimport">Importar</string>
     <string name="sessionDeletedMediNET">Sessão deletada do MediNET</string>
     <string name="sessionNotFoundMediNET">Sessão não encontrada no MediNET</string>
-    <string name="sessionsNotImported">Dados locais estão atualizados</string>
     <string name="meditateToday">Meditar hoje</string>
     <string name="signInToMediNET">Entrar no MediNEY</string>
     <string name="signOut">Sair</string>
@@ -281,9 +268,6 @@
 \nA tradução é feita de forma simples através de uma interface online. Você pode acessar a página de tradução a qualquer momento clicando em Traduzir na aba Sobre das configurações.
 \n
 \nEsse diálogo não aparecerá novamente.</string>
-    <string name="widget1x1" tools:ignore="UnusedResources">Assistente de Meditação 1x1</string>
-    <string name="widget2x1" tools:ignore="UnusedResources">Assistente de Meditação 2x1</string>
-    <string name="widget3x1" tools:ignore="UnusedResources">Assistente de Meditação 3x1</string>
     <string name="appStoreListingShort">Contém timer e gravador em sessões de meditação</string>
     <string name="appStoreListingFull">Esse aplicativo auxilia tanto em sessões cronometradas (definindo a duração delas ou terminando-as em horários específicos) quanto em não cronometradas, e conta com várias customizações, como o ajuste de sons de início/intervalo/fim e o controle das notificações do celular. Além de todo mês fornecer um resumo de seu progresso. Uma das características principais desse aplicativo é a opção de compartilhar suas sessões online. Embora totalmente opcional, isso adiciona um grau de responsabilidade e incentivo. Uma vez online, quanto mais seu streak for crescendo, mais usuários o terão como meta. Um usuário já compartilhou mais de 500 dias consecutivos de meditação. Seu streak de é o número de dias consecutivos que você meditou. Quanto mais seu streak cresce, não quebrar a corrente se tornará bem importante. Cedo ou tarde, você estará meditando todos os dias, ainda que seja por apenas cinco ou dez minutos. Principais funções: - Automaticamente põe seu aparelho em modo de apenas emergências, apenas alarmes, silencioso ou em vibração enquanto medita. - Escolha dentre vários sons para meditação inclusos, ou use outros em seu celular. - Toque um som de intervalo pela duração que você escolher. - Publique suas sessões de meditação no MediNET, e visite o fórum de meditação do MediNET. - Escolha qualquer tema holográfico do aplicativo: claro, claro com painel de ações escuro e escuro. - Muito mais funções disponíveis, é a cada atualização são adicionadas mais. Esse ê um aplicativo open source: https://gitlab.com/tslocum/meditationassistant Feedbacks são bem-vindos. Grande parte das funções adicionadas são originalmente ideias de usuários. Descreva qualquer problema ou ideia que tiver: https://gitlab.com/tslocum/meditationassistant/issues Traduza o Assistente de Meditação para sua língua: https://www.getlocalization.com/meditationassistant/ Desenvolvido pela Rocket Nine Laboratories: https://rocketnine.space/</string>
     <string name="exportsessions">Exportar sessões</string>

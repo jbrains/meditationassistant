@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="appName">Δωρεάν Βοηθός Διαλογισμού</string>
     <string name="appNameShort">Βοηθός Διαλογισμού</string>
     <string name="about">Σχετικά</string>
     <string name="yes">Ναι</string>
@@ -21,7 +20,6 @@
     <string name="installFileManager">Παρακαλώ, εγκαταστήστε έναν διαχειριστή αρχείων</string>
     <!-- Permissions -->
     <string name="permissionRequest">Αίτηση άδειας</string>
-    <string name="permissionRequestReadExternal">Αυτή η άδεια είναι απαραίτητη για την επιλογή ενός αρχείου ήχου της επιλογής σας στη συσκευή.</string>
     <string name="permissionRequestNotificationControl">Παρακαλώ παρέχεται άδεια στην επόμενη οθόνη για τον έλεγχο της επιλογής "Μην ενοχλείτε".</string>
     <string name="deny">Άρνηση</string>
     <string name="tryAgain">Δοκιμάστε ξανά</string>
@@ -64,8 +62,6 @@
     <string name="version">Έκδοση %s</string>
     <string name="translate">Μεταφράστε</string>
     <string name="donate">Δωρείστε</string>
-    <string name="removeAds">Αφαίρεσε διαφημίσεις</string>
-    <string name="removeAdsHelp">Η πλήρης έκδοση του Βοηθού Διαλογισμού είναι μια ξεχωριστή εφαρμογή.\n\nΓια να διατηρήσετε τις υπάρχουσες συνεδρίες σας, κάντε είσοδο στο MediNET και πιέστε"Ανέβασμα συνεδριών" στο παράθυρο των Ρυθμίσεων.\n\nΑνοίξτε την πλήρη έκδοση και κάντε είσοδο στο MediNET ξανά, ακολούθως πιέστε "Εισαγωγή".</string>
     <string name="howToMeditate">Πως να Διαλογισθείτε</string>
     <string name="share">Μοιράσου</string>
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
@@ -197,7 +193,6 @@
     <string name="pref_notificationcontrol_priority">Προτεραιότητα μονο</string>
     <string name="pref_notificationcontrol_alarms">Συναγερμοί μόνο</string>
     <string name="pref_notificationcontrol_vibrate">Θέσε σε δόνηση</string>
-    <string name="pref_notificationcontrol_silent">Θέσε σε σιωπηλό</string>
     <string name="pref_daily_reminder">Ημερήσια υπενθύμιση</string>
     <string name="pref_daily_reminder_title">Θύμησέ μου</string>
     <string name="pref_daily_reminder_summary">Πρόβαλε ειδοποίηση όταν δεν κατεγράφησαν συνεδρίες σήμερα</string>
@@ -212,9 +207,6 @@
     <string name="discard">Απόρριψε</string>
     <string name="save">Αποθήκευσε</string>
     <string name="post">Ανάρτησε</string>
-    <string name="importSessionsHint">Πιέστε το "Εισήγαγε συνεδρίες" στις ρυθμίσεις για την επανάκτηση απόντων συνεδριών</string>
-    <string name="importsessionstitle">Εισαγωγή συνεδριών;</string>
-    <string name="importsessionsmessage">Οι προηγούμενες συνεδρίες θα εισαχθούν.\n\nΑυτός ο διάλογος δεν θα εμφανιστεί ξανά.\nΜπορείτε να εισάγετε συνεδρίες αργότερα από το παράθυρο Ρυθμίσεις.</string>
     <string name="wordimport">Εισήγαγε</string>
     <string name="sessionDeletedMediNET">Η συνεδρία διεγράφει στο MediNET</string>
     <string name="sessionNotFoundMediNET">Η συνεδρία δεν βρέθηκε στο MediNET</string>
@@ -222,15 +214,10 @@
         <item quantity="one">%s χρόνος</item>
         <item quantity="other">%s χρόνοι</item>
     </plurals>
-    <plurals name="sessionsImported">
-        <item quantity="one">Εισηγμένη %s συνεδρία</item>
-        <item quantity="other">Εισηγμένες %s συνεδρίες</item>
-    </plurals>
     <plurals name="sessionsUploaded">
         <item quantity="one">Ανεβασμένη %s συνεδρία</item>
         <item quantity="other">Ανεβασμένες %s συνεδρίες</item>
     </plurals>
-    <string name="sessionsNotImported">Τα τοπικά αρχεία είναι ενημερωμένα</string>
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d ημέρα</item>
         <item quantity="other">%d ημέρες</item>
@@ -256,9 +243,6 @@
 
 Αυτός ο διάλογος δεν θα επανεμφανισθεί.</string>
     <!-- Widgets -->
-    <string name="widget1x1" tools:ignore="UnusedResources">Βοηθός Διαλογισμού 1x1</string>
-    <string name="widget2x1" tools:ignore="UnusedResources">Βοηθός Διαλογισμού 2x1</string>
-    <string name="widget3x1" tools:ignore="UnusedResources">Βοηθός Διαλογισμού 3x1</string>
     <!-- Meta -->
     <string name="appStoreListingShort">Χρονομετρητής και καταγραφέας συνεδρίας διαλογισμού πλούσιος χαρακτηριστικών</string>
     <string name="appStoreListingFull">Η εφαρμογή αυτή βοηθά και με τις χρονομετρημένες (μέσω διάρκειας ή λήξης σε ορισμένη στιγμή) και με τις αχρονομέτρητες συνεδρίες, με διάφορες παραμετροποιήσεις, συμπεριλαμβάνοντας ήχους έναρξης/μεσοδιαστήματος/λήξης και συμπεριφορά της συσκευής. Παρέχει επίσης μια μηνιαία επισκόπηση της προόδου σας.

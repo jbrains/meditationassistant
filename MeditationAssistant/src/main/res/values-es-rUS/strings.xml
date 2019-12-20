@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
-    <string name="appName">Asistente de meditación gratuito</string>
     <string name="appNameShort">Asistente de meditación</string>
     <string name="about">Acerca</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
-    
     <string name="delete">Borrar</string>
     <string name="sessions">Sesiones</string>
     <string name="community">Comunidad</string>
@@ -19,20 +16,9 @@
     <string name="account">Cuenta</string>
     <string name="groups">Grupos</string>
     <string name="announcement">Anuncio</string>
-
     <!-- Permissions -->
-    
-    
-    
-    
-    
-    
-
     <!-- Main Activity -->
     <string name="timer">Temporizador</string>
-    
-    
-    
     <string name="cancel">Cancelar</string>
     <string name="set">Establecer</string>
     <string name="confirm">Confirmar</string>
@@ -42,70 +28,25 @@
     <string name="end">Ende</string>
     <string name="pauseOrEnd">Pausa o ende</string>
     <string name="resumeOrEnd">Sesión pausada, mantener para terminar</string>
-    
     <string name="mediNETConnecting">Conectando...</string>
     <string name="mediNETConnected">Conectando a MediNET</string>
     <string name="sessionInProgress">Sesión en progreso</string>
     <string name="progress">Progreso</string>
-    
-    
-    
-    
-    
-    
-    
-    
     <string name="timed">Terminar %s</string>
     <string name="endAt">Terminar en</string>
-    
-    
     <string name="presetLabelEndAt">Terminar %s</string>
-
     <!-- About -->
-    
-    
     <string name="version">Versión %s</string>
     <string name="translate">Traducir</string>
-    
-    
-    
     <string name="howToMeditate">Como meditar</string>
     <string name="share">Compartir</string>
-
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
-    
-
     <!-- Sessions -->
     <string name="session">Sesión</string>
-    
-    
-    
-    
-    
-    
-
     <!-- Session complete -->
-    
     <string name="sessionMessagePlaceholder">Mensaje</string>
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- Sign In -->
-    
-    
-    
-    
-
     <!-- Progress -->
-    
-    
-    
     <string name="dayMondayShort">Lun</string>
     <string name="dayTuesdayShort">Mar</string>
     <string name="dayWednesdayShort">Mie</string>
@@ -114,141 +55,18 @@
     <string name="daySaturdayShort">Sab</string>
     <string name="daySundayShort">Dom</string>
     <string name="addSession">Añadir sesión</string>
-    
-    
     <string name="started">Iniciado</string>
     <string name="completed">Completado</string>
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-
-    
-
     <!-- Settings -->
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- MediNET -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <plurals name="numtimes">
         <item quantity="one">%s time</item>
         <item quantity="other">%s times</item>
     </plurals>
-
-    <plurals name="sessionsImported">
-        <item quantity="one">%s sesión importado</item>
-        <item quantity="other">%s sesiones importado</item>
-    </plurals>
-
     <plurals name="sessionsUploaded">
         <item quantity="one">Uploaded %s session</item>
         <item quantity="other">Uploaded %s sessions</item>
     </plurals>
-
-    
-    
-
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d day</item>
         <item quantity="other">%d days</item>
@@ -261,20 +79,5 @@
         <item quantity="one">día de meditación</item>
         <item quantity="other">días de meditación</item>
     </plurals>
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- Widgets -->
-    <string name="widget1x1" tools:ignore="UnusedResources">Asistente de meditación 1x1</string>
-    <string name="widget2x1" tools:ignore="UnusedResources">Asistente de meditación 2x1</string>
-    <string name="widget3x1" tools:ignore="UnusedResources">Asistente de meditación 3x1</string>
-
 </resources>

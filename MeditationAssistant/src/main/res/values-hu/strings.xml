@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="yes">Igen</string>
+    <string name="no">Nem</string>
+    <string name="openWith">Megnyitás ezzel</string>
+    <string name="delete">Törlés</string>
+    <string name="community">Közösség</string>
+    <string name="forum">Fórum</string>
+    <string name="rate">Értékelés</string>
+    <string name="page">Oldal</string>
+    <string name="back">Vissza</string>
+    <string name="forward">Előre</string>
+    <string name="account">Fiók</string>
+    <string name="groups">Csoportok</string>
+    <string name="announcement">Bejelentés</string>
+    <string name="installFileManager">Kérem telepítsen egy fájlkezelőt</string>
+    <string name="permissionRequest">Engedély kérése</string>
+    <string name="permissionRequired">Ez az engedély szükséges.</string>
+    <string name="deny">Elutasítás</string>
+    <string name="tryAgain">Újra</string>
+    <string name="cancel">Mégse</string>
+    <string name="set">Beállítás</string>
+    <string name="meditate">Meditálás</string>
+    <string name="tapToSkip">Átugrás</string>
+    <string name="pause">Szünet</string>
+    <string name="resume">Folytatás</string>
+    <string name="end">Befejez</string>
+    <string name="pauseOrEnd">Szünet vagy befejezés</string>
+    <string name="resumeOrEnd">Folytatás vagy befejezés</string>
+</resources>

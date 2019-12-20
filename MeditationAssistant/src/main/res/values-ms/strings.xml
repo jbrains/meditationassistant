@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="appName">Meditation Assistant Free</string>
     <string name="appNameShort">Meditation Assistant</string>
     <string name="about">Mengenai</string>
     <string name="yes">Ya</string>
@@ -135,7 +134,6 @@
     <string name="extralarge">Sangat besar</string>
     <string name="pref_notificationcontrol">Nada dering dan pemberitahuan</string>
     <string name="pref_notificationcontrol_vibrate">Tetapkan mod getar</string>
-    <string name="pref_notificationcontrol_silent">Tetapkan mod bisu</string>
     <string name="pref_daily_reminder">Peringatan harian</string>
     <!-- MediNET -->
     <string name="mediNET">MediNET</string>
@@ -144,18 +142,9 @@
     <string name="discard">Buang</string>
     <string name="save">Simpan</string>
     <string name="post">Pos</string>
-    <string name="importSessionsHint">Klik "Import sesi" dalam tetapan untuk mendapat kembali sesi yang hilang</string>
-    <string name="importsessionstitle">Import sesi?</string>
-    <string name="importsessionsmessage">Sesi sebelumnya akan diimport.\n\nDialog ini tidak akan muncul lagi.\nAnda
-boleh mengimport sesi selepas ini dari tetingkap Tetapan.</string>
     <string name="wordimport">Import</string>
     <string name="sessionDeletedMediNET">Sesi dihapuskan pada MediNET</string>
     <string name="sessionNotFoundMediNET">Sesi tidak dapat dijumpai pada MediNET</string>
-    <plurals name="sessionsImported">
-        <item quantity="one">%s sesi diimport</item>
-        <item quantity="other">%s sesi diimport</item>
-    </plurals>
-    <string name="sessionsNotImported">Data tempatan dalam keadaan terkini</string>
     <plurals name="daysOfMeditation">
         <item quantity="one">%d hari bertafakur</item>
         <item quantity="other">%d hari bertafakur</item>
@@ -172,7 +161,4 @@ boleh mengimport sesi selepas ini dari tetingkap Tetapan.</string>
     <string name="rateMeditationAssistant">Kadarkan Meditation Assistant</string>
     <string name="rateMeditationAssistantText">Jika anda mendapati bahawa aplikasi ini mendatangkan faedah kepada amalan bertakafur anda, sudikah anda memberikan pengkadaran?\n\nVersi berbayar aplikasi ini tidak mengandungi iklan dan mempunyai ciri-ciri widget skrin rumah.\n\nDialog ini tidak akan muncul lagi.</string>
     <!-- Widgets -->
-    <string name="widget1x1" tools:ignore="UnusedResources">Meditation Assistant 1x1</string>
-    <string name="widget2x1" tools:ignore="UnusedResources">Meditation Assistant 2x1</string>
-    <string name="widget3x1" tools:ignore="UnusedResources">Meditation Assistant 3x1</string>
 </resources>

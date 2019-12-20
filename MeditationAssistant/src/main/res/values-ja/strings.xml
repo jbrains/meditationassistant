@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="appName">瞑想アシスタント フリー</string>
     <string name="appNameShort">瞑想アシスタント</string>
     <string name="about">ｱﾌﾟﾘについて</string>
     <string name="yes">はい</string>
@@ -22,7 +21,6 @@
     <string name="installFileManager">ファイルマネージャーをインストールしてください</string>
     <!-- Permissions -->
     <string name="permissionRequest">アクセス許可リクエスト</string>
-    <string name="permissionRequestReadExternal">デバイス上のカスタムサウンドファイルを選択するために、このアクセス許可が必要です。</string>
     <string name="permissionRequestNotificationControl">じゃましないように制御するため、次の画面でアクセス許可を付与してください。</string>
     <string name="deny">拒否</string>
     <string name="tryAgain">再試行</string>
@@ -64,8 +62,6 @@
     <string name="version">バージョン %s</string>
     <string name="translate">翻訳</string>
     <string name="donate">寄付</string>
-    <string name="removeAds">広告を消す</string>
-    <string name="removeAdsHelp">フルバージョンの瞑想アシスタントは独立したアプリケーションです。\n\n既存のセッションを維持するには、MediNET にログインして、設定ウィンドウで "セッションをアップロード" をタップします。\n\nフルバージョンを開いて、もう一度 MediNET にサインインし、その後、"インポート" をタップします。</string>
     <string name="howToMeditate">瞑想の方法</string>
     <string name="share">共有</string>
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
@@ -208,7 +204,6 @@
     <string name="pref_notificationcontrol_priority">優先度のみ</string>
     <string name="pref_notificationcontrol_alarms">アラームのみ</string>
     <string name="pref_notificationcontrol_vibrate">振動に設定</string>
-    <string name="pref_notificationcontrol_silent">サイレントに設定</string>
     <string name="pref_daily_reminder">毎日のリマインダー</string>
     <string name="pref_daily_reminder_title">覚えておく</string>
     <string name="pref_daily_reminder_summary">今日セッションが記録されなかったとき、通知を表示します</string>
@@ -223,9 +218,6 @@
     <string name="discard">破棄</string>
     <string name="save">保存</string>
     <string name="post">投稿</string>
-    <string name="importSessionsHint">設定の "セッションをインポート" をクリックして、見つからないセッションを取得してください</string>
-    <string name="importsessionstitle">セッションをインポートしますか?</string>
-    <string name="importsessionsmessage">以前のセッションがインポートされます。\n\nこのダイアログは再度表示されません。\n設定ウィンドウから、後でセッションをインポートすることができます。</string>
     <string name="wordimport">インポート</string>
     <string name="sessionDeletedMediNET">MediNET のセッションを削除しました</string>
     <string name="sessionNotFoundMediNET">MediNET にセッションが見つかりません</string>
@@ -233,15 +225,10 @@
         <item quantity="one">%s 回</item>
         <item quantity="other">%s 回</item>
     </plurals>
-    <plurals name="sessionsImported">
-        <item quantity="one">%s セッションをインポートしました</item>
-        <item quantity="other">%s セッションをインポートしました</item>
-    </plurals>
     <plurals name="sessionsUploaded">
         <item quantity="one">%s セッションをアップロードしました</item>
         <item quantity="other">%s セッションをアップロードしました</item>
     </plurals>
-    <string name="sessionsNotImported">ローカルデータは最新です</string>
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d 日</item>
         <item quantity="other">%d 日</item>
@@ -263,9 +250,6 @@
     <string name="rateMeditationAssistantText">このアプリケーションが瞑想の訓練に役立つことが分かった場合、評価を追加していただけませんか?\n\nこのアプリの有料バージョンは、広告が含まれておらず、ホーム画面ウィジェットを提供しています。できれば購入をご検討ください。\n\nこのダイアログは再度表示されません。</string>
     <string name="translateMeditationAssistantText">他の言語に翻訳することによって、瞑想アシスタントがより広く利用者に届くように手伝っていただけませんか?\n\nオンラインインターフェイスを利用して、簡単に翻訳を行うことができます。後で、アプリについてのウインドウから翻訳をクリックすることで、翻訳Webページを訪問することができます。\n\nこのダイアログは再度表示されません。</string>
     <!-- Widgets -->
-    <string name="widget1x1" tools:ignore="UnusedResources">瞑想アシスタント 1x1</string>
-    <string name="widget2x1" tools:ignore="UnusedResources">瞑想アシスタント 2x1</string>
-    <string name="widget3x1" tools:ignore="UnusedResources">瞑想アシスタント 3x1</string>
     <!-- Meta -->
     <string name="appStoreListingShort">瞑想セッションタイマーとレコーダーの機能パック</string>
     <string name="appStoreListingFull">このアプリケーションは、開始/終了/終了音やデバイスの動作など、さまざまなカスタマイズ機能を備えていて、時間指定（継続時間、または特定の時刻に終了）セッションと時間指定のないセッションの両方を支援します。また、毎月の状況の概要を提供します。

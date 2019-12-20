@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="appName">Bedava Meditasyon Asistanı </string>
     <string name="appNameShort">Meditasyon Asistanı</string>
     <string name="about">Hakkında</string>
     <string name="yes">Evet</string>
@@ -21,7 +20,6 @@
     <string name="installFileManager">Lütfen bir dosya yöneticisi indirin</string>
     <!-- Permissions -->
     <string name="permissionRequest">İzin İsteği</string>
-    <string name="permissionRequestReadExternal">Bu izin istenilen ses dosyasını seçmek için gerekli</string>
     <string name="permissionRequestNotificationControl">Rahatsız etme modunu kontrol edebilmemiz için lütfen sonraki ekranda yetki verin</string>
     <string name="deny">Reddet</string>
     <string name="tryAgain">Tekrar dene</string>

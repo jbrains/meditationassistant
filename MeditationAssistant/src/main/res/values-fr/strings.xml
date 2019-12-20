@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="appName">Assistant de Méditation Gratuit
-</string>
     <string name="appNameShort">Assistant de Méditation</string>
     <string name="about">À propos</string>
     <string name="yes">Oui</string>
@@ -11,26 +9,27 @@
     <string name="sessions">Séances</string>
     <string name="community">Communauté</string>
     <string name="forum">Forum</string>
-    <string name="rate">Donner une évaluation</string>
+    <string name="rate">Évaluer</string>
     <string name="refresh">Actualiser</string>
     <string name="page">Page</string>
-    <string name="back">Reculer</string>
-    <string name="forward">Avancer</string>
+    <string name="back">Retour</string>
+    <string name="forward">Suivant</string>
     <string name="account">Compte</string>
     <string name="groups">Groupes</string>
     <string name="announcement">Annonce</string>
-    <string name="installFileManager">Installez un gestionnaire de fichiers s\'il vous plaît</string>
+    <string name="installFileManager">Veuillez installer un gestionnaire de fichiers</string>
     <!-- Permissions -->
     <string name="permissionRequest">Demande d\'autorisation</string>
-    <string name="permissionRequestReadExternal">L\'autorisation est nécessaire pour choisir un fichier de son personnalisé sur l\'appareil.</string>
-    <string name="permissionRequestNotificationControl">Veuillez autoriser l\'accès à l\'écran suivant pour contrôler "Ne pas déranger"</string>
+    <string name="permissionRequestNotificationControl">À l\'écran suivant, merci d\'autoriser l\'accès à «Ne pas déranger» pour un contrôle de cette fonction par l\'Assistant de Méditation.</string>
     <string name="deny">Refuser</string>
-    <string name="tryAgain">Essayez encore</string>
+    <string name="tryAgain">Essayez à nouveau</string>
     <!-- Main Activity -->
-    <string name="timer">Minuterie</string>
-    <string name="timerHelp">La minuterie est actuellement réglée sur 15 minutes. Vous pouvez changer la durée, indiquer une heure spécifique pour la fin de méditation, ou bien désactiver complètement la minuterie. Appuyez maintenant sur la minuterie pour voir ces options.</string>
+    <string name="timer">Minuteur</string>
+    <string name="timerHelp">Le minuteur est actuellement réglé sur 15 minutes. Vous pouvez changer la durée, indiquer une heure spécifique pour la fin de méditation, ou bien désactiver complètement le minuteur. Appuyez maintenant sur le minuteur pour voir ces options.</string>
     <string name="settingsHelp">Cette application contient de nombreuses fonctionnalités et de nombreux réglages, comme de pouvoir mettre automatiquement votre appareil en mode silencieux ou fournir une notification quotidienne pour méditer. Appuyez maintenant sur l\'icône des paramètres pour voir ces options.</string>
-    <string name="medinetHelp">Inscrivez vous sur MediNET pour sauvegarder vos séances en ligne. Vous pourrez importer vos sessions plus tard si vous perdez vos données. Cette fonctionnalité est entièrement optionnelle, enregistrer vos séances localement n\'entravera pas votre utilisation.\n\n Ceci termine le didacticiel. J\'espère que l\'assistant de méditation sera bénéfique à votre pratique. </string>
+    <string name="medinetHelp">Inscrivez vous sur MediNET pour sauvegarder vos séances en ligne. Vous pourrez réimporter vos séances plus tard si vous perdez vos données. Cette fonctionnalité est entièrement optionnelle, enregistrer vos séances localement n\'entravera pas votre utilisation.
+\n
+\n Ceci termine le didacticiel. J\'espère que l\'Assistant de méditation sera bénéfique à votre pratique.</string>
     <string name="cancel">Annuler</string>
     <string name="set">Régler</string>
     <string name="confirm">Confirmer</string>
@@ -38,33 +37,31 @@
     <string name="tapToSkip">Passer</string>
     <string name="pause">Pause</string>
     <string name="end">Terminer</string>
-    <string name="pauseOrEnd">Pause ou fin</string>
+    <string name="pauseOrEnd">Mettre en pause ou terminer</string>
     <string name="resumeOrEnd">Reprendre ou terminer</string>
     <string name="pausedNotification">Séance en pause, maintenir pour terminer</string>
-    <string name="mediNETConnecting">Connection...</string>
+    <string name="mediNETConnecting">Connexion en cours…</string>
     <string name="mediNETConnected">Connecté à MediNET</string>
     <string name="sessionInProgress">Séance en cours</string>
     <string name="progress">Progression</string>
     <string name="setPreset">Définir un réglage</string>
-    <string name="setPresetHint">Gardez appuyé pour définir le réglage</string>
-    <string name="setPresetTip">Choisir les réglages à rétablir en appuyant sur l’icône représentant une roue dentée (Réglages), puis appuyer sur Réglages prédéfinis </string>
+    <string name="setPresetHint">Restez appuyé pour définir le réglage</string>
+    <string name="setPresetTip">Choisir les réglages à rétablir en appuyant sur l’icône représentant une roue dentée (Paramètres), puis appuyer sur Paramètres par défaut.</string>
     <string name="setPresetHintBlank">Définir une durée (ou une heure de fin) pour le réglage</string>
-    <string name="label">Label</string>
+    <string name="label">Nom</string>
     <string name="setTimerDurationHint">Entrez une durée valide (par ex. 0:22)</string>
     <string name="setTimerEndAtHint">Entrez une heure valide (par ex. 4:20)</string>
     <string name="invalidEndAt">Heure de fin de séance incorrecte</string>
-    <string name="timed">Durée</string>
+    <string name="timed">Chronométré</string>
     <string name="endAt">Fin à</string>
-    <string name="untimed">Sans durée</string>
+    <string name="untimed">Non chronométré</string>
     <string name="unlimited">Illimité</string>
     <string name="presetLabelEndAt">Fin %s</string>
     <!-- About -->
-    <string name="sendEmail">Envoyer un email</string>
+    <string name="sendEmail">Envoyer un e-mail</string>
     <string name="version">Version %s</string>
     <string name="translate">Traduire</string>
     <string name="donate">Faire un don</string>
-    <string name="removeAds">Supprimer les pubs.</string>
-    <string name="removeAdsHelp">La version complète de "Mediation Assistant" est une application séparée.\n\n Pour conserver vos séances existantes, connectez vous sur MediNET et tapez "Envoyez des séances" dans le fenêtre des réglages.\n\n Ouvrez la version complète et connectez vous une nouvelle fois sur MediNET, puis tapez "importer des séances".</string>
     <string name="howToMeditate">Comment méditer</string>
     <string name="share">Partager</string>
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
@@ -81,7 +78,7 @@
     <string name="sessioncomplete">Séance terminée</string>
     <string name="sessionMessagePlaceholder">Message</string>
     <string name="askDiscardText">Annuler la séance ?</string>
-    <string name="sessionPosting">Envoi de la séance...</string>
+    <string name="sessionPosting">Envoi de la séance…</string>
     <string name="sessionPosted">Séance envoyée sur MediNET</string>
     <string name="sessionAlreadyPosted">Séance déjà envoyée</string>
     <string name="sessionNotPosted">Impossible d\'envoyer la séance</string>
@@ -91,8 +88,8 @@
     <!-- Sign In -->
     <string name="browser">Navigateur</string>
     <string name="useBrowser">Utiliser le navigateur :</string>
-    <string name="signInWith">Se connecter avec ...</string>
-    <string name="signInWithProvider">Se connecter avec %s ...</string>
+    <string name="signInWith">Se connecter avec…</string>
+    <string name="signInWithProvider">Se connecter avec %s…</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, etc.</string>
     <string name="signInGoogleError">Impossible de s\'identifier avec le gestionnaire de comptes. Essayez avec OpenID si l\'erreur persiste.</string>
     <!-- Progress -->
@@ -156,18 +153,18 @@
     <string name="pref_rememberme_summary">Resté enregistré après la fermeture</string>
     <string name="pref_rememberme">Se souvenir de moi</string>
     <string name="pref_sessionvolume">Volume</string>
-    <string name="pref_sessionvolume_summary">Le volume précédent sera rétabli une fois la séance terminée</string>
+    <string name="pref_sessionvolume_summary">Le volume précédent sera rétabli une fois la séance terminée.</string>
     <string name="pref_screencontrol">Ecran</string>
     <string name="pref_sendusage">Envoyer les statistiques d\'utilisation</string>
     <string name="pref_sendusage_summary">Envoi anonyme des statistiques via Google Analytics. Prend effet au redémarrage</string>
     <string name="pref_showstreak">Afficher la série de méditation</string>
     <string name="pref_showstreak_summary">Nombre de jours consécutifs avec au moins une séance enregistrée</string>
     <string name="selectSound">Sélectionner un son</string>
-    <string name="pref_meditation_sound_start">Sonnerie de début.</string>
+    <string name="pref_meditation_sound_start">Sonnerie de début</string>
     <string name="pref_meditation_sound_interval">Sonnerie intermédiaire</string>
     <string name="pref_meditation_sound_finish">Sonnerie de fin</string>
     <string name="pref_remembermessage">Se souvenir du dernier message</string>
-    <string name="pref_remembermessage_summary">Dernier message par défaut</string>
+    <string name="pref_remembermessage_summary">Message précédent par défaut</string>
     <string name="pref_theme">Thème holographique</string>
     <string name="pref_theme_light">Clair</string>
     <string name="pref_theme_lightdark">Clair avec une barre d\'action foncée</string>
@@ -180,7 +177,7 @@
     <string name="pref_askdismiss">Confirmer avant d\'annuler</string>
     <string name="pref_askdismiss_summary">Confirmer avant d\'annuler une séance</string>
     <string name="pref_mainbuttons">Masquer les boutons</string>
-    <string name="pref_progresstab">Onglet de progression par défaut</string>
+    <string name="pref_progresstab">Onglet par défaut</string>
     <string name="importsessions">Importer les séances</string>
     <string name="importsessions_summary">Récupérer les séances envoyées</string>
     <string name="uploadsessions">Envoyer les séances</string>
@@ -197,24 +194,20 @@
     <string name="pref_notificationcontrol_priority">Priorité seulement</string>
     <string name="pref_notificationcontrol_alarms">Alarmes seulement</string>
     <string name="pref_notificationcontrol_vibrate">Régler sur vibreur</string>
-    <string name="pref_notificationcontrol_silent">Régler sur silence</string>
     <string name="pref_daily_reminder">Rappel quotidien</string>
     <string name="pref_daily_reminder_title">Rappelez moi</string>
     <string name="pref_daily_reminder_summary">Afficher une notification quand aucune session n\'a été enregistrée aujourd\'hui</string>
     <string name="pref_daily_reminder_time">Heure</string>
     <string name="pref_daily_reminder_text">Texte d\'encouragement</string>
-    <string name="downloadingSessions">Téléchargent des séances...</string>
-    <string name="uploadingSessions">Envoi des séances...</string>
+    <string name="downloadingSessions">Téléchargement des séances…</string>
+    <string name="uploadingSessions">Envoi des séances au serveur…</string>
     <!-- MediNET -->
     <string name="mediNET">MediNET</string>
     <string name="unableToConnect">Impossible de se connecter à MediNET</string>
-    <string name="dismiss">Rejeter</string>
+    <string name="dismiss">Supprimer</string>
     <string name="discard">Annuler</string>
     <string name="save">Sauvegarder</string>
     <string name="post">Envoyer</string>
-    <string name="importSessionsHint">Cliquer sur "Importer les séances" dans les réglages pour récupérer les séances manquantes</string>
-    <string name="importsessionstitle">Importer les séances ?</string>
-    <string name="importsessionsmessage">Les séances précédentes vont être importées.\n\nCette boite de dialogue n\'apparaîtra plus.\nVous pourrez importer les séances plus tard dans la fenêtre Réglages.</string>
     <string name="wordimport">Importer</string>
     <string name="sessionDeletedMediNET">Séances supprimées de MediNET</string>
     <string name="sessionNotFoundMediNET">Séance no trouvée sur MediNET</string>
@@ -222,15 +215,10 @@
         <item quantity="one">%s fois</item>
         <item quantity="other">%s fois</item>
     </plurals>
-    <plurals name="sessionsImported">
-        <item quantity="one">%s séance importée</item>
-        <item quantity="other">%s séances importées</item>
-    </plurals>
     <plurals name="sessionsUploaded">
         <item quantity="one">%s séance envoyée</item>
         <item quantity="other">%s séances envoyées</item>
     </plurals>
-    <string name="sessionsNotImported">Les données locales sont à jour</string>
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d jour</item>
         <item quantity="other">%d jours</item>
@@ -249,11 +237,75 @@
     <string name="signOutOfMediNET">Se déconnecter de MediNET</string>
     <string name="signOutOfMediNETConfirmTitle">Se déconnecter de MediNET ?</string>
     <string name="rateMeditationAssistant">Notez Assistant de Méditation</string>
-    <string name="rateMeditationAssistantText">Si vous pensez que cette application a été positive pour votre pratique de la méditation, pensez à noter l\'application.\n\n La version payante ne contient pas de publicité et vous permet d\'ajouter des widgets. Nous vous remercions de l\'acheter si vous le pouvez.\n\nCe message n\'apparaîtra plus.</string>
-    <string name="translateMeditationAssistantText">Voulez vous aider Meditation Assistant à toucher une audience plus large en traduisant cette application dans une autre langue?\n\nLa traduction se fait facilement avec une interface en ligne. Vous pourrez plus tard visiter la page de traduction en cliquant sur "Traduire" dans la fenêtre "A propos".\n\n Cette boite de dialogue n’apparaîtra plus.</string>
+    <string name="rateMeditationAssistantText">Si vous pensez que cette application a été positive pour votre pratique de la méditation, pensez à noter l\'application.
+\n
+\nCe message n\'apparaîtra plus.</string>
+    <string name="translateMeditationAssistantText">Voulez vous aider Meditation Assistant à toucher une audience plus large en traduisant cette application dans une autre langue \?</string>
     <!-- Widgets -->
-    <string name="widget1x1" tools:ignore="UnusedResources">Assistant de Méditation 1x1</string>
-    <string name="widget2x1" tools:ignore="UnusedResources">Assistant de Méditation 2x1</string>
-    <string name="widget3x1" tools:ignore="UnusedResources">Assistant de Méditation 3x1</string>
     <!-- Meta -->
+    <string name="warning">Avertissement</string>
+    <string name="disableBatteryOptimizations">Assistant de Méditation doit s\'exécuter en arrière-plan</string>
+    <string name="tapToLearnMore">Appuyez quelque part pour en savoir plus</string>
+    <string name="postUpdatedSession">Publier la séance mise à jour sur MediNET \?</string>
+    <string name="editSession">Modifier la séance</string>
+    <string name="sessionAdded">Séance ajoutée</string>
+    <string name="sessionEdited">Séance modifiée</string>
+    <string name="edit">Modifier</string>
+    <string name="length">Durée</string>
+    <string name="invalidLength">Durée invalide</string>
+    <string name="editSessionMeditating">Impossible de modifier une séance pendant la méditation</string>
+    <string name="resume">Reprendre</string>
+    <string name="sessionPaused">Session interrompue</string>
+    <string name="permissionRequired">Cette permission est requise.</string>
+    <string name="chooseDonationMethod">Veuillez choisir comment vous voulez faire un don.
+\n
+\nLiberapay est idéal pour le développeur et prend en charge plus de pays et devises.</string>
+    <string name="streakdifferencewarning">Le cycle de méditations actuel ne semble pas correspondre aux données de cette session. Utiliser un cycle actualisé \?
+\n
+\nCycle actuel : %1$d
+\nCycle actualisé : %2$d</string>
+    <string name="duringSession">En cours de séance</string>
+    <string name="always">Toujours</string>
+    <string name="pref_meditationstreakbuffer">Réinitialisation du cycle de méditations à</string>
+    <string name="pref_widgetcolor">Couleur du widget</string>
+    <string name="appStoreListingShort">Minuteur et enregistreur de séance de méditation multifonctions</string>
+    <string name="appStoreListingFull">- Mode automatique pendant la méditation. 
+\n- Possibilité de mettre en pause en cours de séance. 
+\n- Possibilité de régler des sons de début/intervalle/fin et de définir la durée des séances, les thèmes, le comportement de l\'appareil, et plus encore. 
+\n- Synthèse mensuelle de sa progression. 
+\n- Possibilité de poster ses séances sur MediNET, et de visiter le forum. 
+\n(Partager ses progrès avec la communauté est une motivation supplémentaire pour pratiquer quotidiennement, ne serait-ce que cinq ou dix minutes.) 
+\n 
+\nMeditation Assistant est un logiciel libre sous copyleft. 
+\nEnvoyez-nous votre problème / idées ou consultez le code source : https://gitlab.com/tslocum/meditationassistant/issues 
+\nPlusieurs fonctions sont issues de suggestions d\'utilisateurs. 
+\n 
+\nAider à traduire Meditation Assistant : https://www.getlocalization.com/meditationassistant/ 
+\n 
+\nCréé par Rocket Nine Laboratories : https://rocketnine.space</string>
+    <string name="exportsessions">Exporter les séances</string>
+    <string name="exportsessions_summary">Exporter un fichier CSV</string>
+    <string name="downloadsessions">Télécharger des séances</string>
+    <string name="downloadsessions_summary">Télécharger des séances distantes</string>
+    <string name="importsessions_in_progress">Importation en cours…</string>
+    <string name="importsessions_complete">%1$d séance(s) existante(s) et %2$d séance(s) nouvelle(s) trouvée(s).</string>
+    <string name="importsessions_utc_or_local">Cette exportation comporte-t-elle des dates et heures locales ou universelles (UTC) \?
+\n
+\nLes exportations sauvegardées depuis la version 1.5.6 ont des dates et heures universelles (UTC).</string>
+    <string name="utc">UTC</string>
+    <string name="local">Locales</string>
+    <string name="downloadSessionsHint">Cliquez sur Télécharger les séances dans les paramètres pour récupérer les séances manquantes.</string>
+    <string name="downloadsessionstitle">Télécharger les séances \?</string>
+    <string name="downloadsessionsmessage">Les séances précédentes seront téléchargées.
+\n
+\nCette boîte de dialogue n\'apparaîtra plus.
+\nVous pouvez télécharger les séances ultérieurement à partir de la fenêtre Paramètres.</string>
+    <plurals name="sessionsDownloaded">
+        <item quantity="one">%s séance téléchargée</item>
+        <item quantity="other">%s séances téléchargées</item>
+    </plurals>
+    <string name="sessionsUpToDate">Les données locales sont à jour</string>
+    <string name="download">Téléchargement</string>
+    <string name="configureWidget">Configurer le widget</string>
+    <string name="pref_autosave">Sauvegarde automatique</string>
 </resources>

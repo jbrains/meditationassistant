@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="appName">Помощник в Медитации</string>
     <string name="appNameShort">Помощник в Медитации</string>
     <string name="about">О программе</string>
     <string name="yes">Да</string>
@@ -169,7 +168,6 @@
     <string name="extralarge">Огромный</string>
     <string name="pref_notificationcontrol">Звонки и уведомления</string>
     <string name="pref_notificationcontrol_vibrate">Поставить на вибрацию</string>
-    <string name="pref_notificationcontrol_silent">Убрать громкость</string>
     <string name="pref_daily_reminder">Ежедневные напоминания</string>
     <string name="pref_daily_reminder_title">Напоминать мне</string>
     <string name="pref_daily_reminder_summary">Показывать уведомление, если сегодня не было сеанса</string>
@@ -184,9 +182,6 @@
     <string name="discard">Удалить</string>
     <string name="save">Сохранить</string>
     <string name="post">Опубликовать</string>
-    <string name="importSessionsHint">Нажми "Скачать сеансы" в настройках, чтобы вернуть недостающие сеансы.</string>
-    <string name="importsessionstitle">Скачать сеансы?</string>
-    <string name="importsessionsmessage">Прошлые сеансы будут загружены.\n\nЭто сообщение больше не будет появляться.\nТы можешь загрузить сеансы позже в окне настроек.</string>
     <string name="wordimport">Скачать</string>
     <string name="sessionDeletedMediNET">Сеанс удалён с MediNET</string>
     <string name="sessionNotFoundMediNET">Сеанс не найден на MediNET</string>
@@ -195,17 +190,11 @@
         <item quantity="few">%s раза</item>
         <item quantity="many">%s раз</item>
     </plurals>
-    <plurals name="sessionsImported">
-        <item quantity="one">Импортирован %s сеанс</item>
-        <item quantity="few">Импортировано %s сеанса</item>
-        <item quantity="many">Импортировано %s сеансов</item>
-    </plurals>
     <plurals name="sessionsUploaded">
         <item quantity="one">Загружен %s сеанс</item>
         <item quantity="few">Загружено %s сеанса</item>
         <item quantity="many">Загружено %s сеансов</item>
     </plurals>
-    <string name="sessionsNotImported">Личные данные обновлены</string>
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d день</item>
         <item quantity="few">%d дня</item>
@@ -230,21 +219,16 @@
     <string name="rateMeditationAssistantText">Если это приложение помогает твоей практике медитации, пожалуйста, оцени его.\n\nВ платной версии этого приложения нет рекламы и добавлены виджеты для домашнего экрана. Если можешь, пожалуйста, подумай о покупке.\n\nЭто сообщение больше не будет появляться.</string>
     <string name="translateMeditationAssistantText">Хочешь помочь Помощнику в Медитации расширить аудиторию, переведя его на другой язык?\n\nПеревод осуществляется на сайте онлайн. Ты можешь сделать это позже, зайдя на Перевод в окошке О программе.\n\nЭто сообщение больше не будет появляться.</string>
     <!-- Widgets -->
-    <string name="widget1x1" tools:ignore="UnusedResources">Помощник в Медитации 1x1</string>
-    <string name="widget2x1" tools:ignore="UnusedResources">Помощник в Медитации 2x1</string>
-    <string name="widget3x1" tools:ignore="UnusedResources">Помощник в Медитации 3x1</string>
     <string name="warning">Внимание</string>
     <string name="openWith">Открыть с помощью</string>
     <string name="installFileManager">Пожалуйста, установите файловый менеджер</string>
     <string name="disableBatteryOptimizations">Meditation Assistant должна работать в фоне</string>
     <string name="permissionRequest">Необходимы разрешения</string>
-    <string name="permissionRequestReadExternal">Необходимо разрешение на выбор звука устройства.</string>
     <string name="permissionRequestNotificationControl">Пожалуйста, на следующем экране дайте программе доступ к режиму \"не беспокоить\".</string>
     <string name="deny">Запретить</string>
     <string name="tryAgain">Попробуйте ещё раз</string>
     <string name="tapToLearnMore">Нажмите в любом месте, чтобы узнать больше</string>
     <string name="donate">Пожертвование</string>
-    <string name="removeAds">Убрать рекламу</string>
     <string name="pref_sessionintro">Приветствие</string>
     <string name="postUpdatedSession">Отправить обновлённую сессию на MediNET\?</string>
     <string name="totalTimeSpentMeditating">Общее время медитации</string>

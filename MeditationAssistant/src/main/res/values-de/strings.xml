@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="appName">Meditation Assistant Free</string>
     <string name="appNameShort">Meditation Assistant</string>
     <string name="about">Über</string>
     <string name="yes">Ja</string>
@@ -22,7 +21,6 @@
     <string name="installFileManager">Bitte installieren Sie einen Dateimanager</string>
     <!-- Permissions -->
     <string name="permissionRequest">Berechtigungsanfrage</string>
-    <string name="permissionRequestReadExternal">Diese Berechtigung wird benötigt, um eine eigene Audiodatei auf dem Gerät auszuwählen.</string>
     <string name="permissionRequestNotificationControl">Bitte gewähren Sie auf dem nächsten Bildschirm Zugriff um die Funktion \'Nicht stören\' kontrollieren zu können.</string>
     <string name="deny">Verweigern </string>
     <string name="tryAgain">Erneut versuchen</string>
@@ -64,8 +62,6 @@
     <string name="version">Version %s</string>
     <string name="translate">Übersetzen</string>
     <string name="donate">Spenden</string>
-    <string name="removeAds">Werbung entfernen</string>
-    <string name="removeAdsHelp">Die Vollversion von Meditation Assistant ist eine separate Anwendung.\n\nUm Ihre bestehenden Sitzungen zu behalten, melden Sie sich bitte bei MediNET an und wählen Sie "Session hochladen" im Einstellungsfenster.\n\nStarten Sie bitte danach die Vollversion, melden Sie sich dort ebenfalls im MediNET an und wählen Sie "Importieren".</string>
     <string name="howToMeditate">Wie man meditiert</string>
     <string name="share">Teilen</string>
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
@@ -176,7 +172,7 @@
     <string name="pref_meditation_sound_interval">Intervallklang</string>
     <string name="pref_meditation_sound_finish">Endklang</string>
     <string name="pref_remembermessage">Letzte Nachricht speichern</string>
-    <string name="pref_remembermessage_summary">Standardmäßig die letzte gepostete Nachricht</string>
+    <string name="pref_remembermessage_summary">Standardmäßig die vorherige gepostete Nachricht</string>
     <string name="pref_theme">Holographisches Theme</string>
     <string name="pref_theme_light">Hell</string>
     <string name="pref_theme_lightdark">Hell mit dunkler Aktionsleiste</string>
@@ -189,7 +185,7 @@
     <string name="pref_askdismiss">Vor dem Verwerfen nachfragen</string>
     <string name="pref_askdismiss_summary">Vor dem Verwerfen einer Sitzung Bestätigung anfordern</string>
     <string name="pref_mainbuttons">Buttons verstecken</string>
-    <string name="pref_progresstab">Standard Fortschrittstab</string>
+    <string name="pref_progresstab">Standard-Fortschritts-Reiter</string>
     <string name="importsessions">Sitzungen importieren</string>
     <string name="importsessions_summary">Hochgeladene Sitzungen laden</string>
     <string name="uploadsessions">Sitzungen hochladen</string>
@@ -206,14 +202,13 @@
     <string name="pref_notificationcontrol_priority">Nur wichtige</string>
     <string name="pref_notificationcontrol_alarms">Nur Alarme</string>
     <string name="pref_notificationcontrol_vibrate">Auf Vibration einstellen</string>
-    <string name="pref_notificationcontrol_silent">Stummschalten</string>
     <string name="pref_daily_reminder">Tägliche Erinnerung</string>
     <string name="pref_daily_reminder_title">Erinnere mich</string>
     <string name="pref_daily_reminder_summary">Zeige eine Nachricht an wenn heute keine Sitzungen aufgezeichnet wurden</string>
     <string name="pref_daily_reminder_time">Zeit</string>
     <string name="pref_daily_reminder_text">Ermutigungstext</string>
-    <string name="downloadingSessions">Lade Sitzungen herunter...</string>
-    <string name="uploadingSessions">Lade Sitzungen hoch...</string>
+    <string name="downloadingSessions">Lade Sitzungen herunter…</string>
+    <string name="uploadingSessions">Lade Sitzungen hoch…</string>
     <!-- MediNET -->
     <string name="mediNET">MediNET</string>
     <string name="unableToConnect">Kann nicht zum MediNET verbinden</string>
@@ -221,9 +216,6 @@
     <string name="discard">Verwerfen</string>
     <string name="save">Speichern</string>
     <string name="post">Posten</string>
-    <string name="importSessionsHint">Klicken Sie auf "Sitzungen importieren" in den Einstellungen, um fehlende Sitzungen zu laden.</string>
-    <string name="importsessionstitle">Sitzungen importieren?</string>
-    <string name="importsessionsmessage">Vorhergehende Sitzungen werden importiert.\n\nDiese Meldung wird nicht wiederholt.\nSie können Sitzungen später unter "Einstellungen" importieren.</string>
     <string name="wordimport">Importieren</string>
     <string name="sessionDeletedMediNET">Sitzung auf MediNET gelöscht</string>
     <string name="sessionNotFoundMediNET">Sitzung auf MediNET nicht gefunden</string>
@@ -231,15 +223,10 @@
         <item quantity="one">%s mal</item>
         <item quantity="other">%s male</item>
     </plurals>
-    <plurals name="sessionsImported">
-        <item quantity="one">%s Sitzung importiert</item>
-        <item quantity="other">%s Sitzungen importiert</item>
-    </plurals>
     <plurals name="sessionsUploaded">
         <item quantity="one">%s Sitzung hochgeladen</item>
         <item quantity="other">%s Sitzungen hochgeladen</item>
     </plurals>
-    <string name="sessionsNotImported">Lokale Daten sind aktuell</string>
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d Tag</item>
         <item quantity="other">%d Tage</item>
@@ -258,12 +245,11 @@
     <string name="signOutOfMediNET">Von MediNET abmelden</string>
     <string name="signOutOfMediNETConfirmTitle">Von MediNET abmelden?</string>
     <string name="rateMeditationAssistant">Meditation Assistant bewerten</string>
-    <string name="rateMeditationAssistantText">Falls Sie diese Anwendung hilfreich bei Ihrer Meditation fanden, könnten Sie bitte eine Bewertung abgeben?\n\nDie Bezahlversion dieser App verzichtet auf Werbung und bietet ein Widget für den Homescreen. Bitte ziehen Sie einen Kauf in Erwägung wenn Sie dazu in der Lage sind.\n\nDieser Hinweis wird nicht wiederholt.</string>
-    <string name="translateMeditationAssistantText">Könnten Sie uns bitte helfen einen größeren Nutzerkreis zu erreichen, indem Sie Meditation Assistant in eine andere Sprache übersetzen?\n\nDie Übersetzung kann über ein Online-Interface bequem vorgenommen werden. Sie können sich die Übersetzungswebsite später ansehen, indem Sie auf "Übersetzen" im "Über" Fenster klicken.\n\nDieser Hinweis wird nicht wiederholt.</string>
+    <string name="rateMeditationAssistantText">Falls Sie diese Anwendung hilfreich bei Ihrer Meditation fanden, könnten Sie bitte eine Bewertung abgeben\?
+\n
+\nDieser Hinweis wird nicht wiederholt.</string>
+    <string name="translateMeditationAssistantText">Wären Sie daran interessiert mitzuhelfen Meditation Assistant zu übersetzen\?</string>
     <!-- Widgets -->
-    <string name="widget1x1" tools:ignore="UnusedResources">Meditation Assistant 1x1</string>
-    <string name="widget2x1" tools:ignore="UnusedResources">Meditation Assistant 2x1</string>
-    <string name="widget3x1" tools:ignore="UnusedResources">Meditation Assistant 3x1</string>
     <!-- Meta -->
     <string name="appStoreListingShort">Featurereicher Timer und Aufzeichner für Meditationssitzungen</string>
     <string name="appStoreListingFull">Diese Anwendung unterstützt Sie sowohl bei  zeitlich begrenzten (durch festlegte Dauern oder eine festgelegte Endzeit) wie auch unbegrenzten Sitzungen, mit vielen Anpassungsmöglichkeiten, einschließlich der Start-, Intervall- und Schlussklänge und des Verhaltens des Geräts. Es bietet zudem eine monatsweise Fortschrittsanzeige.
@@ -296,4 +282,30 @@ Entwickelt von Rocket Nine Laboratories: https://rocketnine.space/</string>
     <string name="exportsessions">Sitzungen exportieren</string>
     <string name="exportsessions_summary">CSV-Datei exportieren</string>
     <string name="downloadsessions">Sitzungen herunterladen</string>
+    <string name="downloadsessions_summary">Entfernte Sitzungen herunterladen</string>
+    <string name="resume">Fortsetzen</string>
+    <string name="sessionPaused">Sitzung pausiert</string>
+    <string name="permissionRequired">Diese Berechtigung ist erforderlich.</string>
+    <string name="importsessions_in_progress">Importiere Sitzungen…</string>
+    <string name="importsessions_complete">%1$d bestehende und %2$d neue gefunden.</string>
+    <string name="importsessions_utc_or_local">Hat dieser Export lokale oder UTC Datumsangaben und Uhrzeiten\?
+\n
+\nExporte, die seit Version 1.5.6 gespeichert wurden, haben UTC Datumsangaben und Uhrzeiten.</string>
+    <string name="utc">UTC</string>
+    <string name="local">Lokal</string>
+    <string name="downloadSessionsHint">Klicken Sie Sitzungen herunterladen in den Einstellungen, um fehlende Sitzungen zu holen.</string>
+    <string name="downloadsessionstitle">Sitzungen herunterladen\?</string>
+    <string name="downloadsessionsmessage">Vorherige Sitzungen werden heruntergeladen.
+\n
+\nDiese Meldung wird nicht wieder erscheinen.
+\nSie können Sitzungen später vom Einstellungs-Schirm herunterladen.</string>
+    <plurals name="sessionsDownloaded">
+        <item quantity="one">%s Sitzung heruntergeladen</item>
+        <item quantity="other">%s Sitzungen heruntergeladen</item>
+    </plurals>
+    <string name="sessionsUpToDate">Lokale Daten sind aktuell</string>
+    <string name="chooseDonationMethod">Bitte wählen Sie wie Sie spenden möchten.
+\n
+\nLiberapay wird vom Entwickler bevorzugt und unterstützt mehr Länder und Währungen.</string>
+    <string name="download">Herunterladen</string>
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="appName">Meditation Assistant Free</string>
     <string name="appNameShort">Meditation Assistant</string>
     <string name="about">על אודות</string>
     <string name="yes">כן</string>
@@ -20,7 +19,6 @@
     <string name="announcement">הכרזה</string>
     <!-- Permissions -->
     <string name="permissionRequest">בקשת הרשאה</string>
-    <string name="permissionRequestReadExternal">הרשאה זו נדרשת על מנת לבחור קובץ קול מותאם אישית ממכשיר זה</string>
     <string name="tryAgain">נסה שנית</string>
     <!-- Main Activity -->
     <string name="cancel">ביטול</string>
@@ -78,21 +76,15 @@
     <!-- MediNET -->
     <string name="discard">התעלמות</string>
     <string name="save">שמירה</string>
-    <string name="importsessionstitle">האם לייבא פעילויות?</string>
     <string name="wordimport">יבוא</string>
     <plurals name="numtimes">
         <item quantity="one">%s time</item>
         <item quantity="other">%s times</item>
     </plurals>
-    <plurals name="sessionsImported">
-        <item quantity="one">Imported %s session</item>
-        <item quantity="other">Imported %s sessions</item>
-    </plurals>
     <plurals name="sessionsUploaded">
         <item quantity="one">Uploaded %s session</item>
         <item quantity="other">Uploaded %s sessions</item>
     </plurals>
-    <string name="sessionsNotImported">הנתונים המקומיים עדכניים</string>
     <plurals name="daysOfMeditationMinimal">
         <item quantity="one">%d day</item>
         <item quantity="other">%d days</item>
