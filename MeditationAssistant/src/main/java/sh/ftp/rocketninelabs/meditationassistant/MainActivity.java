@@ -1803,10 +1803,11 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
                 Log.d("MeditationAssistant", "ALARM RECEIVER INTEGRATED: Received broadcast - Full: " + (fullWakeUp ? "Full" : "Partial") + " - Start/interval: " + (wakeUpStart ? "Start" : (wakeUpInterval ? "Interval" : "Neither")));
 
+                String newWakeLockID = getMeditationAssistant().acquireWakeLock(fullWakeUp);
                 if (wakeLockID != null) {
                     getMeditationAssistant().releaseWakeLock(wakeLockID);
                 }
-                wakeLockID = getMeditationAssistant().acquireWakeLock(fullWakeUp);
+                wakeLockID = newWakeLockID;
 
                 handler.removeCallbacks(clearWakeLock);
                 handler.postDelayed(clearWakeLock, 7000);

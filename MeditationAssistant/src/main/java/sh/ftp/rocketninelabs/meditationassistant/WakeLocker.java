@@ -5,14 +5,18 @@ import android.content.Context;
 import android.os.PowerManager;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 class WakeLocker {
-    private List<String> wakeLocks = new CopyOnWriteArrayList<>();
+    private List<String> wakeLocks = new ArrayList<>();
 
     private PowerManager.WakeLock wakeLockScreenOff;
     private PowerManager.WakeLock wakeLockScreenOn;
+
+    void printLockStatus() {
+        Log.d("MeditationAssistant", "WAKELOCKER: ScreenOff: " + (wakeLockScreenOff.isHeld() ? "HELD" : "RELEASED") + " - ScreenOn: " + (wakeLockScreenOn.isHeld() ? "HELD" : "RELEASED"));
+    }
 
     @SuppressLint({"WakelockTimeout"})
     String acquire(Context ctx, Boolean turnScreenOn) {
@@ -41,6 +45,8 @@ class WakeLocker {
             }
         }
 
+        printLockStatus();
+
         return wakeLockID;
     }
 
@@ -56,6 +62,8 @@ class WakeLocker {
                 wakeLockScreenOn.release();
             }
         }
+
+        printLockStatus();
     }
 
     void releaseAll() {

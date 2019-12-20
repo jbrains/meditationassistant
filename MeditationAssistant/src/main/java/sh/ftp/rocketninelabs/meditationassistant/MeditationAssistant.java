@@ -28,8 +28,6 @@ import android.os.Looper;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import androidx.annotation.RequiresApi;
-import androidx.core.app.NotificationCompat;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -39,6 +37,9 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
 
 import com.nononsenseapps.filepicker.FilePickerActivity;
 import com.nononsenseapps.filepicker.Utils;
@@ -2454,15 +2455,15 @@ public class MeditationAssistant extends Application {
         return BuildConfig.VERSION_CODE;
     }
 
-    public String acquireWakeLock(Boolean fullWakeUp) {
+    public synchronized String acquireWakeLock(Boolean fullWakeUp) {
         return wakeLocker.acquire(getApplicationContext(), fullWakeUp);
     }
 
-    public void releaseWakeLock(String wakeLockID) {
+    public synchronized void releaseWakeLock(String wakeLockID) {
         wakeLocker.release(wakeLockID);
     }
 
-    public void releaseAllWakeLocks() {
+    public synchronized void releaseAllWakeLocks() {
         wakeLocker.releaseAll();
     }
 

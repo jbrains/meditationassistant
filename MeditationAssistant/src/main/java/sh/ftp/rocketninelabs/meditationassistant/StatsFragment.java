@@ -3,12 +3,13 @@ package sh.ftp.rocketninelabs.meditationassistant;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import java.text.NumberFormat;
 import java.util.Locale;

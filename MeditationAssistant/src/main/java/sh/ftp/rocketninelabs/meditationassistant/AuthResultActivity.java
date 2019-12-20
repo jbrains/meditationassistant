@@ -3,10 +3,11 @@ package sh.ftp.rocketninelabs.meditationassistant;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
+
 import androidx.annotation.MainThread;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
-import android.util.Log;
 
 import net.openid.appauth.AppAuthConfiguration;
 import net.openid.appauth.AuthState;

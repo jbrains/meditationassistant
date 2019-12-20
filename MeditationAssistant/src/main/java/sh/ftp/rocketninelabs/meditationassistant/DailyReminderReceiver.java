@@ -8,9 +8,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.provider.Settings;
+import android.util.Log;
+
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.TaskStackBuilder;
-import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

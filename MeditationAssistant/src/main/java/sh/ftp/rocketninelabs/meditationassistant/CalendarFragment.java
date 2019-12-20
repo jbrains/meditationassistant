@@ -3,7 +3,6 @@ package sh.ftp.rocketninelabs.meditationassistant;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -18,6 +17,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import java.util.Calendar;
 import java.util.Locale;
