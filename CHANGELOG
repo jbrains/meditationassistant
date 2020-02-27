@@ -1,3 +1,6 @@
+1.5.9:
+- Resolve possible crash when waking device
+
 1.5.8:
 - Resolve minor sound delay by preloading sounds
 - Increase session message maximum length from 160 to 4096

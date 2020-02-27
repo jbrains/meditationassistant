@@ -550,7 +550,7 @@ public class MeditationAssistant extends Application {
 
     public void cacheSessionSounds() {
         String label;
-        for (int i = 0;i < 3;i++) {
+        for (int i = 0; i < 3; i++) {
             switch (i) {
                 case 0:
                     label = "start";
@@ -608,7 +608,7 @@ public class MeditationAssistant extends Application {
             Log.d("MeditationAssistant", "Failed to cache sound");
             return; // Failed to load sound
         }
-        MediaPlayer mp  = mediaPlayers.get(cacheKey);
+        MediaPlayer mp = mediaPlayers.get(cacheKey);
 
         if (mp.isPlaying()) {
             Log.d("MeditationAssistant", "Failed to play sound: already playing");
@@ -671,9 +671,9 @@ public class MeditationAssistant extends Application {
         String soundPath = prefs.getString("pref_meditation_sound_" + label, "");
         if (!soundPath.equals("none")) {
             if (soundPath.equals("custom")) {
-               playSound(0, prefs.getString("pref_meditation_sound_" + label + "_custom", ""), restoreVolume);
+                playSound(0, prefs.getString("pref_meditation_sound_" + label + "_custom", ""), restoreVolume);
             } else {
-               playSound(MeditationSounds.getMeditationSound(soundPath), "", restoreVolume);
+                playSound(MeditationSounds.getMeditationSound(soundPath), "", restoreVolume);
             }
         }
     }
@@ -2455,16 +2455,22 @@ public class MeditationAssistant extends Application {
         return BuildConfig.VERSION_CODE;
     }
 
-    public synchronized String acquireWakeLock(Boolean fullWakeUp) {
-        return wakeLocker.acquire(getApplicationContext(), fullWakeUp);
+    public String acquireWakeLock(Boolean fullWakeUp) {
+        synchronized (wakeLocker) {
+            return wakeLocker.acquire(getApplicationContext(), fullWakeUp);
+        }
     }
 
-    public synchronized void releaseWakeLock(String wakeLockID) {
-        wakeLocker.release(wakeLockID);
+    public void releaseWakeLock(String wakeLockID) {
+        synchronized (wakeLocker) {
+            wakeLocker.release(wakeLockID);
+        }
     }
 
-    public synchronized void releaseAllWakeLocks() {
-        wakeLocker.releaseAll();
+    public void releaseAllWakeLocks() {
+        synchronized (wakeLocker) {
+            wakeLocker.releaseAll();
+        }
     }
 
     public enum TrackerName {

@@ -43,7 +43,7 @@ Translation is handled [online](https://medinet.rocketnine.space/translate/).
 ## Download
 
 APKs may be downloaded from [F-Droid](https://f-droid.org/packages/sh.ftp.rocketninelabs.meditationassistant.opensource/) (preferred).
-They may also be downloaded from [the developer](http://medinet.rocketnine.space/download/).
+They may also be downloaded from [the developer](http://medinet.rocketnine.space/download/?sort=name&order=desc).
 
 ## Build
 
