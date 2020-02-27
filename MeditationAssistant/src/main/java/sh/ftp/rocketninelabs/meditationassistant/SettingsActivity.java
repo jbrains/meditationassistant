@@ -449,20 +449,7 @@ public class SettingsActivity extends PreferenceActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setTheme(getMeditationAssistant().getMATheme());
-        getMeditationAssistant().utility.initializeTracker(this);
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        getMeditationAssistant().utility.trackingStart(this);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        getMeditationAssistant().utility.trackingStop(this);
     }
 
     @Override
@@ -716,11 +703,6 @@ public class SettingsActivity extends PreferenceActivity {
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_theme") : preferenceFragment.findPreference("pref_theme"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_widgetcolor") : preferenceFragment.findPreference("pref_widgetcolor"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_mainbuttons") : preferenceFragment.findPreference("pref_mainbuttons"));
-
-            if (BuildConfig.FLAVOR.equals("opensource")) { // Hide usage statistics preference, as tracking is completely disabled
-                CheckBoxPreference pref_sendusage = (CheckBoxPreference) (preferenceFragment == null ? findPreference("pref_sendusage") : preferenceFragment.findPreference("pref_sendusage"));
-                (preferenceFragment == null ? getPreferenceScreen() : preferenceFragment.getPreferenceScreen()).removePreference(pref_sendusage);
-            }
         }
     }
 

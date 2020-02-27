@@ -155,8 +155,6 @@ public class CompleteActivity extends Activity {
             getMeditationAssistant().restoreVolume();
         }
 
-        getMeditationAssistant().utility.initializeTracker(this);
-
         if (!manual) {
             getMeditationAssistant().vibrateDevice();
 
@@ -236,33 +234,6 @@ public class CompleteActivity extends Activity {
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        getMeditationAssistant().utility.trackingStart(this);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        getMeditationAssistant().utility.trackingStop(this);
     }
 
     public void postMediNET(View view) {

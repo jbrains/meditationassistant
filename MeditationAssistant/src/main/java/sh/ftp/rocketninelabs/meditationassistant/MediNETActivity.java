@@ -281,8 +281,6 @@ public class MediNETActivity extends Activity {
         setContentView(R.layout.activity_medinet);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        getMeditationAssistant().utility.initializeTracker(this);
-
         initUI(true);
     }
 
@@ -392,18 +390,6 @@ public class MediNETActivity extends Activity {
         super.onSaveInstanceState(outState);
 
         webView.saveState(outState);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        getMeditationAssistant().utility.trackingStart(this);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        getMeditationAssistant().utility.trackingStop(this);
     }
 
     public void setWindowBackground() {

@@ -1,34 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="sh.ftp.rocketninelabs.meditationassistant">
 
     <application>
-
         <meta-data
             android:name="com.google.android.backup.api_key"
             android:value="AEdPqrEAAAAImiscQeePK7-fr6JMj14zZX47kvR0lSKdCgjnXQ" />
-
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-
-        <meta-data
-            android:name="com.google.android.gms.analytics.globalConfigResource"
-            android:resource="@xml/analytics" />
-
-        <receiver
-            android:name="com.google.android.gms.analytics.AnalyticsReceiver"
-            android:enabled="true"
-            tools:ignore="ExportedReceiver">
-            <intent-filter>
-                <action android:name="com.google.android.gms.analytics.ANALYTICS_DISPATCH" />
-            </intent-filter>
-        </receiver>
-        <service
-            android:name="com.google.android.gms.analytics.AnalyticsService"
-            android:enabled="true"
-            android:exported="false" />
 
         <!-- Register Wear data layer service
         <service android:name=".WearListenerService">
@@ -36,7 +13,6 @@
                 <action android:name="com.google.android.gms.wearable.BIND_LISTENER"/>
             </intent-filter>
         </service> -->
-
     </application>
 
 </manifest>

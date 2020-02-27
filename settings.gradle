@@ -1,3 +1,1 @@
 include ':MeditationAssistant'
-// TODO: Add when wear app is ready
-// , ':MeditationAssistantWear'

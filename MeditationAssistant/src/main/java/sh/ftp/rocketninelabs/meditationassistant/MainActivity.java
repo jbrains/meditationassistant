@@ -170,8 +170,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         setTheme(getMeditationAssistant().getMATheme());
         setContentView(R.layout.activity_main);
 
-        getMeditationAssistant().utility.initializeTracker(this);
-
         handler = new Handler();
 
         am = getMeditationAssistant().getAlarmManager();
@@ -1652,23 +1650,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     }
 
     @Override
-    public void onStart() {
-        getMeditationAssistant().utility.trackingStart(this);
-        getMeditationAssistant().utility.connectGoogleClient();
-
-        super.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        getMeditationAssistant().utility.trackingStop(this);
-
-        getMeditationAssistant().utility.disconnectGoogleClient();
-
-        super.onStop();
-    }
-
-    @Override
     public void onDestroy() {
         if (!getMeditationAssistant().getPrefs().getBoolean("pref_autosignin", false) && !getMeditationAssistant().getPrefs().getString("key", "").equals("")) {
             getMeditationAssistant().getPrefs().edit().putString("key", "").apply();
@@ -2099,16 +2080,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         } else {
             Log.d("MeditationAssistant",
                     "Not starting runnable.  Stopped flag is not set.");
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == MeditationAssistant.REQUEST_FIT) {
-            getMeditationAssistant().utility.googleAPIAuthInProgress = false;
-            if (resultCode == RESULT_OK) {
-                getMeditationAssistant().utility.onGoogleClientResult();
-            }
         }
     }
 

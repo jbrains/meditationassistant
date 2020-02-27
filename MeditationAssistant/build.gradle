@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion '29.0.2'
+    buildToolsVersion '29.0.3'
 
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 29
 
-        versionCode 158
-        versionName "1.5.8"
+        versionCode 159
+        versionName "1.5.9"
 
         applicationId "sh.ftp.rocketninelabs.meditationassistant"
         manifestPlaceholders = [
@@ -75,32 +75,18 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core:1.1.0'
+    implementation 'androidx.core:core:1.2.0'
     implementation 'androidx.legacy:legacy-support-core-utils:1.0.0'
     implementation 'androidx.legacy:legacy-support-core-ui:1.0.0'
     implementation 'androidx.media:media:1.1.0'
-    implementation 'androidx.fragment:fragment:1.1.0'
+    implementation 'androidx.fragment:fragment:1.2.2'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation "net.openid:appauth:0.7.1"
-    implementation "com.squareup.okio:okio:2.2.2"
-    implementation 'com.opencsv:opencsv:4.6'
-    implementation "net.margaritov.preference.colorpicker.ColorPickerPreference:ColorPickerPreference:1.0.0"
-
-    freeImplementation 'com.google.android.gms:play-services-base:16.1.0'
-    fullImplementation 'com.google.android.gms:play-services-base:16.1.0'
-    freeImplementation 'com.google.android.gms:play-services-analytics:16.0.8'
-    fullImplementation 'com.google.android.gms:play-services-analytics:16.0.8'
-    //freeImplementation 'com.google.android.gms:play-services-wearable:15.0.1'
-    //fullImplementation 'com.google.android.gms:play-services-wearable:15.0.1'
-    freeImplementation 'com.google.android.gms:play-services-appinvite:16.1.1'
-    fullImplementation 'com.google.android.gms:play-services-appinvite:16.1.1'
-    freeImplementation 'com.google.android.gms:play-services-fitness:16.0.1'
-    fullImplementation 'com.google.android.gms:play-services-fitness:16.0.1'
-    //noinspection GradleDynamicVersion
+    implementation 'com.google.android.material:material:1.1.0'
     implementation 'ch.acra:acra-http:5.3.0'
-    implementation 'com.github.amlcurran.showcaseview:library:5.4.3'
+    implementation "net.openid:appauth:0.7.1"
+    implementation 'com.opencsv:opencsv:4.6'
+    implementation "com.squareup.okio:okio:2.2.2"
     implementation 'com.nononsenseapps:filepicker:4.2.1'
-    //wearApp project(':MeditationAssistantWear')
-    // TODO: Uncomment when Wear app is ready
+    implementation 'com.github.amlcurran.showcaseview:library:5.4.3'
+    implementation "net.margaritov.preference.colorpicker.ColorPickerPreference:ColorPickerPreference:1.0.0"
 }

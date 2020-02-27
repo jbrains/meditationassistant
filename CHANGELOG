@@ -1,5 +1,6 @@
 1.5.9:
 - Resolve possible crash when waking device
+- Remove usage of Google Play Services (was previously used in releases on Google Play and Amazon)
 
 1.5.8:
 - Resolve minor sound delay by preloading sounds

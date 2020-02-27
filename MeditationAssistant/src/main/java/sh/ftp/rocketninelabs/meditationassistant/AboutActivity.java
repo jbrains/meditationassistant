@@ -63,8 +63,6 @@ public class AboutActivity extends Activity {
                 return true;
             }
         });
-
-        getMeditationAssistant().utility.initializeTracker(this);
     }
 
     @Override
@@ -91,30 +89,13 @@ public class AboutActivity extends Activity {
             NavUtils.navigateUpFromSameTask(this);
             return true;
         } else if (i == R.id.action_share_app) {
-            try {
-                Intent intent = getMeditationAssistant().utility.getAppShareIntent();
-                startActivityForResult(intent, 1337);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            // TODO Reimplement as standard share
         } else if (i == R.id.action_rate) {
             getMeditationAssistant().rateApp();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        getMeditationAssistant().utility.trackingStart(this);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        getMeditationAssistant().utility.trackingStop(this);
     }
 
     public void learnMore(View view) {

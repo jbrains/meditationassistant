@@ -110,7 +110,6 @@ public class MeditationAssistant extends Application {
     public PendingIntent reminderPendingIntent = null;
     public String theme = null;
     public String marketName = null;
-    public UtilityMA utility = new UtilityMA();
     public Integer previous_volume = null;
     private String appVersion = null;
     private long timeToStopMeditate = 0;
@@ -1125,8 +1124,6 @@ public class MeditationAssistant extends Application {
         super.onCreate();
         ACRA.init(this);
 
-        utility.ma = this;
-
         CookieManager cookieManager = new CookieManager();
         CookieHandler.setDefault(cookieManager);
 
@@ -1202,13 +1199,6 @@ public class MeditationAssistant extends Application {
         }
 
         return result.toString();
-    }
-
-    public boolean sendUsageReports() {
-        if (sendusage == null) {
-            sendusage = getPrefs().getBoolean("pref_sendusage", true);
-        }
-        return sendusage;
     }
 
     public void setMediNETKey(String key, String provider) {
