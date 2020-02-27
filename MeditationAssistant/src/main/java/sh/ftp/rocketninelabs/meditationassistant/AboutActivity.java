@@ -89,7 +89,22 @@ public class AboutActivity extends Activity {
             NavUtils.navigateUpFromSameTask(this);
             return true;
         } else if (i == R.id.action_share_app) {
-            // TODO Reimplement as standard share
+            String shareURL;
+            if (BuildConfig.FLAVOR.equals("opensource")) {
+                shareURL = "https://f-droid.org/packages/" + getApplicationContext().getPackageName();
+            } else if (getMeditationAssistant().getMarketName().equals("google")) {
+                shareURL = "http://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName();
+            } else if (getMeditationAssistant().getMarketName().equals("amazon")) {
+                shareURL = "http://www.amazon.com/gp/mas/dl/android?p=" + getApplicationContext().getPackageName();
+            } else {
+                return true;
+            }
+
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareURL + " " + getString(R.string.invitationBlurb));
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.share)));
+            return true;
         } else if (i == R.id.action_rate) {
             getMeditationAssistant().rateApp();
             return true;
