@@ -1,8 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clickable="false"
-                android:focusable="false">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="false"
+    android:focusable="false">
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -23,8 +23,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="21dp"
                 android:layout_marginTop="21dp"
+                android:layout_marginBottom="21dp"
                 android:clickable="false"
                 android:focusable="false"
                 android:gravity="center"
@@ -37,16 +37,24 @@
                     android:gravity="center"
                     android:text=""
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textSize="28sp"/>
+                    android:textSize="28sp" />
 
                 <TextView
                     android:id="@+id/txtAboutAppVersion"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="36dp"
+                    android:layout_marginBottom="18dp"
                     android:gravity="center"
                     android:text=""
-                    android:textAppearance="?android:attr/textAppearanceSmall"/>
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="36dp"
+                    android:gravity="center"
+                    android:text="Created by Trevor Slocum\ntrevor@rocketnine.space"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
             </LinearLayout>
 
@@ -74,39 +82,39 @@
                         android:clickable="false"
                         android:gravity="center"
                         android:text="@string/tapToLearnMore"
-                        android:textAppearance="?android:attr/textAppearanceSmall"/>
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
                     <View
                         android:layout_width="fill_parent"
                         android:layout_height="1dp"
                         android:layout_marginLeft="7dp"
                         android:layout_marginRight="7dp"
-                        android:background="?android:attr/listDivider"/>
+                        android:background="?android:attr/listDivider" />
 
                     <Button
-                        android:id="@+id/btnHowToMeditate"
+                        android:id="@+id/btnLearnMore"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:background="?android:attr/selectableItemBackground"
-                        android:onClick="openHowToMeditate"
-                        android:paddingBottom="7dp"
+                        android:onClick="learnMore"
                         android:paddingTop="7dp"
-                        android:text="@string/howToMeditate"
-                        android:textAppearance="?android:attr/textAppearanceMedium"/>
+                        android:paddingBottom="7dp"
+                        android:text="@string/sourceRepository"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
 
                     <View
                         android:layout_width="fill_parent"
                         android:layout_height="1dp"
                         android:layout_marginLeft="7dp"
                         android:layout_marginRight="7dp"
-                        android:background="?android:attr/listDivider"/>
+                        android:background="?android:attr/listDivider" />
 
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/divMainControls"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentRight="true"
-                        android:layout_below="@+id/divMainControls"
                         android:orientation="horizontal">
 
                         <Button
@@ -116,18 +124,18 @@
                             android:layout_weight="1"
                             android:background="?android:attr/selectableItemBackground"
                             android:onClick="openTranslate"
-                            android:paddingBottom="7dp"
                             android:paddingTop="7dp"
+                            android:paddingBottom="7dp"
                             android:text="@string/translate"
-                            android:textAppearance="?android:attr/textAppearanceMedium"/>
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
 
                         <View
                             android:id="@+id/divDonate"
                             android:layout_width="1dp"
                             android:layout_height="fill_parent"
-                            android:layout_marginBottom="7dp"
                             android:layout_marginTop="7dp"
-                            android:background="?android:attr/listDivider"/>
+                            android:layout_marginBottom="7dp"
+                            android:background="?android:attr/listDivider" />
 
                         <Button
                             android:id="@+id/btnDonate"
@@ -136,10 +144,10 @@
                             android:layout_weight="1"
                             android:background="?android:attr/selectableItemBackground"
                             android:onClick="openDonate"
-                            android:paddingBottom="7dp"
                             android:paddingTop="7dp"
+                            android:paddingBottom="7dp"
                             android:text="@string/donate"
-                            android:textAppearance="?android:attr/textAppearanceMedium"/>
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -153,12 +161,12 @@
         android:id="@+id/charis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:contentDescription="@string/charis"
         android:scaleType="fitCenter"
         android:src="@drawable/charis"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 </RelativeLayout>

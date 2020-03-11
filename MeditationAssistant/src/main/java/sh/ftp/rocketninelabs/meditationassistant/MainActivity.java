@@ -426,7 +426,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                             dialogClickListener).show();
         }
 
-        showNextTutorial();
+        showNextTutorial(false);
         getMeditationAssistant().recalculateMeditationStreak(MainActivity.this);
 
         long pref_delay = Integer.valueOf(getMeditationAssistant().getPrefs().getString("pref_delay", "-1"));
@@ -463,9 +463,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         if (sv != null && sv.isShown()) {
             try {
                 sv.hide();
@@ -474,7 +471,15 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             }
         }
 
-        if (item.getItemId() == R.id.action_settings) {
+        if (item.getItemId() == R.id.action_how_to_meditate) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(MeditationAssistant.URL_MEDINET + "/howtomeditate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        } else if (item.getItemId() == R.id.action_reddit_community) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://old.reddit.com/r/meditation")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        } else if (item.getItemId() == R.id.action_replay_tutorial) {
+            finishedTutorial = null;
+            getMeditationAssistant().getPrefs().edit().putBoolean("finishedTutorial", false).apply();
+            showNextTutorial(true);
+        } else if (item.getItemId() == R.id.action_settings) {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
             return true;
@@ -635,15 +640,15 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         updateVisibleViews(false);
 
         if (wasEditing) {
-            showNextTutorial();
+            showNextTutorial(false);
         }
     }
 
-    private void showNextTutorial() {
+    private void showNextTutorial(boolean force) {
         if (finishedTutorial == null) {
             finishedTutorial = getMeditationAssistant().getPrefs().getBoolean("finishedTutorial", false);
 
-            if (!finishedTutorial && getMeditationAssistant().db.getNumSessions() > 0) { // Already recorded a session
+            if (!finishedTutorial && getMeditationAssistant().db.getNumSessions() > 0 && !force) { // Already recorded a session
                 getMeditationAssistant().getPrefs().edit().putBoolean("finishedTutorial", true).apply();
                 finishedTutorial = true;
             }
@@ -1644,7 +1649,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             }
         }
 
-        showNextTutorial();
+        showNextTutorial(false);
 
         super.onResume();
     }

@@ -1,4 +1,5 @@
 1.5.9:
+- Add resources menu linking to how to meditate, /r/meditation and replaying the tutorial
 - Resolve possible crash when waking device
 - Remove usage of Google Play Services (was previously used in releases on Google Play and Amazon)
 

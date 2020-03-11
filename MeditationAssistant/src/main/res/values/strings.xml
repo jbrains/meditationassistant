@@ -61,6 +61,10 @@
     <string name="untimed">Untimed</string>
     <string name="unlimited">Unlimited</string>
     <string name="presetLabelEndAt">End %s</string>
+    <string name="resources">Resources</string>
+    <string name="howToMeditate">How to meditate</string>
+    <string name="meditationSubreddit">Reddit community</string>
+    <string name="replayTutorial">Replay tutorial</string>
     <!-- About -->
     <string name="tapToLearnMore">Tap anywhere to learn more</string>
     <string name="sendEmail">Send email</string>
@@ -68,8 +72,8 @@
     <string name="translate">Translate</string>
     <string name="donate">Donate</string>
     <string name="chooseDonationMethod">Please choose how you would like to donate.\n\nLiberapay is preferred by the developer and supports more countries and currencies.</string>
-    <string name="howToMeditate">How to Meditate</string>
     <string name="share">Share</string>
+    <string name="sourceRepository">Source Code Repository</string>
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
     <string name="invitationBlurb">Meditation Assistant is a fully featured companion to your practice.</string>
     <!-- Sessions -->

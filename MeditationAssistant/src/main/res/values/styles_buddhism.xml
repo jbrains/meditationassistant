@@ -94,6 +94,7 @@
         <item name="actionIconVolumeOn">@drawable/ic_action_volume_on</item>
         <item name="actionIconNotImportant">@drawable/ic_action_not_important</item>
         <item name="actionIconInfo">@drawable/ic_action_info</item>
+        <item name="actionIconResources">@drawable/ic_book_white_24dp</item>
         <item name="actionIconSettings">@drawable/ic_action_settings</item>
         <item name="actionIconNetworkCell">@drawable/ic_action_network_cell</item>
         <item name="actionIconBrightnessLow">@drawable/ic_action_brightness_low</item>

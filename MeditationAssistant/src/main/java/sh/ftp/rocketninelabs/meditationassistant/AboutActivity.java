@@ -117,10 +117,6 @@ public class AboutActivity extends Activity {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(MeditationAssistant.URL_SOURCE)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
-    public void openHowToMeditate(View view) {
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(MeditationAssistant.URL_MEDINET + "/howtomeditate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-    }
-
     public void openTranslate(View view) {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(MeditationAssistant.URL_MEDINET + "/translate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }

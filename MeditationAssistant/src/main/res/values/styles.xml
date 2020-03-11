@@ -26,6 +26,7 @@
         <item name="actionIconVolumeOn">@drawable/ic_action_volume_on_light</item>
         <item name="actionIconNotImportant">@drawable/ic_action_not_important_light</item>
         <item name="actionIconInfo">@drawable/ic_action_info_light</item>
+        <item name="actionIconResources">@drawable/ic_book_black_24dp</item>
         <item name="actionIconSettings">@drawable/ic_action_settings_light</item>
         <item name="actionIconNetworkCell">@drawable/ic_action_network_cell_light</item>
         <item name="actionIconBrightnessLow">@drawable/ic_action_brightness_low_light</item>
@@ -73,6 +74,7 @@
         <!-- Used in action bars -->
         <item name="actionIconNotImportant">@drawable/ic_action_not_important</item>
         <item name="actionIconInfo">@drawable/ic_action_info</item>
+        <item name="actionIconResources">@drawable/ic_book_white_24dp</item>
         <item name="actionIconSettings">@drawable/ic_action_settings</item>
         <item name="actionIconAccounts">@drawable/ic_action_accounts</item>
         <item name="actionIconRefresh">@drawable/ic_action_refresh</item>
@@ -96,6 +98,7 @@
         <item name="actionIconVolumeOn">@drawable/ic_action_volume_on</item>
         <item name="actionIconNotImportant">@drawable/ic_action_not_important</item>
         <item name="actionIconInfo">@drawable/ic_action_info</item>
+        <item name="actionIconResources">@drawable/ic_book_white_24dp</item>
         <item name="actionIconSettings">@drawable/ic_action_settings</item>
         <item name="actionIconNetworkCell">@drawable/ic_action_network_cell</item>
         <item name="actionIconBrightnessLow">@drawable/ic_action_brightness_low</item>
@@ -130,6 +133,7 @@
         <item name="actionIconVolumeOn">@drawable/ic_action_volume_on_light</item>
         <item name="actionIconNotImportant">@drawable/ic_action_not_important_light</item>
         <item name="actionIconInfo">@drawable/ic_action_info_light</item>
+        <item name="actionIconResources">@drawable/ic_book_black_24dp</item>
         <item name="actionIconSettings">@drawable/ic_action_settings_light</item>
         <item name="actionIconNetworkCell">@drawable/ic_action_network_cell_light</item>
         <item name="actionIconBrightnessLow">@drawable/ic_action_brightness_low_light</item>
@@ -159,6 +163,7 @@
         <item name="actionIconVolumeOn">@drawable/ic_action_volume_on</item>
         <item name="actionIconNotImportant">@drawable/ic_action_not_important</item>
         <item name="actionIconInfo">@drawable/ic_action_info</item>
+        <item name="actionIconResources">@drawable/ic_book_white_24dp</item>
         <item name="actionIconSettings">@drawable/ic_action_settings</item>
         <item name="actionIconNetworkCell">@drawable/ic_action_network_cell</item>
         <item name="actionIconBrightnessLow">@drawable/ic_action_brightness_low</item>

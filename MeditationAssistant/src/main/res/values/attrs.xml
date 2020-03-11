@@ -5,6 +5,7 @@
     <attr name="actionIconVolumeOn" format="reference"/>
     <attr name="actionIconNotImportant" format="reference"/>
     <attr name="actionIconInfo" format="reference"/>
+    <attr name="actionIconResources" format="reference"/>
     <attr name="actionIconSettings" format="reference"/>
     <attr name="actionIconNetworkCell" format="reference"/>
     <attr name="actionIconBrightnessLow" format="reference"/>
