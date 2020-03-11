@@ -628,11 +628,11 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
             if (getMeditationAssistant().getTimerMode().equals("timed") || getMeditationAssistant().getTimerMode().equals("endat")) {
                 editDuration.requestFocus();
+
                 InputMethodManager imm = (InputMethodManager) this
                         .getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.showSoftInput(editDuration,
                         InputMethodManager.SHOW_IMPLICIT);
-                editDuration.setSelection(0, editDuration.getText().length());
             }
         }
 
@@ -788,19 +788,17 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
         if (getMeditationAssistant().getEditingDuration()) {
             if (getMeditationAssistant().getTimerMode().equals("timed") || getMeditationAssistant().getTimerMode().equals("endat")) {
+                editDuration.setEnabled(true);
+                editDuration.requestFocus();
+
                 InputMethodManager imm = (InputMethodManager) this
                         .getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.showSoftInput(editDuration,
                         InputMethodManager.SHOW_IMPLICIT);
-
-                editDuration.setSelection(0, editDuration.getText().length());
-                editDuration.setEnabled(true);
             } else {
-                editDuration.setSelection(0, 0);
                 editDuration.setEnabled(false);
             }
         } else {
-            editDuration.setSelection(0, 0);
             editDuration.setEnabled(false);
         }
 

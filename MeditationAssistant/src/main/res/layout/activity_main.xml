@@ -61,6 +61,7 @@
                             android:layout_marginTop="0dp"
                             android:gravity="center"
                             android:imeOptions="actionDone"
+                            android:selectAllOnFocus="true"
                             android:includeFontPadding="false"
                             android:inputType="time"
                             android:lineSpacingMultiplier="0.9"
