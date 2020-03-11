@@ -479,6 +479,14 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             finishedTutorial = null;
             getMeditationAssistant().getPrefs().edit().putBoolean("finishedTutorial", false).apply();
             showNextTutorial(true);
+        } else if (item.getItemId() == R.id.action_help_medinet) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder
+                    .setIcon(getResources().getDrawable(getTheme().obtainStyledAttributes(getMeditationAssistant().getMATheme(), new int[]{R.attr.actionIconInfo}).getResourceId(0, 0)))
+                    .setTitle(getString(R.string.whatIsMediNET))
+                    .setMessage(getString(R.string.whatIsMediNETHelp))
+                    .setPositiveButton(R.string.ok, null)
+                    .show();
         } else if (item.getItemId() == R.id.action_settings) {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
@@ -1126,10 +1134,10 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                                 + timestamp
                                 + " Stop: "
                                 + getMeditationAssistant()
-                            .getTimeToStopMeditate()
+                                .getTimeToStopMeditate()
                                 + " Start: "
                                 + getMeditationAssistant()
-                            .getTimeStartMeditate()
+                                .getTimeStartMeditate()
                 );
                 getMeditationAssistant().setTimeStartMeditate(timestamp);
 
@@ -1146,10 +1154,10 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                                 + timestamp
                                 + " Stop: "
                                 + getMeditationAssistant()
-                            .getTimeToStopMeditate()
+                                .getTimeToStopMeditate()
                                 + " Start: "
                                 + getMeditationAssistant()
-                            .getTimeStartMeditate()
+                                .getTimeStartMeditate()
                 );
                 handler.removeCallbacks(meditateRunnable);
                 handler.removeCallbacks(intervalRunnable);
@@ -1753,7 +1761,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
     @Override
     protected void onNewIntent(Intent intent) {
-        int widgetId =  intent.getIntExtra("widgetid", -1);
+        int widgetId = intent.getIntExtra("widgetid", -1);
 
         super.onNewIntent(intent);
         setIntent(intent);
@@ -1871,7 +1879,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                                 Log.d("MeditationAssistant", "Setting INTERVAL WAKEUP alarm for "
                                         + cal.getTimeInMillis() + " (Now: "
                                         + System.currentTimeMillis() + ", in: " + (cal.getTimeInMillis() - System.currentTimeMillis()) / 1000 + ") - TOTAL TIME LEFT: " + (getMeditationAssistant().getTimeToStopMeditate()
-                                    - (System.currentTimeMillis() / 1000)));
+                                        - (System.currentTimeMillis() / 1000)));
 
                                 Intent intent_interval = new Intent(
                                         getApplicationContext(), MainActivity.class);
@@ -2085,10 +2093,10 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                         Log.d("MeditationAssistant",
                                 "Stopping - start:"
                                         + getMeditationAssistant()
-                                    .getTimeStartMeditate()
+                                        .getTimeStartMeditate()
                                         + " stop:"
                                         + getMeditationAssistant()
-                                    .getTimeToStopMeditate()
+                                        .getTimeToStopMeditate()
                         );
 
                         getMeditationAssistant().setRunnableStopped(true);

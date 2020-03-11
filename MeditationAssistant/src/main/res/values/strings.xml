@@ -65,6 +65,8 @@
     <string name="resources">Resources</string>
     <string name="howToMeditate">How to meditate</string>
     <string name="meditationSubreddit">Reddit community</string>
+    <string name="whatIsMediNET">MediNET overview</string>
+    <string name="whatIsMediNETHelp">MediNET is an online meditation session repository and community.\n\nYou may choose to store your sessions on MediNET to prevent data loss and/or to share your progress with others online.\n\nYou may instead choose to store session data on the device only.</string>
     <string name="replayTutorial">Replay tutorial</string>
     <!-- About -->
     <string name="tapToLearnMore">Tap anywhere to learn more</string>

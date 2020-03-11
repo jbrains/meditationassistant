@@ -1,5 +1,5 @@
 1.5.9:
-- Add resources menu linking to how to meditate, /r/meditation and replaying the tutorial
+- Add resources menu linking to how to meditate, /r/meditation, an overview of MediNET and replaying the tutorial
 - Add presets to tutorial
 - Resolve possible crash when waking device
 - Resolve duration not being preselected when editing
