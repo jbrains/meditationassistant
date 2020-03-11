@@ -24,7 +24,7 @@
     <string name="confirm">Bekræft</string>
     <string name="meditate">Meditér</string>
     <string name="tapToSkip">Spring over</string>
-    <string name="mediNETConnecting">Forbinder...</string>
+    <string name="mediNETConnecting">Forbinder…</string>
     <string name="mediNETConnected">Forbundet til MediNET</string>
     <string name="sessionInProgress">Sessioner i gang</string>
     <string name="progress">Fremskridt</string>
@@ -39,4 +39,43 @@
     <!-- MediNET -->
     <!-- Widgets -->
     <!-- Meta -->
+    <string name="warning">Advarsel</string>
+    <string name="sessions">Sessioner</string>
+    <string name="back">Tilbage</string>
+    <string name="disableBatteryOptimizations">Meditations assistent skal køre i baggrunden</string>
+    <string name="permissionRequestNotificationControl">Giv venligst tilladelse til kontrol af \"Forstyr ikke\" på næste skærm.</string>
+    <string name="deny">Afvis</string>
+    <string name="tryAgain">Prøv igen</string>
+    <string name="settingsHelp">Denne applikation indeholder many features og indstillinger, såsom automatisk skift til lydløs og daglig påmindelse om meditation. Tryk på indstillinger ikonet nu for at se disse valgmuligheder.</string>
+    <string name="medinetHelp">Log in på MediNET for at gemme dine sessioner online. Du kan importere dine sessioner senere, hvis du mister dine data. Denne feature er valfri; opbevaring af sessioner lokalt vil ikke hindre din oplevelse.
+\nDette konkluderer startguiden. Jeg håber at Meditation Assistant vil være brugbar for dine øvelser.</string>
+    <string name="pause">Pause</string>
+    <string name="end">Slut</string>
+    <string name="pauseOrEnd">Pause eller afslut</string>
+    <string name="resumeOrEnd">Genoptag eller afslut</string>
+    <string name="pausedNotification">Session sat i pause, hold for at afslutte</string>
+    <string name="setPreset">Forudinstil</string>
+    <string name="setPresetHint">Hold nede for at forudindstille</string>
+    <string name="setPresetTip">Vælg hvilken indstilling der skal gendannes ved at trykke på gear ikonet (Indstillinger), derefter tryk på Forudindstil.</string>
+    <string name="setPresetHintBlank">Indtast en varighed (eller slut tidspunkt) som forudindstilling</string>
+    <string name="label">Label</string>
+    <string name="setTimerDurationHint">Indtast en gyldig varighed (fx. 0:22)</string>
+    <string name="setTimerEndAtHint">Indtast et gyldigt tidspunkt (fx. 4:20)</string>
+    <string name="invalidEndAt">Ugyldig tidspunkt for session afslutning</string>
+    <string name="endAt">Slut ved</string>
+    <string name="untimed">Ubegrænset</string>
+    <string name="unlimited">Ubegrænset</string>
+    <string name="presetLabelEndAt">Slut %s</string>
+    <string name="tapToLearnMore">Tryk hvor som helst for at lære mere</string>
+    <string name="sendEmail">Send email</string>
+    <string name="version">Version %s</string>
+    <string name="translate">Oversæt</string>
+    <string name="donate">Donér</string>
+    <string name="resume">Genoptag</string>
+    <string name="sessionPaused">Session sat i bero</string>
+    <string name="permissionRequired">Denne tilladelse er påkrævet.</string>
+    <string name="chooseDonationMethod">Vælg venligst hvordan du vil donerer.
+\n
+\nLiberapay fortrækkes af udvikleren og understætte flere lande og valutaer.</string>
+    <string name="configureWidget">Konfigurer Widget</string>
 </resources>

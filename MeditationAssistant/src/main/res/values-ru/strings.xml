@@ -259,4 +259,31 @@
     <string name="exportsessions_summary">Экспорт в CSV файл</string>
     <string name="downloadsessions">Загрузить сеансы</string>
     <string name="downloadsessions_summary">Загрузить удалённые сеансы</string>
+    <string name="streakdifferencewarning">Ваша текущая непрерывная серия медитации не кажется правильной, основываясь на данных текущей сессии. Обновить\?
+\n
+\nТекущая полоса: %1$d
+\nОбновленная полоса: %2$d</string>
+    <string name="browser">Войти</string>
+    <string name="useBrowser">Использовать браузер:</string>
+    <string name="resume">Возобновить</string>
+    <string name="sessionPaused">Сессия приостановлена</string>
+    <string name="importsessions_in_progress">Импортируются данные сессий…</string>
+    <string name="importsessions_complete">Найдено существующих %1$d и новых %2$d.</string>
+    <string name="utc">UTC</string>
+    <plurals name="sessionsDownloaded">
+        <item quantity="one">Загружена %s сессия</item>
+        <item quantity="few">Загружены %s сессии</item>
+        <item quantity="many">Загружено %s сессий</item>
+    </plurals>
+    <string name="sessionsUpToDate">Данные на устройстве обновлены</string>
+    <string name="configureWidget">Настроить виджет</string>
+    <string name="widgetpreset1x1" tools:ignore="UnusedResources">Размер 1х1</string>
+    <string name="widgetpreset2x1" tools:ignore="UnusedResources">Размер 2х1</string>
+    <string name="widgetpreset3x1" tools:ignore="UnusedResources">Размер 3х1</string>
+    <string name="widgetstreak1x1" tools:ignore="UnusedResources">Полоса 1х1</string>
+    <string name="widgetstreak2x1" tools:ignore="UnusedResources">Полосой 2х1</string>
+    <string name="pref_autosave">Автосохранение</string>
+    <string name="permissionRequired">Требуется разрешение</string>
+    <string name="chooseDonationMethod">"Пожалуйста, выберете способ пожертвования
+\nLiberapay  предпочтителен  для разработчиков и поддерживает наибольшее число стран и валют"</string>
 </resources>

@@ -308,4 +308,12 @@ Entwickelt von Rocket Nine Laboratories: https://rocketnine.space/</string>
 \n
 \nLiberapay wird vom Entwickler bevorzugt und unterstützt mehr Länder und Währungen.</string>
     <string name="download">Herunterladen</string>
+    <string name="configureWidget">Konfiguration Widget</string>
+    <string name="widgetpreset1x1" tools:ignore="UnusedResources">Vorlage 1x1</string>
+    <string name="widgetpreset2x1" tools:ignore="UnusedResources">Voralge 2x1</string>
+    <string name="widgetpreset3x1" tools:ignore="UnusedResources">Vorlage 3x1</string>
+    <string name="widgetstreak1x1" tools:ignore="UnusedResources">Streifen 1x1</string>
+    <string name="widgetstreak2x1" tools:ignore="UnusedResources">Streifen 2x1</string>
+    <string name="widgetstreak3x1" tools:ignore="UnusedResources">Streifen 3x1</string>
+    <string name="pref_autosave">Autospeichern</string>
 </resources>

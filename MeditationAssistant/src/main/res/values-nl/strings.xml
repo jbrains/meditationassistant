@@ -94,4 +94,5 @@
     </plurals>
     <!-- Widgets -->
     <!-- Meta -->
+    <string name="warning">Waarschuwing</string>
 </resources>
