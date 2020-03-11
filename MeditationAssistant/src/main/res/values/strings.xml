@@ -28,8 +28,9 @@
     <string name="tryAgain">Try Again</string>
     <!-- Main Activity -->
     <string name="timer">Timer</string>
-    <string name="timerHelp">The timer is currently set to 15 minutes. You can change the duration, end at a specific time of the day, or deactivate the alarm entirely. Tap the timer now to see these options.</string>
-    <string name="settingsHelp">This application includes many features and customizations, such as automatically silencing your device and providing a daily reminder to meditate. Tap the Settings icon now to see these options.</string>
+    <string name="timerHelp">Welcome to a brief tutorial. This is the session timer. Tap it now to change the timer mode and duration.</string>
+    <string name="editTimerHelp">Your session may be a specific duration, may last until a specific time of day, or may not be timed at all.\n\nPresets may be used to store common configurations. Press and hold a preset to remember the current session duration. Sounds and other settings may also be remembered by presets by enabling them in "Preset Settings".\n\nAfter tapping OK, tap Cancel or Confirm to continue.</string>
+    <string name="settingsHelp">This application includes numerous features and customizations. Tap the Settings icon to see these options.</string>
     <string name="medinetHelp">Sign in to MediNET to save your sessions online. You can import your sessions later if you lose your data. This feature is entirely optional, storing sessions locally will not hinder your experience.\n\nThis concludes the tutorial. I hope that Meditation Assistant will be beneficial for your practice.</string>
     <string name="cancel">Cancel</string>
     <string name="set">Set</string>

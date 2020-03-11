@@ -627,19 +627,21 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             updateEditDuration();
 
             if (getMeditationAssistant().getTimerMode().equals("timed") || getMeditationAssistant().getTimerMode().equals("endat")) {
-                editDuration.requestFocus();
+                if (!next_tutorial.equals("presets")) {
+                    editDuration.requestFocus();
 
-                InputMethodManager imm = (InputMethodManager) this
-                        .getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(editDuration,
-                        InputMethodManager.SHOW_IMPLICIT);
+                    InputMethodManager imm = (InputMethodManager) this
+                            .getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(editDuration,
+                            InputMethodManager.SHOW_IMPLICIT);
+                }
             }
         }
 
         updateMeditate(false, false);
         updateVisibleViews(false);
 
-        if (wasEditing) {
+        if (wasEditing || next_tutorial.equals("presets")) {
             showNextTutorial(false);
         }
     }
@@ -672,7 +674,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                     if (txtTimer == null) {
                         return;
                     }
-                    next_tutorial = "settings";
+                    next_tutorial = "presets";
 
                     ViewTarget target = new ViewTarget(R.id.txtTimer, this);
                     try {
@@ -689,6 +691,21 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                }
+            } else if (next_tutorial.equals("presets")) {
+                next_tutorial = "settings";
+
+                ViewTarget target = new ViewTarget(R.id.btnPreset2, this);
+                try {
+                    sv = new ShowcaseView.Builder(this)
+                            .withNewStyleShowcase()
+                            .setContentTitle(R.string.modeandduration)
+                            .setContentText(R.string.editTimerHelp)
+                            .setShowcaseEventListener(this)
+                            .setStyle(R.style.MeditationShowcaseTheme)
+                            .build();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             } else if (next_tutorial.equals("settings")) {
                 if (!getMeditationAssistant().getEditingDuration()) {
@@ -789,12 +806,14 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         if (getMeditationAssistant().getEditingDuration()) {
             if (getMeditationAssistant().getTimerMode().equals("timed") || getMeditationAssistant().getTimerMode().equals("endat")) {
                 editDuration.setEnabled(true);
-                editDuration.requestFocus();
+                if (!next_tutorial.equals("presets")) {
+                    editDuration.requestFocus();
 
-                InputMethodManager imm = (InputMethodManager) this
-                        .getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(editDuration,
-                        InputMethodManager.SHOW_IMPLICIT);
+                    InputMethodManager imm = (InputMethodManager) this
+                            .getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(editDuration,
+                            InputMethodManager.SHOW_IMPLICIT);
+                }
             } else {
                 editDuration.setEnabled(false);
             }
@@ -1557,11 +1576,14 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                                 + String.format("%02d", Integer.valueOf(getMeditationAssistant().getPrefs()
                                 .getString("timerMinutes", "15"))));
                     }
-                    editDuration.requestFocus();
-                    InputMethodManager imm = (InputMethodManager) this
-                            .getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.showSoftInput(editDuration,
-                            InputMethodManager.SHOW_IMPLICIT);
+
+                    if (!next_tutorial.equals("presets")) {
+                        editDuration.requestFocus();
+                        InputMethodManager imm = (InputMethodManager) this
+                                .getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.showSoftInput(editDuration,
+                                InputMethodManager.SHOW_IMPLICIT);
+                    }
                 }
             }
         }
