@@ -2,6 +2,11 @@ package sh.ftp.rocketninelabs.meditationassistant;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.DialogPreference;
 import android.util.AttributeSet;
@@ -12,6 +17,8 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.io.IOException;
+
 public class SeekBarPreference extends DialogPreference implements SeekBar.OnSeekBarChangeListener, OnClickListener {
     // ------------------------------------------------------------------------------------------
     // Private attributes :
@@ -20,6 +27,8 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
     private SeekBar mSeekBar;
     private TextView mSplashText, txtHelp, mValueText;
     private Context mContext;
+
+    private MediaPlayer mediaPlayer;
 
     private String mDialogMessage, mSuffix;
     private int mDefault, mMax, mValue = 0;
@@ -115,12 +124,14 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
     // OnSeekBarChangeListener methods :
     @Override
     public void onProgressChanged(SeekBar seek, int value, boolean fromTouch) {
-        /*String t = String.valueOf(value);
-        mValueText.setText(mSuffix == null ? t : t.concat(" " + mSuffix));*/
+        if (fromTouch) {
+            previewVolume(value);
+        }
     }
 
     @Override
     public void onStartTrackingTouch(SeekBar seek) {
+        previewVolume(seek.getProgress());
     }
 
     @Override
@@ -150,7 +161,6 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
     // Set the positive button listener and onClick action :
     @Override
     public void showDialog(Bundle state) {
-
         super.showDialog(state);
 
         Button positiveButton = ((AlertDialog) getDialog()).getButton(AlertDialog.BUTTON_POSITIVE);
@@ -159,9 +169,7 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
 
     @Override
     public void onClick(View v) {
-
         if (shouldPersist()) {
-
             mValue = mSeekBar.getProgress();
             persistInt(mSeekBar.getProgress());
             callChangeListener(Integer.valueOf(mSeekBar.getProgress()));
@@ -170,4 +178,63 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
         getDialog().dismiss();
     }
     // ------------------------------------------------------------------------------------------
+
+    private void previewVolume(int value) {
+        if (mediaPlayer != null) {
+            try {
+                mediaPlayer.stop();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                mediaPlayer.release();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        AssetFileDescriptor afd = mContext
+                .getResources()
+                .openRawResourceFd(MeditationSounds.getMeditationSound("gong"));
+        try {
+            mediaPlayer = new MediaPlayer();
+            mediaPlayer.setDataSource(
+                    afd.getFileDescriptor(),
+                    afd.getStartOffset(),
+                    afd.getDeclaredLength());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                        .setUsage(AudioAttributes.USAGE_ALARM)
+                        .build();
+                mediaPlayer.setAudioAttributes(audioAttributes);
+            } else {
+                mediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
+            }
+            float mediaVolume = (float) (value * 0.01);
+            mediaPlayer.setVolume(mediaVolume, mediaVolume);
+            mediaPlayer
+                    .setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                        @Override
+                        public void onPrepared(
+                                MediaPlayer mp) {
+                            mp.start();
+                        }
+                    });
+            mediaPlayer
+                    .setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(
+                                MediaPlayer mp) {
+                            mp.release();
+                        }
+                    });
+            mediaPlayer.prepareAsync();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

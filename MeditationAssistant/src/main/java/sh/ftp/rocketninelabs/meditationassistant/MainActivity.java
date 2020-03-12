@@ -476,6 +476,11 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         } else if (item.getItemId() == R.id.action_reddit_community) {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://old.reddit.com/r/meditation")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         } else if (item.getItemId() == R.id.action_replay_tutorial) {
+            if (sv != null) {
+                sv.hide();
+                sv = null;
+            }
+            next_tutorial = "";
             finishedTutorial = null;
             getMeditationAssistant().getPrefs().edit().putBoolean("finishedTutorial", false).apply();
             showNextTutorial(true);
