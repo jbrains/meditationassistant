@@ -52,8 +52,10 @@
     <string name="setPresetHint">Hold to set preset</string>
     <string name="setPresetTip">Choose which settings to restore by tapping the gear icon (Settings), then tap Preset settings.</string>
     <string name="setPresetHintBlank">Enter a duration (or end time) to set preset</string>
+    <string name="setVibrationTip">Enter the number of milliseconds to turn the vibrator on or off, separated by commas.</string>
     <string name="configureWidget">Configure Widget</string>
     <string name="label">Label</string>
+    <string name="pattern">Pattern</string>
     <string name="setTimerDurationHint">Enter a valid duration (e.g. 0:22)</string>
     <string name="setTimerEndAtHint">Enter a valid time (e.g. 4:20)</string>
     <string name="invalidEndAt">Invalid time to end session</string>
@@ -148,7 +150,10 @@
     <string name="reminderText">Do you have a moment?</string>
     <!-- Settings -->
     <string name="meditation">Meditation</string>
-    <string name="pref_vibrate">Vibrate</string>
+    <string name="vibrate">Vibrate</string>
+    <string name="pref_meditation_vibrate_start">Start vibration</string>
+    <string name="pref_meditation_vibrate_interval">Interval vibration</string>
+    <string name="pref_meditation_vibrate_finish">Complete vibration</string>
     <string name="pref_vibrate_summary">Occurs at the beginning, intervals, and end of meditation</string>
     <string name="pref_vibrate_reminder_summary">The daily reminder will vibrate the device</string>
     <string name="pref_sound_reminder">Play sound</string>
@@ -159,6 +164,10 @@
     <string name="disabled">Disabled</string>
     <string name="none">None</string>
     <string name="noSpecialBehavior">No special behavior</string>
+    <string name="labelShort">Short</string>
+    <string name="labelMedium">Medium</string>
+    <string name="labelLong">Long</string>
+    <string name="custom">Custom</string>
     <string name="noSound">No sound</string>
     <string name="customSound">Custom sound</string>
     <string name="duringSession">During session</string>

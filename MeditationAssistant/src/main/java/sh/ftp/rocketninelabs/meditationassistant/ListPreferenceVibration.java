@@ -4,12 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.content.res.AssetFileDescriptor;
 import android.content.res.TypedArray;
-import android.media.AudioAttributes;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.preference.ListPreference;
@@ -17,29 +12,22 @@ import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.util.Log;
 
-import java.io.IOException;
-
-public class ListPreferenceSound extends ListPreference {
+public class ListPreferenceVibration extends ListPreference {
     private int mClickedDialogEntryIndex;
     private CharSequence[] mEntries;
     private CharSequence[] mEntryValues;
     private CharSequence mSummary;
     private String mValue;
-    private MediaPlayer mMediaPlayer = null;
     private Context ctx = null;
     private SharedPreferences prefs = null;
 
-    public ListPreferenceSound(Context context) {
+    public ListPreferenceVibration(Context context) {
         this(context, null);
     }
 
-    public ListPreferenceSound(Context context, AttributeSet attrs) {
+    public ListPreferenceVibration(Context context, AttributeSet attrs) {
         super(context, attrs);
         ctx = context;
-
-        if (mMediaPlayer == null) {
-            mMediaPlayer = new MediaPlayer();
-        }
 
         TypedArray a = context.obtainStyledAttributes(attrs,
                 R.styleable.ListPreference, 0, 0);
@@ -138,17 +126,7 @@ public class ListPreferenceSound extends ListPreference {
     @Override
     protected void onDialogClosed(boolean positiveResult) {
         super.onDialogClosed(positiveResult);
-        if (mMediaPlayer != null) {
-            try {
-                if (mMediaPlayer.isPlaying()) {
-                    mMediaPlayer.stop();
-                    mMediaPlayer.reset();
-                }
-            } catch (Exception e) {
-                Log.d("MeditationAssistant", "Got exception while stopping and resetting sound in ListPreferenceSound");
-                e.printStackTrace();
-            }
-        }
+
         if (positiveResult && mClickedDialogEntryIndex >= 0 && mEntryValues != null) {
             String value = mEntryValues[mClickedDialogEntryIndex].toString();
             if (callChangeListener(value)) {
@@ -184,73 +162,11 @@ public class ListPreferenceSound extends ListPreference {
                         );
 
                         if (itemSelected.equals("custom")) {
-                            ListPreferenceSound.this.onClick(dialog,
+                            ListPreferenceVibration.this.onClick(dialog,
                                     DialogInterface.BUTTON_POSITIVE);
                             dialog.dismiss();
-                        } else if (!itemSelected.equals("none")) {
-                            if (mMediaPlayer != null) {
-                                try {
-                                    if (mMediaPlayer.isPlaying()) {
-                                        mMediaPlayer.stop();
-                                        mMediaPlayer.reset();
-                                    }
-                                } catch (Exception e) {
-                                    Log.d("MeditationAssistant", "Got exception while stopping and resetting sound in ListPreferenceSound");
-                                    e.printStackTrace();
-                                }
-                            }
-
-                            float mediaVolume = (float) (getPrefs().getInt("pref_sessionvolume", 50) * 0.01);
-
-                            AssetFileDescriptor afd = ctx
-                                    .getResources()
-                                    .openRawResourceFd(
-                                            MeditationSounds
-                                                    .getMeditationSound(itemSelected)
-                                    );
-                            try {
-                                mMediaPlayer = new MediaPlayer();
-                                mMediaPlayer.setDataSource(
-                                        afd.getFileDescriptor(),
-                                        afd.getStartOffset(),
-                                        afd.getDeclaredLength());
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                    AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                                            .setUsage(AudioAttributes.USAGE_ALARM)
-                                            .build();
-                                    mMediaPlayer.setAudioAttributes(audioAttributes);
-                                } else {
-                                    mMediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
-                                }
-                                mMediaPlayer.setVolume(mediaVolume, mediaVolume);
-                                mMediaPlayer.prepareAsync();
-                            } catch (IllegalArgumentException e) {
-                                e.printStackTrace();
-                            } catch (IllegalStateException e) {
-                                e.printStackTrace();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-
-                            if (mMediaPlayer != null) {
-                                mMediaPlayer
-                                        .setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-
-                                            @Override
-                                            public void onCompletion(
-                                                    MediaPlayer mp) {
-                                                mp.release();
-                                            }
-                                        });
-                                mMediaPlayer
-                                        .setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                                            @Override
-                                            public void onPrepared(
-                                                    MediaPlayer mp) {
-                                                mp.start();
-                                            }
-                                        });
-                            }
+                        } else if (!itemSelected.equals("")) {
+                            ((MeditationAssistant) ctx.getApplicationContext()).vibrateDevice(itemSelected);
                         }
                     }
                 }
@@ -260,7 +176,7 @@ public class ListPreferenceSound extends ListPreference {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        ListPreferenceSound.this.onClick(dialog,
+                        ListPreferenceVibration.this.onClick(dialog,
                                 DialogInterface.BUTTON_POSITIVE);
                         dialog.dismiss();
                     }

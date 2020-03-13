@@ -19,7 +19,7 @@
         android:dependency="pref_daily_reminder"
         android:key="pref_vibrate_reminder"
         android:summary="@string/pref_vibrate_reminder_summary"
-        android:title="@string/pref_vibrate"/>
+        android:title="@string/vibrate"/>
 
     <EditTextPreference
         android:defaultValue=""

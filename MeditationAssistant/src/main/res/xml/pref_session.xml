@@ -32,6 +32,15 @@
         android:key="pref_meditation_sound_start"
         android:title="@string/pref_meditation_sound_start"/>
 
+    <sh.ftp.rocketninelabs.meditationassistant.ListPreferenceVibration
+        android:defaultValue=""
+        android:dialogIcon="?attr/actionIconFlashOn"
+        android:entries="@array/vibration"
+        android:entryValues="@array/vibration_values"
+        android:icon="?attr/actionIconFlashOn"
+        android:key="pref_meditation_vibrate_start"
+        android:title="@string/pref_meditation_vibrate_start"/>
+
     <sh.ftp.rocketninelabs.meditationassistant.TimePreference
         android:defaultValue="00:00"
         android:dialogIcon="?attr/actionIconTime"
@@ -50,6 +59,16 @@
         android:icon="?attr/actionIconVolumeOn"
         android:key="pref_meditation_sound_interval"
         android:title="@string/pref_meditation_sound_interval"/>
+
+    <sh.ftp.rocketninelabs.meditationassistant.ListPreferenceVibration
+        android:defaultValue=""
+        android:dialogIcon="?attr/actionIconFlashOn"
+        android:entries="@array/vibration"
+        android:entryValues="@array/vibration_values"
+        android:icon="?attr/actionIconFlashOn"
+        android:key="pref_meditation_vibrate_interval"
+        android:title="@string/pref_meditation_vibrate_interval"/>
+
     <EditTextPreference
         android:defaultValue=""
         android:dialogIcon="?attr/actionIconRefresh"
@@ -67,6 +86,15 @@
         android:icon="?attr/actionIconVolumeOn"
         android:key="pref_meditation_sound_finish"
         android:title="@string/pref_meditation_sound_finish"/>
+
+    <sh.ftp.rocketninelabs.meditationassistant.ListPreferenceVibration
+        android:defaultValue=""
+        android:dialogIcon="?attr/actionIconFlashOn"
+        android:entries="@array/vibration"
+        android:entryValues="@array/vibration_values"
+        android:icon="?attr/actionIconFlashOn"
+        android:key="pref_meditation_vibrate_finish"
+        android:title="@string/pref_meditation_vibrate_finish"/>
 
     <ListPreference
         android:defaultValue=""
@@ -91,13 +119,6 @@
         android:key="pref_softfinish"
         android:summary="@string/pref_softfinish_summary"
         android:title="@string/pref_softfinish"/>
-
-    <CheckBoxPreference
-        android:defaultValue="false"
-        android:icon="?attr/actionIconFlashOn"
-        android:key="pref_vibrate"
-        android:summary="@string/pref_vibrate_summary"
-        android:title="@string/pref_vibrate"/>
 
     <MultiSelectListPreference
         android:defaultValue="@array/presetsettings_default"

@@ -68,8 +68,8 @@ class WakeLocker {
 
     void releaseAll() {
         Log.d("MeditationAssistant", "WAKELOCKER: Releasing all wakelocks");
-
-        for (String wakeLockID : wakeLocks) {
+        List<String> wakeLocksCopy = new ArrayList<>(wakeLocks);
+        for (String wakeLockID : wakeLocksCopy) {
             release(wakeLockID);
         }
     }

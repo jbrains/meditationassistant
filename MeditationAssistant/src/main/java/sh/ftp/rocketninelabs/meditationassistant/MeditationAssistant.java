@@ -56,6 +56,8 @@ import org.acra.annotation.AcraCore;
 import org.acra.annotation.AcraHttpSender;
 import org.acra.data.StringFormat;
 import org.acra.sender.HttpSender;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -81,6 +83,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.regex.Pattern;
 
 @AcraCore(buildConfigClass = BuildConfig.class, reportFormat = StringFormat.KEY_VALUE_LIST)
@@ -93,8 +97,6 @@ public class MeditationAssistant extends Application {
     public static String ACTION_PRESET = "sh.ftp.rocketninelabs.meditationassistant.PRESET";
     public static String ACTION_REMINDER = "sh.ftp.rocketninelabs.meditationassistant.DAILY_NOTIFICATION";
     public static String ACTION_UPDATED = "sh.ftp.rocketninelabs.meditationassistant.DAILY_NOTIFICATION_UPDATED";
-
-    public static int REQUEST_FIT = 22;
 
     public static int CSV_COLUMN_COUNT = 5;
 
@@ -137,6 +139,7 @@ public class MeditationAssistant extends Application {
     private SharedPreferences prefs = null;
     private AlarmManager am;
     private WakeLocker wakeLocker = new WakeLocker();
+    private Lock wakeLockerLock = new ReentrantLock();
     String pausedTimerHoursMinutes;
     String pausedTimerSeconds;
     private HashMap<String, MediaPlayer> mediaPlayers = new HashMap<String, MediaPlayer>();
@@ -289,16 +292,6 @@ public class MeditationAssistant extends Application {
         }
 
         return string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();
-    }
-
-    public boolean canVibrate() {
-        try {
-            Vibrator vi = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-            return vi.hasVibrator();
-        } catch (NoSuchMethodError e) {
-        } catch (Exception e) {
-        }
-        return true;
     }
 
     public void restoreVolume() {
@@ -650,9 +643,9 @@ public class MeditationAssistant extends Application {
         }
     }
 
-    public void playSessionSound(int sound, boolean restoreVolume) {
+    public void notifySession(int phase, boolean skipVibration, boolean restoreVolume) {
         String label;
-        switch (sound) {
+        switch (phase) {
             case 0:
                 label = "start";
                 break;
@@ -665,14 +658,27 @@ public class MeditationAssistant extends Application {
             default:
                 return;
         }
-
         SharedPreferences prefs = getPrefs();
+
+        // Play sound
         String soundPath = prefs.getString("pref_meditation_sound_" + label, "");
         if (!soundPath.equals("none")) {
             if (soundPath.equals("custom")) {
                 playSound(0, prefs.getString("pref_meditation_sound_" + label + "_custom", ""), restoreVolume);
             } else {
                 playSound(MeditationSounds.getMeditationSound(soundPath), "", restoreVolume);
+            }
+        }
+
+        // Vibrate device
+        if (!skipVibration) {
+            String vibration = prefs.getString("pref_meditation_vibrate_" + label, "");
+            if (!vibration.equals("none")) {
+                if (vibration.equals("custom")) {
+                    vibrateDevice(prefs.getString("pref_meditation_vibrate_" + label + "_custom", ""));
+                } else {
+                    vibrateDevice(vibration);
+                }
             }
         }
     }
@@ -1141,6 +1147,16 @@ public class MeditationAssistant extends Application {
                         + Build.VERSION.SDK_INT
         );
 
+        if (getPrefs().getBoolean("pref_vibrate", false)) {
+            getPrefs()
+                    .edit()
+                    .putString("pref_meditation_vibrate_start", "medium")
+                    .putString("pref_meditation_vibrate_interval", "medium")
+                    .putString("pref_meditation_vibrate_finish", "medium")
+                    .putBoolean("pref_vibrate", false)
+                    .apply();
+        }
+
         getPrefs().registerOnSharedPreferenceChangeListener(sharedPrefslistener);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -1289,8 +1305,7 @@ public class MeditationAssistant extends Application {
 
         if (getMediNET().activity != null
                 && !getMediNET().announcement.equals("")) {
-            AlertDialog announceDialog = new AlertDialog.Builder(
-                    getMediNET().activity)
+            AlertDialog announceDialog = new AlertDialog.Builder(getMediNET().activity)
                     .setPositiveButton(R.string.dismiss,
                             new DialogInterface.OnClickListener() {
                                 @Override
@@ -1302,21 +1317,11 @@ public class MeditationAssistant extends Application {
                     )
                     .setTitle(title == null ? getString(R.string.announcement) : title)
                     .setMessage(medinet.announcement)
-                    .setIcon(
-                            getMediNET().activity
-                                    .getResources()
-                                    .getDrawable(
-                                            getTheme()
-                                                    .obtainStyledAttributes(
-                                                            getMATheme(true),
-                                                            new int[]{R.attr.actionIconGoToToday})
-                                                    .getResourceId(0, 0)
-                                    )
-                    )
-                    .setCancelable(false).create();
+                    .setIcon(getMediNET().activity.getResources().getDrawable(getTheme().obtainStyledAttributes(getMATheme(true), new int[]{R.attr.actionIconGoToToday}).getResourceId(0, 0)))
+                    .setCancelable(false)
+                    .create();
 
             announceDialog.show();
-
             return announceDialog;
         }
 
@@ -1356,8 +1361,7 @@ public class MeditationAssistant extends Application {
         }
         getPrefs().edit().putBoolean("meditationstreakwarningshown", true).apply();
 
-        AlertDialog streakDifferenceDialog = new AlertDialog.Builder(
-                activity)
+        AlertDialog streakDifferenceDialog = new AlertDialog.Builder(activity)
                 .setPositiveButton(R.string.yes,
                         (dialog, id) -> {
                             setMeditationStreak(newstreak, twodays ? getStreakExpiresTwoDaysTimestamp() : getStreakExpiresOneDayTimestamp());
@@ -1370,12 +1374,9 @@ public class MeditationAssistant extends Application {
                 )
                 .setTitle(R.string.warning)
                 .setMessage(String.format(getString(R.string.streakdifferencewarning), oldstreak, newstreak))
-                .setIcon(activity.getResources().getDrawable(
-                        getTheme().obtainStyledAttributes(getMATheme(true),
-                                new int[]{R.attr.actionIconGoToToday}).getResourceId(0, 0)
-                        )
-                )
-                .setCancelable(false).create();
+                .setIcon(activity.getResources().getDrawable(getTheme().obtainStyledAttributes(getMATheme(true), new int[]{R.attr.actionIconGoToToday}).getResourceId(0, 0)))
+                .setCancelable(false)
+                .create();
 
         streakDifferenceDialog.show();
     }
@@ -1616,13 +1617,7 @@ public class MeditationAssistant extends Application {
         });
 
         sessionDialog = new AlertDialog.Builder(sessionDialogActivity)
-                .setIcon(
-                        getResources().getDrawable(
-                                getTheme().obtainStyledAttributes(getMATheme(true),
-                                        new int[]{session._id == 0 ? R.attr.actionIconNew : R.attr.actionIconGoToToday})
-                                        .getResourceId(0, 0)
-                        )
-                )
+                .setIcon(getResources().getDrawable(getTheme().obtainStyledAttributes(getMATheme(true), new int[]{session._id == 0 ? R.attr.actionIconNew : R.attr.actionIconGoToToday}).getResourceId(0, 0)))
                 .setTitle(getString(session._id == 0 ? R.string.addSession : R.string.editSession))
                 .setView(sessionDialogView)
                 .setPositiveButton(getString(session._id == 0 ? R.string.add : R.string.edit), new DialogInterface.OnClickListener() {
@@ -1686,9 +1681,7 @@ public class MeditationAssistant extends Application {
                     }
 
                     AlertDialog postSessionDialog = new AlertDialog.Builder(activity)
-                            .setIcon(getResources().getDrawable(getTheme().obtainStyledAttributes(getMATheme(true),
-                                    new int[]{R.attr.actionIconInfo})
-                                    .getResourceId(0, 0)))
+                            .setIcon(getResources().getDrawable(getTheme().obtainStyledAttributes(getMATheme(true), new int[]{R.attr.actionIconInfo}).getResourceId(0, 0)))
                             .setTitle(getString(R.string.sessionPosted))
                             .setMessage(getString(R.string.postUpdatedSession))
                             .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
@@ -1939,17 +1932,7 @@ public class MeditationAssistant extends Application {
                     )
                     .setTitle(R.string.downloadsessionstitle)
                     .setMessage(R.string.downloadsessionsmessage)
-                    .setIcon(
-                            getMediNET().activity
-                                    .getResources()
-                                    .getDrawable(
-                                            getTheme()
-                                                    .obtainStyledAttributes(
-                                                            getMATheme(true),
-                                                            new int[]{R.attr.actionIconDownCloud})
-                                                    .getResourceId(0, 0)
-                                    )
-                    )
+                    .setIcon(getMediNET().activity.getResources().getDrawable(getTheme().obtainStyledAttributes(getMATheme(true), new int[]{R.attr.actionIconDownCloud}).getResourceId(0, 0)))
                     .create();
 
             staleDataDialog.show();
@@ -1975,20 +1958,10 @@ public class MeditationAssistant extends Application {
 
     public void askToDonate(Activity activity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setIcon(
-                getResources()
-                        .getDrawable(
-                                getTheme()
-                                        .obtainStyledAttributes(
-                                                getMATheme(true),
-                                                new int[]{R.attr.actionIconInfo}
-                                        )
-                                        .getResourceId(0, 0)
-                        )
-        )
+        builder
+                .setIcon(getResources().getDrawable(getTheme().obtainStyledAttributes(getMATheme(true), new int[]{R.attr.actionIconInfo}).getResourceId(0, 0)))
                 .setTitle(getString(R.string.announcement))
-                .setMessage(
-                        getString(R.string.donate156))
+                .setMessage(getString(R.string.donate156))
                 .setPositiveButton(getString(R.string.donate),
                         new DialogInterface.OnClickListener() {
                             @Override
@@ -2001,25 +1974,16 @@ public class MeditationAssistant extends Application {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                             }
-                        }).show();
+                        })
+                .show();
     }
 
     public void showImportSessionsDialog(Activity activity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setIcon(
-                getResources()
-                        .getDrawable(
-                                getTheme()
-                                        .obtainStyledAttributes(
-                                                getMATheme(true),
-                                                new int[]{R.attr.actionIconForward}
-                                        )
-                                        .getResourceId(0, 0)
-                        )
-        )
+        builder
+                .setIcon(getResources().getDrawable(getTheme().obtainStyledAttributes(getMATheme(true), new int[]{R.attr.actionIconForward}).getResourceId(0, 0)))
                 .setTitle(getString(R.string.importsessions))
-                .setMessage(
-                        getString(R.string.importsessions_utc_or_local))
+                .setMessage(getString(R.string.importsessions_utc_or_local))
                 .setPositiveButton(getString(R.string.utc),
                         new DialogInterface.OnClickListener() {
                             @Override
@@ -2033,7 +1997,8 @@ public class MeditationAssistant extends Application {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 showFilePickerDialog(activity, SettingsActivity.FILEPICKER_IMPORT_SESSIONS_LOCAL, FilePickerActivity.MODE_FILE);
                             }
-                        }).show();
+                        })
+                .show();
     }
 
     public void importSessions(Activity activity, Uri uri, boolean useLocalTimeZone) {
@@ -2171,13 +2136,7 @@ public class MeditationAssistant extends Application {
         }
 
         AlertDialog sessionsImportedDialog = new AlertDialog.Builder(activity)
-                .setIcon(
-                        getResources().getDrawable(
-                                getTheme().obtainStyledAttributes(getMATheme(true),
-                                        new int[]{R.attr.actionIconForward})
-                                        .getResourceId(0, 0)
-                        )
-                )
+                .setIcon(getResources().getDrawable(getTheme().obtainStyledAttributes(getMATheme(true), new int[]{R.attr.actionIconForward}).getResourceId(0, 0)))
                 .setTitle(getString(R.string.importsessions))
                 .setMessage(String.format(getString(R.string.importsessions_complete), existingSessions, sessions.size()))
                 .setPositiveButton(getString(R.string.wordimport), new DialogInterface.OnClickListener() {
@@ -2255,13 +2214,7 @@ public class MeditationAssistant extends Application {
         txtSessionsExportedPath.setText(file.getPath());
 
         AlertDialog sessionsExportedDialog = new AlertDialog.Builder(activity)
-                .setIcon(
-                        getResources().getDrawable(
-                                getTheme().obtainStyledAttributes(getMATheme(true),
-                                        new int[]{R.attr.actionIconSignOut})
-                                        .getResourceId(0, 0)
-                        )
-                )
+                .setIcon(getResources().getDrawable(getTheme().obtainStyledAttributes(getMATheme(true), new int[]{R.attr.actionIconSignOut}).getResourceId(0, 0)))
                 .setTitle(getString(R.string.exportSessions))
                 .setView(exp)
                 .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
@@ -2292,28 +2245,49 @@ public class MeditationAssistant extends Application {
     }
 
     public void updateWidgets() {
-        AppWidgetManager man = AppWidgetManager
-                .getInstance(getApplicationContext());
-        /*int[] ids = man.getAppWidgetIds(new ComponentName(
-                getApplicationContext(), WidgetStreakProvider.class));*/
         Intent updateIntent = new Intent();
         updateIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         getApplicationContext().sendBroadcast(updateIntent);
     }
 
-    public Boolean vibrationEnabled() {
-        return (getPrefs().getBoolean("pref_vibrate", false) && canVibrate());
-    }
+    public void vibrateDevice(String pattern) {
+        ArrayList<Long> p = new ArrayList<Long>();
+        if (pattern.equals("short")) {
+            p.add((long) 110);
+            p.add((long) 225);
+            p.add((long) 110);
+        } else if (pattern.equals("medium")) {
+            p.add((long) 420);
+            p.add((long) 375);
+            p.add((long) 420);
+        } else if (pattern.equals("long")) {
+            p.add((long) 840);
+            p.add((long) 550);
+            p.add((long) 840);
+        } else {
+            String[] patternSplit = pattern.split(",");
+            for (String pp : patternSplit) {
+                pp = pp.trim();
+                if (pp.isEmpty() || !StringUtils.isNumeric(pp)) {
+                    continue;
+                }
 
-    public void vibrateDevice() {
-        if (vibrationEnabled()) {
-            try {
-                Vibrator vi = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                long[] pattern = {225, 110, 225, 110, 225, 110};
-                vi.vibrate(pattern, -1);
-            } catch (Exception e) {
-                e.printStackTrace();
+                long ppv = Long.parseLong(pp);
+                if (ppv < 0L) {
+                    ppv = 0L;
+                } else if (ppv > 15000L) {
+                    ppv = 15000L;
+                }
+                p.add(ppv);
             }
+        }
+        p.add(0, 0L);
+
+        try {
+            Vibrator vi = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            vi.vibrate(ArrayUtils.toPrimitive(p.toArray(new Long[p.size()])), -1);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -2446,21 +2420,23 @@ public class MeditationAssistant extends Application {
     }
 
     public String acquireWakeLock(Boolean fullWakeUp) {
-        synchronized (wakeLocker) {
-            return wakeLocker.acquire(getApplicationContext(), fullWakeUp);
-        }
+        wakeLockerLock.lock();
+        String wakelockID = wakeLocker.acquire(getApplicationContext(), fullWakeUp);
+        wakeLockerLock.unlock();
+
+        return wakelockID;
     }
 
     public void releaseWakeLock(String wakeLockID) {
-        synchronized (wakeLocker) {
-            wakeLocker.release(wakeLockID);
-        }
+        wakeLockerLock.lock();
+        wakeLocker.release(wakeLockID);
+        wakeLockerLock.unlock();
     }
 
     public void releaseAllWakeLocks() {
-        synchronized (wakeLocker) {
-            wakeLocker.releaseAll();
-        }
+        wakeLockerLock.lock();
+        wakeLocker.releaseAll();
+        wakeLockerLock.unlock();
     }
 
     public enum TrackerName {

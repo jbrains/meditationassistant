@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="empty_array">
-    </string-array>
+    <string-array name="empty_array"></string-array>
     <string-array name="session_actions">
         <item>@string/post</item>
         <item>@string/delete</item>
@@ -127,10 +126,13 @@
         <item>introduction</item>
         <item>delay</item>
         <item>startsound</item>
+        <item>startvibration</item>
         <item>intervalduration</item>
         <item>intervalsound</item>
+        <item>intervalvibration</item>
         <item>intervalcount</item>
         <item>completesound</item>
+        <item>completevibration</item>
         <item>ringtone</item>
         <item>volume</item>
         <item>endless</item>
@@ -141,14 +143,16 @@
         <item>@string/pref_sessionintro</item>
         <item>@string/pref_delay</item>
         <item>@string/pref_meditation_sound_start</item>
+        <item>@string/pref_meditation_vibrate_start</item>
         <item>@string/pref_interval</item>
         <item>@string/pref_meditation_sound_interval</item>
+        <item>@string/pref_meditation_vibrate_interval</item>
         <item>@string/pref_interval_count</item>
         <item>@string/pref_meditation_sound_finish</item>
+        <item>@string/pref_meditation_vibrate_finish</item>
         <item>@string/pref_notificationcontrol</item>
         <item>@string/pref_sessionvolume</item>
         <item>@string/pref_softfinish</item>
-        <item>@string/pref_vibrate</item>
     </string-array>
     <string-array name="presetsettings_default">
         <item>modeandduration</item>
@@ -162,6 +166,20 @@
         <item></item>
         <item>save</item>
         <item>post</item>
+    </string-array>
+    <string-array name="vibration_values">
+        <item></item>
+        <item>short</item>
+        <item>medium</item>
+        <item>long</item>
+        <item>custom</item>
+    </string-array>
+    <string-array name="vibration">
+        <item>@string/disabled</item>
+        <item>@string/labelShort</item>
+        <item>@string/labelMedium</item>
+        <item>@string/labelLong</item>
+        <item>@string/custom</item>
     </string-array>
 
 </resources>

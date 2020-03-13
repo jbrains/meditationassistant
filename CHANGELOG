@@ -2,6 +2,7 @@
 - Add resources menu linking to how to meditate, /r/meditation, an overview of MediNET and replaying the tutorial
 - Add presets to tutorial
 - Add session volume preview
+- Add custom vibration patterns
 - Resolve possible crash when waking device
 - Resolve duration not being preselected when editing
 - Remove usage of Google Play Services (was previously used in releases on Google Play and Amazon)

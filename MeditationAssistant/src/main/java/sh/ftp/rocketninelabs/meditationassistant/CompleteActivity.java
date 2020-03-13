@@ -146,8 +146,8 @@ public class CompleteActivity extends Activity {
             }
 
             String finishSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish", "");
-            if (!manual && !finishSoundPath.equals("none")) {
-                getMeditationAssistant().playSessionSound(2, false);
+            if (!manual) {
+                getMeditationAssistant().notifySession(2, false, false);
             } else {
                 getMeditationAssistant().restoreVolume();
             }
@@ -156,8 +156,6 @@ public class CompleteActivity extends Activity {
         }
 
         if (!manual) {
-            getMeditationAssistant().vibrateDevice();
-
             String autosave = getMeditationAssistant().getPrefs().getString("pref_autosave", "");
             if (autosave.equals("save")) {
                 saveMediNET(null);

@@ -134,13 +134,7 @@ public class ProgressActivity extends FragmentActivity {
                 }
 
                 sessionDetailsDialog = new AlertDialog.Builder(this)
-                        .setIcon(
-                                getResources().getDrawable(
-                                        getMeditationAssistant().getTheme().obtainStyledAttributes(getMeditationAssistant().getMATheme(true),
-                                                new int[]{R.attr.actionIconGoToToday})
-                                                .getResourceId(0, 0)
-                                )
-                        )
+                        .setIcon(getResources().getDrawable(getMeditationAssistant().getTheme().obtainStyledAttributes(getMeditationAssistant().getMATheme(true), new int[]{R.attr.actionIconGoToToday}).getResourceId(0, 0)))
                         .setTitle(sdf.format(sess_date))
                         .setAdapter(sessionsDialogAdapter,
                                 new DialogInterface.OnClickListener() {
@@ -206,13 +200,7 @@ public class ProgressActivity extends FragmentActivity {
         }
 
         sessionDetailsDialog = new AlertDialog.Builder(this)
-                .setIcon(
-                        getResources().getDrawable(
-                                getMeditationAssistant().getTheme().obtainStyledAttributes(getMeditationAssistant().getMATheme(true),
-                                        new int[]{R.attr.actionIconGoToToday})
-                                        .getResourceId(0, 0)
-                        )
-                )
+                .setIcon(getResources().getDrawable(getMeditationAssistant().getTheme().obtainStyledAttributes(getMeditationAssistant().getMATheme(true), new int[]{R.attr.actionIconGoToToday}).getResourceId(0, 0)))
                 .setTitle(session_title)
                 .setView(detailsView)
                 .create();

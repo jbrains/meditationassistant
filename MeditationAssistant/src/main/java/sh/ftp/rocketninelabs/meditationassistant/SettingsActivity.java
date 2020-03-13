@@ -25,10 +25,15 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.RingtonePreference;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
@@ -52,6 +57,9 @@ public class SettingsActivity extends PreferenceActivity {
     static int FILEPICKER_IMPORT_SESSIONS_UTC = 104;
     static int FILEPICKER_IMPORT_SESSIONS_LOCAL = 105;
     static int FILEPICKER_EXPORT_SESSIONS = 106;
+    static int SElECT_VIBRATION_START = 107;
+    static int SElECT_VIBRATION_INTERVAL = 108;
+    static int SElECT_VIBRATION_FINISH = 109;
     private static final int PERMISSION_REQUEST_SOUND_READ_EXTERNAL_STORAGE = 3002;
     private static final int PERMISSION_REQUEST_IMPORT_READ_EXTERNAL_STORAGE = 3003;
     private static final int PERMISSION_REQUEST_EXPORT_WRITE_EXTERNAL_STORAGE = 3004;
@@ -60,13 +68,17 @@ public class SettingsActivity extends PreferenceActivity {
     public Boolean initialSoundChangeStart = true;
     public Boolean initialSoundChangeInterval = true;
     public Boolean initialSoundChangeFinish = true;
+    public Boolean initialVibrationChangeStart = true;
+    public Boolean initialVibrationChangeInterval = true;
+    public Boolean initialVibrationChangeFinish = true;
     public SessionPreferenceFragment sessionPreferenceFragment = null;
     public ReminderPreferenceFragment reminderPreferenceFragment = null;
     public MeditationPreferenceFragment meditationPreferenceFragment = null;
     public ProgressPreferenceFragment progressPreferenceFragment = null;
     public MediNETPreferenceFragment medinetPreferenceFragment = null;
     public MiscellaneousPreferenceFragment miscellaneousPreferenceFragment = null;
-    private int selectingPrefsound = 0;
+    private int selectingPrefSound = 0;
+    private int selectingPrefVibration = 0;
     private MeditationAssistant ma = null;
     private Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
@@ -141,7 +153,7 @@ public class SettingsActivity extends PreferenceActivity {
 
                     preference.setSummary(presetsummary.toString());
                 }
-            } else if (preference instanceof ListPreference || preference instanceof ListPreferenceSound) {
+            } else if (preference instanceof ListPreference || preference instanceof ListPreferenceSound || preference instanceof ListPreferenceVibration) {
                 // For list preferences, look up the correct display value in
                 // the preference's 'entries' list.
                 ListPreference listPreference = (ListPreference) preference;
@@ -149,9 +161,9 @@ public class SettingsActivity extends PreferenceActivity {
 
                 // Set the summary to reflect the new value.
                 preference.setSummary(
-                    index >= 0
-                        ? listPreference.getEntries()[index]
-                        : "Gong"
+                        index >= 0
+                                ? listPreference.getEntries()[index]
+                                : (preference instanceof ListPreferenceSound ? "Gong" : getString(R.string.disabled))
                 ); // TODO: Don't hardcode sound names
 
                 if (listPreference.getKey().equals("pref_theme")) {
@@ -187,6 +199,21 @@ public class SettingsActivity extends PreferenceActivity {
                         preference.setSummary(customSoundSummary(getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish_custom", "")));
                     }
                     initialSoundChangeFinish = false;
+                } else if (listPreference.getKey().equals("pref_meditation_vibrate_start")) {
+                    if (stringValue.equals("custom") && !initialVibrationChangeStart) {
+                        selectCustomVibration(SElECT_VIBRATION_START);
+                    }
+                    initialVibrationChangeStart = false;
+                } else if (listPreference.getKey().equals("pref_meditation_vibrate_interval")) {
+                    if (stringValue.equals("custom") && !initialVibrationChangeInterval) {
+                        selectCustomVibration(SElECT_VIBRATION_INTERVAL);
+                    }
+                    initialVibrationChangeInterval = false;
+                } else if (listPreference.getKey().equals("pref_meditation_vibrate_finish")) {
+                    if (stringValue.equals("custom") && !initialVibrationChangeFinish) {
+                        selectCustomVibration(SElECT_VIBRATION_FINISH);
+                    }
+                    initialVibrationChangeFinish = false;
                 }
             } else if (preference instanceof RingtonePreference) {
                 // For ringtone preferences, look up the correct display value
@@ -197,7 +224,7 @@ public class SettingsActivity extends PreferenceActivity {
 
                 } else {
                     Ringtone ringtone = RingtoneManager.getRingtone(
-                        preference.getContext(), Uri.parse(stringValue));
+                            preference.getContext(), Uri.parse(stringValue));
 
                     if (ringtone == null) {
                         // Clear the summary if there was a lookup error.
@@ -225,7 +252,7 @@ public class SettingsActivity extends PreferenceActivity {
                         }
 
                         timeValue = Integer.valueOf(timeValueSplit[0]) + ":"
-                            + String.format("%02d", Integer.valueOf(timeValueSplit[1])) + " " + ampm;
+                                + String.format("%02d", Integer.valueOf(timeValueSplit[1])) + " " + ampm;
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -244,8 +271,8 @@ public class SettingsActivity extends PreferenceActivity {
                     try {
                         String[] timeValueSplit = ((stringValue != null && stringValue != "") ? stringValue : (preference.getKey().equals("pref_session_delay") ? "00:15" : "00:00")).split(":");
                         timeValue = (int) Math.floor(Integer.valueOf(timeValueSplit[0]) / 60) + ":"
-                            + String.format("%02d", Integer.valueOf(timeValueSplit[0]) % 60) + ":"
-                            + String.format("%02d", Integer.valueOf(timeValueSplit[1]));
+                                + String.format("%02d", Integer.valueOf(timeValueSplit[0]) % 60) + ":"
+                                + String.format("%02d", Integer.valueOf(timeValueSplit[1]));
                         isDisabled = (Integer.valueOf(timeValueSplit[0]) == 0 && Integer.valueOf(timeValueSplit[1]) == 0);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -257,33 +284,38 @@ public class SettingsActivity extends PreferenceActivity {
                         ListPreferenceSound prefIntervalSound = (ListPreferenceSound) (sessionPreferenceFragment == null ? findPreference("pref_meditation_sound_interval") : sessionPreferenceFragment.findPreference("pref_meditation_sound_interval"));
                         prefIntervalSound.setEnabled(!isDisabled);
 
+                        ListPreferenceVibration prefIntervalVibrate = (ListPreferenceVibration) (sessionPreferenceFragment == null ? findPreference("pref_meditation_vibrate_interval") : sessionPreferenceFragment.findPreference("pref_meditation_vibrate_interval"));
+                        prefIntervalVibrate.setEnabled(!isDisabled);
+
                         EditTextPreference prefIntervalCount = (EditTextPreference) (sessionPreferenceFragment == null ? findPreference("pref_interval_count") : sessionPreferenceFragment.findPreference("pref_interval_count"));
                         prefIntervalCount.setEnabled(!isDisabled);
                     }
                 }
             } else if (preference instanceof EditTextPreference) {
-                String reminderText = getString(preference.getKey().equals("pref_daily_reminder_text") ? R.string.reminderText : R.string.ignore_introphrase);
-                if (stringValue != null && (preference.getKey().equals("pref_sessionintro") || !stringValue.trim().equals(""))) {
-                    reminderText = stringValue.trim();
+                if (preference.getKey().equals("pref_interval_count")) {
+                    if (stringValue == null || stringValue.trim().equals("")) {
+                        stringValue = "0";
+                    }
+                    if (Integer.valueOf(stringValue) <= 0) {
+                        preference.setSummary(getString(R.string.unlimited));
+                    } else {
+                        preference.setSummary(getResources().getQuantityString(
+                                R.plurals.numtimes, Integer.valueOf(stringValue),
+                                String.valueOf(Integer.valueOf(stringValue))
+                        ));
+                    }
+                } else {
+                    String reminderText = getString(preference.getKey().equals("pref_daily_reminder_text") ? R.string.reminderText : R.string.ignore_introphrase);
+                    if (stringValue != null && (preference.getKey().equals("pref_sessionintro") || !stringValue.trim().equals(""))) {
+                        reminderText = stringValue.trim();
+                    }
+                    preference.setSummary(reminderText);
                 }
-                preference.setSummary(reminderText);
             } else if (preference instanceof SeekBarPreference) {
                 if (stringValue == null || stringValue.equals("")) {
                     stringValue = "50";
                 }
                 preference.setSummary((Integer.valueOf(stringValue) + 4) / 5 * 5 + "%");
-            } else if (preference.getKey().equals("pref_interval_count")) {
-                if (stringValue == null || stringValue.trim().equals("")) {
-                    stringValue = "0";
-                }
-                if (Integer.valueOf(stringValue) <= 0) {
-                    preference.setSummary(getString(R.string.unlimited));
-                } else {
-                    preference.setSummary(getResources().getQuantityString(
-                        R.plurals.numtimes, Integer.valueOf(stringValue),
-                        String.valueOf(Integer.valueOf(stringValue))
-                    ));
-                }
             } else {
                 // For all other preferences, set the summary to the value's
                 // simple string representation.
@@ -295,17 +327,87 @@ public class SettingsActivity extends PreferenceActivity {
     };
 
     private void selectCustomSound(int requestCode) {
-        selectingPrefsound = requestCode;
+        selectingPrefSound = requestCode;
 
         if (ContextCompat.checkSelfPermission(this,
-            Manifest.permission.READ_EXTERNAL_STORAGE)
-            != PackageManager.PERMISSION_GRANTED) {
+                Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                PERMISSION_REQUEST_SOUND_READ_EXTERNAL_STORAGE);
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    PERMISSION_REQUEST_SOUND_READ_EXTERNAL_STORAGE);
         } else {
             getMeditationAssistant().showFilePickerDialog(SettingsActivity.this, requestCode, FilePickerActivity.MODE_FILE);
         }
+    }
+
+    private void selectCustomVibration(int requestCode) {
+        selectingPrefVibration = requestCode;
+
+        String dialogTitle = "";
+        String value = "";
+        if (requestCode == SElECT_VIBRATION_START) {
+            dialogTitle = getString(R.string.pref_meditation_vibrate_start);
+            value = getMeditationAssistant().getPrefs().getString("pref_meditation_vibrate_start_custom", "");
+        } else if (requestCode == SElECT_VIBRATION_INTERVAL) {
+            dialogTitle = getString(R.string.pref_meditation_vibrate_interval);
+            value = getMeditationAssistant().getPrefs().getString("pref_meditation_vibrate_interval_custom", "");
+        } else if (requestCode == SElECT_VIBRATION_FINISH) {
+            dialogTitle = getString(R.string.pref_meditation_vibrate_finish);
+            value = getMeditationAssistant().getPrefs().getString("pref_meditation_vibrate_finish_custom", "");
+        } else {
+            return;
+        }
+        if (value.trim().equals("")) {
+            value = "110,225,110";
+        }
+
+        LayoutInflater presetInflater = getLayoutInflater();
+        View presetLayout = presetInflater.inflate(R.layout.set_vibration, null);
+        final EditText editVibrationPattern = presetLayout.findViewById(R.id.editVibrationPattern);
+        editVibrationPattern.setText(value);
+        editVibrationPattern.selectAll();
+        editVibrationPattern.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
+        builder
+                .setIcon(getResources().getDrawable(getTheme().obtainStyledAttributes(getMeditationAssistant().getMATheme(), new int[]{R.attr.actionIconFlashOn}).getResourceId(0, 0)))
+                .setTitle(dialogTitle)
+                .setView(presetLayout)
+                .setPositiveButton(getString(R.string.set),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                if (requestCode == SElECT_VIBRATION_START) {
+                                    getMeditationAssistant().getPrefs().edit().putString("pref_meditation_vibrate_start_custom", editVibrationPattern.getText().toString()).apply();
+                                } else if (requestCode == SElECT_VIBRATION_INTERVAL) {
+                                    getMeditationAssistant().getPrefs().edit().putString("pref_meditation_vibrate_interval_custom", editVibrationPattern.getText().toString()).apply();
+                                } else if (requestCode == SElECT_VIBRATION_FINISH) {
+                                    getMeditationAssistant().getPrefs().edit().putString("pref_meditation_vibrate_finish_custom", editVibrationPattern.getText().toString()).apply();
+                                }
+                            }
+                        })
+                .setNeutralButton(getString(R.string.vibrate), null)
+                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // Do nothing
+                    }
+                });
+
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                Button b = alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL);
+                b.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        getMeditationAssistant().vibrateDevice(editVibrationPattern.getText().toString());
+                    }
+                });
+            }
+        });
+        alertDialog.show();
     }
 
     @Override
@@ -314,119 +416,88 @@ public class SettingsActivity extends PreferenceActivity {
         switch (requestCode) {
             case PERMISSION_REQUEST_SOUND_READ_EXTERNAL_STORAGE: {
                 if ((grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    getMeditationAssistant().showFilePickerDialog(SettingsActivity.this, selectingPrefsound, FilePickerActivity.MODE_FILE);
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    getMeditationAssistant().showFilePickerDialog(SettingsActivity.this, selectingPrefSound, FilePickerActivity.MODE_FILE);
                 } else if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                        Manifest.permission.READ_EXTERNAL_STORAGE)) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setIcon(
-                        getResources()
-                            .getDrawable(
-                                getTheme()
-                                    .obtainStyledAttributes(
-                                        getMeditationAssistant()
-                                            .getMATheme(true),
-                                        new int[]{R.attr.actionIconSettings}
-                                    )
-                                    .getResourceId(0, 0)
-                            )
-                    )
-                        .setTitle(getString(R.string.permissionRequest))
-                        .setMessage(
-                            getString(R.string.permissionRequired))
-                        .setPositiveButton(getString(R.string.tryAgain),
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    selectCustomSound(selectingPrefsound);
-                                }
-                            })
-                        .setNegativeButton(getString(R.string.deny),
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                }
-                            }).show();
+                    builder
+                            .setIcon(getResources().getDrawable(getTheme().obtainStyledAttributes(getMeditationAssistant().getMATheme(true), new int[]{R.attr.actionIconSettings}).getResourceId(0, 0)))
+                            .setTitle(getString(R.string.permissionRequest))
+                            .setMessage(getString(R.string.permissionRequired))
+                            .setPositiveButton(getString(R.string.tryAgain),
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            selectCustomSound(selectingPrefSound);
+                                        }
+                                    })
+                            .setNegativeButton(getString(R.string.deny),
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                        }
+                                    }).show();
                 }
                 break;
             }
             case PERMISSION_REQUEST_IMPORT_READ_EXTERNAL_STORAGE: {
                 if ((grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     getMeditationAssistant().showImportSessionsDialog(SettingsActivity.this);
                 } else if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                        Manifest.permission.READ_EXTERNAL_STORAGE)) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setIcon(
-                        getResources()
-                            .getDrawable(
-                                getTheme()
-                                    .obtainStyledAttributes(
-                                        getMeditationAssistant()
-                                            .getMATheme(true),
-                                        new int[]{R.attr.actionIconSettings}
-                                    )
-                                    .getResourceId(0, 0)
-                            )
-                    )
-                        .setTitle(getString(R.string.permissionRequest))
-                        .setMessage(
-                            getString(R.string.permissionRequired))
-                        .setPositiveButton(getString(R.string.tryAgain),
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    ActivityCompat.requestPermissions(SettingsActivity.this,
-                                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                                        PERMISSION_REQUEST_IMPORT_READ_EXTERNAL_STORAGE);
-                                }
-                            })
-                        .setNegativeButton(getString(R.string.deny),
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                }
-                            }).show();
+                    builder
+                            .setIcon(getResources().getDrawable(getTheme().obtainStyledAttributes(getMeditationAssistant().getMATheme(true), new int[]{R.attr.actionIconSettings}).getResourceId(0, 0)))
+                            .setTitle(getString(R.string.permissionRequest))
+                            .setMessage(getString(R.string.permissionRequired))
+                            .setPositiveButton(getString(R.string.tryAgain),
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            ActivityCompat.requestPermissions(SettingsActivity.this,
+                                                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                                    PERMISSION_REQUEST_IMPORT_READ_EXTERNAL_STORAGE);
+                                        }
+                                    })
+                            .setNegativeButton(getString(R.string.deny),
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                        }
+                                    })
+                            .show();
                 }
                 break;
             }
             case PERMISSION_REQUEST_EXPORT_WRITE_EXTERNAL_STORAGE: {
                 if ((grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     getMeditationAssistant().showFilePickerDialog(SettingsActivity.this, FILEPICKER_EXPORT_SESSIONS, FilePickerActivity.MODE_NEW_FILE);
                 } else if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setIcon(
-                        getResources()
-                            .getDrawable(
-                                getTheme()
-                                    .obtainStyledAttributes(
-                                        getMeditationAssistant()
-                                            .getMATheme(true),
-                                        new int[]{R.attr.actionIconSettings}
-                                    )
-                                    .getResourceId(0, 0)
-                            )
-                    )
-                        .setTitle(getString(R.string.permissionRequest))
-                        .setMessage(
-                            getString(R.string.permissionRequired))
-                        .setPositiveButton(getString(R.string.tryAgain),
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    ActivityCompat.requestPermissions(SettingsActivity.this,
-                                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                        PERMISSION_REQUEST_EXPORT_WRITE_EXTERNAL_STORAGE);
-                                }
-                            })
-                        .setNegativeButton(getString(R.string.deny),
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                }
-                            }).show();
+                    builder
+                            .setIcon(getResources().getDrawable(getTheme().obtainStyledAttributes(getMeditationAssistant().getMATheme(true), new int[]{R.attr.actionIconSettings}).getResourceId(0, 0)))
+                            .setTitle(getString(R.string.permissionRequest))
+                            .setMessage(getString(R.string.permissionRequired))
+                            .setPositiveButton(getString(R.string.tryAgain),
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            ActivityCompat.requestPermissions(SettingsActivity.this,
+                                                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                                    PERMISSION_REQUEST_EXPORT_WRITE_EXTERNAL_STORAGE);
+                                        }
+                                    })
+                            .setNegativeButton(getString(R.string.deny),
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                        }
+                                    })
+                            .show();
                 }
                 break;
             }
@@ -438,7 +509,7 @@ public class SettingsActivity extends PreferenceActivity {
 
     private static boolean isXLargeTablet(Context context) {
         return FORCE_TABLET_VIEW || ((context.getResources().getConfiguration().screenLayout
-            & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_XLARGE);
+                & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_XLARGE);
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
@@ -521,7 +592,7 @@ public class SettingsActivity extends PreferenceActivity {
             return true;
         } else if (i == R.id.action_accountsettings) {
             Intent openActivity = new Intent(this,
-                MediNETActivity.class);
+                    MediNETActivity.class);
             openActivity.putExtra("page", "account");
             startActivity(openActivity);
             finish();
@@ -560,6 +631,23 @@ public class SettingsActivity extends PreferenceActivity {
         }
     }
 
+    void setupVibrationPreferences(PreferenceFragment preferenceFragment) {
+        String[] vibration = getResources().getStringArray(R.array.vibration);
+        String[] vibration_values = getResources().getStringArray(R.array.vibration_values);
+
+        ListPreferenceVibration prefMeditationVibrateStart = (ListPreferenceVibration) (preferenceFragment == null ? findPreference("pref_meditation_vibrate_start") : preferenceFragment.findPreference("pref_meditation_vibrate_start"));
+        prefMeditationVibrateStart.setEntries(vibration);
+        prefMeditationVibrateStart.setEntryValues(vibration_values);
+
+        ListPreferenceVibration prefMeditationVibrateInterval = (ListPreferenceVibration) (preferenceFragment == null ? findPreference("pref_meditation_vibrate_interval") : preferenceFragment.findPreference("pref_meditation_vibrate_interval"));
+        prefMeditationVibrateInterval.setEntries(vibration);
+        prefMeditationVibrateInterval.setEntryValues(vibration_values);
+
+        ListPreferenceVibration prefMeditationVibrateFinish = (ListPreferenceVibration) (preferenceFragment == null ? findPreference("pref_meditation_vibrate_finish") : preferenceFragment.findPreference("pref_meditation_vibrate_finish"));
+        prefMeditationVibrateFinish.setEntries(vibration);
+        prefMeditationVibrateFinish.setEntryValues(vibration_values);
+    }
+
     void setupPreferences(String pref_type, PreferenceFragment preferenceFragment) {
         if (pref_type.equals("all") || pref_type.equals("session")) {
             if (preferenceFragment != null) {
@@ -569,10 +657,13 @@ public class SettingsActivity extends PreferenceActivity {
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_sessionintro") : preferenceFragment.findPreference("pref_sessionintro"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_session_delay") : preferenceFragment.findPreference("pref_session_delay"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_meditation_sound_start") : preferenceFragment.findPreference("pref_meditation_sound_start"));
+            bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_meditation_vibrate_start") : preferenceFragment.findPreference("pref_meditation_vibrate_start"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_meditation_sound_interval") : preferenceFragment.findPreference("pref_meditation_sound_interval"));
+            bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_meditation_vibrate_interval") : preferenceFragment.findPreference("pref_meditation_vibrate_interval"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_session_interval") : preferenceFragment.findPreference("pref_session_interval"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_interval_count") : preferenceFragment.findPreference("pref_interval_count"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_meditation_sound_finish") : preferenceFragment.findPreference("pref_meditation_sound_finish"));
+            bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_meditation_vibrate_finish") : preferenceFragment.findPreference("pref_meditation_vibrate_finish"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_notificationcontrol") : preferenceFragment.findPreference("pref_notificationcontrol"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_sessionvolume") : preferenceFragment.findPreference("pref_sessionvolume"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_presetsettings") : preferenceFragment.findPreference("pref_presetsettings"));
@@ -612,11 +703,11 @@ public class SettingsActivity extends PreferenceActivity {
                 @Override
                 public boolean onPreferenceClick(Preference arg0) {
                     if (ContextCompat.checkSelfPermission(SettingsActivity.this,
-                        Manifest.permission.READ_EXTERNAL_STORAGE)
-                        != PackageManager.PERMISSION_GRANTED) {
+                            Manifest.permission.READ_EXTERNAL_STORAGE)
+                            != PackageManager.PERMISSION_GRANTED) {
                         ActivityCompat.requestPermissions(SettingsActivity.this,
-                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                            PERMISSION_REQUEST_IMPORT_READ_EXTERNAL_STORAGE);
+                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                PERMISSION_REQUEST_IMPORT_READ_EXTERNAL_STORAGE);
                     } else {
                         getMeditationAssistant().showImportSessionsDialog(SettingsActivity.this);
                     }
@@ -629,11 +720,11 @@ public class SettingsActivity extends PreferenceActivity {
                 @Override
                 public boolean onPreferenceClick(Preference arg0) {
                     if (ContextCompat.checkSelfPermission(SettingsActivity.this,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                        != PackageManager.PERMISSION_GRANTED) {
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                            != PackageManager.PERMISSION_GRANTED) {
                         ActivityCompat.requestPermissions(SettingsActivity.this,
-                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                            PERMISSION_REQUEST_EXPORT_WRITE_EXTERNAL_STORAGE);
+                                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                PERMISSION_REQUEST_EXPORT_WRITE_EXTERNAL_STORAGE);
                     } else {
                         getMeditationAssistant().showFilePickerDialog(SettingsActivity.this, FILEPICKER_EXPORT_SESSIONS, FilePickerActivity.MODE_NEW_FILE);
                     }
@@ -657,17 +748,17 @@ public class SettingsActivity extends PreferenceActivity {
                     } else {
                         if (getMeditationAssistant().db.getNumSessions() == 0) {
                             getMeditationAssistant().longToast(
-                                getMeditationAssistant().getString(R.string.sessionsUpToDate));
+                                    getMeditationAssistant().getString(R.string.sessionsUpToDate));
 
                             return false;
                         }
 
                         if (getMeditationAssistant().getTimestamp()
-                            - uploadsessions_lastlick > 5) {
+                                - uploadsessions_lastlick > 5) {
                             uploadsessions_lastlick = getMeditationAssistant()
-                                .getTimestamp();
+                                    .getTimestamp();
                             getMeditationAssistant().getMediNET()
-                                .uploadSessions();
+                                    .uploadSessions();
                         }
                     }
 
@@ -683,11 +774,11 @@ public class SettingsActivity extends PreferenceActivity {
                         getMeditationAssistant().startAuth(SettingsActivity.this, true);
                     } else {
                         if (getMeditationAssistant().getTimestamp()
-                            - downloadsessions_lastlick > 5) {
+                                - downloadsessions_lastlick > 5) {
                             downloadsessions_lastlick = getMeditationAssistant()
-                                .getTimestamp();
+                                    .getTimestamp();
                             getMeditationAssistant().getMediNET()
-                                .downloadSessions();
+                                    .downloadSessions();
                         }
                     }
 
@@ -751,6 +842,7 @@ public class SettingsActivity extends PreferenceActivity {
         addPreferencesFromResource(R.xml.pref_miscellaneous);
 
         setupSoundPreferences(null);
+        setupVibrationPreferences(null);
         setupPreferences("all", null);
     }
 
@@ -794,21 +886,15 @@ public class SettingsActivity extends PreferenceActivity {
         // Trigger the listener immediately with the preference's
         // current value.
         if (preference.getKey().equals("pref_daily_reminder") || preference.getKey().equals("pref_usetimepicker")) {
-            sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
-                getMeditationAssistant().getPrefs()
-                    .getBoolean(preference.getKey(), false)
-            );
+            sBindPreferenceSummaryToValueListener.onPreferenceChange(preference, getMeditationAssistant().getPrefs().getBoolean(preference.getKey(), false));
         } else if (preference.getKey().equals("pref_presetsettings")) {
-            sBindPreferenceSummaryToValueListener.onPreferenceChange(preference, getMeditationAssistant().getPrefs().getStringSet("pref_presetsettings", new HashSet<>(Arrays.asList(getResources().getStringArray(R.array.presetsettings_default))))
-            );
+            sBindPreferenceSummaryToValueListener.onPreferenceChange(preference, getMeditationAssistant().getPrefs().getStringSet("pref_presetsettings", new HashSet<>(Arrays.asList(getResources().getStringArray(R.array.presetsettings_default)))));
         } else if (preference.getKey().equals("pref_mainbuttons")) {
             sBindPreferenceSummaryToValueListener.onPreferenceChange(preference, getMeditationAssistant().getPrefs().getStringSet("pref_mainbuttons", new HashSet<>()));
         } else if (preference.getKey().equals("pref_sessionvolume")) {
             sBindPreferenceSummaryToValueListener.onPreferenceChange(preference, getMeditationAssistant().getPrefs().getInt("pref_sessionvolume", 50));
         } else {
-            sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
-                getMeditationAssistant().getPrefs().getString(preference.getKey(), "")
-            );
+            sBindPreferenceSummaryToValueListener.onPreferenceChange(preference, getMeditationAssistant().getPrefs().getString(preference.getKey(), ""));
         }
     }
 
@@ -822,11 +908,11 @@ public class SettingsActivity extends PreferenceActivity {
     @Override
     protected boolean isValidFragment(String fragmentName) {
         return SessionPreferenceFragment.class.getName().equals(fragmentName) ||
-            ReminderPreferenceFragment.class.getName().equals(fragmentName) ||
-            MeditationPreferenceFragment.class.getName().equals(fragmentName) ||
-            ProgressPreferenceFragment.class.getName().equals(fragmentName) ||
-            MediNETPreferenceFragment.class.getName().equals(fragmentName) ||
-            MiscellaneousPreferenceFragment.class.getName().equals(fragmentName);
+                ReminderPreferenceFragment.class.getName().equals(fragmentName) ||
+                MeditationPreferenceFragment.class.getName().equals(fragmentName) ||
+                ProgressPreferenceFragment.class.getName().equals(fragmentName) ||
+                MediNETPreferenceFragment.class.getName().equals(fragmentName) ||
+                MiscellaneousPreferenceFragment.class.getName().equals(fragmentName);
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -843,6 +929,7 @@ public class SettingsActivity extends PreferenceActivity {
 
             SettingsActivity settingsactivity = (SettingsActivity) getActivity();
             settingsactivity.setupSoundPreferences(this);
+            settingsactivity.setupVibrationPreferences(this);
             settingsactivity.setupPreferences("session", this);
         }
     }
