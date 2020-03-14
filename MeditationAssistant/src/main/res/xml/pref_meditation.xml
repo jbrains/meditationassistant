@@ -20,6 +20,30 @@
         android:title="@string/pref_usetimepicker"/>
 
     <ListPreference
+        android:defaultValue=""
+        android:entries="@array/autosave_labels"
+        android:entryValues="@array/autosave_values"
+        android:key="pref_autosave"
+        android:summary=""
+        android:title="@string/pref_autosave"/>
+
+    <ListPreference
+        android:defaultValue=""
+        android:entries="@array/timer_positions"
+        android:entryValues="@array/timer_positions_values"
+        android:key="pref_timer_position"
+        android:summary=""
+        android:title="@string/timerPosition"/>
+
+    <ListPreference
+        android:defaultValue="normal"
+        android:entries="@array/text_sizes"
+        android:entryValues="@array/text_sizes_values"
+        android:key="pref_text_size"
+        android:summary=""
+        android:title="@string/pref_text_size"/>
+
+    <ListPreference
         android:defaultValue="dim"
         android:dialogIcon="?attr/actionIconBrightnessLow"
         android:entries="@array/screencontrol"
@@ -34,21 +58,5 @@
         android:entryValues="@array/full_screen_values"
         android:key="pref_full_screen"
         android:title="@string/pref_full_screen"/>
-
-    <ListPreference
-        android:defaultValue="normal"
-        android:entries="@array/text_sizes"
-        android:entryValues="@array/text_sizes_values"
-        android:key="pref_text_size"
-        android:summary=""
-        android:title="@string/pref_text_size"/>
-
-    <ListPreference
-        android:defaultValue=""
-        android:entries="@array/autosave_labels"
-        android:entryValues="@array/autosave_values"
-        android:key="pref_autosave"
-        android:summary=""
-        android:title="@string/pref_autosave"/>
 
 </PreferenceScreen>

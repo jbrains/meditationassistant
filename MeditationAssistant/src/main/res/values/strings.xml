@@ -228,7 +228,10 @@
     <string name="uploadsessions">Upload sessions</string>
     <string name="uploadsessions_summary">Upload local sessions</string>
     <string name="miscellaneous">Miscellaneous</string>
-    <string name="pref_text_size">Timer text size</string>
+    <string name="timerPosition">Timer position</string>
+    <string name="top">Top</string>
+    <string name="center">Center</string>
+    <string name="pref_text_size">Timer size</string>
     <string name="tiny">Tiny</string>
     <string name="small">Small</string>
     <string name="normal">Normal</string>

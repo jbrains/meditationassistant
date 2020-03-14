@@ -163,7 +163,7 @@ public class SettingsActivity extends PreferenceActivity {
                 preference.setSummary(
                         index >= 0
                                 ? listPreference.getEntries()[index]
-                                : (preference instanceof ListPreferenceSound ? "Gong" : getString(R.string.disabled))
+                                : (preference instanceof ListPreferenceSound ? "Gong" : (preference.getKey().equals("pref_timer_position") ? getString(R.string.top) : getString(R.string.disabled)))
                 ); // TODO: Don't hardcode sound names
 
                 if (listPreference.getKey().equals("pref_theme")) {
@@ -688,6 +688,7 @@ public class SettingsActivity extends PreferenceActivity {
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_screencontrol") : preferenceFragment.findPreference("pref_screencontrol"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_full_screen") : preferenceFragment.findPreference("pref_full_screen"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_text_size") : preferenceFragment.findPreference("pref_text_size"));
+            bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_timer_position") : preferenceFragment.findPreference("pref_timer_position"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_autosave") : preferenceFragment.findPreference("pref_autosave"));
         }
         if (pref_type.equals("all") || pref_type.equals("progress")) {

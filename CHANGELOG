@@ -3,6 +3,7 @@
 - Add presets to tutorial
 - Add session volume preview
 - Add custom vibration patterns
+- Add timer position setting
 - Resolve possible crash when waking device
 - Resolve duration not being preselected when editing
 - Remove usage of Google Play Services (was previously used in releases on Google Play and Amazon)

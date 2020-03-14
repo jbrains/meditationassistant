@@ -1,11 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="0dp"
-                android:paddingLeft="0dp"
-                android:paddingRight="0dp"
-                android:paddingTop="0dp">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="0dp"
+    android:paddingTop="0dp"
+    android:paddingRight="0dp"
+    android:paddingBottom="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,69 +30,80 @@
                     android:gravity="top"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/txtTimer"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:layout_gravity="center_horizontal"
-                        android:clickable="true"
-                        android:onClick="changeDuration"
-                        android:ellipsize="none"
-                        android:gravity="center"
-                        android:includeFontPadding="false"
-                        android:lineSpacingMultiplier="0.9"
-                        android:singleLine="true"
-                        android:text=""
-                        android:textAppearance="?android:attr/textAppearanceLarge"/>
+                    <LinearLayout
+                        android:id="@+id/layTimer"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="top"
+                        android:orientation="vertical">
 
-                    <RelativeLayout
-                        android:id="@+id/layEditDuration"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone">
-
-                        <EditText
-                            android:id="@+id/editDuration"
+                        <TextView
+                            android:id="@+id/txtTimer"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginBottom="0dp"
-                            android:layout_marginTop="0dp"
+                            android:layout_marginTop="7dp"
+                            android:clickable="true"
+                            android:ellipsize="none"
                             android:gravity="center"
-                            android:imeOptions="actionDone"
-                            android:selectAllOnFocus="true"
                             android:includeFontPadding="false"
-                            android:inputType="time"
                             android:lineSpacingMultiplier="0.9"
-                            android:maxLength="5"
+                            android:onClick="changeDuration"
                             android:singleLine="true"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:visibility="gone"/>
+                            android:text=""
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-                        <sh.ftp.rocketninelabs.meditationassistant.TimePicker
-                            android:id="@+id/timepickerDuration"
+                        <RelativeLayout
+                            android:id="@+id/layEditDuration"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center"/>
-                    </RelativeLayout>
+                            android:visibility="gone">
 
-                    <TextView
-                        android:id="@+id/txtDurationSeconds"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:clickable="false"
-                        android:gravity="center"
-                        android:singleLine="true"
-                        android:text=""
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textSize="33sp"/>
+                            <EditText
+                                android:id="@+id/editDuration"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginBottom="0dp"
+                                android:gravity="center"
+                                android:imeOptions="actionDone"
+                                android:includeFontPadding="false"
+                                android:inputType="time"
+                                android:lineSpacingMultiplier="0.9"
+                                android:maxLength="5"
+                                android:selectAllOnFocus="true"
+                                android:singleLine="true"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:visibility="gone" />
 
-                    <RelativeLayout
+                            <sh.ftp.rocketninelabs.meditationassistant.TimePicker
+                                android:id="@+id/timepickerDuration"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/txtDurationSeconds"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:clickable="false"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text=""
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textSize="33sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:id="@+id/layLowerViews"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true">
 
                         <!--
                              <View
@@ -117,10 +128,10 @@
 
                         <RelativeLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="fill_parent"
-                            android:layout_alignParentBottom="true"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentRight="true"
+                            android:layout_alignParentBottom="true"
                             android:layout_gravity="bottom"
                             android:gravity="bottom">
 
@@ -131,12 +142,12 @@
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentRight="true"
                                 android:layout_gravity="bottom"
-                                android:layout_marginBottom="7dp"
                                 android:layout_marginTop="7dp"
+                                android:layout_marginBottom="7dp"
                                 android:clickable="false"
                                 android:gravity="center"
                                 android:text=""
-                                android:textAppearance="?android:attr/textAppearanceMedium"/>
+                                android:textAppearance="?android:attr/textAppearanceMedium" />
 
                             <View
                                 android:id="@+id/divstreakUpper2"
@@ -145,21 +156,21 @@
                                 android:layout_below="@+id/txtMainStatus"
                                 android:layout_marginLeft="7dp"
                                 android:layout_marginRight="7dp"
-                                android:background="?android:attr/listDivider"/>
+                                android:background="?android:attr/listDivider" />
 
                             <Button
                                 android:id="@+id/btnMeditate"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_below="@+id/divstreakUpper2"
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentRight="true"
-                                android:layout_below="@+id/divstreakUpper2"
                                 android:background="?android:attr/selectableItemBackground"
                                 android:onClick="pressMeditate"
-                                android:paddingBottom="10dp"
                                 android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
                                 android:text="@string/meditate"
-                                android:textSize="33sp"/>
+                                android:textSize="33sp" />
 
                             <View
                                 android:id="@+id/divstreakUpper"
@@ -168,21 +179,21 @@
                                 android:layout_below="@+id/btnMeditate"
                                 android:layout_marginLeft="7dp"
                                 android:layout_marginRight="7dp"
-                                android:background="?android:attr/listDivider"/>
+                                android:background="?android:attr/listDivider" />
 
                             <Button
                                 android:id="@+id/btnMeditationStreak"
                                 android:layout_width="fill_parent"
                                 android:layout_height="36dp"
+                                android:layout_below="@+id/divstreakUpper"
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentRight="true"
-                                android:layout_below="@+id/divstreakUpper"
                                 android:background="?android:attr/selectableItemBackground"
                                 android:gravity="center"
                                 android:onClick="pressMediNET"
                                 android:paddingBottom="1dp"
                                 android:text="@string/signInToMediNET"
-                                android:textAppearance="?android:attr/textAppearanceSmall"/>
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
 
                             <View
                                 android:id="@+id/divMainControls"
@@ -191,16 +202,16 @@
                                 android:layout_below="@+id/btnMeditationStreak"
                                 android:layout_marginLeft="7dp"
                                 android:layout_marginRight="7dp"
-                                android:background="?android:attr/listDivider"/>
+                                android:background="?android:attr/listDivider" />
 
                             <LinearLayout
                                 android:id="@+id/layMainControls"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="false"
+                                android:layout_below="@+id/divMainControls"
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentRight="true"
-                                android:layout_below="@+id/divMainControls"
+                                android:layout_alignParentBottom="false"
                                 android:gravity="bottom"
                                 android:orientation="horizontal">
 
@@ -212,15 +223,15 @@
                                     android:background="?android:attr/selectableItemBackground"
                                     android:onClick="openProgress"
                                     android:text="@string/progress"
-                                    android:textAppearance="?android:attr/textAppearanceSmall"/>
+                                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
                                 <View
                                     android:id="@+id/divMainControlsInner"
                                     android:layout_width="1dp"
                                     android:layout_height="fill_parent"
-                                    android:layout_marginBottom="7dp"
                                     android:layout_marginTop="7dp"
-                                    android:background="?android:attr/listDivider"/>
+                                    android:layout_marginBottom="7dp"
+                                    android:background="?android:attr/listDivider" />
 
                                 <Button
                                     android:id="@+id/btnCommunity"
@@ -231,15 +242,15 @@
                                     android:background="?android:attr/selectableItemBackground"
                                     android:onClick="pressCommunity"
                                     android:text="@string/community"
-                                    android:textAppearance="?android:attr/textAppearanceSmall"/>
+                                    android:textAppearance="?android:attr/textAppearanceSmall" />
                             </LinearLayout>
                         </RelativeLayout>
-                    </RelativeLayout>
+                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/layLowerViewsEditing"
                         android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:gravity="bottom"
                         android:orientation="vertical"
@@ -251,7 +262,7 @@
                             android:layout_height="1dp"
                             android:layout_marginLeft="7dp"
                             android:layout_marginRight="7dp"
-                            android:background="?android:attr/listDivider"/>
+                            android:background="?android:attr/listDivider" />
 
                         <RelativeLayout
                             android:id="@+id/layUseTimerControls"
@@ -286,15 +297,15 @@
                                         android:scrollHorizontally="true"
                                         android:singleLine="true"
                                         android:text="@string/timed"
-                                        tools:ignore="RtlSymmetry"/>
+                                        tools:ignore="RtlSymmetry" />
                                 </RelativeLayout>
 
                                 <View
                                     android:layout_width="1dp"
                                     android:layout_height="fill_parent"
-                                    android:layout_marginBottom="7dp"
                                     android:layout_marginTop="7dp"
-                                    android:background="?android:attr/listDivider"/>
+                                    android:layout_marginBottom="7dp"
+                                    android:background="?android:attr/listDivider" />
 
                                 <RelativeLayout
                                     android:id="@+id/layMainEndAt"
@@ -319,15 +330,15 @@
                                         android:scrollHorizontally="true"
                                         android:singleLine="true"
                                         android:text="@string/endAt"
-                                        tools:ignore="RtlSymmetry"/>
+                                        tools:ignore="RtlSymmetry" />
                                 </RelativeLayout>
 
                                 <View
                                     android:layout_width="1dp"
                                     android:layout_height="fill_parent"
-                                    android:layout_marginBottom="7dp"
                                     android:layout_marginTop="7dp"
-                                    android:background="?android:attr/listDivider"/>
+                                    android:layout_marginBottom="7dp"
+                                    android:background="?android:attr/listDivider" />
 
                                 <RelativeLayout
                                     android:id="@+id/layMainUntimed"
@@ -350,7 +361,7 @@
                                         android:scrollHorizontally="true"
                                         android:singleLine="true"
                                         android:text="@string/untimed"
-                                        tools:ignore="RtlSymmetry"/>
+                                        tools:ignore="RtlSymmetry" />
                                 </RelativeLayout>
                             </RadioGroup>
 
@@ -387,7 +398,7 @@
                             android:layout_height="1dp"
                             android:layout_marginLeft="7dp"
                             android:layout_marginRight="7dp"
-                            android:background="?android:attr/listDivider"/>
+                            android:background="?android:attr/listDivider" />
 
                         <LinearLayout
                             android:id="@+id/layPresets"
@@ -407,14 +418,14 @@
                                 android:scrollHorizontally="true"
                                 android:singleLine="true"
                                 android:text="@string/setPreset"
-                                android:textAppearance="?android:attr/textAppearanceSmall"/>
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
 
                             <View
                                 android:layout_width="1dp"
                                 android:layout_height="fill_parent"
-                                android:layout_marginBottom="7dp"
                                 android:layout_marginTop="7dp"
-                                android:background="?android:attr/listDivider"/>
+                                android:layout_marginBottom="7dp"
+                                android:background="?android:attr/listDivider" />
 
                             <Button
                                 android:id="@+id/btnPreset2"
@@ -428,14 +439,14 @@
                                 android:scrollHorizontally="true"
                                 android:singleLine="true"
                                 android:text="@string/setPreset"
-                                android:textAppearance="?android:attr/textAppearanceSmall"/>
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
 
                             <View
                                 android:layout_width="1dp"
                                 android:layout_height="fill_parent"
-                                android:layout_marginBottom="7dp"
                                 android:layout_marginTop="7dp"
-                                android:background="?android:attr/listDivider"/>
+                                android:layout_marginBottom="7dp"
+                                android:background="?android:attr/listDivider" />
 
                             <Button
                                 android:id="@+id/btnPreset3"
@@ -448,7 +459,7 @@
                                 android:onClick="pressPreset"
                                 android:singleLine="true"
                                 android:text="@string/setPreset"
-                                android:textAppearance="?android:attr/textAppearanceSmall"/>
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
 
                         </LinearLayout>
 
@@ -458,7 +469,7 @@
                             android:layout_height="1dp"
                             android:layout_marginLeft="7dp"
                             android:layout_marginRight="7dp"
-                            android:background="?android:attr/listDivider"/>
+                            android:background="?android:attr/listDivider" />
 
                         <LinearLayout
                             android:id="@+id/layBottomEditingControls"
@@ -473,15 +484,15 @@
                                 android:layout_weight="1"
                                 android:background="?android:attr/selectableItemBackground"
                                 android:onClick="cancelSetDuration"
-                                android:text="@string/cancel"/>
+                                android:text="@string/cancel" />
 
                             <View
                                 android:id="@+id/divMainEditing"
                                 android:layout_width="1dp"
                                 android:layout_height="fill_parent"
-                                android:layout_marginBottom="7dp"
                                 android:layout_marginTop="7dp"
-                                android:background="?android:attr/listDivider"/>
+                                android:layout_marginBottom="7dp"
+                                android:background="?android:attr/listDivider" />
 
                             <Button
                                 android:id="@+id/btnSetDuration"
@@ -490,7 +501,7 @@
                                 android:layout_weight="1"
                                 android:background="?android:attr/selectableItemBackground"
                                 android:onClick="setDuration"
-                                android:text="@string/confirm"/>
+                                android:text="@string/confirm" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>

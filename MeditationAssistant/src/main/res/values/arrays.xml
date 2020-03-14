@@ -11,6 +11,14 @@
         <item>@string/sessionDeleteLocally</item>
         <item>@string/sessionDeleteMediNET</item>
     </string-array>
+    <string-array name="timer_positions_values">
+        <item></item>
+        <item>center</item>
+    </string-array>
+    <string-array name="timer_positions">
+        <item>@string/top</item>
+        <item>@string/center</item>
+    </string-array>
     <string-array name="text_sizes_values">
         <item>tiny</item>
         <item>small</item>

@@ -18,6 +18,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.InputType;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -354,10 +355,10 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         btnPreset3.setOnLongClickListener(presetListener);
 
         updateVisibleViews(false);
-
         if (getMeditationAssistant().getEditingDuration()) {
             changeDuration(null);
         }
+        updateMeditate(false, false);
 
         if (getMeditationAssistant().getPrefs().getBoolean("pref_autosignin", false) && !getMeditationAssistant().getMediNETKey().equals("")) {
             getMeditationAssistant().connectOnce();
@@ -773,7 +774,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     public void updateVisibleViews(boolean fadeViews) {
         RadioGroup radgMainTimerMode = findViewById(R.id.radgMainTimerMode);
 
-        RelativeLayout layLowerViews = findViewById(R.id.layLowerViews);
+        LinearLayout layLowerViews = findViewById(R.id.layLowerViews);
         LinearLayout layLowerViewsEditing = findViewById(R.id.layLowerViewsEditing);
 
         if (getMeditationAssistant().getEditingDuration()) {
@@ -1627,6 +1628,20 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         }
 
         usetimepicker = getMeditationAssistant().getPrefs().getBoolean("pref_usetimepicker", false);
+
+        TextView txtDurationSeconds = findViewById(R.id.txtDurationSeconds);
+        if (getMeditationAssistant().getPrefs().getBoolean("pref_display_seconds", true)) {
+            txtDurationSeconds.setVisibility(View.VISIBLE);
+        } else {
+            txtDurationSeconds.setVisibility(View.GONE);
+        }
+
+        LinearLayout layTimer = findViewById(R.id.layTimer);
+        if (getMeditationAssistant().getPrefs().getString("pref_timer_position", "").equals("center")) {
+            layTimer.setGravity(Gravity.CENTER_VERTICAL);
+        } else {
+            layTimer.setGravity(Gravity.TOP);
+        }
 
         refreshAll();
 
