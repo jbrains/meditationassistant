@@ -31,6 +31,8 @@ will be meditating once a day, even if it's five or ten minutes out of your sche
 
 - [LiberaPay](https://liberapay.com/rocketnine.space) (preferred)
 - [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TEP9HT98XK7QA)
+- Bitcoin: `3Aq6xnpdxSByUtKGrJNdte1sMzj3mADWaz`
+- Ethereum: `0xae52394db367695bf3B3C2AFE725B6Aa5129Aa89`
 
 ## Get Support
 
