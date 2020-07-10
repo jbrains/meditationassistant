@@ -39,11 +39,9 @@ import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.nononsenseapps.filepicker.FilePickerActivity;
-import com.nononsenseapps.filepicker.Utils;
-
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -336,7 +334,7 @@ public class SettingsActivity extends PreferenceActivity {
                     new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                     PERMISSION_REQUEST_SOUND_READ_EXTERNAL_STORAGE);
         } else {
-            getMeditationAssistant().showFilePickerDialog(SettingsActivity.this, requestCode, FilePickerActivity.MODE_FILE);
+            getMeditationAssistant().showFilePickerDialog(SettingsActivity.this, requestCode, "openfile", "");
         }
     }
 
@@ -417,7 +415,7 @@ public class SettingsActivity extends PreferenceActivity {
             case PERMISSION_REQUEST_SOUND_READ_EXTERNAL_STORAGE: {
                 if ((grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    getMeditationAssistant().showFilePickerDialog(SettingsActivity.this, selectingPrefSound, FilePickerActivity.MODE_FILE);
+                    getMeditationAssistant().showFilePickerDialog(SettingsActivity.this, selectingPrefSound, "openfile", "");
                 } else if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                         Manifest.permission.READ_EXTERNAL_STORAGE)) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -474,7 +472,7 @@ public class SettingsActivity extends PreferenceActivity {
             case PERMISSION_REQUEST_EXPORT_WRITE_EXTERNAL_STORAGE: {
                 if ((grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    getMeditationAssistant().showFilePickerDialog(SettingsActivity.this, FILEPICKER_EXPORT_SESSIONS, FilePickerActivity.MODE_NEW_FILE);
+                    getMeditationAssistant().showFilePickerDialog(SettingsActivity.this, FILEPICKER_EXPORT_SESSIONS, "newfile", "sessions.csv");
                 } else if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -530,17 +528,10 @@ public class SettingsActivity extends PreferenceActivity {
         }
 
         if (requestCode == FILEPICKER_IMPORT_SESSIONS_UTC || requestCode == FILEPICKER_IMPORT_SESSIONS_LOCAL) {
-            List<Uri> files = Utils.getSelectedFilesFromResult(intent);
-            for (Uri uri : files) {
-                getMeditationAssistant().importSessions(SettingsActivity.this, uri, requestCode == FILEPICKER_IMPORT_SESSIONS_LOCAL);
-            }
-
+            getMeditationAssistant().importSessions(SettingsActivity.this, new File(getMeditationAssistant().filePickerResult(intent)), requestCode == FILEPICKER_IMPORT_SESSIONS_LOCAL);
             return;
         } else if (requestCode == FILEPICKER_EXPORT_SESSIONS) {
-            List<Uri> files = Utils.getSelectedFilesFromResult(intent);
-            for (Uri uri : files) {
-                getMeditationAssistant().exportSessions(SettingsActivity.this, uri);
-            }
+            getMeditationAssistant().exportSessions(SettingsActivity.this, new File(getMeditationAssistant().filePickerResult(intent)));
             return;
         }
 
@@ -559,10 +550,7 @@ public class SettingsActivity extends PreferenceActivity {
             return;
         }
 
-        List<Uri> files = Utils.getSelectedFilesFromResult(intent);
-        for (Uri uri : files) {
-            getMeditationAssistant().getPrefs().edit().putString(pref, uri.toString()).apply();
-        }
+        getMeditationAssistant().getPrefs().edit().putString(pref, getMeditationAssistant().filePickerResult(intent)).apply();
 
         if (requestCode == FILEPICKER_SELECT_SOUND_START) {
             initialSoundChangeStart = true;
@@ -727,7 +715,7 @@ public class SettingsActivity extends PreferenceActivity {
                                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                                 PERMISSION_REQUEST_EXPORT_WRITE_EXTERNAL_STORAGE);
                     } else {
-                        getMeditationAssistant().showFilePickerDialog(SettingsActivity.this, FILEPICKER_EXPORT_SESSIONS, FilePickerActivity.MODE_NEW_FILE);
+                        getMeditationAssistant().showFilePickerDialog(SettingsActivity.this, FILEPICKER_EXPORT_SESSIONS, "newfile", "sessions.csv");
                     }
                     return false;
                 }

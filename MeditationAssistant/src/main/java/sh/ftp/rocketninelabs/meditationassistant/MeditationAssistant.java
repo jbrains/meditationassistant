@@ -10,6 +10,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -1147,6 +1148,12 @@ public class MeditationAssistant extends Application {
                         + Build.VERSION.SDK_INT
         );
 
+        if (Build.VERSION.SDK_INT >= 23) {
+            PackageManager pm = getPackageManager();
+            pm.setComponentEnabledSetting(new ComponentName(this, FilePickerActivity.class),
+                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        }
+
         if (getPrefs().getBoolean("pref_vibrate", false)) {
             getPrefs()
                     .edit()
@@ -1945,15 +1952,51 @@ public class MeditationAssistant extends Application {
         return null;
     }
 
-    public void showFilePickerDialog(Activity activity, int resultCode, int mode) {
-        Intent i = new Intent(activity, FilePickerActivity.class);
-        i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false);
-        i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true);
-        i.putExtra(FilePickerActivity.EXTRA_MODE, mode);
-        i.putExtra(FilePickerActivity.EXTRA_START_PATH, Environment.getExternalStorageDirectory().getPath());
-        i.putExtra(FilePickerActivity.EXTRA_PATHS, mode);
+    public void showFilePickerDialog(Activity activity, int requestCode, String action, String defaultName) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            Intent intent = new Intent()
+                    .setType("*/*");
 
-        activity.startActivityForResult(i, resultCode);
+            if (action.equals("openfile")) {
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+            } else if (action.equals("newfile")) {
+                intent.setAction(Intent.ACTION_CREATE_DOCUMENT);
+                intent.putExtra(Intent.EXTRA_TITLE, defaultName);
+            }
+
+            activity.startActivityForResult(Intent.createChooser(intent, "Select a file"), requestCode);
+        } else {
+            Intent i = new Intent(activity, FilePickerActivity.class);
+            i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false);
+            i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true);
+            i.putExtra(FilePickerActivity.EXTRA_START_PATH, Environment.getExternalStorageDirectory().getPath());
+
+            if (action.equals("openfile")) {
+                i.putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_FILE);
+                i.putExtra(FilePickerActivity.EXTRA_PATHS, FilePickerActivity.MODE_FILE);
+            } else if (action.equals("newfile")) {
+                i.putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_NEW_FILE);
+                i.putExtra(FilePickerActivity.EXTRA_PATHS, FilePickerActivity.MODE_NEW_FILE);
+            }
+
+            activity.startActivityForResult(i, requestCode);
+        }
+    }
+
+    public String filePickerResult(Intent intent) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            File file = FileUtils.getFile(this, intent.getData());
+            if (file != null && file.exists()) {
+                return file.toString();
+            }
+        } else {
+            List<Uri> files = Utils.getSelectedFilesFromResult(intent);
+            for (Uri uri : files) {
+                return uri.toString();
+            }
+        }
+
+        return "";
     }
 
     public void askToDonate(Activity activity) {
@@ -1988,27 +2031,22 @@ public class MeditationAssistant extends Application {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                showFilePickerDialog(activity, SettingsActivity.FILEPICKER_IMPORT_SESSIONS_UTC, FilePickerActivity.MODE_FILE);
+                                showFilePickerDialog(activity, SettingsActivity.FILEPICKER_IMPORT_SESSIONS_UTC, "openfile", "");
                             }
                         })
                 .setNegativeButton(getString(R.string.local),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                showFilePickerDialog(activity, SettingsActivity.FILEPICKER_IMPORT_SESSIONS_LOCAL, FilePickerActivity.MODE_FILE);
+                                showFilePickerDialog(activity, SettingsActivity.FILEPICKER_IMPORT_SESSIONS_LOCAL, "openfile", "");
                             }
                         })
                 .show();
     }
 
-    public void importSessions(Activity activity, Uri uri, boolean useLocalTimeZone) {
-        if (uri == null) {
-            return;
-        }
-
+    public void importSessions(Activity activity, File file, boolean useLocalTimeZone) {
         final Pattern lengthPattern = Pattern.compile("^[0-9]{1,2}:[0-9][0-9]$");
 
-        File file = Utils.getFileForUri(uri);
         FileReader inputfile;
         try {
             inputfile = new FileReader(file);
@@ -2176,13 +2214,7 @@ public class MeditationAssistant extends Application {
         }
     }
 
-    public void exportSessions(Activity activity, Uri uri) {
-        File file = Utils.getFileForUri(uri);
-        try {
-            file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void exportSessions(Activity activity, File file) {
         try {
             FileWriter outputfile = new FileWriter(file);
             CSVWriter writer = new CSVWriter(outputfile);
@@ -2224,6 +2256,7 @@ public class MeditationAssistant extends Application {
                         Uri selectedUri = Uri.parse(file.getParent());
                         Intent intent = new Intent(Intent.ACTION_VIEW);
                         intent.setDataAndType(selectedUri, "resource/folder");
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         if (intent.resolveActivityInfo(getPackageManager(), 0) != null) {
                             startActivity(intent);
                         } else {

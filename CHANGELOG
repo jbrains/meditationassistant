@@ -1,3 +1,6 @@
+1.6.0:
+- Fix open/save file dialog
+
 1.5.9:
 - Add resources menu linking to how to meditate, /r/meditation, an overview of MediNET and replaying the tutorial
 - Add presets to tutorial
