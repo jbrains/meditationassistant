@@ -674,7 +674,7 @@ public class MeditationAssistant extends Application {
         // Vibrate device
         if (!skipVibration) {
             String vibration = prefs.getString("pref_meditation_vibrate_" + label, "");
-            if (!vibration.equals("none")) {
+            if (!vibration.isEmpty()) {
                 if (vibration.equals("custom")) {
                     vibrateDevice(prefs.getString("pref_meditation_vibrate_" + label + "_custom", ""));
                 } else {
