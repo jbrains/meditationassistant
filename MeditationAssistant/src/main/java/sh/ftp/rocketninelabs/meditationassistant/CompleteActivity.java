@@ -145,10 +145,7 @@ public class CompleteActivity extends Activity {
                     break;
             }
 
-            String finishSoundPath = getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish", "");
-            if (!manual) {
-                getMeditationAssistant().notifySession(2, false, false);
-            } else {
+            if (manual) {
                 getMeditationAssistant().restoreVolume();
             }
         } else {
