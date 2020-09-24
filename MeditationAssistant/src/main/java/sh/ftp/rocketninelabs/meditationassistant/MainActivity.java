@@ -1889,9 +1889,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                 }
 
                 if (fullWakeUp) {
-                    if (getMeditationAssistant().getPrefs().getBoolean("pref_softfinish", false)) {
-                        getMeditationAssistant().notifySession(2, false, false);
-                    } else {
+                    getMeditationAssistant().notifySession(2, false, false);
+                    if (!getMeditationAssistant().getPrefs().getBoolean("pref_softfinish", false)) {
                         Intent openAlarmReceiverActivity = new Intent(getApplicationContext(), CompleteActivity.class);
                         openAlarmReceiverActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         openAlarmReceiverActivity.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
