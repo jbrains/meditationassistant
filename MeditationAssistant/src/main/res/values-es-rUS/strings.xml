@@ -80,4 +80,5 @@
         <item quantity="other">días de meditación</item>
     </plurals>
     <!-- Widgets -->
+    <string name="sendEmail">Enviar un correo electrónico</string>
 </resources>

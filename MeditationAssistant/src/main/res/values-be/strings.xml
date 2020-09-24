@@ -1,78 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-
     <string name="yes">Так</string>
     <string name="no">Не</string>
-
-
     <string name="page">Старонка</string>
     <string name="back">Назад</string>
     <string name="forward">Наперад</string>
-
-
     <!-- Main Activity -->
-
-
     <string name="tapToSkip">Прапусціць</string>
-
-
     <string name="resumeOrEnd">Працягнуць або скончыць</string>
     <string name="pausedNotification">Сеанс на паўзе, стрымлівай каб скончыць</string>
     <string name="mediNETConnecting">Злучэнне...</string>
     <string name="mediNETConnected">Злучэнне да MediNET</string>
-
-
     <!-- About -->
-
-
     <string name="share">Падзяліцца</string>
-
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
-
-
     <!-- Sessions -->
     <string name="session">Сеанс</string>
-
-
     <!-- Session complete -->
-
-
     <string name="sessionSaved">Сеанс захован</string>
-
-
     <!-- Sign In -->
-
-
     <!-- Progress -->
-
-
     <string name="reminderText">Маеш момант?</string>
-
     <!-- Settings -->
-
-    <string name="pref_vibrate">Вібрацыя</string>
-
-
     <string name="pref_softfinish">Бясконцы сеанс</string>
-
-
     <string name="settings">Налады</string>
-
-
     <string name="pref_delay">Рэха</string>
-
-
     <!-- MediNET -->
-
-
     <string name="save">Захаваць</string>
-
-
     <string name="signInToMediNET">Увайсці ў MediNET</string>
-
-
     <!-- Widgets -->
-
-
 </resources>

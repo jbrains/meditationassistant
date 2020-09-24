@@ -25,8 +25,8 @@
     <string name="tryAgain">पुनः प्रयास करें</string>
     <!-- Main Activity -->
     <string name="timer">टाइमर</string>
-    <string name="timerHelp">टाइमर वर्तमान में 15 मिनट पर सेट है। आप अवधि बदल सकते हैं, दिन के एक निश्चित समय पर समाप्त कर सकते हैं, या अलार्म को पूरी तरह से निष्क्रिय कर सकते हैं। इन विकल्पों को देखने के लिए अब टाइमर टैप करें।</string>
-    <string name="settingsHelp">इस एप्लिकेशन में कई सुविधाएं और अनुकूलन शामिल हैं, जैसे स्वचालित रूप से आपके डिवाइस को चुप करना और ध्यान के लिए दैनिक अनुस्मारक प्रदान करना। इन विकल्पों को देखने के लिए अब सेटिंग्स आइकन टैप करें।</string>
+    <string name="timerHelp">एक संक्षिप्त शिक्षण में आपका स्वागत है। यह सत्र टाइमर है। टाइमर मोड और अवधि परिवर्तित करने के लिए इसे अभी दबाएँ।</string>
+    <string name="settingsHelp">इस एप्लिकेशन में कई विशेषताएँ और अनुकूलन सम्मिलित हैं। इन विकल्पों को देखने के लिए सेटिंग आइकन पर टैप करें।</string>
     <string name="medinetHelp">अपने सत्र ऑनलाइन सहेजने के लिए MediNET में साइन इन करें। यदि आप अपना डेटा खो देते हैं तो आप बाद में अपने सत्र आयात कर सकते हैं। यह सुविधा पूरी तरह से वैकल्पिक है, स्थानीय स्तर पर सत्रों को संग्रहीत करने से आपके अनुभव में बाधा नहीं आयेगी। यहाँ पर यह ट्यूटोरियल समाप्त होता है। मुझे उम्मीद है कि ध्यान सहायक आपके अभ्यास के लिए फायदेमंद होगा।</string>
     <string name="cancel">रद्द करें</string>
     <string name="set">स्थापित</string>
@@ -60,7 +60,7 @@
     <string name="version">संस्करण %s</string>
     <string name="translate">अनुवाद करें</string>
     <string name="donate">दान करें</string>
-    <string name="howToMeditate">ध्यान कैसे करें</string>
+    <string name="howToMeditate">ध्यान कैसे लगाएँ</string>
     <string name="share">शेयर</string>
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
     <string name="invitationBlurb">ध्यान सहायक आपके अभ्यास के लिए एक पूरी तरह से विशेषीकृत साथी है।</string>
@@ -108,4 +108,32 @@
     <!-- MediNET -->
     <!-- Widgets -->
     <!-- Meta -->
+    <string name="whatIsMediNET">मेडिनेट अवलोकन</string>
+    <string name="meditationSubreddit">रेडिट समुदाय</string>
+    <string name="resources">संसाधन</string>
+    <string name="sessionPaused">सत्र थम गया</string>
+    <string name="resume">पुनरारंभ</string>
+    <string name="sessionExportFailed">सत्र निर्यात करने में असमर्थ</string>
+    <string name="edit">संपादन</string>
+    <string name="sessionEdited">सत्र संपादित किया गया</string>
+    <string name="sessionAdded">सत्र जोड़ा गया</string>
+    <string name="editSession">सत्र संपादित करें</string>
+    <string name="postUpdatedSession">मेडिनेट पर अद्यतन सत्र पोस्ट करें\?</string>
+    <string name="sourceRepository">स्रोत कोड भंडार</string>
+    <string name="chooseDonationMethod">कृपया चुनें कि आप कैसे दान करना चाहते हैं।
+\n
+\nलाइबेरापे को कर्ताओं द्वारा पसंद किया जाता है और यह अधिक देशों और मुद्राओं का समर्थन करता है।</string>
+    <string name="tapToLearnMore">अधिक जानने के लिए कहीं भी टैप करें</string>
+    <string name="replayTutorial">शिक्षण पुनः चलाएँ</string>
+    <string name="pattern">प्रतिरूप</string>
+    <string name="configureWidget">विजेट का विन्यास करें</string>
+    <string name="setVibrationTip">वाइब्रेटर को चालू या निष्क्रिय करने के समय को मिलीसेकंड की संख्या में अल्पविराम द्वारा अलग करते हुए अंकित करें।</string>
+    <string name="editTimerHelp">आपका सत्र एक विशिष्ट अवधि का हो सकता है, दिन के एक विशिष्ट समय तक का हो सकता है, या किसी भी समय के अनुरूप नहीं हो सकता है ।
+\n
+\nप्रीसेट का उपयोग सामान्य विन्यासों का संग्रहण करने के लिए किया जा सकता है। वर्तमान सत्र अवधि को स्मरण रखने के लिए एक प्रीसेट को दबाकर रखें। ध्वनियों और अन्य सेटिंग्स को प्रीसेट सेटिंग में सक्षम करके प्रीसेट द्वारा भी स्मरित किया जा सकता है।
+\n
+\n\"ठीक\" टैप करने के बाद, प्रचलन में रहने के लिए रद्द करें या पुष्टि करें।</string>
+    <string name="permissionRequired">यह अनुमति आवश्यक है।</string>
+    <string name="disableBatteryOptimizations">ध्यान सहायक पृष्ठभूमि में चलना चाहिए</string>
+    <string name="warning">चेतावनी</string>
 </resources>

@@ -119,7 +119,6 @@
     <string name="reminderText">Чи маєте ви трохи часу?</string>
     <!-- Settings -->
     <string name="meditation">Медитація</string>
-    <string name="pref_vibrate">Вібрація</string>
     <string name="pref_vibrate_summary">Відбувається на початку, у проміжках та вкінці медитації</string>
     <string name="pref_vibrate_reminder_summary">Щоденний нагадувач буде вібрувати приладом.</string>
     <string name="pref_sound_reminder">Відтворити звук</string>

@@ -54,7 +54,7 @@
     <string name="unlimited">No limitat</string>
     <string name="presetLabelEndAt">Fi %s</string>
     <!-- About -->
-    <string name="sendEmail">Envia email</string>
+    <string name="sendEmail">Envia correu-e</string>
     <string name="version">Versió %s</string>
     <string name="translate">Tradueix</string>
     <string name="donate">Donat</string>

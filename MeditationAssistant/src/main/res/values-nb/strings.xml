@@ -24,8 +24,8 @@
     <string name="tryAgain">Prøv igjen</string>
     <!-- Main Activity -->
     <string name="timer">Tidtaker</string>
-    <string name="timerHelp">Akkurat nå er tidtakeren stilt inn på 15 minutter. Du kan endre varigheten, sette den til å stoppe på et visst klokkeslett eller slå av alarmen helt. Trykk på tidtakeren nå for å se disse mulighetene.</string>
-    <string name="settingsHelp">Denne applikasjonen tilbyr mange funksjoner og tilpasningsmuligheter, blant annet å sette enheten i stillemodus automatisk og å gi deg daglig påminnelse om å meditere. Trykk på innstillingsikonet nå for å se disse mulighetene.</string>
+    <string name="timerHelp">Velkommen til en kort veiledning. Dette er økt-tidtakeren. Trykk på den nå for å endre modus og varighet.</string>
+    <string name="settingsHelp">Denne applikasjonen tilbyr mange funksjoner og tilpasningsmuligheter. Trykk på innstillingsikonet nå for å se disse mulighetene.</string>
     <string name="medinetHelp">Logg på MediNET for å lagre øktene dine på nett. Hvis du gjør det kan du importere øktene dine igjen hvis de blir borte fra enheten din. Denne funksjonen er helt valgfri; å lagre øktene lokalt vil ikke gå ut over bruksopplevelsen.\n\nOg med det er denne introduksjonen over. Jeg håper at du får mye ut av Meditasjonsassistenten.</string>
     <string name="cancel">Avbryt</string>
     <string name="set">Sett</string>
@@ -56,8 +56,8 @@
     <string name="installFileManager">Installer en filbehandler</string>
     <string name="disableBatteryOptimizations">Meditation Assistant må kjøre i bakgrunnen</string>
     <string name="label">Etikett</string>
-    <string name="setTimerDurationHint">Skriv inn gyldig varighet (f.eks 0:22)</string>
-    <string name="setTimerEndAtHint">Skriv inn gyldig tid (f.eks 4:20)</string>
+    <string name="setTimerDurationHint">Skriv inn gyldig varighet (f.eks. 0:22)</string>
+    <string name="setTimerEndAtHint">Skriv inn gyldig tid (f.eks. 4:20)</string>
     <string name="invalidEndAt">Ugyldig tid å sluttføre økt</string>
     <string name="timed">Tidsavgrenset</string>
     <string name="endAt">Sluttfør</string>
@@ -134,7 +134,6 @@
     <string name="longestDuration">Lengste varighet</string>
     <string name="reminderText">Har du et øyeblikk\?</string>
     <string name="meditation">Meditasjon</string>
-    <string name="pref_vibrate">Vibrer</string>
     <string name="pref_vibrate_summary">Inntreffer på begynnelsen, i intervallene, og på slutten av meditasjon</string>
     <string name="pref_vibrate_reminder_summary">Daglig påminnelse vil vibrere enheten</string>
     <string name="pref_sound_reminder">Spill lyd</string>
@@ -191,7 +190,7 @@
     <string name="uploadsessions">Last opp økter</string>
     <string name="uploadsessions_summary">Last opp lokale økter</string>
     <string name="miscellaneous">Ymse</string>
-    <string name="pref_text_size">Tekststørrelse for tidtaker</string>
+    <string name="pref_text_size">Tidtaker-størrelse</string>
     <string name="tiny">Knøtt</string>
     <string name="small">Liten</string>
     <string name="normal">Normal</string>
@@ -311,4 +310,33 @@
     <string name="widgetstreak2x1" tools:ignore="UnusedResources">Serie 2x1</string>
     <string name="widgetstreak3x1" tools:ignore="UnusedResources">Serie 3x1</string>
     <string name="pref_autosave">Autolagring</string>
+    <string name="setVibrationTip">Skriv antall millisekunder å skru vibrasjon på eller av, kommainndelt.</string>
+    <string name="editTimerHelp">Økten din kan ha en gitt varighet, kan vare til et gitt tidspunkt på dagen, eller kan gå uten tidsavgrensing.
+\n
+\n
+\nForhåndsinnstillinger kan brukes til å lagre vanlige oppsett. Trykk og hold for å huske nåværende øktvarighet. Lyd og andre innstillinger kan også huskes gjennom forhåndsinnstillinger ved å skru dem på i \"Forhåndsinnstillinger.
+\n
+\nEtter å ha trykket \"OK\", trykk \"Avbryt\" eller \"Bekreft\" for å fortsette.</string>
+    <string name="center">Midten</string>
+    <string name="top">Topp</string>
+    <string name="timerPosition">Tidsurposisjon</string>
+    <string name="custom">Egendefinert</string>
+    <string name="labelLong">Lang</string>
+    <string name="labelMedium">Middels</string>
+    <string name="labelShort">Kort</string>
+    <string name="pref_meditation_vibrate_finish">Fullfør vibrering</string>
+    <string name="pref_meditation_vibrate_interval">Vibreringsintervall</string>
+    <string name="pref_meditation_vibrate_start">Start vibrering</string>
+    <string name="vibrate">Vibrer</string>
+    <string name="resources">Ressurser</string>
+    <string name="pattern">Mønster</string>
+    <string name="whatIsMediNETHelp">MediNET er et nettbasert meditasjonsøktdepot og der-tilhørende gemenskap.
+\n
+\nDu kan velge å lagre dine økter i MediNet for å forhindre datatap, og/eller dele din framdrift med andre på nett.
+\n
+\nDu kan istedenfor velg å lagre øktdata kun på enheten.</string>
+    <string name="replayTutorial">Spill av veiledning igjen</string>
+    <string name="sourceRepository">Kildekodedepot</string>
+    <string name="whatIsMediNET">MediNET-oversikt</string>
+    <string name="meditationSubreddit">Reddit-gemenskap</string>
 </resources>

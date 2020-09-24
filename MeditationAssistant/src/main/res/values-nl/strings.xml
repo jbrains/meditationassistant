@@ -31,7 +31,7 @@
     <string name="progress">Voortgang</string>
     <string name="setPreset">Instelling zetten</string>
     <!-- About -->
-    <string name="sendEmail">Verstuur email</string>
+    <string name="sendEmail">Verstuur e-mail</string>
     <string name="version">Versie %s</string>
     <string name="translate">Vertaal</string>
     <string name="share">Delen</string>
@@ -66,7 +66,6 @@
     <string name="daySaturdayShort">Zat</string>
     <string name="daySundayShort">Zon</string>
     <!-- Settings -->
-    <string name="pref_vibrate">Trillen</string>
     <string name="settings">Instellingen</string>
     <string name="disabled">Disabled</string>
     <string name="noSpecialBehavior">Normaal</string>

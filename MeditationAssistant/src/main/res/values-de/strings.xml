@@ -21,13 +21,13 @@
     <string name="installFileManager">Bitte installieren Sie einen Dateimanager</string>
     <!-- Permissions -->
     <string name="permissionRequest">Berechtigungsanfrage</string>
-    <string name="permissionRequestNotificationControl">Bitte gewähren Sie auf dem nächsten Bildschirm Zugriff um die Funktion \'Nicht stören\' kontrollieren zu können.</string>
+    <string name="permissionRequestNotificationControl">Bitte gewähren Sie auf dem nächsten Bildschirm Zugriff um die Funktion „Nicht stören“ kontrollieren zu können.</string>
     <string name="deny">Verweigern </string>
     <string name="tryAgain">Erneut versuchen</string>
     <!-- Main Activity -->
     <string name="timer">Timer</string>
-    <string name="timerHelp">Der Timer ist aktuell auf 15 Minuten gesetzt. Sie können die Dauer anpassen, zu einer definierten Zeit eines Tages beenden oder den Alarm komplett deaktivieren. Um diese Optionen zu sehen, tippen Sie den Timer an.</string>
-    <string name="settingsHelp">Diese Anwendung beinhaltet viele Funktionen und Anpassungsmöglichkeiten, wie z. B. automatisches Stummschalten des Gerätes und tägliche Erinnerungen an die Meditation. Tippen Sie das Einstellungssymbol an, um diese Optionen zu sehen.</string>
+    <string name="timerHelp">Willkommen zu einem kurzem Tutorial. Das ist der Sitzungs Timer. Tippe ihn an um den Timer Modus und die Dauer einzustellen.</string>
+    <string name="settingsHelp">Diese Anwendung beinhaltet zahlreiche Funktionen und Anpassungsmöglichkeiten. Tippen Sie das Einstellungssymbol an, um diese Optionen zu sehen.</string>
     <string name="medinetHelp">Melden Sie sich bei MediNET an, um Ihre Sitzungen online zu speichern. Falls Sie später Ihre Daten verlieren sollten, können Sie sie wieder importieren. Diese Funktion ist komplett optional. Wenn Sie Ihre Sitzungen lokal speichern, werden Sie ansonsten keine Nachteile haben.\n\nHiermit ist das Tutorial abgeschlossen. Ich hoffe, dass Meditation Assistent Ihnen beim Praktizieren hilfreich ist. </string>
     <string name="cancel">Abbrechen</string>
     <string name="set">Einstellen</string>
@@ -132,7 +132,6 @@
     <string name="reminderText">Hast du einen Moment Zeit?</string>
     <!-- Settings -->
     <string name="meditation">Meditation</string>
-    <string name="pref_vibrate">Vibrieren</string>
     <string name="pref_vibrate_summary">Findet zu Beginn, bei Intervallen und am Ende der Meditation statt</string>
     <string name="pref_vibrate_reminder_summary">Die tägliche Erinnerung lässt das Gerät vibrieren</string>
     <string name="pref_sound_reminder">Spiele Sound</string>
@@ -191,7 +190,7 @@
     <string name="uploadsessions">Sitzungen hochladen</string>
     <string name="uploadsessions_summary">Lokale Sitzungen hochladen</string>
     <string name="miscellaneous">Verschiedenes</string>
-    <string name="pref_text_size">Textgröße des Timers</string>
+    <string name="pref_text_size">Größe des Timers</string>
     <string name="tiny">Winzig</string>
     <string name="small">Klein</string>
     <string name="normal">Normal</string>
@@ -316,4 +315,32 @@ Entwickelt von Rocket Nine Laboratories: https://rocketnine.space/</string>
     <string name="widgetstreak2x1" tools:ignore="UnusedResources">Streifen 2x1</string>
     <string name="widgetstreak3x1" tools:ignore="UnusedResources">Streifen 3x1</string>
     <string name="pref_autosave">Autospeichern</string>
+    <string name="resources">Ressourcen</string>
+    <string name="meditationSubreddit">Reddit-Gemeinschaft</string>
+    <string name="replayTutorial">Tutorial wiederholen</string>
+    <string name="sourceRepository">Archiv des Quellcodes</string>
+    <string name="whatIsMediNET">MediNET-Übersicht</string>
+    <string name="setVibrationTip">Geben Sie die Anzahl der Millisekunden ein, um die Vibration ein- oder auszuschalten, getrennt durch Kommata.</string>
+    <string name="pattern">Muster</string>
+    <string name="vibrate">Vibrieren</string>
+    <string name="pref_meditation_vibrate_start">Vibration starten</string>
+    <string name="pref_meditation_vibrate_interval">Intervallvibration</string>
+    <string name="labelShort">Kurz</string>
+    <string name="labelMedium">Medium</string>
+    <string name="labelLong">Lang</string>
+    <string name="custom">Benutzerdefiniert</string>
+    <string name="timerPosition">Position des Timers</string>
+    <string name="top">Oben</string>
+    <string name="center">In der Mitte</string>
+    <string name="editTimerHelp">Deine Sitzung kann eine bestimmte Dauer besitzen, oder bis zu einem bestimmten Zeitpunkt des Tages dauern, oder auch gar nicht zeitgesteuert sein.
+\n
+\nDie Voreinstellungen können verwendet werden um häufig verwendete Konfigurationen zu speichern. Drücke und halte eine Voreinstellung um die aktuelle Sitzungsdauer zu speichern. Geräusche und andere Einstellungen können auch gespeichert werden, wenn dies in den Einstellungen aktiviert wurde.
+\n
+\nNach dem Drücken von OK, Abbrechen oder Bestätigen drücken um fortzufahren.</string>
+    <string name="whatIsMediNETHelp">MediNET ist eine online Meditationsgemeinschaft und Sammelspeicher für Meditationssitzungen.
+\n
+\nSie können sich dazu entscheiden ihre Sitzungen auf MediNET zu sichern um Datenverlust vorzubeugen oder ihren Fortschritt mit anderen online zu teilen.
+\n
+\nStattdessen können sie sich dazu entscheiden ihre Sitzungsdaten ausschließlich auf dem Gerät zu speichern.</string>
+    <string name="pref_meditation_vibrate_finish">Vibration beenden</string>
 </resources>

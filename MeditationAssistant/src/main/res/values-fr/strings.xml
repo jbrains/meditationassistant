@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="appNameShort">Assistant de Méditation</string>
+    <string name="appNameShort">Assistant de méditation</string>
     <string name="about">À propos</string>
     <string name="yes">Oui</string>
     <string name="no">Non</string>
@@ -20,13 +20,13 @@
     <string name="installFileManager">Veuillez installer un gestionnaire de fichiers</string>
     <!-- Permissions -->
     <string name="permissionRequest">Demande d\'autorisation</string>
-    <string name="permissionRequestNotificationControl">À l\'écran suivant, merci d\'autoriser l\'accès à «Ne pas déranger» pour un contrôle de cette fonction par l\'Assistant de Méditation.</string>
+    <string name="permissionRequestNotificationControl">À l\'écran suivant, merci d\'autoriser l\'accès à « Ne pas déranger » pour un contrôle de cette fonction par l\'Assistant de méditation.</string>
     <string name="deny">Refuser</string>
     <string name="tryAgain">Essayez à nouveau</string>
     <!-- Main Activity -->
     <string name="timer">Minuteur</string>
-    <string name="timerHelp">Le minuteur est actuellement réglé sur 15 minutes. Vous pouvez changer la durée, indiquer une heure spécifique pour la fin de méditation, ou bien désactiver complètement le minuteur. Appuyez maintenant sur le minuteur pour voir ces options.</string>
-    <string name="settingsHelp">Cette application contient de nombreuses fonctionnalités et de nombreux réglages, comme de pouvoir mettre automatiquement votre appareil en mode silencieux ou fournir une notification quotidienne pour méditer. Appuyez maintenant sur l\'icône des paramètres pour voir ces options.</string>
+    <string name="timerHelp">Bienvenue dans un bref tutoriel. Ceci est le minuteur de la session. Appuyez dessus pour changer de mode et de durée.</string>
+    <string name="settingsHelp">Cette application inclut de nombreuses fonctionnalités et d\'options personnalisables. Appuyez sur l\'icône Paramètres pour voir ces options.</string>
     <string name="medinetHelp">Inscrivez vous sur MediNET pour sauvegarder vos séances en ligne. Vous pourrez réimporter vos séances plus tard si vous perdez vos données. Cette fonctionnalité est entièrement optionnelle, enregistrer vos séances localement n\'entravera pas votre utilisation.
 \n
 \n Ceci termine le didacticiel. J\'espère que l\'Assistant de méditation sera bénéfique à votre pratique.</string>
@@ -58,7 +58,7 @@
     <string name="unlimited">Illimité</string>
     <string name="presetLabelEndAt">Fin %s</string>
     <!-- About -->
-    <string name="sendEmail">Envoyer un e-mail</string>
+    <string name="sendEmail">Envoyer un courriel</string>
     <string name="version">Version %s</string>
     <string name="translate">Traduire</string>
     <string name="donate">Faire un don</string>
@@ -126,13 +126,12 @@
     <string name="reminderText">Prenez un instant pour méditer ?</string>
     <!-- Settings -->
     <string name="meditation">Méditation</string>
-    <string name="pref_vibrate">Vibrer</string>
     <string name="pref_vibrate_summary">Se produit au début, aux étapes intermédiaires et à la fin de la méditation</string>
     <string name="pref_vibrate_reminder_summary">La notification quotidienne fera vibrer l\'appareil</string>
     <string name="pref_sound_reminder">Jouer la sonnerie</string>
     <string name="pref_sound_reminder_summary">La sonnerie par défaut de la notification sera jouée</string>
     <string name="pref_softfinish">Séance infinie</string>
-    <string name="pref_softfinish_summary">Laisse la minuterie se dérouler</string>
+    <string name="pref_softfinish_summary">Laisser le minuteur en marche</string>
     <string name="settings">Réglages</string>
     <string name="disabled">Désactivé</string>
     <string name="none">Aucun</string>
@@ -183,7 +182,7 @@
     <string name="uploadsessions">Envoyer les séances</string>
     <string name="uploadsessions_summary">Envoyer les séances locales</string>
     <string name="miscellaneous">Divers</string>
-    <string name="pref_text_size">Taille du texte du minuteur</string>
+    <string name="pref_text_size">Taille du minuteur</string>
     <string name="tiny">Minuscule</string>
     <string name="small">Petit</string>
     <string name="normal">Normal</string>
@@ -244,7 +243,7 @@
     <!-- Widgets -->
     <!-- Meta -->
     <string name="warning">Avertissement</string>
-    <string name="disableBatteryOptimizations">Assistant de Méditation doit s\'exécuter en arrière-plan</string>
+    <string name="disableBatteryOptimizations">Assistant de méditation doit s\'exécuter en arrière-plan</string>
     <string name="tapToLearnMore">Appuyez quelque part pour en savoir plus</string>
     <string name="postUpdatedSession">Publier la séance mise à jour sur MediNET \?</string>
     <string name="editSession">Modifier la séance</string>
@@ -308,4 +307,38 @@
     <string name="download">Téléchargement</string>
     <string name="configureWidget">Configurer le widget</string>
     <string name="pref_autosave">Sauvegarde automatique</string>
+    <string name="widgetpreset1x1" tools:ignore="UnusedResources">Modèle 1×1</string>
+    <string name="widgetpreset2x1" tools:ignore="UnusedResources">Modèle 2×1</string>
+    <string name="widgetpreset3x1" tools:ignore="UnusedResources">Modèle 3×1</string>
+    <string name="widgetstreak1x1" tools:ignore="UnusedResources">Série 1×1</string>
+    <string name="widgetstreak2x1" tools:ignore="UnusedResources">Série 2×1</string>
+    <string name="widgetstreak3x1" tools:ignore="UnusedResources">Série 3×1</string>
+    <string name="resources">Ressources</string>
+    <string name="meditationSubreddit">Communauté Reddit</string>
+    <string name="replayTutorial">Revoir le tutoriel</string>
+    <string name="sourceRepository">Dépôt du code source</string>
+    <string name="editTimerHelp">Votre session peut être d\'une durée déterminée, peut durer jusqu\'à une heure de la journée spécifique ou peut ne pas être chronométrée du tout.
+\n
+\nLes modèles peuvent être utilisés pour stocker des configurations communes. Appuyez et maintenez un modèle pour mémoriser la durée de la session actuelle. Les sons et les autres paramètres peuvent aussi être mémorisés par les modèles en les autorisant dans les paramètres des modèles.
+\n
+\nAprès avoir appuyé sur OK, appuyez sur Annuler ou Confirmer pour continuer.</string>
+    <string name="whatIsMediNET">Aperçu MediNET</string>
+    <string name="whatIsMediNETHelp">MediNET est un dépôt de sessions de méditation et une communauté en ligne.
+\n
+\nVous pouvez choisir de stocker vos sessions sur MediNET pour éviter des pertes de données ou pour partager vos progrès avec d\'autres en ligne.
+\n
+\nVous pouvez aussi choisir de stocker vos sessions uniquement sur votre appareil.</string>
+    <string name="setVibrationTip">Entrez le nombre de millisecondes pour allumer ou éteindre le vibreur, séparé par des virgules.</string>
+    <string name="pattern">Modèle</string>
+    <string name="vibrate">Vibrer</string>
+    <string name="pref_meditation_vibrate_start">Démarrer la vibration</string>
+    <string name="pref_meditation_vibrate_interval">Intervalle de vibration</string>
+    <string name="pref_meditation_vibrate_finish">Vibration complète</string>
+    <string name="labelShort">Courte</string>
+    <string name="labelMedium">Moyenne</string>
+    <string name="labelLong">Longue</string>
+    <string name="custom">Personnalisée</string>
+    <string name="timerPosition">Position du minuteur</string>
+    <string name="top">En-haut</string>
+    <string name="center">Au centre</string>
 </resources>

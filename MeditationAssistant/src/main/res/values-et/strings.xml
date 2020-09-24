@@ -37,7 +37,7 @@
     <string name="untimed">Ajatu</string>
     <string name="presetLabelEndAt">Lõpp %s</string>
     <!-- About -->
-    <string name="sendEmail">Saada meil</string>
+    <string name="sendEmail">Saada e-kiri</string>
     <string name="version">Versioon %s</string>
     <string name="translate">Tõlgi</string>
     <string name="howToMeditate">Kuidas mediteerida</string>

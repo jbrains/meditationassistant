@@ -26,7 +26,7 @@
     <!-- Main Activity -->
     <string name="timer">Χρονομετρητής</string>
     <string name="timerHelp">Ο χρονομετρητής είναι ρυθμισμένος προς το παρόν στα 15 λεπτά. Μπορείτε να αλλάξετε την διάρκεια, τη λήξη σε μια ορισμένη στιγμή της ημέρας, ή να απενεργοποιήσετε το συναγερμό πλήρως. Χτυπήστε ελαφρά τον χρονομετρητή τώρα για να δείτε τις επιλογές.</string>
-    <string name="settingsHelp">Αυτή η εφαρμογή περιλαμβάνει πολλά χαρακτηριστικά και παραμετροποιήσεις, όπως, αυτόματη σίγαση της συσκευής και παροχή καθημερινής υπενθύμισης για διαλογισμό. Χτυπήστε ελαφρά το εικονίδιο " Ρυθμίσεις" τώρα για να δείτε τις επιλογές.</string>
+    <string name="settingsHelp">Αυτή η εφαρμογή περιλαμβάνει πολλά χαρακτηριστικά και παραμετροποιήσεις, όπως, αυτόματη σίγαση της συσκευής και παροχή καθημερινής υπενθύμισης για διαλογισμό. Χτυπήστε ελαφρά το εικονίδιο Ρυθμίσεις τώρα για να δείτε τις επιλογές.</string>
     <string name="medinetHelp">Κάνετε είσοδο στο MediNET για να αποθηκεύσετε τις συνεδρίες σας στον ιστό. Μπορείτε να εισάγετε τις συνεδρίες σας αργότερα, εάν χάσετε τα δεδομένα σας. Αυτό το χαρακτηριστικό είναι πλήρως προαιρετικό, η αποθήκευση των συνεδριών τοπικά δεν θα επηρεάσει την εμπειρία σας. 
 
  Αυτό ολοκληρώνει την εκμάθηση. Ευελπιστώ πως ο "Βοηθός Διαλογισμού" θα είναι οφέλιμος για την εξάσκησή σας.</string>
@@ -125,7 +125,6 @@
     <string name="reminderText">Έχετε ένα λεπτό;</string>
     <!-- Settings -->
     <string name="meditation">Διαλογισμός</string>
-    <string name="pref_vibrate">Δονήσου</string>
     <string name="pref_vibrate_summary">Συμβαίνει στην αρχή, στα μεσοδιαστήματα και στη λήξη του διαλογισμού</string>
     <string name="pref_vibrate_reminder_summary">Η καθημερινή υπενθίμηση θα δονεί τη συσκευή</string>
     <string name="pref_sound_reminder">Παίξε ήχο</string>
@@ -271,4 +270,7 @@ https://gitlab.com/tslocum/meditationassistant/issues
 https://www.getlocalization.com/meditationassistant/
 
 Ανάπτυξη από Rocket Nine Laboratories: https://rocketnine.space/</string>
+    <string name="permissionRequired">Αυτή η άδεια απαιτείται.</string>
+    <string name="disableBatteryOptimizations">Ο Βοηθός πρέπει να εκτελείται στο παρασκήνιο</string>
+    <string name="warning">Προσοχή</string>
 </resources>

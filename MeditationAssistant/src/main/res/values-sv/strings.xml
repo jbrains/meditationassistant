@@ -77,4 +77,5 @@
     <string name="mediNETConnected">Ansluten till MediNET</string>
     <string name="resume">Återuppta</string>
     <string name="permissionRequired">Denna åtkomst är obligatorisk.</string>
+    <string name="sendEmail">Skicka e-post</string>
 </resources>

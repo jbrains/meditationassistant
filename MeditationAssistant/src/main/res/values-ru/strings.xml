@@ -21,7 +21,7 @@
     <string name="timerHelp">Таймер установлен на 15 минут. Ты можешь поставить другую продолжительность, задать точное время для окончания, или отключить таймер. Нажми на на него сейчас, чтобы увидеть эти настройки.</string>
     <string name="settingsHelp">В этом приложении есть много особенностей и настроек, такие как автоматическое выключение звуков вашего устройства и ежедневные напоминания о медитации. Чтобы посмотреть их сейчас, нажми на иконку настроек.</string>
     <string name="medinetHelp">Подключись к MediNET, чтобы сохранить свои сеансы онлайн. Ты сможешь скачать их позже, если потеряешь эти данные. Это необязательная функция, сохранение сеансов только на устройстве не сделает твою практику хуже.\n\nНа этом обучение закончено. Я надеюсь, что Помощник в Медитации послужит на благо твоей практике.</string>
-    <string name="cancel">Отменить</string>
+    <string name="cancel">Отмена</string>
     <string name="set">Выбрать</string>
     <string name="confirm">Сохранить</string>
     <string name="meditate">Медитировать</string>
@@ -108,7 +108,6 @@
     <string name="reminderText">Есть минутка?</string>
     <!-- Settings -->
     <string name="meditation">Медитация</string>
-    <string name="pref_vibrate">Вибрация</string>
     <string name="pref_vibrate_summary">Используется в начале, на промежутках и в конце медитации</string>
     <string name="pref_vibrate_reminder_summary">Ежедневные напоминания будут использовать вибрацию</string>
     <string name="pref_sound_reminder">Включить звук</string>
@@ -284,6 +283,6 @@
     <string name="widgetstreak2x1" tools:ignore="UnusedResources">Полосой 2х1</string>
     <string name="pref_autosave">Автосохранение</string>
     <string name="permissionRequired">Требуется разрешение</string>
-    <string name="chooseDonationMethod">"Пожалуйста, выберете способ пожертвования
-\nLiberapay  предпочтителен  для разработчиков и поддерживает наибольшее число стран и валют"</string>
+    <string name="chooseDonationMethod">Пожалуйста, выберете способ пожертвования 
+\nLiberapay предпочтителен для разработчиков и поддерживает наибольшее число стран и валют</string>
 </resources>

@@ -20,13 +20,13 @@
     <string name="installFileManager">Lütfen bir dosya yöneticisi indirin</string>
     <!-- Permissions -->
     <string name="permissionRequest">İzin İsteği</string>
-    <string name="permissionRequestNotificationControl">Rahatsız etme modunu kontrol edebilmemiz için lütfen sonraki ekranda yetki verin</string>
+    <string name="permissionRequestNotificationControl">Rahatsız etme modunu kontrol edebilmemiz için lütfen sonraki ekranda yetki verin.</string>
     <string name="deny">Reddet</string>
     <string name="tryAgain">Tekrar dene</string>
     <!-- Main Activity -->
     <string name="timer">Zamanlayıcı</string>
-    <string name="timerHelp">Zamanlayıcı şu anda 15 dakikaya ayarlı. Süreyi değiştirebilirsin,  günün istediğin zamanında bitirtebilirsin veya alarmı tamamen kapatabilirsin. Bu ayarlara erişmek için zamanlayıcıya dokun</string>
-    <string name="settingsHelp">Bu uygulama birçok özellik ve özelleştirme imkanı sunuyor, örnek olarak otomatik bir şekilde telefonu sessize almak ve meditasyon için günlük hatırlatıcı sağlamak gibi. Şu anda ayarlar kısmına dokunarak bu seçeneklere erişebilirsiniz</string>
+    <string name="timerHelp">Kısa bir eğitime hoş geldiniz. Bu, seans zamanlayıcısıdır. Zamanlayıcı modunu ve süresini değiştirmek için şimdi ona dokunun.</string>
+    <string name="settingsHelp">Bu uygulama çok sayıda özellik ve özelleştirme içermektedir. Bu seçenekleri görmek için Ayarlar simgesine dokunun.</string>
     <string name="medinetHelp">MediNet e giriş yaparak seansları internet üzerinde kaydet. Böylelikle eğer verileri kaybedersen oradan içeri aktarabilirsin. Bu işlem tamamen sana kalmış, seansları yerel şekilde kaydetmen deneyimini olumsuz etkilemeyecektir.\n\nBu eğitim kısmını da içerir. Umarım meditasyon asistanı alıştırmalarına  yararlı olur.</string>
     <string name="cancel">İptal</string>
     <string name="set">Ayarla</string>
@@ -38,7 +38,7 @@
     <string name="pauseOrEnd">Durdur veya bitir</string>
     <string name="resumeOrEnd">Devam et veya bitir</string>
     <string name="pausedNotification">Seans duraklatıldı, bitirmek için basılı tutun</string>
-    <string name="mediNETConnecting">Bağlanıyor..</string>
+    <string name="mediNETConnecting">Bağlanıyor…</string>
     <string name="mediNETConnected">MediNet\'e bağlandı</string>
     <string name="sessionInProgress">Seans devam ediyor</string>
     <string name="progress">İlerleme</string>
@@ -54,4 +54,7 @@
     <!-- MediNET -->
     <!-- Widgets -->
     <!-- Meta -->
+    <string name="warning">Uyarı</string>
+    <string name="disableBatteryOptimizations">Meditasyon Asistanı arka planda çalışmalıdır</string>
+    <string name="permissionRequired">Bu izin gereklidir.</string>
 </resources>

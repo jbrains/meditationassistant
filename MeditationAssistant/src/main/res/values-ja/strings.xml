@@ -132,7 +132,6 @@
     <string name="reminderText">時間はありますか?</string>
     <!-- Settings -->
     <string name="meditation">瞑想</string>
-    <string name="pref_vibrate">振動</string>
     <string name="pref_vibrate_summary">瞑想の、始まり、インターバル、終わりに発生します</string>
     <string name="pref_vibrate_reminder_summary">毎日のリマインダー、デバイスが振動します</string>
     <string name="pref_sound_reminder">サウンドを再生</string>

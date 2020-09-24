@@ -55,7 +55,7 @@
     <string name="unlimited">Ilimitado</string>
     <string name="presetLabelEndAt">Terminar %s</string>
     <!-- About -->
-    <string name="sendEmail">Enviar correo electronico</string>
+    <string name="sendEmail">Enviar un correo electrónico</string>
     <string name="version">Versión %s</string>
     <string name="translate">Traducir</string>
     <string name="donate">Donar</string>
@@ -117,7 +117,6 @@
     <string name="reminderText">¿Tienes un momento para meditar?</string>
     <!-- Settings -->
     <string name="meditation">Meditación</string>
-    <string name="pref_vibrate">Vibrar</string>
     <string name="pref_vibrate_summary">Ocurre al pincipio, en intervalos y al final de la meditación</string>
     <string name="pref_vibrate_reminder_summary">El recordatorio diario hace vibrar el teléfono</string>
     <string name="pref_sound_reminder">Sonido</string>

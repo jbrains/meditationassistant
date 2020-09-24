@@ -93,7 +93,6 @@
     <string name="reminderText">Tem um momento?</string>
     <!-- Settings -->
     <string name="meditation">Meditação</string>
-    <string name="pref_vibrate">Vibrar</string>
     <string name="pref_vibrate_reminder_summary">O aviso diário vai activar a vibração do aparelho</string>
     <string name="pref_sound_reminder">Reproduzir som</string>
     <string name="pref_sound_reminder_summary">O som, por defeito, da notificação vai ser reproduzido</string>
@@ -258,10 +257,8 @@
     <string name="signOutOfMediNET">Sair do MediNET</string>
     <string name="signOutOfMediNETConfirmTitle">Sair do MediNET\?</string>
     <string name="rateMeditationAssistant">Avalie-nos</string>
-    <string name="rateMeditationAssistantText">Se esse aplicativo lhe foi útil e beneficiou sua prática de meditação, por favor, considere adicionar uma avaliação.
-\n
-\nA versão paga desse aplicativo é livre de propagandas e contém widgets de início. Considere comprá-la se for possível.
-\n
+    <string name="rateMeditationAssistantText">Se essa aplicação lhe foi útil e beneficiou a sua prática de meditação, por favor, considere adicionar uma avaliação. 
+\n 
 \nEsse diálogo não aparecerá de novo.</string>
     <string name="translateMeditationAssistantText">Você poderia ajudar o Assistente de Meditação a ampliar seu público traduzindo-o para outras línguas\?
 \n
@@ -269,7 +266,20 @@
 \n
 \nEsse diálogo não aparecerá novamente.</string>
     <string name="appStoreListingShort">Contém timer e gravador em sessões de meditação</string>
-    <string name="appStoreListingFull">Esse aplicativo auxilia tanto em sessões cronometradas (definindo a duração delas ou terminando-as em horários específicos) quanto em não cronometradas, e conta com várias customizações, como o ajuste de sons de início/intervalo/fim e o controle das notificações do celular. Além de todo mês fornecer um resumo de seu progresso. Uma das características principais desse aplicativo é a opção de compartilhar suas sessões online. Embora totalmente opcional, isso adiciona um grau de responsabilidade e incentivo. Uma vez online, quanto mais seu streak for crescendo, mais usuários o terão como meta. Um usuário já compartilhou mais de 500 dias consecutivos de meditação. Seu streak de é o número de dias consecutivos que você meditou. Quanto mais seu streak cresce, não quebrar a corrente se tornará bem importante. Cedo ou tarde, você estará meditando todos os dias, ainda que seja por apenas cinco ou dez minutos. Principais funções: - Automaticamente põe seu aparelho em modo de apenas emergências, apenas alarmes, silencioso ou em vibração enquanto medita. - Escolha dentre vários sons para meditação inclusos, ou use outros em seu celular. - Toque um som de intervalo pela duração que você escolher. - Publique suas sessões de meditação no MediNET, e visite o fórum de meditação do MediNET. - Escolha qualquer tema holográfico do aplicativo: claro, claro com painel de ações escuro e escuro. - Muito mais funções disponíveis, é a cada atualização são adicionadas mais. Esse ê um aplicativo open source: https://gitlab.com/tslocum/meditationassistant Feedbacks são bem-vindos. Grande parte das funções adicionadas são originalmente ideias de usuários. Descreva qualquer problema ou ideia que tiver: https://gitlab.com/tslocum/meditationassistant/issues Traduza o Assistente de Meditação para sua língua: https://www.getlocalization.com/meditationassistant/ Desenvolvido pela Rocket Nine Laboratories: https://rocketnine.space/</string>
+    <string name="appStoreListingFull">- Modo de aparelho automático durante a meditação.
+\n- Sessões de pausa.
+\n- Sons de início/intervalo/fim ajustáveis, horários, temas e comportamento do aparelho, e muito mais.
+\n- Visão geral do progresso mensal.
+\n- Opcionalmente, poste sessões no MediNET e visite o seu fórum.
+\n(Compartilhar o progresso dos dias com meditação motiva as sessões diárias, mesmo durante cinco ou dez minutos).
+\n 
+\nO Assistente de Meditação é um software livre copyleft.
+\nEnvie o seu problema/idéia ou conserte: https://gitlab.com/tslocum/meditationassistant/issues
+\nVárias características originaram-se como ideias de utilizador.
+\n 
+\nAssistente de Meditação de Tradução: https://www.getlocalization.com/meditationassistant/
+\n 
+\nPor Rocket Nove Laboratórios: https://rocketnine.space</string>
     <string name="exportsessions">Exportar sessões</string>
     <string name="exportsessions_summary">Exportar ficheiro CSV</string>
     <string name="downloadsessions">Sessões de descarregamentos</string>

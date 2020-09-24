@@ -54,7 +54,6 @@
     <string name="daySaturdayShort">שבת</string>
     <string name="daySundayShort">ראשון</string>
     <!-- Settings -->
-    <string name="pref_vibrate">רטט</string>
     <string name="settings">הגדרות</string>
     <string name="disabled">מנוטרל</string>
     <string name="noSpecialBehavior">אין התנהגות מיוחדת</string>

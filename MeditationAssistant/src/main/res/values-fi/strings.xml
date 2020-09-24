@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account">Tili</string>
+    <string name="forward">Eteenpäin</string>
+    <string name="back">Takaisin</string>
+    <string name="page">Sivu</string>
+    <string name="refresh">Päivitä</string>
+    <string name="rate">Arvioi</string>
+    <string name="forum">Keskustelupalsta</string>
+    <string name="community">Yhteisö</string>
+    <string name="sessions">Istunto</string>
+    <string name="delete">Poista</string>
+    <string name="openWith">Avaa</string>
+    <string name="warning">Varoitus</string>
+    <string name="no">Ei</string>
+    <string name="yes">Kyllä</string>
+    <string name="about">Tietoja</string>
+    <string name="appNameShort">Meditaatioavustaja</string>
+</resources>
