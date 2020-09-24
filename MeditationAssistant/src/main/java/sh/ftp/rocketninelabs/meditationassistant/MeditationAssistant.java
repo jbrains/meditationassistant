@@ -2164,8 +2164,9 @@ public class MeditationAssistant extends Application {
             }
 
             closeCSVReader(reader, inputfile);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            longToast("Failed to write CSV file: " + e.toString());
         }
 
         if (sessions.size() == 0) {

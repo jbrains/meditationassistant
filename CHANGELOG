@@ -1,3 +1,6 @@
+1.6.1:
+- Fix delayed completion sound on Android 10.0+
+
 1.6.0:
 - Fix open/save file dialog
 
