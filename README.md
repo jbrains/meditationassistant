@@ -29,13 +29,13 @@ will be meditating once a day, even if it's five or ten minutes out of your sche
 
 ## Screenshots
 
-<a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/1.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/thumbnails/1.png"></a>
- &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/2.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/thumbnails/2.png"></a>
- &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/3.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/thumbnails/3.png"></a>
- &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/4.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/thumbnails/4.png"></a>
- &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/5.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/thumbnails/5.png"></a>
- &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/6.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/thumbnails/6.png"></a>
- &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/7.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/thumbnails/7.png"></a>
+<a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/1.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/thumbnails/1.png"></a>
+ &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/2.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/thumbnails/2.png"></a>
+ &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/3.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/thumbnails/3.png"></a>
+ &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/4.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/thumbnails/4.png"></a>
+ &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/5.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/thumbnails/5.png"></a>
+ &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/6.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/thumbnails/6.png"></a>
+ &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/7.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/thumbnails/7.png"></a>
 
 ## Donate
 
