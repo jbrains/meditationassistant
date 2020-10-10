@@ -27,6 +27,16 @@ will be meditating once a day, even if it's five or ten minutes out of your sche
 - Pause your session and come back to it when you are ready
 - Upload sessions to [MediNET](https://gitlab.com/tslocum/medinet)
 
+## Screenshots
+
+<a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/1.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/thumbnails/1.png"></a>
+ &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/2.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/thumbnails/2.png"></a>
+ &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/3.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/thumbnails/3.png"></a>
+ &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/4.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/thumbnails/4.png"></a>
+ &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/5.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/thumbnails/5.png"></a>
+ &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/6.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/thumbnails/6.png"></a>
+ &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/7.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/screenshots/thumbnails/7.png"></a>
+
 ## Donate
 
 - [LiberaPay](https://liberapay.com/rocketnine.space) (preferred)
