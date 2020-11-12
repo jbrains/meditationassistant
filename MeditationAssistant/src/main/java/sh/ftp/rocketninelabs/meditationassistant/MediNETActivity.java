@@ -53,8 +53,18 @@ public class MediNETActivity extends Activity {
     }
 
     public String getPageUrl(String page) {
-        TimeZone tz = TimeZone.getDefault();
+        /*TimeZone tz = TimeZone.getDefault();
         Date now = new Date();
+
+        if (page.equals("community")) {
+            return  MeditationAssistant.URL_MEDINET + "/om/community?v="
+                    + MediNET.version.toString() + "&avn="
+                    + getMeditationAssistant().getMAAppVersionNumber() + "&th="
+                    + ma.getMAThemeString() + "&tz="
+                    + TimeZone.getDefault().getID() + "&x="
+                    + getMeditationAssistant().getMediNETKey() + "&page="
+                    + page;
+        }*/
 
         return MeditationAssistant.URL_MEDINET + "/client_android.php?v="
                 + MediNET.version.toString() + "&avn="

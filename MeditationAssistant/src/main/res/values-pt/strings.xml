@@ -141,9 +141,9 @@
     <string name="tapToLearnMore">Pressione em qualquer lado para saber mais</string>
     <string name="donate">Doar</string>
     <string name="disableBatteryOptimizations">Meditation Assistant deve ser executado no fundo</string>
-    <string name="permissionRequestNotificationControl">Favor dar permissão na próxima tela para controlar Não Perturbe.</string>
+    <string name="permissionRequestNotificationControl">Favor dar permissão no próximo ecrã para controlar Não Perturbe.</string>
     <string name="invitationBlurb">Assistente de Meditação é um companheiro com todos os recursos para a sua prática.</string>
-    <string name="sessionDeleteEverywhere">Excluir tudo</string>
+    <string name="sessionDeleteEverywhere">Apagar tudo</string>
     <string name="pref_sessionintro">Introdução</string>
     <string name="presetsettings">Configurações predefinidas</string>
     <string name="modeandduration">Modo e duração</string>
@@ -184,7 +184,7 @@
     <string name="pref_display_seconds">Mostrar segundos</string>
     <string name="pref_display_seconds_summary">Mostrado abaixo do cronômetro principal</string>
     <string name="pref_meditationstreakbuffer">Sequência reseta às</string>
-    <string name="pref_full_screen">Tela cheia</string>
+    <string name="pref_full_screen">Ecrã cheio</string>
     <string name="pref_delay">Atraso</string>
     <string name="pref_interval">Duração de intervalo</string>
     <string name="pref_interval_count">Quantidade de intervalos</string>
@@ -194,7 +194,7 @@
     <string name="pref_rememberme">Lembre de mim</string>
     <string name="pref_sessionvolume">Volume</string>
     <string name="pref_sessionvolume_summary">Volume anterior será restaurado assim que a sessão for concluída.</string>
-    <string name="pref_screencontrol">Tela</string>
+    <string name="pref_screencontrol">Ecrã</string>
     <string name="pref_sendusage">Relatório de estatísticas de uso</string>
     <string name="pref_sendusage_summary">Relatórios anônimos através do Google Analytics. Entra em vigor após reinício</string>
     <string name="pref_showstreak">Mostrar meditações consecutivas</string>
@@ -220,7 +220,7 @@
     <string name="pref_mainbuttons">Esconder botões</string>
     <string name="pref_progresstab">Aba padrão em Progresso</string>
     <string name="importsessions">Importar sessões</string>
-    <string name="importsessions_summary">Recuperar sessões enviadas</string>
+    <string name="importsessions_summary">Importar ficheiro CSV</string>
     <string name="uploadsessions">Enviar sessões</string>
     <string name="uploadsessions_summary">Enviar sessões locais</string>
     <string name="miscellaneous">Diversos</string>

@@ -289,4 +289,13 @@ https://rocketnine.space/</string>
     <string name="permissionRequired">Esta permissão é necessária.</string>
     <string name="disableBatteryOptimizations">Meditation Assistant precisa rodar em segundo plano</string>
     <string name="warning">Aviso</string>
+    <string name="meditationSubreddit">Comunidade Reddit</string>
+    <string name="resources">Recursos</string>
+    <string name="configureWidget">Configurar o widget</string>
+    <string name="setVibrationTip">Insira o número de milissegundos para ligar ou desligar a vibração, separados por vírgulas.</string>
+    <string name="editTimerHelp">Sua sessão pode ter uma duração determinada, pode durar até um horário específico do dia, ou pode simplesmente não ser cronometrada.
+\n
+\nConfigurações predefinidas podem ser usadas para guardar configurações comuns. Pressione e segure sobre uma configuração predefinida para relembrar a duração da sessão atual. Sons e outras configurações podem ser relembrados nas configurações predefinidas habilitando-as na configuração.
+\n
+\nApós pressionar OK, pressione Cancelar ou Confirmar para continuar.</string>
 </resources>
