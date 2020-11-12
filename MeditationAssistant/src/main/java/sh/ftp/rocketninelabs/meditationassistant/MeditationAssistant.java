@@ -133,7 +133,6 @@ public class MeditationAssistant extends Application {
     public long streakbuffer = -1;
     private long sessrunnablestarttime = 0;
     private boolean sesswassignedout = false;
-    private Boolean sendusage = null;
     private long sessionduration = 0;
     private Integer webview_scale = null;
     private String timerMode = null;
@@ -295,11 +294,37 @@ public class MeditationAssistant extends Application {
         return string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();
     }
 
+    public int audioStream() {
+        switch (getPrefs().getString("pref_audio_stream", "")) {
+            case "media":
+                return AudioManager.STREAM_MUSIC;
+            case "ringtone":
+                return AudioManager.STREAM_RING;
+            case "notification":
+                return AudioManager.STREAM_NOTIFICATION;
+            default:
+                return AudioManager.STREAM_ALARM;
+        }
+    }
+
+    public int audioUsage() {
+        switch (getPrefs().getString("pref_audio_stream", "")) {
+            case "media":
+                return AudioAttributes.USAGE_MEDIA;
+            case "ringtone":
+                return AudioAttributes.USAGE_NOTIFICATION_RINGTONE;
+            case "notification":
+                return AudioAttributes.USAGE_NOTIFICATION;
+            default:
+                return AudioAttributes.USAGE_ALARM;
+        }
+    }
+
     public void restoreVolume() {
         if (previous_volume != null) {
             try {
                 AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-                mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM, previous_volume, 0);
+                mAudioManager.setStreamVolume(audioStream(), previous_volume, 0);
             } catch (java.lang.SecurityException e) {
                 // Do nothing
             }
@@ -513,11 +538,11 @@ public class MeditationAssistant extends Application {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                    .setUsage(AudioAttributes.USAGE_ALARM)
+                    .setUsage(audioUsage())
                     .build();
             mp.setAudioAttributes(audioAttributes);
         } else {
-            mp.setAudioStreamType(AudioManager.STREAM_ALARM);
+            mp.setAudioStreamType(audioStream());
         }
         try {
             if (!soundpath.equals("")) {

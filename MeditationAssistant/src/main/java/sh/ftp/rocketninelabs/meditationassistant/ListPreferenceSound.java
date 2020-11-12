@@ -216,11 +216,11 @@ public class ListPreferenceSound extends ListPreference {
                                         afd.getDeclaredLength());
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                                     AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                                            .setUsage(AudioAttributes.USAGE_ALARM)
+                                            .setUsage(((MeditationAssistant) ctx.getApplicationContext()).audioUsage())
                                             .build();
                                     mMediaPlayer.setAudioAttributes(audioAttributes);
                                 } else {
-                                    mMediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
+                                    mMediaPlayer.setAudioStreamType(((MeditationAssistant) ctx.getApplicationContext()).audioStream());
                                 }
                                 mMediaPlayer.setVolume(mediaVolume, mediaVolume);
                                 mMediaPlayer.prepareAsync();

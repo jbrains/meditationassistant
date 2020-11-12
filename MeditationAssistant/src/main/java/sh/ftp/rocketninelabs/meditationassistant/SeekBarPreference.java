@@ -204,11 +204,11 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
                     afd.getDeclaredLength());
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                        .setUsage(AudioAttributes.USAGE_ALARM)
+                        .setUsage(((MeditationAssistant) mContext.getApplicationContext()).audioStream())
                         .build();
                 mediaPlayer.setAudioAttributes(audioAttributes);
             } else {
-                mediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
+                mediaPlayer.setAudioStreamType(((MeditationAssistant) mContext.getApplicationContext()).audioStream());
             }
             float mediaVolume = (float) (value * 0.01);
             mediaPlayer.setVolume(mediaVolume, mediaVolume);

@@ -59,4 +59,12 @@
         android:key="pref_full_screen"
         android:title="@string/pref_full_screen"/>
 
+    <ListPreference
+        android:defaultValue=""
+        android:dialogIcon="?attr/actionIconVolumeOn"
+        android:entries="@array/audio_output"
+        android:entryValues="@array/audio_output_values"
+        android:key="pref_audio_output"
+        android:title="@string/pref_audio_output"/>
+
 </PreferenceScreen>
