@@ -20,13 +20,13 @@
     <string name="installFileManager">Por favor instale un gestor de archivos</string>
     <!-- Permissions -->
     <string name="permissionRequest">Permiso requerido</string>
-    <string name="permissionRequestNotificationControl">Por favor, concede el permiso de la siguiente pantalla para controlar el modo No molestar</string>
+    <string name="permissionRequestNotificationControl">Por favor, concede el permiso de la siguiente pantalla para controlar el modo No molestar.</string>
     <string name="deny">Denegar</string>
     <string name="tryAgain">Reintentar</string>
     <!-- Main Activity -->
     <string name="timer">Temporizador</string>
-    <string name="timerHelp">El temporizador actualmente está ajustado a 15 minutos. Puede cambiar esta duración, terminar en una hora específica o desactivar el alarma completamente. Toca el temporizador ahora para ver estas opciones.</string>
-    <string name="settingsHelp">Esta aplicación incluye muchas características y personalizaciones como el silenciar automáticamente tu dispositivo y ofrecer un recordatorio diario para meditar. Pulsa el icono de los ajustes para ver ahora esas opciones.</string>
+    <string name="timerHelp">Bienvenido a un breve tutorial. Este es el temporizador de la sesión. Presiónelo ahora para cambiar el modo y duración del temporizador.</string>
+    <string name="settingsHelp">Esta aplicación incluye numerosas funciones y personalizaciones. Presione el icono de Configuración para ver estas opciones.</string>
     <string name="medinetHelp">Regístrate en MediNET para guardar tus sesiones en línea para importarlas después si las pierdes. Esta característica es totalmente opcional, el almacenado local de las sesiones no interferirá en tu experiencia.\n\nAquí termina esta guía. Espero que el asistente de meditación te sea beneficioso a la hora de meditar.</string>
     <string name="cancel">Cancelar</string>
     <string name="set">Establecer</string>
@@ -38,7 +38,7 @@
     <string name="pauseOrEnd">Pausar o terminar</string>
     <string name="resumeOrEnd">Continuar o terminar</string>
     <string name="pausedNotification">Sesión pausada, mantener para terminar</string>
-    <string name="mediNETConnecting">Conectando...</string>
+    <string name="mediNETConnecting">Conectando…</string>
     <string name="mediNETConnected">Conectado a MediNET</string>
     <string name="sessionInProgress">Sesión en progreso</string>
     <string name="progress">Progreso</string>
@@ -85,7 +85,7 @@
     <string name="sessionDeletedLocally">Sesión eliminada localmente</string>
     <!-- Sign In -->
     <string name="browser">Navegador</string>
-    <string name="useBrowser">Use el navegador </string>
+    <string name="useBrowser">Use el navegador:</string>
     <string name="signInWith">Iniciar sesión con…</string>
     <string name="signInWithProvider">Iniciar sesión con %s…</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, etc.</string>
@@ -163,7 +163,7 @@
     <string name="pref_meditation_sound_interval">Sonido del intervalo</string>
     <string name="pref_meditation_sound_finish">Sonido al completar</string>
     <string name="pref_remembermessage">Recordar el último mensaje</string>
-    <string name="pref_remembermessage_summary">Predeterminado para el último mensaje publicado</string>
+    <string name="pref_remembermessage_summary">Predeterminado para el mensaje previo</string>
     <string name="pref_theme">Tema holográfico</string>
     <string name="pref_theme_light">Claro</string>
     <string name="pref_theme_lightdark">Claro con la barra de herramientas oscura</string>
@@ -177,13 +177,13 @@
     <string name="pref_askdismiss">Preguntar antes de descartar</string>
     <string name="pref_askdismiss_summary">Confirmar antes de descartar una sesión</string>
     <string name="pref_mainbuttons">Ocultar botones</string>
-    <string name="pref_progresstab">Barra de progreso predeterminada</string>
+    <string name="pref_progresstab">Barra prederminada</string>
     <string name="importsessions">Importar sesiones</string>
     <string name="importsessions_summary">Restaurar sesiones subidas</string>
     <string name="uploadsessions">Subir sesiones</string>
     <string name="uploadsessions_summary">Subir sesiones locales</string>
     <string name="miscellaneous">Otros</string>
-    <string name="pref_text_size">Tamaño del texto del temporizador</string>
+    <string name="pref_text_size">Tamaño del temporizador</string>
     <string name="tiny">Diminuto</string>
     <string name="small">Pequeño</string>
     <string name="normal">Normal</string>
@@ -199,8 +199,8 @@
     <string name="pref_daily_reminder_summary">Muestra una notificación cuando no hay sesions guardadas ese día</string>
     <string name="pref_daily_reminder_time">Hora</string>
     <string name="pref_daily_reminder_text">Texto motivador</string>
-    <string name="downloadingSessions">Descargando sesiones...</string>
-    <string name="uploadingSessions">Subiendo sesiones...</string>
+    <string name="downloadingSessions">Descargando sesiones…</string>
+    <string name="uploadingSessions">Subiendo sesiones…</string>
     <!-- MediNET -->
     <string name="mediNET">MediNET</string>
     <string name="unableToConnect">No ha sido posible conectarse a MediNET</string>
@@ -237,10 +237,111 @@
     <string name="signOutOfMediNET">Cerrar la sesión de MediNET</string>
     <string name="signOutOfMediNETConfirmTitle">¿Salir de MediNET?</string>
     <string name="rateMeditationAssistant">Valorar el asistente de meditación</string>
-    <string name="rateMeditationAssistantText">Si has encontrado esta aplicación beneficiosa para meditar, ¿podrías añadir una valoración, por favor?\n\nLa versión de pago de esta aplicación no contiene anuncios y tiene características de los widgets de la pantalla principal. Por favor, considera pagarla si te es posiblee.\n\nEste mensaje no volverá a aparecer.</string>
-    <string name="translateMeditationAssistantText">¿Podrías ayudar al asistente de meditación a llegar a una mayor audiencia traduciéndola a otro idioma?\n\nLa traducción es muy sencilla a través de una interfaz en línea. Puedes visitar la página web de traducción pulsando "Traducir" desde la ventana "Acerca de la aplicación"\n\nEste mensaje no volverá a aparecer.</string>
+    <string name="rateMeditationAssistantText">Si has encontrado esta aplicación beneficiosa para meditar ¿Podría añadir una valoración, por favor\?
+\n
+\nEste mensaje no volverá a aparecer.</string>
+    <string name="translateMeditationAssistantText">¿Está interesado usted en ayudar con la traducción del Asistente de Meditación\?</string>
     <!-- Widgets -->
     <!-- Meta -->
     <string name="warning">Atención</string>
     <string name="disableBatteryOptimizations">El asistente de meditación debe ejecutarse en segundo plano</string>
+    <string name="appStoreListingFull">- Modo automático de dispositivo mientras se medita.
+\n- Sesiones pausables.
+\n- Ajustar los sonidos de inicio/intervalo/final, tiempos, temas y comportamiento del dispositivo, y más.
+\n- Resumen de progreso mensual.
+\n- Opcionalmente publicar sesiones en MediNET, y visitar su fóro.
+\n(Compartir el progreso diario con la meditación motiva a sesiones diarias, incluso de cinco o diez minutos.)
+\n
+\nAsistente de Meditación es Software Libre sin restricciones de derechos de autor.
+\nEnvíe su problema/idea o corrección: https://gitlab.com/tslocum/meditationassistant/issues/
+\nMuchas funciones son creadas por ideas de usuarios.
+\n
+\nTraduce Asistente de Meditación: https://www.getlocalization.com/meditationassistant/
+\n
+\nPor Rocket Nine Laboratories: https://rocketnine.space</string>
+    <string name="appStoreListingShort">Característica incluida temporizador de meditación y grabadora</string>
+    <string name="widgetstreak3x1" tools:ignore="UnusedResources">Racha 3x1</string>
+    <string name="widgetstreak2x1" tools:ignore="UnusedResources">Racha 2x1</string>
+    <string name="widgetstreak1x1" tools:ignore="UnusedResources">Racha 1x1</string>
+    <string name="widgetpreset3x1" tools:ignore="UnusedResources">Preajuste 3x1</string>
+    <string name="widgetpreset2x1" tools:ignore="UnusedResources">Preajuste 2x1</string>
+    <string name="widgetpreset1x1" tools:ignore="UnusedResources">Preajuste 1x1</string>
+    <string name="sessionsUpToDate">Datos locales están actualizados</string>
+    <plurals name="sessionsDownloaded">
+        <item quantity="one">Descargado %s sesión</item>
+        <item quantity="other">Descargado %s sesiones</item>
+    </plurals>
+    <string name="downloadsessionsmessage">Sesiones previas serán descargadas.
+\n
+\nEste diálogo no volverá a aparecer.
+\nUsted puede descargar sesiones después desde la ventana de Configuración.</string>
+    <string name="downloadsessionstitle">Descargar sesiones\?</string>
+    <string name="downloadSessionsHint">Click para Descargar sesiones en configuraciones para recuperar sesiones perdidas.</string>
+    <string name="download">Descargar</string>
+    <string name="notification">Notificación</string>
+    <string name="ringtone">Tono de alarma</string>
+    <string name="media">Multimedia</string>
+    <string name="alarm">Alarma</string>
+    <string name="center">Centro</string>
+    <string name="top">Arriba</string>
+    <string name="timerPosition">Posición del temporizador</string>
+    <string name="local">Local</string>
+    <string name="utc">UTC</string>
+    <string name="importsessions_utc_or_local">Está importación tiene fechas y hora locales o UTC\?
+\n
+\nExportaciones guardadas desde la versión 1.5.6 tienen fecha y hora UTC.</string>
+    <string name="importsessions_complete">Encontrado %1$d existentes y %2$d nuevos.</string>
+    <string name="importsessions_in_progress">Importando sesiones…</string>
+    <string name="downloadsessions_summary">Descargar sesiones remotas</string>
+    <string name="downloadsessions">Descargar sesiones</string>
+    <string name="exportsessions_summary">Exportar archivo CSV</string>
+    <string name="exportsessions">Exportar sesiones</string>
+    <string name="pref_autosave">Autoguardado</string>
+    <string name="pref_audio_output">Salida de audio</string>
+    <string name="pref_meditationstreakbuffer">La racha se reinicia en</string>
+    <string name="custom">Personalizado</string>
+    <string name="labelLong">Largo</string>
+    <string name="labelMedium">Medio</string>
+    <string name="labelShort">Corto</string>
+    <string name="pref_meditation_vibrate_finish">Vibración completa</string>
+    <string name="pref_meditation_vibrate_interval">Intervalo de vibración</string>
+    <string name="pref_meditation_vibrate_start">Comenzar vibración</string>
+    <string name="vibrate">Vibrar</string>
+    <string name="editSessionMeditating">Incapaz de editar una sesión mientras se medita</string>
+    <string name="invalidLength">Duración no válida</string>
+    <string name="length">Duración</string>
+    <string name="edit">Editar</string>
+    <string name="sessionEdited">Sesión editada</string>
+    <string name="sessionAdded">Sesión agregada</string>
+    <string name="editSession">Editar sesión</string>
+    <string name="postUpdatedSession">Publicar sesión actualizada en MediNET\?</string>
+    <string name="streakdifferencewarning">Su actual racha de meditación no parece correcta basado en los datos de su actual sesión. Usar una racha actualizada\?
+\n
+\nRacha actual: %1$d
+\nRacha actualizada: %2$d</string>
+    <string name="sourceRepository">Repositorio del Código Fuente</string>
+    <string name="chooseDonationMethod">Por favor elija cómo desearía donar.
+\n
+\nLiberapay es preferido por el desarrollador y soporta más países y divisas.</string>
+    <string name="tapToLearnMore">Presione en cualquier lado para aprender más</string>
+    <string name="replayTutorial">Repetir tutorial</string>
+    <string name="whatIsMediNETHelp">MediNET es un repositorio y comunidad de sesiones de meditación en línea.
+\n
+\nUsted puede elegir guardar sus sesiones en MediNET para prevenir la perdida de datos o compartir su progreso con otros en línea.
+\n
+\nUsted puede, en su lugar, escoger guardar su sesión solo en su dispositivo.</string>
+    <string name="whatIsMediNET">Descripción de MediNET</string>
+    <string name="meditationSubreddit">Comunidad de Reddit</string>
+    <string name="resources">Recursos</string>
+    <string name="pattern">Patrón</string>
+    <string name="configureWidget">Configurar Widget</string>
+    <string name="setVibrationTip">Introduzca el número de milisegundos para encender o apagar la vibración, separado por comas.</string>
+    <string name="sessionPaused">Sesión pausada</string>
+    <string name="resume">Reanudar</string>
+    <string name="editTimerHelp">Su sesión tendrá una duración determinada, hasta un tiempo específico del día o no determinado en absoluto.
+\n
+\nLos preajustes guardan configuraciones comunes. Presiona y mantén pulsado para guardar la actual duración de la sesión. Sonidos y otras configuarciones pueden ser guardadas por preajustes activándolos en Configuración de Preajuste.
+\n
+\nDespués de presionar OK, presione Cancelar o Confirmar para continuar.</string>
+    <string name="permissionRequired">Este permiso es necesario.</string>
 </resources>

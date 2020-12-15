@@ -19,13 +19,13 @@
     <string name="announcement">Anuncio</string>
     <!-- Permissions -->
     <string name="permissionRequest">Permisos requeridos</string>
-    <string name="permissionRequestNotificationControl">Por favor acepta el acceso en la siguiente pantalla para controlar Do Not Disturb (No molestar)</string>
+    <string name="permissionRequestNotificationControl">Por favor acepta el acceso en la siguiente pantalla para controlar el modo de No Molestar.</string>
     <string name="deny">Negar</string>
     <string name="tryAgain">Inténtalo otra vez</string>
     <!-- Main Activity -->
     <string name="timer">Temporizadod</string>
-    <string name="timerHelp">Actualmente el tiempo está configurado en 15 minutos. Puedes cambiar la duración, hacer que termine en un momento específico del día o desactivar por completo la alarma. Toca el reloj ahora para ver esas opciones.</string>
-    <string name="settingsHelp">Esta aplicación incluye muchas características y opciones, tales como silenciar automáticamente tus otras aplicaciones y dar un recordatorio diario para meditar. Toca el ícono de Configuraciones ahora para ver estas opciones.</string>
+    <string name="timerHelp">Bienvenido a un breve tutorial. Este es el temporizador. Presiónelo ahora para cambiar el modo y duración.</string>
+    <string name="settingsHelp">Esta aplicación incluye numerosas funciones y personalizaciones. Presione el ícono de Configuración para ver estas opciones.</string>
     <string name="medinetHelp">Regístrate en MediNET para guardar tus sesiones online. Puedes importar tus sesiones más tarde si pierdes tus datos. Esta característica es completamente opcional, guardar tus sesiones localmente no entorpecerá tu experiencia. \n\n Así concluye el tutorial. Espero que el Asistente de Meditación sea benéfico para tu práctica.</string>
     <string name="cancel">Cancelar</string>
     <string name="set">Establecer</string>
@@ -37,13 +37,13 @@
     <string name="pauseOrEnd">Pausar o terminar</string>
     <string name="resumeOrEnd">Continuar o terminar</string>
     <string name="pausedNotification">Sesión pausada, mantener para terminar</string>
-    <string name="mediNETConnecting">Conectando...</string>
+    <string name="mediNETConnecting">Conectando…</string>
     <string name="mediNETConnected">Conectado a MediNET</string>
     <string name="sessionInProgress">Sesión en progreso</string>
     <string name="progress">Progreso</string>
     <string name="setPreset">Establecer predeterminado</string>
     <string name="setPresetHint">Mantenga presionado para establecer predeterminado</string>
-    <string name="setPresetTip">Escoge las herramientas para restablecer tocando el ícono del engrane (Configuración), luego toca Configuración Predeterminada</string>
+    <string name="setPresetTip">Escoge qué configuración restaurar tocando el ícono de engranaje (Configuración), después presiona Preajustes.</string>
     <string name="setPresetHintBlank">Escribir una duración (o tiempo final) para establecer predeterminado</string>
     <string name="label">Etiqueta</string>
     <string name="setTimerDurationHint">Escriba una duración valida (e.j. 0:22)</string>
@@ -75,7 +75,7 @@
     <string name="sessioncomplete">Sesión completada</string>
     <string name="sessionMessagePlaceholder">Mensaje</string>
     <string name="askDiscardText">¿Descartar sesión?</string>
-    <string name="sessionPosting">Publicando sesión...</string>
+    <string name="sessionPosting">Publicando sesión…</string>
     <string name="sessionPosted">Sesión publicada en MediNET</string>
     <string name="sessionAlreadyPosted">Sesión ya publicada</string>
     <string name="sessionNotPosted">Incapaz de publicar sesión</string>
@@ -83,8 +83,8 @@
     <string name="sessionSaved">Sesión guardada</string>
     <string name="sessionDeletedLocally">Sesión eliminada localmente</string>
     <!-- Sign In -->
-    <string name="signInWith">Entra con...</string>
-    <string name="signInWithProvider">Entra con %s...</string>
+    <string name="signInWith">Inicia sesión con…</string>
+    <string name="signInWithProvider">Entra con %s…</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, etc.</string>
     <string name="signInGoogleError">Incapaz de autentificar el usuario utilizando el administrador de cuentas. Intenta usar OpenID si este error persiste.</string>
     <!-- Progress -->
@@ -146,15 +146,15 @@
     <string name="pref_sessionvolume_summary">El Volumen previo se restaurará una vez que la sesión se haya completado.</string>
     <string name="pref_screencontrol">Pantalla</string>
     <string name="pref_sendusage">Reportar estadísticas de uso</string>
-    <string name="pref_sendusage_summary">Reporte de estadísticas anónimas por Google Analytics. Tomara efecto al volver a abrir.</string>
+    <string name="pref_sendusage_summary">Reporte de estadísticas anónimas por Google Analytics. Tomara efecto al reiniciar</string>
     <string name="pref_showstreak">Mostrar racha de meditaciones</string>
-    <string name="pref_showstreak_summary">Numero de días consecutivos con por lo menos una sesión guardada.</string>
+    <string name="pref_showstreak_summary">Numero de días consecutivos con por lo menos una sesión guardada</string>
     <string name="selectSound">Escoge sonido</string>
     <string name="pref_meditation_sound_start">Empezar sonido</string>
     <string name="pref_meditation_sound_interval">Sonido de intervalo</string>
     <string name="pref_meditation_sound_finish">Sonido completo</string>
     <string name="pref_remembermessage">Recordar ultimo mensaje</string>
-    <string name="pref_remembermessage_summary">Por defecto el último mensaje publicado</string>
+    <string name="pref_remembermessage_summary">Por defecto el mensaje previo</string>
     <string name="pref_theme">Tema holográfico</string>
     <string name="pref_theme_light">Luz</string>
     <string name="pref_theme_lightdark">Luz con barra de acción oscura</string>
@@ -165,11 +165,11 @@
     <string name="pref_askdismiss">Preguntar antes de descarte</string>
     <string name="pref_askdismiss_summary">Confirmar antes de descartar una sesión</string>
     <string name="pref_mainbuttons">Esconder botones</string>
-    <string name="pref_progresstab">Pestaña de progreso predeterminado</string>
+    <string name="pref_progresstab">Pestaña predeterminada</string>
     <string name="importsessions">Importar sesiones</string>
     <string name="importsessions_summary">Recuperar sesiones subidas</string>
     <string name="miscellaneous">Misceláneo </string>
-    <string name="pref_text_size">Tamaño de texto del contador</string>
+    <string name="pref_text_size">Tamaño del temporizador</string>
     <string name="tiny">Chiquitín</string>
     <string name="small">Pequeño</string>
     <string name="normal">Normal</string>
@@ -179,11 +179,11 @@
     <string name="pref_notificationcontrol_alarms">Sólo Alarmas</string>
     <string name="pref_notificationcontrol_vibrate">Vibrar</string>
     <string name="pref_daily_reminder">Recordatorio diario</string>
-    <string name="pref_daily_reminder_summary">Notificar cuando no se hayan grabado sesiones el día de hoy.</string>
+    <string name="pref_daily_reminder_summary">Notificar cuando no se hayan grabado sesiones el día de hoy</string>
     <string name="pref_daily_reminder_time">Tiempo</string>
     <string name="pref_daily_reminder_text">Texto para dar ánimo</string>
-    <string name="downloadingSessions">Sesiones Descargadas</string>
-    <string name="uploadingSessions">Sesiones Importadas</string>
+    <string name="downloadingSessions">Descargando sesiones…</string>
+    <string name="uploadingSessions">Subiendo sesiones…</string>
     <!-- MediNET -->
     <string name="mediNET">MediNET</string>
     <string name="unableToConnect">No se puede conectar a MediNET</string>
@@ -195,16 +195,16 @@
     <string name="sessionDeletedMediNET">Sesión eliminada de MediNET</string>
     <string name="sessionNotFoundMediNET">Sesión no encontrada en MediNET</string>
     <plurals name="numtimes">
-        <item quantity="one">%s time</item>
-        <item quantity="other">%s times</item>
+        <item quantity="one">%s vez</item>
+        <item quantity="other">%s veces</item>
     </plurals>
     <plurals name="sessionsUploaded">
-        <item quantity="one">Uploaded %s session</item>
-        <item quantity="other">Uploaded %s sessions</item>
+        <item quantity="one">Subida %s sesión</item>
+        <item quantity="other">Subidas %s sesiones</item>
     </plurals>
     <plurals name="daysOfMeditationMinimal">
-        <item quantity="one">%d day</item>
-        <item quantity="other">%d days</item>
+        <item quantity="one">%d día</item>
+        <item quantity="other">%d días</item>
     </plurals>
     <plurals name="daysOfMeditation">
         <item quantity="one">%d dia de la meditacion</item>
@@ -220,7 +220,127 @@
     <string name="signOutOfMediNET">Cerrar sesión de MediNET</string>
     <string name="signOutOfMediNETConfirmTitle">Cerrar sesión de MediNET?</string>
     <string name="rateMeditationAssistant">Valorar asistente de meditación</string>
-    <string name="rateMeditationAssistantText">Si usted ha encontrado esta aplicación beneficioso para su práctica de la meditación, ¿podría añadir una calificación? La versión de pago de esta aplicación no contiene anuncios y cuenta con widgets de la pantalla de inicio. Por favor considerar la compra si usted es capaz de hacerlo. Este cuadro de diálogo no volverá a aparecer.</string>
-    <string name="translateMeditationAssistantText">¿Te gustaría ayudar a que el Asistente de Meditación llegue a una audiencia más grande traduciéndola a otro lenguaje?\n\n Traducir es una tarea fácil que se hace en un programa online. Puedes visitar la página de traducción más tarde haciendo clic en la ventana Acerca De.\n\nÉste diálogo no volverá a aparecer.</string>
+    <string name="rateMeditationAssistantText">Si usted encontró está aplicación útil para su práctica de meditación, puede darnos una calificación\?
+\n
+\nEste diálogo no volverá a aparecer.</string>
+    <string name="translateMeditationAssistantText">Esta usted interesado en ayudar con la traducción de Asistente de Meditación\?</string>
     <!-- Widgets -->
+    <string name="appStoreListingFull">- Modo automático de dispositivo mientras medita.
+\n- Sesiones pausables.
+\n- Sonidos de inicio/intervalo/final ajustables, tiempos, temas y comportamiento del dispositvo, y más.
+\n- Resumen mensual de progreso.
+\n- Opcionalmente publicar sesiones en MediNET, y visitar su fóro.
+\n(Compartir su progreso con la meditación motiva a tener sesiones diaria, incluso de cinco o diez minutos.)
+\n
+\nAsistente de Meditación es Software Libre sin Derechos de Autor.
+\nEnvíe su problema/idea o ajuste: https://gitlab.com/tslocum/meditationassistant/issues
+\nMuchas funciones son creadas por ideas de usuarios.
+\n
+\nTraduce Asistente de Meditación: https://www.getlocalization.com/meditationassistant/
+\n
+\nPor Rocket Nine Laboratories: https://rocketnine.space</string>
+    <string name="appStoreListingShort">Función incluida temporizador de sesión y grabadora</string>
+    <string name="widgetstreak3x1" tools:ignore="UnusedResources">Racha 3x1</string>
+    <string name="widgetstreak2x1" tools:ignore="UnusedResources">Racha 2x1</string>
+    <string name="widgetstreak1x1" tools:ignore="UnusedResources">Racha 1x1</string>
+    <string name="widgetpreset3x1" tools:ignore="UnusedResources">Preajuste 3x1</string>
+    <string name="widgetpreset2x1" tools:ignore="UnusedResources">Preajuste 2x1</string>
+    <string name="widgetpreset1x1" tools:ignore="UnusedResources">Preajuste 1x1</string>
+    <string name="sessionsUpToDate">Datos locales actualizados</string>
+    <plurals name="sessionsDownloaded">
+        <item quantity="one">Descargada %s sesión</item>
+        <item quantity="other">Descargada %s sesiones</item>
+    </plurals>
+    <string name="downloadsessionsmessage">Sesiones previas serán descargadas.
+\n
+\nEste diálogo no volverá a aparecer.
+\nUsted puede descargar sesiones después desde la ventana de Configuración.</string>
+    <string name="downloadsessionstitle">Descargar sesiones\?</string>
+    <string name="downloadSessionsHint">Click para Descargar sesiones en opciones para recuperar sesiones perdidas.</string>
+    <string name="download">Descargar</string>
+    <string name="pref_daily_reminder_title">Recuerdame</string>
+    <string name="pref_notificationcontrol_priority">Solo prioridad</string>
+    <string name="restartApp">Reiniciar aplicación para aplicar los nuevos ajustes</string>
+    <string name="notification">Notificación</string>
+    <string name="ringtone">Tono de alarma</string>
+    <string name="media">Multimedia</string>
+    <string name="alarm">Alarma</string>
+    <string name="center">Centro</string>
+    <string name="top">Arriba</string>
+    <string name="timerPosition">Posición del temporizador</string>
+    <string name="uploadsessions_summary">Subir sesiones locales</string>
+    <string name="uploadsessions">Subir sesiones</string>
+    <string name="local">Local</string>
+    <string name="utc">UTC</string>
+    <string name="importsessions_utc_or_local">Exportar con fecha y hora local o UTC\?
+\n
+\nExportaciones guardadas desde la versión 1.5.6 tienen fecha y hora UTC.</string>
+    <string name="importsessions_complete">Encontrado %1$d existentes y %2$d nuevas.</string>
+    <string name="importsessions_in_progress">Importando sesiones…</string>
+    <string name="downloadsessions_summary">Descargar sesiones remotas</string>
+    <string name="downloadsessions">Descargar sesiones</string>
+    <string name="exportsessions_summary">Exportar archivo CSV</string>
+    <string name="exportsessions">Exportar sesiones</string>
+    <string name="pref_usetimepicker_summary">Use deslizadores de hora y minutos cuando cambie duración</string>
+    <string name="pref_usetimepicker">Interfaz alternativa de duración</string>
+    <string name="pref_widgetcolor">Color de Widget</string>
+    <string name="pref_autosave">Autoguardado</string>
+    <string name="pref_audio_output">Salida de audio</string>
+    <string name="pref_meditationstreakbuffer">Racha se reinicia en</string>
+    <string name="always">Siempre</string>
+    <string name="duringSession">Durante sesión</string>
+    <string name="custom">Personalizado</string>
+    <string name="labelLong">Largo</string>
+    <string name="labelMedium">Medio</string>
+    <string name="labelShort">Corto</string>
+    <string name="pref_meditation_vibrate_finish">Vibración completa</string>
+    <string name="pref_meditation_vibrate_interval">Intervalo de vibración</string>
+    <string name="pref_meditation_vibrate_start">Iniciar vibración</string>
+    <string name="vibrate">Vibrar</string>
+    <string name="sessionExists">La sesión ya existe</string>
+    <string name="editSessionMeditating">Incapaz de editar una sesión mientras se medita</string>
+    <string name="invalidLength">Duración inválida</string>
+    <string name="length">Duración</string>
+    <string name="showExportedSessions">Sesiones exportadas. Desearía usted elegir la observar la carpeta que contiene lo exportado\?</string>
+    <string name="sessionExportFailed">Incapaz de exportar sesiones</string>
+    <string name="exportSessions">Exportar sesiones</string>
+    <string name="edit">Editar</string>
+    <string name="sessionEdited">Sesión editada</string>
+    <string name="sessionAdded">Sesión agregada</string>
+    <string name="editSession">Editar sesión</string>
+    <string name="useBrowser">Usar navegador:</string>
+    <string name="browser">Navegador</string>
+    <string name="postUpdatedSession">Publicar sesión actualizada en MediNET\?</string>
+    <string name="streakdifferencewarning">Su actual racha parace no coincidir basado en los datos de su sesión actual. Usar una racha actualizada\?
+\n
+\nRacha actual: %1$d
+\nRacha actualizada: %2$d</string>
+    <string name="sourceRepository">Repositorio del Código Fuente</string>
+    <string name="chooseDonationMethod">Por favor escoja cómo desea donar.
+\n
+\nLiberapay es preferido por el desarrollador y soporta más países y divisas.</string>
+    <string name="tapToLearnMore">Presione en cualquier lugar para saber más</string>
+    <string name="replayTutorial">Repetir tutorial</string>
+    <string name="whatIsMediNETHelp">MediNET es un repositorio de sesiones y comunidad de meditación.
+\n
+\nUsted puede escojer guardar sus sesiones en MediNET para prevenir su pérdida de datos o compartir su progreson con otros en línea.
+\n
+\nUsted puede, en su lugar, escojer guardar sus datos de sesión solo en su dispositivo.</string>
+    <string name="whatIsMediNET">Descripción de MediNET</string>
+    <string name="meditationSubreddit">Comunidad de Reddit</string>
+    <string name="resources">Recursos</string>
+    <string name="pattern">Patrón</string>
+    <string name="configureWidget">Configurar Widget</string>
+    <string name="setVibrationTip">Ingrese el número de milisegundos para encender o apagar la vibración, separado por comas.</string>
+    <string name="sessionPaused">Sesión pausada</string>
+    <string name="resume">Resumen</string>
+    <string name="editTimerHelp">Su sesión tendrá una duración específica, hasta una hora del día determinada, o no cronometrado en absoluto.
+\n
+\nPreajustes guardan configuraciones cómunes. Presione y mantenga un preajuste para guardar la duración de la actual sesión. Sonidos y otros ajustes pueden ser guardados en preajustes activándolos en Preajustes.
+\n
+\nDespués de presionar OK, presione Cancelar o Confirmar para continuar.</string>
+    <string name="permissionRequired">Este permiso es necesario.</string>
+    <string name="disableBatteryOptimizations">Asistente de Meditación debe correr en segundo plano</string>
+    <string name="installFileManager">Por favor instale un administrador de archivos</string>
+    <string name="warning">Advertencia</string>
 </resources>

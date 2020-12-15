@@ -81,4 +81,28 @@
     </plurals>
     <!-- Widgets -->
     <string name="sendEmail">Enviar un correo electrónico</string>
+    <string name="setPresetHint">Mantenga presionado para guardar ajuste</string>
+    <string name="setPreset">Guardar configuración</string>
+    <string name="sessionPaused">Sesión pausada</string>
+    <string name="pausedNotification">Sesión pausada, mantenga presionado para finalizar</string>
+    <string name="resume">Resumen</string>
+    <string name="medinetHelp">Inicie sesión en MediNET para guardar sus sesiones en línea. Usted puede importar sus sesiones después si pierde sus datos. Esta función es enteramente opcional, guardando sus sesiones localmente no arruinará su experiencia.
+\n
+\nEsto concluye el tutorial. Espero que Asistente de Meditación sea beneficioso para su práctica.</string>
+    <string name="settingsHelp">Esta aplicación incluye numerosas funciones y personalizaciones. Presione el ícono de Configuración para ver estas opciones.</string>
+    <string name="editTimerHelp">Su sesión tendrá una duración específica, hasta una hora del día, o no cronometrado en absoluto.
+\n
+\nPreajustes pueden ser usados para guardar configuraciones comunes. Presiones y mantenga un preajuste para guardar la duración actual de la sesión. Sonidos y otros ajustes pueden ser guardados en preajustes activándolos en configuración de Preajuste.
+\n
+\nDespués de presionar OK, presione Cancelar o Confirmar para continuar.</string>
+    <string name="timerHelp">Bienvenido a un breve tutorial. Este es el temporizador. Presiónelo ahora para cambiar el modo y duración.</string>
+    <string name="tryAgain">Intentar de nuevo</string>
+    <string name="deny">Denegar</string>
+    <string name="permissionRequestNotificationControl">Por favor permita acceso en la siguiente pantalla para controlar No Molestar.</string>
+    <string name="permissionRequired">Este permiso es requerido.</string>
+    <string name="permissionRequest">Solicitud de permiso</string>
+    <string name="disableBatteryOptimizations">Asistente de Meditación debe de correr en segundo plano</string>
+    <string name="installFileManager">Por favor instale un administrador de archivos</string>
+    <string name="openWith">Abrir con</string>
+    <string name="warning">Advertencia</string>
 </resources>

@@ -225,7 +225,7 @@
     <string name="permissionRequest">Необходимы разрешения</string>
     <string name="permissionRequestNotificationControl">Пожалуйста, на следующем экране дайте программе доступ к режиму \"не беспокоить\".</string>
     <string name="deny">Запретить</string>
-    <string name="tryAgain">Попробуйте ещё раз</string>
+    <string name="tryAgain">Попробуйте снова</string>
     <string name="tapToLearnMore">Нажмите в любом месте, чтобы узнать больше</string>
     <string name="donate">Пожертвование</string>
     <string name="pref_sessionintro">Приветствие</string>

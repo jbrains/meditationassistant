@@ -339,4 +339,9 @@
     <string name="sourceRepository">Kildekodedepot</string>
     <string name="whatIsMediNET">MediNET-oversikt</string>
     <string name="meditationSubreddit">Reddit-gemenskap</string>
+    <string name="notification">Merknad</string>
+    <string name="ringtone">Ringetone</string>
+    <string name="media">Media</string>
+    <string name="alarm">Alarm</string>
+    <string name="pref_audio_output">Lydutgang</string>
 </resources>
