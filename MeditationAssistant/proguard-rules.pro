@@ -38,10 +38,6 @@
 
 -dontwarn android.webkit.**
 
--keep class com.google.android.gms.analytics.**
--keep class com.google.analytics.tracking.**
--dontwarn com.google.android.gms.analytics.**
--dontwarn com.google.analytics.tracking.**
 
 -dontwarn com.google.android.gms.**
 

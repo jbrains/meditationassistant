@@ -191,8 +191,6 @@
     <string name="pref_sessionvolume">Volume</string>
     <string name="pref_sessionvolume_summary">Previous volume will be restored once the session is complete.</string>
     <string name="pref_screencontrol">Screen</string>
-    <string name="pref_sendusage">Report usage statistics</string>
-    <string name="pref_sendusage_summary">Anonymous reporting via Google Analytics. Takes effect on restart</string>
     <string name="pref_showstreak">Display meditation streak</string>
     <string name="pref_showstreak_summary">Number of consecutive days with at least one recorded session</string>
     <string name="selectSound">Select sound</string>
