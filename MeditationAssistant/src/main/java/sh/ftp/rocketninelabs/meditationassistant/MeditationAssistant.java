@@ -101,6 +101,9 @@ public class MeditationAssistant extends Application {
 
     public static int CSV_COLUMN_COUNT = 5;
 
+    public static int sessionNotificationID = 1990;
+    public static int bellNotificationID = 1991;
+
     public boolean ispaused = false;
     public long pausestart = 0;
     public long pausetime = 0;
@@ -568,7 +571,7 @@ public class MeditationAssistant extends Application {
 
     public void cacheSessionSounds() {
         String label;
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             switch (i) {
                 case 0:
                     label = "start";
@@ -578,6 +581,9 @@ public class MeditationAssistant extends Application {
                     break;
                 case 2:
                     label = "finish";
+                    break;
+                case 3:
+                    label = "bell";
                     break;
                 default:
                     return;
@@ -680,6 +686,9 @@ public class MeditationAssistant extends Application {
                 break;
             case 2:
                 label = "finish";
+                break;
+            case 3:
+                label = "bell";
                 break;
             default:
                 return;
@@ -1140,9 +1149,14 @@ public class MeditationAssistant extends Application {
         getPrefs().edit().putInt("webviewscale", webview_scale).apply();
     }
 
-    public void hideNotification() {
+    public void hideBellNotification() {
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.cancelAll();
+        notificationManager.cancel(bellNotificationID);
+    }
+
+    public void hideSessionNotification() {
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.cancel(sessionNotificationID);
     }
 
     public void longToast(String text) {
@@ -1192,7 +1206,7 @@ public class MeditationAssistant extends Application {
         getPrefs().registerOnSharedPreferenceChangeListener(sharedPrefslistener);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            createNotificationChannel();
+            createNotificationChannels();
         }
 
         // Reset timer to default values
@@ -1414,19 +1428,56 @@ public class MeditationAssistant extends Application {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void createNotificationChannel() {
-        NotificationChannel channel = new NotificationChannel("session", getString(R.string.session), NotificationManager.IMPORTANCE_LOW);
-        channel.enableLights(false);
-        channel.enableVibration(false);
+    public void createNotificationChannels() {
+        NotificationChannel sessionChannel = new NotificationChannel("session", getString(R.string.session), NotificationManager.IMPORTANCE_LOW);
+        sessionChannel.enableLights(false);
+        sessionChannel.enableVibration(false);
+
+        NotificationChannel bellChannel = new NotificationChannel("bell", getString(R.string.session), NotificationManager.IMPORTANCE_LOW);
+        bellChannel.enableLights(false);
+        bellChannel.enableVibration(false);
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.createNotificationChannel(channel);
+        notificationManager.createNotificationChannel(sessionChannel);
+        notificationManager.createNotificationChannel(bellChannel);
     }
 
-    public void showNotification() {
+    public void showMindfulnessBellNotification() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setAction("notification");
+        // intent.putExtra("notificationButton", "notification");
+        // intent.putExtra("notificationButton", "");
+        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Intent intent3 = new Intent(this, MainActivity.class);
+        // intent3.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        // intent3.putExtra("notificationButton", "end");
+        intent3.setAction("notificationEndBell");
+        PendingIntent pIntentEnd = PendingIntent.getActivity(this, 0, intent3,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                .setOngoing(true)
+                .setSmallIcon(R.drawable.ic_notification)
+                .setContentTitle(getString(R.string.mindfulnessBellActive))
+                .setPriority(NotificationCompat.PRIORITY_LOW)
+                .setContentIntent(pIntent)
+                .addAction(R.drawable.ic_action_stop,
+                        getString(R.string.deactivate), pIntentEnd);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            notificationBuilder.setChannelId("bell");
+        }
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(bellNotificationID, notificationBuilder.build());
+    }
+
+    public void showSessionNotification() {
         if (!getPrefs().getBoolean("pref_notification", true)
                 || getTimeStartMeditate() < 1) {
-            hideNotification();
+            hideSessionNotification();
             return;
         }
 
@@ -1459,7 +1510,6 @@ public class MeditationAssistant extends Application {
                 .setOngoing(true)
                 .setSmallIcon(R.drawable.ic_notification)
                 .setContentTitle(getString(!ispaused ? R.string.sessionInProgress : R.string.sessionPaused))
-                .setContentText(getString(R.string.appNameShort))
                 .setPriority(NotificationCompat.PRIORITY_LOW)
                 .setContentInfo(streaktext)
                 .setContentIntent(pIntent)
@@ -1473,7 +1523,7 @@ public class MeditationAssistant extends Application {
         }
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.notify(0, notificationBuilder.build());
+        notificationManager.notify(sessionNotificationID, notificationBuilder.build());
     }
 
     public void showSessionDialog(final SessionSQL session, Activity activity) {

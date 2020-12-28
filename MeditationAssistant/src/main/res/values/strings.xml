@@ -65,6 +65,10 @@
     <string name="unlimited">Unlimited</string>
     <string name="presetLabelEndAt">End %s</string>
     <string name="resources">Resources</string>
+    <string name="mindfulnessBell">Mindfulness bell</string>
+    <string name="mindfulnessBellActive">Mindfulness bell active</string>
+    <string name="interval">Interval</string>
+    <string name="deactivate">Deactivate</string>
     <string name="howToMeditate">How to meditate</string>
     <string name="meditationSubreddit">Reddit community</string>
     <string name="whatIsMediNET">MediNET overview</string>
@@ -164,6 +168,7 @@
     <string name="disabled">Disabled</string>
     <string name="none">None</string>
     <string name="noSpecialBehavior">No special behavior</string>
+    <string name="start">Start</string>
     <string name="labelShort">Short</string>
     <string name="labelMedium">Medium</string>
     <string name="labelLong">Long</string>
@@ -197,6 +202,7 @@
     <string name="pref_meditation_sound_start">Start sound</string>
     <string name="pref_meditation_sound_interval">Interval sound</string>
     <string name="pref_meditation_sound_finish">Complete sound</string>
+    <string name="pref_meditation_sound_bell">Mindfulness bell sound</string>
     <string name="pref_remembermessage">Remember last message</string>
     <string name="pref_remembermessage_summary">Default to the previous message</string>
     <string name="pref_theme">Holographic theme</string>

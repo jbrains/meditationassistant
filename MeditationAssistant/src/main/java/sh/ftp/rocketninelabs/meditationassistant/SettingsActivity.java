@@ -52,6 +52,7 @@ public class SettingsActivity extends PreferenceActivity {
     static int FILEPICKER_SELECT_SOUND_START = 101;
     static int FILEPICKER_SELECT_SOUND_INTERVAL = 102;
     static int FILEPICKER_SELECT_SOUND_FINISH = 103;
+    static int FILEPICKER_SELECT_SOUND_BELL = 110;
     static int FILEPICKER_IMPORT_SESSIONS_UTC = 104;
     static int FILEPICKER_IMPORT_SESSIONS_LOCAL = 105;
     static int FILEPICKER_EXPORT_SESSIONS = 106;
@@ -66,6 +67,7 @@ public class SettingsActivity extends PreferenceActivity {
     public Boolean initialSoundChangeStart = true;
     public Boolean initialSoundChangeInterval = true;
     public Boolean initialSoundChangeFinish = true;
+    public Boolean initialSoundChangeBell = true;
     public Boolean initialVibrationChangeStart = true;
     public Boolean initialVibrationChangeInterval = true;
     public Boolean initialVibrationChangeFinish = true;
@@ -197,6 +199,15 @@ public class SettingsActivity extends PreferenceActivity {
                         preference.setSummary(customSoundSummary(getMeditationAssistant().getPrefs().getString("pref_meditation_sound_finish_custom", "")));
                     }
                     initialSoundChangeFinish = false;
+                } else if (listPreference.getKey().equals("pref_meditation_sound_bell")) {
+                    if (stringValue.equals("custom")) {
+                        if (!initialSoundChangeBell) {
+                            selectCustomSound(FILEPICKER_SELECT_SOUND_BELL);
+                        }
+
+                        preference.setSummary(customSoundSummary(getMeditationAssistant().getPrefs().getString("pref_meditation_sound_bell_custom", "")));
+                    }
+                    initialSoundChangeBell = false;
                 } else if (listPreference.getKey().equals("pref_meditation_vibrate_start")) {
                     if (stringValue.equals("custom") && !initialVibrationChangeStart) {
                         selectCustomVibration(SElECT_VIBRATION_START);
@@ -546,6 +557,9 @@ public class SettingsActivity extends PreferenceActivity {
         } else if (requestCode == FILEPICKER_SELECT_SOUND_FINISH) {
             pref_key = "pref_meditation_sound_finish";
             pref = "pref_meditation_sound_finish_custom";
+    } else if (requestCode == FILEPICKER_SELECT_SOUND_BELL) {
+        pref_key = "pref_meditation_sound_bell";
+        pref = "pref_meditation_sound_bell_custom";
         } else {
             return;
         }
@@ -558,7 +572,9 @@ public class SettingsActivity extends PreferenceActivity {
             initialSoundChangeInterval = true;
         } else if (requestCode == FILEPICKER_SELECT_SOUND_FINISH) {
             initialSoundChangeFinish = true;
-        }
+        } else if (requestCode == FILEPICKER_SELECT_SOUND_BELL) {
+        initialSoundChangeBell = true;
+    }
 
         ListPreferenceSound prefMeditationSound = (ListPreferenceSound) (sessionPreferenceFragment == null ? findPreference(pref_key) : sessionPreferenceFragment.findPreference(pref_key));
         prefMeditationSound.getOnPreferenceChangeListener().onPreferenceChange(prefMeditationSound, getMeditationAssistant().getPrefs().getString(pref_key, "gong"));
@@ -596,7 +612,7 @@ public class SettingsActivity extends PreferenceActivity {
         setupSimplePreferencesScreen();
     }
 
-    void setupSoundPreferences(PreferenceFragment preferenceFragment) {
+    void setupSessionSoundPreferences(PreferenceFragment preferenceFragment) {
         String[] meditation_sounds = getResources().getStringArray(R.array.meditation_sounds);
         String[] meditation_sounds_values = getResources().getStringArray(R.array.meditation_sounds_values);
 
@@ -617,6 +633,15 @@ public class SettingsActivity extends PreferenceActivity {
             pref_notificationcontrol.setEntries(R.array.notificationcontrol_premarshmallow);
             pref_notificationcontrol.setEntryValues(R.array.notificationcontrol_values_premarshmallow);
         }
+    }
+
+    void setupMeditationSoundPreferences(PreferenceFragment preferenceFragment) {
+        String[] meditation_sounds = getResources().getStringArray(R.array.meditation_sounds);
+        String[] meditation_sounds_values = getResources().getStringArray(R.array.meditation_sounds_values);
+
+        ListPreferenceSound prefMeditationSoundBell = (ListPreferenceSound) (preferenceFragment == null ? findPreference("pref_meditation_sound_bell") : preferenceFragment.findPreference("pref_meditation_sound_bell"));
+        prefMeditationSoundBell.setEntries(meditation_sounds);
+        prefMeditationSoundBell.setEntryValues(meditation_sounds_values);
     }
 
     void setupVibrationPreferences(PreferenceFragment preferenceFragment) {
@@ -672,6 +697,7 @@ public class SettingsActivity extends PreferenceActivity {
                 meditationPreferenceFragment = (MeditationPreferenceFragment) preferenceFragment;
             }
 
+            bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_meditation_sound_bell") : preferenceFragment.findPreference("pref_meditation_sound_bell"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_usetimepicker") : preferenceFragment.findPreference("pref_usetimepicker"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_screencontrol") : preferenceFragment.findPreference("pref_screencontrol"));
             bindPreferenceSummaryToValue(preferenceFragment == null ? findPreference("pref_full_screen") : preferenceFragment.findPreference("pref_full_screen"));
@@ -831,7 +857,8 @@ public class SettingsActivity extends PreferenceActivity {
         getPreferenceScreen().addPreference(fakeHeader);
         addPreferencesFromResource(R.xml.pref_miscellaneous);
 
-        setupSoundPreferences(null);
+        setupSessionSoundPreferences(null);
+        setupMeditationSoundPreferences(null);
         setupVibrationPreferences(null);
         setupPreferences("all", null);
     }
@@ -918,7 +945,7 @@ public class SettingsActivity extends PreferenceActivity {
             getPreferenceScreen().removePreference(prefCatSession);
 
             SettingsActivity settingsactivity = (SettingsActivity) getActivity();
-            settingsactivity.setupSoundPreferences(this);
+            settingsactivity.setupSessionSoundPreferences(this);
             settingsactivity.setupVibrationPreferences(this);
             settingsactivity.setupPreferences("session", this);
         }
@@ -950,6 +977,7 @@ public class SettingsActivity extends PreferenceActivity {
             addPreferencesFromResource(R.xml.pref_meditation);
 
             SettingsActivity settingsactivity = (SettingsActivity) getActivity();
+            settingsactivity.setupMeditationSoundPreferences(this);
             settingsactivity.setupPreferences("meditation", this);
         }
     }

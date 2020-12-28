@@ -57,6 +57,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     public static int ID_DELAY = 77702;
     public static int ID_INTERVAL = 77701;
     public static int ID_END = 77703;
+    public static int ID_BELL = 77704;
 
     public MeditationAssistant ma = null;
     SharedPreferences.OnSharedPreferenceChangeListener sharedPrefslistener = (newprefs, key) -> {
@@ -155,6 +156,25 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     };
     private Boolean finishedTutorial = null;
     private String wakeLockID;
+
+    private boolean mindfulnessBellActive;
+    private PendingIntent mindfulnessBellIntent;
+    private long mindfulnessBellNextChime;
+    private Runnable mindfulnessBellRunnable = new Runnable() {
+        @Override
+        public void run() {
+            handler.removeCallbacks(this);
+            if (!mindfulnessBellActive) {
+                return;
+            }
+
+            Log.d("MeditationAssistant", "Mindfulness bell chiming");
+
+            getMeditationAssistant().notifySession(3, true, false);
+
+            setMindfulnessBellAlarm();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -442,7 +462,9 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             }
         }
 
-        if (item.getItemId() == R.id.action_how_to_meditate) {
+        if (item.getItemId() == R.id.action_mindfulness_bell) {
+            activateMindfulnessBell();
+        } else if (item.getItemId() == R.id.action_how_to_meditate) {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(MeditationAssistant.URL_MEDINET + "/howtomeditate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         } else if (item.getItemId() == R.id.action_reddit_community) {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://old.reddit.com/r/meditation")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
@@ -1468,6 +1490,41 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         }
     }
 
+    private void setMindfulnessBellAlarm() {
+        if (mindfulnessBellNextChime == 0) {
+            mindfulnessBellNextChime = System.currentTimeMillis() / 1000;
+        }
+
+        int mindfulnessBellDuration = Integer.parseInt(getMeditationAssistant().getPrefs().getString("bellHours", "0")) * 3600 + (Integer.parseInt(getMeditationAssistant().getPrefs().getString("bellMinutes", "15")) * 60);
+        if (mindfulnessBellDuration == 0) {
+            return;
+        }
+
+        mindfulnessBellNextChime += mindfulnessBellDuration;
+
+        Log.d("MeditationAssistant", "Mindfulness bell is set to " + mindfulnessBellDuration + " seconds. Next chime at " + mindfulnessBellNextChime);
+
+        if (mindfulnessBellIntent != null) {
+            am.cancel(mindfulnessBellIntent);
+        }
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(mindfulnessBellNextChime * 1000);
+
+        Log.d("MeditationAssistant", "Setting BELL WAKEUP alarm for "
+                + cal.getTimeInMillis() + " (Now: "
+                + System.currentTimeMillis() + ", in: " + (cal.getTimeInMillis() - System.currentTimeMillis()) / 1000 + ")");
+
+        Intent intent_bell = new Intent(
+                getApplicationContext(), MainActivity.class);
+        intent_bell.putExtra("wakeup", true);
+        intent_bell.putExtra("wakeupbell", true);
+        intent_bell.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        intent_bell.setAction(BROADCAST_ACTION_ALARM);
+        mindfulnessBellIntent = PendingIntent.getActivity(getApplicationContext(), ID_BELL, intent_bell, PendingIntent.FLAG_CANCEL_CURRENT);
+        getMeditationAssistant().setAlarm(true, cal.getTimeInMillis(), mindfulnessBellIntent);
+    }
+
     private void screenDimOrOff() {
         String pref_screencontrol = getMeditationAssistant().getPrefs().getString("pref_screencontrol", "dim");
         if (!pref_screencontrol.equals("ondim") && !pref_screencontrol.equals("dim") && !pref_screencontrol.equals("off")) {
@@ -1494,6 +1551,76 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         handler.postDelayed(screenDimRunnable, 250);
     }
 
+    private void activateMindfulnessBell() {
+        if (mindfulnessBellActive) {
+            mindfulnessBellActive = false;
+            mindfulnessBellNextChime = 0;
+            if (mindfulnessBellIntent != null) {
+                am.cancel(mindfulnessBellIntent);
+            }
+            handler.removeCallbacks(mindfulnessBellRunnable);
+            getMeditationAssistant().hideBellNotification();
+            return;
+        }
+
+        getMeditationAssistant().clearSoundCache();
+        getMeditationAssistant().cacheSessionSounds();
+
+        LayoutInflater presetInflater = getLayoutInflater();
+        View presetLayout = presetInflater.inflate(R.layout.mindfulness_bell, null);
+        final EditText editBellDuration = presetLayout.findViewById(R.id.editBellDuration);
+        editBellDuration.setText(getMeditationAssistant().getPrefs().getString("bellHours", "0") + ":" + String.format("%02d", Integer.valueOf(getMeditationAssistant().getPrefs().getString("bellMinutes", "0"))));
+        editBellDuration.setSelection(editBellDuration.getText().length());
+        editBellDuration.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder
+                .setIcon(getResources().getDrawable(getTheme().obtainStyledAttributes(getMeditationAssistant().getMATheme(), new int[]{R.attr.actionIconTime}).getResourceId(0, 0)))
+                .setTitle(getString(R.string.mindfulnessBell))
+                .setView(presetLayout)
+                .setPositiveButton(getString(R.string.start),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                // Set below
+                            }
+                        })
+                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // Do nothing
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ArrayList<String> duration_formatted = getMeditationAssistant().formatDuration(editBellDuration.getText().toString().trim());
+                if (duration_formatted != null && duration_formatted.size() == 2) {
+                    SharedPreferences.Editor editor = getMeditationAssistant().getPrefs().edit();
+                    editor.putString("bellHours", duration_formatted.get(0));
+                    editor.putString("bellMinutes", duration_formatted.get(1));
+                    editor.apply();
+
+                    mindfulnessBellActive = true;
+
+                    getMeditationAssistant().showMindfulnessBellNotification();
+
+                    handler.removeCallbacks(mindfulnessBellRunnable);
+                    handler.postDelayed(mindfulnessBellRunnable, 2000);
+
+                    dialog.dismiss();
+                    return;
+                }
+
+                getMeditationAssistant().shortToast(getString(R.string.setTimerDurationHint));
+            }
+        });
+    }
+
     public boolean longPressMeditate(View view) {
         long timestamp = System.currentTimeMillis() / 1000;
         Log.d("MeditationAssistant", "stopMedidate");
@@ -1517,7 +1644,9 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         getMeditationAssistant().releaseAllWakeLocks();
         getMeditationAssistant().restoreVolume();
 
-        if (getMeditationAssistant().getTimeStartMeditate() != 0) {
+        if (getMeditationAssistant().getTimeStartMeditate() == 0) {
+            activateMindfulnessBell();
+        } else {
             if (view != null
                     && timestamp
                     - getMeditationAssistant().getTimeStartMeditate() > 0) {
@@ -1539,10 +1668,9 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             handler.removeCallbacks(screenDimRunnable);
             handler.removeCallbacks(screenOffRunnable);
             getMeditationAssistant().setRunnableStopped(true);
-            return true;
         }
 
-        return false;
+        return true;
     }
 
     public void onTimerModeSelected(View view) {
@@ -1567,7 +1695,6 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             if (usetimepicker) {
                 timepickerDuration.setEnabled(true);
             } else {
-
                 if (editDuration.getText().toString().equals(getString(R.string.ignore_om))) {
                     if (newTimerMode.equals("endat")) { // Don't leave om character in edit text
                         editDuration.setText(getMeditationAssistant().getPrefs().getString("timerHoursEndAt", "0")
@@ -1599,7 +1726,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     protected void onPause() {
         if (getMeditationAssistant().getTimeStartMeditate() > 0
                 && getMeditationAssistant().getTimeToStopMeditate() != 0) {
-            getMeditationAssistant().showNotification();
+            getMeditationAssistant().showSessionNotification();
         }
 
         getMeditationAssistant().setScreenOff(true);
@@ -1610,7 +1737,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
 
     @Override
     protected void onResume() {
-        getMeditationAssistant().hideNotification();
+        getMeditationAssistant().hideSessionNotification();
 
         if (getIntent().getStringExtra("action") != null) {
             Log.d("MeditationAssistant", "Intent for MainActivity: "
@@ -1805,6 +1932,14 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                     if (getMeditationAssistant().getTimeStartMeditate() > 0) {
                         longPressMeditate(new View(getApplicationContext()));
                     }
+                } else if (getIntent().getAction().equals("notificationEndBell")) {
+                    mindfulnessBellActive = false;
+                    mindfulnessBellNextChime = 0;
+                    if (mindfulnessBellIntent != null) {
+                        am.cancel(mindfulnessBellIntent);
+                    }
+                    handler.removeCallbacks(mindfulnessBellRunnable);
+                    getMeditationAssistant().hideBellNotification();
                 }
             }
 
@@ -1812,6 +1947,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                 Boolean fullWakeUp = intent.getBooleanExtra("fullwakeup", false);
                 Boolean wakeUpStart = intent.getBooleanExtra("wakeupstart", false);
                 Boolean wakeUpInterval = intent.getBooleanExtra("wakeupinterval", false);
+                Boolean wakeUpBell = intent.getBooleanExtra("wakeupbell", false);
 
                 Log.d("MeditationAssistant", "ALARM RECEIVER INTEGRATED: Received broadcast - Full: " + (fullWakeUp ? "Full" : "Partial") + " - Start/interval: " + (wakeUpStart ? "Start" : (wakeUpInterval ? "Interval" : "Neither")));
 
@@ -1886,6 +2022,9 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
                             Log.d("MeditationAssistant", "Skipping INTERVAL WAKEUP alarm");
                         }
                     }
+                } else if (wakeUpBell) {
+                    Log.d("MeditationAssistant", "Queueing wake up bell runnable");
+                    handler.postDelayed(mindfulnessBellRunnable, 50);
                 }
 
                 if (fullWakeUp) {

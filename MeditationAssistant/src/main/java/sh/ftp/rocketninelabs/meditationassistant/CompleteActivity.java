@@ -37,7 +37,7 @@ public class CompleteActivity extends Activity {
         setTheme(getMeditationAssistant().getMATheme());
         setContentView(R.layout.activity_complete);
 
-        getMeditationAssistant().hideNotification(); // Called twice because it seems to help
+        getMeditationAssistant().hideSessionNotification(); // Called twice because it seems to help
 
         if (getMeditationAssistant().getPrefs().getString("pref_full_screen", "").equals("always")) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -79,7 +79,7 @@ public class CompleteActivity extends Activity {
         }
 
         getMeditationAssistant().unsetNotificationControl();
-        getMeditationAssistant().hideNotification(); // Called twice because it seems to help
+        getMeditationAssistant().hideSessionNotification(); // Called twice because it seems to help
 
         EditText editSessionMessage = findViewById(R.id.editSessionMessage);
         if (editSessionMessage.getText().toString().equals("")

@@ -19,6 +19,14 @@
         android:summary="@string/pref_usetimepicker_summary"
         android:title="@string/pref_usetimepicker"/>
 
+    <sh.ftp.rocketninelabs.meditationassistant.ListPreferenceSound
+        android:defaultValue="gong"
+        android:dialogIcon="?attr/actionIconVolumeOn"
+        android:entries="@array/meditation_sounds"
+        android:entryValues="@array/meditation_sounds_values"
+        android:key="pref_meditation_sound_bell"
+        android:title="@string/pref_meditation_sound_bell"/>
+
     <ListPreference
         android:defaultValue=""
         android:entries="@array/autosave_labels"

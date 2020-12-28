@@ -8,6 +8,9 @@
         android:title="@string/resources">
         <menu>
             <item
+                android:id="@+id/action_mindfulness_bell"
+                android:title="@string/mindfulnessBell" />
+            <item
                 android:id="@+id/action_how_to_meditate"
                 android:title="@string/howToMeditate" />
             <item
