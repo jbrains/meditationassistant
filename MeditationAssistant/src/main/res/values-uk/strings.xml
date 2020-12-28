@@ -147,7 +147,6 @@
     <string name="pref_sessionvolume">Гучність</string>
     <string name="pref_sessionvolume_summary">Попередня гучність буде відновлена після закінчення сеансу</string>
     <string name="pref_screencontrol">Екран</string>
-    <string name="pref_sendusage">Повідомити статистику використання</string>
     <string name="pref_sendusage_summary">Анонімні повідомлення через Google Analytics. Запрацює після перезапуску.</string>
     <string name="pref_showstreak">Показати наполегливість в медитації</string>
     <string name="pref_showstreak_summary">Кількість днів поспіль з принаймні одним записаним сеансом</string>

@@ -195,7 +195,6 @@
     <string name="pref_sessionvolume">Volume</string>
     <string name="pref_sessionvolume_summary">Volume anterior será restaurado assim que a sessão for concluída.</string>
     <string name="pref_screencontrol">Ecrã</string>
-    <string name="pref_sendusage">Relatório de estatísticas de uso</string>
     <string name="pref_sendusage_summary">Relatórios anônimos através do Google Analytics. Entra em vigor após reinício</string>
     <string name="pref_showstreak">Mostrar meditações consecutivas</string>
     <string name="pref_showstreak_summary">Número de dias consecutivos com pelo menos uma sessão gravada</string>

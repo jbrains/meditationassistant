@@ -1569,7 +1569,7 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         LayoutInflater presetInflater = getLayoutInflater();
         View presetLayout = presetInflater.inflate(R.layout.mindfulness_bell, null);
         final EditText editBellDuration = presetLayout.findViewById(R.id.editBellDuration);
-        editBellDuration.setText(getMeditationAssistant().getPrefs().getString("bellHours", "0") + ":" + String.format("%02d", Integer.valueOf(getMeditationAssistant().getPrefs().getString("bellMinutes", "0"))));
+        editBellDuration.setText(getMeditationAssistant().getPrefs().getString("bellHours", "0") + ":" + String.format("%02d", Integer.valueOf(getMeditationAssistant().getPrefs().getString("bellMinutes", "15"))));
         editBellDuration.setSelection(editBellDuration.getText().length());
         editBellDuration.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 

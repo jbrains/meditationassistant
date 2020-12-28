@@ -163,7 +163,6 @@
     <string name="pref_sessionvolume">音量</string>
     <string name="pref_sessionvolume_summary">セッションが完了すると、以前の音量が復元されます。</string>
     <string name="pref_screencontrol">画面</string>
-    <string name="pref_sendusage">使用状況を報告</string>
     <string name="pref_sendusage_summary">Google Analytics を経由して匿名で報告します。再起動時に有効になります</string>
     <string name="pref_showstreak">瞑想の継続日数を表示</string>
     <string name="pref_showstreak_summary">少なくとも一つ記録されたセッションで、連続した日数</string>

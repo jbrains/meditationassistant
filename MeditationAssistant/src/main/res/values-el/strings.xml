@@ -153,7 +153,6 @@
     <string name="pref_sessionvolume">Ένταση</string>
     <string name="pref_sessionvolume_summary">Η προηγούμενη ένταση θα επανέρθει μόλις η συνεδρία ολοκληρωθεί</string>
     <string name="pref_screencontrol">Οθόνη</string>
-    <string name="pref_sendusage">Ανέφερε στατιστικά χρήσης</string>
     <string name="pref_sendusage_summary">Ανώνυμη αναφορά μέσω Google Analytics. Εφαρμόζεται στην επανεκκίνηση</string>
     <string name="pref_showstreak">Πρόβαλε ακολουθία διαλογισμού</string>
     <string name="pref_showstreak_summary">Αριθμός συνεχόμενων ημερών με τουλάχιστον μια κατεγραμένη συνεδρία</string>

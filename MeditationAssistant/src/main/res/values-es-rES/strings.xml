@@ -154,7 +154,6 @@
     <string name="pref_sessionvolume">Volumen</string>
     <string name="pref_sessionvolume_summary">El volumen anterior será restaurado una vez que la sesión se complete.</string>
     <string name="pref_screencontrol">Pantalla</string>
-    <string name="pref_sendusage">Reportar las estadísticas del uso</string>
     <string name="pref_sendusage_summary">Reportar anónimamente con Google Analytics. Necesita el reinicio de la aplicación</string>
     <string name="pref_showstreak">Mostrar progreso de la meditación</string>
     <string name="pref_showstreak_summary">Número de días consecutivos con al menos una sesión</string>

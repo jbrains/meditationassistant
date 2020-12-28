@@ -154,7 +154,6 @@
     <string name="pref_sessionvolume">Volume</string>
     <string name="pref_sessionvolume_summary">Le volume précédent sera rétabli une fois la séance terminée.</string>
     <string name="pref_screencontrol">Ecran</string>
-    <string name="pref_sendusage">Envoyer les statistiques d\'utilisation</string>
     <string name="pref_sendusage_summary">Envoi anonyme des statistiques via Google Analytics. Prend effet au redémarrage</string>
     <string name="pref_showstreak">Afficher la série de méditation</string>
     <string name="pref_showstreak_summary">Nombre de jours consécutifs avec au moins une séance enregistrée</string>
