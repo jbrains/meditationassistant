@@ -1,6 +1,15 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <sh.ftp.rocketninelabs.meditationassistant.ListPreferenceSound
+        android:defaultValue="gong"
+        android:dialogIcon="?attr/actionIconVolumeOn"
+        android:entries="@array/meditation_sounds"
+        android:entryValues="@array/meditation_sounds_values"
+        android:icon="?attr/actionIconVolumeOn"
+        android:key="pref_meditation_sound_bell"
+        android:title="@string/pref_meditation_sound_bell"/>
+
     <CheckBoxPreference
         android:defaultValue="true"
         android:key="pref_display_seconds"
@@ -18,14 +27,6 @@
         android:key="pref_usetimepicker"
         android:summary="@string/pref_usetimepicker_summary"
         android:title="@string/pref_usetimepicker"/>
-
-    <sh.ftp.rocketninelabs.meditationassistant.ListPreferenceSound
-        android:defaultValue="gong"
-        android:dialogIcon="?attr/actionIconVolumeOn"
-        android:entries="@array/meditation_sounds"
-        android:entryValues="@array/meditation_sounds_values"
-        android:key="pref_meditation_sound_bell"
-        android:title="@string/pref_meditation_sound_bell"/>
 
     <ListPreference
         android:defaultValue=""
