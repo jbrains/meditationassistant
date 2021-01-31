@@ -9,7 +9,8 @@
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/appNameShort"
-        android:theme="@style/MeditationDarkTheme">
+        android:theme="@style/MeditationDarkTheme"
+        android:requestLegacyExternalStorage="true">
 
         <!-- Services -->
         <activity
