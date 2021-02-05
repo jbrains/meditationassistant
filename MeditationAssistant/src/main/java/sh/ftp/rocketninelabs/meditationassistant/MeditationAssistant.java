@@ -61,12 +61,11 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -2058,20 +2057,16 @@ public class MeditationAssistant extends Application {
         }
     }
 
-    public String filePickerResult(Intent intent) {
+    public Uri filePickerResult(Intent intent) {
         if (Build.VERSION.SDK_INT >= 23) {
-            File file = FileUtils.getFile(this, intent.getData());
-            if (file != null && file.exists()) {
-                return file.toString();
-            }
+            return intent.getData();
         } else {
             List<Uri> files = Utils.getSelectedFilesFromResult(intent);
             for (Uri uri : files) {
-                return uri.toString();
+                return uri;
             }
         }
-
-        return "";
+        return null;
     }
 
     public void askToDonate(Activity activity) {
@@ -2119,12 +2114,12 @@ public class MeditationAssistant extends Application {
                 .show();
     }
 
-    public void importSessions(Activity activity, File file, boolean useLocalTimeZone) {
+    public void importSessions(Activity activity, Uri uri, boolean useLocalTimeZone) {
         final Pattern lengthPattern = Pattern.compile("^[0-9]{1,2}:[0-9][0-9]$");
 
-        FileReader inputfile;
+        InputStreamReader inputfile;
         try {
-            inputfile = new FileReader(file);
+            inputfile = new InputStreamReader(getContentResolver().openInputStream(uri));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return;
@@ -2276,7 +2271,7 @@ public class MeditationAssistant extends Application {
         sessionsImportedDialog.show();
     }
 
-    private void closeCSVReader(CSVReader reader, FileReader file) {
+    private void closeCSVReader(CSVReader reader, InputStreamReader file) {
         try {
             reader.close();
         } catch (IOException e) {
@@ -2290,10 +2285,11 @@ public class MeditationAssistant extends Application {
         }
     }
 
-    public void exportSessions(Activity activity, File file) {
+    public void exportSessions(Activity activity, Uri uri) {
         try {
-            FileWriter outputfile = new FileWriter(file);
-            CSVWriter writer = new CSVWriter(outputfile);
+            FileOutputStream outputStream = (FileOutputStream) getContentResolver().openOutputStream(uri);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
+            CSVWriter writer = new CSVWriter(outputStreamWriter);
             List<String[]> data = new ArrayList<>();
 
             ArrayList<SessionSQL> sessions = db.getAllSessions();
@@ -2309,8 +2305,8 @@ public class MeditationAssistant extends Application {
             writer.writeAll(data);
             writer.close();
         } catch (IOException e) {
-            longToast(getString(R.string.sessionExportFailed) + ": " + e.toString() + " - " + file);
-            Log.e("MeditationAssistant", "Error exporting sessions to " + file, e);
+            longToast(getString(R.string.sessionExportFailed) + ": " + e.toString() + " - " + uri.toString());
+            Log.e("MeditationAssistant", "Error exporting sessions to " + uri.toString(), e);
             return;
         }
 
@@ -2319,7 +2315,7 @@ public class MeditationAssistant extends Application {
                 activity.findViewById(R.id.sessionsExported_root));
 
         TextView txtSessionsExportedPath = exp.findViewById(R.id.txtSessionsExportedPath);
-        txtSessionsExportedPath.setText(file.getPath());
+        txtSessionsExportedPath.setText(uri.toString());
 
         AlertDialog sessionsExportedDialog = new AlertDialog.Builder(activity)
                 .setIcon(getResources().getDrawable(getTheme().obtainStyledAttributes(getMATheme(true), new int[]{R.attr.actionIconSignOut}).getResourceId(0, 0)))
@@ -2329,7 +2325,7 @@ public class MeditationAssistant extends Application {
                     @Override
                     public void onClick(DialogInterface dialogInterface,
                                         int which) {
-                        Uri selectedUri = Uri.parse(file.getParent());
+                        Uri selectedUri = Uri.parse(uri.getPath());
                         Intent intent = new Intent(Intent.ACTION_VIEW);
                         intent.setDataAndType(selectedUri, "resource/folder");
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
