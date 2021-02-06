@@ -132,7 +132,7 @@
     <string name="edit">Edit</string>
     <string name="exportSessions">Export sessions</string>
     <string name="sessionExportFailed">Unable to export sessions</string>
-    <string name="showExportedSessions">Sessions exported.  Would you like to browse the folder containing the export?</string>
+    <string name="sessionExportWasSuccessful">Sessions exported.</string>
     <string name="sessionStartedAt">Started at %s</string>
     <string name="started">Started</string>
     <string name="completed">Completed</string>

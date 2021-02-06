@@ -110,7 +110,7 @@
     <string name="edit">Bearbeiten</string>
     <string name="exportSessions">Sitzungen exportieren</string>
     <string name="sessionExportFailed">Exportieren der Sitzungen nicht möglich</string>
-    <string name="showExportedSessions">Sitzungen exportiert. Möchten Sie das Verzeichnis öffnen, in das der Export gespeichert wurde?</string>
+    <string name="sessionExportWasSuccessful">Sitzungen exportiert.</string>
     <string name="sessionStartedAt">Begonnen um %s</string>
     <string name="started">Begonnen</string>
     <string name="completed">Abgeschlossen</string>

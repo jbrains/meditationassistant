@@ -107,7 +107,7 @@
     <string name="add">Ajouter</string>
     <string name="exportSessions">Exporter les séances</string>
     <string name="sessionExportFailed">Impossible d\'exporter les séances</string>
-    <string name="showExportedSessions">Les séances ont été exportées. Voulez-vous ouvrir le dossier contenant le fichier exporté \?</string>
+    <string name="sessionExportWasSuccessful">Les séances ont été exportées.</string>
     <string name="sessionStartedAt">Démarré à %s</string>
     <string name="started">Démarrée</string>
     <string name="completed">Terminée</string>

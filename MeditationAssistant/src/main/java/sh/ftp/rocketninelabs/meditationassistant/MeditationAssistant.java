@@ -2309,44 +2309,7 @@ public class MeditationAssistant extends Application {
             Log.e("MeditationAssistant", "Error exporting sessions to " + uri.toString(), e);
             return;
         }
-
-        View exp = LayoutInflater.from(activity).inflate(
-                R.layout.sessions_exported,
-                activity.findViewById(R.id.sessionsExported_root));
-
-        TextView txtSessionsExportedPath = exp.findViewById(R.id.txtSessionsExportedPath);
-        txtSessionsExportedPath.setText(uri.toString());
-
-        AlertDialog sessionsExportedDialog = new AlertDialog.Builder(activity)
-                .setIcon(getResources().getDrawable(getTheme().obtainStyledAttributes(getMATheme(true), new int[]{R.attr.actionIconSignOut}).getResourceId(0, 0)))
-                .setTitle(getString(R.string.exportSessions))
-                .setView(exp)
-                .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface,
-                                        int which) {
-                        Uri selectedUri = Uri.parse(uri.getPath());
-                        Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setDataAndType(selectedUri, "resource/folder");
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        if (intent.resolveActivityInfo(getPackageManager(), 0) != null) {
-                            startActivity(intent);
-                        } else {
-                            longToast(getString(R.string.installFileManager));
-                        }
-
-                        dialogInterface.dismiss();
-                    }
-                })
-                .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface,
-                                        int which) {
-                        dialogInterface.dismiss();
-                    }
-                })
-                .create();
-        sessionsExportedDialog.show();
+        longToast(getString(R.string.sessionExportWasSuccessful));
     }
 
     public void updateWidgets() {

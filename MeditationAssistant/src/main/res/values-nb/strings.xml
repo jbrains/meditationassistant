@@ -114,7 +114,7 @@
     <string name="edit">Rediger</string>
     <string name="exportSessions">Eksporter økter</string>
     <string name="sessionExportFailed">Kunne ikke eksportere økter</string>
-    <string name="showExportedSessions">Økter eksportert. Ønsker du å utforske mappen inneholdende eksporten\?</string>
+    <string name="sessionExportWasSuccessful">Økter eksportert.</string>
     <string name="sessionStartedAt">Startet klokken %s</string>
     <string name="started">Startet</string>
     <string name="completed">Fullført</string>

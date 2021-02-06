@@ -110,7 +110,7 @@
     <string name="edit">編集</string>
     <string name="exportSessions">セッションをエクスポート</string>
     <string name="sessionExportFailed">セッションをエクスポートできません</string>
-    <string name="showExportedSessions">セッションをエクスポートしました。エクスポートしたファイルを含むフォルダーを表示しますか?</string>
+    <string name="sessionExportWasSuccessful">セッションをエクスポートしました。</string>
     <string name="sessionStartedAt">開始 %s</string>
     <string name="started">開始しました</string>
     <string name="completed">完了しました</string>
