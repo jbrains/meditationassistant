@@ -133,7 +133,6 @@
     <string name="pref_rememberme_summary">Оставаться в системе после закрытия</string>
     <string name="pref_rememberme">Запомнить меня</string>
     <string name="pref_screencontrol">Экран</string>
-    <string name="pref_sendusage_summary">Анонимный отчёт через Google Analytics. Потребуется перезапуск</string>
     <string name="pref_showstreak">Комбо медитаций</string>
     <string name="pref_showstreak_summary">Отображать число дней подряд с хотя бы одной медитацией</string>
     <string name="selectSound">Выбрать звук</string>

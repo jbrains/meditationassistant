@@ -1,3 +1,7 @@
+1.6.4:
+- Fix importing/exporting sessions and playing custom sounds (thanks MovingEarth)
+- Fix crash on Android 4.3+ devices (thanks MovingEarth)
+
 1.6.3:
 - Add mindfulness bell
 

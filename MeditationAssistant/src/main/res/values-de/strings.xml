@@ -162,7 +162,6 @@
     <string name="pref_sessionvolume">Lautstärke</string>
     <string name="pref_sessionvolume_summary">Die vorherige Lautstärke wird wiederhergestellt, sobald die Sitzung abgeschlossen ist.</string>
     <string name="pref_screencontrol">Bildschirm</string>
-    <string name="pref_sendusage_summary">Anonyme Berichterstattung per Google Analytics. Tritt nach Neustart in Kraft</string>
     <string name="pref_showstreak">Meditationsserie anzeigen</string>
     <string name="pref_showstreak_summary">Anzahl der aufeinanderfolgenden Tage mit mindestens einer aufgezeichneten Sitzung</string>
     <string name="selectSound">Klang auswählen</string>
@@ -342,4 +341,15 @@ Entwickelt von Rocket Nine Laboratories: https://rocketnine.space/</string>
 \n
 \nStattdessen können sie sich dazu entscheiden ihre Sitzungsdaten ausschließlich auf dem Gerät zu speichern.</string>
     <string name="pref_meditation_vibrate_finish">Vibration beenden</string>
+    <string name="notification">Benachrichtigung</string>
+    <string name="ringtone">Klingelton</string>
+    <string name="media">Medien</string>
+    <string name="alarm">Alarm</string>
+    <string name="pref_meditation_sound_bell">Klang der Achtsamkeitsglocke</string>
+    <string name="pref_audio_output">Audioausgabe</string>
+    <string name="start">Beginnen</string>
+    <string name="deactivate">Deaktivieren</string>
+    <string name="interval">Intervall</string>
+    <string name="mindfulnessBellActive">Achtsamkeitsglocke aktiv</string>
+    <string name="mindfulnessBell">Achtsamkeitsglocke</string>
 </resources>

@@ -4,13 +4,13 @@
     <string name="about">Σχετικά</string>
     <string name="yes">Ναι</string>
     <string name="no">Όχι</string>
-    <string name="openWith">Άνοιξε με</string>
-    <string name="delete">Διέγραψε</string>
+    <string name="openWith">Άνοιγμα με</string>
+    <string name="delete">Διαγραφή</string>
     <string name="sessions">Συνεδρίες</string>
     <string name="community">Κοινότητα</string>
     <string name="forum">Forum</string>
-    <string name="rate">Βαθμολόγησε</string>
-    <string name="refresh">Ανανέωσε</string>
+    <string name="rate">Βαθμολόγηση</string>
+    <string name="refresh">Ανανέωση</string>
     <string name="page">Σελίδα</string>
     <string name="back">Πίσω</string>
     <string name="forward">Μπροστά</string>
@@ -30,9 +30,9 @@
     <string name="medinetHelp">Κάνετε είσοδο στο MediNET για να αποθηκεύσετε τις συνεδρίες σας στον ιστό. Μπορείτε να εισάγετε τις συνεδρίες σας αργότερα, εάν χάσετε τα δεδομένα σας. Αυτό το χαρακτηριστικό είναι πλήρως προαιρετικό, η αποθήκευση των συνεδριών τοπικά δεν θα επηρεάσει την εμπειρία σας. 
 
  Αυτό ολοκληρώνει την εκμάθηση. Ευελπιστώ πως ο "Βοηθός Διαλογισμού" θα είναι οφέλιμος για την εξάσκησή σας.</string>
-    <string name="cancel">Ακύρωσε</string>
+    <string name="cancel">Άκυρο</string>
     <string name="set">Θέσε</string>
-    <string name="confirm">Επιβεβαίωσε</string>
+    <string name="confirm">Επιβεβαίωση</string>
     <string name="meditate">Διαλογισθείτε</string>
     <string name="tapToSkip">Προσπέρασε</string>
     <string name="pause">Παύση</string>
@@ -61,9 +61,9 @@
     <string name="sendEmail">Στείλτε ηλ. μήνυμα</string>
     <string name="version">Έκδοση %s</string>
     <string name="translate">Μεταφράστε</string>
-    <string name="donate">Δωρείστε</string>
+    <string name="donate">Δωρεά</string>
     <string name="howToMeditate">Πως να Διαλογισθείτε</string>
-    <string name="share">Μοιράσου</string>
+    <string name="share">Κοινοποίηση</string>
     <!--Short text displayed in sent application invitations [CHAR LIMIT=100] -->
     <string name="invitationBlurb">Ο Βοηθός Διαλογισμού είναι ένας σύντροφος με πλήρη χαρακτηριστικά για τη εξάσκησή σας.</string>
     <!-- Sessions -->
@@ -97,17 +97,17 @@
     <string name="statistics">Στατιστικά</string>
     <string name="totalTimeSpentMeditating">Ολικός χρόνος για διαλογισμό</string>
     <string name="dayMondayShort">Δευ</string>
-    <string name="dayTuesdayShort">Τρι</string>
+    <string name="dayTuesdayShort">Τρί</string>
     <string name="dayWednesdayShort">Τετ</string>
-    <string name="dayThursdayShort">Πεμ</string>
+    <string name="dayThursdayShort">Πέμ</string>
     <string name="dayFridayShort">Παρ</string>
-    <string name="daySaturdayShort">Σαβ</string>
+    <string name="daySaturdayShort">Σάβ</string>
     <string name="daySundayShort">Κυρ</string>
     <string name="addSession">Πρόσθεσε συνεδρία</string>
-    <string name="add">Πρόσθεσε</string>
-    <string name="exportSessions">Εξήγαγε συνεδρίες</string>
-    <string name="sessionExportFailed">Αδυνατόν να εξαγάγει συνεδρίες</string>
     <string name="sessionExportWasSuccessful">Συνεδρίες εξήχθησαν.</string>
+    <string name="add">Προσθήκη</string>
+    <string name="exportSessions">Εξαγωγή συνεδριών</string>
+    <string name="sessionExportFailed">Αδύνατο να εξαγάγει συνεδρίες</string>
     <string name="sessionStartedAt">Ξεκίνησε στις %s</string>
     <string name="started">Ξεκίνησε</string>
     <string name="completed">Ολοκληρώθηκε</string>
@@ -153,7 +153,6 @@
     <string name="pref_sessionvolume">Ένταση</string>
     <string name="pref_sessionvolume_summary">Η προηγούμενη ένταση θα επανέρθει μόλις η συνεδρία ολοκληρωθεί</string>
     <string name="pref_screencontrol">Οθόνη</string>
-    <string name="pref_sendusage_summary">Ανώνυμη αναφορά μέσω Google Analytics. Εφαρμόζεται στην επανεκκίνηση</string>
     <string name="pref_showstreak">Πρόβαλε ακολουθία διαλογισμού</string>
     <string name="pref_showstreak_summary">Αριθμός συνεχόμενων ημερών με τουλάχιστον μια κατεγραμένη συνεδρία</string>
     <string name="selectSound">Επέλεξε ήχο</string>
@@ -201,10 +200,10 @@
     <!-- MediNET -->
     <string name="mediNET">MediNET</string>
     <string name="unableToConnect">Αδυνατόν να συνδεθεί στο MediNET</string>
-    <string name="dismiss">Αποδέσμευσε</string>
-    <string name="discard">Απόρριψε</string>
-    <string name="save">Αποθήκευσε</string>
-    <string name="post">Ανάρτησε</string>
+    <string name="dismiss">Κλείσιμο</string>
+    <string name="discard">Απόρριψη</string>
+    <string name="save">Αποθήκευση</string>
+    <string name="post">Ανάρτηση</string>
     <string name="wordimport">Εισήγαγε</string>
     <string name="sessionDeletedMediNET">Η συνεδρία διεγράφει στο MediNET</string>
     <string name="sessionNotFoundMediNET">Η συνεδρία δεν βρέθηκε στο MediNET</string>
@@ -230,9 +229,9 @@
     </plurals>
     <string name="meditateToday">Διαλογισθείτε σήμερα</string>
     <string name="signInToMediNET">Εισέλθετε στο MediNET</string>
-    <string name="signOut">Έξοδος</string>
-    <string name="signOutOfMediNET">Έξοδος από το MediNET</string>
-    <string name="signOutOfMediNETConfirmTitle">Έξοδος από το MediNET;</string>
+    <string name="signOut">Αποσύνδεση</string>
+    <string name="signOutOfMediNET">Αποσύνδεση από το MediNET</string>
+    <string name="signOutOfMediNETConfirmTitle">Αποσύνδεση από το MediNET;</string>
     <string name="rateMeditationAssistant">Βαθμολογήστε τον Βοηθό Διαλογισμού</string>
     <string name="rateMeditationAssistantText">Εάν βρήκατε αυτήν την εφαρμογή οφέλιμη για την εξάσκησή σας στο διαλογισμό, θα προσθέτατε μια βαθμολογία;\n\nΗ επ\' αμοιβή έκδοση δεν περιέχει διαφημίσεις και φιλοξενεί μικροεφαρμογές αρχικής οθόνης. Παρακαλώ, αναλογισθείτε την αγορά της εάν δύνασθε.\n\nΑυτός ο διάλογος δεν θα επανεμφανισθεί.</string>
     <string name="translateMeditationAssistantText">Θα βοηθούσατε τον Βοηθό Διαλογισμού να αγγίξει ένα ευρύτερο κοινό μεταφράζοντάς τον σε μια άλλη γλώσσα;
@@ -272,4 +271,10 @@ https://www.getlocalization.com/meditationassistant/
     <string name="permissionRequired">Αυτή η άδεια απαιτείται.</string>
     <string name="disableBatteryOptimizations">Ο Βοηθός πρέπει να εκτελείται στο παρασκήνιο</string>
     <string name="warning">Προσοχή</string>
+    <string name="download">Λήψη</string>
+    <string name="sourceRepository">Αποθετήριο πηγαίου κώδικα</string>
+    <string name="edit">Επεξεργασία</string>
+    <string name="chooseDonationMethod">Επιλέξτε πώς θα θέλατε να κάνετε δωρεά.
+\n
+\nΤο Liberapay προτιμάται από τον προγραμματιστή και υποστηρίζει περισσότερες χώρες και νομίσματα.</string>
 </resources>

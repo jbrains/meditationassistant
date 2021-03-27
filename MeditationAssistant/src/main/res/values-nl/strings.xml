@@ -7,7 +7,7 @@
     <string name="openWith">Open met</string>
     <string name="delete">Verwijderen</string>
     <string name="sessions">Sessies</string>
-    <string name="community">Community</string>
+    <string name="community">Gemeenschap</string>
     <string name="forum">Forum</string>
     <string name="rate">Waardering</string>
     <string name="refresh">Verversen</string>
@@ -25,11 +25,11 @@
     <string name="confirm">Bevestigen</string>
     <string name="meditate">Mediteren</string>
     <string name="tapToSkip">Overslaan</string>
-    <string name="mediNETConnecting">Verbinden...</string>
+    <string name="mediNETConnecting">Verbinden…</string>
     <string name="mediNETConnected">Verbonden met MediNET</string>
     <string name="sessionInProgress">Sessie loopt</string>
     <string name="progress">Voortgang</string>
-    <string name="setPreset">Instelling zetten</string>
+    <string name="setPreset">Voorkeursinstelling opslaan</string>
     <!-- About -->
     <string name="sendEmail">Verstuur e-mail</string>
     <string name="version">Versie %s</string>
@@ -42,10 +42,10 @@
     <string name="sessionDeleteLocally">Lokaal verwijderen</string>
     <string name="sessionDeleteMediNET">Verwijderen van MediNET</string>
     <!-- Session complete -->
-    <string name="sessioncomplete">Sessie Kompleet</string>
+    <string name="sessioncomplete">Sessie Compleet</string>
     <string name="sessionMessagePlaceholder">Bericht</string>
     <string name="askDiscardText">Sessie negeren ?</string>
-    <string name="sessionPosting">Sessie opsturen...</string>
+    <string name="sessionPosting">Sessie opsturen…</string>
     <string name="sessionPosted">Sessie opgestuurd naar MediNET</string>
     <string name="sessionAlreadyPosted">Sessie is al opgestuurd</string>
     <string name="sessionNotPosted">Sessie opsturen mislukt</string>
@@ -53,8 +53,8 @@
     <string name="sessionSaved">Sessie opgeslagen</string>
     <string name="sessionDeletedLocally">Sessie lokaal verwijderd</string>
     <!-- Sign In -->
-    <string name="signInWith">Log in met....</string>
-    <string name="signInWithProvider">Log in met %s....</string>
+    <string name="signInWith">Log in met.…</string>
+    <string name="signInWithProvider">Log in met %s…</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, etc.</string>
     <!-- Progress -->
     <string name="calendar">Kalender</string>
@@ -67,31 +67,287 @@
     <string name="daySundayShort">Zon</string>
     <!-- Settings -->
     <string name="settings">Instellingen</string>
-    <string name="disabled">Disabled</string>
+    <string name="disabled">Uitgezet</string>
     <string name="noSpecialBehavior">Normaal</string>
     <string name="noSound">Geen geluid</string>
     <!-- MediNET -->
     <plurals name="numtimes">
-        <item quantity="one">%s time</item>
-        <item quantity="other">%s times</item>
+        <item quantity="one">%s keer</item>
+        <item quantity="other">%s keer</item>
     </plurals>
     <plurals name="sessionsUploaded">
-        <item quantity="one">Uploaded %s session</item>
-        <item quantity="other">Uploaded %s sessions</item>
+        <item quantity="one">%s sessie verzonden</item>
+        <item quantity="other">%s sessies verzonden</item>
     </plurals>
     <plurals name="daysOfMeditationMinimal">
-        <item quantity="one">%d day</item>
-        <item quantity="other">%d days</item>
+        <item quantity="one">%d dag</item>
+        <item quantity="other">%d dagen</item>
     </plurals>
     <plurals name="daysOfMeditation">
-        <item quantity="one">%d day of meditation</item>
-        <item quantity="other">%d days of meditation</item>
+        <item quantity="one">%d meditatie dag</item>
+        <item quantity="other">%d meditatie dagen</item>
     </plurals>
     <plurals name="daysOfMeditationWithoutCount">
-        <item quantity="one">day of meditation</item>
-        <item quantity="other">days of meditation</item>
+        <item quantity="one">meditatie dag</item>
+        <item quantity="other">meditatie dagen</item>
     </plurals>
     <!-- Widgets -->
     <!-- Meta -->
     <string name="warning">Waarschuwing</string>
+    <string name="downloadSessionsHint">Klik om Sessies downloaden in instellingen om de ontbrekende sessies op te halen.</string>
+    <string name="appStoreListingFull">- Automatische apparaat modus tijdens het mediteren.
+\n- Pauzeerbare sessies.
+\n- Instelbare start/interval/eind geluid en tijd, themas en apparaat gedrag, en meer.
+\n- Overzicht van de maandelijkse voortgang.
+\n- Optioneel versturen van sessies naar MediNET, en bezoek van MediNET forum.
+\n(Het delen van de dagelijkse voortgang motiveert om dagelijks te mediteren, al is het maar voor vijf of tien minuten.)
+\n
+\nMeditation Assistant is copylefted libre software.
+\nMeld uw probleem, idee of oplossing: https://gitlab.com/tslocum/meditationassistant/issues
+\nDiverse functies zijn ontstaan uit ideeën van gebruikers.
+\n
+\nVertaal Meditation Assistant: https://www.getlocalization.com/meditationassistant/
+\n
+\nDoor Rocket Nine Laboratories: https://rocketnine.space</string>
+    <string name="appStoreListingShort">Rijke meditatie wekker en logboek</string>
+    <string name="widgetstreak3x1" tools:ignore="UnusedResources">Reeks 3x1</string>
+    <string name="widgetstreak2x1" tools:ignore="UnusedResources">Reeks 2x1</string>
+    <string name="widgetstreak1x1" tools:ignore="UnusedResources">Reeks 1x1</string>
+    <string name="widgetpreset3x1" tools:ignore="UnusedResources">Voorkeursinstelling 3x1</string>
+    <string name="widgetpreset2x1" tools:ignore="UnusedResources">Voorkeursinstelling 2x1</string>
+    <string name="widgetpreset1x1" tools:ignore="UnusedResources">Voorkeursinstelling 1x1</string>
+    <string name="translateMeditationAssistantText">Bent u geïnteresseerd in het vertalen van Meditation Assistant\?</string>
+    <string name="rateMeditationAssistantText">Als deze applicatie u heeft geholpen bij uw dagelijkse meditatie, zou u dan alstublieft een beoordeling willen geven\?
+\n
+\nDeze melding zal niet nog een keer getoond worden.</string>
+    <string name="rateMeditationAssistant">Beoordeel Meditation Assistant</string>
+    <string name="signOutOfMediNETConfirmTitle">Uitloggen op MediNET\?</string>
+    <string name="signOutOfMediNET">Log uit op MediNET</string>
+    <string name="signOut">Log uit</string>
+    <string name="signInToMediNET">Log in op MediNET</string>
+    <string name="meditateToday">Mediteer vandaag</string>
+    <string name="sessionsUpToDate">Lokale gegevens zijn up-to-date</string>
+    <plurals name="sessionsDownloaded">
+        <item quantity="one">%s sessie gedownload</item>
+        <item quantity="other">%s sessies gedownload</item>
+    </plurals>
+    <string name="sessionNotFoundMediNET">Sessie niet gevonden op MediNET</string>
+    <string name="sessionDeletedMediNET">Sessie verwijderd van MediNET</string>
+    <string name="wordimport">Import</string>
+    <string name="downloadsessionsmessage">Voorgaande sessies worden gedownload.
+\n
+\nDeze melding zal niet meer worden weergegeven.
+\nU kunt later sessies downloaden via het instellingen scherm.</string>
+    <string name="downloadsessionstitle">Sessies downloaden\?</string>
+    <string name="download">Downloaden</string>
+    <string name="post">Versturen</string>
+    <string name="save">Opslaan</string>
+    <string name="discard">Weggooien</string>
+    <string name="dismiss">Afwijzen</string>
+    <string name="unableToConnect">Het is niet mogelijk te verbinden met MediNET</string>
+    <string name="mediNET">MediNET</string>
+    <string name="uploadingSessions">Sessies versturen…</string>
+    <string name="downloadingSessions">Sessies downloaden…</string>
+    <string name="pref_daily_reminder_text">Aanmoedigingstekst</string>
+    <string name="pref_daily_reminder_time">Tijd</string>
+    <string name="pref_daily_reminder_summary">Toon een melding als er vandaag nog geen sessies zijn vastgelegd</string>
+    <string name="pref_daily_reminder_title">Herinner mij</string>
+    <string name="pref_daily_reminder">Dagelijkse herinnering</string>
+    <string name="pref_notificationcontrol_vibrate">Vibreren</string>
+    <string name="pref_notificationcontrol_alarms">Alleen alarm</string>
+    <string name="pref_notificationcontrol_priority">Alleen prioriteitsgesprekken</string>
+    <string name="pref_notificationcontrol">Ringtone en meldingen</string>
+    <string name="restartApp">Herstart de applicatie om de nieuwe instellingen te activeren</string>
+    <string name="notification">Melding</string>
+    <string name="ringtone">Ringtone</string>
+    <string name="media">Media</string>
+    <string name="alarm">Alarm</string>
+    <string name="extralarge">Extra groot</string>
+    <string name="large">Groot</string>
+    <string name="normal">Normaal</string>
+    <string name="tiny">Minuscuul</string>
+    <string name="small">Klein</string>
+    <string name="pref_text_size">Klok grootte</string>
+    <string name="center">Midden</string>
+    <string name="top">Bovenkant</string>
+    <string name="timerPosition">Klok positie</string>
+    <string name="miscellaneous">Diversen</string>
+    <string name="uploadsessions">Sessies verzenden</string>
+    <string name="uploadsessions_summary">Lokale sessies verzenden</string>
+    <string name="local">Lokaal</string>
+    <string name="utc">UTC</string>
+    <string name="importsessions_utc_or_local">Zijn de datum en tijd in dit export bestand in lokale of UTC tijd\?
+\n
+\nExport bestanden die sinds versie 1.5.6 zijn gemaakt gebruiken UTC datum en tijd.</string>
+    <string name="importsessions_complete">Er zijn %1$d bestaande en %2$d nieuwe sessies gevonden.</string>
+    <string name="importsessions_in_progress">Sessies importeren…</string>
+    <string name="downloadsessions_summary">Online sessies downloaden</string>
+    <string name="downloadsessions">Sessies downloaden</string>
+    <string name="importsessions_summary">CSV bestand importeren</string>
+    <string name="importsessions">Sessies importeren</string>
+    <string name="exportsessions_summary">CSV bestand exporteren</string>
+    <string name="exportsessions">Sessies exporteren</string>
+    <string name="pref_progresstab">Standaard tabblad</string>
+    <string name="pref_mainbuttons">Knoppen verbergen</string>
+    <string name="pref_askdismiss_summary">Weggooien van een sessie bevestigen</string>
+    <string name="pref_askdismiss">Vragen voor weggooien</string>
+    <string name="pref_usetimepicker_summary">Gebruik de uur en minuten schuiven om de tijdsduur aan te passen</string>
+    <string name="pref_usetimepicker">Alternatieve tijdsduur weergave</string>
+    <string name="pref_notification_summary">Toon tijdens meditatie als het hoofdscherm niet in beeld is</string>
+    <string name="pref_notification">Melding</string>
+    <string name="pref_widgetcolor">Widget kleur</string>
+    <string name="buddhism">Boeddhisme</string>
+    <string name="pref_theme_dark">Donker</string>
+    <string name="pref_theme_lightdark">Licht met donkere actie balk</string>
+    <string name="pref_theme_light">Licht</string>
+    <string name="pref_theme">Holografisch thema</string>
+    <string name="pref_remembermessage_summary">Gebruik standaard het vorige bericht</string>
+    <string name="pref_remembermessage">Onthoud het laatste bericht</string>
+    <string name="pref_meditation_sound_bell">Mindfulness bel geluid</string>
+    <string name="pref_meditation_sound_finish">Einde geluid</string>
+    <string name="pref_meditation_sound_interval">Interval geluid</string>
+    <string name="pref_meditation_sound_start">Start geluid</string>
+    <string name="selectSound">Selecteer geluid</string>
+    <string name="pref_showstreak_summary">Aantal aaneengesloten dagen met ten minste één vastgelegde sessie</string>
+    <string name="pref_showstreak">Geef de meditatie reeks weer</string>
+    <string name="pref_screencontrol">Scherm</string>
+    <string name="pref_sessionvolume_summary">Het vorige volume zal worden hersteld als de sessie is beëindigd.</string>
+    <string name="pref_sessionvolume">Volume</string>
+    <string name="pref_rememberme">Vergeet me niet</string>
+    <string name="pref_rememberme_summary">Blijf ingelogd na afsluiten</string>
+    <string name="pref_autosave">Automatisch opslaan</string>
+    <string name="pref_autosignin">Automatisch verbinden</string>
+    <string name="pref_autosignin_summary">Verbind met MediNET wanneer geopend</string>
+    <string name="pref_interval_count">Aantal intervallen</string>
+    <string name="pref_interval">Interval duur</string>
+    <string name="pref_delay">Vertraging</string>
+    <string name="pref_audio_output">Geluid uitgang</string>
+    <string name="pref_full_screen">Volledig scherm</string>
+    <string name="pref_meditationstreakbuffer">Reeks eindigd om</string>
+    <string name="pref_display_seconds_summary">Weergeven onder de hoofd klok</string>
+    <string name="pref_display_seconds">Seconden weergeven</string>
+    <string name="keepScreenOnAndDim">Hou het scherm aan en dim het scherm</string>
+    <string name="dimScreen">Dim het scherm</string>
+    <string name="keepScreenOn">Hou het scherm aan</string>
+    <string name="always">Altijd</string>
+    <string name="duringSession">Tijdens de sessie</string>
+    <string name="customSound">Aangepast geluid</string>
+    <string name="custom">Aangepast</string>
+    <string name="labelLong">Lang</string>
+    <string name="labelMedium">Gemiddeld</string>
+    <string name="labelShort">Kort</string>
+    <string name="start">Start</string>
+    <string name="none">Geen</string>
+    <string name="pref_softfinish_summary">Laat de tijd doorlopen</string>
+    <string name="pref_softfinish">Oneindige sessie</string>
+    <string name="pref_sound_reminder_summary">Het standaard meldingsgeluid zal worden afgespeeld</string>
+    <string name="pref_sound_reminder">Geluid afspelen</string>
+    <string name="pref_vibrate_reminder_summary">De dagelijkse herinnering zal het apparaat doen trillen</string>
+    <string name="pref_vibrate_summary">Vind plaats aan het begin, tijdens intervallen en aan het einde van de meditatie</string>
+    <string name="pref_meditation_vibrate_finish">Einde vibratie</string>
+    <string name="pref_meditation_vibrate_interval">Interval vibratie</string>
+    <string name="pref_meditation_vibrate_start">Start vibratie</string>
+    <string name="vibrate">Vibreren</string>
+    <string name="meditation">Meditatie</string>
+    <string name="reminderText">Heeft u een moment\?</string>
+    <string name="longestStreak">Langste reeks</string>
+    <string name="longestDuration">Langste duur</string>
+    <string name="averageDuration">Gemiddelde duur</string>
+    <string name="totalSessions">Totaal aantal sessies</string>
+    <string name="minutes">Minuten</string>
+    <string name="hours">Uren</string>
+    <string name="days">Dagen</string>
+    <string name="sessionExists">De sessie bestaat al</string>
+    <string name="editSessionMeditating">Het is niet mogelijk een sessie aan te passen tijdens de meditatie</string>
+    <string name="addSessionMeditating">Het is niet mogelijk een sessie toe te voegen tijdens de meditatie</string>
+    <string name="invalidLength">Ongeldige lengte</string>
+    <string name="invalidDateOrTime">Ongeldige datum of tijd</string>
+    <string name="setTime">Tijd instellen</string>
+    <string name="setDate">Datum instellen</string>
+    <string name="length">Lengte</string>
+    <string name="completed">Afgelopen</string>
+    <string name="started">Gestart</string>
+    <string name="sessionStartedAt">Gestart om %s</string>
+    <string name="showExportedSessions">Sessies geëxporteerd. Wilt u de map met het export bestand bekijken\?</string>
+    <string name="sessionExportFailed">Exporteren van sessies lukt niet</string>
+    <string name="exportSessions">Sessie exporteren</string>
+    <string name="edit">Wijzigen</string>
+    <string name="add">Toevoegen</string>
+    <string name="sessionEdited">Sessie gewijzigd</string>
+    <string name="sessionAdded">Sessie toegevoegd</string>
+    <string name="editSession">Sessie wijzigen</string>
+    <string name="addSession">Sessie toevoegen</string>
+    <string name="totalTimeSpentMeditating">Totale meditatie tijd</string>
+    <string name="statistics">Statistieken</string>
+    <string name="signInGoogleError">Authenticeren met de account beheerder lukt niet. Probeer OpenID als dit probleem zich blijft voordoen.</string>
+    <string name="useBrowser">Gebruik browser:</string>
+    <string name="browser">Browser</string>
+    <string name="postUpdatedSession">Aangepaste sessie opsturen naar MediNET\?</string>
+    <string name="streakdifferencewarning">U huidige meditatie reeks lijkt niet correct gebaseerd op de huidige sessie gegevens. Wilt u de meditatie reeks aanpassen\?
+\n
+\nHuidige reeks: %1$d
+\nAangepaste reeks: %2$d</string>
+    <string name="modeandduration">Modus en tijdsduur</string>
+    <string name="presetsettings">Voorkeursinstellingen</string>
+    <string name="pref_sessionintro">Introductie</string>
+    <string name="invitationBlurb">Meditation Assistant is een rijke begeleiding voor de dagelijkse meditatie praktijk.</string>
+    <string name="sourceRepository">Bron Code Opslagplaats</string>
+    <string name="chooseDonationMethod">Kies hoe u wilt doneren.
+\n
+\nDe ontwikkelaar geeft de voorkeur aan Liberapay en ondersteunt meer landen en valuta.</string>
+    <string name="donate">Doneren</string>
+    <string name="tapToLearnMore">Klik ergens om meer te leren</string>
+    <string name="replayTutorial">Korte uitleg nogmaals doorlopen</string>
+    <string name="whatIsMediNETHelp">MediNET is een online meditatie sessie opslag en gemeenschap.
+\n
+\nU kan ervoor kiezen om uw sessies op MediNET op te slaan om het verlies van data te voorkomen en/of om uw voortgang met andere online te delen.
+\n
+\nU kan er ook voor keuzen uw sessies alleen op uw apparaat op te slaan.</string>
+    <string name="whatIsMediNET">MediNET overzicht</string>
+    <string name="meditationSubreddit">Reddit gemeenschap</string>
+    <string name="howToMeditate">Meditatie, hoe moet dat</string>
+    <string name="deactivate">Deactiveren</string>
+    <string name="interval">Interval</string>
+    <string name="mindfulnessBellActive">Mindfulness bel actief</string>
+    <string name="mindfulnessBell">Mindfullness bel</string>
+    <string name="resources">Hulpbronnen</string>
+    <string name="presetLabelEndAt">Einde %s</string>
+    <string name="unlimited">Oneindig</string>
+    <string name="untimed">Zonder tijdsduur</string>
+    <string name="endAt">Tijdstip</string>
+    <string name="timed">Tijdsduur</string>
+    <string name="invalidEndAt">Ongeldige tijd om de sessie te beëindigen</string>
+    <string name="setTimerEndAtHint">Voor een geldige tijd in (b.v. 4:20)</string>
+    <string name="setTimerDurationHint">Voor een geldige tijdsduur in (b.v. 0:22)</string>
+    <string name="pattern">Patroon</string>
+    <string name="label">Label</string>
+    <string name="configureWidget">Widget instellen</string>
+    <string name="setVibrationTip">Voer het aantal milliseconden in voor het in of uitschakelen van de trilmotor, gescheiden door comma\'s.</string>
+    <string name="setPresetHintBlank">Voor een tijdsduur in (of een eindtijd) om de voorkeur in te stellen</string>
+    <string name="setPresetTip">Kies de instelling om terug te halen door op het instellingen icoon te klikken en daarna op de Voorkeursinstellingen te klikken.</string>
+    <string name="setPresetHint">Hou vast om voorkeursinstelling op te slaan</string>
+    <string name="sessionPaused">Sessie gepauzeerd</string>
+    <string name="pausedNotification">Sessie is gepauzeerd, indrukken en vasthouden om te beëindigen</string>
+    <string name="resumeOrEnd">Doorgaan of beëindigen</string>
+    <string name="pauseOrEnd">Pauzeren of beëindigen</string>
+    <string name="end">Einde</string>
+    <string name="resume">Doorgaan</string>
+    <string name="pause">Pauzeren</string>
+    <string name="medinetHelp">Login op MediNET om uw sessies online op te slaan. U kan deze sessie later importeren als u deze kwijt bent. Deze functie is compleet optioneel; het niet gebruiken van deze functie zal u niet hinderen in uw gebruikers ervaring.
+\n
+\nDit is het einde van de korte uitleg. Ik hoop dat Meditation Assistant u kan ondersteunen in uw meditatie.</string>
+    <string name="settingsHelp">Deze applicatie bevat een groot aantal functies en aanpassingsmogelijkheden. Druk op de instellingen icoon om deze opties te zien.</string>
+    <string name="editTimerHelp">Uw sessie kan een bepaalde tijdsduur hebben, of tot een bepaald tijdstip duren, of helemaal geen eindtijd hebben.
+\n
+\nVoorkeur instellingen kunnen worden opgeslagen om snel weer te kunnen gebruiken. Druk op de voorkeur instelling en houd deze vast om de huidige sessie tijd op te slaan. Geluid en andere instellingen kunnen ook als voorkeur instelling worden opgeslagen door deze te activeren in het voorkeursinstellingen menu.
+\n
+\nNadat OK is geselecteerd, klik op Annuleren of Bevestigen om door te gaan.</string>
+    <string name="timer">Wekker</string>
+    <string name="timerHelp">Welkom bij de korte uitleg. Dit is de sessie wekker. Klik erop om de tijd modus en lengte aan te passen.</string>
+    <string name="deny">Weigeren</string>
+    <string name="permissionRequestNotificationControl">Geef alstublieft op het volgende scherm toestemming om Niet Storen te beheren.</string>
+    <string name="permissionRequired">Deze toestemming is vereist.</string>
+    <string name="permissionRequest">Aanvraag voor toestemming</string>
+    <string name="disableBatteryOptimizations">Meditation Assistant moet op de achtergrond draaien</string>
+    <string name="installFileManager">Installeer een bestandsbeheer applicatie alstublieft</string>
 </resources>

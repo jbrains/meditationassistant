@@ -8,8 +8,8 @@ android {
         minSdkVersion 16
         targetSdkVersion 29 // Must not increase until storage permissions are updated
 
-        versionCode 163
-        versionName "1.6.3"
+        versionCode 164
+        versionName "1.6.4"
 
         applicationId "sh.ftp.rocketninelabs.meditationassistant"
         manifestPlaceholders = [
@@ -30,8 +30,8 @@ android {
     }
 
     sourceSets {
-        free.java.srcDirs = ['src/free/java', 'src/shared/java']
-        full.java.srcDirs = ['src/full/java', 'src/shared/java']
+        free.java.srcDirs = ['src/free/java']
+        full.java.srcDirs = ['src/full/java']
         opensource.java.srcDirs = ['src/opensource/java']
     }
 

@@ -163,7 +163,6 @@
     <string name="pref_sessionvolume">Głośność</string>
     <string name="pref_sessionvolume_summary">Poprzedni poziom głośności zostanie przywrócony po zakończeniu sesji.</string>
     <string name="pref_screencontrol">Ekran</string>
-    <string name="pref_sendusage_summary">Anonimowe raportowanie przez Google Analytics. Dostępne po restarcie</string>
     <string name="pref_showstreak">Wyświetl ciąg medytacji</string>
     <string name="pref_showstreak_summary">Liczba następujących po sobie dni z co najmniej jedną zapisaną sesją</string>
     <string name="selectSound">Wybierz dźwięk</string>

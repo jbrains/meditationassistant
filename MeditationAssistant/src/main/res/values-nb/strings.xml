@@ -164,7 +164,6 @@
     <string name="pref_sessionvolume">Lydstyrke</string>
     <string name="pref_sessionvolume_summary">Tidligere lydstyrkenivå vil bli gjenopprettet når økten er over.</string>
     <string name="pref_screencontrol">Skjerm</string>
-    <string name="pref_sendusage_summary">Anonym innrapportering via Google Analytics. Trer i effekt ved omstart.</string>
     <string name="selectSound">Velg lyd</string>
     <string name="pref_meditation_sound_start">Startlyd</string>
     <string name="pref_meditation_sound_interval">Intervall-lyd</string>
@@ -343,4 +342,10 @@
     <string name="media">Media</string>
     <string name="alarm">Alarm</string>
     <string name="pref_audio_output">Lydutgang</string>
+    <string name="pref_meditation_sound_bell">Oppmerksomt nærværsbjellelyd</string>
+    <string name="mindfulnessBellActive">Oppmerksomt nærværsbjelle aktiv</string>
+    <string name="mindfulnessBell">Oppmerksomt nærværsbjelle</string>
+    <string name="interval">Intervall</string>
+    <string name="start">Start</string>
+    <string name="deactivate">Deaktiver</string>
 </resources>

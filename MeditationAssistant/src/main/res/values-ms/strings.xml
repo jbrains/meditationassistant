@@ -106,7 +106,6 @@
     <string name="pref_rememberme_summary">Kekalkan dalam keadaan log masuk setelah ditutup</string>
     <string name="pref_rememberme">Ingatkan saya</string>
     <string name="pref_screencontrol">Skrin</string>
-    <string name="pref_sendusage_summary">Laporan tanpa nama dengan Google Analytics. Akan berkesan setelah dimulakan semula</string>
     <string name="pref_showstreak">Paparkan jumlah kali bertakafur secara berturut-turut</string>
     <string name="pref_showstreak_summary">Jumlah hari sekurang-kurangnya satu sesi telah direkodkan secara berturut-turut</string>
     <string name="selectSound">Pilih bunyi</string>

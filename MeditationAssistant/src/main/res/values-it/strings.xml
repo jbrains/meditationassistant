@@ -136,7 +136,6 @@
     <string name="pref_rememberme">Ricordami</string>
     <string name="pref_sessionvolume">Volume</string>
     <string name="pref_screencontrol">Schermo</string>
-    <string name="pref_sendusage_summary">Le segnalazioni anonime avvengono attraverso Google Analytics. Ha effetto dopo un riavvio</string>
     <string name="pref_showstreak">Mostra serie di meditazioni</string>
     <string name="pref_showstreak_summary">Numero di giorni consecutivi nei quali è stata registrata almeno una sessione</string>
     <string name="selectSound">Scegli suono</string>

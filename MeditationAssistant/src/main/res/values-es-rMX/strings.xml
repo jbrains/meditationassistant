@@ -145,7 +145,6 @@
     <string name="pref_sessionvolume">Volumen</string>
     <string name="pref_sessionvolume_summary">El Volumen previo se restaurará una vez que la sesión se haya completado.</string>
     <string name="pref_screencontrol">Pantalla</string>
-    <string name="pref_sendusage_summary">Reporte de estadísticas anónimas por Google Analytics. Tomara efecto al reiniciar</string>
     <string name="pref_showstreak">Mostrar racha de meditaciones</string>
     <string name="pref_showstreak_summary">Numero de días consecutivos con por lo menos una sesión guardada</string>
     <string name="selectSound">Escoge sonido</string>
@@ -342,4 +341,10 @@
     <string name="disableBatteryOptimizations">Asistente de Meditación debe correr en segundo plano</string>
     <string name="installFileManager">Por favor instale un administrador de archivos</string>
     <string name="warning">Advertencia</string>
+    <string name="pref_meditation_sound_bell">Sonido de la campana de atención plena</string>
+    <string name="start">Comenzar</string>
+    <string name="deactivate">Desactivar</string>
+    <string name="interval">Intervalo</string>
+    <string name="mindfulnessBellActive">Campana de atención plena activada</string>
+    <string name="mindfulnessBell">Campana de atención plena</string>
 </resources>
