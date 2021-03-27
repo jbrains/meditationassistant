@@ -167,7 +167,7 @@
     <string name="edit">Editar</string>
     <string name="exportSessions">Exportar sessões</string>
     <string name="sessionExportFailed">Não foi possível exportar as sessões</string>
-    <string name="showExportedSessions">Sessões exportadas. Quer localizar a pasta contendo os exportados\?</string>
+    <string name="sessionExportWasSuccessful">Sessões exportadas.</string>
     <string name="length">Duração</string>
     <string name="invalidLength">Duração inválida</string>
     <string name="editSessionMeditating">Impossível editar uma sessão enquanto medita</string>

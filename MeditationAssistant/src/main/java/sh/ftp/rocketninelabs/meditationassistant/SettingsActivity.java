@@ -41,7 +41,6 @@ import androidx.core.content.ContextCompat;
 
 import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -539,10 +538,12 @@ public class SettingsActivity extends PreferenceActivity {
         }
 
         if (requestCode == FILEPICKER_IMPORT_SESSIONS_UTC || requestCode == FILEPICKER_IMPORT_SESSIONS_LOCAL) {
-            getMeditationAssistant().importSessions(SettingsActivity.this, new File(getMeditationAssistant().filePickerResult(intent)), requestCode == FILEPICKER_IMPORT_SESSIONS_LOCAL);
+            Uri uri = getMeditationAssistant().filePickerResult(intent);
+            getMeditationAssistant().importSessions(SettingsActivity.this, uri, requestCode == FILEPICKER_IMPORT_SESSIONS_LOCAL);
             return;
         } else if (requestCode == FILEPICKER_EXPORT_SESSIONS) {
-            getMeditationAssistant().exportSessions(SettingsActivity.this, new File(getMeditationAssistant().filePickerResult(intent)));
+            Uri uri = getMeditationAssistant().filePickerResult(intent);
+            getMeditationAssistant().exportSessions(SettingsActivity.this, uri);
             return;
         }
 
@@ -564,7 +565,7 @@ public class SettingsActivity extends PreferenceActivity {
             return;
         }
 
-        getMeditationAssistant().getPrefs().edit().putString(pref, getMeditationAssistant().filePickerResult(intent)).apply();
+        getMeditationAssistant().getPrefs().edit().putString(pref, getMeditationAssistant().filePickerResult(intent).toString()).apply();
 
         if (requestCode == FILEPICKER_SELECT_SOUND_START) {
             initialSoundChangeStart = true;

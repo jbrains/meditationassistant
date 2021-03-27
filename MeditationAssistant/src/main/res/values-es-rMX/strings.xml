@@ -300,7 +300,7 @@
     <string name="editSessionMeditating">Incapaz de editar una sesión mientras se medita</string>
     <string name="invalidLength">Duración inválida</string>
     <string name="length">Duración</string>
-    <string name="showExportedSessions">Sesiones exportadas. Desearía usted elegir la observar la carpeta que contiene lo exportado\?</string>
+    <string name="sessionExportWasSuccessful">Sesiones exportadas.</string>
     <string name="sessionExportFailed">Incapaz de exportar sesiones</string>
     <string name="exportSessions">Exportar sesiones</string>
     <string name="edit">Editar</string>

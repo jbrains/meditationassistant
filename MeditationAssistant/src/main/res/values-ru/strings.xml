@@ -236,7 +236,7 @@
     <string name="edit">Изменить</string>
     <string name="exportSessions">Экспорт сеансов</string>
     <string name="sessionExportFailed">Невозможно экспортировать сеансы</string>
-    <string name="showExportedSessions">Сеансы экспортированы. Вы хотите открыть папку с ними\?</string>
+    <string name="sessionExportWasSuccessful">Сеансы экспортированы.</string>
     <string name="length">Продолжительность</string>
     <string name="invalidLength">Неверная продолжительность</string>
     <string name="editSessionMeditating">Невозможно изменить сеанс во время медитации</string>

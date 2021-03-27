@@ -107,7 +107,7 @@
     <string name="add">Πρόσθεσε</string>
     <string name="exportSessions">Εξήγαγε συνεδρίες</string>
     <string name="sessionExportFailed">Αδυνατόν να εξαγάγει συνεδρίες</string>
-    <string name="showExportedSessions">Συνεδρίες εξήχθησαν. Θα θέλατε να περιηγηθείτε στον φάκελο που περιέχει την εξαγωγή;</string>
+    <string name="sessionExportWasSuccessful">Συνεδρίες εξήχθησαν.</string>
     <string name="sessionStartedAt">Ξεκίνησε στις %s</string>
     <string name="started">Ξεκίνησε</string>
     <string name="completed">Ολοκληρώθηκε</string>

@@ -116,7 +116,7 @@ Segure para escolher valor predefinido</string>
     <string name="edit">Editar</string>
     <string name="exportSessions">Exportar sessões</string>
     <string name="sessionExportFailed">Não foi possível exportar as sessões</string>
-    <string name="showExportedSessions">Sessões exportadas. Quer localizar a pasta contendo os arquivos?</string>
+    <string name="sessionExportWasSuccessful">Sessões exportadas.</string>
     <string name="sessionStartedAt">Iniciada em %s</string>
     <string name="started">Iniciada</string>
     <string name="completed">Completo</string>
