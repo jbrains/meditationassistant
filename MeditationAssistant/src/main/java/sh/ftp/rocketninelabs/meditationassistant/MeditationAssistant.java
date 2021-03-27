@@ -2033,7 +2033,7 @@ public class MeditationAssistant extends Application {
                     .setType("*/*");
 
             if (action.equals("openfile")) {
-                intent.setAction(Intent.ACTION_GET_CONTENT);
+                intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
             } else if (action.equals("newfile")) {
                 intent.setAction(Intent.ACTION_CREATE_DOCUMENT);
                 intent.putExtra(Intent.EXTRA_TITLE, defaultName);
