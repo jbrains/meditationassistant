@@ -263,6 +263,7 @@ public abstract class MonthAdapterMA extends BaseAdapter {
      */
     protected abstract void onDate(int[] date, int position, View item);
 
+    // REFACTOR Extract pure function
     private void populateMonth() {
         mItems = new ArrayList<>();
         for (String day : mDays) {

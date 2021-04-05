@@ -88,6 +88,7 @@ public class TimePreference extends DialogPreference {
 
     @Override
     protected void onSetInitialValue(boolean restoreValue, Object defaultValue) {
+        // REFACTOR Extract pure function
         String time = null;
         String defaultv = "00:00";
 
@@ -108,6 +109,7 @@ public class TimePreference extends DialogPreference {
 
         Log.d("MeditationAssistant", "TimePreference (" + getKey() + ") restoreValue: " + restoreValue + " - defaultValue: " + defaultValue + " - defaultv: " + defaultv + " - time: " + time);
 
+        // REFACTOR Remove duplication between these two
         lastHour = getHour(time);
         lastMinute = getMinute(time);
     }
