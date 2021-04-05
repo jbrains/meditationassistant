@@ -433,6 +433,7 @@ public class TimePicker extends FrameLayout {
         }
     }
 
+    // REFACTOR Notice that this is two implementations of the same interface!
     private void updateAmPmControl() {
         if (is24HourView()) {
             if (mAmPmSpinner != null) {
