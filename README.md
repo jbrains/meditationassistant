@@ -1,10 +1,3 @@
-!!! Meditation Assistant has moved to [code.rocketnine.space](https://code.rocketnine.space/tslocum/meditationassistant) !!!
-====
-
-Please visit https://code.rocketnine.space/tslocum/meditationassistant
-
-------------
-
 # Meditation Assistant
 [![Translate](https://hosted.weblate.org/widgets/meditation-assistant/-/svg-badge.svg)](https://medinet.rocketnine.space/translate/)
 [![Donate](https://img.shields.io/liberapay/receives/rocketnine.space.svg?logo=liberapay)](https://liberapay.com/rocketnine.space)
