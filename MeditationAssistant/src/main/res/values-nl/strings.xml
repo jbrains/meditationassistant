@@ -268,7 +268,6 @@
     <string name="completed">Afgelopen</string>
     <string name="started">Gestart</string>
     <string name="sessionStartedAt">Gestart om %s</string>
-    <string name="showExportedSessions">Sessies geëxporteerd. Wilt u de map met het export bestand bekijken\?</string>
     <string name="sessionExportFailed">Exporteren van sessies lukt niet</string>
     <string name="exportSessions">Sessie exporteren</string>
     <string name="edit">Wijzigen</string>
@@ -350,4 +349,5 @@
     <string name="permissionRequest">Aanvraag voor toestemming</string>
     <string name="disableBatteryOptimizations">Meditation Assistant moet op de achtergrond draaien</string>
     <string name="installFileManager">Installeer een bestandsbeheer applicatie alstublieft</string>
+    <string name="sessionExportWasSuccessful">Sessies geëxporteerd.</string>
 </resources>
