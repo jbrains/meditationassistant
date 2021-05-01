@@ -21,8 +21,8 @@ Debug variants build quickly, while release variants are optimized.
 Variants:
 
 - opensource: F-Droid
-- free: Amazon/Google free version
-- full: Amazon/Google paid version
+- free: Google free version
+- full: Google donate version
 
 Click the green play button labeled *Run selected configuration* to build and
 install the application.

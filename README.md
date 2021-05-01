@@ -4,7 +4,6 @@
 
 <a href="https://f-droid.org/packages/sh.ftp.rocketninelabs.meditationassistant.opensource/"><img width="121" height="36" alt="F-Droid" border="0" src="https://rocketnine.space/static/badge_fdroid_36.png"></a>
  &nbsp; <a href="https://play.google.com/store/apps/details?id=sh.ftp.rocketninelabs.meditationassistant"><img width="121" height="36" alt="Google Play" border="0" src="https://rocketnine.space/static/badge_google_36.png"></a>
- &nbsp; <a href="https://www.amazon.com/Rocket-Nine-Laboratories-Meditation-Assistant/dp/B00BQVZ9DU"><img width="121" height="36" alt="Amazon Appstore" border="0" src="https://rocketnine.space/static/badge_amazon_36.png"></a>
 
 This application assists with both timed (via duration or ending at a specific time) and
 untimed sessions, with numerous customizations, including start/interval/end sounds and
