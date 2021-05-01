@@ -466,8 +466,8 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
             activateMindfulnessBell();
         } else if (item.getItemId() == R.id.action_how_to_meditate) {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(MeditationAssistant.URL_MEDINET + "/howtomeditate")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-        } else if (item.getItemId() == R.id.action_reddit_community) {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://old.reddit.com/r/meditation")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        } else if (item.getItemId() == R.id.action_forum) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://lemmy.ml/c/meditation")).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         } else if (item.getItemId() == R.id.action_replay_tutorial) {
             if (sv != null) {
                 sv.hide();

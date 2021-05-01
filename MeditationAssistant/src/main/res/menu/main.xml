@@ -14,8 +14,8 @@
                 android:id="@+id/action_how_to_meditate"
                 android:title="@string/howToMeditate" />
             <item
-                android:id="@+id/action_reddit_community"
-                android:title="@string/meditationSubreddit" />
+                android:id="@+id/action_forum"
+                android:title="@string/forum" />
             <item
                 android:id="@+id/action_help_medinet"
                 android:title="@string/whatIsMediNET" />
