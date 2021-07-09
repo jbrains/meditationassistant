@@ -474,16 +474,20 @@ public class MeditationAssistant extends Application {
         }
 
         if (dialogue) {
-            if (!theme.equals("dark")) {
-                return R.style.MeditationLightDialogTheme;
-            } else {
+            if (theme.equals("dark")) {
                 return R.style.MeditationDarkDialogTheme;
+            } else if (theme.equals("black")) {
+                return R.style.MeditationBlackDialogTheme;
+            } else {
+                return R.style.MeditationLightDialogTheme;
             }
         } else {
             if (theme.equals("light")) {
                 return R.style.MeditationLightTheme;
             } else if (theme.equals("lightdark")) {
                 return R.style.MeditationLightDarkTheme;
+            } else if (theme.equals("black")) {
+                return R.style.MeditationBlackTheme;
             } else {
                 return R.style.MeditationDarkTheme;
             }

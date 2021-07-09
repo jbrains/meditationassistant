@@ -80,12 +80,14 @@
         <item>light</item>
         <item>lightdark</item>
         <item>dark</item>
+        <item>black</item>
     </string-array>
     <string-array name="mathemes">
         <item>@string/buddhism</item>
         <item>@string/pref_theme_light</item>
         <item>@string/pref_theme_lightdark</item>
         <item>@string/pref_theme_dark</item>
+        <item>@string/pref_theme_black</item>
     </string-array>
     <string-array name="notificationcontrol_values">
         <item></item>

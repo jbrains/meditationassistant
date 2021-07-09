@@ -208,6 +208,7 @@
     <string name="pref_theme_light">Light</string>
     <string name="pref_theme_lightdark">Light with dark action bar</string>
     <string name="pref_theme_dark">Dark</string>
+    <string name="pref_theme_black">Black</string>
     <string name="buddhism">Buddhism</string>
     <string name="pref_widgetcolor">Widget color</string>
     <string name="pref_notification">Notification</string>
