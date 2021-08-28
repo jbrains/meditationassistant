@@ -93,7 +93,7 @@ import java.util.regex.Pattern;
 public class MeditationAssistant extends Application {
     public static String URL_ROCKETNINELABS = "https://rocketnine.space";
     public static String URL_MEDINET = "https://medinet.rocketnine.space";
-    public static String URL_SOURCE = "https://gitlab.com/tslocum/meditationassistant";
+    public static String URL_SOURCE = "https://code.rocketnine.space/tslocum/meditationassistant";
 
     public static String ACTION_PRESET = "sh.ftp.rocketninelabs.meditationassistant.PRESET";
     public static String ACTION_REMINDER = "sh.ftp.rocketninelabs.meditationassistant.DAILY_NOTIFICATION";

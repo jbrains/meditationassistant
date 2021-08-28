@@ -2,7 +2,7 @@ To build Meditation Assistant from source:
 
 # Download
 
-```git clone https://gitlab.com/tslocum/meditationassistant.git```
+```git clone https://code.rocketnine.space/tslocum/meditationassistant.git```
 
 # Import
 

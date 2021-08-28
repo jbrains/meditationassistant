@@ -24,17 +24,17 @@ will be meditating once a day, even if it's five or ten minutes out of your sche
 - Choose from several included meditation sounds, or use a sound file of your own
 - Play an interval sound at a duration of your choice
 - Pause your session and come back to it when you are ready
-- Upload sessions to [MediNET](https://gitlab.com/tslocum/medinet)
+- Upload sessions to [MediNET](https://code.rocketnine.space/tslocum/medinet)
 
 ## Screenshots
 
-<a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/1.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/thumbnails/1.png"></a>
- &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/2.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/thumbnails/2.png"></a>
- &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/3.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/thumbnails/3.png"></a>
- &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/4.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/thumbnails/4.png"></a>
- &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/5.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/thumbnails/5.png"></a>
- &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/6.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/thumbnails/6.png"></a>
- &nbsp; <a href="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/7.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://gitlab.com/tslocum/meditationassistant/-/raw/master/metadata/en-US/images/phoneScreenshots/thumbnails/7.png"></a>
+<a href="https://code.rocketnine.space/tslocum/meditationassistant/raw/branch/master/metadata/en-US/images/phoneScreenshots/1.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://code.rocketnine.space/tslocum/meditationassistant/raw/branch/master/metadata/en-US/images/phoneScreenshots/thumbnails/1.png"></a>
+ &nbsp; <a href="https://code.rocketnine.space/tslocum/meditationassistant/raw/branch/master/metadata/en-US/images/phoneScreenshots/2.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://code.rocketnine.space/tslocum/meditationassistant/raw/branch/master/metadata/en-US/images/phoneScreenshots/thumbnails/2.png"></a>
+ &nbsp; <a href="https://code.rocketnine.space/tslocum/meditationassistant/raw/branch/master/metadata/en-US/images/phoneScreenshots/3.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://code.rocketnine.space/tslocum/meditationassistant/raw/branch/master/metadata/en-US/images/phoneScreenshots/thumbnails/3.png"></a>
+ &nbsp; <a href="https://code.rocketnine.space/tslocum/meditationassistant/raw/branch/master/metadata/en-US/images/phoneScreenshots/4.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://code.rocketnine.space/tslocum/meditationassistant/raw/branch/master/metadata/en-US/images/phoneScreenshots/thumbnails/4.png"></a>
+ &nbsp; <a href="https://code.rocketnine.space/tslocum/meditationassistant/raw/branch/master/metadata/en-US/images/phoneScreenshots/5.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://code.rocketnine.space/tslocum/meditationassistant/raw/branch/master/metadata/en-US/images/phoneScreenshots/thumbnails/5.png"></a>
+ &nbsp; <a href="https://code.rocketnine.space/tslocum/meditationassistant/raw/branch/master/metadata/en-US/images/phoneScreenshots/6.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://code.rocketnine.space/tslocum/meditationassistant/raw/branch/master/metadata/en-US/images/phoneScreenshots/thumbnails/6.png"></a>
+ &nbsp; <a href="https://code.rocketnine.space/tslocum/meditationassistant/raw/branch/master/metadata/en-US/images/phoneScreenshots/7.png"><img width="108" height="216" alt="Screenshot" border="0" src="https://code.rocketnine.space/tslocum/meditationassistant/raw/branch/master/metadata/en-US/images/phoneScreenshots/thumbnails/7.png"></a>
 
 ## Donate
 
@@ -45,7 +45,7 @@ will be meditating once a day, even if it's five or ten minutes out of your sche
 
 ## Get Support
 
-[Open an issue](https://gitlab.com/tslocum/meditationassistant/issues) describing your problem.
+[Open an issue](https://code.rocketnine.space/tslocum/meditationassistant/issues) describing your problem.
 
 ## Translate
 
@@ -58,7 +58,7 @@ They may also be downloaded from [the developer](http://medinet.rocketnine.space
 
 ## Build
 
-See [BUILDING.md](https://gitlab.com/tslocum/meditationassistant/blob/master/BUILDING.md).
+See [BUILDING.md](https://code.rocketnine.space/tslocum/meditationassistant/src/branch/master/BUILDING.md).
 
 ## Contribute
 
