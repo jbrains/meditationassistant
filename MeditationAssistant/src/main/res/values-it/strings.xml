@@ -324,7 +324,6 @@ ti dispiacerebbe aggiungere una valutazione?\n\nQuesto messaggio non apparirà n
 \n
 \n Puoi anche scegliere di salvare i tuoi dati sessioni esclusivamente sul tuo dispositivo.</string>
     <string name="whatIsMediNET">Riepilogo MediNET</string>
-    <string name="meditationSubreddit">Comunità Reddit</string>
     <string name="resources">Risorse</string>
     <string name="pattern">Sequenza</string>
     <string name="label">Etichetta</string>
@@ -337,4 +336,10 @@ ti dispiacerebbe aggiungere una valutazione?\n\nQuesto messaggio non apparirà n
 \nDopo aver premuto OK, premi Cancella o Conferma per continuare.</string>
     <string name="pausedNotification">Sessione in pausa, tieni premuto per terminare</string>
     <string name="resume">Riprendi</string>
+    <string name="notification">Notifica</string>
+    <string name="ringtone">Suoneria</string>
+    <string name="alarm">Allarme</string>
+    <string name="sessionExportWasSuccessful">Sessioni esportate.</string>
+    <string name="deactivate">DIsattivare</string>
+    <string name="interval">Intervallo</string>
 </resources>

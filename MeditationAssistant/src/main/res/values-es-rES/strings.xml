@@ -329,7 +329,6 @@
 \n
 \nUsted puede, en su lugar, escoger guardar su sesión solo en su dispositivo.</string>
     <string name="whatIsMediNET">Descripción de MediNET</string>
-    <string name="meditationSubreddit">Comunidad de Reddit</string>
     <string name="resources">Recursos</string>
     <string name="pattern">Patrón</string>
     <string name="configureWidget">Configurar Widget</string>
@@ -342,4 +341,7 @@
 \n
 \nDespués de presionar OK, presione Cancelar o Confirmar para continuar.</string>
     <string name="permissionRequired">Este permiso es necesario.</string>
+    <string name="start">Comenzar</string>
+    <string name="deactivate">Desactivar</string>
+    <string name="interval">Intervalo</string>
 </resources>

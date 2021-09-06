@@ -312,7 +312,6 @@
     <string name="widgetstreak2x1" tools:ignore="UnusedResources">Série 2×1</string>
     <string name="widgetstreak3x1" tools:ignore="UnusedResources">Série 3×1</string>
     <string name="resources">Ressources</string>
-    <string name="meditationSubreddit">Communauté Reddit</string>
     <string name="replayTutorial">Revoir le tutoriel</string>
     <string name="sourceRepository">Dépôt du code source</string>
     <string name="editTimerHelp">Votre session peut être d\'une durée déterminée, peut durer jusqu\'à une heure de la journée spécifique ou peut ne pas être chronométrée du tout.
@@ -339,4 +338,5 @@
     <string name="timerPosition">Position du minuteur</string>
     <string name="top">En-haut</string>
     <string name="center">Au centre</string>
+    <string name="interval">Intervalle</string>
 </resources>

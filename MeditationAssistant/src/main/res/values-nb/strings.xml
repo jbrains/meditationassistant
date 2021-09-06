@@ -265,8 +265,8 @@
 \n(Deling av fremdrift av dager med meditasjon motiverer daglige økter, selv fem eller ti minutter.)
 \n
 \nMeditasjonsassistenten er gemenhetlig fri programvare.
-\nSend inn din problemrapport, idé, eller fiks: https://gitlab.com/tslocum/meditationassistant/issues
-\nFlere funksjoner i programmet ble introdusert som brukeridéer. 
+\nSend inn din problemrapport, idé, eller fiks: https://code.rocketnine.space/tslocum/meditationassistant/issues
+\nFlere funksjoner i programmet ble introdusert som brukeridéer.
 \n
 \nOversett Meditasjonsassistenten: https://www.getlocalization.com/meditationassistant/
 \n
@@ -336,7 +336,6 @@
     <string name="replayTutorial">Spill av veiledning igjen</string>
     <string name="sourceRepository">Kildekodedepot</string>
     <string name="whatIsMediNET">MediNET-oversikt</string>
-    <string name="meditationSubreddit">Reddit-gemenskap</string>
     <string name="notification">Merknad</string>
     <string name="ringtone">Ringetone</string>
     <string name="media">Media</string>
@@ -348,4 +347,5 @@
     <string name="interval">Intervall</string>
     <string name="start">Start</string>
     <string name="deactivate">Deaktiver</string>
+    <string name="pref_theme_black">Svart</string>
 </resources>

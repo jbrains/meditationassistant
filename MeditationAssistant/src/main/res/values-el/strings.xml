@@ -25,7 +25,7 @@
     <string name="tryAgain">Δοκιμάστε ξανά</string>
     <!-- Main Activity -->
     <string name="timer">Χρονομετρητής</string>
-    <string name="timerHelp">Ο χρονομετρητής είναι ρυθμισμένος προς το παρόν στα 15 λεπτά. Μπορείτε να αλλάξετε την διάρκεια, τη λήξη σε μια ορισμένη στιγμή της ημέρας, ή να απενεργοποιήσετε το συναγερμό πλήρως. Χτυπήστε ελαφρά τον χρονομετρητή τώρα για να δείτε τις επιλογές.</string>
+    <string name="timerHelp">Καλώς ήρθατε σε ένα σύντομο σεμινάριο. Αυτό είναι το χρονόμετρο συνεδρίας. Πατήστε το τώρα για να αλλάξετε τη λειτουργία και τη διάρκεια του χρονοδιακόπτη.</string>
     <string name="settingsHelp">Αυτή η εφαρμογή περιλαμβάνει πολλά χαρακτηριστικά και παραμετροποιήσεις, όπως, αυτόματη σίγαση της συσκευής και παροχή καθημερινής υπενθύμισης για διαλογισμό. Χτυπήστε ελαφρά το εικονίδιο Ρυθμίσεις τώρα για να δείτε τις επιλογές.</string>
     <string name="medinetHelp">Κάνετε είσοδο στο MediNET για να αποθηκεύσετε τις συνεδρίες σας στον ιστό. Μπορείτε να εισάγετε τις συνεδρίες σας αργότερα, εάν χάσετε τα δεδομένα σας. Αυτό το χαρακτηριστικό είναι πλήρως προαιρετικό, η αποθήκευση των συνεδριών τοπικά δεν θα επηρεάσει την εμπειρία σας. 
 
@@ -234,11 +234,7 @@
     <string name="signOutOfMediNETConfirmTitle">Αποσύνδεση από το MediNET;</string>
     <string name="rateMeditationAssistant">Βαθμολογήστε τον Βοηθό Διαλογισμού</string>
     <string name="rateMeditationAssistantText">Εάν βρήκατε αυτήν την εφαρμογή οφέλιμη για την εξάσκησή σας στο διαλογισμό, θα προσθέτατε μια βαθμολογία;\n\nΗ επ\' αμοιβή έκδοση δεν περιέχει διαφημίσεις και φιλοξενεί μικροεφαρμογές αρχικής οθόνης. Παρακαλώ, αναλογισθείτε την αγορά της εάν δύνασθε.\n\nΑυτός ο διάλογος δεν θα επανεμφανισθεί.</string>
-    <string name="translateMeditationAssistantText">Θα βοηθούσατε τον Βοηθό Διαλογισμού να αγγίξει ένα ευρύτερο κοινό μεταφράζοντάς τον σε μια άλλη γλώσσα;
-
-Η μετάφραση γίνεται εύκολα μέσω διεπαφής στον ιστό.Μπορείτε να επισκεφθείτε τη σελίδα μετάφρασης αργότερα πατώντας Μεταφράστε από το παράθυρο Σχετικά.
-
-Αυτός ο διάλογος δεν θα επανεμφανισθεί.</string>
+    <string name="translateMeditationAssistantText">Ενδιαφέρεστε να βοηθήσετε στη μετάφραση του Meditation Assistant;</string>
     <!-- Widgets -->
     <!-- Meta -->
     <string name="appStoreListingShort">Χρονομετρητής και καταγραφέας συνεδρίας διαλογισμού πλούσιος χαρακτηριστικών</string>
@@ -277,4 +273,14 @@ https://www.getlocalization.com/meditationassistant/
     <string name="chooseDonationMethod">Επιλέξτε πώς θα θέλατε να κάνετε δωρεά.
 \n
 \nΤο Liberapay προτιμάται από τον προγραμματιστή και υποστηρίζει περισσότερες χώρες και νομίσματα.</string>
+    <string name="widgetstreak3x1" tools:ignore="UnusedResources">Σειρά 3x1</string>
+    <string name="widgetpreset3x1" tools:ignore="UnusedResources">Προκαθορισμένο 3x1</string>
+    <string name="widgetpreset2x1" tools:ignore="UnusedResources">Προκαθορισμένο 2x1</string>
+    <string name="widgetpreset1x1" tools:ignore="UnusedResources">Προκαθορισμένο 1x1</string>
+    <string name="widgetstreak1x1" tools:ignore="UnusedResources">Σειρά 1x1</string>
+    <string name="widgetstreak2x1" tools:ignore="UnusedResources">Σειρά 2x1</string>
+    <string name="pattern">Διάταξη</string>
+    <string name="configureWidget">Ρύθμιση Widget</string>
+    <string name="sessionPaused">Η περίοδος λειτουργίας διακόπηκε προσωρινά</string>
+    <string name="resume">Συνέχιση</string>
 </resources>

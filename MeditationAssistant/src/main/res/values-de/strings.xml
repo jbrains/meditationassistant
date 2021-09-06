@@ -314,7 +314,6 @@ Entwickelt von Rocket Nine Laboratories: https://rocketnine.space/</string>
     <string name="widgetstreak3x1" tools:ignore="UnusedResources">Streifen 3x1</string>
     <string name="pref_autosave">Autospeichern</string>
     <string name="resources">Ressourcen</string>
-    <string name="meditationSubreddit">Reddit-Gemeinschaft</string>
     <string name="replayTutorial">Tutorial wiederholen</string>
     <string name="sourceRepository">Archiv des Quellcodes</string>
     <string name="whatIsMediNET">MediNET-Übersicht</string>

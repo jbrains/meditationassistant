@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="end">Fino</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="end">Fini</string>
     <string name="pause">Paŭzigi</string>
     <string name="tapToSkip">Preterpasi</string>
     <string name="meditate">Mediti</string>
-    <string name="confirm">Certigi</string>
+    <string name="confirm">Konfirmi</string>
     <string name="cancel">Nuligi</string>
     <string name="tryAgain">Klopodi denove</string>
-    <string name="installFileManager">Bonvolu instali dosieradministrilo</string>
+    <string name="installFileManager">Bonvolu instali dosieradministrilon</string>
     <string name="announcement">Anonco</string>
     <string name="groups">Grupoj</string>
     <string name="account">Konto</string>
@@ -15,7 +15,7 @@
     <string name="refresh">Aktualigi</string>
     <string name="forum">Forumo</string>
     <string name="community">Komunumo</string>
-    <string name="sessions">Sesioj</string>
+    <string name="sessions">Seancoj</string>
     <string name="delete">Forigi</string>
     <string name="openWith">Malfermi per</string>
     <string name="warning">Averto</string>
@@ -30,15 +30,15 @@
     <string name="days">Tagoj</string>
     <string name="setTime">Fiksi tempon</string>
     <string name="setDate">Fiksi daton</string>
-    <string name="started">Komencis</string>
-    <string name="sessionStartedAt">Komencis je %s</string>
-    <string name="exportSessions">Elporti sesiojn</string>
+    <string name="started">Komenciĝis</string>
+    <string name="sessionStartedAt">Komenciĝis je %s</string>
+    <string name="exportSessions">Elporti seancojn</string>
     <string name="edit">Redakti</string>
     <string name="add">Aldoni</string>
-    <string name="sessionEdited">Sesio redaktita</string>
-    <string name="sessionAdded">Sesio aldonita</string>
-    <string name="editSession">Redakti sesion</string>
-    <string name="addSession">Aldoni sesion</string>
+    <string name="sessionEdited">Seanco redaktita</string>
+    <string name="sessionAdded">Seanco aldonita</string>
+    <string name="editSession">Redakti seancon</string>
+    <string name="addSession">Aldoni seancon</string>
     <string name="daySundayShort">Dim</string>
     <string name="daySaturdayShort">Sab</string>
     <string name="dayFridayShort">Ven</string>
@@ -48,35 +48,293 @@
     <string name="dayMondayShort">Lun</string>
     <string name="calendar">Kalendaro</string>
     <string name="signInWithOpenID">OpenID - Facebook, Twitter, ktp.</string>
-    <string name="signInWithProvider">Ensaluti per %s…</string>
-    <string name="signInWith">Ensaluti per…</string>
-    <string name="useBrowser">Uzi retumilo:</string>
-    <string name="browser">Retumilo</string>
-    <string name="sessionSaved">Sesio konservita</string>
+    <string name="signInWithProvider">Saluti per %s…</string>
+    <string name="signInWith">Saluti per…</string>
+    <string name="useBrowser">Uzi TTT-legilon:</string>
+    <string name="browser">TTT-legilo</string>
+    <string name="sessionSaved">Seanco konservita</string>
     <string name="sessionMessagePlaceholder">Mesaĝo</string>
     <string name="sessionDeleteMediNET">Forigi ĉe MediNET</string>
     <string name="sessionDeleteEverywhere">Forigi ĉie</string>
-    <string name="session">Sesio</string>
+    <string name="session">Seanco</string>
     <string name="share">Kunigi</string>
     <string name="translate">Traduki</string>
     <string name="version">Versio %s</string>
     <string name="whatIsMediNET">Kio estas MediNET</string>
-    <string name="meditationSubreddit">Reddita komunumo</string>
     <string name="howToMeditate">Kiel mediti</string>
     <string name="interval">Intervalo</string>
     <string name="presetLabelEndAt">Fino %s</string>
     <string name="endAt">Fino je</string>
     <string name="label">Etikedo</string>
-    <string name="configureWidget">Konfiguri fenestraĵon</string>
-    <string name="setPreset">Fiksi modo</string>
+    <string name="configureWidget">Agordi fenestraĵon</string>
+    <string name="setPreset">Agordi aprioron</string>
     <string name="progress">Progreso</string>
-    <string name="sessionPaused">Sesio paŭzigita</string>
-    <string name="mediNETConnected">Kunligita al MediNET</string>
-    <string name="mediNETConnecting">Kunligas…</string>
-    <string name="resumeOrEnd">Pluigi aŭ finigi</string>
-    <string name="pauseOrEnd">Paŭzigi aŭ finigi</string>
+    <string name="sessionPaused">Seanco en paŭzo</string>
+    <string name="mediNETConnected">Konektita al MediNET</string>
+    <string name="mediNETConnecting">Konektante…</string>
+    <string name="resumeOrEnd">Pluigi aŭ fini</string>
+    <string name="pauseOrEnd">Paŭzigi aŭ fini</string>
     <string name="resume">Pluigi</string>
     <string name="set">Fiksi</string>
-    <string name="timerHelp">Bonvolu en klara lernilo. Tiu ĉi estas tempmezurilo de sesio.</string>
-    <string name="timer">Tempmezurilo</string>
+    <string name="timerHelp">Bonvenon al mallonga lernilo. Jen la seanca tempumilo. Frapetu ĝin nun por ŝanĝi la tempuman reĝimon kaj daŭron.</string>
+    <string name="timer">Tempumilo</string>
+    <string name="appStoreListingFull">- Aŭtomata aparata reĝimo dum meditado.
+\n- Paŭzigeblaj seancoj.
+\n- Agordeblaj komencaj/intervalaj/finaj sonoj, tempoj, etosoj, aparataj kondutoj kaj pli.
+\n- Monata superrigardo de progreso.
+\n- Laŭvole afiŝu seancojn al MediNET, kaj vizitu ĝian diskutejon.
+\n(Sciigo de aliuloj pri progreso de tagoj kun meditado instigas ĉiutagajn seancojn, eĉ dum kvin aŭ dek minutoj.)
+\n
+\nMeditada Asistanto estas kopilasita libera programo.
+\nJa sendu vian problemon, ideon aŭ riparon: https://gitlab.com/tslocum/meditationassistant/issues
+\nPluraj funkcioj originis kiel ideoj de uzantoj.
+\n
+\nTraduku ĉi tiun programon: https://www.getlocalization.com/meditationassistant/
+\n
+\nFare de Rocket Nine Laboratories: https://rocketnine.space</string>
+    <string name="editTimerHelp">Via seanco povas havi specifan daŭron, povas daŭri ĝis specifa horo de la tago, aŭ eble ne havas specifitan finon.
+\n
+\nAprioroj estas uzataj por konservi oftajn agordojn. Premu kaj tenu aprioron por konservi la aktualan seancan daŭrorn. Sonoj kaj aliaj agordoj ankaŭ povas esti konservitaj en aprioroj, se tio estas ŝaltita per «Agordoj pri aprioro».
+\n
+\nPost frapeto de «Bone», frapetu «Nuligi» aŭ «Konfirmi» por daŭrigi.</string>
+    <string name="streakdifferencewarning">Via aktuala medita seninterrompaĵo ŝajnas malĝusta laŭ nunaj seancaj datenoj. Ĉu ĝisdatigi meditan seninterrompaĵon\?
+\n
+\nAktuala seninterrompaĵo: %1$d
+\nĜisdatigota seninterrompaĵo: %2$d</string>
+    <string name="pref_meditationstreakbuffer">Seninterrompaĵo rekomenciĝas ĉe</string>
+    <string name="pref_sessionvolume_summary">Antaŭa laŭto reuziĝos post fino de la seanco.</string>
+    <string name="setPresetTip">Elektu restaŭrotajn agordojn frapante la piktogramon «Agordoj» kaj poste la butonon «Agordoj pri aprioro».</string>
+    <string name="permissionRequestNotificationControl">Bonvolu en la sekva ekrano permesi al ĉi tiu programo baskuligi la reĝimon «Ne ĝeni».</string>
+    <string name="invitationBlurb">Meditada Asistanto estas funkciplena asistanto por via praktiko.</string>
+    <string name="setVibrationTip">Tajpu la nombrojn de milisekundoj por ŝalti aŭ malŝalti la vibrilon, apartigitaj per komoj.</string>
+    <string name="pref_usetimepicker_summary">Uzi horajn kaj minutajn ŝovbutonojn por ŝanĝi la daŭron</string>
+    <string name="pref_daily_reminder_summary">Sciigi, se neniu seanco estis registrita hodiaŭ</string>
+    <string name="pref_notificationcontrol_vibrate">Vibrigi</string>
+    <string name="totalTimeSpentMeditating">Totala tempo de meditado</string>
+    <string name="signInGoogleError">Ne eblas aŭtentikigi per kontadministrilo. Provu OpenID, se ĉi tiu eraro daŭras.</string>
+    <string name="untimed">Netempumata</string>
+    <string name="timed">Tempumata</string>
+    <string name="unlimited">Senlima</string>
+    <string name="medinetHelp">Salutu al MediNET por konservi viajn seancojn Interrete. Vi povos enporti viajn seancojn poste, se vi perdos viajn datenojn. Ĉi tiu funkcio estas tute nedeviga; loka konservado de seancoj ne malbonigos vian sperton.
+\n
+\nJen finiĝas la lernilo. Mi esperas, ke Meditada Asistanto utilos al via praktiko.</string>
+    <string name="downloadsessionsmessage">Antaŭaj seancoj elŝutiĝos.
+\n
+\nĈi tiu dialogo ne reaperos.
+\nVi povos elŝuti seancojn poste per la fenestro «Agordoj».</string>
+    <string name="importsessions_utc_or_local">Ĉu ĉi tiu elportaĵo havas lokajn aŭ UTK-ajn datojn kaj horojn\?
+\n
+\nElportaĵoj konservitaj ekde versio 1.5.6 havas datojn kaj horojn laŭ UTK.</string>
+    <string name="whatIsMediNETHelp">MediNET estas Interreta meditada seanco-deponejo kaj komunumo.
+\n
+\nVi povas konservi viajn seancojn ĉe MediNET por malhelpi perdon de datenoj kaj/aŭ Interrete sciigi aliulojn pri via progreso.
+\n
+\nVi povas anstataŭe konservi seancajn datenojn nur sur la aparato.</string>
+    <string name="replayTutorial">Reludi lernilon</string>
+    <string name="appStoreListingShort">Funkcioplena medito-seanca tempumilo kaj registrilo</string>
+    <string name="rateMeditationAssistantText">Se vi trovas ĉi tiun programon utila por via meditado, ĉu vi bonvolus taksi ĝin\?
+\n
+\nĈi tiu dialogo ne reaperos.</string>
+    <string name="downloadSessionsHint">Alklaku «Elŝuti seancojn» en Agordoj por retrovi mankantajn seancojn.</string>
+    <string name="pref_notification_summary">Montrota dum meditado dum vi estas for de la ĉeffenestro</string>
+    <string name="keepScreenOnAndDim">Lasi la ekranon aktiva kaj malheligi</string>
+    <string name="keepScreenOn">Lasi la ekranon aktiva</string>
+    <string name="pref_softfinish_summary">Lasi la tempumilon funkcianta</string>
+    <string name="pref_vibrate_summary">Okazas ĉe la komenco, la intervaloj kaj la fino de meditado</string>
+    <string name="pref_sound_reminder_summary">La implicita sciiga sono ludiĝos</string>
+    <string name="pref_vibrate_reminder_summary">La ĉiutaga memorigo vibrigos la aparaton</string>
+    <string name="settingsHelp">Ĉi tiu programo enhavas multajn funkciojn kaj opciojn. Frapetu la piktogramon Agordoj por vidi ilin.</string>
+    <string name="pref_display_seconds_summary">Montrota sub la ĉeftempumilo</string>
+    <string name="timerPosition">Loko de tempumilo</string>
+    <string name="pref_text_size">Grando de tempumilo</string>
+    <string name="presetsettings">Agordoj pri aprioro</string>
+    <string name="pref_meditation_sound_bell">Sono de plenatentiga sonorilo</string>
+    <string name="mindfulnessBellActive">Plenatentiga sonorilo aktiva</string>
+    <string name="mindfulnessBell">Plenatentiga sonorilo</string>
+    <string name="pref_showstreak_summary">Nombro de sinsekvaj tagoj kun almenaŭ unu registrita seanco</string>
+    <string name="pref_delay">Prokrasto</string>
+    <string name="widgetstreak3x1" tools:ignore="UnusedResources">Seninterrompaĵo 3×1</string>
+    <string name="widgetstreak2x1" tools:ignore="UnusedResources">Seninterrompaĵo 2×1</string>
+    <string name="widgetstreak1x1" tools:ignore="UnusedResources">Seninterrompaĵo 1×1</string>
+    <string name="setPresetHintBlank">Tajpu daŭro (aŭ finan tempon) por agordi aprioron</string>
+    <string name="setPresetHint">Tenu por agordi aprioron</string>
+    <string name="widgetpreset3x1" tools:ignore="UnusedResources">Aprioro 3×1</string>
+    <string name="widgetpreset2x1" tools:ignore="UnusedResources">Aprioro 2×1</string>
+    <string name="widgetpreset1x1" tools:ignore="UnusedResources">Aprioro 1×1</string>
+    <string name="sessionDeletedMediNET">Seanco forigita ĉe MediNET</string>
+    <string name="pref_remembermessage_summary">Implicitigi antaŭan mesaĝon</string>
+    <string name="pref_showstreak">Montri daŭron de seninterrompa meditado</string>
+    <string name="longestStreak">Plej longa seninterrompaĵo</string>
+    <string name="pref_daily_reminder">Ĉiutaga memorigo</string>
+    <string name="restartApp">Relanĉi programon por efektivigi agordojn</string>
+    <string name="miscellaneous">Diversaĵoj</string>
+    <string name="pref_notificationcontrol">Vokosono kaj sciigoj</string>
+    <string name="pref_daily_reminder_text">Instiga teksto</string>
+    <string name="ringtone">Vokosono</string>
+    <string name="media">Aŭdvidaĵoj</string>
+    <string name="pref_notificationcontrol_priority">Nur prioritato</string>
+    <string name="pref_askdismiss_summary">Peti konfirmon de forĵeton de seanco</string>
+    <string name="pref_askdismiss">Demandi antaŭ forĵeto</string>
+    <string name="pref_theme_lightdark">Hela kun malhela agbreto</string>
+    <string name="pref_usetimepicker">Alternativa fasado de daŭro</string>
+    <string name="pref_interval_count">Nombro de intervaloj</string>
+    <string name="pref_interval">Daŭro de intervalo</string>
+    <string name="pref_audio_output">Soneligo</string>
+    <string name="pref_rememberme_summary">Resti salutinta post fermo</string>
+    <string name="pref_autosignin_summary">Konekti al MediNET dum lanĉo</string>
+    <string name="pref_meditation_sound_interval">Intervala sono</string>
+    <string name="selectSound">Elekti sonon</string>
+    <string name="pref_autosave">Aŭtomate konservi</string>
+    <string name="pref_autosignin">Aŭtomate konekti</string>
+    <string name="pref_display_seconds">Montri sekundojn</string>
+    <string name="disabled">Malŝaltita</string>
+    <string name="reminderText">Ĉu vi havas momenton\?</string>
+    <string name="pref_meditation_vibrate_finish">Fina vibro</string>
+    <string name="pref_meditation_vibrate_interval">Intervala vibro</string>
+    <string name="pref_meditation_vibrate_start">Komenca vibro</string>
+    <string name="modeandduration">Reĝimo kaj daŭro</string>
+    <string name="tapToLearnMore">Frapetu ie ajn por lerni pli</string>
+    <string name="invalidEndAt">Nevalida fina tempo</string>
+    <string name="pausedNotification">Seanco en paŭzo; tenu por fini</string>
+    <string name="sessionInProgress">Seanco okazanta</string>
+    <string name="pattern">Modelo</string>
+    <string name="resources">Rimedoj</string>
+    <string name="disableBatteryOptimizations">Meditada Asistanto devas ruliĝi fone</string>
+    <string name="sessionsUpToDate">Lokaj datenoj estas ĝisdataj</string>
+    <string name="sessionExportWasSuccessful">Seancoj elportiĝis.</string>
+    <string name="sessionExportFailed">Malsukcesis elporti seancojn</string>
+    <string name="sessionNotPostedMeditating">Ne eblas afiŝi seancon dum meditado</string>
+    <string name="sessionAlreadyPosted">Seanco jam afiŝita</string>
+    <string name="sessionPosted">Seanco afiŝita al MediNET</string>
+    <string name="custom">Propra</string>
+    <plurals name="daysOfMeditation">
+        <item quantity="one">%d tago de meditado</item>
+        <item quantity="other">%d tagoj de meditado</item>
+    </plurals>
+    <plurals name="daysOfMeditationWithoutCount">
+        <item quantity="one">tago de meditado</item>
+        <item quantity="other">tagoj de meditado</item>
+    </plurals>
+    <string name="pref_widgetcolor">Koloro de fenestraĵo</string>
+    <string name="pref_sound_reminder">Ludi sonon</string>
+    <string name="pref_remembermessage">Memori lastan mesaĝon</string>
+    <string name="pref_meditation_sound_start">Komenca sono</string>
+    <string name="pref_meditation_sound_finish">Fina sono</string>
+    <string name="vibrate">Vibrigi</string>
+    <string name="totalSessions">Totala nombro de seancoj</string>
+    <string name="downloadsessionstitle">Ĉu elŝuti seancojn\?</string>
+    <string name="pref_daily_reminder_title">Memorigi min</string>
+    <string name="pref_notificationcontrol_alarms">Nur alarmoj</string>
+    <string name="alarm">Alarmo</string>
+    <string name="importsessions_complete">Troviĝis %1$d ekzistanta(j) kaj %2$d nova(j).</string>
+    <string name="downloadsessions_summary">Elŝuti forajn seancojn</string>
+    <string name="downloadsessions">Elŝuti seancojn</string>
+    <string name="importsessions_in_progress">Enportante seancojn…</string>
+    <string name="utc">UTK</string>
+    <string name="chooseDonationMethod">Bonvolu elekti manieron de donacado.
+\n
+\nLa programisto preferas Liberapay, kiu subtenas pli da landoj kaj valutoj.</string>
+    <string name="sourceRepository">Deponejo de fontkodo</string>
+    <string name="downloadingSessions">Elŝutante seancojn…</string>
+    <string name="pref_softfinish">Senfina seanco</string>
+    <string name="noSpecialBehavior">Neniu speciala konduto</string>
+    <string name="dimScreen">Malheligi ekranon</string>
+    <string name="duringSession">Dum seanco</string>
+    <string name="customSound">Propra sono</string>
+    <string name="noSound">Neniu sono</string>
+    <string name="start">Komenci</string>
+    <string name="discard">Forĵeti</string>
+    <string name="dismiss">Ignori</string>
+    <string name="unableToConnect">Ne eblas konekti al MediNET</string>
+    <string name="sessionNotFoundMediNET">Seanco ne troviĝis ĉe MediNET</string>
+    <string name="rateMeditationAssistant">Taksi ĉi tiun programon</string>
+    <string name="translateMeditationAssistantText">Ĉu vi interesiĝas pri tradukado de Meditada Asistanto\?</string>
+    <string name="permissionRequired">Jen deviga permeso.</string>
+    <string name="permissionRequest">Peto pri permeso</string>
+    <string name="deny">Malpermesi</string>
+    <string name="forward">Antaŭen</string>
+    <string name="back">Reen</string>
+    <string name="rate">Taksi</string>
+    <string name="length">Longo</string>
+    <string name="addSessionMeditating">Ne eblas aldoni seancon dum meditado</string>
+    <string name="editSessionMeditating">Ne eblas redakti seancon dum meditado</string>
+    <string name="sessionExists">Seanco jam ekzistas</string>
+    <string name="invalidLength">Nevalida longo</string>
+    <string name="invalidDateOrTime">Nevalida dato aŭ tempo</string>
+    <string name="sendEmail">Sendi retpoŝtan mesaĝon</string>
+    <string name="pref_sessionintro">Enkonduko</string>
+    <string name="sessionDeletedLocally">Seanco estis forigita loke</string>
+    <string name="sessionNotPosted">Malsukcesis afiŝi seancon</string>
+    <string name="postUpdatedSession">Ĉu alŝuti ĝisdatigitan seancon al MediNET\?</string>
+    <string name="sessionDeleteLocally">Forigi loke</string>
+    <string name="donate">Donaci</string>
+    <string name="deactivate">Malaktivigi</string>
+    <string name="setTimerEndAtHint">Tajpu validan tempon (ekz. 4:20)</string>
+    <string name="setTimerDurationHint">Tajpu validan daŭron (ekz. 0:22)</string>
+    <string name="uploadingSessions">Alŝutante seancojn…</string>
+    <string name="download">Elŝuti</string>
+    <string name="meditateToday">Meditu hodiaŭ</string>
+    <string name="signOutOfMediNETConfirmTitle">Ĉu adiaŭi el MediNET\?</string>
+    <string name="signOutOfMediNET">Adiaŭi el MediNET</string>
+    <string name="signInToMediNET">Saluti al MediNET</string>
+    <plurals name="daysOfMeditationMinimal">
+        <item quantity="one">%d tago</item>
+        <item quantity="other">%d tagoj</item>
+    </plurals>
+    <string name="notification">Sciigo</string>
+    <string name="normal">Mezgranda</string>
+    <string name="local">Loka</string>
+    <string name="pref_progresstab">Implicita langeto</string>
+    <string name="pref_mainbuttons">Kaŝi butonojn</string>
+    <string name="pref_theme">Holografia etoso</string>
+    <string name="pref_rememberme">Memori min</string>
+    <string name="always">Ĉiam</string>
+    <string name="pref_full_screen">Plenekrane</string>
+    <string name="labelLong">Longa</string>
+    <string name="labelMedium">Mezlonga</string>
+    <string name="labelShort">Mallonga</string>
+    <string name="none">Nenio</string>
+    <string name="longestDuration">Plej longa daŭro</string>
+    <string name="averageDuration">Mezuma daŭro</string>
+    <string name="completed">Finiĝis</string>
+    <string name="uploadsessions_summary">Alŝuti lokajn seancojn</string>
+    <string name="uploadsessions">Alŝuti seancojn</string>
+    <string name="exportsessions">Elporti seancojn</string>
+    <string name="exportsessions_summary">Elporti diskoman dosieron (CSV)</string>
+    <string name="importsessions_summary">Enporti diskoman dosieron (CSV)</string>
+    <string name="pref_notification">Sciigo</string>
+    <string name="pref_screencontrol">Ekrano</string>
+    <string name="pref_sessionvolume">Laŭto</string>
+    <string name="pref_theme_light">Hela</string>
+    <string name="buddhism">Budhismo</string>
+    <string name="pref_theme_dark">Malhela</string>
+    <string name="importsessions">Enporti seancojn</string>
+    <string name="top">Supro</string>
+    <string name="center">Centro</string>
+    <string name="tiny">Malgrandega</string>
+    <string name="small">Malgranda</string>
+    <string name="extralarge">Grandega</string>
+    <string name="large">Granda</string>
+    <string name="pref_daily_reminder_time">Tempo</string>
+    <string name="post">Afiŝi</string>
+    <string name="save">Konservi</string>
+    <string name="mediNET">MediNET</string>
+    <string name="wordimport">Enporti</string>
+    <string name="signOut">Adiaŭi</string>
+    <plurals name="sessionsUploaded">
+        <item quantity="one">Alŝutiĝis %s seanco</item>
+        <item quantity="other">Alŝutiĝis %s seancoj</item>
+    </plurals>
+    <plurals name="sessionsDownloaded">
+        <item quantity="one">Elŝutiĝis %s seanco</item>
+        <item quantity="other">Elŝutiĝis %s seancoj</item>
+    </plurals>
+    <plurals name="numtimes">
+        <item quantity="one">%s fojo</item>
+        <item quantity="other">%s fojoj</item>
+    </plurals>
+    <string name="sessioncomplete">Seanco estas kompleta</string>
+    <string name="askDiscardText">Ĉu forĵeti seancon\?</string>
+    <string name="sessionPosting">Afiŝante seancon…</string>
+    <string name="statistics">Statistiko</string>
 </resources>

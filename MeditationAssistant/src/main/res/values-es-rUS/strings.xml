@@ -105,4 +105,7 @@
     <string name="installFileManager">Por favor instale un administrador de archivos</string>
     <string name="openWith">Abrir con</string>
     <string name="warning">Advertencia</string>
+    <string name="setTimerDurationHint">Introducir una duración válida (ej. 0:22)</string>
+    <string name="setVibrationTip">Introduzca el número de milisegundos para encender o apagar la vibración, separado por comas.</string>
+    <string name="setPresetTip">Elige qué opciones restaurar presionando el icono del engranaje (Ajustes), después pulsa Ajustes de programación.</string>
 </resources>

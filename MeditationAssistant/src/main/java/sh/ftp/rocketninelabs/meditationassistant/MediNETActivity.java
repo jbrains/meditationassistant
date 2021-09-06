@@ -23,7 +23,6 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
-import java.util.Date;
 import java.util.TimeZone;
 
 public class MediNETActivity extends Activity {

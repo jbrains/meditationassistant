@@ -5,7 +5,7 @@
     <string name="yes">Sim</string>
     <string name="no">Não</string>
     <string name="openWith">Abrir com</string>
-    <string name="delete">Deletar</string>
+    <string name="delete">Apagar</string>
     <string name="sessions">Sessões</string>
     <string name="community">Comunidade</string>
     <string name="forum">Fórum</string>
@@ -13,7 +13,7 @@
     <string name="refresh">Atualizar</string>
     <string name="page">Página</string>
     <string name="back">Voltar</string>
-    <string name="forward">Seguir</string>
+    <string name="forward">Avançar</string>
     <string name="account">Conta</string>
     <string name="groups">Grupos</string>
     <string name="announcement">Anúncio</string>
@@ -74,16 +74,15 @@ Segure para escolher valor predefinido</string>
     <string name="session">Sessão</string>
     <string name="sessionDeleteEverywhere">Excluir tudo</string>
     <string name="sessionDeleteLocally">Excluir localmente</string>
-    <string name="sessionDeleteMediNET">Deletar no MediNET</string>
+    <string name="sessionDeleteMediNET">Excluir no MediNET</string>
     <string name="pref_sessionintro">Introdução</string>
     <string name="presetsettings">Configurações predefinidas</string>
     <string name="modeandduration">Modo e duração</string>
     <string name="streakdifferencewarning">Sua sequência de meditação atual não parece correta com base nos dados da sessão atual. Usar a sequência de meditação atualizada?\n\nSequência atual: %1$d\nSequência atualizada: %2$d</string>
     <!-- Session complete -->
     <string name="sessioncomplete">Sessão completa</string>
-    <string name="sessionMessagePlaceholder">Massagem</string>
-    <string name="askDiscardText">Deletar sessão?
-</string>
+    <string name="sessionMessagePlaceholder">Mensagem</string>
+    <string name="askDiscardText">Descartar sessão\?</string>
     <string name="sessionPosting">Postando sessão…</string>
     <string name="sessionPosted">Postando sessão no MediNET</string>
     <string name="sessionAlreadyPosted">Sessão já postada
@@ -247,7 +246,7 @@ Segure para escolher valor predefinido</string>
         <item quantity="other">dias de meditação</item>
     </plurals>
     <string name="meditateToday">Meditar hoje</string>
-    <string name="signInToMediNET">Entrar no MediNEY</string>
+    <string name="signInToMediNET">Entrar no MediNET</string>
     <string name="signOut">Sair</string>
     <string name="signOutOfMediNET">Sair do MediNET</string>
     <string name="signOutOfMediNETConfirmTitle">Sair do MediNET?</string>
@@ -278,7 +277,6 @@ Segure para escolher valor predefinido</string>
     <string name="permissionRequired">Esta permissão é necessária.</string>
     <string name="disableBatteryOptimizations">Meditation Assistant precisa rodar em segundo plano</string>
     <string name="warning">Aviso</string>
-    <string name="meditationSubreddit">Comunidade Reddit</string>
     <string name="resources">Recursos</string>
     <string name="configureWidget">Configurar o widget</string>
     <string name="setVibrationTip">Insira o número de milissegundos para ligar ou desligar a vibração, separados por vírgulas.</string>
