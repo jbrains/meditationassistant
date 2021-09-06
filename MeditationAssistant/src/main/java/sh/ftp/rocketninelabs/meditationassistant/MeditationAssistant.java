@@ -445,13 +445,13 @@ public class MeditationAssistant extends Application {
 
     public int getMATextColor(Boolean enabled) {
         if (enabled) {
-            if (!getMAThemeString().equals("dark") && !getMAThemeString().equals("buddhism")) {
+            if (getMAThemeIsLight()) {
                 return android.R.color.primary_text_light;
             } else {
                 return android.R.color.primary_text_dark;
             }
         } else {
-            if (!getMAThemeString().equals("dark") && !getMAThemeString().equals("buddhism")) {
+            if (getMAThemeIsLight()) {
                 return android.R.color.secondary_text_light;
             } else {
                 return android.R.color.secondary_text_dark;
@@ -497,8 +497,19 @@ public class MeditationAssistant extends Application {
         if (theme == null) {
             theme = getPrefs().getString("pref_theme", "dark");
         }
-
         return theme;
+    }
+
+    public boolean getMAThemeIsLight() {
+        String currentTheme = getMAThemeString();
+        switch (currentTheme) {
+            case "buddhism":
+            case "dark":
+            case "black":
+                return false;
+            default:
+                return true;
+        }
     }
 
     public MediNET getMediNET() {

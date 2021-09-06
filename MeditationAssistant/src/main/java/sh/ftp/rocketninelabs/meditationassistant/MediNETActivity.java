@@ -402,7 +402,7 @@ public class MediNETActivity extends Activity {
     }
 
     public void setWindowBackground() {
-        if (getMeditationAssistant().getMATheme() != R.style.MeditationDarkTheme && getMeditationAssistant().getMATheme() != R.style.Buddhism) {
+        if (getMeditationAssistant().getMAThemeIsLight()) {
             getWindow().setBackgroundDrawable(
                     getResources().getDrawable(
                             android.R.drawable.screen_background_light)

@@ -177,7 +177,14 @@ public abstract class MonthAdapterMA extends BaseAdapter {
                     }
                 });
 
-                if (getMeditationAssistant().getMAThemeString().equals("dark")) {
+                if (getMeditationAssistant().getMAThemeIsLight()) {
+                    int bgcolor = (date[1] == mMonth) ? R.color.highlighted_text_dark
+                            : R.color.dim_foreground_dark;
+                    //: R.color.dim_foreground_holo_dark;
+
+                    view.setBackgroundColor(getMeditationAssistant()
+                            .getResources().getColor(bgcolor));
+                } else {
                     /*int bgcolor = (date[1] == mMonth) ? R.color.highlighted_text_light
                             : R.color.dim_foreground_light;*/
                     int bgcolor = (date[1] == mMonth) ? android.R.color.holo_blue_dark
@@ -187,19 +194,12 @@ public abstract class MonthAdapterMA extends BaseAdapter {
 
                     view.setBackgroundColor(getMeditationAssistant()
                             .getResources().getColor(bgcolor));
-                } else {
-                    int bgcolor = (date[1] == mMonth) ? R.color.highlighted_text_dark
-                            : R.color.dim_foreground_dark;
-                    //: R.color.dim_foreground_holo_dark;
-
-                    view.setBackgroundColor(getMeditationAssistant()
-                            .getResources().getColor(bgcolor));
                 }
             }
 
             view.setHeight(mDayHeight);
             if (date[1] != mMonth) { // previous or next month
-                if (getMeditationAssistant().getMAThemeString().equals("dark")) {
+                if (getMeditationAssistant().getMAThemeIsLight()) {
                     view.setTextColor(getMeditationAssistant().getResources()
                             .getColor(android.R.color.tertiary_text_light));
                 } else {
