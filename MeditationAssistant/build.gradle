@@ -74,8 +74,13 @@ android {
     }
 
     testOptions {
+        unitTests.includeAndroidResources = true
         unitTests.all {
             useJUnitPlatform()
+            reports {
+                junitXml.enabled = true
+                html.enabled = false
+            }
             testLogging {
                 events "passed", "skipped", "failed", "standardOut", "standardError"
             }
