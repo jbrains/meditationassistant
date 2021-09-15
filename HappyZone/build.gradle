@@ -9,6 +9,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.jetbrains:annotations:13.0'
     implementation 'io.vavr:vavr:1.0.0-alpha-3'
 
     // Use JUnit Jupiter API for testing.
