@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
         google()
     }
 
@@ -18,6 +18,8 @@ tasks.whenTaskAdded { task ->
 allprojects {
     repositories {
         google()
+        // We're forced to use jcenter, because of some project dependencies which are
+        // not yet hosted at Maven Central
         jcenter()
     }
 }
