@@ -40,3 +40,5 @@ local.properties
 *~
 *.swp
 
+# Test output files
+*.hprof
