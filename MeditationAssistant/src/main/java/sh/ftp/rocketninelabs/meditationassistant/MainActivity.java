@@ -180,6 +180,9 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // ----- Can't invoke getMeditationAssistant() before super.onCreate() -----
+
+        // REFACTOR Extract a big function that takes MeditationAssistant
         setTheme(getMeditationAssistant().getMATheme());
         setContentView(R.layout.activity_main);
 
@@ -2310,11 +2313,16 @@ public class MainActivity extends Activity implements OnShowcaseEventListener {
         getWindow().setAttributes(windowParams);
     }
 
+    // REFACTOR Eventually make this injectable into whatever we extract from this Activity
     public MeditationAssistant getMeditationAssistant() {
         if (ma == null) {
-            ma = (MeditationAssistant) this.getApplication();
+            ma = getMeditationAssistantByProvider();
         }
         return ma;
+    }
+
+    private MeditationAssistant getMeditationAssistantByProvider() {
+        return (MeditationAssistant) this.getApplication();
     }
 
     @Override
