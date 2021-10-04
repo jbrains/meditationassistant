@@ -197,10 +197,7 @@ public class MeditationAssistant extends Application {
     private List<Integer> foo(int sessionDialogCompletedYearArg, int sessionDialogCompletedMonthArg, int sessionDialogCompletedDayArg, int sessionDialogStartedYearArg, int sessionDialogStartedMonthArg, int sessionDialogStartedDayArg) {
 //                        We're assuming -1 means unset
         if (sessionDialogCompletedYearArg == -1 || sessionDialogCompletedMonthArg == -1 || sessionDialogCompletedDayArg == -1) {
-            sessionDialogCompletedYear = sessionDialogStartedYearArg;
-            sessionDialogCompletedMonth = sessionDialogStartedMonthArg;
-            sessionDialogCompletedDay = sessionDialogStartedDayArg;
-            return Arrays.asList(sessionDialogCompletedYear, sessionDialogCompletedMonth, sessionDialogCompletedDay);
+            return Arrays.asList(sessionDialogStartedYearArg, sessionDialogStartedMonthArg, sessionDialogStartedDayArg);
         } else {
             Calendar c_started = Calendar.getInstance();
             c_started.set(Calendar.YEAR, sessionDialogStartedYearArg);
@@ -221,13 +218,10 @@ public class MeditationAssistant extends Application {
             c_completed.set(Calendar.MILLISECOND, 0);
 
             if (c_started.getTimeInMillis() > c_completed.getTimeInMillis()) {
-                sessionDialogCompletedYear = sessionDialogStartedYearArg;
-                sessionDialogCompletedMonth = sessionDialogStartedMonthArg;
-                sessionDialogCompletedDay = sessionDialogStartedDayArg;
-                return Arrays.asList(sessionDialogCompletedYear, sessionDialogCompletedMonth, sessionDialogCompletedDay);
+                return Arrays.asList(sessionDialogStartedYearArg, sessionDialogStartedMonthArg, sessionDialogStartedDayArg);
             }
         }
-        return Arrays.asList(sessionDialogCompletedYear, sessionDialogCompletedMonth, sessionDialogCompletedDay);
+        return Arrays.asList(sessionDialogCompletedYearArg, sessionDialogCompletedMonthArg, sessionDialogCompletedDayArg);
     }
 
     private TimePickerDialog.OnTimeSetListener sessionDialogTimeSetListener =
