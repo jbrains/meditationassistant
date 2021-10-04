@@ -36,7 +36,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -180,35 +179,8 @@ public class MeditationAssistant extends Application {
                         sessionDialogStartedMonth = monthOfYear;
                         sessionDialogStartedDay = dayOfMonth;
 
-                        if (sessionDialogCompletedYear == -1 || sessionDialogCompletedMonth == -1 || sessionDialogCompletedDay == -1) {
-                            sessionDialogCompletedYear = sessionDialogStartedYear;
-                            sessionDialogCompletedMonth = sessionDialogStartedMonth;
-                            sessionDialogCompletedDay = sessionDialogStartedDay;
-                        } else {
-                            Calendar c_started = Calendar.getInstance();
-                            c_started.set(Calendar.YEAR, sessionDialogStartedYear);
-                            c_started.set(Calendar.MONTH, sessionDialogStartedMonth);
-                            c_started.set(Calendar.DAY_OF_MONTH, sessionDialogStartedDay);
-                            c_started.set(Calendar.HOUR_OF_DAY, 0);
-                            c_started.set(Calendar.MINUTE, 0);
-                            c_started.set(Calendar.SECOND, 0);
-                            c_started.set(Calendar.MILLISECOND, 0);
-
-                            Calendar c_completed = Calendar.getInstance();
-                            c_completed.set(Calendar.YEAR, sessionDialogCompletedYear);
-                            c_completed.set(Calendar.MONTH, sessionDialogCompletedMonth);
-                            c_completed.set(Calendar.DAY_OF_MONTH, sessionDialogCompletedDay);
-                            c_completed.set(Calendar.HOUR_OF_DAY, 0);
-                            c_completed.set(Calendar.MINUTE, 0);
-                            c_completed.set(Calendar.SECOND, 0);
-                            c_completed.set(Calendar.MILLISECOND, 0);
-
-                            if (c_started.getTimeInMillis() > c_completed.getTimeInMillis()) {
-                                sessionDialogCompletedYear = sessionDialogStartedYear;
-                                sessionDialogCompletedMonth = sessionDialogStartedMonth;
-                                sessionDialogCompletedDay = sessionDialogStartedDay;
-                            }
-                        }
+//                        We're assuming -1 means unset
+                        foo();
                     } else {
                         sessionDialogCompletedYear = year;
                         sessionDialogCompletedMonth = monthOfYear;
@@ -218,6 +190,39 @@ public class MeditationAssistant extends Application {
                     updateSessionDialog();
                 }
             };
+
+    private void foo() {
+        if (sessionDialogCompletedYear == -1 || sessionDialogCompletedMonth == -1 || sessionDialogCompletedDay == -1) {
+            sessionDialogCompletedYear = sessionDialogStartedYear;
+            sessionDialogCompletedMonth = sessionDialogStartedMonth;
+            sessionDialogCompletedDay = sessionDialogStartedDay;
+        } else {
+            Calendar c_started = Calendar.getInstance();
+            c_started.set(Calendar.YEAR, sessionDialogStartedYear);
+            c_started.set(Calendar.MONTH, sessionDialogStartedMonth);
+            c_started.set(Calendar.DAY_OF_MONTH, sessionDialogStartedDay);
+            c_started.set(Calendar.HOUR_OF_DAY, 0);
+            c_started.set(Calendar.MINUTE, 0);
+            c_started.set(Calendar.SECOND, 0);
+            c_started.set(Calendar.MILLISECOND, 0);
+
+            Calendar c_completed = Calendar.getInstance();
+            c_completed.set(Calendar.YEAR, sessionDialogCompletedYear);
+            c_completed.set(Calendar.MONTH, sessionDialogCompletedMonth);
+            c_completed.set(Calendar.DAY_OF_MONTH, sessionDialogCompletedDay);
+            c_completed.set(Calendar.HOUR_OF_DAY, 0);
+            c_completed.set(Calendar.MINUTE, 0);
+            c_completed.set(Calendar.SECOND, 0);
+            c_completed.set(Calendar.MILLISECOND, 0);
+
+            if (c_started.getTimeInMillis() > c_completed.getTimeInMillis()) {
+                sessionDialogCompletedYear = sessionDialogStartedYear;
+                sessionDialogCompletedMonth = sessionDialogStartedMonth;
+                sessionDialogCompletedDay = sessionDialogStartedDay;
+            }
+        }
+    }
+
     private TimePickerDialog.OnTimeSetListener sessionDialogTimeSetListener =
             new TimePickerDialog.OnTimeSetListener() {
                 @Override
