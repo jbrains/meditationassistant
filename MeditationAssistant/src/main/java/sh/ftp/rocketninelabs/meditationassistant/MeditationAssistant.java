@@ -194,7 +194,7 @@ public class MeditationAssistant extends Application {
                 }
             };
 
-    private List<Integer> foo(int sessionDialogCompletedYearArg, int sessionDialogCompletedMonthArg, int sessionDialogCompletedDayArg, int sessionDialogStartedYearArg, int sessionDialogStartedMonthArg, int sessionDialogStartedDayArg) {
+    private static List<Integer> foo(int sessionDialogCompletedYearArg, int sessionDialogCompletedMonthArg, int sessionDialogCompletedDayArg, int sessionDialogStartedYearArg, int sessionDialogStartedMonthArg, int sessionDialogStartedDayArg) {
 //                        We're assuming -1 means unset
         if (sessionDialogCompletedYearArg == -1 || sessionDialogCompletedMonthArg == -1 || sessionDialogCompletedDayArg == -1) {
             return Arrays.asList(sessionDialogStartedYearArg, sessionDialogStartedMonthArg, sessionDialogStartedDayArg);
