@@ -174,7 +174,9 @@ public class MeditationAssistant extends Application {
                 @Override
                 public void onDateSet(DatePicker view, int year,
                                       int monthOfYear, int dayOfMonth) {
+                    // the onClick for the two DatePicker buttons sets this option
                     if (sessionDialogCurrentOption.equals("started")) {
+                        // associate this behavior to the started button
                         sessionDialogStartedYear = year;
                         sessionDialogStartedMonth = monthOfYear;
                         sessionDialogStartedDay = dayOfMonth;
@@ -188,11 +190,12 @@ public class MeditationAssistant extends Application {
                         sessionDialogCompletedDay = newSessionCompletedDate.get(2);
                     } else { // We must be selecting the completed date
 //                        Leave the session started date alone
+                        // associate this behavior to the completed button
                         sessionDialogCompletedYear = year;
                         sessionDialogCompletedMonth = monthOfYear;
                         sessionDialogCompletedDay = dayOfMonth;
                     }
-
+                    // REFACTOR: eventually this becomes a SessionDialog class with an update method
                     updateSessionDialog();
                 }
             };
