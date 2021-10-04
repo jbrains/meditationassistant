@@ -180,7 +180,7 @@ public class MeditationAssistant extends Application {
                         sessionDialogStartedDay = dayOfMonth;
 
 //                        We're assuming -1 means unset
-                        List<Integer> fooResult = foo(MeditationAssistant.this.sessionDialogCompletedYear, MeditationAssistant.this.sessionDialogCompletedMonth, MeditationAssistant.this.sessionDialogCompletedDay, MeditationAssistant.this.sessionDialogStartedYear, MeditationAssistant.this.sessionDialogStartedMonth, MeditationAssistant.this.sessionDialogStartedDay);
+                        List<Integer> fooResult = chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(MeditationAssistant.this.sessionDialogCompletedYear, MeditationAssistant.this.sessionDialogCompletedMonth, MeditationAssistant.this.sessionDialogCompletedDay, MeditationAssistant.this.sessionDialogStartedYear, MeditationAssistant.this.sessionDialogStartedMonth, MeditationAssistant.this.sessionDialogStartedDay);
                         sessionDialogCompletedYear = fooResult.get(0);
                         sessionDialogCompletedMonth = fooResult.get(1);
                         sessionDialogCompletedDay = fooResult.get(2);
@@ -194,7 +194,10 @@ public class MeditationAssistant extends Application {
                 }
             };
 
-    private static List<Integer> foo(int sessionDialogCompletedYearArg, int sessionDialogCompletedMonthArg, int sessionDialogCompletedDayArg, int sessionDialogStartedYearArg, int sessionDialogStartedMonthArg, int sessionDialogStartedDayArg) {
+    private static List<Integer> chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(
+            int sessionDialogCompletedYearArg, int sessionDialogCompletedMonthArg, int sessionDialogCompletedDayArg,
+            int sessionDialogStartedYearArg, int sessionDialogStartedMonthArg, int sessionDialogStartedDayArg) {
+
 //                        We're assuming -1 means unset
         if (sessionDialogCompletedYearArg == -1 || sessionDialogCompletedMonthArg == -1 || sessionDialogCompletedDayArg == -1) {
             return Arrays.asList(sessionDialogStartedYearArg, sessionDialogStartedMonthArg, sessionDialogStartedDayArg);
