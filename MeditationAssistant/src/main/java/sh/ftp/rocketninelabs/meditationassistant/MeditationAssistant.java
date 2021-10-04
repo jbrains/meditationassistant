@@ -180,7 +180,10 @@ public class MeditationAssistant extends Application {
                         sessionDialogStartedDay = dayOfMonth;
 
 //                        We're assuming -1 means unset
-                        foo(MeditationAssistant.this.sessionDialogCompletedYear, MeditationAssistant.this.sessionDialogCompletedMonth, MeditationAssistant.this.sessionDialogCompletedDay, MeditationAssistant.this.sessionDialogStartedYear, MeditationAssistant.this.sessionDialogStartedMonth, MeditationAssistant.this.sessionDialogStartedDay);
+                        List<Integer> fooResult = foo(MeditationAssistant.this.sessionDialogCompletedYear, MeditationAssistant.this.sessionDialogCompletedMonth, MeditationAssistant.this.sessionDialogCompletedDay, MeditationAssistant.this.sessionDialogStartedYear, MeditationAssistant.this.sessionDialogStartedMonth, MeditationAssistant.this.sessionDialogStartedDay);
+                        sessionDialogCompletedYear = fooResult.get(0);
+                        sessionDialogCompletedMonth = fooResult.get(1);
+                        sessionDialogCompletedDay = fooResult.get(2);
                     } else {
                         sessionDialogCompletedYear = year;
                         sessionDialogCompletedMonth = monthOfYear;
