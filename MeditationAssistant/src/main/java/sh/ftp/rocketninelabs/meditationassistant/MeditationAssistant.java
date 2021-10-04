@@ -180,7 +180,7 @@ public class MeditationAssistant extends Application {
                         sessionDialogStartedDay = dayOfMonth;
 
 //                        We're assuming -1 means unset
-                        foo();
+                        foo(MeditationAssistant.this.sessionDialogCompletedYear, MeditationAssistant.this.sessionDialogCompletedMonth, MeditationAssistant.this.sessionDialogCompletedDay, MeditationAssistant.this.sessionDialogStartedYear, MeditationAssistant.this.sessionDialogStartedMonth, MeditationAssistant.this.sessionDialogStartedDay);
                     } else {
                         sessionDialogCompletedYear = year;
                         sessionDialogCompletedMonth = monthOfYear;
@@ -191,34 +191,34 @@ public class MeditationAssistant extends Application {
                 }
             };
 
-    private void foo() {
-        if (sessionDialogCompletedYear == -1 || sessionDialogCompletedMonth == -1 || sessionDialogCompletedDay == -1) {
-            sessionDialogCompletedYear = sessionDialogStartedYear;
-            sessionDialogCompletedMonth = sessionDialogStartedMonth;
-            sessionDialogCompletedDay = sessionDialogStartedDay;
+    private void foo(int sessionDialogCompletedYearArg, int sessionDialogCompletedMonthArg, int sessionDialogCompletedDayArg, int sessionDialogStartedYearArg, int sessionDialogStartedMonthArg, int sessionDialogStartedDayArg) {
+        if (sessionDialogCompletedYearArg == -1 || sessionDialogCompletedMonthArg == -1 || sessionDialogCompletedDayArg == -1) {
+            sessionDialogCompletedYear = sessionDialogStartedYearArg;
+            sessionDialogCompletedMonth = sessionDialogStartedMonthArg;
+            sessionDialogCompletedDay = sessionDialogStartedDayArg;
         } else {
             Calendar c_started = Calendar.getInstance();
-            c_started.set(Calendar.YEAR, sessionDialogStartedYear);
-            c_started.set(Calendar.MONTH, sessionDialogStartedMonth);
-            c_started.set(Calendar.DAY_OF_MONTH, sessionDialogStartedDay);
+            c_started.set(Calendar.YEAR, sessionDialogStartedYearArg);
+            c_started.set(Calendar.MONTH, sessionDialogStartedMonthArg);
+            c_started.set(Calendar.DAY_OF_MONTH, sessionDialogStartedDayArg);
             c_started.set(Calendar.HOUR_OF_DAY, 0);
             c_started.set(Calendar.MINUTE, 0);
             c_started.set(Calendar.SECOND, 0);
             c_started.set(Calendar.MILLISECOND, 0);
 
             Calendar c_completed = Calendar.getInstance();
-            c_completed.set(Calendar.YEAR, sessionDialogCompletedYear);
-            c_completed.set(Calendar.MONTH, sessionDialogCompletedMonth);
-            c_completed.set(Calendar.DAY_OF_MONTH, sessionDialogCompletedDay);
+            c_completed.set(Calendar.YEAR, sessionDialogCompletedYearArg);
+            c_completed.set(Calendar.MONTH, sessionDialogCompletedMonthArg);
+            c_completed.set(Calendar.DAY_OF_MONTH, sessionDialogCompletedDayArg);
             c_completed.set(Calendar.HOUR_OF_DAY, 0);
             c_completed.set(Calendar.MINUTE, 0);
             c_completed.set(Calendar.SECOND, 0);
             c_completed.set(Calendar.MILLISECOND, 0);
 
             if (c_started.getTimeInMillis() > c_completed.getTimeInMillis()) {
-                sessionDialogCompletedYear = sessionDialogStartedYear;
-                sessionDialogCompletedMonth = sessionDialogStartedMonth;
-                sessionDialogCompletedDay = sessionDialogStartedDay;
+                sessionDialogCompletedYear = sessionDialogStartedYearArg;
+                sessionDialogCompletedMonth = sessionDialogStartedMonthArg;
+                sessionDialogCompletedDay = sessionDialogStartedDayArg;
             }
         }
     }
