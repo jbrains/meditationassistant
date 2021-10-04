@@ -191,11 +191,13 @@ public class MeditationAssistant extends Application {
                 }
             };
 
-    private void foo(int sessionDialogCompletedYearArg, int sessionDialogCompletedMonthArg, int sessionDialogCompletedDayArg, int sessionDialogStartedYearArg, int sessionDialogStartedMonthArg, int sessionDialogStartedDayArg) {
+    private List<Integer> foo(int sessionDialogCompletedYearArg, int sessionDialogCompletedMonthArg, int sessionDialogCompletedDayArg, int sessionDialogStartedYearArg, int sessionDialogStartedMonthArg, int sessionDialogStartedDayArg) {
+//                        We're assuming -1 means unset
         if (sessionDialogCompletedYearArg == -1 || sessionDialogCompletedMonthArg == -1 || sessionDialogCompletedDayArg == -1) {
             sessionDialogCompletedYear = sessionDialogStartedYearArg;
             sessionDialogCompletedMonth = sessionDialogStartedMonthArg;
             sessionDialogCompletedDay = sessionDialogStartedDayArg;
+            return Arrays.asList(sessionDialogCompletedYear, sessionDialogCompletedMonth, sessionDialogCompletedDay);
         } else {
             Calendar c_started = Calendar.getInstance();
             c_started.set(Calendar.YEAR, sessionDialogStartedYearArg);
@@ -219,8 +221,10 @@ public class MeditationAssistant extends Application {
                 sessionDialogCompletedYear = sessionDialogStartedYearArg;
                 sessionDialogCompletedMonth = sessionDialogStartedMonthArg;
                 sessionDialogCompletedDay = sessionDialogStartedDayArg;
+                return Arrays.asList(sessionDialogCompletedYear, sessionDialogCompletedMonth, sessionDialogCompletedDay);
             }
         }
+        return Arrays.asList(sessionDialogCompletedYear, sessionDialogCompletedMonth, sessionDialogCompletedDay);
     }
 
     private TimePickerDialog.OnTimeSetListener sessionDialogTimeSetListener =
