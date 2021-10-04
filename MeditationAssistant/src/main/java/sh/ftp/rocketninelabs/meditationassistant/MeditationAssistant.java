@@ -194,6 +194,7 @@ public class MeditationAssistant extends Application {
                 }
             };
 
+    // REFACTOR Replace List<Integer> with a YearMonthDay object
     private static List<Integer> chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(
             int sessionDialogCompletedYearArg, int sessionDialogCompletedMonthArg, int sessionDialogCompletedDayArg,
             int sessionDialogStartedYearArg, int sessionDialogStartedMonthArg, int sessionDialogStartedDayArg) {
