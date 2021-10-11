@@ -231,9 +231,15 @@ public class MeditationAssistant extends Application {
             int sessionDialogCompletedYearArg, int sessionDialogCompletedMonthArg, int sessionDialogCompletedDayArg,
             int sessionDialogStartedYearArg, int sessionDialogStartedMonthArg, int sessionDialogStartedDayArg) {
 
-        LocalDate sessionDialogCompletedArg = LocalDate.of(sessionDialogCompletedYearArg, sessionDialogCompletedMonthArg, sessionDialogCompletedDayArg);
-//                        We're assuming -1 means unset
+        LocalDate sessionDialogCompletedArg;
         if (sessionDialogCompletedYearArg == -1 || sessionDialogCompletedMonthArg == -1 || sessionDialogCompletedDayArg == -1) {
+            sessionDialogCompletedArg = null;
+        } else {
+            sessionDialogCompletedArg = LocalDate.of(sessionDialogCompletedYearArg, sessionDialogCompletedMonthArg, sessionDialogCompletedDayArg);
+        }
+        
+//                        We're assuming -1 means unset
+        if (sessionDialogCompletedArg == null) {
             return Arrays.asList(sessionDialogStartedYearArg, sessionDialogStartedMonthArg, sessionDialogStartedDayArg);
         } else {
             Calendar c_started = Calendar.getInstance();
