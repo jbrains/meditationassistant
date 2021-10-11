@@ -194,14 +194,13 @@ public class MeditationAssistant extends Application {
         int completedMonth = this.sessionDialogCompletedMonth;
         int completedDay = this.sessionDialogCompletedDay;
         LocalDate completedDate = LocalDate.of(completedYear, completedMonth + 1, completedDay);
+//                        We're asssuming -1 means unset
         LocalDate maybeCompletedDate = completedYear == -1 || completedMonth == -1 || completedDay == -1 ? null : completedDate;
 
         List<Integer> newSessionCompletedDate;
         List<Integer> newSessionStartedDate;
 
         if (isStartedModalDialog) {
-
-//                        We're assuming -1 means unset
 //                        We're starting a new session, it looks like we need to compute the date of
 //                          the most recently completed session
             newSessionCompletedDate = chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(
@@ -229,8 +228,7 @@ public class MeditationAssistant extends Application {
     // REFACTOR Replace List<Integer> with a YearMonthDay object
     private static List<Integer> chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(
             int sessionDialogStartedYearArg, int sessionDialogStartedMonthArg, int sessionDialogStartedDayArg, LocalDate sessionDialogCompletedArg) {
-        
-//                        We're assuming -1 means unset
+
         if (sessionDialogCompletedArg == null) {
             return Arrays.asList(sessionDialogStartedYearArg, sessionDialogStartedMonthArg, sessionDialogStartedDayArg);
         } else {
