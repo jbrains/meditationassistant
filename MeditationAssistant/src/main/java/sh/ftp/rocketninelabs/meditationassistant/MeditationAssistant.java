@@ -182,7 +182,8 @@ public class MeditationAssistant extends Application {
             };
 
     private void foo(int year, int monthOfYear, int dayOfMonth) {
-        if (sessionDialogCurrentOption.equals("started")) {
+        boolean isStartedModalDialog = sessionDialogCurrentOption.equals("started");
+        if (isStartedModalDialog) {
             // associate this behavior to the started button
             sessionDialogStartedYear = year;
             sessionDialogStartedMonth = monthOfYear;
