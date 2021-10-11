@@ -192,7 +192,10 @@ public class MeditationAssistant extends Application {
 //                        We're assuming -1 means unset
 //                        We're starting a new session, it looks like we need to compute the date of
 //                          the most recently completed session
-            List<Integer> newSessionCompletedDate = chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(MeditationAssistant.this.sessionDialogCompletedYear, MeditationAssistant.this.sessionDialogCompletedMonth, MeditationAssistant.this.sessionDialogCompletedDay, year, monthOfYear, dayOfMonth);
+            List<Integer> newSessionCompletedDate = chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(
+                    sessionDialogCompletedYear, sessionDialogCompletedMonth, sessionDialogCompletedDay,
+                    year, monthOfYear, dayOfMonth);
+
             sessionDialogCompletedYear = newSessionCompletedDate.get(0);
             sessionDialogCompletedMonth = newSessionCompletedDate.get(1);
             sessionDialogCompletedDay = newSessionCompletedDate.get(2);
