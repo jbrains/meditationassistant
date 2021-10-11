@@ -175,30 +175,34 @@ public class MeditationAssistant extends Application {
                 public void onDateSet(DatePicker view, int year,
                                       int monthOfYear, int dayOfMonth) {
                     // the onClick for the two DatePicker buttons sets this option
-                    if (sessionDialogCurrentOption.equals("started")) {
-                        // associate this behavior to the started button
-                        sessionDialogStartedYear = year;
-                        sessionDialogStartedMonth = monthOfYear;
-                        sessionDialogStartedDay = dayOfMonth;
-
-//                        We're assuming -1 means unset
-//                        We're starting a new session, it looks like we need to compute the date of
-//                          the most recently completed session
-                        List<Integer> newSessionCompletedDate = chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(MeditationAssistant.this.sessionDialogCompletedYear, MeditationAssistant.this.sessionDialogCompletedMonth, MeditationAssistant.this.sessionDialogCompletedDay, year, monthOfYear, dayOfMonth);
-                        sessionDialogCompletedYear = newSessionCompletedDate.get(0);
-                        sessionDialogCompletedMonth = newSessionCompletedDate.get(1);
-                        sessionDialogCompletedDay = newSessionCompletedDate.get(2);
-                    } else { // We must be selecting the completed date
-//                        Leave the session started date alone
-                        // associate this behavior to the completed button
-                        sessionDialogCompletedYear = year;
-                        sessionDialogCompletedMonth = monthOfYear;
-                        sessionDialogCompletedDay = dayOfMonth;
-                    }
+                    foo(year, monthOfYear, dayOfMonth);
                     // REFACTOR: eventually this becomes a SessionDialog class with an update method
                     updateSessionDialog();
                 }
             };
+
+    private void foo(int year, int monthOfYear, int dayOfMonth) {
+        if (sessionDialogCurrentOption.equals("started")) {
+            // associate this behavior to the started button
+            sessionDialogStartedYear = year;
+            sessionDialogStartedMonth = monthOfYear;
+            sessionDialogStartedDay = dayOfMonth;
+
+//                        We're assuming -1 means unset
+//                        We're starting a new session, it looks like we need to compute the date of
+//                          the most recently completed session
+            List<Integer> newSessionCompletedDate = chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(MeditationAssistant.this.sessionDialogCompletedYear, MeditationAssistant.this.sessionDialogCompletedMonth, MeditationAssistant.this.sessionDialogCompletedDay, year, monthOfYear, dayOfMonth);
+            sessionDialogCompletedYear = newSessionCompletedDate.get(0);
+            sessionDialogCompletedMonth = newSessionCompletedDate.get(1);
+            sessionDialogCompletedDay = newSessionCompletedDate.get(2);
+        } else { // We must be selecting the completed date
+//                        Leave the session started date alone
+            // associate this behavior to the completed button
+            sessionDialogCompletedYear = year;
+            sessionDialogCompletedMonth = monthOfYear;
+            sessionDialogCompletedDay = dayOfMonth;
+        }
+    }
 
     // REFACTOR Replace List<Integer> with a YearMonthDay object
     private static List<Integer> chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(
