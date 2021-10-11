@@ -216,9 +216,10 @@ public class MeditationAssistant extends Application {
             this.sessionDialogStartedMonth = startedMonth;
             this.sessionDialogStartedDay = startedDay;
 
-            sessionDialogCompletedYear = year;
-            sessionDialogCompletedMonth = monthOfYear;
-            sessionDialogCompletedDay = dayOfMonth;
+            List<Integer> newSessionCompletedDate = Arrays.asList(year, monthOfYear, dayOfMonth);
+            this.sessionDialogCompletedYear = newSessionCompletedDate.get(0);
+            this.sessionDialogCompletedMonth = newSessionCompletedDate.get(1);
+            this.sessionDialogCompletedDay = newSessionCompletedDate.get(2);
         }
     }
 
