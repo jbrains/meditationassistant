@@ -204,17 +204,19 @@ public class MeditationAssistant extends Application {
                     year, monthOfYear, dayOfMonth);
 
             // associate this behavior to the started button
-            sessionDialogStartedYear = year;
-            sessionDialogStartedMonth = monthOfYear;
-            sessionDialogStartedDay = dayOfMonth;
+            List<Integer> startedDate = Arrays.asList(year, monthOfYear, dayOfMonth);
+            this.sessionDialogStartedYear = startedDate.get(0);
+            this.sessionDialogStartedMonth = startedDate.get(1);
+            this.sessionDialogStartedDay = startedDate.get(2);
         } else { // We must be selecting the completed date
 //                        Leave the session started date alone
             newSessionCompletedDate = Arrays.asList(year, monthOfYear, dayOfMonth);
 
             // associate this behavior to the completed button
-            this.sessionDialogStartedYear = startedYear;
-            this.sessionDialogStartedMonth = startedMonth;
-            this.sessionDialogStartedDay = startedDay;
+            List<Integer> startedDate = Arrays.asList(startedYear, startedMonth, startedDay);
+            this.sessionDialogStartedYear = startedDate.get(0);
+            this.sessionDialogStartedMonth = startedDate.get(1);
+            this.sessionDialogStartedDay = startedDate.get(2);
         }
 
         this.sessionDialogCompletedYear = newSessionCompletedDate.get(0);
