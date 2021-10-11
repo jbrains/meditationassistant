@@ -59,6 +59,7 @@ import org.acra.data.StringFormat;
 import org.acra.sender.HttpSender;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.threeten.bp.LocalDate;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -187,10 +188,12 @@ public class MeditationAssistant extends Application {
         int startedYear = this.sessionDialogStartedYear;
         int startedMonth = this.sessionDialogStartedMonth;
         int startedDay = this.sessionDialogStartedDay;
+        LocalDate startedDate = LocalDate.of(startedYear, startedMonth + 1, startedDay);
 
         int completedYear = this.sessionDialogCompletedYear;
         int completedMonth = this.sessionDialogCompletedMonth;
         int completedDay = this.sessionDialogCompletedDay;
+        LocalDate completedDate = LocalDate.of(completedYear, completedMonth + 1, completedDay);
 
         List<Integer> newSessionCompletedDate;
         List<Integer> newSessionStartedDate;
