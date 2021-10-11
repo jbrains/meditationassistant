@@ -184,21 +184,25 @@ public class MeditationAssistant extends Application {
     private void foo(int year, int monthOfYear, int dayOfMonth) {
         boolean isStartedModalDialog = sessionDialogCurrentOption.equals("started");
         if (isStartedModalDialog) {
-            // associate this behavior to the started button
-            sessionDialogStartedYear = year;
-            sessionDialogStartedMonth = monthOfYear;
-            sessionDialogStartedDay = dayOfMonth;
+            int completedYear = this.sessionDialogCompletedYear;
+            int completedMonth = this.sessionDialogCompletedMonth;
+            int completedDay = this.sessionDialogCompletedDay;
 
 //                        We're assuming -1 means unset
 //                        We're starting a new session, it looks like we need to compute the date of
 //                          the most recently completed session
             List<Integer> newSessionCompletedDate = chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(
-                    sessionDialogCompletedYear, sessionDialogCompletedMonth, sessionDialogCompletedDay,
+                    completedYear, completedMonth, completedDay,
                     year, monthOfYear, dayOfMonth);
 
-            sessionDialogCompletedYear = newSessionCompletedDate.get(0);
-            sessionDialogCompletedMonth = newSessionCompletedDate.get(1);
-            sessionDialogCompletedDay = newSessionCompletedDate.get(2);
+            // associate this behavior to the started button
+            sessionDialogStartedYear = year;
+            sessionDialogStartedMonth = monthOfYear;
+            sessionDialogStartedDay = dayOfMonth;
+
+            this.sessionDialogCompletedYear = newSessionCompletedDate.get(0);
+            this.sessionDialogCompletedMonth = newSessionCompletedDate.get(1);
+            this.sessionDialogCompletedDay = newSessionCompletedDate.get(2);
         } else { // We must be selecting the completed date
 //                        Leave the session started date alone
             // associate this behavior to the completed button
