@@ -18,3 +18,7 @@ an opportunity to stop it from subclassing `android.app.Application`.
   - It seems like there's some kind of modal dialog behavior to isolate from `MeditationAssistant` into its own Views(?).
 - Move `chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent()` into the Happy Zone.
 - Remove the coupling centered on the field `sessionDialogCurrentOption`.
+
+### Larger-Scale Untangling
+
+- Try to find a place where we can decouple the rest of the system from `MeditationAssistant` using interfaces.
