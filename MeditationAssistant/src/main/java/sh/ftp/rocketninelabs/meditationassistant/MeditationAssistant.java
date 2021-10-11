@@ -184,6 +184,10 @@ public class MeditationAssistant extends Application {
     private void foo(int year, int monthOfYear, int dayOfMonth) {
         boolean isStartedModalDialog = sessionDialogCurrentOption.equals("started");
 
+        int startedYear = this.sessionDialogStartedYear;
+        int startedMonth = this.sessionDialogStartedMonth;
+        int startedDay = this.sessionDialogStartedDay;
+
         int completedYear = this.sessionDialogCompletedYear;
         int completedMonth = this.sessionDialogCompletedMonth;
         int completedDay = this.sessionDialogCompletedDay;
@@ -208,10 +212,6 @@ public class MeditationAssistant extends Application {
         } else { // We must be selecting the completed date
 //                        Leave the session started date alone
             // associate this behavior to the completed button
-            int startedYear = this.sessionDialogStartedYear;
-            int startedMonth = this.sessionDialogStartedMonth;
-            int startedDay = this.sessionDialogStartedDay;
-
             this.sessionDialogStartedYear = startedYear;
             this.sessionDialogStartedMonth = startedMonth;
             this.sessionDialogStartedDay = startedDay;
