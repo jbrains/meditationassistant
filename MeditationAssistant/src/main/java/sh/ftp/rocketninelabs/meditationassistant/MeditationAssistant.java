@@ -192,12 +192,14 @@ public class MeditationAssistant extends Application {
         int completedMonth = this.sessionDialogCompletedMonth;
         int completedDay = this.sessionDialogCompletedDay;
 
+        List<Integer> newSessionCompletedDate;
+
         if (isStartedModalDialog) {
 
 //                        We're assuming -1 means unset
 //                        We're starting a new session, it looks like we need to compute the date of
 //                          the most recently completed session
-            List<Integer> newSessionCompletedDate = chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(
+            newSessionCompletedDate = chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(
                     completedYear, completedMonth, completedDay,
                     year, monthOfYear, dayOfMonth);
 
@@ -205,10 +207,6 @@ public class MeditationAssistant extends Application {
             sessionDialogStartedYear = year;
             sessionDialogStartedMonth = monthOfYear;
             sessionDialogStartedDay = dayOfMonth;
-
-            this.sessionDialogCompletedYear = newSessionCompletedDate.get(0);
-            this.sessionDialogCompletedMonth = newSessionCompletedDate.get(1);
-            this.sessionDialogCompletedDay = newSessionCompletedDate.get(2);
         } else { // We must be selecting the completed date
 //                        Leave the session started date alone
             // associate this behavior to the completed button
@@ -216,11 +214,12 @@ public class MeditationAssistant extends Application {
             this.sessionDialogStartedMonth = startedMonth;
             this.sessionDialogStartedDay = startedDay;
 
-            List<Integer> newSessionCompletedDate = Arrays.asList(year, monthOfYear, dayOfMonth);
-            this.sessionDialogCompletedYear = newSessionCompletedDate.get(0);
-            this.sessionDialogCompletedMonth = newSessionCompletedDate.get(1);
-            this.sessionDialogCompletedDay = newSessionCompletedDate.get(2);
+            newSessionCompletedDate = Arrays.asList(year, monthOfYear, dayOfMonth);
         }
+
+        this.sessionDialogCompletedYear = newSessionCompletedDate.get(0);
+        this.sessionDialogCompletedMonth = newSessionCompletedDate.get(1);
+        this.sessionDialogCompletedDay = newSessionCompletedDate.get(2);
     }
 
     // REFACTOR Replace List<Integer> with a YearMonthDay object
