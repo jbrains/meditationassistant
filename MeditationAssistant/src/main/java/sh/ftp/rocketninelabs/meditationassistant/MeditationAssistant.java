@@ -231,6 +231,7 @@ public class MeditationAssistant extends Application {
             int sessionDialogCompletedYearArg, int sessionDialogCompletedMonthArg, int sessionDialogCompletedDayArg,
             int sessionDialogStartedYearArg, int sessionDialogStartedMonthArg, int sessionDialogStartedDayArg) {
 
+        LocalDate sessionDialogCompletedArg = LocalDate.of(sessionDialogCompletedYearArg, sessionDialogCompletedMonthArg, sessionDialogCompletedDayArg);
 //                        We're assuming -1 means unset
         if (sessionDialogCompletedYearArg == -1 || sessionDialogCompletedMonthArg == -1 || sessionDialogCompletedDayArg == -1) {
             return Arrays.asList(sessionDialogStartedYearArg, sessionDialogStartedMonthArg, sessionDialogStartedDayArg);
@@ -245,9 +246,9 @@ public class MeditationAssistant extends Application {
             c_started.set(Calendar.MILLISECOND, 0);
 
             Calendar c_completed = Calendar.getInstance();
-            c_completed.set(Calendar.YEAR, sessionDialogCompletedYearArg);
-            c_completed.set(Calendar.MONTH, sessionDialogCompletedMonthArg);
-            c_completed.set(Calendar.DAY_OF_MONTH, sessionDialogCompletedDayArg);
+            c_completed.set(Calendar.YEAR, sessionDialogCompletedArg.getYear());
+            c_completed.set(Calendar.MONTH, sessionDialogCompletedArg.getMonthValue() - 1);
+            c_completed.set(Calendar.DAY_OF_MONTH, sessionDialogCompletedArg.getDayOfMonth());
             c_completed.set(Calendar.HOUR_OF_DAY, 0);
             c_completed.set(Calendar.MINUTE, 0);
             c_completed.set(Calendar.SECOND, 0);
@@ -257,7 +258,7 @@ public class MeditationAssistant extends Application {
                 return Arrays.asList(sessionDialogStartedYearArg, sessionDialogStartedMonthArg, sessionDialogStartedDayArg);
             }
         }
-        return Arrays.asList(sessionDialogCompletedYearArg, sessionDialogCompletedMonthArg, sessionDialogCompletedDayArg);
+        return Arrays.asList(sessionDialogCompletedArg.getYear(), sessionDialogCompletedArg.getMonthValue() - 1, sessionDialogCompletedArg.getDayOfMonth());
     }
 
     private TimePickerDialog.OnTimeSetListener sessionDialogTimeSetListener =
