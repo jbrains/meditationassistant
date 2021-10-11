@@ -194,6 +194,7 @@ public class MeditationAssistant extends Application {
         int completedMonth = this.sessionDialogCompletedMonth;
         int completedDay = this.sessionDialogCompletedDay;
         LocalDate completedDate = LocalDate.of(completedYear, completedMonth + 1, completedDay);
+        LocalDate maybeCompletedDate = completedYear == -1 || completedMonth == -1 || completedDay == -1 ? null : completedDate;
 
         List<Integer> newSessionCompletedDate;
         List<Integer> newSessionStartedDate;
@@ -204,8 +205,7 @@ public class MeditationAssistant extends Application {
 //                        We're starting a new session, it looks like we need to compute the date of
 //                          the most recently completed session
             newSessionCompletedDate = chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(
-                    completedYear, completedMonth, completedDay,
-                    year, monthOfYear, dayOfMonth);
+                    year, monthOfYear, dayOfMonth, maybeCompletedDate);
 
             // associate this behavior to the started button
             newSessionStartedDate = Arrays.asList(year, monthOfYear, dayOfMonth);
@@ -228,15 +228,7 @@ public class MeditationAssistant extends Application {
 
     // REFACTOR Replace List<Integer> with a YearMonthDay object
     private static List<Integer> chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(
-            int sessionDialogCompletedYearArg, int sessionDialogCompletedMonthArg, int sessionDialogCompletedDayArg,
-            int sessionDialogStartedYearArg, int sessionDialogStartedMonthArg, int sessionDialogStartedDayArg) {
-
-        LocalDate sessionDialogCompletedArg;
-        if (sessionDialogCompletedYearArg == -1 || sessionDialogCompletedMonthArg == -1 || sessionDialogCompletedDayArg == -1) {
-            sessionDialogCompletedArg = null;
-        } else {
-            sessionDialogCompletedArg = LocalDate.of(sessionDialogCompletedYearArg, sessionDialogCompletedMonthArg, sessionDialogCompletedDayArg);
-        }
+            int sessionDialogStartedYearArg, int sessionDialogStartedMonthArg, int sessionDialogStartedDayArg, LocalDate sessionDialogCompletedArg) {
         
 //                        We're assuming -1 means unset
         if (sessionDialogCompletedArg == null) {
