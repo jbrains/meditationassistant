@@ -230,14 +230,22 @@ public class MeditationAssistant extends Application {
 
     // REFACTOR Replace List<Integer> with a YearMonthDay object
     private static List<Integer> chooseMostRecentSessionDateAsList(LocalDate sessionDialogStartedDate, LocalDate sessionDialogCompletedDate) {
+        return temp(sessionDialogStartedDate, sessionDialogCompletedDate);
+    }
+
+    @NotNull
+    private static List<Integer> temp(LocalDate sessionDialogStartedDate, LocalDate sessionDialogCompletedDate) {
+        LocalDate selectedDate = sessionDialogCompletedDate;
         if (sessionDialogCompletedDate == null) {
-            return localDateAsList(sessionDialogStartedDate);
+            selectedDate = sessionDialogStartedDate;
+            return localDateAsList(selectedDate);
         } else {
             if (sessionDialogStartedDate.isAfter(sessionDialogCompletedDate)) {
-                return localDateAsList(sessionDialogStartedDate);
+                selectedDate = sessionDialogStartedDate;
+                return localDateAsList(selectedDate);
             }
         }
-        return localDateAsList(sessionDialogCompletedDate);
+        return localDateAsList(selectedDate);
     }
 
     @NotNull
