@@ -247,16 +247,16 @@ public class MeditationAssistant extends Application {
     }
 
     @NonNull
-    private static Calendar createCalendar(LocalDate sessionDialogStartedArg) {
-        Calendar c_started = Calendar.getInstance();
-        c_started.set(Calendar.YEAR, sessionDialogStartedArg.getYear());
-        c_started.set(Calendar.MONTH, sessionDialogStartedArg.getMonthValue() - 1);
-        c_started.set(Calendar.DAY_OF_MONTH, sessionDialogStartedArg.getDayOfMonth());
-        c_started.set(Calendar.HOUR_OF_DAY, 0);
-        c_started.set(Calendar.MINUTE, 0);
-        c_started.set(Calendar.SECOND, 0);
-        c_started.set(Calendar.MILLISECOND, 0);
-        return c_started;
+    private static Calendar createCalendar(LocalDate date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, date.getYear());
+        calendar.set(Calendar.MONTH, date.getMonthValue() - 1);
+        calendar.set(Calendar.DAY_OF_MONTH, date.getDayOfMonth());
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return calendar;
     }
 
     private TimePickerDialog.OnTimeSetListener sessionDialogTimeSetListener =
