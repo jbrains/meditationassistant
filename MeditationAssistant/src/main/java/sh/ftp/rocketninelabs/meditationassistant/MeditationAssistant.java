@@ -38,7 +38,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.multidex.MultiDex;
@@ -206,8 +205,7 @@ public class MeditationAssistant extends Application {
         if (isStartedModalDialog) {
 //                        We're starting a new session, it looks like we need to compute the date of
 //                          the most recently completed session
-            newSessionCompletedDate = chooseMostRecentSessionDateAsList(
-                    maybeStartedDate, maybeCompletedDate);
+            newSessionCompletedDate = localDateAsList(chooseMostRecentSessionDate(maybeStartedDate, maybeCompletedDate));
 
             // associate this behavior to the started button
             newSessionStartedDate = Arrays.asList(year, monthOfYear, dayOfMonth);
@@ -228,13 +226,7 @@ public class MeditationAssistant extends Application {
         this.sessionDialogCompletedDay = newSessionCompletedDate.get(2);
     }
 
-    // REFACTOR Replace List<Integer> with a YearMonthDay object
-    private static List<Integer> chooseMostRecentSessionDateAsList(LocalDate sessionDialogStartedDate, LocalDate sessionDialogCompletedDate) {
-        return temp(sessionDialogStartedDate, sessionDialogCompletedDate);
-    }
-
-    @NotNull
-    private static List<Integer> temp(LocalDate sessionDialogStartedDate, LocalDate sessionDialogCompletedDate) {
+    private static LocalDate chooseMostRecentSessionDate(LocalDate sessionDialogStartedDate, LocalDate sessionDialogCompletedDate) {
         LocalDate selectedDate;
         if (sessionDialogCompletedDate == null) {
             selectedDate = sessionDialogStartedDate;
@@ -243,7 +235,7 @@ public class MeditationAssistant extends Application {
         } else {
             selectedDate = sessionDialogCompletedDate;
         }
-        return localDateAsList(selectedDate);
+        return selectedDate;
     }
 
     @NotNull
