@@ -206,7 +206,7 @@ public class MeditationAssistant extends Application {
 //                        We're starting a new session, it looks like we need to compute the date of
 //                          the most recently completed session
             newSessionCompletedDate = chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(
-                    maybeCompletedDate, LocalDate.of(year, monthOfYear + 1, dayOfMonth));
+                    LocalDate.of(year, monthOfYear + 1, dayOfMonth), maybeCompletedDate);
 
             // associate this behavior to the started button
             newSessionStartedDate = Arrays.asList(year, monthOfYear, dayOfMonth);
@@ -229,20 +229,20 @@ public class MeditationAssistant extends Application {
 
     // REFACTOR Replace List<Integer> with a YearMonthDay object
     private static List<Integer> chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(
-            LocalDate sessionDialogCompletedArg, LocalDate sessionDialogStartedDate) {
+            LocalDate sessionDialogStartedDate, LocalDate sessionDialogCompletedDate) {
 
-        if (sessionDialogCompletedArg == null) {
+        if (sessionDialogCompletedDate == null) {
             return localDateAsList(sessionDialogStartedDate);
         } else {
             Calendar sessionStartedCalendar = createCalendar(sessionDialogStartedDate);
 
-            Calendar sessionCompletedCalendar = createCalendar(sessionDialogCompletedArg);
+            Calendar sessionCompletedCalendar = createCalendar(sessionDialogCompletedDate);
 
             if (sessionStartedCalendar.getTimeInMillis() > sessionCompletedCalendar.getTimeInMillis()) {
                 return localDateAsList(sessionDialogStartedDate);
             }
         }
-        return localDateAsList(sessionDialogCompletedArg);
+        return localDateAsList(sessionDialogCompletedDate);
     }
 
     @NotNull
