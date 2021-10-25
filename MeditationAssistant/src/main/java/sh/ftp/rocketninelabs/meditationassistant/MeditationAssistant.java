@@ -60,6 +60,7 @@ import org.acra.data.StringFormat;
 import org.acra.sender.HttpSender;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
 import org.threeten.bp.LocalDate;
 
 import java.io.BufferedReader;
@@ -230,20 +231,25 @@ public class MeditationAssistant extends Application {
     private static List<Integer> chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(
             int sessionDialogStartedYearArg, int sessionDialogStartedMonthArg, int sessionDialogStartedDayArg, LocalDate sessionDialogCompletedArg) {
 
-        if (sessionDialogCompletedArg == null) {
-            return Arrays.asList(sessionDialogStartedYearArg, sessionDialogStartedMonthArg, sessionDialogStartedDayArg);
-        } else {
-            LocalDate sessionDialogStartedArg = LocalDate.of(sessionDialogStartedYearArg, sessionDialogStartedMonthArg + 1, sessionDialogStartedDayArg);
+        LocalDate sessionDialogStartedArg = LocalDate.of(sessionDialogStartedYearArg, sessionDialogStartedMonthArg + 1, sessionDialogStartedDayArg);
 
+        if (sessionDialogCompletedArg == null) {
+            return localDateAsList(sessionDialogStartedArg);
+        } else {
             Calendar sessionStartedCalendar = createCalendar(sessionDialogStartedArg);
 
             Calendar sessionCompletedCalendar = createCalendar(sessionDialogCompletedArg);
 
             if (sessionStartedCalendar.getTimeInMillis() > sessionCompletedCalendar.getTimeInMillis()) {
-                return Arrays.asList(sessionDialogStartedYearArg, sessionDialogStartedMonthArg, sessionDialogStartedDayArg);
+                return localDateAsList(sessionDialogStartedArg);
             }
         }
-        return Arrays.asList(sessionDialogCompletedArg.getYear(), sessionDialogCompletedArg.getMonthValue() - 1, sessionDialogCompletedArg.getDayOfMonth());
+        return localDateAsList(sessionDialogCompletedArg);
+    }
+
+    @NotNull
+    private static List<Integer> localDateAsList(LocalDate date) {
+        return Arrays.asList(date.getYear(), date.getMonthValue() - 1, date.getDayOfMonth());
     }
 
     @NonNull
