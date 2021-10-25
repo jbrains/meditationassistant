@@ -205,7 +205,7 @@ public class MeditationAssistant extends Application {
         if (isStartedModalDialog) {
 //                        We're starting a new session, it looks like we need to compute the date of
 //                          the most recently completed session
-            newSessionCompletedDate = localDateAsList(chooseMostRecentSessionDate(maybeStartedDate, maybeCompletedDate));
+            newSessionCompletedDate = localDateAsList(chooseMostRecentDateWithOneExtraStrangeCondition(maybeStartedDate, maybeCompletedDate));
 
             // associate this behavior to the started button
             newSessionStartedDate = Arrays.asList(year, monthOfYear, dayOfMonth);
@@ -226,16 +226,17 @@ public class MeditationAssistant extends Application {
         this.sessionDialogCompletedDay = newSessionCompletedDate.get(2);
     }
 
-    private static LocalDate chooseMostRecentSessionDate(LocalDate sessionDialogStartedDate, LocalDate sessionDialogCompletedDate) {
-        LocalDate selectedDate;
-        if (sessionDialogCompletedDate == null) {
-            selectedDate = sessionDialogStartedDate;
-        } else if (sessionDialogStartedDate.isAfter(sessionDialogCompletedDate)) {
-            selectedDate = sessionDialogStartedDate;
+    private static LocalDate chooseMostRecentDateWithOneExtraStrangeCondition(LocalDate aDate, LocalDate anotherDate) {
+        if (anotherDate == null) {
+            // SMELL Maybe dead? What does 'null' actually mean at this point?
+            // REFACTOR Move this Guard Clause up the call stack, because it otherwise messes up our nice abstract method.
+            // This Guard Clause appears to take advantage of domain knowledge.
+            return aDate;
+        } else if (aDate.isAfter(anotherDate)) {
+            return aDate;
         } else {
-            selectedDate = sessionDialogCompletedDate;
+            return anotherDate;
         }
-        return selectedDate;
     }
 
     @NotNull
