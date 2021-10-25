@@ -191,6 +191,7 @@ public class MeditationAssistant extends Application {
         int startedMonth = this.sessionDialogStartedMonth;
         int startedDay = this.sessionDialogStartedDay;
         LocalDate startedDate = LocalDate.of(startedYear, startedMonth + 1, startedDay);
+        LocalDate maybeStartedDate = startedYear == -1 || startedMonth == -1 || startedDay == -1 ? LocalDate.now() : startedDate;
 
         int completedYear = this.sessionDialogCompletedYear;
         int completedMonth = this.sessionDialogCompletedMonth;
