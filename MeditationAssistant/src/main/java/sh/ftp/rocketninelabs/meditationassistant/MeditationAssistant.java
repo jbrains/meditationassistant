@@ -206,7 +206,7 @@ public class MeditationAssistant extends Application {
         if (isStartedModalDialog) {
 //                        We're starting a new session, it looks like we need to compute the date of
 //                          the most recently completed session
-            newSessionCompletedDate = chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(
+            newSessionCompletedDate = chooseMostRecentSessionDateAsList(
                     maybeStartedDate, maybeCompletedDate);
 
             // associate this behavior to the started button
@@ -229,9 +229,7 @@ public class MeditationAssistant extends Application {
     }
 
     // REFACTOR Replace List<Integer> with a YearMonthDay object
-    private static List<Integer> chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(
-            LocalDate sessionDialogStartedDate, LocalDate sessionDialogCompletedDate) {
-
+    private static List<Integer> chooseMostRecentSessionDateAsList(LocalDate sessionDialogStartedDate, LocalDate sessionDialogCompletedDate) {
         if (sessionDialogCompletedDate == null) {
             return localDateAsList(sessionDialogStartedDate);
         } else {
