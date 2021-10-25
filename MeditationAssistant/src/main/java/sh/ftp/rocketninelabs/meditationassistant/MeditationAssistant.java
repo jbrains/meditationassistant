@@ -207,7 +207,7 @@ public class MeditationAssistant extends Application {
 //                        We're starting a new session, it looks like we need to compute the date of
 //                          the most recently completed session
             newSessionCompletedDate = chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(
-                    startedDate, maybeCompletedDate);
+                    maybeStartedDate, maybeCompletedDate);
 
             // associate this behavior to the started button
             newSessionStartedDate = Arrays.asList(year, monthOfYear, dayOfMonth);
