@@ -233,11 +233,7 @@ public class MeditationAssistant extends Application {
         if (sessionDialogCompletedDate == null) {
             return localDateAsList(sessionDialogStartedDate);
         } else {
-            Calendar sessionStartedCalendar = createCalendar(sessionDialogStartedDate);
-
-            Calendar sessionCompletedCalendar = createCalendar(sessionDialogCompletedDate);
-
-            if (sessionStartedCalendar.getTimeInMillis() > sessionCompletedCalendar.getTimeInMillis()) {
+            if (sessionDialogStartedDate.isAfter(sessionDialogCompletedDate)) {
                 return localDateAsList(sessionDialogStartedDate);
             }
         }
@@ -247,19 +243,6 @@ public class MeditationAssistant extends Application {
     @NotNull
     private static List<Integer> localDateAsList(LocalDate date) {
         return Arrays.asList(date.getYear(), date.getMonthValue() - 1, date.getDayOfMonth());
-    }
-
-    @NonNull
-    private static Calendar createCalendar(LocalDate date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, date.getYear());
-        calendar.set(Calendar.MONTH, date.getMonthValue() - 1);
-        calendar.set(Calendar.DAY_OF_MONTH, date.getDayOfMonth());
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
-        return calendar;
     }
 
     private TimePickerDialog.OnTimeSetListener sessionDialogTimeSetListener =
