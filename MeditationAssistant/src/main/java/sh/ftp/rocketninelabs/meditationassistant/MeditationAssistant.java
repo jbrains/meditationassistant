@@ -235,15 +235,13 @@ public class MeditationAssistant extends Application {
 
     @NotNull
     private static List<Integer> temp(LocalDate sessionDialogStartedDate, LocalDate sessionDialogCompletedDate) {
-        LocalDate selectedDate = sessionDialogCompletedDate;
+        LocalDate selectedDate;
         if (sessionDialogCompletedDate == null) {
             selectedDate = sessionDialogStartedDate;
-            return localDateAsList(selectedDate);
+        } else if (sessionDialogStartedDate.isAfter(sessionDialogCompletedDate)) {
+            selectedDate = sessionDialogStartedDate;
         } else {
-            if (sessionDialogStartedDate.isAfter(sessionDialogCompletedDate)) {
-                selectedDate = sessionDialogStartedDate;
-                return localDateAsList(selectedDate);
-            }
+            selectedDate = sessionDialogCompletedDate;
         }
         return localDateAsList(selectedDate);
     }
