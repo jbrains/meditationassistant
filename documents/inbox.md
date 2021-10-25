@@ -1,13 +1,11 @@
 # Inbox
 
 - Continue to move `foo()` into the Happy Zone, then set our sights on `updateSessionDialog()`.
-
-## Session Inbox 2021-10-25
-
-- Replace component values with `LocalDate` in `chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent()`.
+  - Continue replacing `List<int>` with `LocalDate` as the single value for a started/completed date.
 - Make it easier to remember to adjust the month when converting between `Calendar` and `LocalDate`.
   - `Calendar` thinks January == 0
   - `LocalDate` thinks January == 1
+- Did we introduce a bug related to session started date inside the DateSetListener?
 
 ## Refactoring Targets
 
