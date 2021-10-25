@@ -235,11 +235,11 @@ public class MeditationAssistant extends Application {
         } else {
             LocalDate sessionDialogStartedArg = LocalDate.of(sessionDialogStartedYearArg, sessionDialogStartedMonthArg + 1, sessionDialogStartedDayArg);
 
-            Calendar c_started = createCalendar(sessionDialogStartedArg);
+            Calendar sessionStartedCalendar = createCalendar(sessionDialogStartedArg);
 
-            Calendar c_completed = createCalendar(sessionDialogCompletedArg);
+            Calendar sessionCompletedCalendar = createCalendar(sessionDialogCompletedArg);
 
-            if (c_started.getTimeInMillis() > c_completed.getTimeInMillis()) {
+            if (sessionStartedCalendar.getTimeInMillis() > sessionCompletedCalendar.getTimeInMillis()) {
                 return Arrays.asList(sessionDialogStartedYearArg, sessionDialogStartedMonthArg, sessionDialogStartedDayArg);
             }
         }
