@@ -206,7 +206,7 @@ public class MeditationAssistant extends Application {
 //                        We're starting a new session, it looks like we need to compute the date of
 //                          the most recently completed session
             newSessionCompletedDate = chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(
-                    year, monthOfYear, dayOfMonth, maybeCompletedDate);
+                    maybeCompletedDate, LocalDate.of(year, monthOfYear + 1, dayOfMonth));
 
             // associate this behavior to the started button
             newSessionStartedDate = Arrays.asList(year, monthOfYear, dayOfMonth);
@@ -229,19 +229,17 @@ public class MeditationAssistant extends Application {
 
     // REFACTOR Replace List<Integer> with a YearMonthDay object
     private static List<Integer> chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent(
-            int sessionDialogStartedYearArg, int sessionDialogStartedMonthArg, int sessionDialogStartedDayArg, LocalDate sessionDialogCompletedArg) {
-
-        LocalDate sessionDialogStartedArg = LocalDate.of(sessionDialogStartedYearArg, sessionDialogStartedMonthArg + 1, sessionDialogStartedDayArg);
+            LocalDate sessionDialogCompletedArg, LocalDate sessionDialogStartedDate) {
 
         if (sessionDialogCompletedArg == null) {
-            return localDateAsList(sessionDialogStartedArg);
+            return localDateAsList(sessionDialogStartedDate);
         } else {
-            Calendar sessionStartedCalendar = createCalendar(sessionDialogStartedArg);
+            Calendar sessionStartedCalendar = createCalendar(sessionDialogStartedDate);
 
             Calendar sessionCompletedCalendar = createCalendar(sessionDialogCompletedArg);
 
             if (sessionStartedCalendar.getTimeInMillis() > sessionCompletedCalendar.getTimeInMillis()) {
-                return localDateAsList(sessionDialogStartedArg);
+                return localDateAsList(sessionDialogStartedDate);
             }
         }
         return localDateAsList(sessionDialogCompletedArg);
