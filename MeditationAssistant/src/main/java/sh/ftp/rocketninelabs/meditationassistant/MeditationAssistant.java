@@ -232,10 +232,12 @@ public class MeditationAssistant extends Application {
         if (sessionDialogCompletedArg == null) {
             return Arrays.asList(sessionDialogStartedYearArg, sessionDialogStartedMonthArg, sessionDialogStartedDayArg);
         } else {
+            LocalDate sessionDialogStartedArg = LocalDate.of(sessionDialogStartedYearArg, sessionDialogStartedMonthArg + 1, sessionDialogStartedDayArg);
+
             Calendar c_started = Calendar.getInstance();
-            c_started.set(Calendar.YEAR, sessionDialogStartedYearArg);
-            c_started.set(Calendar.MONTH, sessionDialogStartedMonthArg);
-            c_started.set(Calendar.DAY_OF_MONTH, sessionDialogStartedDayArg);
+            c_started.set(Calendar.YEAR, sessionDialogStartedArg.getYear());
+            c_started.set(Calendar.MONTH, sessionDialogStartedArg.getMonthValue() - 1);
+            c_started.set(Calendar.DAY_OF_MONTH, sessionDialogStartedArg.getDayOfMonth());
             c_started.set(Calendar.HOUR_OF_DAY, 0);
             c_started.set(Calendar.MINUTE, 0);
             c_started.set(Calendar.SECOND, 0);
