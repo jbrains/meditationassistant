@@ -1,10 +1,13 @@
 # Inbox
 
+- Continue to move `foo()` into the Happy Zone, then set our sights on `updateSessionDialog()`.
+
+## Session Inbox 2021-10-25
+
 - Replace component values with `LocalDate` in `chooseSessionDateAsCompletedSessionOrStartedSessionWhicheverIsMoreRecent()`.
 - Make it easier to remember to adjust the month when converting between `Calendar` and `LocalDate`.
   - `Calendar` thinks January == 0
   - `LocalDate` thinks January == 1
-- Continue to move `foo()` into the Happy Zone, then set our sights on `updateSessionDialog()`.
 
 ## Refactoring Targets
 
