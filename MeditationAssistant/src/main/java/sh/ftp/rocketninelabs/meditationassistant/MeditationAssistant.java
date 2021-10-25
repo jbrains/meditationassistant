@@ -38,6 +38,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.multidex.MultiDex;
@@ -234,29 +235,28 @@ public class MeditationAssistant extends Application {
         } else {
             LocalDate sessionDialogStartedArg = LocalDate.of(sessionDialogStartedYearArg, sessionDialogStartedMonthArg + 1, sessionDialogStartedDayArg);
 
-            Calendar c_started = Calendar.getInstance();
-            c_started.set(Calendar.YEAR, sessionDialogStartedArg.getYear());
-            c_started.set(Calendar.MONTH, sessionDialogStartedArg.getMonthValue() - 1);
-            c_started.set(Calendar.DAY_OF_MONTH, sessionDialogStartedArg.getDayOfMonth());
-            c_started.set(Calendar.HOUR_OF_DAY, 0);
-            c_started.set(Calendar.MINUTE, 0);
-            c_started.set(Calendar.SECOND, 0);
-            c_started.set(Calendar.MILLISECOND, 0);
+            Calendar c_started = createCalendar(sessionDialogStartedArg);
 
-            Calendar c_completed = Calendar.getInstance();
-            c_completed.set(Calendar.YEAR, sessionDialogCompletedArg.getYear());
-            c_completed.set(Calendar.MONTH, sessionDialogCompletedArg.getMonthValue() - 1);
-            c_completed.set(Calendar.DAY_OF_MONTH, sessionDialogCompletedArg.getDayOfMonth());
-            c_completed.set(Calendar.HOUR_OF_DAY, 0);
-            c_completed.set(Calendar.MINUTE, 0);
-            c_completed.set(Calendar.SECOND, 0);
-            c_completed.set(Calendar.MILLISECOND, 0);
+            Calendar c_completed = createCalendar(sessionDialogCompletedArg);
 
             if (c_started.getTimeInMillis() > c_completed.getTimeInMillis()) {
                 return Arrays.asList(sessionDialogStartedYearArg, sessionDialogStartedMonthArg, sessionDialogStartedDayArg);
             }
         }
         return Arrays.asList(sessionDialogCompletedArg.getYear(), sessionDialogCompletedArg.getMonthValue() - 1, sessionDialogCompletedArg.getDayOfMonth());
+    }
+
+    @NonNull
+    private static Calendar createCalendar(LocalDate sessionDialogStartedArg) {
+        Calendar c_started = Calendar.getInstance();
+        c_started.set(Calendar.YEAR, sessionDialogStartedArg.getYear());
+        c_started.set(Calendar.MONTH, sessionDialogStartedArg.getMonthValue() - 1);
+        c_started.set(Calendar.DAY_OF_MONTH, sessionDialogStartedArg.getDayOfMonth());
+        c_started.set(Calendar.HOUR_OF_DAY, 0);
+        c_started.set(Calendar.MINUTE, 0);
+        c_started.set(Calendar.SECOND, 0);
+        c_started.set(Calendar.MILLISECOND, 0);
+        return c_started;
     }
 
     private TimePickerDialog.OnTimeSetListener sessionDialogTimeSetListener =
