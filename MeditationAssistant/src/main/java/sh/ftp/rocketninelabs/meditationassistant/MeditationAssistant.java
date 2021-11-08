@@ -216,13 +216,24 @@ public class MeditationAssistant extends Application {
             newSessionStartedDateAsLocalDate = maybeStartedDate;
         }
 
-        this.sessionDialogStartedYear = newSessionStartedDateAsLocalDate.getYear();
-        this.sessionDialogStartedMonth = newSessionStartedDateAsLocalDate.getMonthValue() - 1;
-        this.sessionDialogStartedDay = newSessionStartedDateAsLocalDate.getDayOfMonth();
+        writeSessionStartedDate(newSessionStartedDateAsLocalDate);
+        writeSessionCompletedDate(newSessionCompletedDateAsLocalDate);
+    }
 
-        this.sessionDialogCompletedYear = newSessionCompletedDateAsLocalDate.getYear();
-        this.sessionDialogCompletedMonth = newSessionCompletedDateAsLocalDate.getMonthValue() - 1;
-        this.sessionDialogCompletedDay = newSessionCompletedDateAsLocalDate.getDayOfMonth();
+    // REFACTOR Replace these fields with a single LocalDate value
+    // and *that*'s how we'll remove the duplication of "-1".
+    private void writeSessionStartedDate(LocalDate sessionStartedDate) {
+        this.sessionDialogStartedYear = sessionStartedDate.getYear();
+        this.sessionDialogStartedMonth = sessionStartedDate.getMonthValue() - 1;
+        this.sessionDialogStartedDay = sessionStartedDate.getDayOfMonth();
+    }
+
+    // REFACTOR Replace these fields with a single LocalDate value
+    // and *that*'s how we'll remove the duplication of "-1".
+    private void writeSessionCompletedDate(LocalDate sessionCompletedDate) {
+        this.sessionDialogCompletedYear = sessionCompletedDate.getYear();
+        this.sessionDialogCompletedMonth = sessionCompletedDate.getMonthValue() - 1;
+        this.sessionDialogCompletedDay = sessionCompletedDate.getDayOfMonth();
     }
 
     @Nullable
