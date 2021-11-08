@@ -199,6 +199,7 @@ public class MeditationAssistant extends Application {
                 this.sessionDialogCompletedDay
         );
 
+        LocalDate selectedDate = localDateFromJavaUtilCalendarComponentValues(year, monthOfYear, dayOfMonth);
         LocalDate newSessionStartedDateAsLocalDate;
         LocalDate newSessionCompletedDateAsLocalDate;
 
@@ -209,10 +210,10 @@ public class MeditationAssistant extends Application {
                     maybeStartedDate == null ? defaultStartedDate : maybeStartedDate,
                     maybeCompletedDate
             );
-            newSessionStartedDateAsLocalDate = localDateFromJavaUtilCalendarComponentValues(year, monthOfYear, dayOfMonth);
+            newSessionStartedDateAsLocalDate = selectedDate;
         } else {
             // associate this behavior to the completed button
-            newSessionCompletedDateAsLocalDate = localDateFromJavaUtilCalendarComponentValues(year, monthOfYear, dayOfMonth);
+            newSessionCompletedDateAsLocalDate = selectedDate;
             newSessionStartedDateAsLocalDate = maybeStartedDate;
         }
 
