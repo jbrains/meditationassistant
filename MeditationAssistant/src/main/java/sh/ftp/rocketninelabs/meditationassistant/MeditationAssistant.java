@@ -178,13 +178,13 @@ public class MeditationAssistant extends Application {
                 public void onDateSet(DatePicker view, int year,
                                       int monthOfYear, int dayOfMonth) {
                     // the onClick for the two DatePicker buttons sets this option
-                    foo(year, monthOfYear, dayOfMonth);
+                    foo(localDateFromJavaUtilCalendarComponentValues(year, monthOfYear, dayOfMonth));
                     // REFACTOR: eventually this becomes a SessionDialog class with an update method
                     updateSessionDialog();
                 }
             };
 
-    private void foo(int year, int monthOfYear, int dayOfMonth) {
+    private void foo(LocalDate selectedDate) {
         boolean isStartedModalDialog = sessionDialogCurrentOption.equals("started");
 
         LocalDate maybeStartedDate = interpretJavaUtilCalendarComponentValuesAsLocalDate(
@@ -199,7 +199,6 @@ public class MeditationAssistant extends Application {
                 this.sessionDialogCompletedDay
         );
 
-        LocalDate selectedDate = localDateFromJavaUtilCalendarComponentValues(year, monthOfYear, dayOfMonth);
         LocalDate newSessionStartedDateAsLocalDate;
         LocalDate newSessionCompletedDateAsLocalDate;
 
