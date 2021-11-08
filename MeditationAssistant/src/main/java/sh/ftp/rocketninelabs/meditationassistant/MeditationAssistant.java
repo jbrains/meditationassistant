@@ -190,7 +190,7 @@ public class MeditationAssistant extends Application {
         int startedMonth = this.sessionDialogStartedMonth;
         int startedDay = this.sessionDialogStartedDay;
         LocalDate startedDate = LocalDate.of(startedYear, startedMonth + 1, startedDay);
-        LocalDate maybeStartedDate = startedYear == -1 || startedMonth == -1 || startedDay == -1 ? LocalDate.now() : startedDate;
+        LocalDate maybeStartedDate = startedYear == -1 || startedMonth == -1 || startedDay == -1 ? null : startedDate;
 
         int completedYear = this.sessionDialogCompletedYear;
         int completedMonth = this.sessionDialogCompletedMonth;
@@ -203,7 +203,11 @@ public class MeditationAssistant extends Application {
 
         if (isStartedModalDialog) {
             // associate this behavior to the started button
-            newSessionCompletedDateAsLocalDate = chooseMostRecentDateWithOneExtraStrangeCondition(maybeStartedDate, maybeCompletedDate);
+            LocalDate defaultStartedDate = LocalDate.now();
+            newSessionCompletedDateAsLocalDate = chooseMostRecentDateWithOneExtraStrangeCondition(
+                    maybeStartedDate == null ? defaultStartedDate : maybeStartedDate,
+                    maybeCompletedDate
+            );
             newSessionStartedDateAsLocalDate = localDateFromJavaUtilCalendarComponentValues(year, monthOfYear, dayOfMonth);
         } else {
             // associate this behavior to the completed button
