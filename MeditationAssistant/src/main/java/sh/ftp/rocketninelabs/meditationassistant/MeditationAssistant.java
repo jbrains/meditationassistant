@@ -223,11 +223,14 @@ public class MeditationAssistant extends Application {
 
         if (isStartedModalDialog) {
             // associate this behavior to the started button
-            LocalDate defaultStartedDate = LocalDate.now();
-            newSessionCompletedDateAsLocalDate = chooseMostRecentDateWithOneExtraStrangeCondition(
-                    previousSessionStartedDate == null ? defaultStartedDate : previousSessionStartedDate,
-                    previousSessionCompletedDate
-            );
+            LocalDate aDate = previousSessionStartedDate == null
+                    ? LocalDate.now()
+                    : previousSessionStartedDate;
+
+            newSessionCompletedDateAsLocalDate = previousSessionCompletedDate == null
+                    ? aDate
+                    : earliestOf(aDate, previousSessionCompletedDate);
+
             newSessionStartedDateAsLocalDate = selectedDate;
         } else {
             // associate this behavior to the completed button
@@ -267,13 +270,10 @@ public class MeditationAssistant extends Application {
         return LocalDate.of(year, monthOfYear + 1, dayOfMonth);
     }
 
-    private static LocalDate chooseMostRecentDateWithOneExtraStrangeCondition(LocalDate aDate, LocalDate anotherDate) {
-        if (anotherDate == null) {
-            // SMELL Maybe dead? What does 'null' actually mean at this point?
-            // REFACTOR Move this Guard Clause up the call stack, because it otherwise messes up our nice abstract method.
-            // This Guard Clause appears to take advantage of domain knowledge.
-            return aDate;
-        } else if (aDate.isAfter(anotherDate)) {
+    // REFACTOR Move into Happy Zone
+    @NotNull
+    private static LocalDate earliestOf(LocalDate aDate, LocalDate anotherDate) {
+        if (aDate.isAfter(anotherDate)) {
             return aDate;
         } else {
             return anotherDate;
