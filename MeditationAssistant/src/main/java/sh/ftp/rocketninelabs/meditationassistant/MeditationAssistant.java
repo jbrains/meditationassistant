@@ -38,6 +38,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.multidex.MultiDex;
@@ -186,17 +187,17 @@ public class MeditationAssistant extends Application {
     private void foo(int year, int monthOfYear, int dayOfMonth) {
         boolean isStartedModalDialog = sessionDialogCurrentOption.equals("started");
 
-        int startedYear = this.sessionDialogStartedYear;
-        int startedMonth = this.sessionDialogStartedMonth;
-        int startedDay = this.sessionDialogStartedDay;
-        LocalDate startedDate = LocalDate.of(startedYear, startedMonth + 1, startedDay);
-        LocalDate maybeStartedDate = startedYear == -1 || startedMonth == -1 || startedDay == -1 ? null : startedDate;
+        LocalDate maybeStartedDate = interpretComponentValuesAsLocalDate(
+                this.sessionDialogStartedYear,
+                this.sessionDialogStartedMonth,
+                this.sessionDialogStartedDay
+        );
 
-        int completedYear = this.sessionDialogCompletedYear;
-        int completedMonth = this.sessionDialogCompletedMonth;
-        int completedDay = this.sessionDialogCompletedDay;
-        LocalDate completedDate = LocalDate.of(completedYear, completedMonth + 1, completedDay);
-        LocalDate maybeCompletedDate = completedYear == -1 || completedMonth == -1 || completedDay == -1 ? null : completedDate;
+        LocalDate maybeCompletedDate = interpretComponentValuesAsLocalDate(
+                this.sessionDialogCompletedYear,
+                this.sessionDialogCompletedMonth,
+                this.sessionDialogCompletedDay
+        );
 
         LocalDate newSessionStartedDateAsLocalDate;
         LocalDate newSessionCompletedDateAsLocalDate;
@@ -212,7 +213,7 @@ public class MeditationAssistant extends Application {
         } else {
             // associate this behavior to the completed button
             newSessionCompletedDateAsLocalDate = localDateFromJavaUtilCalendarComponentValues(year, monthOfYear, dayOfMonth);
-            newSessionStartedDateAsLocalDate = localDateFromJavaUtilCalendarComponentValues(startedYear, startedMonth, startedDay);
+            newSessionStartedDateAsLocalDate = maybeStartedDate;
         }
 
         this.sessionDialogStartedYear = newSessionStartedDateAsLocalDate.getYear();
@@ -222,6 +223,13 @@ public class MeditationAssistant extends Application {
         this.sessionDialogCompletedYear = newSessionCompletedDateAsLocalDate.getYear();
         this.sessionDialogCompletedMonth = newSessionCompletedDateAsLocalDate.getMonthValue() - 1;
         this.sessionDialogCompletedDay = newSessionCompletedDateAsLocalDate.getDayOfMonth();
+    }
+
+    @Nullable
+    private LocalDate interpretComponentValuesAsLocalDate(int year, int month, int day) {
+        return year == -1 || month == -1 || day == -1
+                ? null
+                : LocalDate.of(year, month + 1, day);
     }
 
     @NotNull
