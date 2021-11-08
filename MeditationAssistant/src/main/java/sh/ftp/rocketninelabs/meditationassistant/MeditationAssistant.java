@@ -203,17 +203,12 @@ public class MeditationAssistant extends Application {
         LocalDate newSessionCompletedDateAsLocalDate;
 
         if (isStartedModalDialog) {
-//                        We're starting a new session, it looks like we need to compute the date of
-//                          the most recently completed session
-            newSessionCompletedDateAsLocalDate = chooseMostRecentDateWithOneExtraStrangeCondition(maybeStartedDate, maybeCompletedDate);
-
             // associate this behavior to the started button
+            newSessionCompletedDateAsLocalDate = chooseMostRecentDateWithOneExtraStrangeCondition(maybeStartedDate, maybeCompletedDate);
             newSessionStartedDateAsLocalDate = localDateFromJavaUtilCalendarComponentValues(year, monthOfYear, dayOfMonth);
-        } else { // We must be selecting the completed date
-//                        Leave the session started date alone
-            newSessionCompletedDateAsLocalDate = localDateFromJavaUtilCalendarComponentValues(year, monthOfYear, dayOfMonth);
-
+        } else {
             // associate this behavior to the completed button
+            newSessionCompletedDateAsLocalDate = localDateFromJavaUtilCalendarComponentValues(year, monthOfYear, dayOfMonth);
             newSessionStartedDateAsLocalDate = localDateFromJavaUtilCalendarComponentValues(startedYear, startedMonth, startedDay);
         }
 
