@@ -187,13 +187,13 @@ public class MeditationAssistant extends Application {
     private void foo(int year, int monthOfYear, int dayOfMonth) {
         boolean isStartedModalDialog = sessionDialogCurrentOption.equals("started");
 
-        LocalDate maybeStartedDate = interpretComponentValuesAsLocalDate(
+        LocalDate maybeStartedDate = interpretJavaUtilCalendarComponentValuesAsLocalDate(
                 this.sessionDialogStartedYear,
                 this.sessionDialogStartedMonth,
                 this.sessionDialogStartedDay
         );
 
-        LocalDate maybeCompletedDate = interpretComponentValuesAsLocalDate(
+        LocalDate maybeCompletedDate = interpretJavaUtilCalendarComponentValuesAsLocalDate(
                 this.sessionDialogCompletedYear,
                 this.sessionDialogCompletedMonth,
                 this.sessionDialogCompletedDay
@@ -226,7 +226,7 @@ public class MeditationAssistant extends Application {
     }
 
     @Nullable
-    private LocalDate interpretComponentValuesAsLocalDate(int year, int month, int day) {
+    private LocalDate interpretJavaUtilCalendarComponentValuesAsLocalDate(int year, int month, int day) {
         return year == -1 || month == -1 || day == -1
                 ? null
                 : LocalDate.of(year, month + 1, day);
