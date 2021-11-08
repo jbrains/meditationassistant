@@ -30,6 +30,7 @@ import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
+import android.util.Pair;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -200,6 +201,23 @@ public class MeditationAssistant extends Application {
                 this.sessionDialogCompletedDay
         );
 
+        Pair<LocalDate, LocalDate> sessionDateInterval = interpretAsSessionDateInterval(
+                selectedDate,
+                isStartedModalDialog,
+                maybeStartedDate,
+                maybeCompletedDate
+        );
+
+        writeSessionStartedDate(sessionDateInterval.first);
+        writeSessionCompletedDate(sessionDateInterval.second);
+    }
+
+    private static Pair<LocalDate, LocalDate> interpretAsSessionDateInterval(
+            LocalDate selectedDate,
+            boolean isStartedModalDialog,
+            LocalDate previousSessionStartedDate,
+            LocalDate previousSessionCompletedDate) {
+
         LocalDate newSessionStartedDateAsLocalDate;
         LocalDate newSessionCompletedDateAsLocalDate;
 
@@ -207,18 +225,17 @@ public class MeditationAssistant extends Application {
             // associate this behavior to the started button
             LocalDate defaultStartedDate = LocalDate.now();
             newSessionCompletedDateAsLocalDate = chooseMostRecentDateWithOneExtraStrangeCondition(
-                    maybeStartedDate == null ? defaultStartedDate : maybeStartedDate,
-                    maybeCompletedDate
+                    previousSessionStartedDate == null ? defaultStartedDate : previousSessionStartedDate,
+                    previousSessionCompletedDate
             );
             newSessionStartedDateAsLocalDate = selectedDate;
         } else {
             // associate this behavior to the completed button
             newSessionCompletedDateAsLocalDate = selectedDate;
-            newSessionStartedDateAsLocalDate = maybeStartedDate;
+            newSessionStartedDateAsLocalDate = previousSessionStartedDate;
         }
 
-        writeSessionStartedDate(newSessionStartedDateAsLocalDate);
-        writeSessionCompletedDate(newSessionCompletedDateAsLocalDate);
+        return Pair.create(newSessionStartedDateAsLocalDate, newSessionCompletedDateAsLocalDate);
     }
 
     // REFACTOR Replace these fields with a single LocalDate value
