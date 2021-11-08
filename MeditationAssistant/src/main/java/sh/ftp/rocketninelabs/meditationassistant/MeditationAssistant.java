@@ -199,7 +199,7 @@ public class MeditationAssistant extends Application {
 //                        We're asssuming -1 means unset
         LocalDate maybeCompletedDate = completedYear == -1 || completedMonth == -1 || completedDay == -1 ? null : completedDate;
 
-        List<Integer> newSessionStartedDate;
+        LocalDate newSessionStartedDateAsLocalDate;
         LocalDate newSessionCompletedDateAsLocalDate;
 
         if (isStartedModalDialog) {
@@ -208,22 +208,27 @@ public class MeditationAssistant extends Application {
             newSessionCompletedDateAsLocalDate = chooseMostRecentDateWithOneExtraStrangeCondition(maybeStartedDate, maybeCompletedDate);
 
             // associate this behavior to the started button
-            newSessionStartedDate = Arrays.asList(year, monthOfYear, dayOfMonth);
+            newSessionStartedDateAsLocalDate = localDateFromJavaUtilCalendarComponentValues(year, monthOfYear, dayOfMonth);
         } else { // We must be selecting the completed date
 //                        Leave the session started date alone
-            newSessionCompletedDateAsLocalDate = LocalDate.of(year, monthOfYear + 1, dayOfMonth);
+            newSessionCompletedDateAsLocalDate = localDateFromJavaUtilCalendarComponentValues(year, monthOfYear, dayOfMonth);
 
             // associate this behavior to the completed button
-            newSessionStartedDate = Arrays.asList(startedYear, startedMonth, startedDay);
+            newSessionStartedDateAsLocalDate = localDateFromJavaUtilCalendarComponentValues(startedYear, startedMonth, startedDay);
         }
 
-        this.sessionDialogStartedYear = newSessionStartedDate.get(0);
-        this.sessionDialogStartedMonth = newSessionStartedDate.get(1);
-        this.sessionDialogStartedDay = newSessionStartedDate.get(2);
+        this.sessionDialogStartedYear = newSessionStartedDateAsLocalDate.getYear();
+        this.sessionDialogStartedMonth = newSessionStartedDateAsLocalDate.getMonthValue() - 1;
+        this.sessionDialogStartedDay = newSessionStartedDateAsLocalDate.getDayOfMonth();
 
         this.sessionDialogCompletedYear = newSessionCompletedDateAsLocalDate.getYear();
         this.sessionDialogCompletedMonth = newSessionCompletedDateAsLocalDate.getMonthValue() - 1;
         this.sessionDialogCompletedDay = newSessionCompletedDateAsLocalDate.getDayOfMonth();
+    }
+
+    @NotNull
+    private static LocalDate localDateFromJavaUtilCalendarComponentValues(int year, int monthOfYear, int dayOfMonth) {
+        return LocalDate.of(year, monthOfYear + 1, dayOfMonth);
     }
 
     private static LocalDate chooseMostRecentDateWithOneExtraStrangeCondition(LocalDate aDate, LocalDate anotherDate) {
