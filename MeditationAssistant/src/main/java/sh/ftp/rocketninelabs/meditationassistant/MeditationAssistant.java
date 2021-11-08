@@ -196,7 +196,6 @@ public class MeditationAssistant extends Application {
         int completedMonth = this.sessionDialogCompletedMonth;
         int completedDay = this.sessionDialogCompletedDay;
         LocalDate completedDate = LocalDate.of(completedYear, completedMonth + 1, completedDay);
-//                        We're asssuming -1 means unset
         LocalDate maybeCompletedDate = completedYear == -1 || completedMonth == -1 || completedDay == -1 ? null : completedDate;
 
         LocalDate newSessionStartedDateAsLocalDate;
