@@ -189,6 +189,7 @@ public class MeditationAssistant extends Application {
     private void foo(LocalDate selectedDate) {
         boolean isStartedModalDialog = sessionDialogCurrentOption.equals("started");
 
+        // Does it make more sense to talk to the DatePicker View for some of this?
         LocalDate maybeStartedDate = interpretJavaUtilCalendarComponentValuesAsLocalDate(
                 this.sessionDialogStartedYear,
                 this.sessionDialogStartedMonth,
