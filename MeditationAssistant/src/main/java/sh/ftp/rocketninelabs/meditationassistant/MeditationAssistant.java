@@ -174,6 +174,7 @@ public class MeditationAssistant extends Application {
     private EditText sessionDialogMessage = null;
     private DatePickerDialog.OnDateSetListener sessionDialogDateSetListener =
             new DatePickerDialog.OnDateSetListener() {
+                // CONTRACT year, month, day values are compatible with java.util.Calendar
                 @Override
                 public void onDateSet(DatePicker view, int year,
                                       int monthOfYear, int dayOfMonth) {
@@ -243,6 +244,7 @@ public class MeditationAssistant extends Application {
                 : LocalDate.of(year, month + 1, day);
     }
 
+    // REFACTOR Belongs in Android Adapter layer/DMZ
     @NotNull
     private static LocalDate localDateFromJavaUtilCalendarComponentValues(int year, int monthOfYear, int dayOfMonth) {
         return LocalDate.of(year, monthOfYear + 1, dayOfMonth);
