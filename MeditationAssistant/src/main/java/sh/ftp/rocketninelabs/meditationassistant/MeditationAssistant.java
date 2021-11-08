@@ -218,27 +218,23 @@ public class MeditationAssistant extends Application {
             LocalDate previousSessionStartedDate,
             LocalDate previousSessionCompletedDate) {
 
-        LocalDate newSessionStartedDateAsLocalDate;
-        LocalDate newSessionCompletedDateAsLocalDate;
-
         if (isStartedModalDialog) {
             // associate this behavior to the started button
-            LocalDate aDate = previousSessionStartedDate == null
-                    ? LocalDate.now()
-                    : previousSessionStartedDate;
 
-            newSessionCompletedDateAsLocalDate = previousSessionCompletedDate == null
-                    ? aDate
-                    : earliestOf(aDate, previousSessionCompletedDate);
-
-            newSessionStartedDateAsLocalDate = selectedDate;
+            // autofill the "completed date" to the selected "started date"
+            return Pair.create(
+                    selectedDate,
+                    previousSessionCompletedDate == null ? selectedDate : previousSessionCompletedDate
+            );
         } else {
             // associate this behavior to the completed button
-            newSessionCompletedDateAsLocalDate = selectedDate;
-            newSessionStartedDateAsLocalDate = previousSessionStartedDate;
-        }
 
-        return Pair.create(newSessionStartedDateAsLocalDate, newSessionCompletedDateAsLocalDate);
+            // normalize the interval, so that "start" is no later than "end"
+            return Pair.create(
+                    earliestOf(previousSessionStartedDate, selectedDate),
+                    selectedDate
+            );
+        }
     }
 
     // REFACTOR Replace these fields with a single LocalDate value
