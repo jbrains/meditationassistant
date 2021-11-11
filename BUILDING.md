@@ -13,8 +13,8 @@ project* and choose the folder downloaded above.
 
 On 2021-09-15 I built this with the following tools:
 
-- Gradle 7.0.2
 - Java SDK 11.0.12-zulu
+- The Gradle wrapper in this project (using `./gradlew` or `gng`)
 
 I had to downgrade the Android/Gradle build tool version to 4.2.2 to build this on my machine. I needed to do this only to import the project into IDEA; I was able to build it with Gradle outside IDEA as I originally cloned the project.
 
