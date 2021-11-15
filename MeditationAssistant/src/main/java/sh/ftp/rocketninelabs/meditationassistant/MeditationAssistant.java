@@ -1667,13 +1667,9 @@ public class MeditationAssistant extends Application {
             public void onClick(View view) {
                 sessionDialogCurrentOption = "started";
 
-                LocalDate sessionStartedDate;
-                if (isStartedDateUnset()) {
-                    sessionStartedDate = LocalDate.now();
-                } else {
-                    sessionStartedDate = interpretJavaUtilCalendarComponentValuesAsLocalDate(
-                            sessionDialogStartedYear, sessionDialogStartedMonth, sessionDialogStartedDay);
-                }
+                LocalDate sessionStartedDate = isStartedDateUnset()
+                        ? LocalDate.now()
+                        : interpretJavaUtilCalendarComponentValuesAsLocalDate(sessionDialogStartedYear, sessionDialogStartedMonth, sessionDialogStartedDay);
 
                 new DatePickerDialog(
                         sessionDialogActivity,
