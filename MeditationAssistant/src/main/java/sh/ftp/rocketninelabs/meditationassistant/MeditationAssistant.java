@@ -1666,20 +1666,22 @@ public class MeditationAssistant extends Application {
             @Override
             public void onClick(View view) {
                 sessionDialogCurrentOption = "started";
-                DatePickerDialog dateDialog = null;
 
+                LocalDate sessionStartedDate;
                 if (isStartedDateUnset()) {
-                    Calendar c = Calendar.getInstance();
-                    dateDialog = new DatePickerDialog(sessionDialogActivity,
-                            sessionDialogDateSetListener,
-                            c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+                    sessionStartedDate = LocalDate.now();
                 } else {
-                    dateDialog = new DatePickerDialog(sessionDialogActivity,
-                            sessionDialogDateSetListener,
+                    sessionStartedDate = interpretJavaUtilCalendarComponentValuesAsLocalDate(
                             sessionDialogStartedYear, sessionDialogStartedMonth, sessionDialogStartedDay);
                 }
 
-                dateDialog.show();
+                new DatePickerDialog(
+                        sessionDialogActivity,
+                        sessionDialogDateSetListener,
+                        sessionStartedDate.getYear(),
+                        sessionStartedDate.getMonthValue() - 1,
+                        sessionStartedDate.getDayOfMonth()
+                ).show();
             }
         });
         sessionDialogStartedTimeButton.setOnClickListener(new View.OnClickListener() {
