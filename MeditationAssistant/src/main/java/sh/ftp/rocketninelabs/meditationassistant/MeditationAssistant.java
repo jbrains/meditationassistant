@@ -220,7 +220,7 @@ public class MeditationAssistant extends Application {
             LocalDate previousSessionCompletedDate) {
 
         if (isStartedModalDialog) {
-            // associate this behavior to the started button
+            // REFACTOR Move this behavior into a listener for the started button
 
             // autofill the "completed date" to the selected "started date"
             return Pair.create(
@@ -228,7 +228,7 @@ public class MeditationAssistant extends Application {
                     previousSessionCompletedDate == null ? selectedDate : previousSessionCompletedDate
             );
         } else {
-            // associate this behavior to the completed button
+            // REFACTOR Move this behavior into a listener for the completed button
 
             // normalize the interval, so that "start" is no later than "end"
             return Pair.create(
