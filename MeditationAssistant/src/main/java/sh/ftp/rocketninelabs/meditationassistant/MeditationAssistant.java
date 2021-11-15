@@ -1667,6 +1667,7 @@ public class MeditationAssistant extends Application {
             public void onClick(View view) {
                 sessionDialogCurrentOption = "started";
 
+                // REFACTOR Move the default value choice into showDatePickerDialog?
                 LocalDate sessionStartedDate = isStartedDateUnset()
                         ? LocalDate.now()
                         : interpretJavaUtilCalendarComponentValuesAsLocalDate(sessionDialogStartedYear, sessionDialogStartedMonth, sessionDialogStartedDay);
@@ -1703,6 +1704,7 @@ public class MeditationAssistant extends Application {
             public void onClick(View view) {
                 sessionDialogCurrentOption = "completed";
 
+                // REFACTOR Move the default value choice into showDatePickerDialog?
                 LocalDate sessionCompletedDate = isCompletedDateUnset()
                         ? LocalDate.now()
                         : interpretJavaUtilCalendarComponentValuesAsLocalDate(sessionDialogCompletedYear, sessionDialogCompletedMonth, sessionDialogCompletedDay);
