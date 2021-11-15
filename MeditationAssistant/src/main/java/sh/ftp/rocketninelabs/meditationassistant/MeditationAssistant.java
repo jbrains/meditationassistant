@@ -30,7 +30,6 @@ import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
-import android.util.Pair;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -180,62 +179,52 @@ public class MeditationAssistant extends Application {
                 public void onDateSet(DatePicker view, int year,
                                       int monthOfYear, int dayOfMonth) {
                     // the onClick for the two DatePicker buttons sets this option
-                    foo(localDateFromJavaUtilCalendarComponentValues(year, monthOfYear, dayOfMonth));
+                    updateSessionIntervalDatesDependingOnWhichPartOfTheIntervalTheUserSelected(
+                            localDateFromJavaUtilCalendarComponentValues(year, monthOfYear, dayOfMonth)
+                    );
                     // REFACTOR: eventually this becomes a SessionDialog class with an update method
                     updateSessionDialog();
                 }
             };
 
-    private void foo(LocalDate selectedDate) {
+    private void updateSessionIntervalDatesDependingOnWhichPartOfTheIntervalTheUserSelected(LocalDate selectedDate) {
         boolean isStartedModalDialog = sessionDialogCurrentOption.equals("started");
 
         // Does it make more sense to talk to the DatePicker View for some of this?
+        // REFACTOR Replace with this.sessionStartedDate
         LocalDate maybeStartedDate = interpretJavaUtilCalendarComponentValuesAsLocalDate(
                 this.sessionDialogStartedYear,
                 this.sessionDialogStartedMonth,
                 this.sessionDialogStartedDay
         );
 
+        // REFACTOR Replace with this.sessionCompletedDate
         LocalDate maybeCompletedDate = interpretJavaUtilCalendarComponentValuesAsLocalDate(
                 this.sessionDialogCompletedYear,
                 this.sessionDialogCompletedMonth,
                 this.sessionDialogCompletedDay
         );
 
-        Pair<LocalDate, LocalDate> sessionDateInterval = interpretAsSessionDateInterval(
-                selectedDate,
-                isStartedModalDialog,
-                maybeStartedDate,
-                maybeCompletedDate
-        );
-
-        writeSessionStartedDate(sessionDateInterval.first);
-        writeSessionCompletedDate(sessionDateInterval.second);
-    }
-
-    private static Pair<LocalDate, LocalDate> interpretAsSessionDateInterval(
-            LocalDate selectedDate,
-            boolean isStartedModalDialog,
-            LocalDate previousSessionStartedDate,
-            LocalDate previousSessionCompletedDate) {
-
         if (isStartedModalDialog) {
             // REFACTOR Move this behavior into a listener for the started button
+            autofillCompletedDate(selectedDate, maybeCompletedDate);
 
-            // autofill the "completed date" to the selected "started date"
-            return Pair.create(
-                    selectedDate,
-                    previousSessionCompletedDate == null ? selectedDate : previousSessionCompletedDate
-            );
         } else {
             // REFACTOR Move this behavior into a listener for the completed button
-
-            // normalize the interval, so that "start" is no later than "end"
-            return Pair.create(
-                    earliestOf(previousSessionStartedDate, selectedDate),
-                    selectedDate
-            );
+            normalizeStartedDate(selectedDate, maybeStartedDate);
         }
+    }
+
+    // normalize the interval, so that "start" is no later than "end"
+    private void normalizeStartedDate(LocalDate selectedDate, LocalDate maybeStartedDate) {
+        writeSessionStartedDate(earliestOf(maybeStartedDate, selectedDate));
+        writeSessionCompletedDate(selectedDate);
+    }
+
+    private void autofillCompletedDate(LocalDate selectedDate, LocalDate maybeCompletedDate) {
+        // autofill the "completed date" to the selected "started date"
+        writeSessionStartedDate(selectedDate);
+        writeSessionCompletedDate(maybeCompletedDate == null ? selectedDate : maybeCompletedDate);
     }
 
     // REFACTOR Replace these fields with a single LocalDate value
