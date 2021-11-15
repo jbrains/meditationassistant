@@ -1875,12 +1875,22 @@ public class MeditationAssistant extends Application {
         ).show();
     }
 
-    private boolean isCompletedDateUnset() {
-        return sessionDialogCompletedYear == -1 || sessionDialogCompletedMonth == -1 || sessionDialogCompletedDay == -1;
+    private boolean isStartedDateUnset() {
+        return isDateUnset(sessionDialogStartedYear, sessionDialogStartedMonth, sessionDialogStartedDay);
     }
 
-    private boolean isStartedDateUnset() {
-        return sessionDialogStartedYear == -1 || sessionDialogStartedMonth == -1 || sessionDialogStartedDay == -1;
+    private boolean isCompletedDateUnset() {
+        return isDateUnset(sessionDialogCompletedYear, sessionDialogCompletedMonth, sessionDialogCompletedDay);
+    }
+
+    // CONTRACT These component arguments are compatible with java.util.Calendar (January == 0)
+    // REFACTOR Replace me eventually with `sessionStartedDate == null`.
+    private static boolean isDateUnset(int year, int month, int day) {
+        return null == interpretJavaUtilCalendarComponentValuesAsLocalDate(
+                year,
+                month,
+                day
+        );
     }
 
     private void unsetCompletedDate() {
