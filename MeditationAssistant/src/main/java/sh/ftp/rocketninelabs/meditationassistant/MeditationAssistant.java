@@ -1671,13 +1671,11 @@ public class MeditationAssistant extends Application {
                         ? LocalDate.now()
                         : interpretJavaUtilCalendarComponentValuesAsLocalDate(sessionDialogStartedYear, sessionDialogStartedMonth, sessionDialogStartedDay);
 
-                new DatePickerDialog(
+                showDatePickerDialog(
                         sessionDialogActivity,
                         sessionDialogDateSetListener,
-                        sessionStartedDate.getYear(),
-                        sessionStartedDate.getMonthValue() - 1,
-                        sessionStartedDate.getDayOfMonth()
-                ).show();
+                        sessionStartedDate
+                );
             }
         });
         sessionDialogStartedTimeButton.setOnClickListener(new View.OnClickListener() {
@@ -1709,13 +1707,11 @@ public class MeditationAssistant extends Application {
                         ? LocalDate.now()
                         : interpretJavaUtilCalendarComponentValuesAsLocalDate(sessionDialogCompletedYear, sessionDialogCompletedMonth, sessionDialogCompletedDay);
 
-                new DatePickerDialog(
+                showDatePickerDialog(
                         sessionDialogActivity,
                         sessionDialogDateSetListener,
-                        sessionCompletedDate.getYear(),
-                        sessionCompletedDate.getMonthValue() - 1,
-                        sessionCompletedDate.getDayOfMonth()
-                ).show();
+                        sessionCompletedDate
+                );
             }
         });
         sessionDialogCompletedTimeButton.setOnClickListener(new View.OnClickListener() {
@@ -1855,6 +1851,16 @@ public class MeditationAssistant extends Application {
                 }
             }
         });
+    }
+
+    private void showDatePickerDialog(Context context, DatePickerDialog.OnDateSetListener dateSetListener, LocalDate date) {
+        new DatePickerDialog(
+                context,
+                dateSetListener,
+                date.getYear(),
+                date.getMonthValue() - 1,
+                date.getDayOfMonth()
+        ).show();
     }
 
     private boolean isCompletedDateUnset() {
