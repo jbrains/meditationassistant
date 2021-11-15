@@ -1609,15 +1609,11 @@ public class MeditationAssistant extends Application {
         sessionDialogUpdateSessionStarted = 0;
         sessionDialogActivity = activity;
 
-        sessionDialogStartedYear = -1;
-        sessionDialogStartedMonth = -1;
-        sessionDialogStartedDay = -1;
+        unsetStartedDate();
         sessionDialogStartedHour = -1;
         sessionDialogStartedMinute = -1;
 
-        sessionDialogCompletedYear = -1;
-        sessionDialogCompletedMonth = -1;
-        sessionDialogCompletedDay = -1;
+        unsetCompletedDate();
         sessionDialogCompletedHour = -1;
         sessionDialogCompletedMinute = -1;
 
@@ -1852,6 +1848,18 @@ public class MeditationAssistant extends Application {
                 }
             }
         });
+    }
+
+    private void unsetCompletedDate() {
+        sessionDialogCompletedYear = -1;
+        sessionDialogCompletedMonth = -1;
+        sessionDialogCompletedDay = -1;
+    }
+
+    private void unsetStartedDate() {
+        sessionDialogStartedYear = -1;
+        sessionDialogStartedMonth = -1;
+        sessionDialogStartedDay = -1;
     }
 
     public void updateSessionDialog() {
