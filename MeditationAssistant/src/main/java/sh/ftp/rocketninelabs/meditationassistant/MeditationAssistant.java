@@ -1664,7 +1664,7 @@ public class MeditationAssistant extends Application {
                 sessionDialogCurrentOption = "started";
                 DatePickerDialog dateDialog = null;
 
-                if (sessionDialogStartedYear == -1 || sessionDialogStartedMonth == -1 || sessionDialogStartedDay == -1) {
+                if (isStartedDateUnset()) {
                     Calendar c = Calendar.getInstance();
                     dateDialog = new DatePickerDialog(sessionDialogActivity,
                             sessionDialogDateSetListener,
@@ -1704,7 +1704,7 @@ public class MeditationAssistant extends Application {
                 sessionDialogCurrentOption = "completed";
                 DatePickerDialog dateDialog = null;
 
-                if (sessionDialogCompletedYear == -1 || sessionDialogCompletedMonth == -1 || sessionDialogCompletedDay == -1) {
+                if (isCompletedDateUnset()) {
                     Calendar c = Calendar.getInstance();
                     dateDialog = new DatePickerDialog(sessionDialogActivity,
                             sessionDialogDateSetListener,
@@ -1785,7 +1785,14 @@ public class MeditationAssistant extends Application {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (sessionDialogStartedYear == -1 || sessionDialogStartedMonth == -1 || sessionDialogStartedDay == -1 || sessionDialogStartedHour == -1 || sessionDialogStartedMinute == -1 || sessionDialogCompletedYear == -1 || sessionDialogCompletedMonth == -1 || sessionDialogCompletedDay == -1 || sessionDialogCompletedHour == -1 || sessionDialogCompletedMinute == -1) {
+                if (
+                        isStartedDateUnset()
+                                || sessionDialogStartedHour == -1
+                                || sessionDialogStartedMinute == -1
+                                || isCompletedDateUnset()
+                                || sessionDialogCompletedHour == -1
+                                || sessionDialogCompletedMinute == -1
+                ) {
                     shortToast(getString(R.string.invalidDateOrTime));
                 } else {
                     Calendar c_started = Calendar.getInstance();
@@ -1850,6 +1857,14 @@ public class MeditationAssistant extends Application {
         });
     }
 
+    private boolean isCompletedDateUnset() {
+        return sessionDialogCompletedYear == -1 || sessionDialogCompletedMonth == -1 || sessionDialogCompletedDay == -1;
+    }
+
+    private boolean isStartedDateUnset() {
+        return sessionDialogStartedYear == -1 || sessionDialogStartedMonth == -1 || sessionDialogStartedDay == -1;
+    }
+
     private void unsetCompletedDate() {
         sessionDialogCompletedYear = -1;
         sessionDialogCompletedMonth = -1;
@@ -1877,7 +1892,7 @@ public class MeditationAssistant extends Application {
         sdf_date.setTimeZone(TimeZone.getDefault());
         sdf_time.setTimeZone(TimeZone.getDefault());
 
-        if (sessionDialogStartedYear == -1 || sessionDialogStartedMonth == -1 || sessionDialogStartedDay == -1) {
+        if (isStartedDateUnset()) {
             sessionDialogStartedDateButton.setText(getString(R.string.setDate));
         } else {
             Calendar c = Calendar.getInstance();
@@ -1891,7 +1906,7 @@ public class MeditationAssistant extends Application {
 
             sessionDialogStartedDateButton.setText(sdf_date.format(c.getTime()));
         }
-        if (sessionDialogCompletedYear == -1 || sessionDialogCompletedMonth == -1 || sessionDialogCompletedDay == -1) {
+        if (isCompletedDateUnset()) {
             sessionDialogCompletedDateButton.setText(getString(R.string.setDate));
         } else {
             Calendar c = Calendar.getInstance();
