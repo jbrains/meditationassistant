@@ -255,7 +255,7 @@ public class MeditationAssistant extends Application {
     }
 
     @Nullable
-    private LocalDate interpretJavaUtilCalendarComponentValuesAsLocalDate(int year, int month, int day) {
+    private static LocalDate interpretJavaUtilCalendarComponentValuesAsLocalDate(int year, int month, int day) {
         return year == -1 || month == -1 || day == -1
                 ? null
                 : LocalDate.of(year, month + 1, day);
