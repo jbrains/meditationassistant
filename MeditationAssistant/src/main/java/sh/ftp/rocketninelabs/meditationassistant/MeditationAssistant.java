@@ -1704,20 +1704,18 @@ public class MeditationAssistant extends Application {
             @Override
             public void onClick(View view) {
                 sessionDialogCurrentOption = "completed";
-                DatePickerDialog dateDialog = null;
 
-                if (isCompletedDateUnset()) {
-                    Calendar c = Calendar.getInstance();
-                    dateDialog = new DatePickerDialog(sessionDialogActivity,
-                            sessionDialogDateSetListener,
-                            c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
-                } else {
-                    dateDialog = new DatePickerDialog(sessionDialogActivity,
-                            sessionDialogDateSetListener,
-                            sessionDialogCompletedYear, sessionDialogCompletedMonth, sessionDialogCompletedDay);
-                }
+                LocalDate sessionCompletedDate = isCompletedDateUnset()
+                        ? LocalDate.now()
+                        : interpretJavaUtilCalendarComponentValuesAsLocalDate(sessionDialogCompletedYear, sessionDialogCompletedMonth, sessionDialogCompletedDay);
 
-                dateDialog.show();
+                new DatePickerDialog(
+                        sessionDialogActivity,
+                        sessionDialogDateSetListener,
+                        sessionCompletedDate.getYear(),
+                        sessionCompletedDate.getMonthValue() - 1,
+                        sessionCompletedDate.getDayOfMonth()
+                ).show();
             }
         });
         sessionDialogCompletedTimeButton.setOnClickListener(new View.OnClickListener() {
