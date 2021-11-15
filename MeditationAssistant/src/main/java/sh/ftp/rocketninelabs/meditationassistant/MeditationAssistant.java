@@ -1634,17 +1634,21 @@ public class MeditationAssistant extends Application {
 
             Calendar c_session_started = Calendar.getInstance();
             c_session_started.setTimeInMillis(session._started * 1000);
-            sessionDialogStartedYear = c_session_started.get(Calendar.YEAR);
-            sessionDialogStartedMonth = c_session_started.get(Calendar.MONTH);
-            sessionDialogStartedDay = c_session_started.get(Calendar.DAY_OF_MONTH);
+            writeSessionStartedDate(localDateFromJavaUtilCalendarComponentValues(
+                    c_session_started.get(Calendar.YEAR),
+                    c_session_started.get(Calendar.MONTH),
+                    c_session_started.get(Calendar.DAY_OF_MONTH)
+            ));
             sessionDialogStartedHour = c_session_started.get(Calendar.HOUR_OF_DAY);
             sessionDialogStartedMinute = c_session_started.get(Calendar.MINUTE);
 
             Calendar c_session_completed = Calendar.getInstance();
             c_session_completed.setTimeInMillis(session._completed * 1000);
-            sessionDialogCompletedYear = c_session_completed.get(Calendar.YEAR);
-            sessionDialogCompletedMonth = c_session_completed.get(Calendar.MONTH);
-            sessionDialogCompletedDay = c_session_completed.get(Calendar.DAY_OF_MONTH);
+            writeSessionCompletedDate(localDateFromJavaUtilCalendarComponentValues(
+                    c_session_completed.get(Calendar.YEAR),
+                    c_session_completed.get(Calendar.MONTH),
+                    c_session_completed.get(Calendar.DAY_OF_MONTH)
+            ));
             sessionDialogCompletedHour = c_session_completed.get(Calendar.HOUR_OF_DAY);
             sessionDialogCompletedMinute = c_session_completed.get(Calendar.MINUTE);
 
