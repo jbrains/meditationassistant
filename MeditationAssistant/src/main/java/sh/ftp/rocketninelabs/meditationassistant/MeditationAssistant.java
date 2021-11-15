@@ -1974,10 +1974,14 @@ public class MeditationAssistant extends Application {
             return;
         }
 
-        if (sessionDialogStartedYear == -1 || sessionDialogStartedMonth == -1 || sessionDialogStartedDay == -1
-                || sessionDialogStartedHour == -1 || sessionDialogStartedMinute == -1
-                || sessionDialogCompletedYear == -1 || sessionDialogCompletedMonth == -1 || sessionDialogCompletedDay == -1
-                || sessionDialogCompletedHour == -1 || sessionDialogCompletedMinute == -1) {
+        if (
+                isStartedDateUnset()
+                        || sessionDialogStartedHour == -1
+                        || sessionDialogStartedMinute == -1
+                        || isCompletedDateUnset()
+                        || sessionDialogCompletedHour == -1
+                        || sessionDialogCompletedMinute == -1
+        ) {
             return;
         }
 
