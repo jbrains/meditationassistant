@@ -1,5 +1,7 @@
 # Inbox
 
+- Isolate all the places where `MeditationAssistant` reads from and writes to the component date fields, so that we can replace those with a `LocalDate` field.
+  - Isolate all the writes to one place, then add the `LocalDate` field, then migrate all the reads, then remove the component fields.
 - Move `interpretAsSessionDateInterval()` into the Happy Zone, then set our sights on `updateSessionDialog()`.
 
 ## Refactoring Targets
