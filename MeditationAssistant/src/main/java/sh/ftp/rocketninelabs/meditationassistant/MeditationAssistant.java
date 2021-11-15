@@ -241,17 +241,27 @@ public class MeditationAssistant extends Application {
     // REFACTOR Replace these fields with a single LocalDate value
     // and *that*'s how we'll remove the duplication of "-1".
     private void writeSessionStartedDate(LocalDate sessionStartedDate) {
-        this.sessionDialogStartedYear = sessionStartedDate.getYear();
-        this.sessionDialogStartedMonth = sessionStartedDate.getMonthValue() - 1;
-        this.sessionDialogStartedDay = sessionStartedDate.getDayOfMonth();
+        if (sessionStartedDate == null) {
+            this.sessionDialogStartedYear = -1;
+            this.sessionDialogStartedMonth = -1;
+            this.sessionDialogStartedDay = -1;
+        } else {
+            this.sessionDialogStartedYear = sessionStartedDate.getYear();
+            this.sessionDialogStartedMonth = sessionStartedDate.getMonthValue() - 1;
+            this.sessionDialogStartedDay = sessionStartedDate.getDayOfMonth();
+        }
     }
 
-    // REFACTOR Replace these fields with a single LocalDate value
-    // and *that*'s how we'll remove the duplication of "-1".
     private void writeSessionCompletedDate(LocalDate sessionCompletedDate) {
-        this.sessionDialogCompletedYear = sessionCompletedDate.getYear();
-        this.sessionDialogCompletedMonth = sessionCompletedDate.getMonthValue() - 1;
-        this.sessionDialogCompletedDay = sessionCompletedDate.getDayOfMonth();
+        if (sessionCompletedDate == null) {
+            this.sessionDialogCompletedYear = -1;
+            this.sessionDialogCompletedMonth = -1;
+            this.sessionDialogCompletedDay = -1;
+        } else {
+            this.sessionDialogCompletedYear = sessionCompletedDate.getYear();
+            this.sessionDialogCompletedMonth = sessionCompletedDate.getMonthValue() - 1;
+            this.sessionDialogCompletedDay = sessionCompletedDate.getDayOfMonth();
+        }
     }
 
     @Nullable
@@ -1874,15 +1884,11 @@ public class MeditationAssistant extends Application {
     }
 
     private void unsetCompletedDate() {
-        sessionDialogCompletedYear = -1;
-        sessionDialogCompletedMonth = -1;
-        sessionDialogCompletedDay = -1;
+        writeSessionCompletedDate(null);
     }
 
     private void unsetStartedDate() {
-        sessionDialogStartedYear = -1;
-        sessionDialogStartedMonth = -1;
-        sessionDialogStartedDay = -1;
+        writeSessionStartedDate(null);
     }
 
     public void updateSessionDialog() {
