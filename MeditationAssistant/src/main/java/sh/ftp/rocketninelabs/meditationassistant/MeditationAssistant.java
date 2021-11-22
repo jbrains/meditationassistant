@@ -212,7 +212,11 @@ public class MeditationAssistant extends Application {
 
     // normalize the interval, so that "start" is no later than "end"
     private void normalizeStartedDate(LocalDate selectedDate) {
-        this.sessionDialogStartedDate = earliestOf(sessionDialogStartedDate, selectedDate);
+        LocalDate startedDate = (sessionDialogStartedDate != null)
+                ? this.sessionDialogStartedDate
+                : selectedDate;
+
+        this.sessionDialogStartedDate = earliestOf(startedDate, selectedDate);
         writeSessionCompletedDate(selectedDate);
     }
 
@@ -1618,10 +1622,10 @@ public class MeditationAssistant extends Application {
             Calendar c_session_started = Calendar.getInstance();
             c_session_started.setTimeInMillis(session._started * 1000);
             this.sessionDialogStartedDate = localDateFromJavaUtilCalendarComponentValues(
-                        c_session_started.get(Calendar.YEAR),
-                        c_session_started.get(Calendar.MONTH),
-                        c_session_started.get(Calendar.DAY_OF_MONTH)
-                );
+                    c_session_started.get(Calendar.YEAR),
+                    c_session_started.get(Calendar.MONTH),
+                    c_session_started.get(Calendar.DAY_OF_MONTH)
+            );
             sessionDialogStartedHour = c_session_started.get(Calendar.HOUR_OF_DAY);
             sessionDialogStartedMinute = c_session_started.get(Calendar.MINUTE);
 
