@@ -163,6 +163,7 @@ public class MeditationAssistant extends Application {
     private boolean sessionDialogLengthSetManually = false;
     private int sessionDialogLengthHour = -1;
     private int sessionDialogLengthMinute = -1;
+    // CONTRACT time in seconds (not milliseconds)
     private long sessionDialogUpdateSessionStarted = 0;
     private Activity sessionDialogActivity = null;
     private String sessionDialogCurrentOption = "";
