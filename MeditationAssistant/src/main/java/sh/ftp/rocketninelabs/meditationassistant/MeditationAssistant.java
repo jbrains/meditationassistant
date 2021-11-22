@@ -192,7 +192,7 @@ public class MeditationAssistant extends Application {
 
         // Does it make more sense to talk to the DatePicker View for some of this?
         // REFACTOR Replace with this.sessionStartedDate
-        LocalDate maybeStartedDate = readSessionStartedDate();
+        LocalDate maybeStartedDate = sessionDialogStartedDate;
 
         // REFACTOR Replace with this.sessionCompletedDate
         LocalDate maybeCompletedDate = interpretJavaUtilCalendarComponentValuesAsLocalDate(
@@ -213,18 +213,14 @@ public class MeditationAssistant extends Application {
 
     // normalize the interval, so that "start" is no later than "end"
     private void normalizeStartedDate(LocalDate selectedDate, LocalDate maybeStartedDate) {
-        writeSessionStartedDate(earliestOf(maybeStartedDate, selectedDate));
+        this.sessionDialogStartedDate = earliestOf(maybeStartedDate, selectedDate);
         writeSessionCompletedDate(selectedDate);
     }
 
     private void autofillCompletedDate(LocalDate selectedDate, LocalDate maybeCompletedDate) {
         // autofill the "completed date" to the selected "started date"
-        writeSessionStartedDate(selectedDate);
+        this.sessionDialogStartedDate = selectedDate;
         writeSessionCompletedDate(maybeCompletedDate == null ? selectedDate : maybeCompletedDate);
-    }
-
-    private void writeSessionStartedDate(LocalDate sessionStartedDate) {
-        this.sessionDialogStartedDate = sessionStartedDate;
     }
 
     private void writeSessionCompletedDate(LocalDate sessionCompletedDate) {
@@ -1619,11 +1615,11 @@ public class MeditationAssistant extends Application {
 
             Calendar c_session_started = Calendar.getInstance();
             c_session_started.setTimeInMillis(session._started * 1000);
-            writeSessionStartedDate(localDateFromJavaUtilCalendarComponentValues(
-                    c_session_started.get(Calendar.YEAR),
-                    c_session_started.get(Calendar.MONTH),
-                    c_session_started.get(Calendar.DAY_OF_MONTH)
-            ));
+            this.sessionDialogStartedDate = localDateFromJavaUtilCalendarComponentValues(
+                        c_session_started.get(Calendar.YEAR),
+                        c_session_started.get(Calendar.MONTH),
+                        c_session_started.get(Calendar.DAY_OF_MONTH)
+                );
             sessionDialogStartedHour = c_session_started.get(Calendar.HOUR_OF_DAY);
             sessionDialogStartedMinute = c_session_started.get(Calendar.MINUTE);
 
@@ -1655,7 +1651,7 @@ public class MeditationAssistant extends Application {
                 // REFACTOR Move the default value choice into showDatePickerDialog?
                 LocalDate sessionStartedDate = isStartedDateUnset()
                         ? LocalDate.now()
-                        : readSessionStartedDate();
+                        : sessionDialogStartedDate;
 
                 showDatePickerDialog(
                         sessionDialogActivity,
@@ -1778,7 +1774,7 @@ public class MeditationAssistant extends Application {
                 ) {
                     shortToast(getString(R.string.invalidDateOrTime));
                 } else {
-                    LocalDate sessionStartedDate = readSessionStartedDate();
+                    LocalDate sessionStartedDate = sessionDialogStartedDate;
 
                     Calendar c_started = Calendar.getInstance();
                     c_started.set(Calendar.YEAR, sessionStartedDate.getYear());
@@ -1853,7 +1849,7 @@ public class MeditationAssistant extends Application {
     }
 
     private boolean isStartedDateUnset() {
-        return null == readSessionStartedDate();
+        return null == sessionDialogStartedDate;
     }
 
     private boolean isCompletedDateUnset() {
@@ -1875,7 +1871,7 @@ public class MeditationAssistant extends Application {
     }
 
     private void unsetStartedDate() {
-        writeSessionStartedDate(null);
+        this.sessionDialogStartedDate = null;
     }
 
     public void updateSessionDialog() {
@@ -1896,7 +1892,7 @@ public class MeditationAssistant extends Application {
         if (isStartedDateUnset()) {
             sessionDialogStartedDateButton.setText(getString(R.string.setDate));
         } else {
-            LocalDate sessionStartedDate = readSessionStartedDate();
+            LocalDate sessionStartedDate = sessionDialogStartedDate;
 
             String formattedTime = sessionStartedDate == null
                     ? ""
@@ -1963,10 +1959,6 @@ public class MeditationAssistant extends Application {
         }
     }
 
-    private LocalDate readSessionStartedDate() {
-        return sessionDialogStartedDate;
-    }
-
     public void fillSessionDialogLength() {
         if (sessionDialogLengthSetManually) {
             return;
@@ -1983,7 +1975,7 @@ public class MeditationAssistant extends Application {
             return;
         }
 
-        LocalDate sessionStartedDate = readSessionStartedDate();
+        LocalDate sessionStartedDate = sessionDialogStartedDate;
 
         Calendar sc = Calendar.getInstance();
         sc.set(Calendar.YEAR, sessionStartedDate.getYear());
@@ -2018,7 +2010,7 @@ public class MeditationAssistant extends Application {
 
     // REFACTOR Replace return value with a... you know... value object.
     public ArrayList<Long> getSessionDialogValues() {
-        LocalDate sessionStartedDate = readSessionStartedDate();
+        LocalDate sessionStartedDate = sessionDialogStartedDate;
 
         Calendar c_started = Calendar.getInstance();
         c_started.set(Calendar.YEAR, sessionStartedDate.getYear());
