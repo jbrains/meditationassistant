@@ -2035,6 +2035,7 @@ public class MeditationAssistant extends Application {
         }
     }
 
+    // REFACTOR Replace return value with a... you know... value object.
     public ArrayList<Long> getSessionDialogValues() {
         LocalDate sessionStartedDate = readSessionStartedDate();
 
