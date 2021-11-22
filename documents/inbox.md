@@ -1,8 +1,7 @@
 # Inbox
 
-- Isolate all the places where `MeditationAssistant` reads from and writes to the component date fields, so that we can replace those with a `LocalDate` field.
-  - Isolate all the writes to one place, then add the `LocalDate` field, then migrate all the reads, then remove the component fields.
-- Move `interpretAsSessionDateInterval()` into the Happy Zone, then set our sights on `updateSessionDialog()`.
+- Find silly usages of `sessionDialogStartedDate` and improve them.
+- Similar to what we did with `sessionDialogStartedDate`, replace the component date fields for `sessionDialogCompleted(Year|Month|Day)` with a `LocalDate` field.
 
 ## Refactoring Targets
 
@@ -13,7 +12,6 @@ an opportunity to stop it from subclassing `android.app.Application`.
 
 - Remove the coupling centered on the field `sessionDialogCurrentOption`.
   - There appears to be an emerging View component that is "two related DatePicker widgets".
-    - `interpretAsSessionDateInterval()` looks like it would become a method on that View component. It merely "resolves" two Date values based on some domain rule, such as "make sure A is no later than B" or "if B is empty, default it to A".
 - Crack open `updateSessionDialog()` and extract code that can move into the Happy Zone.
 - Replace `sessionDialog(Started|Completed)(Year|Month|Day)` fields with LocalDate values as a precursor to extracting smaller View-related classes.
   - It seems like there's some kind of modal dialog behavior to isolate from `MeditationAssistant` into its own Views(?).
