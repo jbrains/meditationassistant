@@ -2002,10 +2002,12 @@ public class MeditationAssistant extends Application {
             return;
         }
 
+        LocalDate sessionStartedDate = readSessionStartedDate();
+
         Calendar sc = Calendar.getInstance();
-        sc.set(Calendar.YEAR, sessionDialogStartedYear);
-        sc.set(Calendar.MONTH, sessionDialogStartedMonth);
-        sc.set(Calendar.DAY_OF_MONTH, sessionDialogStartedDay);
+        sc.set(Calendar.YEAR, sessionStartedDate.getYear());
+        sc.set(Calendar.MONTH, sessionStartedDate.getMonthValue() - 1);
+        sc.set(Calendar.DAY_OF_MONTH, sessionStartedDate.getDayOfMonth());
         sc.set(Calendar.HOUR_OF_DAY, sessionDialogStartedHour);
         sc.set(Calendar.MINUTE, sessionDialogStartedMinute);
         sc.set(Calendar.SECOND, 0);
