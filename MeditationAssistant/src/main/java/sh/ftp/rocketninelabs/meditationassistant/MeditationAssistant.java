@@ -249,7 +249,10 @@ public class MeditationAssistant extends Application {
 
     // REFACTOR Move into Happy Zone
     @NotNull
-    private static LocalDate earliestOf(LocalDate aDate, LocalDate anotherDate) {
+    private static LocalDate earliestOf(
+            @NotNull LocalDate aDate,
+            @NotNull LocalDate anotherDate
+    ) {
         if (aDate.isAfter(anotherDate)) {
             return aDate;
         } else {
