@@ -1979,11 +1979,7 @@ public class MeditationAssistant extends Application {
     }
 
     private LocalDate readSessionStartedDate() {
-        return interpretJavaUtilCalendarComponentValuesAsLocalDate(
-                    sessionDialogStartedYear,
-                    sessionDialogStartedMonth,
-                    sessionDialogStartedDay
-            );
+        return sessionDialogStartedDate;
     }
 
     public void fillSessionDialogLength() {
