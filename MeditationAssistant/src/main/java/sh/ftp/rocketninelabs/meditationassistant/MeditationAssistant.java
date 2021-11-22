@@ -193,11 +193,7 @@ public class MeditationAssistant extends Application {
 
         // Does it make more sense to talk to the DatePicker View for some of this?
         // REFACTOR Replace with this.sessionStartedDate
-        LocalDate maybeStartedDate = interpretJavaUtilCalendarComponentValuesAsLocalDate(
-                this.sessionDialogStartedYear,
-                this.sessionDialogStartedMonth,
-                this.sessionDialogStartedDay
-        );
+        LocalDate maybeStartedDate = readSessionStartedDate();
 
         // REFACTOR Replace with this.sessionCompletedDate
         LocalDate maybeCompletedDate = interpretJavaUtilCalendarComponentValuesAsLocalDate(
@@ -1868,7 +1864,7 @@ public class MeditationAssistant extends Application {
     }
 
     private boolean isStartedDateUnset() {
-        return isDateUnset(sessionDialogStartedYear, sessionDialogStartedMonth, sessionDialogStartedDay);
+        return null == readSessionStartedDate();
     }
 
     private boolean isCompletedDateUnset() {
