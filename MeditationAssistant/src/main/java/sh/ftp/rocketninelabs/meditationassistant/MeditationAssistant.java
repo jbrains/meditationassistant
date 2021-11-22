@@ -153,9 +153,6 @@ public class MeditationAssistant extends Application {
     private AlertDialog sessionDialog = null;
     @Nullable
     private LocalDate sessionDialogStartedDate = null;
-    private int sessionDialogStartedYear = -1;
-    private int sessionDialogStartedMonth = -1;
-    private int sessionDialogStartedDay = -1;
     private int sessionDialogStartedHour = -1;
     private int sessionDialogStartedMinute = -1;
     private int sessionDialogCompletedYear = -1;
@@ -226,19 +223,7 @@ public class MeditationAssistant extends Application {
         writeSessionCompletedDate(maybeCompletedDate == null ? selectedDate : maybeCompletedDate);
     }
 
-    // REFACTOR Replace these fields with a single LocalDate value
-    // and *that*'s how we'll remove the duplication of "-1".
     private void writeSessionStartedDate(LocalDate sessionStartedDate) {
-        if (sessionStartedDate == null) {
-            this.sessionDialogStartedYear = -1;
-            this.sessionDialogStartedMonth = -1;
-            this.sessionDialogStartedDay = -1;
-        } else {
-            this.sessionDialogStartedYear = sessionStartedDate.getYear();
-            this.sessionDialogStartedMonth = sessionStartedDate.getMonthValue() - 1;
-            this.sessionDialogStartedDay = sessionStartedDate.getDayOfMonth();
-        }
-
         this.sessionDialogStartedDate = sessionStartedDate;
     }
 
