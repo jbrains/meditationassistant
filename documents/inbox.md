@@ -2,6 +2,7 @@
 
 - Find silly usages of `sessionDialogStartedDate` and improve them.
 - Similar to what we did with `sessionDialogStartedDate`, replace the component date fields for `sessionDialogCompleted(Year|Month|Day)` with a `LocalDate` field.
+- Similar to what we did with the session dialog dates, replace the component time fields with a `LocalTime` field.
 
 ## Refactoring Targets
 
