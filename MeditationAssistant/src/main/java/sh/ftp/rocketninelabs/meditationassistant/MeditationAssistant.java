@@ -62,6 +62,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.threeten.bp.LocalDate;
+import org.threeten.bp.format.DateTimeFormatter;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -1908,16 +1909,13 @@ public class MeditationAssistant extends Application {
         if (isStartedDateUnset()) {
             sessionDialogStartedDateButton.setText(getString(R.string.setDate));
         } else {
-            Calendar c = Calendar.getInstance();
-            c.set(Calendar.YEAR, sessionDialogStartedYear);
-            c.set(Calendar.MONTH, sessionDialogStartedMonth);
-            c.set(Calendar.DAY_OF_MONTH, sessionDialogStartedDay);
-            c.set(Calendar.HOUR_OF_DAY, 0);
-            c.set(Calendar.MINUTE, 0);
-            c.set(Calendar.SECOND, 0);
-            c.set(Calendar.MILLISECOND, 0);
+            LocalDate sessionStartedDate = readSessionStartedDate();
 
-            sessionDialogStartedDateButton.setText(sdf_date.format(c.getTime()));
+            String formattedTime = sessionStartedDate == null
+                    ? ""
+                    : sessionStartedDate.format(DateTimeFormatter.ofPattern("MMMM d"));
+
+            sessionDialogStartedDateButton.setText(formattedTime);
         }
         if (isCompletedDateUnset()) {
             sessionDialogCompletedDateButton.setText(getString(R.string.setDate));
@@ -1976,6 +1974,14 @@ public class MeditationAssistant extends Application {
 
             sessionDialogLengthButton.setText(summary.trim());
         }
+    }
+
+    private LocalDate readSessionStartedDate() {
+        return interpretJavaUtilCalendarComponentValuesAsLocalDate(
+                    sessionDialogStartedYear,
+                    sessionDialogStartedMonth,
+                    sessionDialogStartedDay
+            );
     }
 
     public void fillSessionDialogLength() {
