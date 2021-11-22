@@ -212,11 +212,10 @@ public class MeditationAssistant extends Application {
 
     // normalize the interval, so that "start" is no later than "end"
     private void normalizeStartedDate(LocalDate selectedDate) {
-        LocalDate startedDate = (sessionDialogStartedDate != null)
-                ? this.sessionDialogStartedDate
+        this.sessionDialogStartedDate = (sessionDialogStartedDate != null)
+                ? earliestOf(this.sessionDialogStartedDate, selectedDate)
                 : selectedDate;
-
-        this.sessionDialogStartedDate = earliestOf(startedDate, selectedDate);
+        
         writeSessionCompletedDate(selectedDate);
     }
 
