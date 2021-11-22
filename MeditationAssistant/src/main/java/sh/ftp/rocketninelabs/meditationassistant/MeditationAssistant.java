@@ -151,6 +151,8 @@ public class MeditationAssistant extends Application {
     private HashMap<String, MediaPlayer> mediaPlayers = new HashMap<String, MediaPlayer>();
 
     private AlertDialog sessionDialog = null;
+    @Nullable
+    private LocalDate sessionDialogStartedDate = null;
     private int sessionDialogStartedYear = -1;
     private int sessionDialogStartedMonth = -1;
     private int sessionDialogStartedDay = -1;
@@ -236,6 +238,8 @@ public class MeditationAssistant extends Application {
             this.sessionDialogStartedMonth = sessionStartedDate.getMonthValue() - 1;
             this.sessionDialogStartedDay = sessionStartedDate.getDayOfMonth();
         }
+
+        this.sessionDialogStartedDate = sessionStartedDate;
     }
 
     private void writeSessionCompletedDate(LocalDate sessionCompletedDate) {
