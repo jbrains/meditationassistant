@@ -2,7 +2,9 @@ package sh.ftp.rocketninelabs.meditationassistant;
 
 public class SessionSQL {
     public Long _id;
+    // CONTRACT started time in seconds (not milliseconds)
     public Long _started;
+    // CONTRACT completed time in seconds (not milliseconds)
     public Long _completed;
     public Long _length;
     public String _message;
