@@ -1793,10 +1793,12 @@ public class MeditationAssistant extends Application {
                 ) {
                     shortToast(getString(R.string.invalidDateOrTime));
                 } else {
+                    LocalDate sessionStartedDate = readSessionStartedDate();
+
                     Calendar c_started = Calendar.getInstance();
-                    c_started.set(Calendar.YEAR, sessionDialogStartedYear);
-                    c_started.set(Calendar.MONTH, sessionDialogStartedMonth);
-                    c_started.set(Calendar.DAY_OF_MONTH, sessionDialogStartedDay);
+                    c_started.set(Calendar.YEAR, sessionStartedDate.getYear());
+                    c_started.set(Calendar.MONTH, sessionStartedDate.getMonthValue() - 1);
+                    c_started.set(Calendar.DAY_OF_MONTH, sessionStartedDate.getDayOfMonth());
                     c_started.set(Calendar.HOUR_OF_DAY, sessionDialogStartedHour);
                     c_started.set(Calendar.MINUTE, sessionDialogStartedMinute);
                     c_started.set(Calendar.SECOND, 0);
