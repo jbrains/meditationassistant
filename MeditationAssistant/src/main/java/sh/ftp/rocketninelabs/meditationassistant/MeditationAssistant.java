@@ -1670,7 +1670,7 @@ public class MeditationAssistant extends Application {
                 // REFACTOR Move the default value choice into showDatePickerDialog?
                 LocalDate sessionStartedDate = isStartedDateUnset()
                         ? LocalDate.now()
-                        : interpretJavaUtilCalendarComponentValuesAsLocalDate(sessionDialogStartedYear, sessionDialogStartedMonth, sessionDialogStartedDay);
+                        : readSessionStartedDate();
 
                 showDatePickerDialog(
                         sessionDialogActivity,
