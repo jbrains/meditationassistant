@@ -1577,6 +1577,17 @@ public class MeditationAssistant extends Application {
         notificationManager.notify(sessionNotificationID, notificationBuilder.build());
     }
 
+    private static LocalDate localDateFromTimeInSeconds(Long timeInSeconds) {
+        // REFACTOR Compute directly from LocalDate.
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(timeInSeconds * 1000);
+        return localDateFromJavaUtilCalendarComponentValues(
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+        );
+    }
+
     public void showSessionDialog(final SessionSQL session, Activity activity) {
         if (sessionDialog != null) {
             try {
@@ -1621,11 +1632,7 @@ public class MeditationAssistant extends Application {
 
             Calendar c_session_started = Calendar.getInstance();
             c_session_started.setTimeInMillis(session._started * 1000);
-            this.sessionDialogStartedDate = localDateFromJavaUtilCalendarComponentValues(
-                    c_session_started.get(Calendar.YEAR),
-                    c_session_started.get(Calendar.MONTH),
-                    c_session_started.get(Calendar.DAY_OF_MONTH)
-            );
+            this.sessionDialogStartedDate = localDateFromTimeInSeconds(sessionDialogUpdateSessionStarted);
             sessionDialogStartedHour = c_session_started.get(Calendar.HOUR_OF_DAY);
             sessionDialogStartedMinute = c_session_started.get(Calendar.MINUTE);
 
