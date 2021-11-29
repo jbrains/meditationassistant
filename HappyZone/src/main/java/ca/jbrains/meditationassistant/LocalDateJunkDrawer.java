@@ -13,14 +13,7 @@ public class LocalDateJunkDrawer {
     }
 
     public static LocalDate localDateFromTimeInSeconds(Long timeInSeconds) {
-        // REFACTOR Compute directly from LocalDate.
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(timeInSeconds * 1000);
-        return localDateFromJavaUtilCalendarComponentValues(
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
-        );
+        return localDateFromTimeInSeconds_newVersion(timeInSeconds);
     }
 
     public static LocalDate localDateFromTimeInSeconds_newVersion(long timeInSeconds) {
