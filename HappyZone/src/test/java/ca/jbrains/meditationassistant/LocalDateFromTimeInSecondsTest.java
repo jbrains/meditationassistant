@@ -3,7 +3,7 @@ package ca.jbrains.meditationassistant;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.threeten.bp.LocalDate;
+import org.threeten.bp.*;
 import org.threeten.bp.zone.TzdbZoneRulesProvider;
 import org.threeten.bp.zone.ZoneRulesProvider;
 
@@ -32,7 +32,39 @@ public class LocalDateFromTimeInSecondsTest {
         );
     }
 
+    @Test
+    void one() {
+        Assertions.assertEquals(
+                LocalDateJunkDrawer.localDateFromTimeInSeconds(1L),
+                wip(1L)
+        );
+    }
+
+    @Test
+    void nextDay() {
+        Assertions.assertEquals(
+                LocalDateJunkDrawer.localDateFromTimeInSeconds(12L * 3600),
+                wip(12L * 3600)
+        );
+    }
+
+    @Test
+    void arbitrarilyLargeNumber() {
+        Assertions.assertEquals(
+                LocalDateJunkDrawer.localDateFromTimeInSeconds(1287697364597L),
+                wip(1287697364597L)
+        );
+    }
+
     private LocalDate wip(long l) {
-        return LocalDate.of(1969, 12, 31);
+        if(l <= 1) {
+            return LocalDate.of(1969, 12, 31);
+        } else {
+            ZoneOffset localTimeZoneOffset = ZoneId.systemDefault().getRules().getOffset(Instant.now());
+
+            return LocalDateTime
+                    .ofEpochSecond(l, 0, localTimeZoneOffset)
+                    .toLocalDate();
+        }
     }
 }
