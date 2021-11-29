@@ -25,7 +25,7 @@ public class LocalDateFromTimeInSecondsTest {
     }
 
     @Test
-    void happyPath() {
+    void zero() {
         Assertions.assertEquals(
                 LocalDateJunkDrawer.localDateFromTimeInSeconds(0L),
                 wip(0L)
