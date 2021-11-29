@@ -16,10 +16,9 @@ public class LocalDateFromTimeInSecondsTest {
         if (ZoneRulesProvider.getAvailableZoneIds().isEmpty()) {
             InputStream stream = LocalDateFromTimeInSecondsTest.class.getClassLoader()
                     .getResourceAsStream("TZDB.dat");
+            Assertions.assertNotNull(stream, "Time Zone database stream is null. Where's the file?!");
 
-            TzdbZoneRulesProvider tzdbZoneRulesProvider = new TzdbZoneRulesProvider(stream);
-
-            ZoneRulesProvider.registerProvider(tzdbZoneRulesProvider);
+            ZoneRulesProvider.registerProvider(new TzdbZoneRulesProvider(stream));
         }
     }
 
