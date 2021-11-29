@@ -43,6 +43,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.multidex.MultiDex;
 
+import ca.jbrains.meditationassistant.LocalDateJunkDrawer;
 import com.nononsenseapps.filepicker.FilePickerActivity;
 import com.nononsenseapps.filepicker.Utils;
 import com.opencsv.CSVReader;
@@ -181,7 +182,7 @@ public class MeditationAssistant extends Application {
                                       int monthOfYear, int dayOfMonth) {
                     // the onClick for the two DatePicker buttons sets this option
                     updateSessionIntervalDatesDependingOnWhichPartOfTheIntervalTheUserSelected(
-                            localDateFromJavaUtilCalendarComponentValues(year, monthOfYear, dayOfMonth)
+                            LocalDateJunkDrawer.localDateFromJavaUtilCalendarComponentValues(year, monthOfYear, dayOfMonth)
                     );
                     // REFACTOR: eventually this becomes a SessionDialog class with an update method
                     updateSessionDialog();
@@ -243,12 +244,6 @@ public class MeditationAssistant extends Application {
         return year == -1 || month == -1 || day == -1
                 ? null
                 : LocalDate.of(year, month + 1, day);
-    }
-
-    // REFACTOR Belongs in Android Adapter layer/DMZ
-    @NotNull
-    private static LocalDate localDateFromJavaUtilCalendarComponentValues(int year, int monthOfYear, int dayOfMonth) {
-        return LocalDate.of(year, monthOfYear + 1, dayOfMonth);
     }
 
     // REFACTOR Move into Happy Zone
@@ -1577,17 +1572,6 @@ public class MeditationAssistant extends Application {
         notificationManager.notify(sessionNotificationID, notificationBuilder.build());
     }
 
-    private static LocalDate localDateFromTimeInSeconds(Long timeInSeconds) {
-        // REFACTOR Compute directly from LocalDate.
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(timeInSeconds * 1000);
-        return localDateFromJavaUtilCalendarComponentValues(
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
-        );
-    }
-
     public void showSessionDialog(final SessionSQL session, Activity activity) {
         if (sessionDialog != null) {
             try {
@@ -1632,13 +1616,13 @@ public class MeditationAssistant extends Application {
 
             Calendar c_session_started = Calendar.getInstance();
             c_session_started.setTimeInMillis(session._started * 1000);
-            this.sessionDialogStartedDate = localDateFromTimeInSeconds(sessionDialogUpdateSessionStarted);
+            this.sessionDialogStartedDate = LocalDateJunkDrawer.localDateFromTimeInSeconds(sessionDialogUpdateSessionStarted);
             sessionDialogStartedHour = c_session_started.get(Calendar.HOUR_OF_DAY);
             sessionDialogStartedMinute = c_session_started.get(Calendar.MINUTE);
 
             Calendar c_session_completed = Calendar.getInstance();
             c_session_completed.setTimeInMillis(session._completed * 1000);
-            writeSessionCompletedDate(localDateFromJavaUtilCalendarComponentValues(
+            writeSessionCompletedDate(LocalDateJunkDrawer.localDateFromJavaUtilCalendarComponentValues(
                     c_session_completed.get(Calendar.YEAR),
                     c_session_completed.get(Calendar.MONTH),
                     c_session_completed.get(Calendar.DAY_OF_MONTH)
