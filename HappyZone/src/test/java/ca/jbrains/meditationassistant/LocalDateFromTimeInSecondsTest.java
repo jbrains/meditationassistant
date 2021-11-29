@@ -26,9 +26,10 @@ public class LocalDateFromTimeInSecondsTest {
 
     @Test
     void happyPath() {
-        LocalDate expected = LocalDateJunkDrawer.localDateFromTimeInSeconds(0L);
-
-        Assertions.assertEquals(expected, wip(0L));
+        Assertions.assertEquals(
+                LocalDateJunkDrawer.localDateFromTimeInSeconds(0L),
+                wip(0L)
+        );
     }
 
     private LocalDate wip(long l) {
