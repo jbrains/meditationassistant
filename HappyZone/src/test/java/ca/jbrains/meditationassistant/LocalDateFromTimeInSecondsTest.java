@@ -13,6 +13,8 @@ public class LocalDateFromTimeInSecondsTest {
 
     @BeforeEach
     void setUp() {
+        // CONTRACT Without this, we can't use LocalDate with times in tests.
+        // Who needs to respect the DIP?! :P
         if (ZoneRulesProvider.getAvailableZoneIds().isEmpty()) {
             InputStream stream = LocalDateFromTimeInSecondsTest.class.getClassLoader()
                     .getResourceAsStream("TZDB.dat");
