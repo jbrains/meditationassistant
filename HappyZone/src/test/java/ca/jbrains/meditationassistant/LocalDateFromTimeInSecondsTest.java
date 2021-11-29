@@ -32,6 +32,6 @@ public class LocalDateFromTimeInSecondsTest {
     }
 
     private LocalDate wip(long l) {
-        return LocalDate.now();
+        return LocalDate.of(1969, 12, 31);
     }
 }
