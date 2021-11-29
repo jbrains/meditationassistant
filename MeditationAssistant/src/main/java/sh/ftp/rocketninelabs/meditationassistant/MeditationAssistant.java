@@ -1768,6 +1768,7 @@ public class MeditationAssistant extends Application {
                 ) {
                     shortToast(getString(R.string.invalidDateOrTime));
                 } else {
+                    // REFACTOR Don't bother replacing this until we're ready to introduce LocalDateTime for session started + completed.
                     Calendar c_started = Calendar.getInstance();
                     c_started.set(Calendar.YEAR, sessionDialogStartedDate.getYear());
                     c_started.set(Calendar.MONTH, sessionDialogStartedDate.getMonthValue() - 1);
@@ -1786,22 +1787,30 @@ public class MeditationAssistant extends Application {
                     c_completed.set(Calendar.SECOND, 0);
                     c_completed.set(Calendar.MILLISECOND, 0);
 
-                    if (c_started.getTimeInMillis() > Calendar.getInstance().getTimeInMillis() || c_completed.getTimeInMillis() > Calendar.getInstance().getTimeInMillis() || c_started.getTimeInMillis() >= c_completed.getTimeInMillis()) {
+                    // REFACTOR We should be able to use LocalDateTime directly to do all this arithmetic.
+                    // REFACTOR Replace with Enum that describes the reasons that a session interval is invalid.
+                    boolean invalidDateOrTimeCondition = c_started.getTimeInMillis() > Calendar.getInstance().getTimeInMillis() || c_completed.getTimeInMillis() > Calendar.getInstance().getTimeInMillis() || c_started.getTimeInMillis() >= c_completed.getTimeInMillis();
+                    boolean invalidLengthCondition = ((sessionDialogLengthHour * 3600) + (sessionDialogLengthMinute * 60)) > ((c_completed.getTimeInMillis() - c_started.getTimeInMillis()) / 1000);
+
+                    // Handle invalid session
+                    if (invalidDateOrTimeCondition) {
                         shortToast(getString(R.string.invalidDateOrTime));
                         return;
                     }
 
-                    if (((sessionDialogLengthHour * 3600) + (sessionDialogLengthMinute * 60)) > ((c_completed.getTimeInMillis() - c_started.getTimeInMillis()) / 1000)) {
+                    if (invalidLengthCondition) {
                         shortToast(getString(R.string.invalidLength));
                         return;
                     }
 
+                    // Try to store session
                     final SessionSQL existingSession = db.getSessionByStarted(c_started.getTimeInMillis() / 1000);
                     if (existingSession != null && existingSession._id > 0 && (session._id == 0 || !existingSession._id.equals(session._id))) {
                         shortToast(getString(R.string.sessionExists));
                         return;
                     }
 
+                    // Update the view
                     AlertDialog postSessionDialog = new AlertDialog.Builder(activity)
                             .setIcon(getResources().getDrawable(getTheme().obtainStyledAttributes(getMATheme(true), new int[]{R.attr.actionIconInfo}).getResourceId(0, 0)))
                             .setTitle(getString(R.string.sessionPosted))
