@@ -203,16 +203,16 @@ public class MeditationAssistant extends Application {
 
         if (isStartedModalDialog) {
             // REFACTOR Move this behavior into a listener for the started button
-            autofillCompletedDate(selectedDate, maybeCompletedDate);
+            autocompleteSessionInterval(selectedDate, maybeCompletedDate);
 
         } else {
             // REFACTOR Move this behavior into a listener for the completed button
-            normalizeStartedDate(selectedDate);
+            normalizeSessionInterval(selectedDate);
         }
     }
 
     // normalize the interval, so that "start" is no later than "end"
-    private void normalizeStartedDate(LocalDate selectedDate) {
+    private void normalizeSessionInterval(LocalDate selectedDate) {
         this.sessionDialogStartedDate = (sessionDialogStartedDate != null)
                 ? earliestOf(this.sessionDialogStartedDate, selectedDate)
                 : selectedDate;
@@ -220,7 +220,7 @@ public class MeditationAssistant extends Application {
         writeSessionCompletedDate(selectedDate);
     }
 
-    private void autofillCompletedDate(LocalDate selectedDate, LocalDate maybeCompletedDate) {
+    private void autocompleteSessionInterval(LocalDate selectedDate, LocalDate maybeCompletedDate) {
         // autofill the "completed date" to the selected "started date"
         this.sessionDialogStartedDate = selectedDate;
         writeSessionCompletedDate(maybeCompletedDate == null ? selectedDate : maybeCompletedDate);
