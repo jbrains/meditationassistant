@@ -152,6 +152,7 @@ public class MeditationAssistant extends Application {
     private HashMap<String, MediaPlayer> mediaPlayers = new HashMap<String, MediaPlayer>();
 
     private AlertDialog sessionDialog = null;
+    // SMELL Is this truly nullable, or are we merely being paranoid?
     @Nullable
     private LocalDate sessionDialogStartedDate = null;
     private int sessionDialogStartedHour = -1;
