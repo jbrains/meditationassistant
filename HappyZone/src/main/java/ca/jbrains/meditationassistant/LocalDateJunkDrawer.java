@@ -23,11 +23,11 @@ public class LocalDateJunkDrawer {
         );
     }
 
-    public static LocalDate wip(long l) {
+    public static LocalDate localDateFromTimeInSeconds_newVersion(long timeInSeconds) {
         ZoneOffset localTimeZoneOffset = ZoneId.systemDefault().getRules().getOffset(Instant.now());
 
         return LocalDateTime
-                .ofEpochSecond(l, 0, localTimeZoneOffset)
+                .ofEpochSecond(timeInSeconds, 0, localTimeZoneOffset)
                 .toLocalDate();
     }
 }
