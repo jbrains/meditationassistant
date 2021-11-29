@@ -57,14 +57,10 @@ public class LocalDateFromTimeInSecondsTest {
     }
 
     private LocalDate wip(long l) {
-        if(l <= 1) {
-            return LocalDate.of(1969, 12, 31);
-        } else {
-            ZoneOffset localTimeZoneOffset = ZoneId.systemDefault().getRules().getOffset(Instant.now());
+        ZoneOffset localTimeZoneOffset = ZoneId.systemDefault().getRules().getOffset(Instant.now());
 
-            return LocalDateTime
-                    .ofEpochSecond(l, 0, localTimeZoneOffset)
-                    .toLocalDate();
-        }
+        return LocalDateTime
+                .ofEpochSecond(l, 0, localTimeZoneOffset)
+                .toLocalDate();
     }
 }
