@@ -3,7 +3,6 @@ package ca.jbrains.meditationassistant;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.threeten.bp.*;
 import org.threeten.bp.zone.TzdbZoneRulesProvider;
 import org.threeten.bp.zone.ZoneRulesProvider;
 
@@ -29,7 +28,7 @@ public class LocalDateFromTimeInSecondsTest {
     void zero() {
         Assertions.assertEquals(
                 LocalDateJunkDrawer.localDateFromTimeInSeconds(0L),
-                wip(0L)
+                LocalDateJunkDrawer.wip(0L)
         );
     }
 
@@ -37,7 +36,7 @@ public class LocalDateFromTimeInSecondsTest {
     void one() {
         Assertions.assertEquals(
                 LocalDateJunkDrawer.localDateFromTimeInSeconds(1L),
-                wip(1L)
+                LocalDateJunkDrawer.wip(1L)
         );
     }
 
@@ -45,7 +44,7 @@ public class LocalDateFromTimeInSecondsTest {
     void nextDay() {
         Assertions.assertEquals(
                 LocalDateJunkDrawer.localDateFromTimeInSeconds(12L * 3600),
-                wip(12L * 3600)
+                LocalDateJunkDrawer.wip(12L * 3600)
         );
     }
 
@@ -53,15 +52,8 @@ public class LocalDateFromTimeInSecondsTest {
     void arbitrarilyLargeNumber() {
         Assertions.assertEquals(
                 LocalDateJunkDrawer.localDateFromTimeInSeconds(1287697364597L),
-                wip(1287697364597L)
+                LocalDateJunkDrawer.wip(1287697364597L)
         );
     }
 
-    private LocalDate wip(long l) {
-        ZoneOffset localTimeZoneOffset = ZoneId.systemDefault().getRules().getOffset(Instant.now());
-
-        return LocalDateTime
-                .ofEpochSecond(l, 0, localTimeZoneOffset)
-                .toLocalDate();
-    }
 }

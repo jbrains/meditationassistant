@@ -1,7 +1,7 @@
 package ca.jbrains.meditationassistant;
 
 import org.jetbrains.annotations.NotNull;
-import org.threeten.bp.LocalDate;
+import org.threeten.bp.*;
 
 import java.util.Calendar;
 
@@ -21,5 +21,13 @@ public class LocalDateJunkDrawer {
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH)
         );
+    }
+
+    public static LocalDate wip(long l) {
+        ZoneOffset localTimeZoneOffset = ZoneId.systemDefault().getRules().getOffset(Instant.now());
+
+        return LocalDateTime
+                .ofEpochSecond(l, 0, localTimeZoneOffset)
+                .toLocalDate();
     }
 }
